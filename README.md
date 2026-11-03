@@ -16,14 +16,14 @@ El análisis de imágenes requiere los exámenes originales con sus imágenes; u
 
 ## Generador de cuestiones de práctica
 
-La sección «Generador» crea cuatro cuestiones cortas del bloque 1, 2 o 3, o mezcladas («Aleatorio»), cada una con un desplegable «Posible solución». El banco (`FICHAS` en `generador.js`) reproduce los ejemplos de preguntas cortas de los apuntes del autor para los bloques 1–3 (41 en total; las marcadas con año son PAU reales). El bloque 4 está pendiente de sus apuntes. Para ampliarlo, añade `[enunciado, "puntos clave"]` al bloque correspondiente. Las soluciones son orientativas y no indican probabilidad de examen.
+La sección «Generador» crea cuatro preguntas cortas del bloque 1, 2, 3 o 4, o mezcladas («Aleatorio»), cada una con un desplegable «Posible solución». El banco (`FICHAS` en `generador.js`, entradas `[enunciado, "puntos clave", "PAU años"]`) combina los ejemplos de preguntas cortas de los apuntes del autor (bloques 1–3, sin año) con los enunciados literales de la PAU 2017–2026 del corpus (etiquetados con sus años). Los puntos clave de las preguntas PAU de los bloques 1–3 se han redactado a partir de los apuntes; el bloque 4 solo incluye preguntas PAU, sin solución hasta que se incorporen sus apuntes. Para ampliarlo, añade entradas al bloque correspondiente. Las soluciones son orientativas y no indican probabilidad de examen.
 
 ## Fuentes
 
 - [Orientaciones oficiales de Historia de España 2026–27 (PDF)](https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf)
 - [Archivo oficial SGUIT de exámenes anteriores](https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&d=g_b_examenes_anteriores.php)
 - [Documento del corpus de exámenes](https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing)
-- [Noticia de la Junta: convocatoria extraordinaria adelantada a julio (2021)](https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/246746.html)
+- [Noticia de la Junta: fechas de la PAU 2027 (1, 2 y 3 de junio)](https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/688960.html)
 
 ## Ejecutar localmente
 

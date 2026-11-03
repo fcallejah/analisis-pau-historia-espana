@@ -191,6 +191,15 @@ new IntersectionObserver((entries, observer) => {
   }
 }, { threshold: 0.45 }).observe(fan);
 
+document.querySelectorAll('a[href="#inicio"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    e.preventDefault();
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    history.replaceState(null, "", location.pathname + location.search);
+  });
+});
+
 const toTop = document.querySelector(".to-top");
 if (toTop) {
   const toggleToTop = () => { toTop.hidden = window.scrollY < 400; };
@@ -201,6 +210,7 @@ if (toTop) {
 const phaseNav = document.querySelector(".phase-nav");
 if (phaseNav) {
   const phases = [
+    { id: "explorar", name: "Índice: ¿Qué quieres estudiar?" },
     { id: "alineacion", name: "Alineación 3-4-3" },
     { id: "bloques-cuestiones", name: "Preguntas cortas" },
     { id: "generador", name: "Generador" },
@@ -211,17 +221,27 @@ if (phaseNav) {
   const stepEl = nextBtn.querySelector(".np-step");
   const nameEl = nextBtn.querySelector(".np-name");
   let current = -1;
-  const topOf = (id) => document.getElementById(id).getBoundingClientRect().top + window.scrollY;
-  const go = (i) => document.getElementById(phases[i].id).scrollIntoView({ behavior: "smooth", block: "start" });
+  const MARGIN = 28;
+  const anchorOf = (id) => {
+    const el = document.getElementById(id);
+    const sec = el.closest("section") || el;
+    return sec.querySelector(".eyebrow") || el;
+  };
+  const topOf = (id) => anchorOf(id).getBoundingClientRect().top + window.scrollY - MARGIN;
+  const go = (i) => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: Math.max(0, Math.min(topOf(phases[i].id), max)), behavior: reduce ? "auto" : "smooth" });
+  };
   const sync = () => {
     phaseNav.hidden = false;
-    const y = window.scrollY + window.innerHeight * 0.4;
+    const y = window.scrollY + 40;
     current = -1;
     let best = -Infinity;
-    phases.forEach((p, i) => { const t = topOf(p.id); if (t <= y && t > best) { best = t; current = i; } });
+    phases.forEach((p, i) => { const t = topOf(p.id); if (t <= y + 1 && t > best) { best = t; current = i; } });
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = phases.length - 1;
     const next = (current + 1) % phases.length;
-    stepEl.textContent = `Fase ${next + 1}`;
+    stepEl.textContent = `Fase ${next}`;
     nameEl.textContent = phases[next].name;
     prevBtn.disabled = current <= 0;
   };
@@ -242,9 +262,39 @@ if (themeToggle) {
   };
   themeToggle.addEventListener("click", () => {
     const dark = root.dataset.theme !== "dark";
-    if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
+    const apply = () => { if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme; };
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (document.startViewTransition && !calm) document.startViewTransition(apply); else apply();
     try { localStorage.setItem("pau-he.theme", dark ? "dark" : "light"); } catch (e) {}
     paintTheme();
   });
   paintTheme();
 }
+
+(function () {
+  const box = document.getElementById("novedades");
+  if (!box) return;
+  const slides = [...box.querySelectorAll(".note-slide")];
+  const dots = [...box.querySelectorAll(".note-dot")];
+  const controls = box.querySelector(".note-controls");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let cur = 0;
+  function show(i) {
+    cur = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      s.classList.toggle("is-active", k === cur);
+      s.toggleAttribute("inert", k !== cur);
+    });
+    dots.forEach((d, k) => {
+      if (k === cur) d.setAttribute("aria-current", "true");
+      else d.removeAttribute("aria-current");
+    });
+    const fill = dots[cur].firstElementChild;
+    fill.style.animation = "none";
+    void fill.offsetWidth;
+    fill.style.animation = "";
+  }
+  dots.forEach((d, k) => d.addEventListener("click", () => show(k)));
+  dots.forEach((d) => d.firstElementChild.addEventListener("animationend", () => show(cur + 1)));
+  controls.dataset.paused = reduce ? "true" : "false";
+})();

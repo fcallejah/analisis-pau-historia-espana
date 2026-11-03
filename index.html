@@ -7,9 +7,9 @@
     <meta name="theme-color" content="#f5f3ed">
     <title>PAU Andalucía · Historia de España</title>
     <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
-    <link rel="stylesheet" href="styles.css?v=7">
-    <script src="app.js?v=7" defer></script>
-    <script src="generador.js?v=3" defer></script>
+    <link rel="stylesheet" href="styles.css?v=38">
+    <script src="app.js?v=16" defer></script>
+    <script src="generador.js?v=10" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -21,9 +21,9 @@
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 4h14v17h-14z"/><path d="M7.5 4v17"/><path d="M14.5 4V1.5h4V8l-2-1.4L14.5 8z"/><text x="9.3" y="14.2" fill="currentColor" stroke="none" font-family="Arial,sans-serif" font-size="5.2" font-weight="700">ES</text></svg>
           <span>Diccionario</span>
         </a>
-        <a class="header-tool" href="https://x.com/raeresponde" target="_blank" rel="noopener noreferrer">
+        <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5.3 8a4 4 0 1 1 7.5 2c-.7 1.1-2.4 1.9-3 3.1-.2.4-.3.8-.3 1.3"/><circle cx="9.5" cy="18.2" r=".7" fill="currentColor" stroke="none"/><path d="m15.4 4.2 4.4 4.4-7.5 7.5-3.1 1.1 1.1-3.1z"/><path d="m15.4 4.2 1.5-1.5 4.4 4.4-1.5 1.5M12.3 16.1l-3.1 1.1 1.1-3.1z"/></svg>
-          <span>Preguntar a <b>@RAEresponde</b></span>
+          <span><b>@RAEinforma</b></span>
         </a>
       </nav>
         <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false" title="Cambiar modo claro/oscuro">
@@ -42,10 +42,30 @@
           <p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA</p>
           <h1>PAU Andalucía<br><em>Historia de España</em></h1>
           <p class="intro">Un espacio para entender la estructura de la prueba, organizar exámenes y estudiar sus patrones cuando el corpus esté revisado.</p>
-          <aside class="hero-note">
-            <span class="eyebrow">¡NOVEDAD!</span><strong>Formato 26–27</strong>
-            <p>Nuevo formato 2026–27 con cambios respecto a años anteriores.</p>
-            <a href="#modelo">Conocer el formato →</a>
+          <aside class="hero-note" id="novedades" role="region" aria-roledescription="carrusel" aria-label="Novedades">
+            <div class="note-slides">
+              <div class="note-slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
+                <span class="eyebrow note-pill">¡NOVEDAD!</span><strong>Formato 26–27</strong>
+                <p>Nuevo formato 2026–27 con cambios respecto a años anteriores.</p>
+                <a href="#modelo">Conocer el formato →</a>
+              </div>
+              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4" inert>
+                <span class="eyebrow note-pill">¡NOVEDAD!</span><strong>Generador preguntas cortas</strong>
+                <p>Practica con cuestiones de los apuntes y preguntas reales de la PAU, con posible solución.</p>
+                <a href="#generador">Probar el generador →</a>
+              </div>
+              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 4" inert>
+                <span class="eyebrow">CONSULTA</span><strong>Preguntas de años anteriores</strong>
+                <p>114 preguntas cortas recopiladas de la PAU 2017–2026, por bloques y temas.</p>
+                <a href="#bloques-cuestiones">Ver las preguntas →</a>
+              </div>
+              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 4" inert>
+                <span class="eyebrow">FUENTES</span><strong>Documentos oficiales</strong>
+                <p>Orientaciones 2026–27, archivo de exámenes y corpus de trabajo.</p>
+                <a href="#fuentes">Ir a las fuentes →</a>
+              </div>
+            </div>
+            <div class="note-controls"><div class="note-dots"><button type="button" class="note-dot" aria-label="Ir a la novedad 1" aria-current="true"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 2"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 3"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 4"><span></span></button></div></div>
           </aside>
         </div>
         <div class="hero-fan" id="orientaciones" role="group" aria-label="Vista previa de las seis páginas de las orientaciones oficiales 2026–27">
@@ -64,7 +84,7 @@
           <a class="fan-toggle fan-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span class="ft-text"><b>Abrir</b><span>guía oficial en PDF <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span></span></a>
         </div>
         </div>
-        <div class="hero-caption"><span>DOCUMENTOS · TEMAS · CUESTIONES</span><span>CURSO 2026—27</span></div>
+        <div class="hero-caption"><span>CUESTIONES · DOCUMENTOS · TEMAS</span><span>CURSO 2026—27</span></div>
       </section>
 
       <section class="explore" id="explorar">
@@ -130,7 +150,7 @@
       </section>
 
       <section class="model" id="modelo">
-        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ALINEACIÓN 3-4-3</p><h2>Un nuevo esquema<br>para la prueba.</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
+        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ALINEACIÓN 3-4-3</p><h2>Un nuevo esquema<br>para la prueba</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
         <div class="model-detail">
           <div class="lineup" id="alineacion" role="group" aria-label="Alineación 3-4-3: reparto de la nota">
             <p class="lineup-title"><span>PUNTUACIÓN</span> Alineación 3-4-3</p>
@@ -149,9 +169,10 @@
 
       <section class="question-groups" id="bloques-cuestiones" aria-labelledby="questions-title">
         <div class="section-head">
-          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / PREGUNTAS CORTAS · AGRUPACIÓN I</p><h2 id="questions-title">Cuatro bloques, cuatro ámbitos.</h2></div>
+          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / PREGUNTAS CORTAS · AGRUPACIÓN I</p><h2 id="questions-title">Cuatro bloques, cuatro ámbitos</h2></div>
           <p>Las marcas de color señalan preguntas cortas de exámenes anteriores que pertenecen a los bloques 1–4 y podrían servir para preparar la PAU 2027.</p>
         </div>
+        <aside class="alert-warn" role="note"><svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-5.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Z"/></svg><div><strong>Importante</strong><p><b>Que hayan aparecido antes no significa que vayan a repetirse</b>: es material de preparación, <b>no una predicción oficial</b>. Las preguntas repetidas en el pasado <b>no garantizan su aparición en el examen</b>; interprétalo solo como una referencia estadística indicativa.</p></div></aside>
         <p class="question-note">Abre un bloque para ver una nube de temas extraídos de sus preguntas resaltadas. El tamaño y la cifra de cada burbuja indican en cuántas preguntas de esta selección aparece el tema; púlsala para filtrar los enunciados. Se han reunido los duplicados exactos y los que solo difieren en mayúsculas o puntuación. Que hayan aparecido antes no significa que vayan a repetirse: es material de preparación, no una predicción oficial.</p>
         <div class="question-total" role="group" aria-label="Total de preguntas recopiladas">
           <p class="qt-main"><strong>114</strong><span>Preguntas recopiladas<br>desde la PAU 2017 hasta 2026</span></p>
@@ -315,14 +336,15 @@
       </section>
 
       <section class="generator" id="generador">
-        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / GENERADOR</p><h2>Genera preguntas cortas.</h2></div><p>Cuatro cuestiones cortas con posible solución desplegable, extraídas de los apuntes.</p></div>
+        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / GENERADOR</p><h2>Generador preguntas cortas</h2></div><p>Cuatro cuestiones cortas con posible solución desplegable, combinando ejemplos de los apuntes y preguntas reales de la PAU.</p></div>
+        <aside class="alert-warn" role="note"><svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-5.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Z"/></svg><div><strong>Importante</strong><p><b>Que hayan aparecido antes no significa que vayan a repetirse</b>: es material de preparación, <b>no una predicción oficial</b>. Las preguntas repetidas en el pasado <b>no garantizan su aparición en el examen</b>; interprétalo solo como una referencia estadística indicativa.</p></div></aside>
         <div class="gen-controls" role="group" aria-label="Elegir bloque">
           <button type="button" data-gen="1" aria-pressed="false">Bloque 1</button>
           <button type="button" data-gen="2" aria-pressed="false">Bloque 2</button>
           <button type="button" data-gen="3" aria-pressed="false">Bloque 3</button>
           <button type="button" data-gen="4" aria-pressed="false">Bloque 4</button>
           <button type="button" data-gen="random" aria-pressed="false" class="gen-random">Aleatorio</button>
-          <button type="button" id="gen-reset" class="gen-reset" aria-label="Borrar las preguntas generadas y empezar de nuevo" title="Borrar y empezar de nuevo" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(24 -2) scale(-1 1)"><path d="M8.2 18.5 3.8 14.1a1.6 1.6 0 0 1 0-2.3l7.6-7.6a1.6 1.6 0 0 1 2.3 0l5 5a1.6 1.6 0 0 1 0 2.3l-7.4 7.4"/><path d="m7.5 8.5 7.9 7.9"/></g><path class="gen-reset-line" d="M4 22H20"/></svg></button>
+          <button type="button" id="gen-reset" class="gen-reset" aria-label="Borrar las preguntas generadas y empezar de nuevo" title="Borrar y empezar de nuevo" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/><g transform="rotate(-42 12 10)"><rect x="8" y="3" width="8" height="14" rx="1.5" stroke-width="1.8"/><path stroke-width="1.5" d="M8.5 12h7"/></g></svg></button>
         </div>
         <p class="gen-status" id="gen-status" role="status" aria-live="polite">Elige un bloque o «Aleatorio» para generar cuatro cuestiones.</p>
         <div class="gen-output" id="gen-output"></div>
@@ -336,16 +358,16 @@
             </div>
           </form>
         </dialog>
-        <p class="caveat">Las cuestiones y sus puntos clave son los ejemplos de preguntas cortas de los apuntes de los bloques 1–3 (los que llevan año son preguntas PAU reales). El bloque 4 está pendiente de sus apuntes. Las soluciones son orientativas: no indican probabilidad de examen.</p>
+        <p class="caveat">El banco mezcla los ejemplos de preguntas cortas de los apuntes (bloques 1–3) con los enunciados literales de la PAU 2017–2026 (llevan la etiqueta «PAU» y el año). Los puntos clave de las preguntas PAU de los bloques 1–3 se han redactado a partir de los apuntes; el bloque 4 solo tiene preguntas PAU, sin solución hasta recibir sus apuntes. Las soluciones son orientativas: no indican probabilidad de examen.</p>
       </section>
 
       <section class="sources" id="fuentes">
-        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / FUENTES</p><h2>Empieza por los documentos.</h2></div><p>Referencias oficiales y corpus de trabajo del proyecto.</p></div>
+        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / FUENTES</p><h2>Empieza por los documentos</h2></div><p>Referencias oficiales y corpus de trabajo del proyecto.</p></div>
         <div class="source-grid">
           <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · PDF</span><strong>Orientaciones Historia de España 2026–27</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
           <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer"><span>SGUIT · ARCHIVO OFICIAL</span><strong>Exámenes de años anteriores</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
           <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><span>CORPUS DEL PROYECTO · GOOGLE DOCS</span><strong>Recopilación de exámenes</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
-          <a href="https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/246746.html" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · NOTICIA</span><strong>Extraordinaria adelantada a julio (2021)</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
+          <a href="https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/688960.html" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · NOTICIA</span><strong>Fechas de la PAU 2027: 1, 2 y 3 de junio</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
         </div>
         <p class="caveat">El corpus aún debe importarse y revisarse antes de publicar recuentos, tendencias o preguntas históricas. El análisis de imágenes requiere disponer de los exámenes originales que las incluyen.</p>
       </section>
@@ -358,7 +380,7 @@
     </footer>
     <div class="phase-nav" hidden>
       <button class="prev-phase" type="button" aria-label="Fase anterior"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></button>
-      <button class="next-phase" type="button" aria-label="Siguiente fase"><span class="np-step">Fase 1</span><span class="np-name">Alineación 3-4-3</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></button>
+      <button class="next-phase" type="button" aria-label="Siguiente fase"><span class="np-step">Fase 0</span><span class="np-name">Índice: ¿Qué quieres estudiar?</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></button>
     </div>
     <a class="to-top" href="#inicio" aria-label="Subir arriba" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></a>
   </body>
