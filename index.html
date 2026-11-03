@@ -6,43 +6,70 @@
     <meta name="description" content="Guía y espacio de análisis de la PAU Andalucía de Historia de España.">
     <meta name="theme-color" content="#f5f3ed">
     <title>PAU Andalucía · Historia de España</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="app.js" defer></script>
+    <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+    <link rel="stylesheet" href="styles.css?v=7">
+    <script src="app.js?v=7" defer></script>
+    <script src="generador.js?v=3" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
       <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
-      <nav class="header-links" aria-label="Navegación principal"><a href="#modelo">Nuevo modelo</a><a href="#fuentes">Recursos oficiales ↗</a></nav>
+      <nav class="header-links" aria-label="Navegación principal"><a href="#modelo">Nuevo modelo</a><a href="#fuentes">Recursos oficiales <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></nav>
       <nav class="header-tools" aria-label="Herramientas de la RAE">
         <a class="header-tool" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 4h14v17h-14z"/><path d="M7.5 4v17"/><path d="M14.5 4V1.5h4V8l-2-1.4L14.5 8z"/><text x="9.3" y="14.2" fill="currentColor" stroke="none" font-family="Arial,sans-serif" font-size="5.2" font-weight="700">ES</text></svg>
           <span>Diccionario</span>
         </a>
-        <a class="header-tool" href="https://twitter.com/intent/tweet?text=%40RAEinforma%20" target="_blank" rel="noopener noreferrer">
+        <a class="header-tool" href="https://x.com/raeresponde" target="_blank" rel="noopener noreferrer">
           <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5.3 8a4 4 0 1 1 7.5 2c-.7 1.1-2.4 1.9-3 3.1-.2.4-.3.8-.3 1.3"/><circle cx="9.5" cy="18.2" r=".7" fill="currentColor" stroke="none"/><path d="m15.4 4.2 4.4 4.4-7.5 7.5-3.1 1.1 1.1-3.1z"/><path d="m15.4 4.2 1.5-1.5 4.4 4.4-1.5 1.5M12.3 16.1l-3.1 1.1 1.1-3.1z"/></svg>
-          <span>Preguntar a <b>@RAEinforma</b></span>
+          <span>Preguntar a <b>@RAEresponde</b></span>
         </a>
       </nav>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false" title="Cambiar modo claro/oscuro">
+          <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+          <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
     </header>
     <main id="contenido">
       <section class="hero" id="inicio">
-        <div>
+      <div class="hero-waves" aria-hidden="true">
+        <svg class="wave w1" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 100 C200 20 400 180 600 100 S1000 20 1200 100 S1600 180 1800 100 S2200 20 2400 100 V200 H0Z"/></svg>
+        <svg class="wave w2" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 110 C200 190 400 30 600 110 S1000 190 1200 110 S1600 30 1800 110 S2200 190 2400 110 V200 H0Z"/></svg>
+        <svg class="wave w3" viewBox="0 0 2400 200" preserveAspectRatio="none"><path d="M0 90 C300 10 500 170 800 90 S1100 10 1200 90 S1700 170 2000 90 S2300 20 2400 90 V200 H0Z"/></svg>
+      </div>
+      <div>
           <p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA</p>
-          <h1>PAU Andalucía<br><em>Historia de España.</em></h1>
+          <h1>PAU Andalucía<br><em>Historia de España</em></h1>
           <p class="intro">Un espacio para entender la estructura de la prueba, organizar exámenes y estudiar sus patrones cuando el corpus esté revisado.</p>
+          <aside class="hero-note">
+            <span class="eyebrow">¡NOVEDAD!</span><strong>Formato 26–27</strong>
+            <p>Nuevo formato 2026–27 con cambios respecto a años anteriores.</p>
+            <a href="#modelo">Conocer el formato →</a>
+          </aside>
         </div>
-        <aside class="hero-note">
-          <span class="eyebrow">ESTADO DEL ANÁLISIS</span><strong>01</strong>
-          <p>Guía inicial del formato. El análisis histórico requiere recopilar y revisar los exámenes.</p>
-          <a href="#modelo">Conocer el formato →</a>
-        </aside>
+        <div class="hero-fan" id="orientaciones" role="group" aria-label="Vista previa de las seis páginas de las orientaciones oficiales 2026–27">
+  <div class="fan" id="fan" data-open="false">
+          <div class="fan-pages">
+          <button class="fan-page" type="button" style="--i:0" aria-pressed="false" aria-label="Destacar la página 1 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-1.webp" alt="Página 1 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>1</span></button>
+          <button class="fan-page" type="button" style="--i:1" aria-pressed="false" aria-label="Destacar la página 2 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-2.webp" alt="Página 2 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>2</span></button>
+          <button class="fan-page" type="button" style="--i:2" aria-pressed="false" aria-label="Destacar la página 3 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-3.webp" alt="Página 3 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>3</span></button>
+          <button class="fan-page" type="button" style="--i:3" aria-pressed="false" aria-label="Destacar la página 4 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-4.webp" alt="Página 4 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>4</span></button>
+          <button class="fan-page" type="button" style="--i:4" aria-pressed="false" aria-label="Destacar la página 5 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-5.webp" alt="Página 5 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>5</span></button>
+          <button class="fan-page" type="button" style="--i:5" aria-pressed="false" aria-label="Destacar la página 6 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-6.webp" alt="Página 6 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>6</span></button>
+          </div>
+        </div>
+        <div class="fan-actions">
+          <button id="fan-toggle" class="fan-toggle" type="button" aria-expanded="false"><span class="ft-icon" aria-hidden="true">+</span><span class="ft-text"><b>Abrir</b><span>abanico</span></span></button>
+          <a class="fan-toggle fan-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span class="ft-text"><b>Abrir</b><span>guía oficial en PDF <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span></span></a>
+        </div>
+        </div>
         <div class="hero-caption"><span>DOCUMENTOS · TEMAS · CUESTIONES</span><span>CURSO 2026—27</span></div>
       </section>
 
       <section class="explore" id="explorar">
         <div class="section-head">
-          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / 01 EXPLORAR</p><h2>¿Qué quieres estudiar?</h2></div>
+          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ÍNDICE</p><h2 id="indice-title">¿Qué quieres estudiar?</h2></div>
           <p>Busca en la guía inicial y filtra por formato o agrupación.</p>
         </div>
         <div class="filters" role="search">
@@ -71,145 +98,268 @@
           <a class="card olive card-anchor" href="#bloques-cuestiones" aria-label="Abrir los grupos de preguntas cortas de los bloques 1 a 4" data-format="cuestiones" data-groups="I" data-search="cuestiones cortas agrupación I bloque 1 bloque 2 bloque 3 bloque 4 bloques 1 2 3 4 dos cuatro nuevo modelo">
             <div class="card-top"><span>01</span><span class="tag">NUEVO MODELO</span></div>
             <div class="card-body"><p class="eyebrow">AGRUPACIÓN I · BLOQUES 1–4</p><h3>Cuestiones<br>cortas</h3><p>Se eligen dos de cuatro. La guía 2026–27 sitúa estas cuestiones en los bloques 1 a 4 de la Agrupación I.</p></div>
-            <span class="card-link">Explorar los cuatro bloques <span>↗</span></span>
+            <span class="card-link">Explorar los cuatro bloques <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span>
           </a>
           <article class="card paper" data-format="documento" data-groups="II III" data-search="documento itinerario agrupaciones II III nuevo modelo">
             <div class="card-top"><span>02</span><span class="tag">NUEVO MODELO</span></div>
             <div class="card-body"><p class="eyebrow">AGRUPACIONES II + III</p><h3>Análisis de<br>documento</h3><p>Documento y tema se organizan mediante dos itinerarios cruzados sobre las Agrupaciones II y III.</p></div>
-            <a class="card-link" href="#modelo">Ver cómo funciona <span>↗</span></a>
+            <a class="card-link" href="#modelo">Ver cómo funciona <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
           </article>
           <article class="card rust" data-format="tema" data-groups="II III" data-search="tema itinerario agrupaciones II III nuevo modelo">
             <div class="card-top"><span>03</span><span class="tag">NUEVO MODELO</span></div>
             <div class="card-body"><p class="eyebrow">AGRUPACIONES II + III</p><h3>Desarrollo<br>de un tema</h3><p>El tema forma parte de la estructura por itinerarios. Consulta la orientación oficial para los detalles.</p></div>
-            <a class="card-link" href="#modelo">Ver cómo funciona <span>↗</span></a>
+            <a class="card-link" href="#modelo">Ver cómo funciona <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
           </article>
           <article class="card blue" data-format="imagenes" data-groups="" data-search="imágenes documentos visuales exámenes originales corpus análisis frecuencia pendiente">
             <div class="card-top"><span>04</span><span class="tag">CORPUS PENDIENTE</span></div>
             <div class="card-body"><p class="eyebrow">ANÁLISIS VISUAL</p><h3>Imágenes y<br>documentos</h3><p>El análisis de recurrencia requiere los exámenes originales con sus imágenes. No se muestran frecuencias sin revisar el corpus.</p></div>
-            <a class="card-link" href="#fuentes">Consultar fuentes <span>↗</span></a>
+            <a class="card-link" href="#fuentes">Consultar fuentes <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
           </article>
           <article class="card paper" data-format="cambio" data-groups="" data-search="exámenes antiguos nuevos cambio formato corte curso 2026 2027 comparación">
             <div class="card-top"><span>05</span><span class="tag">IMPORTANTE</span></div>
             <div class="card-body"><p class="eyebrow">COMPARAR CON CONTEXTO</p><h3>Dos modelos,<br>dos lecturas</h3><p>Los exámenes anteriores y los de 2026–27 en adelante deben analizarse como formatos distintos.</p></div>
-            <a class="card-link" href="#corte">Ver el cambio <span>↗</span></a>
+            <a class="card-link" href="#corte">Ver el cambio <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
           </article>
-          <article class="card olive" data-format="cambio" data-groups="" data-search="guía modelo de prueba ejemplo oficial orientaciones 2026 2027 no examen real">
+          <article class="card rust" data-format="cambio" data-groups="" data-search="guía modelo de prueba ejemplo oficial orientaciones 2026 2027 no examen real">
             <div class="card-top"><span>06</span><span class="tag">REFERENCIA OFICIAL</span></div>
             <div class="card-body"><p class="eyebrow">CURSO 2026–27</p><h3>Orientaciones<br>de la prueba</h3><p>Consulta la guía oficial para verificar estructura, itinerarios y modelo de prueba. No es un examen real.</p></div>
-            <a class="card-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Abrir orientaciones <span>↗</span></a>
+            <a class="card-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Abrir orientaciones <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
           </article>
         </div>
         <p id="empty" class="empty" hidden>No hay contenidos que coincidan. Prueba otra búsqueda o limpia los filtros.</p>
       </section>
 
+      <section class="model" id="modelo">
+        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ALINEACIÓN 3-4-3</p><h2>Un nuevo esquema<br>para la prueba.</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
+        <div class="model-detail">
+          <div class="lineup" id="alineacion" role="group" aria-label="Alineación 3-4-3: reparto de la nota">
+            <p class="lineup-title"><span>PUNTUACIÓN</span> Alineación 3-4-3</p>
+            <div class="lineup-bar" aria-hidden="true"><i class="lu-a">3</i><i class="lu-b">4</i><i class="lu-c">3</i></div>
+            <ul class="lineup-list">
+              <li><b>3 puntos</b><span>PREGUNTAS CORTAS</span><p>Dos de cuatro; proceden de la Agrupación I (bloques 1–4). 1,5 puntos cada una.</p></li>
+              <li><b>4 puntos</b><span>DOCUMENTO</span><p>Texto, imagen o gráfico a escoger uno, cruzando las Agrupaciones II y III. Se escoge un documento.</p></li>
+              <li><b>3 puntos</b><span>TEMA DE DESARROLLO</span><p>A escoger uno, cruzando las Agrupaciones II y III.</p></li>
+            </ul>
+          </div>
+          <p class="model-alert" role="note"><strong>¡Importante!</strong> No sigas guías de años anteriores: solo valen las pautas 2026–27.</p>
+          <div class="model-row" id="corte"><span>CORTE DE COMPARACIÓN</span><p>Separa los exámenes anteriores de los de 2026–27 en adelante. No traslades frecuencias entre formatos sin justificarlo.</p></div>
+          <a class="official" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Leer las orientaciones oficiales <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+        </div>
+      </section>
+
       <section class="question-groups" id="bloques-cuestiones" aria-labelledby="questions-title">
         <div class="section-head">
-          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / CUESTIONES CORTAS · AGRUPACIÓN I</p><h2 id="questions-title">Cuatro bloques, cuatro ámbitos.</h2></div>
+          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / PREGUNTAS CORTAS · AGRUPACIÓN I</p><h2 id="questions-title">Cuatro bloques, cuatro ámbitos.</h2></div>
           <p>Las marcas de color señalan preguntas cortas de exámenes anteriores que pertenecen a los bloques 1–4 y podrían servir para preparar la PAU 2027.</p>
         </div>
-        <p class="question-note">Abre un bloque para ver una nube de temas extraídos de sus preguntas resaltadas. El tamaño y la cifra de cada burbuja indican en cuántas preguntas de esta selección aparece el tema; púlsala para filtrar los enunciados. Se han reunido duplicados exactos. Que hayan aparecido antes no significa que vayan a repetirse: es material de preparación, no una predicción oficial.</p>
+        <p class="question-note">Abre un bloque para ver una nube de temas extraídos de sus preguntas resaltadas. El tamaño y la cifra de cada burbuja indican en cuántas preguntas de esta selección aparece el tema; púlsala para filtrar los enunciados. Se han reunido los duplicados exactos y los que solo difieren en mayúsculas o puntuación. Que hayan aparecido antes no significa que vayan a repetirse: es material de preparación, no una predicción oficial.</p>
+        <div class="question-total" role="group" aria-label="Total de preguntas recopiladas">
+          <p class="qt-main"><strong>114</strong><span>Preguntas recopiladas<br>desde la PAU 2017 hasta 2026</span></p>
+          <ul class="qt-blocks">
+            <li><b>8</b> Bloque 1</li>
+            <li><b>35</b> Bloque 2</li>
+            <li><b>34</b> Bloque 3</li>
+            <li><b>37</b> Bloque 4</li>
+          </ul>
+        </div>
         <div class="block-list">
           <details class="block">
-            <summary><span class="block-number">01</span><span><small>BLOQUE 1</small><strong>Desde la prehistoria hasta la monarquía visigoda</strong></span><span class="chevron" aria-hidden="true">+</span></summary>
+            <summary><span class="block-number">01</span><span><small>BLOQUE 1</small><strong>Desde la prehistoria hasta la monarquía visigoda</strong><span class="block-years">(hasta 711)</span></span><span class="chevron" aria-hidden="true">+</span></summary>
             <p class="block-scope">Desde los primeros humanos hasta la desaparición de la monarquía visigoda (711).</p>
             <div class="topic-cloud" aria-label="Temas de las preguntas resaltadas"></div>
             <p class="topic-status" aria-live="polite"></p>
             <ol class="question-list">
-              <li><p>¿Qué monarquía reinaba en la Península en el 711?<br>Describa las causas de la invasión musulmana.</p><small>2017 · Titular septiembre</small></li>
+              <li><p>¿Qué monarquía reinaba en la península en el 711?<br>Describa las causas de la invasión musulmana.</p><small>2017 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarquía precedió a la invasión musulmana?<br>Explique las causas de dicha invasión y su rápida expansión en la península.</p><small>2019 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarquía precedió a la invasión musulmana?<br>Explique brevemente qué evolución política siguió el islam peninsular hasta los denominados reinos de taifas (711-1031).</p><small>2020 · Prueba 4; 2021 · Reserva extraordinaria; 2024 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarquía precedió a la invasión musulmana?<br>Explique brevemente las causas de la invasión musulmana y su rápida expansión por la península.</p><small>2022 · Reserva extraordinaria</small></li>
+              <li><p>Indique y explique cuáles fueron las culturas autóctonas existentes en la península ibérica antes de la llegada de los romanos.</p><small>2026 · Suplente extraordinaria</small></li>
+              <li><p>¿Quiénes fueron los iberos?<br>Cita algunas características de este conjunto de pueblos.</p><small>2026 · Titular extraordinaria</small></li>
+              <li><p>Define el concepto de romanización y describe los instrumentos para llevarla a cabo.</p><small>2026 · Titular ordinaria</small></li>
+              <li><p>¿Qué pueblo logró dominar la península ibérica tras la caída del Imperio romano de Occidente?<br>Menciona los rasgos más relevantes de su organización política.</p><small>2026 · Suplente ordinaria</small></li>
             </ol>
           </details>
           <details class="block">
-            <summary><span class="block-number">02</span><span><small>BLOQUE 2</small><strong>Entre al-Ándalus y los reinos cristianos</strong></span><span class="chevron" aria-hidden="true">+</span></summary>
+            <summary><span class="block-number">02</span><span><small>BLOQUE 2</small><strong>Entre al-Ándalus y los reinos cristianos</strong><span class="block-years">(711–1474)</span></span><span class="chevron" aria-hidden="true">+</span></summary>
             <p class="block-scope">Edad Media: convivencia de culturas y mapa político cambiante (711–1474).</p>
             <div class="topic-cloud" aria-label="Temas de las preguntas resaltadas"></div>
             <p class="topic-status" aria-live="polite"></p>
             <ol class="question-list">
-              <li><p>¿Dónde estuvo la capital de Al Ándalus durante la época califal?<br>Explique brevemente el origen y expansión de Al Ándalus.</p><small>2017 · Suplente septiembre</small></li>
-              <li><p>¿Durante qué reinado se produjo el final de la Reconquista?<br>Explique brevemente qué se entiende históricamente por Reconquista.</p><small>2017 · Suplente septiembre</small></li>
-              <li><p>¿Qué cronología, en siglos, abarca el proceso de Reconquista?<br>Defina brevemente el concepto de Repoblación.</p><small>2017 · Titular junio</small></li>
-              <li><p>¿Cómo se denominó la asociación de ganaderos de León y Castilla creada por Alfonso X el Sabio?<br>Describa brevemente en qué consistía dicha asociación.</p><small>2017 · Reserva B</small></li>
-              <li><p>¿Dónde se situaron los primeros núcleos de resistencia cristiana al Islam en España?<br>Defina brevemente el concepto de Reconquista.</p><small>2017 · Suplente junio</small></li>
-              <li><p>¿Quién fue el primer califa omeya de Córdoba?<br>Describa la evolución política del Califato de Córdoba.</p><small>2017 · Reserva A</small></li>
-              <li><p>¿Qué rey castellano impulsó la actividad cultural en la Edad Media a través de la Escuela de Traductores de Toledo?<br>Describa brevemente la importancia de dicha institución.</p><small>2018 · Reserva A</small></li>
-              <li><p>¿Qué personaje histórico adoptó el título de califa en Córdoba durante el siglo X?<br>Describa el legado cultural y económico de Al-Andalus.</p><small>2018 · Reserva B</small></li>
-              <li><p>¿Qué nombre reciben los componentes de la minoría cristiana de Al-Andalus?<br>Explique los rasgos principales de la sociedad hispano-musulmana.</p><small>2018 · Titular septiembre</small></li>
-              <li><p>¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como Reconquista?<br>Defina brevemente dicho concepto.</p><small>2019 · Reserva B</small></li>
-              <li><p>¿Qué término acuñado por los cristianos define el enfrentamiento de larga duración que mantuvieron estos y musulmanes hasta 1492?<br>Explique brevemente el ámbito territorial y carácter de cada sistema de repoblación, así como sus causas y consecuencias.</p><small>2019 · Suplente junio</small></li>
+              <li><p>¿Dónde estuvo la capital de Al-Ándalus durante la época califal?<br>Explique brevemente el origen y expansión de Al-Ándalus.</p><small>2017 · Suplente extraordinaria</small></li>
+              <li><p>¿Durante qué reinado se produjo el final de la Reconquista?<br>Explique brevemente qué se entiende históricamente por Reconquista.</p><small>2017 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué cronología, en siglos, abarca el proceso de Reconquista?<br>Defina brevemente el concepto de repoblación.</p><small>2017 · Titular ordinaria</small></li>
+              <li><p>¿Cómo se denominó la asociación de ganaderos de León y Castilla creada por Alfonso X el Sabio?<br>Describa brevemente en qué consistía dicha asociación.</p><small>2017 · Reserva B; 2018 · Suplente extraordinaria</small></li>
+              <li><p>¿Dónde se situaron los primeros núcleos de resistencia cristiana al islam en España?<br>Defina brevemente el concepto de Reconquista.</p><small>2017 · Suplente ordinaria</small></li>
+              <li><p>¿Quién fue el primer califa omeya de Córdoba?<br>Describa la evolución política del califato de Córdoba.</p><small>2017 · Reserva A</small></li>
+              <li><p>¿Qué rey castellano impulsó la actividad cultural en la Edad Media a través de la Escuela de Traductores de Toledo?<br>Describa brevemente la importancia de dicha institución.</p><small>2018 · Reserva A; 2019 · Titular ordinaria</small></li>
+              <li><p>¿Qué personaje histórico adoptó el título de califa en Córdoba durante el siglo X?<br>Describa el legado cultural y económico de Al-Ándalus.</p><small>2018 · Reserva B; 2020 · Prueba 5</small></li>
+              <li><p>¿Durante qué reinado se produjo el final de la Reconquista?<br>Explique brevemente la política exterior de dicho reinado.</p><small>2018 · Reserva B; 2019 · Suplente ordinaria; 2020 · Prueba 5</small></li>
+              <li><p>¿Dónde se situaron geográficamente los primeros núcleos de resistencia cristiana al islam en España?<br>Defina brevemente el concepto de Reconquista.</p><small>2018 · Titular ordinaria</small></li>
+              <li><p>¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?<br>Explica los rasgos principales de la sociedad hispano-musulmana.</p><small>2018 · Titular extraordinaria; 2019 · Reserva A</small></li>
+              <li><p>¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como Reconquista?<br>Defina brevemente dicho concepto.</p><small>2019 · Reserva B; 2020 · Prueba 6</small></li>
+              <li><p>¿Qué término acuñado por los cristianos define el enfrentamiento de larga duración que mantuvieron estos y musulmanes hasta 1492?<br>Explique brevemente el ámbito territorial y carácter de cada sistema de repoblación, así como sus causas y consecuencias.</p><small>2019 · Suplente ordinaria</small></li>
+              <li><p>¿Qué sector productivo aglutinó La Mesta?<br>Indique en qué reinado se instauró y describa brevemente en qué consistía dicha asociación.</p><small>2019 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?<br>Explique las causas de la invasión musulmana y su rápida expansión en la península.</p><small>2020 · Prueba 1</small></li>
+              <li><p>¿Qué estamento o grupo social logra representación en las Cortes medievales, además de la alta nobleza y el clero?<br>Explique el origen de las Cortes en los reinos cristianos y sus principales funciones.</p><small>2020 · Prueba 2; 2022 · Titular ordinaria</small></li>
+              <li><p>¿Qué asociación aglutinó a los ganaderos durante la Edad Media?<br>Indique en qué reinado se instauró y describa brevemente en qué consistía dicha asociación.</p><small>2020 · Prueba 3; 2021 · Titular ordinaria; 2023 · Reserva B; 2024 · Titular ordinaria</small></li>
+              <li><p>¿Durante qué reinado se produjo la conquista del reino nazarí de Granada?<br>Explique brevemente la política de unidad religiosa de dicho reinado.</p><small>2021 · Reserva extraordinaria</small></li>
+              <li><p>¿Qué reino surgido a finales del siglo VIII en el norte peninsular se consolida como primer núcleo político relevante del proceso conocido como Reconquista?<br>Explique brevemente dicho concepto.</p><small>2021 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué estamento o grupo social logra representación en las Cortes medievales además de la alta nobleza y el clero?<br>Explica el origen de las Cortes en los reinos cristianos y sus principales funciones.</p><small>2021 · Titular extraordinaria; 2023 · Suplente A; 2026 · Suplente ordinaria</small></li>
+              <li><p>¿Qué nombre dieron los musulmanes al territorio conquistado en la península ibérica a partir del año 711?<br>Explique brevemente las causas de la invasión musulmana y su rápida expansión por la península.</p><small>2021 · Reserva ordinaria; 2023 · Suplente B; 2026 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué título adoptó Abderramán III en Córdoba durante el siglo X?<br>Describa el legado cultural y económico de Al-Ándalus.</p><small>2021 · Suplente ordinaria; 2022 · Suplente extraordinaria</small></li>
+              <li><p>¿Durante qué reinado se produjo la conquista del reino nazarí de Granada?<br>Explique brevemente la expansión territorial realizada durante dicho reinado.</p><small>2022 · Reserva extraordinaria; 2023 · Suplente B; 2024 · Suplente B; 2026 · Titular extraordinaria</small></li>
+              <li><p>¿Qué nombre dieron los musulmanes al territorio conquistado en la península ibérica a partir del año 711?<br>Explique brevemente qué evolución política siguió el islam peninsular hasta los denominados reinos de taifas (711-1031).</p><small>2022 · Reserva ordinaria; 2023 · Titular ordinaria</small></li>
+              <li><p>¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?<br>Explique los rasgos principales de la sociedad hispano-musulmana.</p><small>2022 · Suplente ordinaria</small></li>
+              <li><p>¿Dónde se situaron los primeros núcleos de resistencia al islam en España?<br>Defina brevemente el concepto de repoblación.</p><small>2022 · Titular extraordinaria</small></li>
+              <li><p>¿Qué término acuñado por los cristianos define el enfrentamiento de larga duración que mantuvieron estos y los musulmanes hasta 1492?<br>Explique brevemente el ámbito territorial y carácter de cada sistema de repoblación, así como sus causas y consecuencias.</p><small>2023 · Reserva A</small></li>
+              <li><p>¿Quién ostentó por primera vez el título del califa en Córdoba durante el siglo X?<br>Describa el legado cultural y económico de Al-Ándalus.</p><small>2023 · Titular extraordinaria; 2024 · Reserva B</small></li>
+              <li><p>¿Qué estamentos o grupos sociales tuvieron representación en las Cortes medievales?<br>Explique el origen de las Cortes en los reinos cristianos y sus principales funciones.</p><small>2024 · Reserva A</small></li>
+              <li><p>¿Qué nombre dieron los musulmanes al territorio conquistado en la península ibérica a partir del año 711?<br>Explique brevemente qué evolución política siguió el islam hasta los denominados reinos de taifas (1031).</p><small>2024 · Suplente A</small></li>
+              <li><p>¿Qué nombre dieron los musulmanes al territorio conquistado en la península ibérica a partir del año 711?<br>Explique brevemente las etapas de la dominación musulmana en la península.</p><small>2024 · Suplente B</small></li>
+              <li><p>Establezca las diferencias entre un mozárabe y un mudéjar.</p><small>2025 · Suplente 2 B</small></li>
+              <li><p>Precise brevemente cuáles fueron las etapas de la dominación musulmana en la península.</p><small>2025 · Titular ordinaria</small></li>
+              <li><p>¿Cuándo surge y qué es el Honrado Concejo de la Mesta?</p><small>2026 · Titular extraordinaria</small></li>
+              <li><p>¿Cuándo se produce la invasión de la península ibérica por parte de los musulmanes?<br>¿Qué factores explican la rapidez en la conquista?</p><small>2026 · Titular ordinaria</small></li>
             </ol>
           </details>
           <details class="block">
-            <summary><span class="block-number">03</span><span><small>BLOQUE 3</small><strong>La Monarquía Hispánica y su expansión</strong></span><span class="chevron" aria-hidden="true">+</span></summary>
+            <summary><span class="block-number">03</span><span><small>BLOQUE 3</small><strong>La Monarquía Hispánica y su expansión</strong><span class="block-years">(1474–1700)</span></span><span class="chevron" aria-hidden="true">+</span></summary>
             <p class="block-scope">Formación de la Monarquía Hispánica y su expansión mundial (1474–1700).</p>
             <div class="topic-cloud" aria-label="Temas de las preguntas resaltadas"></div>
             <p class="topic-status" aria-live="polite"></p>
             <ol class="question-list">
-              <li><p>¿En qué siglo se produce la toma de Granada por los Reyes Católicos?<br>Describa brevemente por qué es importante en el mundo este acontecimiento.</p><small>2017 · Titular septiembre</small></li>
-              <li><p>¿Qué reyes efectuaron la unión dinástica en España a finales del siglo XV?<br>Explique brevemente la expansión territorial realizada por dichos monarcas.</p><small>2017 · Titular junio</small></li>
+              <li><p>¿En qué siglo se produce la toma de Granada por los Reyes Católicos?<br>Describa brevemente por qué es importante en el mundo este acontecimiento.</p><small>2017 · Titular extraordinaria</small></li>
+              <li><p>¿Qué reyes efectuaron la unión dinástica en España a finales del siglo XV?<br>Explique brevemente la expansión territorial realizada por dichos monarcas.</p><small>2017 · Titular ordinaria; 2021 · Suplente extraordinaria</small></li>
               <li><p>¿Qué dos monarcas de la Casa de Austria reinaron tras los Reyes Católicos durante casi todo el siglo XVI?<br>Explique brevemente las características de la hegemonía española en el mundo.</p><small>2017 · Reserva B</small></li>
-              <li><p>Cite el nombre de algún valido.<br>Defina brevemente a qué se refiere el término «gobierno de los validos».</p><small>2017 · Suplente junio</small></li>
+              <li><p>Cite el nombre de algún valido<br>Defina brevemente a qué se refiere el término “gobierno de los validos”.</p><small>2017 · Suplente ordinaria</small></li>
               <li><p>¿Qué rey de España fue también emperador en Europa en la Edad Moderna?<br>Describa brevemente en qué territorios se asentaba la monarquía española en ese reinado y qué pasó a la muerte del emperador.</p><small>2017 · Reserva A</small></li>
               <li><p>¿Qué rey de España fue también emperador en Europa en la Edad Moderna?<br>Explique brevemente las características de la política exterior de dicho monarca.</p><small>2018 · Reserva A</small></li>
-              <li><p>¿Durante qué reinado se produjo el final de la Reconquista?<br>Explique brevemente la política exterior de dicho reinado.</p><small>2018 · Reserva B; 2019 · Suplente junio</small></li>
-              <li><p>¿Qué reyes efectuaron la unión dinástica entre las coronas de Castilla y Aragón a finales del siglo XV?<br>Explique brevemente la expansión territorial realizada por dichos monarcas.</p><small>2018 · Suplente septiembre</small></li>
-              <li><p>¿En qué reinado tuvo lugar la batalla de Lepanto?<br>Explique brevemente la política exterior de la Monarquía Hispánica en ese reinado.</p><small>2018 · Titular junio</small></li>
-              <li><p>Cite uno de los validos del reinado de Felipe IV.<br>Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII.</p><small>2018 · Titular septiembre</small></li>
-              <li><p>¿Qué monarca del siglo XVI tiene que afrontar las sublevaciones de las «Comunidades» y las «Germanías»?<br>Explique brevemente los conflictos políticos más relevantes de la etapa de los Austrias Mayores en la Península Ibérica.</p><small>2019 · Reserva A</small></li>
-              <li><p>¿Qué comunidades religiosas fueron expulsadas de Castilla y Aragón entre 1492 y 1502, respectivamente?<br>Explique brevemente la política de unidad religiosa de los Reyes Católicos.</p><small>2019 · Reserva B</small></li>
+              <li><p>¿Qué reyes efectuaron la unión dinástica entre las coronas de Castilla y Aragón a finales del siglo XV?<br>Explique brevemente la expansión territorial realizada por dichos monarcas.</p><small>2018 · Suplente extraordinaria</small></li>
+              <li><p>¿En qué reinado tuvo lugar la batalla de Lepanto?<br>Explique brevemente la política exterior de la monarquía hispánica en ese reinado.</p><small>2018 · Titular ordinaria</small></li>
+              <li><p>Cita uno de los validos del reinado de Felipe IV<br>Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII.</p><small>2018 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarca del siglo XVI tiene que afrontar las sublevaciones de las “Comunidades” y las “Germanías”?<br>Explique brevemente los conflictos políticos más relevantes de la etapa de los Austrias mayores (siglo XVI) en la península ibérica.</p><small>2019 · Reserva A; 2023 · Suplente A; 2024 · Reserva A</small></li>
+              <li><p>¿Qué comunidades religiosas fueron expulsadas de Castilla y Aragón entre 1492 y 1502 respectivamente?<br>Explique brevemente la política de unidad religiosa de los Reyes Católicos.</p><small>2019 · Reserva B</small></li>
+              <li><p>¿En qué reinado tuvo lugar la derrota de la “Armada Invencible”?<br>Explique brevemente las diferencias de la política internacional de este monarca con la de su padre, Carlos I.</p><small>2019 · Suplente extraordinaria; 2020 · Prueba 3; 2021 · Suplente ordinaria; 2023 · Titular ordinaria</small></li>
+              <li><p>¿De qué monarca fue valido el Conde-Duque de Olivares?<br>Explique brevemente al menos dos hechos relevantes ocurridos entre 1640 y 1659 que evidenciaron la decadencia de la monarquía hispánica.</p><small>2019 · Titular ordinaria; 2023 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarcas iniciaron a finales del siglo XV la expansión atlántica?<br>Explique brevemente su política de expansión hacia el Atlántico y de control del norte de África.</p><small>2019 · Titular extraordinaria</small></li>
+              <li><p>¿Qué monarca del siglo XVI tiene que afrontar las sublevaciones de las “Comunidades” y las “Germanías”?<br>Explique brevemente los conflictos políticos más relevantes de la etapa de los Austrias mayores (siglo XVI) en la península.</p><small>2020 · Prueba 1</small></li>
+              <li><p>¿De qué monarca fue valido el Conde-Duque de Olivares?<br>Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII.</p><small>2020 · Prueba 2</small></li>
+              <li><p>¿Qué rey de España fue también emperador en Europa en la Edad Moderna?<br>Explique brevemente las características de la política exterior europea de dicho monarca.</p><small>2020 · Prueba 4; 2024 · Titular ordinaria</small></li>
+              <li><p>¿Qué minoría social y religiosa fue expulsada de España en 1609?<br>Explique brevemente la política de unidad religiosa realizada por los Reyes Católicos y la dinastía de los Austrias.</p><small>2020 · Prueba 6; 2022 · Reserva ordinaria</small></li>
+              <li><p>¿Qué conflicto armado pone fin a la dinastía de los Austrias en España?<br>Explique las causas de dicho conflicto.</p><small>2021 · Reserva extraordinaria; 2023 · Reserva B; 2024 · Suplente A; 2026 · Suplente ordinaria</small></li>
+              <li><p>¿Qué monarca del siglo XVI tuvo que afrontar las sublevaciones de las “Comunidades” y las “Germanías”?<br>Explique brevemente los conflictos políticos más relevantes de la etapa de los Austrias mayores (siglo XVI) en la península ibérica.</p><small>2021 · Titular extraordinaria</small></li>
+              <li><p>¿Por qué apelativo son conocidos los reyes Isabel I de Castilla y Fernando V de Aragón?<br>Explique brevemente las características básicas de la monarquía autoritaria.</p><small>2021 · Reserva ordinaria</small></li>
+              <li><p>¿Cómo se llama la figura política que se hizo cargo de las tareas de gobierno en lugar del rey durante el siglo XVII?<br>Explique en qué consiste su figura y la importancia que tuvieron en dicho siglo.</p><small>2021 · Titular ordinaria</small></li>
+              <li><p>¿Qué reyes efectuaron la unión dinástica en España a finales del siglo XV?<br>Explique brevemente la política de unidad religiosa de dicho reinado.</p><small>2022 · Suplente extraordinaria</small></li>
+              <li><p>¿Por qué apelativo son conocidos los reyes Isabel I de Castilla y Fernando II de Aragón?<br>Explique brevemente las características básicas de la monarquía autoritaria.</p><small>2022 · Suplente ordinaria; 2023 · Reserva A; 2026 · Titular ordinaria</small></li>
+              <li><p>¿Qué monarca del siglo XVI tuvo que afrontar la rebelión de las Alpujarras?<br>Explique brevemente los conflictos políticos más relevantes de la etapa de los Austrias mayores (siglo XVI) en la península ibérica.</p><small>2022 · Titular extraordinaria; 2023 · Reserva B; 2024 · Suplente A</small></li>
+              <li><p>Cite el nombre de algún valido de los Austrias menores.<br>Explique en qué consiste su figura y la importancia que tuvieron en el siglo XVII.</p><small>2022 · Titular ordinaria; 2024 · Reserva B</small></li>
+              <li><p>¿Qué reyes españoles son conocidos por el apelativo de “católicos”?<br>Explique brevemente las características básicas de la monarquía autoritaria.</p><small>2024 · Titular extraordinaria</small></li>
+              <li><p>Explique brevemente las diferencias de la política internacional de Carlos I y Felipe II.</p><small>2025 · Suplente 1 A; 2026 · Suplente extraordinaria</small></li>
+              <li><p>Explique las razones del conflicto armado que puso fin a la dinastía de los Austrias en España y las consecuencias que tuvo.</p><small>2025 · Suplente 1 A; 2026 · Suplente extraordinaria</small></li>
+              <li><p>Señale los dos monarcas de más amplio reinado en el siglo XVI y las diferencias en su política exterior.</p><small>2025 · Suplente 1 B; 2026 · Suplente ordinaria</small></li>
+              <li><p>Explique la política de unidad religiosa de los Reyes Católicos.</p><small>2025 · Suplente 2 A</small></li>
+              <li><p>Explique brevemente los conflictos políticos más relevantes de la política interior de Carlos I.</p><small>2025 · Suplente 2 B</small></li>
+              <li><p>Explique en qué consistió la figura del valido y la importancia que tuvo en el siglo XVII.</p><small>2025 · Titular ordinaria</small></li>
+              <li><p>Explique la expansión territorial realizada durante el reinado de los Reyes Católicos.</p><small>2025 · Titular extraordinaria</small></li>
             </ol>
           </details>
           <details class="block">
-            <summary><span class="block-number">04</span><span><small>BLOQUE 4</small><strong>El reformismo de los primeros Borbones</strong></span><span class="chevron" aria-hidden="true">+</span></summary>
+            <summary><span class="block-number">04</span><span><small>BLOQUE 4</small><strong>El reformismo de los primeros Borbones</strong><span class="block-years">(1700–1788)</span></span><span class="chevron" aria-hidden="true">+</span></summary>
             <p class="block-scope">España en la órbita francesa: reformismo de los primeros Borbones (1700–1788).</p>
             <div class="topic-cloud" aria-label="Temas de las preguntas resaltadas"></div>
             <p class="topic-status" aria-live="polite"></p>
             <ol class="question-list">
-              <li><p>¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII?<br>Explique las causas de la Guerra de Sucesión española.</p><small>2017 · Titular septiembre</small></li>
-              <li><p>¿Con qué tratado se pone fin a la Guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2017 · Suplente septiembre</small></li>
-              <li><p>¿Qué dinastía reinaba en España cuando se promulgaron los Decretos de Nueva Planta?<br>Explique brevemente el contenido de los mismos y su importancia histórica.</p><small>2017 · Titular junio</small></li>
+              <li><p>¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII?<br>Explique las causas de la guerra de Sucesión española.</p><small>2017 · Titular extraordinaria</small></li>
+              <li><p>¿Con qué tratado se pone fin a la guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2017 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué dinastía reinaba en España cuando se promulgaron los decretos de Nueva Planta?<br>Explique brevemente el contenido de los mismos y su importancia histórica.</p><small>2017 · Titular ordinaria</small></li>
               <li><p>¿A qué reinado corresponde el Motín de Esquilache?<br>Defina el concepto de despotismo ilustrado.</p><small>2017 · Reserva B</small></li>
-              <li><p>¿Qué rey firmó los Decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2017 · Suplente junio; 2018 · Titular junio; 2019 · Suplente junio</small></li>
+              <li><p>¿Qué rey firmó los decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2017 · Suplente ordinaria; 2018 · Titular ordinaria; 2019 · Suplente ordinaria</small></li>
               <li><p>¿Con qué nombre se conoce la guerra entre Borbones y Austrias en su disputa por el trono de España?<br>Describa brevemente por qué se produjo dicha guerra, qué países estuvieron implicados en ella y cuál fue su resultado.</p><small>2017 · Reserva A</small></li>
-              <li><p>¿Qué dinastía impulsó la creación de las Reales Fábricas en el siglo XVIII para el desarrollo industrial?<br>Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.</p><small>2018 · Reserva A</small></li>
-              <li><p>¿Qué nueva dinastía comenzó a reinar en España a comienzos del siglo XVIII?<br>Explique brevemente las causas de la Guerra de Sucesión española.</p><small>2018 · Reserva B</small></li>
-              <li><p>¿Qué tratado puso fin a la Guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2018 · Suplente septiembre</small></li>
-              <li><p>¿Qué nombre recibe la guerra entre Borbones y Austrias en su disputa por el trono de España?<br>Describa brevemente por qué se produjo dicha guerra, qué países estuvieron implicados en ella y cuál fue su resultado.</p><small>2018 · Titular septiembre</small></li>
+              <li><p>¿Qué dinastía impulsó la creación de las reales fábricas en el siglo XVIII para el desarrollo industrial?<br>Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.</p><small>2018 · Reserva A</small></li>
+              <li><p>¿Qué nueva dinastía comenzó a reinar en España a comienzos del siglo XVIII?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2018 · Reserva B</small></li>
+              <li><p>¿Qué tratado puso fin a la guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2018 · Suplente extraordinaria; 2019 · Titular ordinaria; 2021 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué nombre recibe la guerra entre Borbones y Austrias en su disputa por el trono de España?<br>Describa brevemente por qué se produjo dicha guerra, qué países estuvieron implicados en ella y cuál fue su resultado.</p><small>2018 · Titular extraordinaria</small></li>
               <li><p>¿Qué nueva dinastía comenzó a reinar en España con Felipe V?<br>Explique brevemente qué es el despotismo ilustrado, rasgo definidor de esta dinastía en el siglo XVIII.</p><small>2019 · Reserva A</small></li>
-              <li><p>¿Qué nombre reciben los decretos que abolen los fueros de los territorios de la antigua Corona de Aragón?<br>Explique brevemente las reformas en la Administración emprendidas bajo la dinastía borbónica.</p><small>2019 · Reserva B</small></li>
+              <li><p>¿Qué nombre reciben los decretos que abolen los fueros de los territorios de la antigua Corona de Aragón?<br>Explique brevemente las reformas en la Administración emprendidas bajo la dinastía borbónica a lo largo del siglo XVIII.</p><small>2019 · Reserva B</small></li>
+              <li><p>¿Cómo se conoce el modelo político del rey Carlos III?<br>Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.</p><small>2019 · Suplente extraordinaria</small></li>
+              <li><p>¿Qué dinastía impulsó reformas en la agricultura en el siglo XVIII?<br>Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados.</p><small>2019 · Titular extraordinaria</small></li>
+              <li><p>¿Qué rey del siglo XVIII encarnó mejor el modelo del despotismo ilustrado en España?<br>Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.</p><small>2020 · Prueba 1; 2021 · Reserva ordinaria</small></li>
+              <li><p>¿Qué dinastía impulsó reformas en la agricultura en el siglo XVIII?<br>Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de esta actividad económica.</p><small>2020 · Prueba 2; 2024 · Reserva A</small></li>
+              <li><p>¿Qué monarca español firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente las consecuencias de dichos tratados para España.</p><small>2020 · Prueba 3</small></li>
+              <li><p>¿Qué tratado puso fin a la guerra de Sucesión española?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2020 · Prueba 4</small></li>
+              <li><p>¿Qué dinastía reinaba en España durante el denominado siglo de las Luces?<br>Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.</p><small>2020 · Prueba 5</small></li>
+              <li><p>¿A qué dinastía perteneció el rey que firmó los decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2020 · Prueba 6</small></li>
+              <li><p>¿A qué dinastía perteneció el rey Carlos III?<br>Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de la agricultura.</p><small>2021 · Titular extraordinaria</small></li>
+              <li><p>¿A qué dinastía perteneció el monarca español que firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2021 · Suplente ordinaria; 2022 · Titular extraordinaria</small></li>
+              <li><p>¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2021 · Titular ordinaria; 2022 · Reserva ordinaria; 2024 · Suplente B</small></li>
+              <li><p>¿Qué monarca español firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente las causas de la guerra que los originaron.</p><small>2022 · Reserva extraordinaria; 2023 · Titular extraordinaria</small></li>
+              <li><p>¿Tras qué conflicto armado iniciaron su reinado en España los Borbones a comienzos del siglo XVIII?<br>Explique las consecuencias de dicho conflicto.</p><small>2022 · Suplente extraordinaria; 2023 · Suplente B</small></li>
+              <li><p>¿Qué tratados pusieron fin a la guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2022 · Suplente ordinaria</small></li>
+              <li><p>¿Qué dinastía reinaba en España durante el denominado siglo de las Luces?<br>Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.</p><small>2022 · Titular ordinaria</small></li>
+              <li><p>¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2023 · Reserva A</small></li>
+              <li><p>¿Cuál es el rey español más representativo del denominado siglo de las Luces?<br>Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.</p><small>2023 · Suplente A</small></li>
+              <li><p>¿A qué dinastía perteneció el monarca español que firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente en qué consistieron dichos acuerdos.</p><small>2023 · Titular ordinaria; 2024 · Titular extraordinaria</small></li>
+              <li><p>¿Tras qué conflicto armado iniciaron su reinado en España los Borbones a comienzos del siglo XVIII?<br>Explique las causas de dicho conflicto.</p><small>2024 · Reserva B</small></li>
+              <li><p>¿Con qué tratados concluyó la guerra que permitió la llegada de los Borbones a España a comienzos del siglo XVIII?<br>Explique brevemente las causas de la guerra que los originaron.</p><small>2024 · Titular ordinaria</small></li>
+              <li><p>Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de la agricultura.</p><small>2025 · Suplente 1 B</small></li>
+              <li><p>Explique las características del movimiento ideológico y cultural del conocido como el siglo de las Luces.</p><small>2025 · Suplente 2 A</small></li>
+              <li><p>Explique brevemente por qué se hicieron y en qué consistieron los decretos que abolieron los fueros en la antigua Corona de Aragón a comienzos del siglo XVIII.</p><small>2025 · Titular extraordinaria</small></li>
+              <li><p>Explique brevemente cómo se llamaban, por qué se hicieron y en qué consistieron los decretos que abolieron los fueros en la antigua Corona de Aragón a comienzos del siglo XVIII.</p><small>2026 · Titular extraordinaria</small></li>
+              <li><p>¿Qué es el despotismo ilustrado?<br>¿Quién es considerado el principal monarca ilustrado de España y por qué?</p><small>2026 · Titular ordinaria</small></li>
             </ol>
           </details>
         </div>
-        <a class="source-inline" href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Abrir el documento con las preguntas marcadas en azul ↗</a>
-        <p class="question-source">La exportación consultada contiene preguntas marcadas en color de exámenes de 2017–2019. Clasificación temática orientativa a partir del documento y de las orientaciones oficiales 2026–27; algunas preguntas históricas abarcan más de un bloque. Esta página es una instantánea: las nuevas marcas que añadas al Docs habrá que importarlas aquí.</p>
+        <a class="source-inline" href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing" target="_blank" rel="noopener noreferrer">Abrir el documento con las preguntas marcadas en azul <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+        <p class="question-source">La exportación consultada contiene las preguntas marcadas en azul de los exámenes de 2017 (curso 2016‑17) a 2026 (curso 2025‑26), sin contar las ya reunidas por ser idénticas. Las convocatorias se nombran «ordinaria» (antes junio) y «extraordinaria» (antes septiembre; desde 2021 se celebra en julio, según <a href="https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/246746.html" target="_blank" rel="noopener">la Junta de Andalucía</a>). Los exámenes de 2025 y 2026 usan el formato nuevo de cuestiones; no se mezclan frecuencias entre modelos. Clasificación temática orientativa a partir del documento y de las orientaciones oficiales 2026–27; algunas preguntas históricas abarcan más de un bloque. Esta página es una instantánea: las nuevas marcas que añadas al Docs habrá que importarlas aquí.</p>
       </section>
 
-      <section class="model" id="modelo">
-        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / 02 ENTENDER EL CAMBIO</p><h2>Un nuevo esquema<br>para la prueba.</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
-        <div class="model-detail">
-          <div class="model-row"><span>CUESTIONES CORTAS</span><p>Dos de cuatro; proceden de la Agrupación I, bloques 1–4.</p></div>
-          <div class="model-row"><span>DOCUMENTO + TEMA</span><p>Se articulan mediante dos itinerarios cruzados sobre las Agrupaciones II y III.</p></div>
-          <div class="model-row" id="corte"><span>CORTE DE COMPARACIÓN</span><p>Separa los exámenes anteriores de los de 2026–27 en adelante. No traslades frecuencias entre formatos sin justificarlo.</p></div>
-          <a class="official" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Leer las orientaciones oficiales <span>↗</span></a>
+      <section class="generator" id="generador">
+        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / GENERADOR</p><h2>Genera preguntas cortas.</h2></div><p>Cuatro cuestiones cortas con posible solución desplegable, extraídas de los apuntes.</p></div>
+        <div class="gen-controls" role="group" aria-label="Elegir bloque">
+          <button type="button" data-gen="1" aria-pressed="false">Bloque 1</button>
+          <button type="button" data-gen="2" aria-pressed="false">Bloque 2</button>
+          <button type="button" data-gen="3" aria-pressed="false">Bloque 3</button>
+          <button type="button" data-gen="4" aria-pressed="false">Bloque 4</button>
+          <button type="button" data-gen="random" aria-pressed="false" class="gen-random">Aleatorio</button>
+          <button type="button" id="gen-reset" class="gen-reset" aria-label="Borrar las preguntas generadas y empezar de nuevo" title="Borrar y empezar de nuevo" hidden><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(24 -2) scale(-1 1)"><path d="M8.2 18.5 3.8 14.1a1.6 1.6 0 0 1 0-2.3l7.6-7.6a1.6 1.6 0 0 1 2.3 0l5 5a1.6 1.6 0 0 1 0 2.3l-7.4 7.4"/><path d="m7.5 8.5 7.9 7.9"/></g><path class="gen-reset-line" d="M4 22H20"/></svg></button>
         </div>
+        <p class="gen-status" id="gen-status" role="status" aria-live="polite">Elige un bloque o «Aleatorio» para generar cuatro cuestiones.</p>
+        <div class="gen-output" id="gen-output"></div>
+        <dialog class="gen-dialog" id="gen-dialog" aria-labelledby="gen-dialog-title">
+          <form method="dialog">
+            <h3 id="gen-dialog-title">¿Estás seguro de que quieres borrar las preguntas generadas?</h3>
+            <p>Esta acción no se puede deshacer.</p>
+            <div class="gen-dialog-actions">
+              <button type="submit" value="cancel" class="gen-cancel">Cancelar</button>
+              <button type="submit" value="delete" class="gen-delete">Borrar</button>
+            </div>
+          </form>
+        </dialog>
+        <p class="caveat">Las cuestiones y sus puntos clave son los ejemplos de preguntas cortas de los apuntes de los bloques 1–3 (los que llevan año son preguntas PAU reales). El bloque 4 está pendiente de sus apuntes. Las soluciones son orientativas: no indican probabilidad de examen.</p>
       </section>
 
       <section class="sources" id="fuentes">
-        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / 03 FUENTES</p><h2>Empieza por los documentos.</h2></div><p>Referencias oficiales y corpus de trabajo del proyecto.</p></div>
+        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / FUENTES</p><h2>Empieza por los documentos.</h2></div><p>Referencias oficiales y corpus de trabajo del proyecto.</p></div>
         <div class="source-grid">
-          <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · PDF</span><strong>Orientaciones Historia de España 2026–27</strong><b>↗</b></a>
-          <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer"><span>SGUIT · ARCHIVO OFICIAL</span><strong>Exámenes de años anteriores</strong><b>↗</b></a>
-          <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><span>CORPUS DEL PROYECTO · GOOGLE DOCS</span><strong>Recopilación de exámenes</strong><b>↗</b></a>
+          <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · PDF</span><strong>Orientaciones Historia de España 2026–27</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
+          <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer"><span>SGUIT · ARCHIVO OFICIAL</span><strong>Exámenes de años anteriores</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
+          <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit?usp=sharing" target="_blank" rel="noopener noreferrer"><span>CORPUS DEL PROYECTO · GOOGLE DOCS</span><strong>Recopilación de exámenes</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
+          <a href="https://www.juntadeandalucia.es/organismos/universidadindustriaenergiaeinnovacion/servicios/actualidad/noticias/detalle/246746.html" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · NOTICIA</span><strong>Extraordinaria adelantada a julio (2021)</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
         </div>
         <p class="caveat">El corpus aún debe importarse y revisarse antes de publicar recuentos, tendencias o preguntas históricas. El análisis de imágenes requiere disponer de los exámenes originales que las incluyen.</p>
       </section>
     </main>
     <footer>
-      <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
-      <p>Web creada por <a href="https://github.com/fcallejah" target="_blank" rel="noopener noreferrer">fcallejah</a></p>
-      <a class="github-button" href="https://github.com/fcallejah/analisis-pau-historia-espana" target="_blank" rel="noopener noreferrer" aria-label="Ver el código de la web en GitHub">
-        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M8 5 2 12l6 7M16 5l6 7-6 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/></svg>
-        <span>Código en GitHub</span>
-      </a>
-      <a class="back-to-top" href="#inicio">Volver arriba ↑</a>
+      <div class="footer-inner">
+        <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
+        <p class="credit"><span class="credit-part">Página web creada por <a href="https://github.com/fcallejah" target="_blank" rel="noopener noreferrer">fcallejah</a></span> <span class="credit-part">con mucho cariño desde</span> <span class="credit-part"><strong>Cuevas Bajas (Málaga)</strong></span> <span class="credit-part" aria-hidden="true">🥕 💜 🫒 🏞️</span></p>
+      </div>
     </footer>
+    <div class="phase-nav" hidden>
+      <button class="prev-phase" type="button" aria-label="Fase anterior"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></button>
+      <button class="next-phase" type="button" aria-label="Siguiente fase"><span class="np-step">Fase 1</span><span class="np-name">Alineación 3-4-3</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></button>
+    </div>
+    <a class="to-top" href="#inicio" aria-label="Subir arriba" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/></svg></a>
   </body>
 </html>

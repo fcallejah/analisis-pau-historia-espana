@@ -7,7 +7,10 @@ const empty = document.querySelector("#empty");
 
 const topicSets = [
   [
-    { label: "711 y monarquía visigoda", terms: ["711", "monarquia visigoda", "invasion musulmana"] },
+    { label: "711 y monarquía visigoda", terms: ["711", "precedio a la invasion", "monarquia visigoda", "invasion musulmana"] },
+    { label: "Romanización", terms: ["romaniz"] },
+    { label: "Pueblos prerromanos", terms: ["iberos", "culturas autoctonas"] },
+    { label: "Reino visigodo", terms: ["imperio romano de occidente"] },
   ],
   [
     { label: "Reconquista", terms: ["reconquista", "nucleo politico relevante"] },
@@ -18,24 +21,35 @@ const topicSets = [
     { label: "Reinos cristianos", terms: ["reinos cristianos", "resistencia cristiana", "reino surgido a finales"] },
     { label: "Sociedad andalusí", terms: ["minoria cristiana", "sociedad hispano musulmana"] },
     { label: "Mozárabes", terms: ["minoria cristiana"] },
-    { label: "La Mesta", terms: ["asociacion de ganaderos", "mesta"] },
+    { label: "La Mesta", terms: ["asociacion de ganaderos", "ganaderos", "mesta"] },
     { label: "Escuela de Traductores", terms: ["escuela de traductores"] },
+    { label: "Invasión musulmana", terms: ["invasion musulmana", "territorio conquistado", "dominacion musulmana", "invasion de la peninsula"] },
+    { label: "Cortes medievales", terms: ["cortes medievales"] },
+    { label: "Mudéjares y mozárabes", terms: ["mozarabe", "mudejar"] },
+    { label: "Reino nazarí", terms: ["nazari"] },
   ],
   [
     { label: "Reyes Católicos", terms: ["reyes catolicos", "union dinastica", "monarcas a finales del siglo xv", "unidad religiosa"] },
-    { label: "Carlos V y los Austrias", terms: ["casa de austria", "fue tambien emperador", "austrias mayores", "comunidades", "germanias"] },
+    { label: "Carlos V y los Austrias", terms: ["casa de austria", "fue tambien emperador", "austrias mayores", "comunidades", "germanias", "interior de carlos i"] },
     { label: "Expansión y política exterior", terms: ["expansion territorial", "politica exterior", "territorios se asentaba", "hegemonia espanola"] },
-    { label: "Gobierno de los validos", terms: ["valido", "gobierno de los validos"] },
+    { label: "Gobierno de los validos", terms: ["valido", "figura politica", "gobierno de los validos"] },
     { label: "Granada y la Reconquista", terms: ["toma de granada", "final de la reconquista"] },
-    { label: "Felipe II y Lepanto", terms: ["batalla de lepanto", "monarquia hispanica en ese reinado"] },
+    { label: "Felipe II y Lepanto", terms: ["batalla de lepanto", "monarquia hispanica en ese reinado", "armada invencible", "carlos i y felipe ii", "dos monarcas de mas amplio reinado"] },
+    { label: "Monarquía autoritaria", terms: ["monarquia autoritaria", "apelativo"] },
+    { label: "Moriscos y expulsiones", terms: ["expulsad", "moriscos", "1609", "alpujarras"] },
+    { label: "Conflictos con los Austrias", terms: ["dinastia de los austria", "conflicto armado"] },
+    { label: "Expansión atlántica", terms: ["expansion atlantica"] },
   ],
   [
-    { label: "Guerra de Sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado"] },
+    { label: "Guerra de Sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado", "iniciaron su reinado"] },
     { label: "Dinastía borbónica", terms: ["casa de borbon", "nueva dinastia", "dinastia borbonica"] },
-    { label: "Decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios"] },
+    { label: "Decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
     { label: "Despotismo ilustrado", terms: ["despotismo ilustrado"] },
     { label: "Carlos III y Esquilache", terms: ["motin de esquilache"] },
-    { label: "Reformas y Reales Fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas"] },
+    { label: "Reformas y Reales Fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas", "agricultura"] },
+    { label: "Siglo de las Luces", terms: ["siglo de las luces", "ilustrad"] },
+    { label: "Carlos III", terms: ["carlos iii"] },
+    { label: "Utrecht y Rastadt", terms: ["utrecht", "tratado", "tratados"] },
   ],
 ];
 
@@ -149,3 +163,88 @@ document.addEventListener("keydown", (event) => {
 });
 
 updateResults();
+
+const fan = document.querySelector("#fan");
+const fanToggle = document.querySelector("#fan-toggle");
+const fanPages = [...document.querySelectorAll(".fan-page")];
+
+function setFan(open) {
+  fan.dataset.open = String(open);
+  fanToggle.setAttribute("aria-expanded", String(open));
+  fanToggle.classList.toggle("is-open", open);
+  fanToggle.querySelector(".ft-icon").textContent = open ? "×" : "+";
+  fanToggle.querySelector(".ft-text b").textContent = open ? "Cerrar" : "Abrir";
+  if (!open) fanPages.forEach((page) => page.setAttribute("aria-pressed", "false"));
+}
+
+fanToggle.addEventListener("click", () => setFan(fan.dataset.open !== "true"));
+fanPages.forEach((page) => page.addEventListener("click", () => {
+  if (fan.dataset.open !== "true") return setFan(true);
+  const wasActive = page.getAttribute("aria-pressed") === "true";
+  fanPages.forEach((item) => item.setAttribute("aria-pressed", "false"));
+  page.setAttribute("aria-pressed", String(!wasActive));
+}));
+new IntersectionObserver((entries, observer) => {
+  if (entries.some((entry) => entry.isIntersecting)) {
+    setFan(true);
+    observer.disconnect();
+  }
+}, { threshold: 0.45 }).observe(fan);
+
+const toTop = document.querySelector(".to-top");
+if (toTop) {
+  const toggleToTop = () => { toTop.hidden = window.scrollY < 400; };
+  window.addEventListener("scroll", toggleToTop, { passive: true });
+  toggleToTop();
+}
+
+const phaseNav = document.querySelector(".phase-nav");
+if (phaseNav) {
+  const phases = [
+    { id: "alineacion", name: "Alineación 3-4-3" },
+    { id: "bloques-cuestiones", name: "Preguntas cortas" },
+    { id: "generador", name: "Generador" },
+    { id: "fuentes", name: "Fuentes" },
+  ];
+  const nextBtn = phaseNav.querySelector(".next-phase");
+  const prevBtn = phaseNav.querySelector(".prev-phase");
+  const stepEl = nextBtn.querySelector(".np-step");
+  const nameEl = nextBtn.querySelector(".np-name");
+  let current = -1;
+  const topOf = (id) => document.getElementById(id).getBoundingClientRect().top + window.scrollY;
+  const go = (i) => document.getElementById(phases[i].id).scrollIntoView({ behavior: "smooth", block: "start" });
+  const sync = () => {
+    phaseNav.hidden = false;
+    const y = window.scrollY + window.innerHeight * 0.4;
+    current = -1;
+    let best = -Infinity;
+    phases.forEach((p, i) => { const t = topOf(p.id); if (t <= y && t > best) { best = t; current = i; } });
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = phases.length - 1;
+    const next = (current + 1) % phases.length;
+    stepEl.textContent = `Fase ${next + 1}`;
+    nameEl.textContent = phases[next].name;
+    prevBtn.disabled = current <= 0;
+  };
+  nextBtn.addEventListener("click", () => go((current + 1) % phases.length));
+  prevBtn.addEventListener("click", () => { if (current > 0) go(current - 1); });
+  window.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("resize", sync);
+  sync();
+}
+
+const themeToggle = document.getElementById("theme-toggle");
+if (themeToggle) {
+  const root = document.documentElement;
+  const paintTheme = () => {
+    const dark = root.dataset.theme === "dark";
+    themeToggle.setAttribute("aria-pressed", String(dark));
+    themeToggle.setAttribute("aria-label", dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+  };
+  themeToggle.addEventListener("click", () => {
+    const dark = root.dataset.theme !== "dark";
+    if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
+    try { localStorage.setItem("pau-he.theme", dark ? "dark" : "light"); } catch (e) {}
+    paintTheme();
+  });
+  paintTheme();
+}
