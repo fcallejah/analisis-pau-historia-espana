@@ -43,7 +43,7 @@ const topicSets = [
   [
     { label: "guerra de sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado", "iniciaron su reinado"] },
     { label: "dinastía borbónica", terms: ["casa de borbon", "nueva dinastia", "dinastia borbonica"] },
-    { label: "decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
+    { label: "Decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
     { label: "despotismo ilustrado", terms: ["despotismo ilustrado"] },
     { label: "Carlos III y Esquilache", terms: ["motin de esquilache"] },
     { label: "reformas y reales fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas", "agricultura"] },
