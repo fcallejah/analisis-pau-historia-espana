@@ -57,6 +57,57 @@ function normalizeText(text) {
   return text.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+function examReferences(question) {
+  if (question.dataset.exams) return JSON.parse(question.dataset.exams);
+  return question.querySelector("small").textContent.split(";").map((exam) => exam.trim());
+}
+
+function uniqueExams(questions) {
+  return new Set(questions.flatMap(examReferences)).size;
+}
+
+function appendErratum(container, text) {
+  if (!text.includes("Fernando V de Aragón")) return;
+  const note = document.createElement("p");
+  note.className = "question-erratum";
+  note.textContent = "* Errata del original (2021 · Reserva ordinaria): Fernando II de Aragón, también llamado Fernando V de Castilla, no Fernando V de Aragón.";
+  const marker = document.createElement("sup");
+  marker.className = "question-erratum";
+  marker.textContent = "*";
+  container.querySelector("p").append(marker);
+  container.append(note);
+}
+
+function questionKey(text) {
+  return normalizeText(text).replace(/[^\p{L}\p{N}]/gu, "");
+}
+
+function examPill(reference, index) {
+  const pill = document.createElement("span");
+  pill.className = "exam-pill";
+  pill.dataset.frequency = String(Math.min(index, 4));
+  pill.title = `Aparición ${index + 1} registrada en el corpus; no indica probabilidad futura`;
+  pill.textContent = reference;
+  return pill;
+}
+
+const questionExamMap = new Map();
+document.querySelectorAll(".question-list li").forEach((question) => {
+  const meta = question.querySelector("small");
+  const references = examReferences(question);
+  questionExamMap.set(questionKey(question.querySelector("p").textContent), references);
+  meta.replaceChildren(...references.map(examPill));
+  // Keep the source text available for counting even after decorating it.
+  question.dataset.exams = JSON.stringify(references);
+  appendErratum(question, question.querySelector("p").textContent);
+});
+
+document.querySelectorAll(".qt-blocks li").forEach((item, index) => {
+  const questions = [...document.querySelectorAll(".block")[index].querySelectorAll(".question-list li")];
+  item.querySelector("b").textContent = questions.length;
+  item.setAttribute("aria-label", `Bloque ${index + 1}: ${questions.length} preguntas recopiladas`);
+});
+
 function renderTopicCloud(block, blockIndex) {
   const cloud = block.querySelector(".topic-cloud");
   const status = block.querySelector(".topic-status");
@@ -65,18 +116,19 @@ function renderTopicCloud(block, blockIndex) {
     .map((topic) => ({
       ...topic,
       matches: questions.filter((question) => {
-        const text = normalizeText(question.textContent);
+        const text = normalizeText(question.querySelector("p").textContent);
         return topic.terms.some((term) => text.includes(term));
       }),
     }))
     .filter((topic) => topic.matches.length > 0)
-    .sort((a, b) => b.matches.length - a.matches.length || a.label.localeCompare(b.label, "es"));
+    .map((topic) => ({ ...topic, exams: uniqueExams(topic.matches) }))
+    .sort((a, b) => b.exams - a.exams || b.matches.length - a.matches.length || a.label.localeCompare(b.label, "es"));
 
   const clearButton = document.createElement("button");
   clearButton.className = "topic-bubble topic-all";
   clearButton.type = "button";
   clearButton.setAttribute("aria-pressed", "true");
-  clearButton.innerHTML = `<span>Todos</span><small>${questions.length}</small>`;
+  clearButton.innerHTML = `<span>Todos</span><small>${questions.length} ${questions.length === 1 ? "pregunta" : "preguntas"}</small>`;
   clearButton.addEventListener("click", () => selectTopic(null));
   cloud.append(clearButton);
 
@@ -85,10 +137,11 @@ function renderTopicCloud(block, blockIndex) {
     bubble.className = "topic-bubble";
     bubble.type = "button";
     bubble.dataset.topic = topic.label;
-    bubble.style.setProperty("--bubble-size", `${Math.min(112, 58 + topic.matches.length * 9)}px`);
+    bubble.style.setProperty("--bubble-size", `${Math.min(150, 112 + topic.exams * 2)}px`);
     bubble.setAttribute("aria-pressed", "false");
-    bubble.setAttribute("aria-label", `${topic.label}: ${topic.matches.length} ${topic.matches.length === 1 ? "pregunta relacionada" : "preguntas relacionadas"}`);
-    bubble.innerHTML = `<span>${topic.label}</span><small>${topic.matches.length}</small>`;
+    const examLabel = `${topic.exams} ${topic.exams === 1 ? "examen" : "exámenes"}`;
+    bubble.setAttribute("aria-label", `${topic.label}: ${examLabel} del corpus`);
+    bubble.innerHTML = `<span>${topic.label}</span><small>${examLabel}</small>`;
     bubble.addEventListener("click", () => {
       selectTopic(bubble.getAttribute("aria-pressed") === "true" ? null : topic.label);
     });
@@ -97,7 +150,7 @@ function renderTopicCloud(block, blockIndex) {
 
   function selectTopic(label) {
     for (const question of questions) {
-      const text = normalizeText(question.textContent);
+      const text = normalizeText(question.querySelector("p").textContent);
       const topic = topics.find((item) => item.label === label);
       question.hidden = Boolean(topic && !topic.terms.some((term) => text.includes(term)));
     }
@@ -110,7 +163,7 @@ function renderTopicCloud(block, blockIndex) {
 
     const visibleCount = questions.filter((question) => !question.hidden).length;
     status.textContent = label
-      ? `${visibleCount} ${visibleCount === 1 ? "pregunta relacionada" : "preguntas relacionadas"} con «${label}».`
+      ? `${visibleCount} preguntas distintas con «${label}», presentes en ${uniqueExams(questions.filter((question) => !question.hidden))} exámenes del corpus. Cada convocatoria se cuenta una sola vez; no es una probabilidad.`
       : `${questions.length} ${questions.length === 1 ? "pregunta marcada" : "preguntas marcadas"} en este bloque.`;
   }
 
@@ -298,3 +351,11 @@ if (themeToggle) {
   dots.forEach((d) => d.firstElementChild.addEventListener("animationend", () => show(cur + 1)));
   controls.dataset.paused = reduce ? "true" : "false";
 })();
+
+if ("serviceWorker" in navigator && window.isSecureContext) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch((error) => {
+      console.error("No se pudo activar el modo sin conexión de PAU Historia:", error);
+    });
+  });
+}

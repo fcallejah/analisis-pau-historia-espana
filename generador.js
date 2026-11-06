@@ -792,6 +792,11 @@ const FICHAS = {
       h.append(num);
       const meta = document.createElement("small");
       meta.textContent = it.f[2] ? `Bloque ${it.b} · ${it.f[2]}` : `Bloque ${it.b}`;
+      const exams = questionExamMap.get(questionKey(it.f[0]));
+      if (exams) {
+        meta.className = "gen-exams";
+        meta.replaceChildren(document.createTextNode(`Bloque ${it.b} `), ...exams.map(examPill));
+      }
       const det = document.createElement("details");
       det.className = "gen-sol";
       const sum = document.createElement("summary");
@@ -806,6 +811,7 @@ const FICHAS = {
       }
       det.append(sum, body);
       art.append(h, meta, det);
+      appendErratum(art, it.f[0]);
       out.append(art);
     });
     status.textContent = `${label}: ${items.length} cuestiones generadas.`;
