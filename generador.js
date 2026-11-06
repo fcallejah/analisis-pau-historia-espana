@@ -147,7 +147,7 @@ const FICHAS = {
    ""
   ],
   [
-   "¿Qué victoria cristiana en el año 1212 supuso el principio del fin de la presencia musulmana en la Península? Explique el concepto de Reconquista y mencione el origen de los primeros núcleos de resistencia cristiana.",
+   "¿Qué victoria cristiana en el año 1212 supuso el principio del fin de la presencia musulmana en la Península? Explique el concepto de \"Reconquista\" y mencione el origen de los primeros núcleos de resistencia cristiana.",
    "Navas de Tolosa; justificación ideológica de recuperar la Hispania visigoda; reino asturleonés, Navarra, Aragón, condados catalanes",
    ""
   ],
@@ -182,17 +182,17 @@ const FICHAS = {
    "PAU 2020"
   ],
   [
-   "¿Dónde estuvo la capital de Al-Ándalus durante la época califal? Explique brevemente el origen y expansión de Al-Ándalus.",
+   "¿Dónde estuvo la capital de al-Ándalus durante la época califal? Explique brevemente el origen y expansión de al-Ándalus.",
    "Córdoba; 711; batalla de Guadalete; derrota de Rodrigo, último rey visigodo; debilidad del reino visigodo por sus luchas internas; nacimiento de al-Ándalus",
    "PAU 2017"
   ],
   [
-   "¿Durante qué reinado se produjo el final de la Reconquista? Explique brevemente qué se entiende históricamente por Reconquista.",
+   "¿Durante qué reinado se produjo el final de la \"Reconquista\"? Explique brevemente qué se entiende históricamente por \"Reconquista\".",
    "reinado de los Reyes Católicos (1492); avance cristiano hacia el sur justificado como recuperación del antiguo reino visigodo (idea de Alfonso III de Asturias); desde Covadonga (722) hasta la toma de Granada (1492); Navas de Tolosa (1212) como punto de inflexión",
    "PAU 2017"
   ],
   [
-   "¿Qué cronología, en siglos, abarca el proceso de Reconquista? Defina brevemente el concepto de repoblación.",
+   "¿Qué cronología, en siglos, abarca el proceso de \"Reconquista\"? Defina brevemente el concepto de repoblación.",
    "siglos VIII-XV (722-1492); ocupación de los territorios conquistados; presura (Duero y Miño, minifundios); repoblación concejil (Tajo y Ebro, fueros y cartas puebla); órdenes militares (La Mancha y Extremadura, latifundios); repartimientos (Guadalquivir)",
    "PAU 2017"
   ],
@@ -202,7 +202,7 @@ const FICHAS = {
    "PAU 2017, 2018"
   ],
   [
-   "¿Dónde se situaron los primeros núcleos de resistencia cristiana al islam en España? Defina brevemente el concepto de Reconquista.",
+   "¿Dónde se situaron los primeros núcleos de resistencia cristiana al islam en España? Defina brevemente el concepto de \"Reconquista\".",
    "norte peninsular: reino astur (Covadonga, Pelayo, cornisa cantábrica), reino de Pamplona (Navarra), Aragón y Marca Hispánica (condado de Barcelona); avance cristiano hacia el sur justificado como recuperación del antiguo reino visigodo (idea de Alfonso III de Asturias); desde Covadonga (722) hasta la toma de Granada (1492); Navas de Tolosa (1212) como punto de inflexión",
    "PAU 2017"
   ],
@@ -217,23 +217,23 @@ const FICHAS = {
    "PAU 2018, 2019"
   ],
   [
-   "¿Dónde se situaron geográficamente los primeros núcleos de resistencia cristiana al islam en España? Defina brevemente el concepto de Reconquista.",
+   "¿Dónde se situaron geográficamente los primeros núcleos de resistencia cristiana al islam en España? Defina brevemente el concepto de \"Reconquista\".",
    "norte peninsular: reino astur (Covadonga, Pelayo, cornisa cantábrica), reino de Pamplona (Navarra), Aragón y Marca Hispánica (condado de Barcelona); avance cristiano hacia el sur justificado como recuperación del antiguo reino visigodo (idea de Alfonso III de Asturias); desde Covadonga (722) hasta la toma de Granada (1492); Navas de Tolosa (1212) como punto de inflexión",
    "PAU 2018"
   ],
   [
-   "¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus? Explica los rasgos principales de la sociedad hispano-musulmana.",
+   "¿Qué nombre reciben los componentes de la minoría cristiana de al-Ándalus? Explica los rasgos principales de la sociedad hispano-musulmana.",
    "mozárabes; minoría musulmana gobernante; muladíes (cristianos convertidos al islam); mozárabes (cristianos que mantienen su religión pagando impuestos); minoría judía; coexistencia de tres religiones",
    "PAU 2018, 2019"
   ],
   [
-   "¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como Reconquista? Defina brevemente dicho concepto.",
+   "¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como \"Reconquista\"? Defina brevemente dicho concepto.",
    "reino astur (Asturias); avance cristiano hacia el sur justificado como recuperación del antiguo reino visigodo (idea de Alfonso III de Asturias); desde Covadonga (722) hasta la toma de Granada (1492); Navas de Tolosa (1212) como punto de inflexión",
    "PAU 2019, 2020"
   ],
   [
    "¿Qué término acuñado por los cristianos define el enfrentamiento de larga duración que mantuvieron estos y musulmanes hasta 1492? Explique brevemente el ámbito territorial y carácter de cada sistema de repoblación, así como sus causas y consecuencias.",
-   "Reconquista; ocupación de los territorios conquistados; presura (Duero y Miño, minifundios); repoblación concejil (Tajo y Ebro, fueros y cartas puebla); órdenes militares (La Mancha y Extremadura, latifundios); repartimientos (Guadalquivir)",
+   "\"Reconquista\"; ocupación de los territorios conquistados; presura (Duero y Miño, minifundios); repoblación concejil (Tajo y Ebro, fueros y cartas puebla); órdenes militares (La Mancha y Extremadura, latifundios); repartimientos (Guadalquivir)",
    "PAU 2019"
   ],
   [
@@ -257,7 +257,7 @@ const FICHAS = {
    "PAU 2021"
   ],
   [
-   "¿Qué reino surgido a finales del siglo VIII en el norte peninsular se consolida como primer núcleo político relevante del proceso conocido como Reconquista? Explique brevemente dicho concepto.",
+   "¿Qué reino surgido a finales del siglo VIII en el norte peninsular se consolida como primer núcleo político relevante del proceso conocido como \"Reconquista\"? Explique brevemente dicho concepto.",
    "reino astur; avance cristiano hacia el sur justificado como recuperación del antiguo reino visigodo (idea de Alfonso III de Asturias); desde Covadonga (722) hasta la toma de Granada (1492); Navas de Tolosa (1212) como punto de inflexión",
    "PAU 2021"
   ],
@@ -272,7 +272,7 @@ const FICHAS = {
    "PAU 2021, 2023, 2026"
   ],
   [
-   "¿Qué título adoptó Abderramán III en Córdoba durante el siglo X? Describa el legado cultural y económico de Al-Ándalus.",
+   "¿Qué título adoptó Abderramán III en Córdoba durante el siglo X? Describa el legado cultural y económico de al-Ándalus.",
    "Abderramán III (califa); lengua y toponimia; cultivos de huerta, textil, cuero y comercio; astronomía, medicina, matemáticas y filosofía; preservación del saber griego, latino, persa e hindú; Mezquita de Córdoba, Alhambra, alcazaba de Málaga",
    "PAU 2021, 2022"
   ],
@@ -287,7 +287,7 @@ const FICHAS = {
    "PAU 2022, 2023"
   ],
   [
-   "¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus? Explique los rasgos principales de la sociedad hispano-musulmana.",
+   "¿Qué nombre reciben los componentes de la minoría cristiana de al-Ándalus? Explique los rasgos principales de la sociedad hispano-musulmana.",
    "mozárabes; minoría musulmana gobernante; muladíes (cristianos convertidos al islam); mozárabes (cristianos que mantienen su religión pagando impuestos); minoría judía; coexistencia de tres religiones",
    "PAU 2022"
   ],
@@ -298,11 +298,11 @@ const FICHAS = {
   ],
   [
    "¿Qué término acuñado por los cristianos define el enfrentamiento de larga duración que mantuvieron estos y los musulmanes hasta 1492? Explique brevemente el ámbito territorial y carácter de cada sistema de repoblación, así como sus causas y consecuencias.",
-   "Reconquista; ocupación de los territorios conquistados; presura (Duero y Miño, minifundios); repoblación concejil (Tajo y Ebro, fueros y cartas puebla); órdenes militares (La Mancha y Extremadura, latifundios); repartimientos (Guadalquivir)",
+   "\"Reconquista\"; ocupación de los territorios conquistados; presura (Duero y Miño, minifundios); repoblación concejil (Tajo y Ebro, fueros y cartas puebla); órdenes militares (La Mancha y Extremadura, latifundios); repartimientos (Guadalquivir)",
    "PAU 2023"
   ],
   [
-   "¿Quién ostentó por primera vez el título del califa en Córdoba durante el siglo X? Describa el legado cultural y económico de Al-Ándalus.",
+   "¿Quién ostentó por primera vez el título del califa en Córdoba durante el siglo X? Describa el legado cultural y económico de al-Ándalus.",
    "Abderramán III (929); lengua y toponimia; cultivos de huerta, textil, cuero y comercio; astronomía, medicina, matemáticas y filosofía; preservación del saber griego, latino, persa e hindú; Mezquita de Córdoba, Alhambra, alcazaba de Málaga",
    "PAU 2023, 2024"
   ],
@@ -394,7 +394,7 @@ const FICHAS = {
    "PAU 2017"
   ],
   [
-   "¿Durante qué reinado se produjo el final de la Reconquista? Explique brevemente la política exterior de dicho reinado.",
+   "¿Durante qué reinado se produjo el final de la \"Reconquista\"? Explique brevemente la política exterior de dicho reinado.",
    "reinado de los Reyes Católicos; expansión atlántica -América y Canarias- y mediterránea -Nápoles-; sistema de alianzas matrimoniales con Inglaterra, el papado y el Sacro Imperio Romano Germánico diseñado para aislar a Francia, su principal rival; establecimiento de embajadores permanentes en las cortes europeas, sentando las bases del Estado moderno",
    "PAU 2018, 2019, 2020"
   ],
@@ -415,7 +415,7 @@ const FICHAS = {
   ],
   [
    "¿En qué siglo se produce la toma de Granada por los Reyes Católicos? Describa brevemente por qué es importante en el mundo este acontecimiento.",
-   "siglo XV (1492); fin de al-Ándalus y de la Reconquista; mismo año: Colón llega a América y se expulsa a los judíos",
+   "siglo XV (1492); fin de al-Ándalus y de la \"Reconquista\"; mismo año: Colón llega a América y se expulsa a los judíos",
    "PAU 2017"
   ],
   [
@@ -812,6 +812,7 @@ const FICHAS = {
       det.append(sum, body);
       art.append(h, meta, det);
       appendErratum(art, it.f[0]);
+      appendSpellingNote(art, it.f[0]);
       out.append(art);
     });
     status.textContent = `${label}: ${items.length} cuestiones generadas.`;

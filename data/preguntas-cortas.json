@@ -145,7 +145,7 @@
     "revisada": false
   },
   {
-    "id": "q-2017-suplente-extraordinaria-estuvo-capital-andalus-epoca",
+    "id": "q-2017-suplente-extraordinaria-estuvo-capital-Ándalus-epoca",
     "bloque": 2,
     "agrupacion": "I",
     "anio": 2017,
@@ -153,10 +153,10 @@
       2017
     ],
     "convocatoria": "2017 · Suplente extraordinaria",
-    "pregunta": "¿Dónde estuvo la capital de Al-Ándalus durante la época califal?",
-    "subpregunta": "Explique brevemente el origen y expansión de Al-Ándalus",
+    "pregunta": "¿Dónde estuvo la capital de al-Ándalus durante la época califal?",
+    "subpregunta": "Explique brevemente el origen y expansión de al-Ándalus",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Califato de Córdoba"
     ],
     "solucion": null,
@@ -171,10 +171,10 @@
       2017
     ],
     "convocatoria": "2017 · Suplente extraordinaria",
-    "pregunta": "¿Durante qué reinado se produjo el final de la Reconquista?",
-    "subpregunta": "Explique brevemente qué se entiende históricamente por Reconquista",
+    "pregunta": "¿Durante qué reinado se produjo el final de la \"Reconquista\"?",
+    "subpregunta": "Explique brevemente qué se entiende históricamente por \"Reconquista\"",
     "tags": [
-      "Reconquista",
+      "\"Reconquista\"",
       "Edad Media"
     ],
     "solucion": null,
@@ -189,10 +189,10 @@
       2017
     ],
     "convocatoria": "2017 · Titular ordinaria",
-    "pregunta": "¿Qué cronología, en siglos, abarca el proceso de Reconquista?",
+    "pregunta": "¿Qué cronología, en siglos, abarca el proceso de \"Reconquista\"?",
     "subpregunta": "Defina brevemente el concepto de repoblación",
     "tags": [
-      "Reconquista",
+      "\"Reconquista\"",
       "Repoblación"
     ],
     "solucion": null,
@@ -227,10 +227,10 @@
     ],
     "convocatoria": "2017 · Suplente ordinaria",
     "pregunta": "¿Dónde se situaron los primeros núcleos de resistencia cristiana al islam en España?",
-    "subpregunta": "Defina brevemente el concepto de Reconquista",
+    "subpregunta": "Defina brevemente el concepto de \"Reconquista\"",
     "tags": [
       "Dominación musulmana",
-      "Reconquista",
+      "\"Reconquista\"",
       "Núcleos de resistencia cristiana"
     ],
     "solucion": null,
@@ -284,9 +284,9 @@
     ],
     "convocatoria": "2018 · Reserva B; 2020 · Prueba 5",
     "pregunta": "¿Qué personaje histórico adoptó el título de califa en Córdoba durante el siglo X?",
-    "subpregunta": "Describa el legado cultural y económico de Al-Ándalus",
+    "subpregunta": "Describa el legado cultural y económico de al-Ándalus",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Califato de Córdoba"
     ],
     "solucion": null,
@@ -303,10 +303,10 @@
       2020
     ],
     "convocatoria": "2018 · Reserva B; 2019 · Suplente ordinaria; 2020 · Prueba 5",
-    "pregunta": "¿Durante qué reinado se produjo el final de la Reconquista?",
+    "pregunta": "¿Durante qué reinado se produjo el final de la \"Reconquista\"?",
     "subpregunta": "Explique brevemente la política exterior de dicho reinado",
     "tags": [
-      "Reconquista",
+      "\"Reconquista\"",
       "Edad Media"
     ],
     "solucion": null,
@@ -322,10 +322,10 @@
     ],
     "convocatoria": "2018 · Titular ordinaria",
     "pregunta": "¿Dónde se situaron geográficamente los primeros núcleos de resistencia cristiana al islam en España?",
-    "subpregunta": "Defina brevemente el concepto de Reconquista",
+    "subpregunta": "Defina brevemente el concepto de \"Reconquista\"",
     "tags": [
       "Dominación musulmana",
-      "Reconquista",
+      "\"Reconquista\"",
       "Núcleos de resistencia cristiana"
     ],
     "solucion": null,
@@ -341,10 +341,10 @@
       2019
     ],
     "convocatoria": "2018 · Titular extraordinaria; 2019 · Reserva A",
-    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?",
+    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de al-Ándalus?",
     "subpregunta": "Explica los rasgos principales de la sociedad hispano-musulmana",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Dominación musulmana"
     ],
     "solucion": null,
@@ -360,10 +360,10 @@
       2020
     ],
     "convocatoria": "2019 · Reserva B; 2020 · Prueba 6",
-    "pregunta": "¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como Reconquista?",
+    "pregunta": "¿Qué reino surgido a finales del siglo VIII se consolida como primer núcleo político relevante del proceso conocido como \"Reconquista\"?",
     "subpregunta": "Defina brevemente dicho concepto",
     "tags": [
-      "Reconquista",
+      "\"Reconquista\"",
       "Edad Media"
     ],
     "solucion": null,
@@ -415,10 +415,10 @@
       2020
     ],
     "convocatoria": "2020 · Prueba 1",
-    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?",
+    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de al-Ándalus?",
     "subpregunta": "Explique las causas de la invasión musulmana y su rápida expansión en la península.",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Dominación musulmana",
       "Invasión musulmana"
     ],
@@ -492,10 +492,10 @@
       2021
     ],
     "convocatoria": "2021 · Suplente extraordinaria",
-    "pregunta": "¿Qué reino surgido a finales del siglo VIII en el norte peninsular se consolida como primer núcleo político relevante del proceso conocido como Reconquista?",
+    "pregunta": "¿Qué reino surgido a finales del siglo VIII en el norte peninsular se consolida como primer núcleo político relevante del proceso conocido como \"Reconquista\"?",
     "subpregunta": "Explique brevemente dicho concepto.",
     "tags": [
-      "Reconquista",
+      "\"Reconquista\"",
       "Edad Media"
     ],
     "solucion": null,
@@ -552,9 +552,9 @@
     ],
     "convocatoria": "2021 · Suplente ordinaria; 2022 · Suplente extraordinaria",
     "pregunta": "¿Qué título adoptó Abderramán III en Córdoba durante el siglo X?",
-    "subpregunta": "Describa el legado cultural y económico de Al-Ándalus.",
+    "subpregunta": "Describa el legado cultural y económico de al-Ándalus.",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Califato de Córdoba"
     ],
     "solucion": null,
@@ -609,10 +609,10 @@
       2022
     ],
     "convocatoria": "2022 · Suplente ordinaria",
-    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de Al-Ándalus?",
+    "pregunta": "¿Qué nombre reciben los componentes de la minoría cristiana de al-Ándalus?",
     "subpregunta": "Explique los rasgos principales de la sociedad hispano-musulmana",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Dominación musulmana"
     ],
     "solucion": null,
@@ -667,9 +667,9 @@
     ],
     "convocatoria": "2023 · Titular extraordinaria; 2024 · Reserva B",
     "pregunta": "¿Quién ostentó por primera vez el título del califa en Córdoba durante el siglo X?",
-    "subpregunta": "Describa el legado cultural y económico de Al-Ándalus.",
+    "subpregunta": "Describa el legado cultural y económico de al-Ándalus.",
     "tags": [
-      "Al-Ándalus",
+      "al-Ándalus",
       "Califato de Córdoba"
     ],
     "solucion": null,

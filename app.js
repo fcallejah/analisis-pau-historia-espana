@@ -8,48 +8,48 @@ const empty = document.querySelector("#empty");
 const topicSets = [
   [
     { label: "711 y monarquía visigoda", terms: ["711", "precedio a la invasion", "monarquia visigoda", "invasion musulmana"] },
-    { label: "Romanización", terms: ["romaniz"] },
-    { label: "Pueblos prerromanos", terms: ["iberos", "culturas autoctonas"] },
-    { label: "Reino visigodo", terms: ["imperio romano de occidente"] },
+    { label: "romanización", terms: ["romaniz"] },
+    { label: "pueblos prerromanos", terms: ["iberos", "culturas autoctonas"] },
+    { label: "reino visigodo", terms: ["imperio romano de occidente"] },
   ],
   [
-    { label: "Reconquista", terms: ["reconquista", "nucleo politico relevante"] },
-    { label: "Al-Ándalus", terms: ["al andalus", "andalus"] },
-    { label: "Califato de Córdoba", terms: ["califato", "epoca califal", "califa omeya", "titulo de califa"] },
-    { label: "Siglo X", terms: ["siglo x"] },
-    { label: "Repoblación", terms: ["repoblacion"] },
-    { label: "Reinos cristianos", terms: ["reinos cristianos", "resistencia cristiana", "reino surgido a finales"] },
-    { label: "Sociedad andalusí", terms: ["minoria cristiana", "sociedad hispano musulmana"] },
-    { label: "Mozárabes", terms: ["minoria cristiana"] },
-    { label: "La Mesta", terms: ["asociacion de ganaderos", "ganaderos", "mesta"] },
+    { label: '"Reconquista"', terms: ["reconquista", "nucleo politico relevante"] },
+    { label: "al-Ándalus", terms: ["al andalus", "andalus"] },
+    { label: "califato de Córdoba", terms: ["califato", "epoca califal", "califa omeya", "titulo de califa"] },
+    { label: "siglo X", terms: ["siglo x"] },
+    { label: "repoblación", terms: ["repoblacion"] },
+    { label: "reinos cristianos", terms: ["reinos cristianos", "resistencia cristiana", "reino surgido a finales"] },
+    { label: "sociedad andalusí", terms: ["minoria cristiana", "sociedad hispano musulmana"] },
+    { label: "mozárabes", terms: ["minoria cristiana"] },
+    { label: "la Mesta", terms: ["asociacion de ganaderos", "ganaderos", "mesta"] },
     { label: "Escuela de Traductores", terms: ["escuela de traductores"] },
-    { label: "Invasión musulmana", terms: ["invasion musulmana", "territorio conquistado", "dominacion musulmana", "invasion de la peninsula"] },
-    { label: "Cortes medievales", terms: ["cortes medievales"] },
-    { label: "Mudéjares y mozárabes", terms: ["mozarabe", "mudejar"] },
-    { label: "Reino nazarí", terms: ["nazari"] },
+    { label: "invasión musulmana", terms: ["invasion musulmana", "territorio conquistado", "dominacion musulmana", "invasion de la peninsula"] },
+    { label: "cortes medievales", terms: ["cortes medievales"] },
+    { label: "mudéjares y mozárabes", terms: ["mozarabe", "mudejar"] },
+    { label: "reino nazarí", terms: ["nazari"] },
   ],
   [
     { label: "Reyes Católicos", terms: ["reyes catolicos", "union dinastica", "monarcas a finales del siglo xv", "unidad religiosa"] },
     { label: "Carlos V y los Austrias", terms: ["casa de austria", "fue tambien emperador", "austrias mayores", "comunidades", "germanias", "interior de carlos i"] },
-    { label: "Expansión y política exterior", terms: ["expansion territorial", "politica exterior", "territorios se asentaba", "hegemonia espanola"] },
-    { label: "Gobierno de los validos", terms: ["valido", "figura politica", "gobierno de los validos"] },
-    { label: "Granada y la Reconquista", terms: ["toma de granada", "final de la reconquista"] },
+    { label: "expansión y política exterior", terms: ["expansion territorial", "politica exterior", "territorios se asentaba", "hegemonia espanola"] },
+    { label: "gobierno de los validos", terms: ["valido", "figura politica", "gobierno de los validos"] },
+    { label: 'Granada y la "Reconquista"', terms: ["toma de granada", "final de la reconquista"] },
     { label: "Felipe II y Lepanto", terms: ["batalla de lepanto", "monarquia hispanica en ese reinado", "armada invencible", "carlos i y felipe ii", "dos monarcas de mas amplio reinado"] },
-    { label: "Monarquía autoritaria", terms: ["monarquia autoritaria", "apelativo"] },
-    { label: "Moriscos y expulsiones", terms: ["expulsad", "moriscos", "1609", "alpujarras"] },
-    { label: "Conflictos con los Austrias", terms: ["dinastia de los austria", "conflicto armado"] },
-    { label: "Expansión atlántica", terms: ["expansion atlantica"] },
+    { label: "monarquía autoritaria", terms: ["monarquia autoritaria", "apelativo"] },
+    { label: "moriscos y expulsiones", terms: ["expulsad", "moriscos", "1609", "alpujarras"] },
+    { label: "conflictos con los Austrias", terms: ["dinastia de los austria", "conflicto armado"] },
+    { label: "expansión atlántica", terms: ["expansion atlantica"] },
   ],
   [
-    { label: "Guerra de Sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado", "iniciaron su reinado"] },
-    { label: "Dinastía borbónica", terms: ["casa de borbon", "nueva dinastia", "dinastia borbonica"] },
-    { label: "Decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
-    { label: "Despotismo ilustrado", terms: ["despotismo ilustrado"] },
+    { label: "guerra de sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado", "iniciaron su reinado"] },
+    { label: "dinastía borbónica", terms: ["casa de borbon", "nueva dinastia", "dinastia borbonica"] },
+    { label: "decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
+    { label: "despotismo ilustrado", terms: ["despotismo ilustrado"] },
     { label: "Carlos III y Esquilache", terms: ["motin de esquilache"] },
-    { label: "Reformas y Reales Fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas", "agricultura"] },
+    { label: "reformas y reales fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas", "agricultura"] },
     { label: "Siglo de las Luces", terms: ["siglo de las luces", "ilustrad"] },
     { label: "Carlos III", terms: ["carlos iii"] },
-    { label: "Utrecht y Rastadt", terms: ["utrecht", "tratado", "tratados"] },
+    { label: "Utrecht-Rastadt *", terms: ["utrecht", "tratado", "tratados"] },
   ],
 ];
 
@@ -78,6 +78,24 @@ function appendErratum(container, text) {
   container.append(note);
 }
 
+function appendSpellingNote(container, text) {
+  if (!text.includes("Rastadt")) return;
+  const marker = document.createElement("sup");
+  marker.className = "question-spelling";
+  marker.textContent = "*";
+  container.querySelector("p").append(marker);
+  const note = document.createElement("p");
+  note.className = "question-spelling";
+  note.append(document.createTextNode('* Nota de grafía: los exámenes de PAU aquí recogidos emplean "Rastadt", forma tradicional que conservamos en los enunciados. También es válida la forma "Rastatt", grafía actual de la ciudad alemana donde se firmó el tratado de 1714 y que recomendamos usar en esta web. Puedes referirte a los tratados de Utrecht y Rastatt. '));
+  const link = document.createElement("a");
+  link.href = "https://www.schloss-rastatt.de/en/interesting-amusing/collections/the-treaty-of-rastatt";
+  link.textContent = "Información del Palacio de Rastatt";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  note.append(link, document.createTextNode(". Es una recomendación de uso, no una errata del examen."));
+  container.append(note);
+}
+
 function questionKey(text) {
   return normalizeText(text).replace(/[^\p{L}\p{N}]/gu, "");
 }
@@ -100,6 +118,7 @@ document.querySelectorAll(".question-list li").forEach((question) => {
   // Keep the source text available for counting even after decorating it.
   question.dataset.exams = JSON.stringify(references);
   appendErratum(question, question.querySelector("p").textContent);
+  appendSpellingNote(question, question.querySelector("p").textContent);
 });
 
 document.querySelectorAll(".qt-blocks li").forEach((item, index) => {
@@ -163,7 +182,7 @@ function renderTopicCloud(block, blockIndex) {
 
     const visibleCount = questions.filter((question) => !question.hidden).length;
     status.textContent = label
-      ? `${visibleCount} preguntas distintas con «${label}», presentes en ${uniqueExams(questions.filter((question) => !question.hidden))} exámenes del corpus. Cada convocatoria se cuenta una sola vez; no es una probabilidad.`
+      ? `${visibleCount} preguntas distintas con "${label}", presentes en ${uniqueExams(questions.filter((question) => !question.hidden))} exámenes del corpus. Cada convocatoria se cuenta una sola vez; no es una probabilidad.`
       : `${questions.length} ${questions.length === 1 ? "pregunta marcada" : "preguntas marcadas"} en este bloque.`;
   }
 

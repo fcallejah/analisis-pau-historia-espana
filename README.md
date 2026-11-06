@@ -16,13 +16,13 @@ El análisis de imágenes requiere los exámenes originales con sus imágenes; u
 
 ## Generador de cuestiones de práctica
 
-Las burbujas distinguen **preguntas distintas** y **exámenes del corpus**: cada combinación de año y convocatoria se cuenta una sola vez dentro de un tema, aunque incluya varias preguntas relacionadas. Se ordenan por número de exámenes y después por número de preguntas. No representan todos los exámenes celebrados ni una probabilidad futura. Las convocatorias se destacan en píldoras. La errata «Fernando V de Aragón» de 2021 (reserva ordinaria) se conserva en el enunciado original y se acompaña de una nota roja: Fernando II de Aragón, también llamado Fernando V de Castilla.
+Las burbujas distinguen **preguntas distintas** y **exámenes del corpus**: cada combinación de año y convocatoria se cuenta una sola vez dentro de un tema, aunque incluya varias preguntas relacionadas. Se ordenan por número de exámenes y después por número de preguntas. No representan todos los exámenes celebrados ni una probabilidad futura. Las convocatorias se destacan en píldoras. La errata "Fernando V de Aragón" de 2021 (reserva ordinaria) se conserva en el enunciado original y se acompaña de una nota roja: Fernando II de Aragón, también llamado Fernando V de Castilla.
 
 Las píldoras mantienen el mismo fondo lila claro, texto morado y contorno morado fino, también en el generador. Las fechas y convocatorias permanecen visibles; el color no codifica frecuencias ni probabilidades futuras.
 
-La barra superior muestra las 114 preguntas recopiladas, repartidas por bloque en sus píldoras (8, 35, 34 y 37), calculadas automáticamente a partir de los enunciados. Las burbujas de temas siguen mostrando exámenes distintos; las burbujas «Todos» muestran preguntas.
+La barra superior muestra las 114 preguntas recopiladas, repartidas por bloque en sus píldoras (8, 35, 34 y 37), calculadas automáticamente a partir de los enunciados. Las burbujas de temas siguen mostrando exámenes distintos; las burbujas "Todos" muestran preguntas.
 
-La sección «Generador» crea cuatro preguntas cortas del bloque 1, 2, 3 o 4, o mezcladas («Aleatorio»), cada una con un desplegable «Posible solución». El banco (`FICHAS` en `generador.js`, entradas `[enunciado, "puntos clave", "PAU años"]`) combina los ejemplos de preguntas cortas de los apuntes del autor (bloques 1–3, sin año) con los enunciados literales de la PAU 2017–2026 del corpus (etiquetados con sus años). Los puntos clave de las preguntas PAU de los bloques 1–3 se han redactado a partir de los apuntes; el bloque 4 solo incluye preguntas PAU, sin solución hasta que se incorporen sus apuntes. Para ampliarlo, añade entradas al bloque correspondiente. Las soluciones son orientativas y no indican probabilidad de examen.
+La sección "Generador" crea cuatro preguntas cortas del bloque 1, 2, 3 o 4, o mezcladas ("Aleatorio"), cada una con un desplegable "Posible solución". El banco (`FICHAS` en `generador.js`, entradas `[enunciado, "puntos clave", "PAU años"]`) combina los ejemplos de preguntas cortas de los apuntes del autor (bloques 1–3, sin año) con los enunciados literales de la PAU 2017–2026 del corpus (etiquetados con sus años). Los puntos clave de las preguntas PAU de los bloques 1–3 se han redactado a partir de los apuntes; el bloque 4 solo incluye preguntas PAU, sin solución hasta que se incorporen sus apuntes. Para ampliarlo, añade entradas al bloque correspondiente. Las soluciones son orientativas y no indican probabilidad de examen.
 
 ## Fuentes
 
@@ -43,7 +43,7 @@ El sitio incluye `manifest.json` e iconos instalables. En Android, abre la web e
 
 El service worker (`sw.js`) requiere HTTPS (GitHub Pages) o localhost. Tras una primera carga completa, conserva la interfaz, los bancos de preguntas y las seis imágenes de orientaciones para usarlos sin conexión. Los PDF oficiales, Google Docs y otros enlaces externos siguen necesitando internet. Las visitas con conexión recuperan las versiones nuevas; al cambiar los recursos precargados, aumenta la versión `CACHE` del service worker. Una actualización instalada se activa cuando se cierran las pestañas de la versión anterior.
 
-El favicon es una H cuadrada y la imagen Open Graph (`assets/social-preview.png`, 1200 × 630) muestra la H con «PAU 26-27» debajo para compartir en WhatsApp. La vista previa necesita la publicación en Pages y puede tardar en renovarse por la caché de WhatsApp.
+El favicon es una H cuadrada y la imagen Open Graph (`assets/social-preview.png`, 1200 × 630) muestra la H con "PAU 26-27" debajo para compartir en WhatsApp. La vista previa necesita la publicación en Pages y puede tardar en renovarse por la caché de WhatsApp.
 
 1. Publica el contenido de este repositorio en GitHub.
 2. En **Settings → Pages**, elige desplegar desde una rama.
