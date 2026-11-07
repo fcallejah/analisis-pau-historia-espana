@@ -284,7 +284,7 @@ function apShowImg(box, d) {
   img.src = d.url;
 }
 async function apLoadImg(box) {
-  if (box.dataset.src) return apShowImg(box, { url: box.dataset.src });
+  if (box.dataset.src) return apShowImg(box, { url: box.dataset.src, page: box.dataset.link });
   if (box.dataset.file) {
     const f = encodeURIComponent(box.dataset.file);
     return apShowImg(box, { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${f}?width=500`, page: `https://commons.wikimedia.org/wiki/File:${f}`, credit: "Wikimedia Commons", license: "" });
