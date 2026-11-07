@@ -236,32 +236,93 @@ document.addEventListener("keydown", (event) => {
 
 updateResults();
 
-const fan = document.querySelector("#fan");
-const fanToggle = document.querySelector("#fan-toggle");
-const fanPages = [...document.querySelectorAll(".fan-page")];
-
-function setFan(open) {
-  fan.dataset.open = String(open);
-  fanToggle.setAttribute("aria-expanded", String(open));
-  fanToggle.classList.toggle("is-open", open);
-  fanToggle.querySelector(".ft-icon").textContent = open ? "×" : "+";
-  fanToggle.querySelector(".ft-text b").textContent = open ? "Cerrar" : "Abrir";
-  if (!open) fanPages.forEach((page) => page.setAttribute("aria-pressed", "false"));
+const apTrack = document.querySelector("#apuntes-track");
+const apCards = [...apTrack.querySelectorAll(".apunte")];
+const apChips = [...document.querySelectorAll(".apunte-chip")];
+const apNav = [...document.querySelectorAll(".apuntes-nav")];
+const apGo = (i) => apTrack.scrollTo({ left: apCards[i].offsetLeft - apCards[0].offsetLeft, behavior: "smooth" });
+const apCurrent = () => apCards.findIndex((c) => c.offsetLeft - apCards[0].offsetLeft + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
+function apSync() {
+  const i = Math.max(0, apCurrent());
+  apChips.forEach((c, k) => {
+    if (k === i) c.setAttribute("aria-current", "true");
+    else c.removeAttribute("aria-current");
+  });
+  apNav[0].disabled = apTrack.scrollLeft <= 1;
+  apNav[1].disabled = apTrack.scrollLeft + apTrack.clientWidth >= apTrack.scrollWidth - 1;
 }
+apChips.forEach((c, k) => c.addEventListener("click", () => apGo(k)));
+apNav.forEach((b) => b.addEventListener("click", () => apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + Number(b.dataset.dir))))));
+apTrack.addEventListener("scroll", () => requestAnimationFrame(apSync), { passive: true });
+apTrack.addEventListener("keydown", (e) => {
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  e.preventDefault();
+  apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + (e.key === "ArrowRight" ? 1 : -1))));
+});
+apSync();
 
-fanToggle.addEventListener("click", () => setFan(fan.dataset.open !== "true"));
-fanPages.forEach((page) => page.addEventListener("click", () => {
-  if (fan.dataset.open !== "true") return setFan(true);
-  const wasActive = page.getAttribute("aria-pressed") === "true";
-  fanPages.forEach((item) => item.setAttribute("aria-pressed", "false"));
-  page.setAttribute("aria-pressed", String(!wasActive));
-}));
-new IntersectionObserver((entries, observer) => {
-  if (entries.some((entry) => entry.isIntersecting)) {
-    setFan(true);
-    observer.disconnect();
+const apImgCache = (() => { try { return JSON.parse(localStorage.getItem("pau-apuntes-img") || "{}"); } catch { return {}; } })();
+function apShowImg(box, d) {
+  const img = new Image();
+  img.alt = "";
+  img.loading = "lazy";
+  img.referrerPolicy = "no-referrer";
+  img.addEventListener("load", () => {
+    box.append(img);
+    if (!d.page) return;
+    const link = document.createElement("a");
+    link.href = d.page;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Wikimedia Commons";
+    link.title = [d.credit, d.license].filter(Boolean).join(" · ");
+    box.append(link);
+  });
+  img.src = d.url;
+}
+async function apLoadImg(box) {
+  if (box.dataset.src) return apShowImg(box, { url: box.dataset.src });
+  if (box.dataset.file) {
+    const f = encodeURIComponent(box.dataset.file);
+    return apShowImg(box, { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${f}?width=500`, page: `https://commons.wikimedia.org/wiki/File:${f}`, credit: "Wikimedia Commons", license: "" });
   }
-}, { threshold: 0.45 }).observe(fan);
+  const q = box.dataset.q;
+  if (apImgCache[q]) return apShowImg(box, apImgCache[q]);
+  try {
+    const api = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=1"
+      + `&gsrsearch=${encodeURIComponent(`${q} filetype:bitmap`)}&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=500`;
+    const data = await (await fetch(api)).json();
+    const info = Object.values(data.query?.pages || {})[0]?.imageinfo?.[0];
+    if (!info?.thumburl) return;
+    const meta = info.extmetadata || {};
+    const text = (k) => (meta[k]?.value || "").replace(/<[^>]*>/g, "").trim();
+    const d = { url: info.thumburl, page: info.descriptionurl, credit: text("Artist") || "Autor desconocido", license: text("LicenseShortName") };
+    apImgCache[q] = d;
+    try { localStorage.setItem("pau-apuntes-img", JSON.stringify(apImgCache)); } catch {}
+    apShowImg(box, d);
+  } catch {}
+}
+const apImgObserver = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (!e.isIntersecting) return;
+  apImgObserver.unobserve(e.target);
+  apLoadImg(e.target);
+}), { root: apTrack, rootMargin: "0px 300px" });
+document.querySelectorAll(".apunte-img").forEach((box) => apImgObserver.observe(box));
+
+const apuntesDialog = document.querySelector("#apuntes-dialog");
+const apuntesFrame = document.querySelector("#apuntes-frame");
+document.querySelectorAll(".apunte[data-doc]").forEach((btn) => btn.addEventListener("click", (e) => {
+  if (e.target.closest("a")) return;
+  const id = btn.dataset.doc;
+  document.querySelector("#apuntes-dialog-title").textContent = btn.dataset.title;
+  document.querySelector("#apuntes-dialog-link").href = `https://docs.google.com/document/d/${id}/edit`;
+  apuntesFrame.src = `https://docs.google.com/document/d/${id}/preview`;
+  apuntesFrame.title = btn.dataset.title;
+  apuntesDialog.showModal();
+}));
+document.querySelector("#apuntes-dialog-close").addEventListener("click", () => apuntesDialog.close());
+apuntesDialog.addEventListener("click", (e) => { if (e.target === apuntesDialog) apuntesDialog.close(); });
+apuntesDialog.addEventListener("close", () => { apuntesFrame.removeAttribute("src"); });
 
 document.querySelectorAll('a[href="#inicio"]').forEach((a) => {
   a.addEventListener("click", (e) => {

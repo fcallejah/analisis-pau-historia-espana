@@ -1,11 +1,10 @@
-const CACHE = "pau-he-v31";
+const CACHE = "pau-he-v38";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
   "./assets/icon-192.png", "./assets/icon-512.png", "./assets/apple-touch-icon.png",
   "./assets/favicon-32.png",
   "./assets/social-preview.png",
-  ...Array.from({ length: 6 }, (_, i) => `./assets/orientaciones/pagina-${i + 1}.webp`),
 ];
 
 self.addEventListener("install", (event) => {
