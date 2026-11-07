@@ -244,7 +244,7 @@ const apGo = (i) => apTrack.scrollTo({ left: apCards[i].offsetLeft - apCards[0].
 const apCurrent = () => apCards.findIndex((c) => c.offsetLeft - apCards[0].offsetLeft + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
 function apSync() {
   const i = Math.max(0, apCurrent());
-  try { sessionStorage.setItem("pau-apuntes-pos", String(i)); } catch {}
+  try { localStorage.setItem("pau-apuntes-pos", String(i)); } catch {}
   apChips.forEach((c, k) => {
     if (k === i) c.setAttribute("aria-current", "true");
     else c.removeAttribute("aria-current");
@@ -261,7 +261,7 @@ apTrack.addEventListener("keydown", (e) => {
   apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + (e.key === "ArrowRight" ? 1 : -1))));
 });
 try {
-  const saved = Number(sessionStorage.getItem("pau-apuntes-pos"));
+  const saved = Number(localStorage.getItem("pau-apuntes-pos"));
   if (saved > 0 && saved < apCards.length) apTrack.scrollTo({ left: apCards[saved].offsetLeft - apCards[0].offsetLeft, behavior: "instant" });
 } catch {}
 apSync();
@@ -448,3 +448,9 @@ if ("serviceWorker" in navigator && window.isSecureContext) {
     });
   });
 }
+
+// Fase aleatoria de las olas en cada carga
+document.querySelectorAll(".hero-waves .wave").forEach((w) => {
+  const d = parseFloat(getComputedStyle(w).animationDuration) || 22;
+  w.style.animationDelay = `-${(Math.random() * d).toFixed(2)}s`;
+});
