@@ -265,7 +265,6 @@ const apImgCache = (() => { try { return JSON.parse(localStorage.getItem("pau-ap
 function apShowImg(box, d) {
   const img = new Image();
   img.alt = "";
-  img.loading = "lazy";
   img.referrerPolicy = "no-referrer";
   img.addEventListener("load", () => {
     box.append(img);
