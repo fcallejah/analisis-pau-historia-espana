@@ -491,7 +491,9 @@ footer .credit .credit-place,footer .credit .credit-emojis{display:block;margin-
 .site-header .contact-tool .contact-symbol{display:block;font-family:var(--sans);font-size:21px;font-weight:500;line-height:1}
 .andalucia-title{color:#20231d}
 .apuntes-controls{margin-top:18px;display:flex;justify-content:center}
-.hero-apuntes .apuntes-pdf{text-align:center}
+.hero-orientaciones{margin:10px 0 0;font-size:12px}
+.hero-orientaciones a{color:var(--olive)}
+:root[data-theme=dark] .hero-orientaciones a{color:#c4a8f0}
 .apuntes-controls .note-dots{max-width:100%;flex-wrap:wrap;justify-content:center}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
 .andalucia-title{background:linear-gradient(to bottom,#20231d 35%,#566c2b 65%,var(--lime) 90%,var(--lime) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
