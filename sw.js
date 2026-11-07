@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v99";
+const CACHE = "pau-he-v102";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
@@ -6,7 +6,7 @@ const CORE = [
   "./assets/favicon-32.png",
   "./assets/social-preview.png",
   "./assets/dle-logo.jpg",
-  "./apuntes.css", "./apuntes.js",
+  "./apuntes.css", "./apuntes.js", "./imagenes-apuntes.js",
   ...Array.from({ length: 12 }, (_, i) => `./apuntes/bloque-${i + 1}.html`),
 ];
 

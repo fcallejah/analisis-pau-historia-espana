@@ -242,6 +242,42 @@ const apChips = [...document.querySelectorAll(".apunte-chip")];
 const apNav = [...document.querySelectorAll(".apuntes-nav")];
 const apControls = document.querySelector(".apuntes-controls");
 const apReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+const apGap = document.createElement("li");
+apGap.className = "apuntes-loop-gap";
+apGap.setAttribute("aria-hidden", "true");
+apGap.inert = true;
+apTrack.append(apGap);
+const apCopies = apCards.map((card) => {
+  const copy = card.cloneNode(true);
+  copy.classList.replace("apunte", "apunte-loop");
+  copy.removeAttribute("aria-label");
+  copy.setAttribute("aria-hidden", "true");
+  copy.inert = true;
+  for (const el of [copy, ...copy.querySelectorAll("*")]) {
+    el.removeAttribute("id");
+    el.removeAttribute("data-n");
+  }
+  apTrack.append(copy);
+  return copy;
+});
+let apWrapping = false;
+let apNormalizing = false;
+const apLeft = (card) => card.offsetLeft - apCards[0].offsetLeft;
+function apNormalize() {
+  if (apNormalizing || apTrack.scrollLeft < apLeft(apCopies[0]) - 1) return;
+  apNormalizing = true;
+  apTrack.classList.add("is-looping");
+  // The copies and canonical cards have identical geometry: this jump is not animated.
+  const shift = apLeft(apCopies[0]);
+  if (apDrag) apDrag.left -= shift;
+  apTrack.scrollTo({ left: apTrack.scrollLeft - shift, behavior: "instant" });
+  apWrapping = false;
+  requestAnimationFrame(() => {
+    apNormalizing = false;
+    apTrack.classList.remove("is-looping");
+    apSync();
+  });
+}
 let apActive = -1;
 const apDots = apCards.map((card, i) => {
   const dot = document.createElement("button");
@@ -252,9 +288,21 @@ const apDots = apCards.map((card, i) => {
   document.querySelector("#apuntes-dots").append(dot);
   return dot;
 });
-const apGo = (i) => apTrack.scrollTo({ left: apCards[i].offsetLeft - apCards[0].offsetLeft, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-const apCurrent = () => apCards.findIndex((c) => c.offsetLeft - apCards[0].offsetLeft + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
+const apGo = (i) => {
+  apWrapping = false;
+  apTrack.classList.remove("is-looping");
+  apTrack.scrollTo({ left: apLeft(apCards[i]), behavior: apReduce.matches ? "instant" : "smooth" });
+};
+const apCurrent = () => {
+  const i = apCards.findIndex((c) => apLeft(c) + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
+  return i < 0 ? apCards.length - 1 : i;
+};
 function apSync() {
+  if (apNormalizing) return;
+  if (apTrack.scrollLeft >= apLeft(apCopies[0]) - 1) {
+    apNormalize();
+    return;
+  }
   const i = Math.max(0, apCurrent());
   try { localStorage.setItem("pau-apuntes-pos", String(i)); } catch {}
   apChips.forEach((c, k) => {
@@ -272,17 +320,24 @@ function apSync() {
     void fill.offsetWidth;
     fill.style.animation = "";
   }
-  apNav[0].disabled = apTrack.scrollLeft <= 1;
-  apNav[1].disabled = apTrack.scrollLeft + apTrack.clientWidth >= apTrack.scrollWidth - 1;
+  apNav[0].disabled = i === 0;
+  apNav[1].disabled = i === apCards.length - 1;
 }
 apChips.forEach((c, k) => c.addEventListener("click", () => apGo(k)));
 apDots.forEach((dot, k) => dot.addEventListener("click", () => apGo(k)));
 apDots.forEach((dot) => dot.firstElementChild.addEventListener("animationend", () => {
   if (apReduce.matches || dot.getAttribute("aria-current") !== "true") return;
-  const end = apTrack.scrollLeft + apTrack.clientWidth >= apTrack.scrollWidth - 1;
-  apGo(end ? 0 : Math.min(apCards.length - 1, apActive + 1));
+  if (apWrapping || apDrag) return;
+  if (apActive === apCards.length - 1) {
+    apWrapping = true;
+    apTrack.classList.add("is-looping");
+    apTrack.scrollTo({ left: apLeft(apCopies[0]), behavior: "smooth" });
+  } else apGo(apActive + 1);
 }));
-const apMotion = () => { apControls.dataset.paused = String(apReduce.matches); };
+const apMotion = () => {
+  apControls.dataset.paused = String(apReduce.matches);
+  if (apReduce.matches && apWrapping) apGo(apActive);
+};
 apReduce.addEventListener("change", apMotion);
 apMotion();
 apNav.forEach((b) => b.addEventListener("click", () => apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + Number(b.dataset.dir))))));
@@ -330,7 +385,13 @@ apTrack.addEventListener("click", (event) => {
   event.stopImmediatePropagation();
   apSuppressClick = false;
 }, true);
-window.addEventListener("resize", apSync);
+window.addEventListener("resize", () => {
+  if (apWrapping) {
+    apTrack.scrollTo({ left: apLeft(apCopies[0]), behavior: "instant" });
+    apNormalize();
+  }
+  apSync();
+});
 apTrack.addEventListener("keydown", (e) => {
   if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
   e.preventDefault();
@@ -342,55 +403,12 @@ try {
 } catch {}
 apSync();
 
-const apImgCache = (() => { try { return JSON.parse(localStorage.getItem("pau-apuntes-img") || "{}"); } catch { return {}; } })();
-function apShowImg(box, d) {
-  const img = new Image();
-  img.alt = "";
-  img.referrerPolicy = "no-referrer";
-  if (box.dataset.pos) img.style.objectPosition = box.dataset.pos;
-  img.addEventListener("load", () => {
-    box.append(img);
-    const cap = box.dataset.caption || (d.page ? "Wikimedia Commons" : "");
-    if (!cap) return;
-    const label = document.createElement(d.page ? "a" : "span");
-    label.className = "apunte-cap";
-    if (d.page) {
-      label.href = d.page;
-      label.target = "_blank";
-      label.rel = "noopener noreferrer";
-      label.title = [d.credit, d.license].filter(Boolean).join(" · ");
-    }
-    label.textContent = cap;
-    box.append(label);
-  });
-  img.src = d.url;
-}
-async function apLoadImg(box) {
-  if (box.dataset.src) return apShowImg(box, { url: box.dataset.src, page: box.dataset.link });
-  if (box.dataset.file) {
-    const f = encodeURIComponent(box.dataset.file);
-    return apShowImg(box, { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${f}?width=500`, page: `https://commons.wikimedia.org/wiki/File:${f}`, credit: "Wikimedia Commons", license: "" });
-  }
-  const q = box.dataset.q;
-  if (apImgCache[q]) return apShowImg(box, apImgCache[q]);
-  try {
-    const api = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=1"
-      + `&gsrsearch=${encodeURIComponent(`${q} filetype:bitmap`)}&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=500`;
-    const data = await (await fetch(api)).json();
-    const info = Object.values(data.query?.pages || {})[0]?.imageinfo?.[0];
-    if (!info?.thumburl) return;
-    const meta = info.extmetadata || {};
-    const text = (k) => (meta[k]?.value || "").replace(/<[^>]*>/g, "").trim();
-    const d = { url: info.thumburl, page: info.descriptionurl, credit: text("Artist") || "Autor desconocido", license: text("LicenseShortName") };
-    apImgCache[q] = d;
-    try { localStorage.setItem("pau-apuntes-img", JSON.stringify(apImgCache)); } catch {}
-    apShowImg(box, d);
-  } catch {}
-}
 const apImgObserver = new IntersectionObserver((entries) => entries.forEach((e) => {
   if (!e.isIntersecting) return;
   apImgObserver.unobserve(e.target);
-  apLoadImg(e.target);
+  window.pauLoadImage(e.target);
+  const copyIndex = apCopies.indexOf(e.target.closest(".apunte-loop"));
+  if (copyIndex >= 0) window.pauLoadImage(apCards[copyIndex].querySelector(".apunte-img"));
 }), { root: apTrack, rootMargin: "0px 300px" });
 document.querySelectorAll(".apunte-img").forEach((box) => apImgObserver.observe(box));
 
@@ -418,9 +436,10 @@ if (toTop) {
 const phaseNav = document.querySelector(".phase-nav");
 if (phaseNav) {
   const phases = [
-    { id: "bloques-cuestiones", name: "Preguntas cortas" },
-    { id: "generador", name: "Generador" },
-    { id: "fuentes", name: "Anexo: materiales, estructura y fuentes" },
+    { id: "apuntes", number: 0, name: "Apuntes completos" },
+    { id: "bloques-cuestiones", number: 1, name: "Preguntas cortas" },
+    { id: "generador", number: 3, name: "Generador preguntas cortas" },
+    { id: "fuentes", number: 4, name: "Formato examen" },
   ];
   const nextBtn = phaseNav.querySelector(".next-phase");
   const prevBtn = phaseNav.querySelector(".prev-phase");
@@ -430,6 +449,7 @@ if (phaseNav) {
   const MARGIN = 28;
   const anchorOf = (id) => {
     const el = document.getElementById(id);
+    if (id === "apuntes") return el.querySelector(".apuntes-title") || el;
     const sec = el.closest("section") || el;
     return sec.querySelector(".eyebrow") || el;
   };
@@ -447,7 +467,7 @@ if (phaseNav) {
     phases.forEach((p, i) => { const t = topOf(p.id); if (t <= y + 1 && t > best) { best = t; current = i; } });
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = phases.length - 1;
     const next = (current + 1) % phases.length;
-    stepEl.textContent = `Fase ${next}`;
+    stepEl.textContent = `Fase ${phases[next].number}`;
     nameEl.textContent = phases[next].name;
     prevBtn.disabled = current <= 0;
   };

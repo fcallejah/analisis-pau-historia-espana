@@ -4,6 +4,7 @@ import argparse
 import base64
 import html
 from html.parser import HTMLParser
+import math
 from pathlib import Path
 import re
 import struct
@@ -180,6 +181,100 @@ def walk(node):
             yield from walk(child)
 
 
+def element_text(node):
+    return "".join(element_text(child) if isinstance(child, Element) else child for child in node.children)
+
+
+def extract_native_index(content, block):
+    first_heading = re.search(r'<h[2-5]\b', content)
+    if not first_heading:
+        raise ValueError("No se encontró el comienzo del texto")
+    prefix, body = content[:first_heading.start()], content[first_heading.start():]
+    parser = Fragment()
+    parser.feed(prefix)
+    if parser.current is not parser.root:
+        raise ValueError("Índice con estructura ambigua")
+    headings = Fragment()
+    headings.feed(body)
+    targets = {}
+    order = {}
+    for node in walk(headings.root):
+        if node.tag in ("h2", "h3", "h4", "h5") and dict(node.attrs).get("id", "").startswith(f"bloque-{block}-seccion-"):
+            target = dict(node.attrs)["id"]
+            if target in targets:
+                raise ValueError("Destino del índice duplicado")
+            order[target] = len(order)
+            targets[target] = (int(node.tag[1]), " ".join(element_text(node).split()))
+    entries = []
+    last = -1
+    for i, node in enumerate(parser.root.children):
+        if not isinstance(node, Element):
+            if node.strip():
+                raise ValueError("Texto inesperado antes del índice")
+            continue
+        links = [item for item in walk(node) if item.tag == "a" and
+                 dict(item.attrs).get("href", "").startswith(f"#bloque-{block}-seccion-")]
+        if not links:
+            continue
+        if node.tag != "p":
+            raise ValueError("Entrada de índice con estructura no compatible")
+        destinations = {dict(link.attrs)["href"][1:] for link in links}
+        if len(destinations) != 1:
+            raise ValueError("Entrada de índice ambigua")
+        target = next(iter(destinations))
+        label = re.sub(r"\s+\d+\s*$", "", "".join(element_text(link) for link in links))
+        label = " ".join(label.split())
+        if target not in targets or label != targets[target][1]:
+            raise ValueError(f"Entrada de índice sin encabezado coincidente: {label}")
+        visible = " ".join(re.sub(r"\s+\d+\s*$", "", element_text(node)).split())
+        if visible != label:
+            raise ValueError("Contenido original mezclado con una entrada del índice")
+        if any(entry[0] == target for entry in entries) or entries and order[target] <= order[entries[-1][0]]:
+            raise ValueError("Entradas del índice duplicadas o desordenadas")
+        entries.append((target, *targets[target]))
+        last = i
+    if not entries:
+        raise ValueError("No se encontró el índice original")
+    for i, node in enumerate(parser.root.children[:last + 1]):
+        if isinstance(node, Element):
+            text = " ".join(element_text(node).split())
+            if text and not any(item.tag == "a" for item in walk(node)) and text != "ÍNDICE":
+                raise ValueError("Contenido original mezclado con el índice")
+            if any(item.tag == "img" for item in walk(node)):
+                raise ValueError("Imagen original mezclada con el índice")
+            if any(item.tag == "a" and not dict(item.attrs).get("href", "").startswith(f"#bloque-{block}-seccion-")
+                   for item in walk(node)):
+                raise ValueError("Enlace original mezclado con el índice")
+    listing = Element("ul")
+    stack = [(entries[0][1] - 1, listing)]
+    previous = None
+    for target, level, label in entries:
+        if level < entries[0][1]:
+            raise ValueError("Jerarquía de índice ambigua")
+        while level <= stack[-1][0]:
+            stack.pop()
+        if level > stack[-1][0] + 1:
+            if previous is None or level != stack[-1][0] + 2:
+                raise ValueError("Jerarquía de índice ambigua")
+            nested = Element("ul")
+            previous.children.append(nested)
+            stack.append((level - 1, nested))
+        item = Element("li")
+        link = Element("a", [("href", "#" + target)])
+        link.children.append(label)
+        item.children.append(link)
+        stack[-1][1].children.append(item)
+        previous = item
+    nav = f'<nav class="reading-index" aria-labelledby="reading-index-title"><h2 id="reading-index-title">Índice del bloque</h2>{listing.render()}</nav>'
+    # Material after the last TOC entry (e.g. original map links) is not part of the TOC.
+    remainder = "".join(node.render() if isinstance(node, Element) else html.escape(node)
+                        for node in parser.root.children[last + 1:])
+    if any(isinstance(node, Element) and (element_text(node).strip() or any(item.tag == "img" for item in walk(node)))
+           for node in parser.root.children[last + 1:]):
+        nav += f'<div class="reading-preamble">{remainder}</div>'
+    return nav, body
+
+
 def caption_text_is_italic(node):
     found = False
     def visit(element, italic=False):
@@ -289,10 +384,95 @@ def css_rules(document):
         props = {}
         for declaration in declarations.split(";"):
             key, sep, value = declaration.partition(":")
-            if sep and key.strip() in ("font-weight", "font-style", "text-decoration"):
+            if sep and key.strip() in (
+                "font-weight", "font-style", "text-decoration", "width", "height",
+                "overflow", "overflow-x", "overflow-y", "margin-left", "margin-top",
+                "transform", "-webkit-transform",
+            ):
                 props[key.strip()] = value.strip().lower()
         rules.append((selector[1:], props))
     return rules
+
+
+def source_image_style(attrs, rules):
+    properties = {}
+    classes = attrs.get("class", "").split()
+    for name, declarations in rules:
+        if name in classes:
+            properties.update(declarations)
+    for declaration in attrs.get("style", "").split(";"):
+        key, sep, value = declaration.partition(":")
+        if sep:
+            properties[key.strip().lower()] = value.strip().lower()
+    for dimension in ("width", "height"):
+        if dimension not in properties and re.fullmatch(r"\d+(?:\.\d+)?", attrs.get(dimension, "")):
+            properties[dimension] = attrs[dimension] + "px"
+    return properties
+
+
+def crop_transform(style):
+    value = style.get("transform", style.get("-webkit-transform", "none")).lower()
+    if value == "none":
+        return "none"
+    tokens = re.findall(r"(rotate|translatez)\(([^()]*)\)", value)
+    if not tokens or re.sub(r"(?:rotate|translatez)\([^()]*\)", "", value).strip():
+        raise ValueError(f"Transformación de imagen no compatible: {value}")
+    rotations = []
+    for kind, argument in tokens:
+        if kind == "translatez":
+            if not re.fullmatch(r"[+-]?0(?:\.0+)?(?:px)?", argument):
+                raise ValueError(f"Transformación de imagen no compatible: {value}")
+        else:
+            match = re.fullmatch(r"([+-]?\d+(?:\.\d+)?)(rad|deg|turn)", argument)
+            if not match or not math.isfinite(float(match[1])):
+                raise ValueError(f"Rotación de imagen no compatible: {value}")
+            if float(match[1]) != 0:
+                rotations.append(f"rotate({argument})")
+    return " ".join(rotations) or "none"
+
+
+def image_crop(styles, image):
+    viewport = next((style for style in reversed(styles)
+                     if style.get("overflow") in ("hidden", "clip") or
+                     style.get("overflow-x") in ("hidden", "clip") or
+                     style.get("overflow-y") in ("hidden", "clip")), None)
+    if viewport is None:
+        return None
+    if viewport.get("overflow") not in ("hidden", "clip") and not all(
+        viewport.get(f"overflow-{axis}") in ("hidden", "clip") for axis in ("x", "y")
+    ):
+        raise ValueError("Recorte de imagen en un solo eje no compatible")
+
+    def pixels(style, key, default=None):
+        value = style.get(key, default)
+        match = re.fullmatch(r"([+-]?\d+(?:\.\d+)?)(?:px)?", value or "")
+        if not match or not math.isfinite(float(match[1])):
+            raise ValueError(f"Falta una medida de recorte en píxeles: {key}={value}")
+        return float(match[1])
+
+    width, height = (pixels(viewport, key) for key in ("width", "height"))
+    image_width, image_height = (pixels(image, key) for key in ("width", "height"))
+    left, top = (pixels(image, key, "0") for key in ("margin-left", "margin-top"))
+    if min(width, height, image_width, image_height) <= 0:
+        raise ValueError("Las dimensiones del recorte deben ser positivas")
+    frame_transform, transform = crop_transform(viewport), crop_transform(image)
+    if (image_width <= width and image_height <= height and left == top == 0
+            and frame_transform == transform == "none"):
+        return None
+    # Percentages retain the export's geometry while the viewport scales uniformly on mobile.
+    values = {
+        "--doc-frame-width": f"{width:.8g}px",
+        "--doc-frame-ratio": f"{width:.8g} / {height:.8g}",
+        "--doc-img-width": f"{image_width / width * 100:.10g}%",
+        "--doc-img-height": f"{image_height / height * 100:.10g}%",
+        "--doc-img-left": f"{left / width * 100:.10g}%",
+        "--doc-img-top": f"{top / height * 100:.10g}%",
+    }
+    if frame_transform != "none":
+        values["--doc-frame-transform"] = frame_transform
+    if transform != "none":
+        values["--doc-img-transform"] = transform
+    return ";".join(f"{key}:{value}" for key, value in values.items())
 
 
 class Importer(HTMLParser):
@@ -304,6 +484,7 @@ class Importer(HTMLParser):
         self.body = False
         self.result = []
         self.stack = []
+        self.source_styles = []
         self.images = {}
 
     def handle_starttag(self, tag, attributes):
@@ -313,6 +494,7 @@ class Importer(HTMLParser):
         if not self.body:
             return
         attrs = dict(attributes)
+        source_style = source_image_style(attrs, self.rules)
         if tag == "img":
             match = re.fullmatch(r"data:image/(png|jpeg|gif|webp);base64,(.*)", attrs.get("src", ""), re.S)
             if not match:
@@ -326,9 +508,14 @@ class Importer(HTMLParser):
             label = f' aria-label="{html.escape(alt, quote=True)}"' if alt else ""
             size = image_dimensions(data)
             dimensions = f' width="{size[0]}" height="{size[1]}"' if size else ""
+            crop = image_crop(self.source_styles, source_style)
+            crop_start = f'<span class="doc-image-crop" style="{html.escape(crop, quote=True)}">' if crop else ""
+            crop_end = "</span>" if crop else ""
             self.result.append(
                 f'<span class="doc-image" role="figure"{label}>'
+                f'{crop_start}'
                 f'<img src="imagenes/{name}" alt="{html.escape(alt, quote=True)}"{dimensions} loading="lazy">'
+                f'{crop_end}'
                 f'<span class="doc-image-caption"></span></span>'
             )
             return
@@ -396,12 +583,14 @@ class Importer(HTMLParser):
         self.result.extend(f"<{wrapper}>" for wrapper in wrappers)
         if tag not in VOID:
             self.stack.append((mapped, weight, italic, wrappers))
+            self.source_styles.append(source_style)
 
     def handle_endtag(self, tag):
         if tag == "body":
             self.body = False
         elif self.body and tag in ALLOWED and tag not in VOID:
             mapped, _, _, wrappers = self.stack.pop()
+            self.source_styles.pop()
             if mapped != HEADINGS.get(tag, tag):
                 raise ValueError(f"Anidamiento inesperado: {tag}")
             self.result.extend(f"</{wrapper}>" for wrapper in reversed(wrappers))
@@ -425,6 +614,7 @@ def main():
     page_path = ROOT / f"apuntes/bloque-{args.block}.html"
     page = page_path.read_text(encoding="utf-8")
     body = map_heading_anchors(transfer_image_captions(separate_heading_images("".join(importer.result))), args.block)
+    native_index, body = extract_native_index(body, args.block)
     ids = re.findall(r'\bid="([^"]+)"', body)
     if len(ids) != len(set(ids)):
         raise ValueError("El documento contiene identificadores duplicados")
@@ -442,12 +632,16 @@ def main():
         raise ValueError("No se encontró el inicio de las notas")
     body = body[:marker.start()] + '<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Notas y referencias</h2>' + body[marker.start():] + "</section>"
     article = '<article class="reading-content" aria-label="Texto del documento original">' + body + "</article>"
-    updated, count = re.subn(r'<article class="reading-content".*?</article>', lambda _: article, page, count=1, flags=re.S)
+    # Keep the contextual illustration and both print controls outside imported content.
+    page = re.sub(r'<nav class="reading-index".*?</nav>(?:<div class="reading-preamble">.*?</div>(?=\s*<article))?\s*', "", page, count=1, flags=re.S)
+    updated, count = re.subn(r'<article class="reading-content".*?</article>', lambda _: native_index + "\n" + article, page, count=1, flags=re.S)
     if count != 1:
         raise ValueError("No se encontró el artículo de destino")
     image_dir = ROOT / "apuntes/imagenes"
     for name, data in importer.images.items():
-        (image_dir / name).write_bytes(data)
+        destination = image_dir / name
+        if not destination.exists() or destination.read_bytes() != data:
+            destination.write_bytes(data)
     page_path.write_text(updated, encoding="utf-8")
     stale = set(image_dir.glob(f"bloque-{args.block}-*")) - {image_dir / name for name in importer.images}
     for path in stale:
