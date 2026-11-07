@@ -266,6 +266,7 @@ function apShowImg(box, d) {
   const img = new Image();
   img.alt = "";
   img.referrerPolicy = "no-referrer";
+  if (box.dataset.pos) img.style.objectPosition = box.dataset.pos;
   img.addEventListener("load", () => {
     box.append(img);
     const cap = box.dataset.caption || (d.page ? "Wikimedia Commons" : "");
