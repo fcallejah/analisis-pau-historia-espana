@@ -448,6 +448,7 @@ footer .credit .credit-place,footer .credit .credit-emojis{display:block;margin-
 @media(max-width:620px){.study-cards{grid-template-columns:1fr}.study-annex .model{padding:22px}}
 :root[data-theme=dark] .hero-note .note-slide .note-pill{color:#20231d}
 .site-header .header-tools{gap:12px}
+.site-header .header-tools{margin-left:auto}
 .site-header .header-tool{padding:6px 10px}
 .site-header .header-tool svg{width:17px;height:17px}
 .site-header .header-tool .dle-book{width:22px;height:22px;stroke:none}
