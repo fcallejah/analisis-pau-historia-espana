@@ -268,14 +268,18 @@ function apShowImg(box, d) {
   img.referrerPolicy = "no-referrer";
   img.addEventListener("load", () => {
     box.append(img);
-    if (!d.page) return;
-    const link = document.createElement("a");
-    link.href = d.page;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Wikimedia Commons";
-    link.title = [d.credit, d.license].filter(Boolean).join(" · ");
-    box.append(link);
+    const cap = box.dataset.caption || (d.page ? "Wikimedia Commons" : "");
+    if (!cap) return;
+    const label = document.createElement(d.page ? "a" : "span");
+    label.className = "apunte-cap";
+    if (d.page) {
+      label.href = d.page;
+      label.target = "_blank";
+      label.rel = "noopener noreferrer";
+      label.title = [d.credit, d.license].filter(Boolean).join(" · ");
+    }
+    label.textContent = cap;
+    box.append(label);
   });
   img.src = d.url;
 }
