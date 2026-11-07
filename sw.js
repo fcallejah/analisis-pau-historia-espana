@@ -1,11 +1,13 @@
-const CACHE = "pau-he-v29";
+const CACHE = "pau-he-v97";
 const CORE = [
   "./", "./index.html", "./styles.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
   "./assets/icon-192.png", "./assets/icon-512.png", "./assets/apple-touch-icon.png",
   "./assets/favicon-32.png",
   "./assets/social-preview.png",
-  ...Array.from({ length: 6 }, (_, i) => `./assets/orientaciones/pagina-${i + 1}.webp`),
+  "./assets/dle-logo.jpg",
+  "./apuntes.css", "./apuntes.js",
+  ...Array.from({ length: 12 }, (_, i) => `./apuntes/bloque-${i + 1}.html`),
 ];
 
 self.addEventListener("install", (event) => {

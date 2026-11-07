@@ -581,7 +581,7 @@ const FICHAS = {
    "PAU 2017"
   ],
   [
-   "¿Qué dinastía reinaba en España cuando se promulgaron los decretos de Nueva Planta? Explique brevemente el contenido de los mismos y su importancia histórica.",
+   "¿Qué dinastía reinaba en España cuando se promulgaron los Decretos de Nueva Planta? Explique brevemente el contenido de los mismos y su importancia histórica.",
    null,
    "PAU 2017"
   ],
@@ -591,7 +591,7 @@ const FICHAS = {
    "PAU 2017"
   ],
   [
-   "¿Qué rey firmó los decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.",
+   "¿Qué rey firmó los Decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.",
    null,
    "PAU 2017, 2018, 2019"
   ],
@@ -666,7 +666,7 @@ const FICHAS = {
    "PAU 2020"
   ],
   [
-   "¿A qué dinastía perteneció el rey que firmó los decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.",
+   "¿A qué dinastía perteneció el rey que firmó los Decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.",
    null,
    "PAU 2020"
   ],
@@ -830,7 +830,9 @@ const FICHAS = {
       return;
     }
     if (mode === "random") {
-      render(pick(all, 4), "Aleatorio");
+      // Modelo oficial 2026-27: cuatro cuestiones de bloques distintos, en orden 1-4.
+      const perBlock = [1, 2, 3, 4].flatMap((b) => pick(all.filter((x) => x.b === b), 1));
+      render(perBlock, "Aleatorio");
     } else {
       render(pick(all.filter((x) => x.b === Number(mode)), 4), `Bloque ${mode}`);
     }

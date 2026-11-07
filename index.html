@@ -22,22 +22,22 @@
     <meta name="twitter:card" content="summary_large_image">
     <title>PAU Andalucía · Historia de España</title>
     <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
-    <link rel="stylesheet" href="styles.css?v=56">
-    <script src="app.js?v=29" defer></script>
+    <link rel="stylesheet" href="styles.css?v=90">
+    <script src="app.js?v=37" defer></script>
     <script src="generador.js?v=13" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
-      <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
+      <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span><span class="brand-text">PAU Andalucía <span class="muted">/</span> Historia de España</span></a>
       <nav class="header-links" aria-label="Navegación principal"><a href="#modelo">Nuevo modelo</a><a href="#fuentes">Recursos oficiales <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></nav>
-      <nav class="header-tools" aria-label="Herramientas de la RAE">
-        <a class="header-tool" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4.5 4h14v17h-14z"/><path d="M7.5 4v17"/><path d="M14.5 4V1.5h4V8l-2-1.4L14.5 8z"/><text x="9.3" y="14.2" fill="currentColor" stroke="none" font-family="Arial,sans-serif" font-size="5.2" font-weight="700">ES</text></svg>
+      <nav class="header-tools" aria-label="Diccionario y RAE">
+        <a class="header-tool" aria-label="Diccionario de la lengua española" title="Diccionario de la lengua española" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">
+          <img class="dle-logo" src="assets/dle-logo.jpg" alt="" width="592" height="592">
           <span>Diccionario</span>
         </a>
-        <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5.3 8a4 4 0 1 1 7.5 2c-.7 1.1-2.4 1.9-3 3.1-.2.4-.3.8-.3 1.3"/><circle cx="9.5" cy="18.2" r=".7" fill="currentColor" stroke="none"/><path d="m15.4 4.2 4.4 4.4-7.5 7.5-3.1 1.1 1.1-3.1z"/><path d="m15.4 4.2 1.5-1.5 4.4 4.4-1.5 1.5M12.3 16.1l-3.1 1.1 1.1-3.1z"/></svg>
+        <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" title="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer">
+          <svg class="x-logo" aria-hidden="true" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           <span><b>@RAEinforma</b></span>
         </a>
       </nav>
@@ -45,6 +45,9 @@
           <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
           <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
+      <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo">
+        <span class="contact-symbol" aria-hidden="true">?</span>
+      </a>
     </header>
     <main id="contenido">
       <section class="hero" id="inicio">
@@ -55,131 +58,57 @@
       </div>
       <div>
           <p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA</p>
-          <h1>PAU Andalucía<br><em>Historia de España</em></h1>
+          <h1>PAU <span class="andalucia-title">Andalucía</span><br><em>Historia de España</em></h1>
           <p class="intro">Un espacio para entender la estructura de la prueba, organizar exámenes y estudiar sus patrones cuando el corpus esté revisado.</p>
-          <aside class="hero-note" id="novedades" role="region" aria-roledescription="carrusel" aria-label="Novedades">
-            <div class="note-slides">
-              <div class="note-slide is-active" role="group" aria-roledescription="diapositiva" aria-label="1 de 4">
-                <span class="eyebrow note-pill">¡NOVEDAD!</span><strong>Formato 26–27</strong>
-                <p>Nuevo formato 2026–27 con cambios respecto a años anteriores.</p>
-                <a href="#modelo">Conocer el formato →</a>
-              </div>
-              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="2 de 4" inert>
-                <span class="eyebrow note-pill">¡NOVEDAD!</span><strong>Generador preguntas cortas</strong>
-                <p>Practica con cuestiones de los apuntes y preguntas reales de la PAU, con posible solución.</p>
-                <a href="#generador">Probar el generador →</a>
-              </div>
-              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="3 de 4" inert>
-                <span class="eyebrow">CONSULTA</span><strong>Preguntas de años anteriores</strong>
-                <p>114 preguntas cortas recopiladas de la PAU 2017–2026, por bloques y temas.</p>
-                <a href="#bloques-cuestiones">Ver las preguntas →</a>
-              </div>
-              <div class="note-slide" role="group" aria-roledescription="diapositiva" aria-label="4 de 4" inert>
-                <span class="eyebrow">FUENTES</span><strong>Documentos oficiales</strong>
-                <p>Orientaciones 2026–27, archivo de exámenes y corpus de trabajo.</p>
-                <a href="#fuentes">Ir a las fuentes →</a>
-              </div>
+          <p class="study-pending"><a href="#bloques-cuestiones">Preguntas de años anteriores →</a> · <a href="#generador">Generador de práctica →</a></p>
+        </div>
+        <div class="hero-apuntes" id="apuntes">
+          <h2 class="apuntes-title">Apuntes completos</h2>
+          <p class="apuntes-lead">Pautas de estudio de cada bloque. <b id="apuntes-count">3 de 12</b> listos; el resto llegará pronto.</p>
+          <div class="apuntes-chips" role="group" aria-label="Ir a un bloque">
+            <div class="apuntes-chip-group" role="group" aria-label="Agrupación I: bloques 1 a 4">
+<button type="button" class="apunte-chip" data-g="I" data-go="1" aria-label="Bloque 1">1</button>
+<button type="button" class="apunte-chip" data-g="I" data-go="2" aria-label="Bloque 2">2</button>
+<button type="button" class="apunte-chip" data-g="I" data-go="3" aria-label="Bloque 3">3</button>
+<button type="button" class="apunte-chip is-soon" data-g="I" data-go="4" aria-label="Bloque 4 (próximamente)">4</button>
             </div>
-            <div class="note-controls"><div class="note-dots"><button type="button" class="note-dot" aria-label="Ir a la novedad 1" aria-current="true"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 2"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 3"><span></span></button><button type="button" class="note-dot" aria-label="Ir a la novedad 4"><span></span></button></div></div>
-          </aside>
-        </div>
-        <div class="hero-fan" id="orientaciones" role="group" aria-label="Vista previa de las seis páginas de las orientaciones oficiales 2026–27">
-  <div class="fan" id="fan" data-open="false">
-          <div class="fan-pages">
-          <button class="fan-page" type="button" style="--i:0" aria-pressed="false" aria-label="Destacar la página 1 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-1.webp" alt="Página 1 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>1</span></button>
-          <button class="fan-page" type="button" style="--i:1" aria-pressed="false" aria-label="Destacar la página 2 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-2.webp" alt="Página 2 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>2</span></button>
-          <button class="fan-page" type="button" style="--i:2" aria-pressed="false" aria-label="Destacar la página 3 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-3.webp" alt="Página 3 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>3</span></button>
-          <button class="fan-page" type="button" style="--i:3" aria-pressed="false" aria-label="Destacar la página 4 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-4.webp" alt="Página 4 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>4</span></button>
-          <button class="fan-page" type="button" style="--i:4" aria-pressed="false" aria-label="Destacar la página 5 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-5.webp" alt="Página 5 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>5</span></button>
-          <button class="fan-page" type="button" style="--i:5" aria-pressed="false" aria-label="Destacar la página 6 de 6 de las orientaciones"><img src="assets/orientaciones/pagina-6.webp" alt="Página 6 de 6 de las orientaciones oficiales 2026–27 de Historia de España" width="893" height="1263" loading="lazy"><span>6</span></button>
+            <div class="apuntes-chip-group" role="group" aria-label="Agrupación II: bloques 5 a 8">
+<button type="button" class="apunte-chip is-soon" data-g="II" data-go="5" aria-label="Bloque 5 (próximamente)">5</button>
+<button type="button" class="apunte-chip is-soon" data-g="II" data-go="6" aria-label="Bloque 6 (próximamente)">6</button>
+<button type="button" class="apunte-chip is-soon" data-g="II" data-go="7" aria-label="Bloque 7 (próximamente)">7</button>
+<button type="button" class="apunte-chip is-soon" data-g="II" data-go="8" aria-label="Bloque 8 (próximamente)">8</button>
+            </div>
+            <div class="apuntes-chip-group" role="group" aria-label="Agrupación III: bloques 9 a 12">
+<button type="button" class="apunte-chip is-soon" data-g="III" data-go="9" aria-label="Bloque 9 (próximamente)">9</button>
+<button type="button" class="apunte-chip is-soon" data-g="III" data-go="10" aria-label="Bloque 10 (próximamente)">10</button>
+<button type="button" class="apunte-chip is-soon" data-g="III" data-go="11" aria-label="Bloque 11 (próximamente)">11</button>
+<button type="button" class="apunte-chip is-soon" data-g="III" data-go="12" aria-label="Bloque 12 (próximamente)">12</button>
+            </div>
           </div>
-        </div>
-        <div class="fan-actions">
-          <button id="fan-toggle" class="fan-toggle" type="button" aria-expanded="false"><span class="ft-icon" aria-hidden="true">+</span><span class="ft-text"><b>Abrir</b><span>abanico</span></span></button>
-          <a class="fan-toggle fan-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span class="ft-text"><b>Abrir</b><span>guía oficial en PDF <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span></span></a>
-        </div>
+          <div class="apuntes-carousel" role="region" aria-roledescription="carrusel" aria-label="Apuntes por bloque">
+            <button type="button" class="apuntes-nav" data-dir="-1" aria-label="Bloque anterior">←</button>
+            <ul class="apuntes-track" id="apuntes-track" tabindex="0">
+              <li class="apunte" data-doc="1PCWQjf98RERoyJZAeyGZvtj_D-XBf7gk0eYm--c5zuU" data-title="Bloque 1: La península ibérica desde los primeros humanos hasta la desaparición de la monarquía visigoda (711)" data-g="I" data-n="1" aria-label="Bloque 1 de 12"><span class="apunte-group">Agrupación I</span><span class="apunte-n">1</span><strong>La península ibérica desde los primeros humanos hasta la desaparición de la monarquía visigoda (711)</strong><span class="apunte-img" data-caption="Bisonte de la cueva de Altamira" data-q="Bisonte cueva de Altamira" role="img" aria-label="Imagen ilustrativa del bloque 1"></span><span class="apunte-actions"><a class="apunte-open" href="apuntes/bloque-1.html">Ver aquí</a><a href="https://docs.google.com/document/d/1PCWQjf98RERoyJZAeyGZvtj_D-XBf7gk0eYm--c5zuU/edit" target="_blank" rel="noopener noreferrer">Google Docs<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></span></li>
+              <li class="apunte" data-doc="12x5AA4RtX49xiCZl54-n0F3wEzqcaTwsmnOLgbEYBa8" data-title="Bloque 2: La Edad Media: tres culturas y un mapa político en constante cambio (711-1474)" data-g="I" data-n="2" aria-label="Bloque 2 de 12"><span class="apunte-group">Agrupación I</span><span class="apunte-n">2</span><strong>La Edad Media: tres culturas y un mapa político en constante cambio (711-1474)</strong><span class="apunte-img" data-caption="Patio de los Leones, Alhambra" data-file="Patio_de_los_Leones._Alhambra_de_Granada._Spain..JPG" role="img" aria-label="Imagen ilustrativa del bloque 2"></span><span class="apunte-actions"><a class="apunte-open" href="apuntes/bloque-2.html">Ver aquí</a><a href="https://docs.google.com/document/d/12x5AA4RtX49xiCZl54-n0F3wEzqcaTwsmnOLgbEYBa8/edit" target="_blank" rel="noopener noreferrer">Google Docs<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></span></li>
+              <li class="apunte" data-doc="1RXepFknYtgNzC_-RVXBJhwNQS4dSjx-Ri1aZ0h4ldIo" data-title="Bloque 3: La formación de la Monarquía Hispánica y su expansión mundial (1474-1700)" data-g="I" data-n="3" aria-label="Bloque 3 de 12"><span class="apunte-group">Agrupación I</span><span class="apunte-n">3</span><strong>La formación de la Monarquía Hispánica y su expansión mundial (1474-1700)</strong><span class="apunte-img" data-caption="Las Meninas, de Velázquez" data-q="Las Meninas Velázquez" data-pos="50% 95%" role="img" aria-label="Imagen ilustrativa del bloque 3"></span><span class="apunte-actions"><a class="apunte-open" href="apuntes/bloque-3.html">Ver aquí</a><a href="https://docs.google.com/document/d/1RXepFknYtgNzC_-RVXBJhwNQS4dSjx-Ri1aZ0h4ldIo/edit" target="_blank" rel="noopener noreferrer">Google Docs<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></span></li>
+              <li class="apunte is-soon" data-g="I" data-n="4" aria-label="Bloque 4 de 12"><span class="apunte-group">Agrupación I</span><span class="apunte-n">4</span><strong>España en la órbita francesa: el reformismo de los primeros Borbones (1700-1788)</strong><span class="apunte-img" data-caption="Felipe V, primer rey Borbón" data-q="Felipe V de España retrato" data-pos="50% 15%" role="img" aria-label="Imagen ilustrativa del bloque 4"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-4.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="II" data-n="5" aria-label="Bloque 5 de 12"><span class="apunte-group">Agrupación II</span><span class="apunte-n">5</span><strong>La crisis del Antiguo Régimen (1788-1833): liberalismo frente a absolutismo</strong><span class="apunte-img" data-caption="Los fusilamientos del 3 de mayo, de Goya" data-q="Los fusilamientos del tres de mayo Goya" role="img" aria-label="Imagen ilustrativa del bloque 5"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-5.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="II" data-n="6" aria-label="Bloque 6 de 12"><span class="apunte-group">Agrupación II</span><span class="apunte-n">6</span><strong>La conflictiva construcción del Estado liberal (1833-1874)</strong><span class="apunte-img" data-caption="Amadeo I ante el cadáver de Prim" data-file="El-rey-Amadeo-I-visitando-el-cadaver-del-General-Prim-J-Laurent-y-Cia-Madrid-(color).jpg" role="img" aria-label="Imagen ilustrativa del bloque 6"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-6.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="II" data-n="7" aria-label="Bloque 7 de 12"><span class="apunte-group">Agrupación II</span><span class="apunte-n">7</span><strong>La Restauración borbónica: implantación y afianzamiento de un nuevo sistema político (1874-1902)</strong><span class="apunte-img" data-caption="Cánovas y Sagasta" data-src="https://theobjective.com/wp-content/uploads/2025/02/canovas-sagasta-liberalismo-vilches.jpg" role="img" aria-label="Imagen ilustrativa del bloque 7"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-7.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="II" data-n="8" aria-label="Bloque 8 de 12"><span class="apunte-group">Agrupación II</span><span class="apunte-n">8</span><strong>Pervivencias y transformaciones económicas en el siglo XIX: un desarrollo insuficiente</strong><span class="apunte-img" data-caption="Industria y ferrocarriles" data-src="https://i0.wp.com/albalathistoria.wordpress.com/wp-content/uploads/2017/03/region1.jpg" role="img" aria-label="Imagen ilustrativa del bloque 8"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-8.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="III" data-n="9" aria-label="Bloque 9 de 12"><span class="apunte-group">Agrupación III</span><span class="apunte-n">9</span><strong>La crisis del sistema de la Restauración y la caída de la monarquía (1902-1931)</strong><span class="apunte-img" data-caption="Miguel Primo de Rivera" data-q="Miguel Primo de Rivera" role="img" aria-label="Imagen ilustrativa del bloque 9"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-9.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="III" data-n="10" aria-label="Bloque 10 de 12"><span class="apunte-group">Agrupación III</span><span class="apunte-n">10</span><strong>La Segunda República. La Guerra Civil en un contexto de crisis internacional (1931-1939)</strong><span class="apunte-img" data-caption="Alegoría de la II República" data-src="https://es.wikipedia.org/wiki/Special:FilePath/República_Española_1931,_Teodoro_Andreu.jpg?width=500" data-link="https://es.wikipedia.org/wiki/Archivo:República_Española_1931,_Teodoro_Andreu.jpg" role="img" aria-label="Imagen ilustrativa del bloque 10"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-10.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="III" data-n="11" aria-label="Bloque 11 de 12"><span class="apunte-group">Agrupación III</span><span class="apunte-n">11</span><strong>La dictadura franquista (1939-1975)</strong><span class="apunte-img" data-caption="Francisco Franco" data-q="Francisco Franco" data-pos="50% 5%" role="img" aria-label="Imagen ilustrativa del bloque 11"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-11.html">Ver página pendiente</a></span></li>
+              <li class="apunte is-soon" data-g="III" data-n="12" aria-label="Bloque 12 de 12"><span class="apunte-group">Agrupación III</span><span class="apunte-n">12</span><strong>Normalización democrática de España e integración en Europa (desde 1975)</strong><span class="apunte-img" data-caption="Congreso de los Diputados, 1982" data-src="https://www.congreso.es/docu/PHist/img/imgInvestLegis/DP.1187.jpg" data-link="https://www.congreso.es/es/cem/archfotglez1986" role="img" aria-label="Imagen ilustrativa del bloque 12"></span><span class="apunte-actions"><span class="apunte-soon">Próximamente</span><a class="apunte-open" href="apuntes/bloque-12.html">Ver página pendiente</a></span></li>
+            </ul>
+            <button type="button" class="apuntes-nav" data-dir="1" aria-label="Bloque siguiente">→</button>
+          </div>
+          <div class="note-controls apuntes-controls" data-paused="true">
+            <div class="note-dots" id="apuntes-dots" role="group" aria-label="Seleccionar un bloque de apuntes"></div>
+          </div>
+          <p class="apuntes-pdf"><a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones oficiales 2026–27 (PDF)<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></p>
         </div>
         <div class="hero-caption"><span>CUESTIONES · DOCUMENTOS · TEMAS</span><span>CURSO 2026—27</span></div>
-      </section>
-
-      <section class="explore" id="explorar">
-        <div class="section-head">
-          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ÍNDICE</p><h2 id="indice-title">¿Qué quieres estudiar?</h2></div>
-          <p>Busca en la guía inicial y filtra por formato o agrupación.</p>
-        </div>
-        <div class="filters" role="search">
-          <label class="search">
-            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
-            <span class="visually-hidden">Buscar en los contenidos</span>
-            <input id="search" type="search" placeholder="Busca temas, bloques o formatos…" autocomplete="off">
-            <kbd>/</kbd>
-          </label>
-          <label><span class="visually-hidden">Filtrar por formato</span>
-            <select id="format-filter">
-              <option value="all">Todos los formatos</option><option value="cuestiones">Cuestiones cortas</option>
-              <option value="documento">Documento</option><option value="tema">Tema</option>
-              <option value="imagenes">Imágenes</option><option value="cambio">Cambio de formato</option>
-            </select>
-          </label>
-          <label><span class="visually-hidden">Filtrar por agrupación</span>
-            <select id="group-filter">
-              <option value="all">Todas las agrupaciones</option><option value="I">Agrupación I</option>
-              <option value="II">Agrupación II</option><option value="III">Agrupación III</option>
-            </select>
-          </label>
-        </div>
-        <div class="results"><p id="results-count" aria-live="polite"></p><button id="reset" type="button">Limpiar filtros ↺</button></div>
-        <div class="cards" id="cards">
-          <a class="card olive card-anchor" href="#bloques-cuestiones" aria-label="Abrir los grupos de preguntas cortas de los bloques 1 a 4" data-format="cuestiones" data-groups="I" data-search="cuestiones cortas agrupación I bloque 1 bloque 2 bloque 3 bloque 4 bloques 1 2 3 4 dos cuatro nuevo modelo">
-            <div class="card-top"><span>01</span><span class="tag">NUEVO MODELO</span></div>
-            <div class="card-body"><p class="eyebrow">AGRUPACIÓN I · BLOQUES 1–4</p><h3>Cuestiones<br>cortas</h3><p>Se eligen dos de cuatro. La guía 2026–27 sitúa estas cuestiones en los bloques 1 a 4 de la Agrupación I.</p></div>
-            <span class="card-link">Explorar los cuatro bloques <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></span>
-          </a>
-          <article class="card paper" data-format="documento" data-groups="II III" data-search="documento itinerario agrupaciones II III nuevo modelo">
-            <div class="card-top"><span>02</span><span class="tag">NUEVO MODELO</span></div>
-            <div class="card-body"><p class="eyebrow">AGRUPACIONES II + III</p><h3>Análisis de<br>documento</h3><p>Documento y tema se organizan mediante dos itinerarios cruzados sobre las Agrupaciones II y III.</p></div>
-            <a class="card-link" href="#modelo">Ver cómo funciona <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-          </article>
-          <article class="card rust" data-format="tema" data-groups="II III" data-search="tema itinerario agrupaciones II III nuevo modelo">
-            <div class="card-top"><span>03</span><span class="tag">NUEVO MODELO</span></div>
-            <div class="card-body"><p class="eyebrow">AGRUPACIONES II + III</p><h3>Desarrollo<br>de un tema</h3><p>El tema forma parte de la estructura por itinerarios. Consulta la orientación oficial para los detalles.</p></div>
-            <a class="card-link" href="#modelo">Ver cómo funciona <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-          </article>
-          <article class="card blue" data-format="imagenes" data-groups="" data-search="imágenes documentos visuales exámenes originales corpus análisis frecuencia pendiente">
-            <div class="card-top"><span>04</span><span class="tag">CORPUS PENDIENTE</span></div>
-            <div class="card-body"><p class="eyebrow">ANÁLISIS VISUAL</p><h3>Imágenes y<br>documentos</h3><p>El análisis de recurrencia requiere los exámenes originales con sus imágenes. No se muestran frecuencias sin revisar el corpus.</p></div>
-            <a class="card-link" href="#fuentes">Consultar fuentes <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-          </article>
-          <article class="card paper" data-format="cambio" data-groups="" data-search="exámenes antiguos nuevos cambio formato corte curso 2026 2027 comparación">
-            <div class="card-top"><span>05</span><span class="tag">IMPORTANTE</span></div>
-            <div class="card-body"><p class="eyebrow">COMPARAR CON CONTEXTO</p><h3>Dos modelos,<br>dos lecturas</h3><p>Los exámenes anteriores y los de 2026–27 en adelante deben analizarse como formatos distintos.</p></div>
-            <a class="card-link" href="#corte">Ver el cambio <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-          </article>
-          <article class="card rust" data-format="cambio" data-groups="" data-search="guía modelo de prueba ejemplo oficial orientaciones 2026 2027 no examen real">
-            <div class="card-top"><span>06</span><span class="tag">REFERENCIA OFICIAL</span></div>
-            <div class="card-body"><p class="eyebrow">CURSO 2026–27</p><h3>Orientaciones<br>de la prueba</h3><p>Consulta la guía oficial para verificar estructura, itinerarios y modelo de prueba. No es un examen real.</p></div>
-            <a class="card-link" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Abrir orientaciones <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-          </article>
-        </div>
-        <p id="empty" class="empty" hidden>No hay contenidos que coincidan. Prueba otra búsqueda o limpia los filtros.</p>
-      </section>
-
-      <section class="model" id="modelo">
-        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ALINEACIÓN 3-4-3</p><h2>Un nuevo esquema<br>para la prueba</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
-        <div class="model-detail">
-          <div class="lineup" id="alineacion" role="group" aria-label="Alineación 3-4-3: reparto de la nota">
-            <p class="lineup-title"><span>PUNTUACIÓN</span> Alineación 3-4-3</p>
-            <div class="lineup-bar" aria-hidden="true"><i class="lu-a">3</i><i class="lu-b">4</i><i class="lu-c">3</i></div>
-            <ul class="lineup-list">
-              <li><b>3 puntos</b><span>PREGUNTAS CORTAS</span><p>Dos de cuatro; proceden de la Agrupación I (bloques 1–4). 1,5 puntos cada una.</p></li>
-              <li><b>4 puntos</b><span>DOCUMENTO</span><p>Texto, imagen o gráfico a escoger uno, cruzando las Agrupaciones II y III. Se escoge un documento.</p></li>
-              <li><b>3 puntos</b><span>TEMA DE DESARROLLO</span><p>A escoger uno, cruzando las Agrupaciones II y III.</p></li>
-            </ul>
-          </div>
-          <p class="model-alert" role="note"><strong>¡Importante!</strong> No sigas guías de años anteriores: solo valen las pautas 2026–27.</p>
-          <div class="model-row" id="corte"><span>CORTE DE COMPARACIÓN</span><p>Separa los exámenes anteriores de los de 2026–27 en adelante. No traslades frecuencias entre formatos sin justificarlo.</p></div>
-          <a class="official" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Leer las orientaciones oficiales <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
-        </div>
       </section>
 
       <section class="question-groups" id="bloques-cuestiones" aria-labelledby="questions-title">
@@ -308,9 +237,9 @@
             <ol class="question-list">
               <li><p>¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII?<br>Explique las causas de la guerra de Sucesión española.</p><small>2017 · Titular extraordinaria</small></li>
               <li><p>¿Con qué tratado se pone fin a la guerra de Sucesión española?<br>Explique brevemente las consecuencias de dicho tratado.</p><small>2017 · Suplente extraordinaria</small></li>
-              <li><p>¿Qué dinastía reinaba en España cuando se promulgaron los decretos de Nueva Planta?<br>Explique brevemente el contenido de los mismos y su importancia histórica.</p><small>2017 · Titular ordinaria</small></li>
+              <li><p>¿Qué dinastía reinaba en España cuando se promulgaron los Decretos de Nueva Planta?<br>Explique brevemente el contenido de los mismos y su importancia histórica.</p><small>2017 · Titular ordinaria</small></li>
               <li><p>¿A qué reinado corresponde el Motín de Esquilache?<br>Defina el concepto de despotismo ilustrado.</p><small>2017 · Reserva B</small></li>
-              <li><p>¿Qué rey firmó los decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2017 · Suplente ordinaria; 2018 · Titular ordinaria; 2019 · Suplente ordinaria</small></li>
+              <li><p>¿Qué rey firmó los Decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2017 · Suplente ordinaria; 2018 · Titular ordinaria; 2019 · Suplente ordinaria</small></li>
               <li><p>¿Con qué nombre se conoce la guerra entre Borbones y Austrias en su disputa por el trono de España?<br>Describa brevemente por qué se produjo dicha guerra, qué países estuvieron implicados en ella y cuál fue su resultado.</p><small>2017 · Reserva A</small></li>
               <li><p>¿Qué dinastía impulsó la creación de las reales fábricas en el siglo XVIII para el desarrollo industrial?<br>Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.</p><small>2018 · Reserva A</small></li>
               <li><p>¿Qué nueva dinastía comenzó a reinar en España a comienzos del siglo XVIII?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2018 · Reserva B</small></li>
@@ -325,7 +254,7 @@
               <li><p>¿Qué monarca español firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente las consecuencias de dichos tratados para España.</p><small>2020 · Prueba 3</small></li>
               <li><p>¿Qué tratado puso fin a la guerra de Sucesión española?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2020 · Prueba 4</small></li>
               <li><p>¿Qué dinastía reinaba en España durante el denominado siglo de las Luces?<br>Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.</p><small>2020 · Prueba 5</small></li>
-              <li><p>¿A qué dinastía perteneció el rey que firmó los decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2020 · Prueba 6</small></li>
+              <li><p>¿A qué dinastía perteneció el rey que firmó los Decretos de Nueva Planta?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2020 · Prueba 6</small></li>
               <li><p>¿A qué dinastía perteneció el rey Carlos III?<br>Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de la agricultura.</p><small>2021 · Titular extraordinaria</small></li>
               <li><p>¿A qué dinastía perteneció el monarca español que firmó los tratados de Utrecht y Rastadt?<br>Explique brevemente las causas de la guerra de Sucesión española.</p><small>2021 · Suplente ordinaria; 2022 · Titular extraordinaria</small></li>
               <li><p>¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón?<br>Explique brevemente en qué consistieron dichos decretos.</p><small>2021 · Titular ordinaria; 2022 · Reserva ordinaria; 2024 · Suplente B</small></li>
@@ -353,6 +282,7 @@
       <section class="generator" id="generador">
         <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / GENERADOR</p><h2>Generador preguntas cortas</h2></div><p>Cuatro cuestiones cortas con posible solución desplegable, combinando ejemplos de los apuntes y preguntas reales de la PAU.</p></div>
         <aside class="alert-warn" role="note"><svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-5.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Z"/></svg><div><strong>Para practicar</strong><p>Las soluciones son orientativas. <b>El generador no predice el examen ni ofrece respuestas oficiales</b>.</p></div></aside>
+        <aside class="alert-info" role="note"><svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></svg><div><strong>Formato PAU 2026–27</strong><p>Según las orientaciones oficiales, las cuatro cuestiones del examen son de la Agrupación I y <b>de bloques distintos</b>, y debes responder a dos. Por eso el modo "Aleatorio" genera una cuestión de cada bloque, ordenadas del 1 al 4.</p></div></aside>
         <div class="gen-controls" role="group" aria-label="Elegir bloque">
           <button type="button" data-gen="1" aria-pressed="false">Bloque 1</button>
           <button type="button" data-gen="2" aria-pressed="false">Bloque 2</button>
@@ -376,8 +306,72 @@
         <p class="caveat">Las preguntas PAU llevan su año o convocatoria; las demás proceden de los apuntes. Las soluciones de los bloques 1–3 se basan en esos apuntes. El bloque 4 está pendiente de soluciones.</p>
       </section>
 
-      <section class="sources" id="fuentes">
-        <div class="section-head"><div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / FUENTES</p><h2>Empieza por los documentos</h2></div><p>Referencias oficiales y corpus de trabajo del proyecto.</p></div>
+      <section class="sources study-annex" id="fuentes">
+        <div class="section-head"><div><p class="eyebrow">PARA SABER MÁS</p><h2>Anexo: materiales, estructura y fuentes</h2></div><p>Un índice de estudio, el formato de la prueba y sus referencias oficiales.</p></div>
+        <div class="annex-index" id="explorar" role="region" aria-labelledby="indice-title">
+          <h3 class="annex-sources-title" id="indice-title">¿Qué quieres estudiar?</h3>
+          <div class="filters" role="search">
+            <label class="search">
+              <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+              <span class="visually-hidden">Buscar en los contenidos</span>
+              <input id="search" type="search" placeholder="Busca temas, bloques o formatos…" autocomplete="off">
+              <kbd>/</kbd>
+            </label>
+            <label><span class="visually-hidden">Filtrar por formato</span>
+              <select id="format-filter">
+                <option value="all">Todos los formatos</option><option value="apuntes">Apuntes completos</option><option value="cuestiones">Cuestiones cortas</option>
+                <option value="documento">Documento</option><option value="tema">Tema</option><option value="imagenes">Imágenes</option>
+              </select>
+            </label>
+            <label><span class="visually-hidden">Filtrar por agrupación</span>
+              <select id="group-filter">
+                <option value="all">Todas las agrupaciones</option><option value="I">Agrupación I</option>
+                <option value="II">Agrupación II</option><option value="III">Agrupación III</option>
+              </select>
+            </label>
+          </div>
+          <div class="results"><p id="results-count" aria-live="polite"></p><button id="reset" type="button">Limpiar filtros ↺</button></div>
+          <div class="cards study-cards" id="cards">
+            <a class="card paper card-anchor" href="#apuntes" data-format="apuntes" data-groups="I II III" data-search="apuntes completos teoría bloques agrupación I II III">
+              <div class="card-top"><span>01</span><span class="tag">BLOQUES 1–3</span></div>
+              <div class="card-body"><h3>Apuntes completos</h3><p>Consulta los apuntes disponibles de los tres primeros bloques; los demás llegarán pronto.</p></div>
+              <span class="card-link">Ver los apuntes →</span>
+            </a>
+            <a class="card olive card-anchor" href="#bloques-cuestiones" aria-label="Abrir los grupos de preguntas cortas de los bloques 1 a 4" data-format="cuestiones" data-groups="I" data-search="cuestiones cortas agrupación I bloque 1 bloque 2 bloque 3 bloque 4 bloques 1 2 3 4 dos cuatro nuevo modelo">
+              <div class="card-top"><span>02</span><span class="tag">DISPONIBLE</span></div>
+              <div class="card-body"><p class="eyebrow">BLOQUES 1–4</p><h3>Preguntas cortas</h3><p>114 preguntas de años anteriores, organizadas por bloque y tema, con sus convocatorias.</p></div>
+              <span class="card-link">Explorar los cuatro bloques →</span>
+            </a>
+            <article class="card blue" data-format="documento imagenes" data-groups="II III" data-search="banco imágenes comentario texto documentos agrupaciones II III">
+              <div class="card-top"><span>03</span><span class="tag">PENDIENTE</span></div>
+              <div class="card-body"><h3>Imágenes y comentario de texto</h3><p>Banco de documentos y práctica de comentario, todavía no disponibles.</p></div>
+            </article>
+            <article class="card rust" data-format="tema" data-groups="II III" data-search="preguntas largas temas desarrollo agrupaciones II III">
+              <div class="card-top"><span>04</span><span class="tag">PENDIENTE</span></div>
+              <div class="card-body"><h3>Preguntas de desarrollo</h3><p>Temas y respuestas de desarrollo, pendientes de incorporación.</p></div>
+            </article>
+          </div>
+          <p id="empty" class="empty" hidden>No hay contenidos que coincidan. Prueba otra búsqueda o limpia los filtros.</p>
+          <p class="study-pending"><a href="#generador">Practicar con el generador de preguntas cortas →</a></p>
+        </div>
+      <div class="model" id="modelo">
+        <div class="model-intro"><p class="eyebrow"><span class="dot"></span> PAU ANDALUCÍA · HISTORIA DE ESPAÑA / ALINEACIÓN 3-4-3</p><h2>Un nuevo esquema<br>para la prueba</h2><p>Según las orientaciones oficiales 2026–27, las partes de la prueba se relacionan con agrupaciones y bloques específicos.</p></div>
+        <div class="model-detail">
+          <div class="lineup" id="alineacion" role="group" aria-label="Alineación 3-4-3: reparto de la nota">
+            <p class="lineup-title"><span>PUNTUACIÓN</span> Alineación 3-4-3</p>
+            <div class="lineup-bar" aria-hidden="true"><i class="lu-a">3</i><i class="lu-b">4</i><i class="lu-c">3</i></div>
+            <ul class="lineup-list">
+              <li><b>3 puntos</b><span>PREGUNTAS CORTAS</span><p>Dos de cuatro; proceden de la Agrupación I (bloques 1–4). 1,5 puntos cada una.</p></li>
+              <li><b>4 puntos</b><span>DOCUMENTO</span><p>Texto, imagen o gráfico a escoger uno, cruzando las Agrupaciones II y III. Se escoge un documento.</p></li>
+              <li><b>3 puntos</b><span>TEMA DE DESARROLLO</span><p>A escoger uno, cruzando las Agrupaciones II y III.</p></li>
+            </ul>
+          </div>
+          <p class="model-alert" role="note"><strong>¡Importante!</strong> No sigas guías de años anteriores: solo valen las pautas 2026–27.</p>
+          <div class="model-row" id="corte"><span>CORTE DE COMPARACIÓN</span><p>Separa los exámenes anteriores de los de 2026–27 en adelante. No traslades frecuencias entre formatos sin justificarlo.</p></div>
+          <a class="official" href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Leer las orientaciones oficiales <svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+        </div>
+      </div>
+        <h3 class="annex-sources-title">Fuentes y recursos oficiales</h3>
         <div class="source-grid">
           <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer"><span>JUNTA DE ANDALUCÍA · PDF</span><strong>Orientaciones Historia de España 2026–27</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>
           <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer"><span>SGUIT · ARCHIVO OFICIAL</span><strong>Exámenes de años anteriores</strong><b><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></b></a>

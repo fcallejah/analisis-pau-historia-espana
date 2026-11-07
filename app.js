@@ -43,7 +43,7 @@ const topicSets = [
   [
     { label: "guerra de sucesión", terms: ["guerra de sucesion", "borbones y austrias", "tratado", "iniciaron su reinado"] },
     { label: "dinastía borbónica", terms: ["casa de borbon", "nueva dinastia", "dinastia borbonica"] },
-    { label: "decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
+    { label: "Decretos de Nueva Planta", terms: ["nueva planta", "fueros de los territorios", "abolieron los fueros"] },
     { label: "despotismo ilustrado", terms: ["despotismo ilustrado"] },
     { label: "Carlos III y Esquilache", terms: ["motin de esquilache"] },
     { label: "reformas y reales fábricas", terms: ["reales fabricas", "reformas en la administracion", "reformas economicas", "agricultura"] },
@@ -206,7 +206,7 @@ function updateResults() {
     const textMatches = !query
       || card.textContent.toLocaleLowerCase("es").includes(query)
       || card.dataset.search.includes(query);
-    const formatMatches = formatFilter.value === "all" || card.dataset.format === formatFilter.value;
+    const formatMatches = formatFilter.value === "all" || card.dataset.format.split(" ").includes(formatFilter.value);
     const groups = card.dataset.groups.split(" ").filter(Boolean);
     const groupMatches = groupFilter.value === "all" || groups.includes(groupFilter.value);
     card.hidden = !(textMatches && formatMatches && groupMatches);
@@ -236,32 +236,168 @@ document.addEventListener("keydown", (event) => {
 
 updateResults();
 
-const fan = document.querySelector("#fan");
-const fanToggle = document.querySelector("#fan-toggle");
-const fanPages = [...document.querySelectorAll(".fan-page")];
-
-function setFan(open) {
-  fan.dataset.open = String(open);
-  fanToggle.setAttribute("aria-expanded", String(open));
-  fanToggle.classList.toggle("is-open", open);
-  fanToggle.querySelector(".ft-icon").textContent = open ? "×" : "+";
-  fanToggle.querySelector(".ft-text b").textContent = open ? "Cerrar" : "Abrir";
-  if (!open) fanPages.forEach((page) => page.setAttribute("aria-pressed", "false"));
-}
-
-fanToggle.addEventListener("click", () => setFan(fan.dataset.open !== "true"));
-fanPages.forEach((page) => page.addEventListener("click", () => {
-  if (fan.dataset.open !== "true") return setFan(true);
-  const wasActive = page.getAttribute("aria-pressed") === "true";
-  fanPages.forEach((item) => item.setAttribute("aria-pressed", "false"));
-  page.setAttribute("aria-pressed", String(!wasActive));
-}));
-new IntersectionObserver((entries, observer) => {
-  if (entries.some((entry) => entry.isIntersecting)) {
-    setFan(true);
-    observer.disconnect();
+const apTrack = document.querySelector("#apuntes-track");
+const apCards = [...apTrack.querySelectorAll(".apunte")];
+const apChips = [...document.querySelectorAll(".apunte-chip")];
+const apNav = [...document.querySelectorAll(".apuntes-nav")];
+const apControls = document.querySelector(".apuntes-controls");
+const apReduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+let apActive = -1;
+const apDots = apCards.map((card, i) => {
+  const dot = document.createElement("button");
+  dot.type = "button";
+  dot.className = "note-dot";
+  dot.setAttribute("aria-label", `Ir al bloque ${i + 1}${card.classList.contains("is-soon") ? " (próximamente)" : ""}`);
+  dot.append(document.createElement("span"));
+  document.querySelector("#apuntes-dots").append(dot);
+  return dot;
+});
+const apGo = (i) => apTrack.scrollTo({ left: apCards[i].offsetLeft - apCards[0].offsetLeft, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+const apCurrent = () => apCards.findIndex((c) => c.offsetLeft - apCards[0].offsetLeft + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
+function apSync() {
+  const i = Math.max(0, apCurrent());
+  try { localStorage.setItem("pau-apuntes-pos", String(i)); } catch {}
+  apChips.forEach((c, k) => {
+    if (k === i) c.setAttribute("aria-current", "true");
+    else c.removeAttribute("aria-current");
+  });
+  apDots.forEach((dot, k) => {
+    if (k === i) dot.setAttribute("aria-current", "true");
+    else dot.removeAttribute("aria-current");
+  });
+  if (i !== apActive) {
+    apActive = i;
+    const fill = apDots[i].firstElementChild;
+    fill.style.animation = "none";
+    void fill.offsetWidth;
+    fill.style.animation = "";
   }
-}, { threshold: 0.45 }).observe(fan);
+  apNav[0].disabled = apTrack.scrollLeft <= 1;
+  apNav[1].disabled = apTrack.scrollLeft + apTrack.clientWidth >= apTrack.scrollWidth - 1;
+}
+apChips.forEach((c, k) => c.addEventListener("click", () => apGo(k)));
+apDots.forEach((dot, k) => dot.addEventListener("click", () => apGo(k)));
+apDots.forEach((dot) => dot.firstElementChild.addEventListener("animationend", () => {
+  if (apReduce.matches || dot.getAttribute("aria-current") !== "true") return;
+  const end = apTrack.scrollLeft + apTrack.clientWidth >= apTrack.scrollWidth - 1;
+  apGo(end ? 0 : Math.min(apCards.length - 1, apActive + 1));
+}));
+const apMotion = () => { apControls.dataset.paused = String(apReduce.matches); };
+apReduce.addEventListener("change", apMotion);
+apMotion();
+apNav.forEach((b) => b.addEventListener("click", () => apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + Number(b.dataset.dir))))));
+apTrack.addEventListener("scroll", () => requestAnimationFrame(apSync), { passive: true });
+let apDrag = null;
+let apSuppressClick = false;
+apTrack.addEventListener("pointerdown", (event) => {
+  if (event.pointerType !== "mouse" || event.button !== 0) return;
+  apSuppressClick = false;
+  apDrag = { id: event.pointerId, x: event.clientX, left: apTrack.scrollLeft, moved: false };
+});
+apTrack.addEventListener("pointermove", (event) => {
+  if (!apDrag || event.pointerId !== apDrag.id) return;
+  const delta = event.clientX - apDrag.x;
+  if (!apDrag.moved && Math.abs(delta) < 6) return;
+  if (!apDrag.moved) {
+    apDrag.moved = true;
+    apTrack.classList.add("is-dragging");
+    apTrack.setPointerCapture(event.pointerId);
+  }
+  event.preventDefault();
+  apTrack.scrollLeft = apDrag.left - delta;
+});
+const apEndDrag = (event) => {
+  if (!apDrag || event.pointerId !== apDrag.id) return;
+  const moved = apDrag.moved;
+  apDrag = null;
+  apTrack.classList.remove("is-dragging");
+  if (apTrack.hasPointerCapture(event.pointerId)) apTrack.releasePointerCapture(event.pointerId);
+  if (moved) {
+    apSuppressClick = true;
+    apGo(Math.max(0, apCurrent()));
+  }
+};
+apTrack.addEventListener("pointerup", apEndDrag);
+apTrack.addEventListener("pointercancel", apEndDrag);
+apTrack.addEventListener("lostpointercapture", apEndDrag);
+apTrack.addEventListener("pointerleave", (event) => {
+  if (apDrag && !apDrag.moved) apEndDrag(event);
+});
+apTrack.addEventListener("dragstart", (event) => event.preventDefault());
+apTrack.addEventListener("click", (event) => {
+  if (!apSuppressClick || event.detail === 0) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  apSuppressClick = false;
+}, true);
+window.addEventListener("resize", apSync);
+apTrack.addEventListener("keydown", (e) => {
+  if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+  e.preventDefault();
+  apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + (e.key === "ArrowRight" ? 1 : -1))));
+});
+try {
+  const saved = Number(localStorage.getItem("pau-apuntes-pos"));
+  if (saved > 0 && saved < apCards.length) apTrack.scrollTo({ left: apCards[saved].offsetLeft - apCards[0].offsetLeft, behavior: "instant" });
+} catch {}
+apSync();
+
+const apImgCache = (() => { try { return JSON.parse(localStorage.getItem("pau-apuntes-img") || "{}"); } catch { return {}; } })();
+function apShowImg(box, d) {
+  const img = new Image();
+  img.alt = "";
+  img.referrerPolicy = "no-referrer";
+  if (box.dataset.pos) img.style.objectPosition = box.dataset.pos;
+  img.addEventListener("load", () => {
+    box.append(img);
+    const cap = box.dataset.caption || (d.page ? "Wikimedia Commons" : "");
+    if (!cap) return;
+    const label = document.createElement(d.page ? "a" : "span");
+    label.className = "apunte-cap";
+    if (d.page) {
+      label.href = d.page;
+      label.target = "_blank";
+      label.rel = "noopener noreferrer";
+      label.title = [d.credit, d.license].filter(Boolean).join(" · ");
+    }
+    label.textContent = cap;
+    box.append(label);
+  });
+  img.src = d.url;
+}
+async function apLoadImg(box) {
+  if (box.dataset.src) return apShowImg(box, { url: box.dataset.src, page: box.dataset.link });
+  if (box.dataset.file) {
+    const f = encodeURIComponent(box.dataset.file);
+    return apShowImg(box, { url: `https://commons.wikimedia.org/wiki/Special:FilePath/${f}?width=500`, page: `https://commons.wikimedia.org/wiki/File:${f}`, credit: "Wikimedia Commons", license: "" });
+  }
+  const q = box.dataset.q;
+  if (apImgCache[q]) return apShowImg(box, apImgCache[q]);
+  try {
+    const api = "https://commons.wikimedia.org/w/api.php?action=query&format=json&origin=*&generator=search&gsrnamespace=6&gsrlimit=1"
+      + `&gsrsearch=${encodeURIComponent(`${q} filetype:bitmap`)}&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=500`;
+    const data = await (await fetch(api)).json();
+    const info = Object.values(data.query?.pages || {})[0]?.imageinfo?.[0];
+    if (!info?.thumburl) return;
+    const meta = info.extmetadata || {};
+    const text = (k) => (meta[k]?.value || "").replace(/<[^>]*>/g, "").trim();
+    const d = { url: info.thumburl, page: info.descriptionurl, credit: text("Artist") || "Autor desconocido", license: text("LicenseShortName") };
+    apImgCache[q] = d;
+    try { localStorage.setItem("pau-apuntes-img", JSON.stringify(apImgCache)); } catch {}
+    apShowImg(box, d);
+  } catch {}
+}
+const apImgObserver = new IntersectionObserver((entries) => entries.forEach((e) => {
+  if (!e.isIntersecting) return;
+  apImgObserver.unobserve(e.target);
+  apLoadImg(e.target);
+}), { root: apTrack, rootMargin: "0px 300px" });
+document.querySelectorAll(".apunte-img").forEach((box) => apImgObserver.observe(box));
+
+apCards.forEach((card) => card.addEventListener("click", (event) => {
+  if (event.target.closest("a, button")) return;
+  card.querySelector(".apunte-open").click();
+}));
 
 document.querySelectorAll('a[href="#inicio"]').forEach((a) => {
   a.addEventListener("click", (e) => {
@@ -282,11 +418,9 @@ if (toTop) {
 const phaseNav = document.querySelector(".phase-nav");
 if (phaseNav) {
   const phases = [
-    { id: "explorar", name: "Índice: ¿Qué quieres estudiar?" },
-    { id: "alineacion", name: "Alineación 3-4-3" },
     { id: "bloques-cuestiones", name: "Preguntas cortas" },
     { id: "generador", name: "Generador" },
-    { id: "fuentes", name: "Fuentes" },
+    { id: "fuentes", name: "Anexo: materiales, estructura y fuentes" },
   ];
   const nextBtn = phaseNav.querySelector(".next-phase");
   const prevBtn = phaseNav.querySelector(".prev-phase");
@@ -334,42 +468,17 @@ if (themeToggle) {
   };
   themeToggle.addEventListener("click", () => {
     const dark = root.dataset.theme !== "dark";
-    const apply = () => { if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme; };
+    const apply = () => {
+      if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
+      paintTheme();
+    };
     const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (document.startViewTransition && !calm) document.startViewTransition(apply); else apply();
+    const zoomed = window.visualViewport && window.visualViewport.scale > 1;
+    if (document.startViewTransition && !calm && !zoomed) document.startViewTransition(apply); else apply();
     try { localStorage.setItem("pau-he.theme", dark ? "dark" : "light"); } catch (e) {}
-    paintTheme();
   });
   paintTheme();
 }
-
-(function () {
-  const box = document.getElementById("novedades");
-  if (!box) return;
-  const slides = [...box.querySelectorAll(".note-slide")];
-  const dots = [...box.querySelectorAll(".note-dot")];
-  const controls = box.querySelector(".note-controls");
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let cur = 0;
-  function show(i) {
-    cur = (i + slides.length) % slides.length;
-    slides.forEach((s, k) => {
-      s.classList.toggle("is-active", k === cur);
-      s.toggleAttribute("inert", k !== cur);
-    });
-    dots.forEach((d, k) => {
-      if (k === cur) d.setAttribute("aria-current", "true");
-      else d.removeAttribute("aria-current");
-    });
-    const fill = dots[cur].firstElementChild;
-    fill.style.animation = "none";
-    void fill.offsetWidth;
-    fill.style.animation = "";
-  }
-  dots.forEach((d, k) => d.addEventListener("click", () => show(k)));
-  dots.forEach((d) => d.firstElementChild.addEventListener("animationend", () => show(cur + 1)));
-  controls.dataset.paused = reduce ? "true" : "false";
-})();
 
 if ("serviceWorker" in navigator && window.isSecureContext) {
   window.addEventListener("load", () => {
@@ -378,3 +487,9 @@ if ("serviceWorker" in navigator && window.isSecureContext) {
     });
   });
 }
+
+// Fase aleatoria de las olas en cada carga
+document.querySelectorAll(".hero-waves .wave").forEach((w) => {
+  const d = parseFloat(getComputedStyle(w).animationDuration) || 22;
+  w.style.animationDelay = `-${(Math.random() * d).toFixed(2)}s`;
+});
