@@ -147,6 +147,8 @@ def rebuild_source_index(content):
             label = "".join(element_text(link) for link in links)
             if node.tag != "p" or " ".join(element_text(node).split()) != " ".join(label.split()):
                 raise ValueError("Entrada del índice mezclada con contenido: no se puede reconstruir")
+        elif node.tag == "p" and element_text(node).strip().upper() == "ÍNDICE":
+            continue
         else:
             preserved.append(node.render())
     index = HeadingIndex()
@@ -686,6 +688,52 @@ def place_block_four_schemes(page):
     return page
 
 
+def quote_latin_expression(body):
+    return re.sub(r'(?<![«"“])\buniversitas christiana\b(?![»"”])',
+                  "«universitas christiana»", body, flags=re.I)
+
+
+def normalize_practice_capitals(body):
+    parser = Fragment()
+    parser.feed(body)
+    practice = False
+    def normalize(node):
+        for index, child in enumerate(node.children):
+            if isinstance(child, Element):
+                normalize(child)
+            else:
+                node.children[index] = re.sub(
+                    r"\b(despotismo ilustrado|reales fábricas|motín)\b",
+                    lambda match: match[0].lower(), child, flags=re.I,
+                )
+    for node in parser.root.children:
+        if not isinstance(node, Element):
+            continue
+        if node.has_class("footnotes"):
+            break
+        if node.tag in ("h2", "h3", "h4", "h5") and "Ejemplos de preguntas cortas" in element_text(node):
+            practice = True
+        if practice:
+            normalize(node)
+    return "".join(node.render() if isinstance(node, Element) else html.escape(node)
+                   for node in parser.root.children)
+
+
+def embed_society_video(body):
+    pattern = (r'<p><span><span class="doc-image"[^>]*><img src="imagenes/bloque-4-08.png"[^>]*>'
+               r'.*?</p>\s*<p><span><u><a href="https://youtu.be/sPzE-fm-V-Y">.*?</a></u></span></p>')
+    replacement = (
+        '<figure class="reading-video" aria-label="Vídeo sobre la Sociedad Económica de Amigos del País de Málaga">'
+        '<div class="reading-video-player" data-video-id="sPzE-fm-V-Y">'
+        '</div><figcaption><a href="https://youtu.be/sPzE-fm-V-Y" target="_blank" rel="noopener noreferrer">'
+        'Ver en YouTube</a></figcaption></figure>'
+    )
+    updated, count = re.subn(pattern, replacement, body, count=1, flags=re.S)
+    if count != 1:
+        raise ValueError("No se encontró la imagen y enlace del vídeo de la Sociedad Económica")
+    return updated
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("block", type=int, choices=sorted(IDS))
@@ -722,6 +770,9 @@ def main():
     if not marker:
         raise ValueError("No se encontró el inicio de las notas")
     body = body[:marker.start()] + '<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Notas y referencias</h2>' + body[marker.start():] + "</section>"
+    body = quote_latin_expression(normalize_practice_capitals(body))
+    if args.block == 4 and "https://youtu.be/sPzE-fm-V-Y" in body:
+        body = embed_society_video(body)
     article = '<article class="reading-content" aria-label="Texto del documento original">' + body + "</article>"
     # The shared reading tools and contextual illustration remain outside the replaceable article.
     if args.block == 4:

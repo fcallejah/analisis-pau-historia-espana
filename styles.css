@@ -114,7 +114,9 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .apuntes-nav:disabled{opacity:.35;cursor:default}
 @media(prefers-reduced-motion:reduce){.apuntes-track{scroll-behavior:auto}.apunte{transition:none}}
 .apunte-actions a.apunte-open{padding:4px 10px;border:0;border-radius:6px;background:var(--olive);color:#fffdf6;cursor:pointer;font:700 11px var(--sans);text-decoration:none}
-.apunte-open:hover{box-shadow:0 0 0 3px var(--lime)}
+.apunte > .apunte-open{color:inherit;text-decoration:none}
+.apunte > .apunte-open:hover{text-decoration:underline;text-underline-offset:3px}
+.apunte > .apunte-open:focus-visible{outline:2px solid var(--lime);outline-offset:4px;border-radius:4px}
 :is(.apunte,.apunte-loop).is-soon .apunte-img{opacity:.65}
 .apunte-soon{font-size:11px;font-style:italic;color:var(--muted)}
 .apuntes-pdf{margin:14px 0 0;font-size:12px}

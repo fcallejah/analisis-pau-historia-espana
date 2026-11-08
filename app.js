@@ -414,7 +414,7 @@ document.querySelectorAll(".apunte-img").forEach((box) => apImgObserver.observe(
 
 apCards.forEach((card) => card.addEventListener("click", (event) => {
   if (event.target.closest("a, button")) return;
-  card.querySelector(".apunte-open").click();
+  card.querySelector(".apunte-open")?.click();
 }));
 
 document.querySelectorAll('a[href="#inicio"]').forEach((a) => {

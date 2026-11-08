@@ -12,11 +12,44 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_practice_capitals_only_changes_final_section(self):
+        source = ('<p>Despotismo Ilustrado y Reales Fábricas</p>'
+                  '<h3>Ejemplos de preguntas cortas del bloque 4</h3>'
+                  '<p>¿Qué es el <strong>Despotismo Ilustrado</strong>?</p>'
+                  '<p>Reales Fábricas</p>'
+                  '<section class="footnotes"><p>Despotismo Ilustrado</p></section>')
+        result = importer.normalize_practice_capitals(source)
+        self.assertIn('<p>Despotismo Ilustrado y Reales Fábricas</p>', result)
+        self.assertIn('<strong>despotismo ilustrado</strong>', result)
+        self.assertIn('<p>reales fábricas</p>', result)
+        self.assertIn('<section class="footnotes"><p>Despotismo Ilustrado', result)
+
+    def test_society_video_replaces_image_and_link(self):
+        source = ('<p>Texto anterior</p><p><span><span class="doc-image" role="figure">'
+                  '<img src="imagenes/bloque-4-08.png" alt=""></span></span></p>'
+                  '<p><span><u><a href="https://youtu.be/sPzE-fm-V-Y">Vídeo y enlace</a>'
+                  '</u></span></p><h3>1.5 Tema siguiente</h3>')
+        result = importer.embed_society_video(source)
+        self.assertNotIn("bloque-4-08.png", result)
+        self.assertNotIn("Vídeo y enlace", result)
+        self.assertIn('data-video-id="sPzE-fm-V-Y"', result)
+        self.assertNotIn("reading-video-load", result)
+        self.assertNotIn("El reproductor conecta", result)
+        self.assertIn("<p>Texto anterior</p>", result)
+        self.assertIn("<h3>1.5 Tema siguiente</h3>", result)
+
+    def test_latin_expression_quotes_preserve_emphasis(self):
+        source = "<p>Defendió la <strong><em>Universitas Christiana</em></strong>.</p>"
+        result = importer.quote_latin_expression(source)
+        self.assertIn("<strong><em>«universitas christiana»</em></strong>", result)
+        self.assertEqual(importer.quote_latin_expression(result), result)
+
     def test_rebuild_stale_index_preserves_body_and_preamble(self):
-        source = ('<p><a href="#h.old">Etiqueta antigua 3</a></p>'
+        source = ('<p><strong>ÍNDICE</strong></p><p><a href="#h.old">Etiqueta antigua 3</a></p>'
                   '<p>Preámbulo <a href="https://example.com">fuente</a></p>'
                   '<h3 id="h.real">Apartado actual</h3><p>Texto íntegro.</p>')
         rebuilt = importer.rebuild_source_index(source)
+        self.assertNotIn("ÍNDICE", rebuilt)
         result = importer.map_heading_anchors(rebuilt, 4, page_numbers=False)
         self.assertNotIn("Etiqueta antigua", result)
         self.assertIn("Preámbulo", result)

@@ -27,6 +27,18 @@ paintTheme();
 document.querySelectorAll(".print-button").forEach((button) => {
   button.addEventListener("click", () => window.print());
 });
+const docsSource = document.querySelector('.source-note a[href^="https://docs.google.com/document/"]');
+if (docsSource) {
+  [...document.querySelectorAll(".print-tools")].slice(-1).forEach((tools) => {
+    const link = document.createElement("a");
+    link.className = "docs-button";
+    link.href = docsSource.href;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Ver en Google Docs";
+    tools.querySelector(".print-button").after(link);
+  });
+}
 
 let printSolutions = [];
 window.addEventListener("beforeprint", () => {
@@ -361,9 +373,6 @@ function setupExampleSolutions() {
   headings.filter((heading) => /ejemplos de preguntas cortas del bloque/i.test(heading.textContent))
     .forEach((heading) => {
       if (heading.dataset.solutionsReady) return;
-      let mapped = 0;
-      let fromDocument = 0;
-      let pending = 0;
       const rank = Number(heading.tagName.slice(1));
       const repeatedTitle = document.querySelector(".reading-title h1")?.textContent.trim();
       const endsPractice = (node) => node.matches(".footnotes,hr")
@@ -395,13 +404,8 @@ function setupExampleSolutions() {
             }
           }
           prompt.after(details);
-          if (answer) mapped++;
-          else if (sourceHint) fromDocument++;
-          else pending++;
         });
       }
-      const status = practiceStatus(content, `${mapped} preguntas con solución del banco existente${fromDocument ? ` · ${fromDocument} con pistas del documento` : ""} · ${pending} con solución pendiente (sin coincidencia exacta).`);
-      heading.after(status);
       heading.dataset.solutionsReady = "true";
       const section = document.createElement("section");
       section.className = "example-practice";

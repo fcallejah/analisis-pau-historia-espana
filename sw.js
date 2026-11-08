@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v143";
+const CACHE = "pau-he-v158";
 const CORE = [
   "./", "./index.html", "./styles.css", "./practice.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
@@ -10,6 +10,7 @@ const CORE = [
   "./assets/apuntes/bloque-06-amadeo-i.jpg",
   "./assets/apuntes/bloque-10-republica.jpg",
   "./apuntes.css", "./apuntes.js", "./imagenes-apuntes.js",
+  "./anotaciones.js", "./videos-apuntes.js",
   "./nueva-planta.css", "./nueva-planta.js", "./assets/apuntes/nueva-planta.svg",
   "./organizacion-borbonica.css", "./organizacion-borbonica.js",
   ...Array.from({ length: 12 }, (_, i) => `./apuntes/bloque-${i + 1}.html`),

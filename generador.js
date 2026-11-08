@@ -2,6 +2,8 @@
    del autor (sin años) con los enunciados literales de la PAU 2017-2026 del corpus
    (data/preguntas-cortas.json). Los puntos clave de las preguntas PAU de los bloques 1-3 se han
    redactado a partir de los apuntes; el bloque 4 no tiene soluciones hasta recibir sus apuntes. */
+const CLAVES_VALIDO = "valido o privado: noble de máxima confianza y favorecido por el rey; delegación de las principales tareas y funciones de gobierno; gran poder político, dependiente del favor real; similar a un «primer ministro», sin ser un cargo equivalente ni sustituir la autoridad del rey; Austrias menores, siglo XVII: Felipe III, Felipe IV y Carlos II; ejemplos: duque de Lerma (Felipe III) y conde-duque de Olivares (Felipe IV)";
+
 const FICHAS = {
  "1": [
   [
@@ -365,7 +367,7 @@ const FICHAS = {
   ],
   [
    "¿Qué nombre reciben los monarcas del siglo XVII que delegaron las tareas de gobierno en validos? Explique brevemente en qué consistía la figura del valido.",
-   "Austrias Menores -Felipe III, Felipe IV y Carlos II-; el valido o privado era un ministro de máxima confianza del rey, perteneciente a la alta nobleza, que actuaba como primer ministro y tomaba las principales decisiones políticas; ejemplos: duque de Lerma, conde-duque de Olivares",
+   `Austrias menores; ${CLAVES_VALIDO}`,
    ""
   ],
   [
@@ -425,7 +427,7 @@ const FICHAS = {
   ],
   [
    "Cite el nombre de algún valido Defina brevemente a qué se refiere el término “gobierno de los validos”.",
-   "el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   CLAVES_VALIDO,
    "PAU 2017"
   ],
   [
@@ -435,7 +437,7 @@ const FICHAS = {
   ],
   [
    "¿Qué rey de España fue también emperador en Europa en la Edad Moderna? Explique brevemente las características de la política exterior de dicho monarca.",
-   "Carlos I; Universitas Christiana; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
+   "Carlos I; «universitas christiana»; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
    "PAU 2018"
   ],
   [
@@ -445,7 +447,7 @@ const FICHAS = {
   ],
   [
    "Cita uno de los validos del reinado de Felipe IV Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII.",
-   "conde-duque de Olivares; el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   `conde-duque de Olivares; ${CLAVES_VALIDO}`,
    "PAU 2018"
   ],
   [
@@ -455,7 +457,7 @@ const FICHAS = {
   ],
   [
    "¿En qué reinado tuvo lugar la derrota de la “Armada Invencible”? Explique brevemente las diferencias de la política internacional de este monarca con la de su padre, Carlos I.",
-   "Felipe II; defensa del catolicismo (Contrarreforma) y de la hegemonía hispánica; San Quintín (1557) y Lepanto (1571); Unión Ibérica con Portugal (1580); rebelión de Flandes; Armada Invencible (1588); bancarrotas; Carlos I: imperio europeo, Universitas Christiana y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Felipe II; defensa del catolicismo (Contrarreforma) y de la hegemonía hispánica; San Quintín (1557) y Lepanto (1571); Unión Ibérica con Portugal (1580); rebelión de Flandes; Armada Invencible (1588); bancarrotas; Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2019, 2020, 2021, 2023"
   ],
   [
@@ -475,12 +477,12 @@ const FICHAS = {
   ],
   [
    "¿De qué monarca fue valido el Conde-Duque de Olivares? Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII.",
-   "Felipe IV; el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   `Felipe IV; ${CLAVES_VALIDO}`,
    "PAU 2020"
   ],
   [
    "¿Qué rey de España fue también emperador en Europa en la Edad Moderna? Explique brevemente las características de la política exterior europea de dicho monarca.",
-   "Carlos I; Universitas Christiana; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
+   "Carlos I; «universitas christiana»; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
    "PAU 2020, 2024"
   ],
   [
@@ -505,7 +507,7 @@ const FICHAS = {
   ],
   [
    "¿Cómo se llama la figura política que se hizo cargo de las tareas de gobierno en lugar del rey durante el siglo XVII? Explique en qué consiste su figura y la importancia que tuvieron en dicho siglo.",
-   "valido; el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   CLAVES_VALIDO,
    "PAU 2021"
   ],
   [
@@ -525,7 +527,7 @@ const FICHAS = {
   ],
   [
    "Cite el nombre de algún valido de los Austrias menores. Explique en qué consiste su figura y la importancia que tuvieron en el siglo XVII.",
-   "duque de Lerma, conde-duque de Olivares; el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   CLAVES_VALIDO,
    "PAU 2022, 2024"
   ],
   [
@@ -535,7 +537,7 @@ const FICHAS = {
   ],
   [
    "Explique brevemente las diferencias de la política internacional de Carlos I y Felipe II.",
-   "Carlos I: imperio europeo, Universitas Christiana y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2025, 2026"
   ],
   [
@@ -545,7 +547,7 @@ const FICHAS = {
   ],
   [
    "Señale los dos monarcas de más amplio reinado en el siglo XVI y las diferencias en su política exterior.",
-   "Carlos I y Felipe II; Carlos I: imperio europeo, Universitas Christiana y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Carlos I y Felipe II; Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2025, 2026"
   ],
   [
@@ -560,7 +562,7 @@ const FICHAS = {
   ],
   [
    "Explique en qué consistió la figura del valido y la importancia que tuvo en el siglo XVII.",
-   "el valido (o privado) es un ministro de máxima confianza del rey que actúa como primer ministro; Austrias Menores (Felipe III, Felipe IV, Carlos II); ejemplos: duque de Lerma, conde-duque de Olivares; contexto de decadencia política y económica",
+   CLAVES_VALIDO,
    "PAU 2025"
   ],
   [
@@ -586,7 +588,7 @@ const FICHAS = {
    "PAU 2017"
   ],
   [
-   "¿A qué reinado corresponde el Motín de Esquilache? Defina el concepto de despotismo ilustrado.",
+   "¿A qué reinado corresponde el motín de Esquilache? Defina el concepto de despotismo ilustrado.",
    null,
    "PAU 2017"
   ],
@@ -766,9 +768,9 @@ const CLAVES_BLOQUE_4 = {
   administracion: "administración central: secretarías de Estado y del Despacho, protagonismo del Consejo de Castilla y Junta Suprema de Estado (1787, Carlos III); administración territorial: capitanías generales, audiencias, intendentes y corregidores; objetivo: fortalecer la autoridad real y mejorar el gobierno y la recaudación; límites: continuidad de los regímenes forales de Navarra y los territorios vascos y de los virreinatos americanos",
   despotismo: "definición: poder absoluto del monarca combinado con reformas ilustradas económicas, educativas y culturales; objetivo: modernización y bienestar sin participación política del pueblo; lema: «Todo para el pueblo, pero sin el pueblo»; límites: mantenimiento del absolutismo y de la sociedad estamental",
   agricultura: "objetivo: aumentar la productividad agraria; medidas: regadíos y canales de Castilla y Aragón, colonización de Sierra Morena, difusión de cultivos como maíz y patata y limitación de privilegios de la Mesta; problemas: mayorazgos y tierras amortizadas o manos muertas; proyecto de reforma agraria asociado a Jovellanos; balance: resistencia de los privilegiados y persistencia de los obstáculos estructurales; cronología: su Informe sobre la Ley Agraria se publicó en 1795, bajo Carlos IV",
-  economia: "agricultura: regadíos, nuevos cultivos, colonización de Sierra Morena y limitación de la Mesta; industria: Reales Fábricas y proteccionismo; Hacienda: catastro de Ensenada bajo Fernando VI, elaborado en la Corona de Castilla salvo los territorios forales; finanzas: Banco de San Carlos (1782); comercio: apertura del tráfico americano a más puertos mediante los decretos de 1765 y 1778; balance: oposición de los privilegiados y reformas limitadas",
+  economia: "agricultura: regadíos, nuevos cultivos, colonización de Sierra Morena y limitación de la Mesta; industria: reales fábricas y proteccionismo; Hacienda: catastro de Ensenada bajo Fernando VI, elaborado en la Corona de Castilla salvo los territorios forales; finanzas: Banco de San Carlos (1782); comercio: apertura del tráfico americano a más puertos mediante los decretos de 1765 y 1778; balance: oposición de los privilegiados y reformas limitadas",
   luces: "denominación: Siglo de las Luces por la difusión de la Ilustración; ideas: razón, ciencia, educación, progreso y felicidad social, crítica a la sociedad estamental; España: movimiento minoritario, católico y reformista, condicionado por Iglesia e Inquisición; ejemplos: Feijoo, Jovellanos y Campomanes, reales academias, Sociedades Económicas de Amigos del País, prensa, universidades y expediciones científicas",
-  carlos: "medidas: regalismo y expulsión de los jesuitas (1767); impulso agrario, colonización de Sierra Morena, regadíos y reducción de privilegios de la Mesta; Reales Fábricas, Banco de San Carlos (1782) y apertura comercial con América; educación, Sociedades Económicas de Amigos del País y dignificación de los oficios (1783); colaboradores: Floridablanca, Aranda y Campomanes; límites: resistencia de nobleza y clero y motín de Esquilache (1766), sin transformar el sistema absolutista",
+  carlos: "medidas: regalismo y expulsión de los jesuitas (1767); impulso agrario, colonización de Sierra Morena, regadíos y reducción de privilegios de la Mesta; reales fábricas, Banco de San Carlos (1782) y apertura comercial con América; educación, Sociedades Económicas de Amigos del País y dignificación de los oficios (1783); colaboradores: Floridablanca, Aranda y Campomanes; límites: resistencia de nobleza y clero y motín de Esquilache (1766), sin transformar el sistema absolutista",
 };
 const SOLUCIONES_BLOQUE_4 = [
   `identificación: Felipe V, de la Casa de Borbón; ${CLAVES_BLOQUE_4.causas}`,
@@ -777,7 +779,7 @@ const SOLUCIONES_BLOQUE_4 = [
   `identificación: Carlos III; motín de Esquilache (Madrid, 1766), con carestía del pan, rechazo a ministros extranjeros y edicto de capas y sombreros como detonante; ${CLAVES_BLOQUE_4.despotismo}`,
   `identificación: Felipe V; ${CLAVES_BLOQUE_4.planta}`,
   `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.causas}; resultado: victoria borbónica, Felipe V reconocido y paz de Utrecht-Rastatt con pérdidas territoriales europeas`,
-  `identificación: dinastía de los Borbones; Reales Fábricas: manufacturas promovidas por la Corona, como tapices, vidrio y porcelana; ${CLAVES_BLOQUE_4.economia}`,
+  `identificación: dinastía de los Borbones; reales fábricas: manufacturas promovidas por la Corona, como tapices, vidrio y porcelana; ${CLAVES_BLOQUE_4.economia}`,
   `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.causas}`,
   `identificación: paz de Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
   `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.causas}; resultado: victoria borbónica, reconocimiento de Felipe V y pérdidas territoriales en Utrecht-Rastatt`,
@@ -815,14 +817,14 @@ if (SOLUCIONES_BLOQUE_4.length !== FICHAS["4"].length) {
 FICHAS["4"].forEach((question, index) => { question[1] = SOLUCIONES_BLOQUE_4[index]; });
 
 const EJEMPLOS_BLOQUE_4 = [
-  ["¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII? Explique las causas de la guerra de Sucesión española.", SOLUCIONES_BLOQUE_4[0]],
-  ["¿Con qué tratado se pone fin a la guerra de Sucesión española? Explique brevemente las consecuencias de dicho tratado.", SOLUCIONES_BLOQUE_4[1]],
+  ["¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII? Explique las causas de la guerra de sucesión española.", SOLUCIONES_BLOQUE_4[0]],
+  ["¿Con qué tratado se pone fin a la guerra de sucesión española? Explique brevemente las consecuencias de dicho tratado.", SOLUCIONES_BLOQUE_4[1]],
   ["¿Qué rey firmó los decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.", SOLUCIONES_BLOQUE_4[4]],
   ["¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón? Explique brevemente en qué consistieron dichos decretos y su importancia histórica.", `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.planta}; importancia: centralización y fortalecimiento del absolutismo, no desaparición de todo derecho propio`],
-  ["¿A qué reinado corresponde el Motín de Esquilache? Defina el concepto de Despotismo Ilustrado.", SOLUCIONES_BLOQUE_4[3]],
-  ["¿Qué dinastía impulsó la creación de las Reales Fábricas en el siglo XVIII? Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.", SOLUCIONES_BLOQUE_4[6]],
+  ["¿A qué reinado corresponde el motín de Esquilache? Defina el concepto de despotismo ilustrado.", SOLUCIONES_BLOQUE_4[3]],
+  ["¿Qué dinastía impulsó la creación de las reales fábricas en el siglo XVIII? Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.", SOLUCIONES_BLOQUE_4[6]],
   ["¿Qué dinastía reinaba en España durante el denominado Siglo de las Luces? Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.", SOLUCIONES_BLOQUE_4[18]],
-  ["¿Qué rey del siglo XVIII encarnó mejor el modelo del Despotismo Ilustrado en España? Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.", SOLUCIONES_BLOQUE_4[14]],
+  ["¿Qué rey del siglo XVIII encarnó mejor el modelo del despotismo ilustrado en España? Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.", SOLUCIONES_BLOQUE_4[14]],
   ["Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de la agricultura.", CLAVES_BLOQUE_4.agricultura],
   ["¿Qué monarca español firmó el Tratado de Utrecht-Rastatt? Explique brevemente las causas de la guerra que los originaron.", SOLUCIONES_BLOQUE_4[23]],
   ["¿Tras qué conflicto armado iniciaron su reinado en España los Borbones a comienzos del siglo XVIII? Explique las consecuencias de dicho conflicto.", SOLUCIONES_BLOQUE_4[24]],
@@ -832,7 +834,7 @@ const EJEMPLOS_BLOQUE_4 = [
   ["¿Qué dinastía impulsó reformas en la agricultura en el siglo XVIII? Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de esta actividad económica.", SOLUCIONES_BLOQUE_4[15]],
   ["¿Cómo se conoce el modelo político del rey Carlos III? Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.", SOLUCIONES_BLOQUE_4[12]],
   ["¿Dónde se encontraba la Casa de Contratación? Explique en qué consistió la liberalización del comercio colonial.", "identificación: Sevilla desde 1503 y Cádiz desde 1717; situación inicial: monopolio del tráfico americano concentrado en Sevilla-Cádiz; reformas: decretos de 1765 y 1778 que habilitaron más puertos y ampliaron los intercambios dentro del imperio; objetivos y efectos: estimular exportaciones, importaciones y recaudación; matiz: libre comercio imperial, no libertad comercial internacional completa; persistencia de controles y monopolios como el tabaco"],
-  ["¿Qué es el Despotismo Ilustrado? ¿Quién es considerado el principal monarca ilustrado de España y por qué?", SOLUCIONES_BLOQUE_4[36]],
+  ["¿Qué es el despotismo ilustrado? ¿Quién es considerado el principal monarca ilustrado de España y por qué?", SOLUCIONES_BLOQUE_4[36]],
 ];
 
 window.pauPracticeBank = Object.entries(FICHAS).flatMap(([block, questions]) =>
