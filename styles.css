@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap");
+@import url("practice.css?v=1");
 :root{--paper:#f5f3ed;--ink:#20231d;--muted:#6f7169;--line:#deddd4;--olive:#4b2e83;--lime:#d6ee7a;--rust:#7a4fc4;--blue:#4b2e83;--sans:"DM Sans",Arial,sans-serif;--serif:"Playfair Display",Georgia,serif;--mono:"DM Mono","Courier New",monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -44,6 +45,7 @@ h1 em{color:var(--rust)}
 .section-head .eyebrow{margin-bottom:9px}
 h2{margin-bottom:0;font:600 clamp(32px,4vw,46px)/1.1 var(--serif);letter-spacing:-.04em}
 .section-head>p{max-width:310px;margin-bottom:4px;color:var(--muted);font-size:12px}
+.questions-subtitle{margin:12px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
 .filters{display:grid;grid-template-columns:minmax(240px,1fr) 220px 205px;gap:10px;margin-bottom:16px}
 .filters label{min-width:0;height:47px;display:flex;align-items:center;border:1px solid #d7d6cd;background:#faf9f5}
 .search{gap:10px;padding:0 12px}
@@ -85,6 +87,7 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .apuntes-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
 .apuntes-track.is-looping{scroll-snap-type:none;scroll-behavior:auto}
 .apuntes-loop-gap{flex:0 0 min(250px,72%)}
+.apunte-loop{visibility:hidden}
 .hero-apuntes:has(.is-dragging) .note-dot span{animation-play-state:paused}
 .apunte-chip{--acc:var(--lime);width:30px;height:30px;border:2px solid var(--acc);border-radius:50%;background:var(--acc);color:#20231d;cursor:pointer;font:700 12px var(--sans)}
 .apunte-chip[data-g=II],:is(.apunte,.apunte-loop)[data-g=II]{--acc:#d9ad39}
@@ -314,11 +317,6 @@ footer .credit .credit-part{white-space:nowrap}
 .gen-q{padding:18px 0;border-bottom:1px solid var(--line)}
 .gen-text{margin:0 0 6px;font-size:15px;line-height:1.5}
 .gen-q small{color:var(--muted);font:9px var(--mono);letter-spacing:.08em;text-transform:uppercase}
-.gen-sol{margin-top:12px}
-.gen-sol summary{display:inline-block;padding:7px 14px;border:1px solid var(--olive);border-radius:999px;cursor:pointer;font:700 11px var(--sans);list-style:none}
-.gen-sol summary::-webkit-details-marker{display:none}
-.gen-sol summary:hover,.gen-sol[open] summary{background:var(--olive);color:#fff}
-.gen-sol p{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--lime);background:rgba(120,90,200,.08);font-size:13px}
 @media(max-width:620px){.generator{padding:57px 6% 62px}}
 @media(min-width:621px){.source-grid a:nth-child(4){padding-left:0;border-left:0;border-top:1px solid var(--line)}}
 .gen-controls .gen-reset{display:inline-grid;place-items:center;width:42px;height:42px;padding:0;border-color:var(--line);color:var(--ink)}
@@ -505,16 +503,30 @@ footer .credit .credit-place,footer .credit .credit-emojis{display:block;margin-
 .site-header .header-tools{gap:10px}
 .site-header .header-tools .header-tool,.site-header .contact-tool{display:inline-flex;justify-content:center;gap:8px;width:auto;padding:0 12px;font-size:12px}
 .site-header .header-tools .header-tool span,.site-header .contact-tool .contact-label{display:inline}
+.site-header .header-tools .header-tool[href="https://x.com/RAEinforma"]{padding:0 9px;gap:6px;font-size:11px}
 .site-header .header-tool svg,.site-header .header-tool .x-logo,.site-header .header-tool .dle-logo,.site-header .theme-toggle svg{width:22px;height:22px}
+.site-header .header-tool[href="https://x.com/RAEinforma"] .x-logo{width:18px;height:18px}
 }
 .andalucia-title{color:#20231d}
 .apuntes-controls{margin-top:18px;display:flex;justify-content:center}
 .hero-orientaciones{margin:10px 0 0;font-size:12px}
 @media(max-width:620px){.hero{padding-top:32px;padding-bottom:64px}}
 .hero-orientaciones a{color:var(--olive)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:8px}
+.hero-actions a,.hero-orientaciones a{display:inline-flex;align-items:center;gap:5px;min-height:30px;max-width:100%;padding:5px 10px;border:1px solid #e4d9f1;border-radius:999px;background:#f6f1fc;color:var(--olive);text-decoration:none;font-size:11px;font-weight:500;line-height:1.4}
+.hero-actions a:hover,.hero-orientaciones a:hover{background:#e2d3f5;border-color:#b99cd9}
+.hero-actions .ext-icon,.hero-orientaciones .ext-icon{flex:none;margin:0}
+:root[data-theme=dark] .hero-actions a,:root[data-theme=dark] .hero-orientaciones a{background:#30253f;border-color:#65507f;color:#dfc9fa}
+:root[data-theme=dark] .hero-actions a:hover,:root[data-theme=dark] .hero-orientaciones a:hover{background:#403052;border-color:#9876bc}
 :root[data-theme=dark] .hero-orientaciones a{color:#c4a8f0}
 .apuntes-controls .note-dots{max-width:100%;flex-wrap:wrap;justify-content:center}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
 .andalucia-title{background:linear-gradient(to bottom,#20231d 35%,#566c2b 65%,var(--lime) 90%,var(--lime) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 :root[data-theme=dark] .andalucia-title{background-image:linear-gradient(to bottom,#ecebe6 35%,#b5cd79 65%,var(--lime) 90%,var(--lime) 100%)}
+@media(min-width:1440px){
+  .site-header,.hero,.question-groups,.generator,.sources,footer{padding-left:6%;padding-right:6%}
+  .hero-caption{left:6%;right:6%}
+  .hero:after{right:6%}
+  .hero{min-height:calc(100svh - 194px);gap:5%;align-items:center}
+}
 }

@@ -12,6 +12,31 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_rebuild_stale_index_preserves_body_and_preamble(self):
+        source = ('<p><a href="#h.old">Etiqueta antigua 3</a></p>'
+                  '<p>Preámbulo <a href="https://example.com">fuente</a></p>'
+                  '<h3 id="h.real">Apartado actual</h3><p>Texto íntegro.</p>')
+        rebuilt = importer.rebuild_source_index(source)
+        result = importer.map_heading_anchors(rebuilt, 4, page_numbers=False)
+        self.assertNotIn("Etiqueta antigua", result)
+        self.assertIn("Preámbulo", result)
+        self.assertIn("Texto íntegro.", result)
+        self.assertIn('href="#bloque-4-seccion-real"', result)
+
+    def test_rebuild_index_rejects_mixed_content(self):
+        with self.assertRaises(ValueError):
+            importer.rebuild_source_index(
+                '<p>Texto ajeno <a href="#h.a">Apartado</a></p><h3 id="h.a">Apartado</h3>'
+            )
+
+    def test_rebuild_keeps_terminal_heading_number(self):
+        source = '<p><a href="#h.a">Antiguo 3</a></p><h3 id="h.a">Ejemplos del bloque 4</h3>'
+        body = importer.map_heading_anchors(
+            importer.rebuild_source_index(source), 4, page_numbers=False
+        )
+        nav, _ = importer.extract_native_index(body, 4, page_numbers=False)
+        self.assertIn(">Ejemplos del bloque 4</a>", nav)
+
     def test_repoblaciones_export_geometry(self):
         viewport = {"overflow": "hidden", "width": "328.13px", "height": "359.85px"}
         image = {"width": "490.96px", "height": "697.43px", "margin-left": "-72.30px", "margin-top": "-79.01px"}
@@ -131,6 +156,7 @@ class NativeIndexTests(unittest.TestCase):
             # Parse just the main fragment (the full document has scripts and metadata).
             page = (importer.ROOT / f"apuntes/bloque-{block}.html").read_text()
             main = re.search(r'<main\b[^>]*>(.*?)</main>', page, re.S)[1]
+            main = re.sub(r'<section class="reading-tools".*?</section>', "", main, count=1, flags=re.S)
             parser.feed(main)
             index = next(node for node in importer.walk(parser.root) if node.has_class("reading-index"))
             article = next(node for node in importer.walk(parser.root) if node.has_class("reading-content"))
@@ -147,6 +173,29 @@ class NativeIndexTests(unittest.TestCase):
             self.assertEqual(sum(importer.element_text(link).startswith("1.2 ") for link in links), 1)
             total += count
         self.assertEqual(total, 23)
+
+
+class PageShellTests(unittest.TestCase):
+    def test_import_replacement_preserves_shared_reading_tools(self):
+        page = (importer.ROOT / "apuntes/bloque-1.html").read_text()
+        updated = importer.replace_imported_article(
+            page,
+            '<nav class="reading-index"><h2>Índice</h2></nav>',
+            '<article class="reading-content"><h2>Texto actualizado</h2></article>',
+        )
+        self.assertIn('id="reading-search"', updated)
+        self.assertIn('id="reading-size-up"', updated)
+        self.assertIn('class="reading-illustration"', updated)
+        self.assertIn("Texto actualizado", updated)
+        self.assertEqual(updated.count('class="reading-tools"'), 1)
+
+    def test_all_twelve_pages_have_the_shared_reading_shell(self):
+        for block in range(1, 13):
+            page = (importer.ROOT / f"apuntes/bloque-{block}.html").read_text()
+            with self.subTest(block=block):
+                self.assertIn('class="reading-tools"', page)
+                self.assertIn('id="reading-font"', page)
+                self.assertIn('id="notes-search"', page)
 
 
 if __name__ == "__main__":

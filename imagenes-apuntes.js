@@ -1,7 +1,21 @@
 (() => {
   const cache = (() => { try { return JSON.parse(localStorage.getItem("pau-apuntes-img") || "{}"); } catch { return {}; } })();
   const requests = new Map();
+  const assetUrl = (path) => `${location.pathname.includes("/apuntes/") ? "../" : "./"}${path.replace(/^\/+/, "")}`;
   async function resolve(box) {
+    if (box.dataset.localSrc) {
+      const file = encodeURIComponent(box.dataset.file || "");
+      const remote = box.dataset.src || (file
+        ? `https://commons.wikimedia.org/wiki/Special:FilePath/${file}?width=500`
+        : null);
+      return {
+        url: assetUrl(box.dataset.localSrc),
+        fallback: remote,
+        page: box.dataset.link || (file ? `https://commons.wikimedia.org/wiki/File:${file}` : remote),
+        credit: box.dataset.credit || "",
+        license: box.dataset.license || "",
+      };
+    }
     if (box.dataset.src) return { url: box.dataset.src, page: box.dataset.link || box.dataset.src };
     if (box.dataset.file) {
       const file = encodeURIComponent(box.dataset.file);
@@ -53,6 +67,8 @@
       caption.append(label);
       if (illustration && (data.credit || data.license)) {
         caption.append(document.createTextNode(` · ${[data.credit, data.license].filter(Boolean).join(" · ")}`));
+      } else if (box.dataset.localSrc && (data.credit || data.license)) {
+        caption.append(document.createTextNode(` · ${[data.credit, data.license].filter(Boolean).join(" · ")}`));
       }
       const img = new Image();
       img.alt = illustration ? box.dataset.caption || "Imagen contextual del bloque" : "";
@@ -63,7 +79,15 @@
         box.prepend(img);
         if (!caption.isConnected) box.append(caption);
       }, { once: true });
-      img.addEventListener("error", fail, { once: true });
+      let triedFallback = false;
+      img.addEventListener("error", () => {
+        if (data.fallback && !triedFallback) {
+          triedFallback = true;
+          img.src = data.fallback;
+          return;
+        }
+        fail();
+      });
       img.src = data.url;
       if (illustration) box.append(caption);
     } catch {

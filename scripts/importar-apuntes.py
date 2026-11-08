@@ -15,6 +15,7 @@ IDS = {
     1: "1PCWQjf98RERoyJZAeyGZvtj_D-XBf7gk0eYm--c5zuU",
     2: "12x5AA4RtX49xiCZl54-n0F3wEzqcaTwsmnOLgbEYBa8",
     3: "1RXepFknYtgNzC_-RVXBJhwNQS4dSjx-Ri1aZ0h4ldIo",
+    4: "1q5P0YTBWItBwZWhsJG7l3sTrCQsAVTX4JzYtw9SFLTU",
 }
 ALLOWED = {
     "p", "div", "span", "h1", "h2", "h3", "h4", "ul", "ol", "li",
@@ -99,7 +100,7 @@ class HeadingIndex(HTMLParser):
             self.paragraph = None
 
 
-def map_heading_anchors(content, block):
+def map_heading_anchors(content, block, page_numbers=True):
     index = HeadingIndex()
     index.feed(content)
     if not index.entries or not index.headings:
@@ -110,7 +111,9 @@ def map_heading_anchors(content, block):
         if len(targets) != 1:
             raise ValueError(f"Entrada del índice ambigua: {parts}")
         target = next(iter(targets))
-        label = re.sub(r"\s+\d+\s*$", "", "".join(text for _, text in parts))
+        label = "".join(text for _, text in parts)
+        if page_numbers:
+            label = re.sub(r"\s+\d+\s*$", "", label)
         if target not in index.headings or normalize(label) != normalize(index.headings[target]):
             raise ValueError(f"Entrada del índice sin encabezado coincidente: {label!r} ({target})")
     mapping = {old: f"bloque-{block}-seccion-{old[2:]}" for old in index.headings}
@@ -124,6 +127,37 @@ def map_heading_anchors(content, block):
             raise ValueError(f"Encabezado ambiguo: {old}")
         content = content.replace(f'href="#{old}"', f'href="#{new}"')
     return content
+
+
+def rebuild_source_index(content):
+    first_heading = re.search(r"<h[2-5]\b", content)
+    if not first_heading:
+        raise ValueError("No se encontraron encabezados para reconstruir el índice")
+    prefix, body = content[:first_heading.start()], content[first_heading.start():]
+    parser = Fragment()
+    parser.feed(prefix)
+    preserved = []
+    for node in parser.root.children:
+        if not isinstance(node, Element):
+            preserved.append(html.escape(node))
+            continue
+        links = [item for item in walk(node) if item.tag == "a" and
+                 dict(item.attrs).get("href", "").startswith("#h.")]
+        if links:
+            label = "".join(element_text(link) for link in links)
+            if node.tag != "p" or " ".join(element_text(node).split()) != " ".join(label.split()):
+                raise ValueError("Entrada del índice mezclada con contenido: no se puede reconstruir")
+        else:
+            preserved.append(node.render())
+    index = HeadingIndex()
+    index.feed(body)
+    entries = "".join(
+        f'<p><a href="#{html.escape(target, quote=True)}">{html.escape(label)}</a></p>'
+        for target, label in index.headings.items() if label.strip()
+    )
+    if not entries:
+        raise ValueError("No se encontraron encabezados con texto")
+    return entries + "".join(preserved) + body
 
 
 def separate_heading_images(content):
@@ -185,7 +219,7 @@ def element_text(node):
     return "".join(element_text(child) if isinstance(child, Element) else child for child in node.children)
 
 
-def extract_native_index(content, block):
+def extract_native_index(content, block, page_numbers=True):
     first_heading = re.search(r'<h[2-5]\b', content)
     if not first_heading:
         raise ValueError("No se encontró el comienzo del texto")
@@ -222,11 +256,16 @@ def extract_native_index(content, block):
         if len(destinations) != 1:
             raise ValueError("Entrada de índice ambigua")
         target = next(iter(destinations))
-        label = re.sub(r"\s+\d+\s*$", "", "".join(element_text(link) for link in links))
+        label = "".join(element_text(link) for link in links)
+        if page_numbers:
+            label = re.sub(r"\s+\d+\s*$", "", label)
         label = " ".join(label.split())
         if target not in targets or label != targets[target][1]:
             raise ValueError(f"Entrada de índice sin encabezado coincidente: {label}")
-        visible = " ".join(re.sub(r"\s+\d+\s*$", "", element_text(node)).split())
+        visible = element_text(node)
+        if page_numbers:
+            visible = re.sub(r"\s+\d+\s*$", "", visible)
+        visible = " ".join(visible.split())
         if visible != label:
             raise ValueError("Contenido original mezclado con una entrada del índice")
         if any(entry[0] == target for entry in entries) or entries and order[target] <= order[entries[-1][0]]:
@@ -601,10 +640,58 @@ class Importer(HTMLParser):
             self.result.append(html.escape(data))
 
 
+def replace_imported_article(page, native_index, article):
+    page = re.sub(r'<nav class="reading-index".*?</nav>(?:<div class="reading-preamble">.*?</div>(?=\s*<article))?\s*', "", page, count=1, flags=re.S)
+    updated, count = re.subn(
+        r'<article class="reading-content".*?</article>',
+        lambda _: article,
+        page,
+        count=1,
+        flags=re.S,
+    )
+    if count != 1:
+        raise ValueError("No se encontró el artículo de destino")
+    updated, count = re.subn(
+        r'(<figure class="reading-illustration"[^>]*>.*?</figure>)',
+        lambda match: match[1] + "\n" + native_index,
+        updated, count=1, flags=re.S,
+    )
+    if count != 1:
+        raise ValueError("No se encontró la ilustración anterior al índice")
+    return updated
+
+
+BLOCK_FOUR_SCHEMES = (
+    ("np-map", "bloque-4-04.png", r'<section class="np-map".*?</section>'),
+    ("ob-chart", "bloque-4-05.png",
+     r'<section class="ob-chart".*?<p class="ob-source">.*?</p>\s*</section>'),
+)
+
+
+def place_block_four_schemes(page):
+    for class_name, filename, pattern in BLOCK_FOUR_SCHEMES:
+        matches = list(re.finditer(pattern, page, re.S))
+        if len(matches) != 1:
+            raise ValueError(f"Esquema ausente o duplicado: {class_name}")
+        scheme = matches[0][0]
+        page = page[:matches[0].start()] + page[matches[0].end():]
+        image = rf'<p><span><span class="doc-image"[^>]*><img src="imagenes/{re.escape(filename)}"[^>]*>.*?</p>'
+        targets = list(re.finditer(image, page, re.S))
+        if len(targets) != 1:
+            raise ValueError(f"Imagen de destino ausente o duplicada: {filename}")
+        caption = re.search(r'<span class="doc-image-caption">(.*)</span></span></span></p>$',
+                            targets[0][0], re.S)
+        replacement = scheme + (f'<p class="source-note">{caption[1]}</p>' if caption else "")
+        page = page[:targets[0].start()] + replacement + page[targets[0].end():]
+    return page
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("block", type=int, choices=sorted(IDS))
     parser.add_argument("export", type=Path, help="exportación HTML descargada del documento correspondiente")
+    parser.add_argument("--rebuild-index", action="store_true",
+                        help="reconstruir un índice desactualizado usando los encabezados reales, sin cambiar el texto")
     args = parser.parse_args()
     document = args.export.read_text(encoding="utf-8")
     importer = Importer(args.block, document)
@@ -613,8 +700,12 @@ def main():
         raise ValueError("Exportación incompleta o estructura inesperada")
     page_path = ROOT / f"apuntes/bloque-{args.block}.html"
     page = page_path.read_text(encoding="utf-8")
-    body = map_heading_anchors(transfer_image_captions(separate_heading_images("".join(importer.result))), args.block)
-    native_index, body = extract_native_index(body, args.block)
+    body = transfer_image_captions(separate_heading_images("".join(importer.result)))
+    if args.rebuild_index:
+        body = rebuild_source_index(body)
+        print("Índice reconstruido a partir de los encabezados reales del documento.")
+    body = map_heading_anchors(body, args.block, page_numbers=not args.rebuild_index)
+    native_index, body = extract_native_index(body, args.block, page_numbers=not args.rebuild_index)
     ids = re.findall(r'\bid="([^"]+)"', body)
     if len(ids) != len(set(ids)):
         raise ValueError("El documento contiene identificadores duplicados")
@@ -632,11 +723,19 @@ def main():
         raise ValueError("No se encontró el inicio de las notas")
     body = body[:marker.start()] + '<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Notas y referencias</h2>' + body[marker.start():] + "</section>"
     article = '<article class="reading-content" aria-label="Texto del documento original">' + body + "</article>"
-    # Keep the contextual illustration and both print controls outside imported content.
-    page = re.sub(r'<nav class="reading-index".*?</nav>(?:<div class="reading-preamble">.*?</div>(?=\s*<article))?\s*', "", page, count=1, flags=re.S)
-    updated, count = re.subn(r'<article class="reading-content".*?</article>', lambda _: native_index + "\n" + article, page, count=1, flags=re.S)
-    if count != 1:
-        raise ValueError("No se encontró el artículo de destino")
+    # The shared reading tools and contextual illustration remain outside the replaceable article.
+    if args.block == 4:
+        schemes = []
+        for class_name, _, pattern in BLOCK_FOUR_SCHEMES:
+            matches = re.findall(pattern, page, re.S)
+            if len(matches) != 1:
+                raise ValueError(f"Esquema ausente o duplicado: {class_name}")
+            schemes.append(matches[0])
+            page = re.sub(pattern, "", page, count=1, flags=re.S)
+        article = "".join(schemes) + article
+    updated = replace_imported_article(page, native_index, article)
+    if args.block == 4:
+        updated = place_block_four_schemes(updated)
     image_dir = ROOT / "apuntes/imagenes"
     for name, data in importer.images.items():
         destination = image_dir / name

@@ -1,12 +1,17 @@
-const CACHE = "pau-he-v102";
+const CACHE = "pau-he-v143";
 const CORE = [
-  "./", "./index.html", "./styles.css", "./app.js", "./generador.js",
+  "./", "./index.html", "./styles.css", "./practice.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
   "./assets/icon-192.png", "./assets/icon-512.png", "./assets/apple-touch-icon.png",
   "./assets/favicon-32.png",
   "./assets/social-preview.png",
   "./assets/dle-logo.jpg",
+  "./assets/apuntes/bloque-02-alhambra.jpg",
+  "./assets/apuntes/bloque-06-amadeo-i.jpg",
+  "./assets/apuntes/bloque-10-republica.jpg",
   "./apuntes.css", "./apuntes.js", "./imagenes-apuntes.js",
+  "./nueva-planta.css", "./nueva-planta.js", "./assets/apuntes/nueva-planta.svg",
+  "./organizacion-borbonica.css", "./organizacion-borbonica.js",
   ...Array.from({ length: 12 }, (_, i) => `./apuntes/bloque-${i + 1}.html`),
 ];
 

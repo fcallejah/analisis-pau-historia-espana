@@ -1,0 +1,6 @@
+.gen-sol{margin-top:12px}
+.gen-sol summary{display:inline-block;padding:7px 14px;border:1px solid var(--olive,#4b2e83);border-radius:999px;cursor:pointer;font:700 11px var(--sans,"DM Sans",Arial,sans-serif);list-style:none}
+.gen-sol summary::-webkit-details-marker{display:none}
+.gen-sol summary:hover,.gen-sol[open] summary{background:var(--olive,#4b2e83);color:#fff}
+.gen-sol summary:focus-visible{outline:3px solid #bc6e3f;outline-offset:4px}
+.gen-sol p{margin:12px 0 0;padding:12px 14px;border-left:3px solid var(--lime,#d6ee7a);background:rgba(120,90,200,.08);font:13px/1.55 var(--sans,"DM Sans",Arial,sans-serif)}

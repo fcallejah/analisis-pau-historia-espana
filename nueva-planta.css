@@ -1,0 +1,59 @@
+.np-map{max-width:780px;margin:32px auto;padding:clamp(18px,4vw,32px);border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,var(--surface),color-mix(in srgb,var(--accent) 9%,var(--surface)));font:15px/1.6 "DM Sans",Arial,sans-serif}
+.np-map h2{margin:0 0 8px;color:var(--accent);font-size:clamp(23px,4vw,30px);line-height:1.2}
+.np-intro{margin:0 0 18px}
+.np-controls{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:12px}
+.np-controls[hidden],.np-info[hidden],.np-region-buttons[hidden],.np-error[hidden]{display:none}
+.np-modes,.np-zoom{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.np-map button{min-height:40px;padding:8px 12px;border:1px solid var(--line);border-radius:9px;background:var(--surface);color:var(--ink);font:600 13px "DM Sans",Arial,sans-serif;cursor:pointer}
+.np-map button[aria-pressed=true]{border-color:var(--accent);background:var(--accent);color:var(--surface)}
+.np-map button[data-np-mode=after][aria-pressed=true]{background:#d6ee7a;color:#26320c;border-color:#6b7e2c}
+.np-map button:disabled{opacity:.5;cursor:default}
+.np-mode-description{margin:8px 0;font-weight:600;color:var(--accent)}
+.np-stage{overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#edf6f8}
+.np-stage img,.np-stage svg{display:block;width:100%;height:auto}
+.np-stage svg{touch-action:none;user-select:none}
+.np-stage .territory:hover path{stroke:#4b2e83;stroke-width:4}
+.np-stage .territory:focus{outline:none}
+.np-map[data-mode=after]{--map-aragon:#d6ee7a}
+.np-map[data-mode=after] .territory:is([data-category=aragon],[data-category=castile]) path{stroke:#d6ee7a;stroke-width:1;stroke-dasharray:none}
+.centralized-outline{display:none;pointer-events:none}
+.np-map[data-mode=after] .centralized-outline{display:block;fill:none;stroke:#544c42;stroke-width:1.3;stroke-linejoin:round}
+.np-map[data-mode=after] .historical-divisions{display:none}
+.np-map[data-mode=after] .castile-crown-label{display:none}
+.np-map[data-mode=after] .unified-label{display:block}
+.np-legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0;padding:0;list-style:none;font-size:12px}
+.np-key{display:inline-block;width:14px;height:14px;margin-right:5px;border:1px solid #544c42;border-radius:3px;vertical-align:-2px;background:#d6ee7a}
+.np-key-aragon{background:var(--map-aragon,#e3ba4c)}
+.np-key-foral{background:#9bccc2}
+.np-map[data-mode=after] .territory[data-category=aragon] text{fill:#673ab7}
+.np-map[data-mode=after] .np-key-aragon{background:#673ab7;border-color:#673ab7}
+.np-key-division{height:0;width:22px;border:0;border-top:2px dashed #768646;background:none;vertical-align:4px}
+.np-map[data-mode=after] .np-division-legend{display:none}
+.np-peace-note{display:none;padding:12px;border-left:3px solid #d71920;background:var(--surface);font-size:13px}
+.np-map[data-mode=after] .np-peace-note{display:block}
+.np-provinces-note{display:none;margin:12px 0;padding:12px;border-left:3px solid var(--accent);background:var(--surface);font-size:13px}
+.np-map[data-mode=after] .np-provinces-note{display:block}
+.np-map[data-mode=after] .peace-territory path.land,.np-map[data-mode=after] .peace-territory circle{fill:#e51b23;stroke:#980c12}
+.np-key-peace{background:#e51b23}
+.np-peace-legend{display:none}
+.np-map[data-mode=after] .np-peace-legend{display:list-item}
+.np-region-buttons{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0}
+.np-region-buttons button{font-size:12px}
+.np-info{margin-top:16px;padding:18px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--surface)}
+.np-info h3{margin:0 0 8px;font-size:20px;color:var(--accent)}
+.np-info p{margin:0 0 10px}
+.np-info p:last-child{margin-bottom:0}
+.np-subdivisions{padding-top:10px;border-top:1px solid var(--line);font-size:13px}
+.np-date{font:600 12px/1.5 "DM Sans",Arial,sans-serif;color:var(--accent)}
+.np-help,.np-source{font-size:12px;color:var(--muted);margin:12px 0}
+.np-map details{margin-top:16px}
+.np-map summary{cursor:pointer;font-weight:600;color:var(--accent)}
+.np-map details li{margin:8px 0}
+.np-error{color:var(--ink);border-left:4px solid #bc6e3f;padding-left:12px}
+@media print{
+  .np-map{max-width:none;margin:20px 0;padding:0;border:0;background:none;break-before:auto}
+  .np-controls,.np-region-buttons,.np-info,.np-help,.np-error{display:none!important}
+  .np-stage{overflow:visible}
+  .np-stage svg{max-height:110mm}
+  .np-map details>ul{display:block!important}
+}
