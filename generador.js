@@ -761,55 +761,55 @@ const FICHAS = {
 };
 
 const CLAVES_BLOQUE_4 = {
-  causas: "causas: muerte sin descendencia de Carlos II (1700), testamento a favor de Felipe de Anjou y candidatura del archiduque Carlos de Austria; temor europeo a la hegemonía franco-española; bandos: Francia y, mayoritariamente, Castilla y Navarra frente a la Gran Alianza (Austria, Inglaterra, Provincias Unidas y Portugal) y buena parte de la Corona de Aragón; conflicto dinástico, internacional y civil",
-  paz: "acuerdos: Utrecht (1713) y Rastatt (1714); reconocimiento de Felipe V y renuncia a la unión de las coronas española y francesa; pérdidas: Países Bajos españoles, Milán, Nápoles y Cerdeña para Austria, Sicilia para Saboya; Gibraltar y Menorca para Gran Bretaña; concesiones comerciales británicas: asiento de negros y navío de permiso; consecuencias: fin de la hegemonía española en Europa y conservación del imperio americano",
-  planta: "contenido: abolición de fueros e instituciones políticas de Aragón y Valencia (1707), Mallorca (1715) y Cataluña (1716); supresión del Consejo de Aragón y de las Cortes propias de los territorios afectados; extensión del modelo castellano, capitanías generales, audiencias, corregimientos y castellano administrativo; nuevos impuestos como el catastro catalán; excepciones: Navarra y territorios vascos conservaron sus regímenes forales; matiz: parte del derecho civil propio se conservó o recuperó en Aragón, Cataluña y Mallorca",
-  motivoPlanta: "causas y objetivo: apoyo de buena parte de la Corona de Aragón al archiduque Carlos durante la guerra de sucesión española; Felipe V invocó el «derecho de conquista» en 1707; reforzar el absolutismo y centralizar el gobierno según el modelo castellano",
-  administracion: "administración central: secretarías de Estado y del Despacho, protagonismo del Consejo de Castilla y Junta Suprema de Estado (1787, Carlos III); administración territorial: capitanías generales, audiencias, intendentes y corregidores; objetivo: fortalecer la autoridad real y mejorar el gobierno y la recaudación; límites: continuidad de los regímenes forales de Navarra y los territorios vascos y de los virreinatos americanos",
-  despotismo: "definición: poder absoluto del monarca combinado con reformas ilustradas económicas, educativas y culturales; objetivo: modernización y bienestar sin participación política del pueblo; lema: «Todo para el pueblo, pero sin el pueblo»; límites: mantenimiento del absolutismo y de la sociedad estamental",
-  agricultura: "objetivo: aumentar la productividad agraria; medidas: regadíos y canales de Castilla y Aragón, colonización de Sierra Morena, difusión de cultivos como maíz y patata y limitación de privilegios de la Mesta; problemas: mayorazgos y tierras amortizadas o manos muertas; proyecto de reforma agraria asociado a Jovellanos; balance: resistencia de los privilegiados y persistencia de los obstáculos estructurales; cronología: su Informe sobre la Ley Agraria se publicó en 1795, bajo Carlos IV",
-  economia: "agricultura: regadíos, nuevos cultivos, colonización de Sierra Morena y limitación de la Mesta; industria: reales fábricas y proteccionismo; Hacienda: catastro de Ensenada bajo Fernando VI, elaborado en la Corona de Castilla salvo los territorios forales; finanzas: Banco de San Carlos (1782); comercio: apertura del tráfico americano a más puertos mediante los decretos de 1765 y 1778; balance: oposición de los privilegiados y reformas limitadas",
-  luces: "denominación: Siglo de las Luces por la difusión de la Ilustración; ideas: razón, ciencia, educación, progreso y felicidad social, crítica a la sociedad estamental; España: movimiento minoritario, católico y reformista, condicionado por Iglesia e Inquisición; ejemplos: Feijoo, Jovellanos y Campomanes, reales academias, Sociedades Económicas de Amigos del País, prensa, universidades y expediciones científicas",
-  carlos: "medidas: regalismo y expulsión de los jesuitas (1767); impulso agrario, colonización de Sierra Morena, regadíos y reducción de privilegios de la Mesta; reales fábricas, Banco de San Carlos (1782) y apertura comercial con América; educación, Sociedades Económicas de Amigos del País y dignificación de los oficios (1783); colaboradores: Floridablanca, Aranda y Campomanes; límites: resistencia de nobleza y clero y motín de Esquilache (1766), sin transformar el sistema absolutista",
+  causas: "muerte sin descendencia de Carlos II (1700); testamento a favor de Felipe de Anjou y rechazo del archiduque Carlos de Austria; temor europeo a la hegemonía franco-española; Castilla y Francia frente a Gran Alianza y Corona de Aragón; guerra dinástica, internacional y civil",
+  paz: "Utrecht (1713) y Rastatt (1714); Felipe V reconocido, sin unión con Francia; pérdidas: Países Bajos, Milán, Nápoles y Cerdeña para Austria; Gibraltar y Menorca británicos; asiento de negros y navío de permiso; fin de hegemonía española, se conserva América",
+  planta: "abolición de fueros e instituciones de la Corona de Aragón (1707-1716); supresión de Cortes y Consejos propios; leyes, tribunales y fiscalidad de Castilla; capitanes generales e intendentes; castellano administrativo; Navarra y País Vasco exentos",
+  motivoPlanta: "apoyo aragonés al archiduque Carlos; derecho de conquista; absolutismo y centralización según modelo castellano",
+  administracion: "secretarías de Estado y del Despacho; Junta Suprema de Estado (1787); capitanías generales, audiencias, intendentes y corregidores; refuerzo de autoridad real y recaudación",
+  despotismo: "absolutismo con reformas ilustradas; modernización sin participación política del pueblo; «Todo para el pueblo, pero sin el pueblo»; sociedad estamental intacta",
+  agricultura: "aumentar productividad; regadíos (canales de Castilla y Aragón), colonización de Sierra Morena, nuevos cultivos (maíz, patata), límites a la Mesta; mayorazgos y manos muertas; ley agraria de Jovellanos; reformas limitadas",
+  economia: "agricultura: regadíos y colonización; reales fábricas y proteccionismo; catastro de Ensenada; Banco de San Carlos; libre comercio con América (1765, 1778); oposición de privilegiados",
+  luces: "difusión de la Ilustración; razón, ciencia, educación y progreso; crítica a sociedad estamental; minoritaria y católica, condicionada por Iglesia e Inquisición; academias, Sociedades Económicas, prensa",
+  carlos: "regalismo y expulsión de jesuitas; reformas agrarias, reales fábricas, Banco de San Carlos y libre comercio con América; educación y Sociedades Económicas; ministros ilustrados; motín de Esquilache; sin cambio de sistema",
 };
 const SOLUCIONES_BLOQUE_4 = [
-  `identificación: Felipe V, de la Casa de Borbón; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: paz de Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.planta}; importancia: centralización política y fortalecimiento del absolutismo, no uniformidad jurídica completa`,
-  `identificación: Carlos III; motín de Esquilache (Madrid, 1766), con carestía del pan, rechazo a ministros extranjeros y edicto de capas y sombreros como detonante; ${CLAVES_BLOQUE_4.despotismo}`,
-  `identificación: Felipe V; ${CLAVES_BLOQUE_4.planta}`,
-  `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.causas}; resultado: victoria borbónica, Felipe V reconocido y paz de Utrecht-Rastatt con pérdidas territoriales europeas`,
-  `identificación: dinastía de los Borbones; reales fábricas: manufacturas promovidas por la Corona, como tapices, vidrio y porcelana; ${CLAVES_BLOQUE_4.economia}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: paz de Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
-  `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.causas}; resultado: victoria borbónica, reconocimiento de Felipe V y pérdidas territoriales en Utrecht-Rastatt`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.despotismo}; ejemplo español más representativo: Carlos III, no un modelo aplicado idénticamente por todos los Borbones`,
-  `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.administracion}`,
-  `identificación: despotismo ilustrado; Carlos III (1759-1788); ${CLAVES_BLOQUE_4.carlos}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
-  `identificación: Carlos III (1759-1788); ${CLAVES_BLOQUE_4.carlos}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
-  `identificación: Felipe V; ${CLAVES_BLOQUE_4.paz}`,
-  `identificación: paz de Utrecht-Rastatt; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.luces}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.planta}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
-  `identificación: dinastía de los Borbones, con Felipe V; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.planta}`,
-  `identificación: Felipe V; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.paz}; consecuencias internas: Decretos de Nueva Planta y centralización borbónica; precisión: Felipe V accedió al trono en 1700, antes de la guerra, que consolidó su reinado`,
-  `identificación: tratados de Utrecht y Rastatt; ${CLAVES_BLOQUE_4.paz}`,
-  `identificación: dinastía de los Borbones; ${CLAVES_BLOQUE_4.luces}`,
-  `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.causas}`,
-  `identificación: Carlos III; ${CLAVES_BLOQUE_4.luces}`,
-  `identificación: dinastía de los Borbones, con Felipe V; ${CLAVES_BLOQUE_4.paz}`,
-  `identificación: guerra de sucesión española; ${CLAVES_BLOQUE_4.causas}; precisión: Felipe V accedió al trono en 1700, antes del conflicto, que consolidó su reinado`,
-  `identificación: tratados de Utrecht y Rastatt; ${CLAVES_BLOQUE_4.causas}`,
+  `Felipe V; ${CLAVES_BLOQUE_4.causas}`,
+  `Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
+  `Borbones; ${CLAVES_BLOQUE_4.planta}; centralización y refuerzo del absolutismo`,
+  `Carlos III; motín de Esquilache (1766), revuelta popular contra el ministro; ${CLAVES_BLOQUE_4.despotismo}`,
+  `Felipe V; ${CLAVES_BLOQUE_4.planta}`,
+  `guerra de sucesión; ${CLAVES_BLOQUE_4.causas}; victoria borbónica`,
+  `Borbones; reales fábricas, manufacturas de lujo; ${CLAVES_BLOQUE_4.economia}`,
+  `Borbones; ${CLAVES_BLOQUE_4.causas}`,
+  `Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
+  `guerra de sucesión; ${CLAVES_BLOQUE_4.causas}; victoria borbónica`,
+  `Borbones; ${CLAVES_BLOQUE_4.despotismo}; ejemplo: Carlos III`,
+  `Nueva Planta; ${CLAVES_BLOQUE_4.administracion}`,
+  `Carlos III; ${CLAVES_BLOQUE_4.carlos}`,
+  `Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
+  `Carlos III; ${CLAVES_BLOQUE_4.carlos}`,
+  `Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
+  `Felipe V; ${CLAVES_BLOQUE_4.paz}`,
+  `Utrecht-Rastatt; ${CLAVES_BLOQUE_4.causas}`,
+  `Borbones; ${CLAVES_BLOQUE_4.luces}`,
+  `Borbones; ${CLAVES_BLOQUE_4.planta}`,
+  `Borbones; ${CLAVES_BLOQUE_4.agricultura}`,
+  `Borbones (Felipe V); ${CLAVES_BLOQUE_4.causas}`,
+  `Nueva Planta; ${CLAVES_BLOQUE_4.planta}`,
+  `Felipe V; ${CLAVES_BLOQUE_4.causas}`,
+  `guerra de sucesión; ${CLAVES_BLOQUE_4.paz}; Nueva Planta`,
+  `Utrecht-Rastatt; ${CLAVES_BLOQUE_4.paz}`,
+  `Borbones; ${CLAVES_BLOQUE_4.luces}`,
+  `Nueva Planta; ${CLAVES_BLOQUE_4.causas}`,
+  `Carlos III; ${CLAVES_BLOQUE_4.luces}`,
+  `Borbones (Felipe V); ${CLAVES_BLOQUE_4.paz}`,
+  `guerra de sucesión; ${CLAVES_BLOQUE_4.causas}`,
+  `Utrecht-Rastatt; ${CLAVES_BLOQUE_4.causas}`,
   CLAVES_BLOQUE_4.agricultura,
   CLAVES_BLOQUE_4.luces,
-  `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.motivoPlanta}; ${CLAVES_BLOQUE_4.planta}`,
-  `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.motivoPlanta}; ${CLAVES_BLOQUE_4.planta}`,
-  `${CLAVES_BLOQUE_4.despotismo}; principal monarca español: Carlos III (1759-1788); ${CLAVES_BLOQUE_4.carlos}`,
+  `Nueva Planta; ${CLAVES_BLOQUE_4.motivoPlanta}; ${CLAVES_BLOQUE_4.planta}`,
+  `Nueva Planta; ${CLAVES_BLOQUE_4.motivoPlanta}; ${CLAVES_BLOQUE_4.planta}`,
+  `${CLAVES_BLOQUE_4.despotismo}; principal monarca: Carlos III; ${CLAVES_BLOQUE_4.carlos}`,
 ];
 if (SOLUCIONES_BLOQUE_4.length !== FICHAS["4"].length) {
   throw new Error("Las soluciones del bloque 4 no coinciden con sus preguntas.");
@@ -820,7 +820,7 @@ const EJEMPLOS_BLOQUE_4 = [
   ["¿Con qué monarca comienza a reinar en España la Casa de Borbón a comienzos del siglo XVIII? Explique las causas de la guerra de sucesión española.", SOLUCIONES_BLOQUE_4[0]],
   ["¿Con qué tratado se pone fin a la guerra de sucesión española? Explique brevemente las consecuencias de dicho tratado.", SOLUCIONES_BLOQUE_4[1]],
   ["¿Qué rey firmó los decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos.", SOLUCIONES_BLOQUE_4[4]],
-  ["¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón? Explique brevemente en qué consistieron dichos decretos y su importancia histórica.", `identificación: Decretos de Nueva Planta; ${CLAVES_BLOQUE_4.planta}; importancia: centralización y fortalecimiento del absolutismo, no desaparición de todo derecho propio`],
+  ["¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón? Explique brevemente en qué consistieron dichos decretos y su importancia histórica.", `Nueva Planta; ${CLAVES_BLOQUE_4.planta}; centralización y refuerzo del absolutismo`],
   ["¿A qué reinado corresponde el motín de Esquilache? Defina el concepto de despotismo ilustrado.", SOLUCIONES_BLOQUE_4[3]],
   ["¿Qué dinastía impulsó la creación de las reales fábricas en el siglo XVIII? Explique brevemente las reformas económicas emprendidas por los monarcas ilustrados.", SOLUCIONES_BLOQUE_4[6]],
   ["¿Qué dinastía reinaba en España durante el denominado Siglo de las Luces? Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia.", SOLUCIONES_BLOQUE_4[18]],
@@ -829,17 +829,33 @@ const EJEMPLOS_BLOQUE_4 = [
   ["¿Qué monarca español firmó el Tratado de Utrecht-Rastatt? Explique brevemente las causas de la guerra que los originaron.", SOLUCIONES_BLOQUE_4[23]],
   ["¿Tras qué conflicto armado iniciaron su reinado en España los Borbones a comienzos del siglo XVIII? Explique las consecuencias de dicho conflicto.", SOLUCIONES_BLOQUE_4[24]],
   ["¿Qué nombre reciben los decretos que abolieron los fueros de los territorios de la antigua Corona de Aragón? Explique brevemente las reformas en la Administración emprendidas bajo la dinastía borbónica a lo largo del siglo XVIII.", SOLUCIONES_BLOQUE_4[11]],
-  ["¿Quiénes eran los grupos privilegiados? Explique brevemente las características de la sociedad estamental.", "identificación: nobleza y clero; estructura: nobleza, clero y tercer estado; criterio: nacimiento y desigualdad jurídica; privilegios: ventajas fiscales y sociales, acceso a cargos y predominio de la propiedad; problemas: mayorazgos y manos muertas; tercer estado: campesinos, artesanos y burguesía, con cargas fiscales y limitada participación política; crítica ilustrada a los privilegios"],
-  ["¿Con qué país se firmaron los Pactos de Familia? Resuma en qué consistieron estos pactos y sus consecuencias.", "identificación: Francia; concepto: alianzas entre las ramas española y francesa de los Borbones (1733, 1743 y 1761); objetivos: colaboración frente a Gran Bretaña y recuperación de influencia española; consecuencias: participación en guerras europeas y coloniales y recuperación de posiciones en Italia; costes: vulnerabilidad del comercio americano y pérdida temporal de La Habana y Manila en 1762; balance: cooperación dinástica con resultados desiguales"],
+  ["¿Quiénes eran los grupos privilegiados? Explique brevemente las características de la sociedad estamental.", "nobleza y clero privilegiados; tercer estado; desigualdad jurídica por nacimiento; privilegios fiscales y sociales; mayorazgos y manos muertas; crítica ilustrada a los privilegios"],
+  ["¿Con qué país se firmaron los Pactos de Familia? Resuma en qué consistieron estos pactos y sus consecuencias.", "Francia; alianzas entre Borbones (1733, 1743, 1761); frente a Gran Bretaña; participación en guerras europeas; recuperación de influencia en Italia; resultados desiguales"],
   ["¿Qué dinastía impulsó reformas en la agricultura en el siglo XVIII? Explique brevemente las medidas más relevantes emprendidas por los monarcas ilustrados para el desarrollo de esta actividad económica.", SOLUCIONES_BLOQUE_4[15]],
   ["¿Cómo se conoce el modelo político del rey Carlos III? Explique brevemente las medidas reformistas llevadas a cabo durante su reinado.", SOLUCIONES_BLOQUE_4[12]],
-  ["¿Dónde se encontraba la Casa de Contratación? Explique en qué consistió la liberalización del comercio colonial.", "identificación: Sevilla desde 1503 y Cádiz desde 1717; situación inicial: monopolio del tráfico americano concentrado en Sevilla-Cádiz; reformas: decretos de 1765 y 1778 que habilitaron más puertos y ampliaron los intercambios dentro del imperio; objetivos y efectos: estimular exportaciones, importaciones y recaudación; matiz: libre comercio imperial, no libertad comercial internacional completa; persistencia de controles y monopolios como el tabaco"],
+  ["¿Dónde se encontraba la Casa de Contratación? Explique en qué consistió la liberalización del comercio colonial.", "Sevilla (1503) y Cádiz (1717); monopolio del tráfico americano; decretos de 1765 y 1778 habilitan más puertos; libre comercio imperial, no internacional; tabaco y plata controlados"],
   ["¿Qué es el despotismo ilustrado? ¿Quién es considerado el principal monarca ilustrado de España y por qué?", SOLUCIONES_BLOQUE_4[36]],
+];
+
+const NUEVAS_BLOQUE_4 = [
+  ["¿A qué reinado corresponde el motín de Esquilache? Explique sus causas y consecuencias.", "Carlos III; motín popular en Madrid (1766); causas: subida del pan, alquileres e impuestos, rechazo a ministros extranjeros, oposición de privilegiados; detonante: edicto de capas y sombreros; consecuencias: cese de Esquilache, expulsión de jesuitas (1767), ministros ilustrados españoles"],
+  ["¿Qué fue el regalismo? Explique por qué Carlos III expulsó a los jesuitas.", "defensa de la autoridad del rey sobre la Iglesia; Concordato de 1753; jesuitas: poder, enseñanza de élites y cuarto voto de obediencia al Papa; acusados del motín de Esquilache; expulsión en 1767"],
+  ["¿Qué fue el catastro de Ensenada? Explique su finalidad.", "registro de propiedades y rentas de Castilla bajo Fernando VI; marqués de la Ensenada; conocer la riqueza para calcular impuestos; reforma de la Hacienda; refuerzo del Estado borbónico"],
+  ["¿Qué eran las secretarías de Estado y del Despacho? Explique su papel en el gobierno borbónico.", "cinco secretarios: Estado, Guerra, Gracia y Justicia, Marina e Indias, Hacienda; pierden peso los Consejos; Junta Suprema de Estado (1787), antecedente del Consejo de Ministros; secretario de Estado como primer ministro (Ensenada, Floridablanca); refuerzo del absolutismo"],
+  ["¿Qué eran las Sociedades Económicas de Amigos del País? Explique su labor.", "instituciones ilustradas; análisis de problemas económicos locales; fomento de la educación y productividad de campesinos y artesanos; agricultura, industria y oficios; difusión de la Ilustración"],
+  ["¿Qué eran las reales fábricas? Explique la política industrial de los Borbones.", "manufacturas reales de lujo (tapices, cristal, porcelana, naipes); reducir importaciones; proteccionismo con aranceles a manufacturas extranjeras; Banco de San Carlos; resultados limitados"],
+  ["Explique las diferencias entre la organización política de los Austrias y la de los Borbones.", "Austrias: monarquía polisinodial, Consejos territoriales, reinos con fueros propios; Borbones: secretarías de Estado, Estado centralizado y uniforme; Nueva Planta; capitanías generales, intendentes; refuerzo del absolutismo"],
+  ["¿Por qué Navarra y las provincias vascas conservaron sus fueros tras la guerra de sucesión española?", "fidelidad a Felipe V; Nueva Planta solo en la Corona de Aragón; Navarra mantiene sus instituciones como virreinato; centralización no uniforme"],
+  ["Explique las características del reinado de Fernando VI.", "Concordato de 1753; paz y reducción del gasto bélico; reformas de Hacienda: catastro de Ensenada; flota naval y control de las colonias; continuidad de la centralización borbónica"],
+  ["Explique los límites del despotismo ilustrado en España.", "absolutismo sin participación política; sociedad estamental intacta; oposición de nobleza y clero; condicionamiento de Iglesia e Inquisición; fracaso del proyecto de ley agraria de Jovellanos; reformas limitadas"],
+  ["Explique las consecuencias de la guerra de sucesión española para la Corona de Aragón.", "derrota del bando austracista; Decretos de Nueva Planta; abolición de fueros e instituciones; supresión de Cortes y Consejos; leyes e instituciones de Castilla; castellano administrativo"],
+  ["¿Qué bandos se enfrentaron en la guerra de sucesión española y qué países intervinieron?", "Felipe de Anjou: Castilla, Navarra y Francia; archiduque Carlos: Corona de Aragón y Gran Alianza (Austria, Inglaterra, Holanda, Portugal); guerra dinástica, internacional y civil; victoria borbónica (Almansa, 1707)"],
 ];
 
 window.pauPracticeBank = Object.entries(FICHAS).flatMap(([block, questions]) =>
   questions.map(([question, points]) => [question, points, Number(block)]));
 window.pauPracticeBank.push(...EJEMPLOS_BLOQUE_4.map(([question, points]) => [question, points, 4]));
+window.pauPracticeBank.push(...NUEVAS_BLOQUE_4.map(([question, points]) => [question, points, 4]));
 
 window.pauPractice = (() => {
   const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -882,7 +898,16 @@ window.pauPractice = (() => {
     return r;
   };
   const all = Object.entries(FICHAS).flatMap(([b, list]) => list.map((f) => ({ b: Number(b), f })));
-  const total = (mode) => (mode === "random" ? all.length : (FICHAS[mode] || []).length);
+  const known = new Set(all.map((x) => window.pauPractice.normalize(x.f[0])));
+  [[EJEMPLOS_BLOQUE_4, "Ejemplo de los apuntes"], [NUEVAS_BLOQUE_4, "Propuesta de práctica"]].forEach(([list, label]) => {
+    list.forEach(([question, points]) => {
+      const key = window.pauPractice.normalize(question);
+      if (known.has(key)) return;
+      known.add(key);
+      all.push({ b: 4, f: [question, points, label] });
+    });
+  });
+  const total = (mode) => (mode === "random" ? all.length : all.filter((x) => x.b === Number(mode)).length);
   const seen = new Set();
   const pick = (pool, n) => {
     let fresh = pool.filter((x) => !seen.has(x.f[0]));

@@ -238,6 +238,16 @@ updateResults();
 
 const apTrack = document.querySelector("#apuntes-track");
 const apCards = [...apTrack.querySelectorAll(".apunte")];
+{
+  const ready = apCards.filter((card) => !card.classList.contains("is-soon")).length;
+  const lead = document.querySelector(".apuntes-lead");
+  if (lead) {
+    lead.textContent = ready === apCards.length
+      ? `Pautas de estudio de cada bloque. Los ${ready} bloques están listos.`
+      : `Pautas de estudio de cada bloque. ${ready} de ${apCards.length} listos; el resto llegará pronto.`;
+    lead.innerHTML = lead.innerHTML.replace(/\d+ de \d+|Los \d+ bloques/, (m) => `<b id="apuntes-count">${m}</b>`);
+  }
+}
 const apChips = [...document.querySelectorAll(".apunte-chip")];
 const apNav = [...document.querySelectorAll(".apuntes-nav")];
 const apControls = document.querySelector(".apuntes-controls");
