@@ -791,6 +791,8 @@ def main():
         raise ValueError("No se encontró el inicio de las notas")
     body = body[:marker.start()] + '<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Notas y referencias</h2>' + body[marker.start():] + "</section>"
     body = quote_latin_expression(normalize_practice_capitals(body))
+    if args.block == 4:
+        body = body.replace("Reales Fábricas", "reales fábricas")
     if args.block == 4 and "https://youtu.be/sPzE-fm-V-Y" in body:
         body = embed_society_video(body)
     article = '<article class="reading-content" aria-label="Texto del documento original">' + body + "</article>"

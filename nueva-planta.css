@@ -29,7 +29,8 @@
 .np-map[data-mode=after] .np-key-aragon{background:#673ab7;border-color:#673ab7}
 .np-key-division{height:0;width:22px;border:0;border-top:2px dashed #768646;background:none;vertical-align:4px}
 .np-map[data-mode=after] .np-division-legend{display:none}
-.np-peace-callout{position:static;box-sizing:border-box;width:auto;margin:8px;padding:8px 10px;border:1px solid #a30f16;border-radius:8px;background:#fffafa;color:#8f1018;font:clamp(11px,1.8cqi,12px)/1.4 "DM Sans",Arial,sans-serif}
+.np-peace-callout{display:none;position:static;box-sizing:border-box;width:auto;margin:8px;padding:8px 10px;border:1px solid #a30f16;border-radius:8px;background:#fffafa;color:#8f1018;font:clamp(11px,1.8cqi,12px)/1.4 "DM Sans",Arial,sans-serif}
+.np-map[data-mode=after] .np-peace-callout{display:block}
 .np-peace-callout strong{display:block;font-size:13px}
 .np-peace-callout p{margin:5px 0}
 .np-peace-callout ul{margin:4px 0;padding-left:18px}
@@ -56,7 +57,7 @@
 .np-error{color:var(--ink);border-left:4px solid #bc6e3f;padding-left:12px}
 @container(min-width:700px){
   .np-peace-callout{position:absolute;z-index:2;right:8px;bottom:8px;width:32%;margin:0}
-  .np-peace-connectors{display:inline}
+  .np-map[data-mode=after] .np-peace-connectors{display:inline}
 }
 @media print{
   .np-map{max-width:none;margin:20px 0;padding:0;border:0;background:none;break-before:auto}

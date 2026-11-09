@@ -147,6 +147,7 @@
       : "Territorios después de Nueva Planta (tras 1716)";
     svg.querySelector('[data-peace="menorca"] text').textContent = mode === "before" ? "Menorca" : "Menorca · 1713";
     svg.querySelector('[data-peace="gibraltar"] text').textContent = mode === "before" ? "Gibraltar" : "Gibraltar · 1713";
+    updatePeaceArrows();
     [...svg.querySelectorAll("[data-territory]"), ...regions.querySelectorAll("[data-territory]")].forEach((element) => {
       element.setAttribute("aria-pressed", String(element.dataset.territory === selected));
     });
