@@ -742,6 +742,18 @@ def remove_import_notice(page):
     )
 
 
+def ensure_docs_button(page, block):
+    footer = page.index('<button type="button" class="print-button" id="print-notes-bottom"')
+    if 'class="docs-button"' in page[footer:]:
+        return page
+    end = page.index("</button>", footer) + len("</button>")
+    link = (
+        f'<a class="docs-button" href="https://docs.google.com/document/d/{IDS[block]}/edit" '
+        'target="_blank" rel="noopener noreferrer">Ver en Google Docs</a>'
+    )
+    return page[:end] + link + page[end:]
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("block", type=int, choices=sorted(IDS))
@@ -792,7 +804,8 @@ def main():
             schemes.append(matches[0])
             page = re.sub(pattern, "", page, count=1, flags=re.S)
         article = "".join(schemes) + article
-    updated = remove_import_notice(replace_imported_article(page, native_index, article))
+    updated = ensure_docs_button(
+        remove_import_notice(replace_imported_article(page, native_index, article)), args.block)
     if args.block == 4:
         updated = place_block_four_schemes(updated)
     image_dir = ROOT / "apuntes/imagenes"

@@ -9,7 +9,7 @@
 .np-map button[data-np-mode=after][aria-pressed=true]{background:#d6ee7a;color:#26320c;border-color:#6b7e2c}
 .np-map button:disabled{opacity:.5;cursor:default}
 .np-mode-description{margin:8px 0;font-weight:600;color:var(--accent)}
-.np-stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#edf6f8}
+.np-stage{position:relative;container-type:inline-size;overflow:hidden;border:1px solid var(--line);border-radius:12px;background:#edf6f8}
 .np-stage img,.np-stage svg{display:block;width:100%;height:auto}
 .np-stage svg{touch-action:none;user-select:none}
 .np-stage .territory:hover path{stroke:#4b2e83;stroke-width:4}
@@ -29,14 +29,14 @@
 .np-map[data-mode=after] .np-key-aragon{background:#673ab7;border-color:#673ab7}
 .np-key-division{height:0;width:22px;border:0;border-top:2px dashed #768646;background:none;vertical-align:4px}
 .np-map[data-mode=after] .np-division-legend{display:none}
-.np-peace-callout{position:absolute;z-index:2;right:10px;bottom:10px;box-sizing:border-box;width:min(310px,42%);padding:10px 12px;border:2px solid #a30f16;border-radius:10px;background:#fffafa;color:#8f1018;box-shadow:0 4px 14px #0003;font:12px/1.4 "DM Sans",Arial,sans-serif}
+.np-peace-callout{position:static;box-sizing:border-box;width:auto;margin:8px;padding:8px 10px;border:1px solid #a30f16;border-radius:8px;background:#fffafa;color:#8f1018;font:clamp(11px,1.8cqi,12px)/1.4 "DM Sans",Arial,sans-serif}
 .np-peace-callout strong{display:block;font-size:13px}
 .np-peace-callout p{margin:5px 0}
 .np-peace-callout ul{margin:4px 0;padding-left:18px}
 .np-peace-callout li{margin:3px 0}
 .np-peace-callout small{display:block;margin-top:5px;font-size:10px}
 .np-peace-context{font-weight:600}
-.np-peace-connectors{pointer-events:none}
+.np-peace-connectors{display:none;pointer-events:none}
 .np-peace-arrow{fill:none;stroke:#c20e18;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#np-peace-arrowhead);pointer-events:none}
 .np-provinces-note{display:none;margin:12px 0;padding:12px;border-left:3px solid var(--accent);background:var(--surface);font-size:13px}
 .np-map[data-mode=after] .np-provinces-note{display:block}
@@ -54,9 +54,9 @@
 .np-map summary{cursor:pointer;font-weight:600;color:var(--accent)}
 .np-map details li{margin:8px 0}
 .np-error{color:var(--ink);border-left:4px solid #bc6e3f;padding-left:12px}
-@media(max-width:620px){
-  .np-peace-callout{position:static;width:auto;margin:8px;padding:10px 12px}
-  .np-peace-connectors{display:none}
+@container(min-width:700px){
+  .np-peace-callout{position:absolute;z-index:2;right:8px;bottom:8px;width:32%;margin:0}
+  .np-peace-connectors{display:inline}
 }
 @media print{
   .np-map{max-width:none;margin:20px 0;padding:0;border:0;background:none;break-before:auto}

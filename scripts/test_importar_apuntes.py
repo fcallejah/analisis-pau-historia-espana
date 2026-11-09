@@ -12,6 +12,18 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_docs_button_only_at_footer_and_idempotent(self):
+        source = (
+            '<div class="print-tools"><button class="print-button">Imprimir</button></div>'
+            '<article>Apuntes</article><div class="print-tools">'
+            '<button type="button" class="print-button" id="print-notes-bottom">Imprimir</button></div>'
+        )
+        result = importer.ensure_docs_button(source, 4)
+        self.assertEqual(result.count('class="docs-button"'), 1)
+        self.assertGreater(result.index('class="docs-button"'), result.index('id="print-notes-bottom"'))
+        self.assertIn(importer.IDS[4], result)
+        self.assertEqual(importer.ensure_docs_button(result, 4), result)
+
     def test_removes_import_notice_but_preserves_other_sources(self):
         notice = (
             '<p class="source-note">Texto e imágenes importados del '

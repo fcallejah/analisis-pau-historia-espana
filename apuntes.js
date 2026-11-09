@@ -27,18 +27,6 @@ paintTheme();
 document.querySelectorAll(".print-button").forEach((button) => {
   button.addEventListener("click", () => window.print());
 });
-const docsSource = document.querySelector('.source-note a[href^="https://docs.google.com/document/"]');
-if (docsSource) {
-  [...document.querySelectorAll(".print-tools")].slice(-1).forEach((tools) => {
-    const link = document.createElement("a");
-    link.className = "docs-button";
-    link.href = docsSource.href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
-    link.textContent = "Ver en Google Docs";
-    tools.querySelector(".print-button").after(link);
-  });
-}
 
 let printSolutions = [];
 window.addEventListener("beforeprint", () => {
