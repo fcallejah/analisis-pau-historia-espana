@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v164";
+const CACHE = "pau-he-v165";
 const CORE = [
   "./", "./index.html", "./styles.css", "./practice.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",

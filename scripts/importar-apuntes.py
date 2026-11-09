@@ -719,20 +719,6 @@ def normalize_practice_capitals(body):
                    for node in parser.root.children)
 
 
-FEIJOO_NOTE = (
-    "De acuerdo con las normas de acentuación de la Real Academia Española (RAE), la grafía "
-    "ortográficamente correcta del apellido es Feijoo, sin tilde, por tratarse de una palabra llana "
-    "terminada en vocal. No obstante, la variante con tilde (Feijóo) está ampliamente extendida en "
-    "medios de comunicación y es la utilizada habitualmente por figuras contemporáneas como el político "
-    "Alberto Núñez Feijóo por motivos de preferencia personal o registro civil."
-)
-
-
-def add_feijoo_note(body):
-    span = f'<span class="word-note" tabindex="0" data-note="{FEIJOO_NOTE}">Feijoo</span>'
-    return re.sub(r"\b(padre|como) Feij[oó]o\b", lambda match: f"{match[1]} {span}", body)
-
-
 def embed_society_video(body):
     pattern = (r'<p><span><span class="doc-image"[^>]*><img src="imagenes/bloque-4-08.png"[^>]*>'
                r'.*?</p>\s*<p><span><u><a href="https://youtu.be/sPzE-fm-V-Y">.*?</a></u></span></p>')
@@ -785,8 +771,6 @@ def main():
         raise ValueError("No se encontró el inicio de las notas")
     body = body[:marker.start()] + '<section class="footnotes" aria-labelledby="footnotes-title"><h2 id="footnotes-title">Notas y referencias</h2>' + body[marker.start():] + "</section>"
     body = quote_latin_expression(normalize_practice_capitals(body))
-    if args.block == 4:
-        body = add_feijoo_note(body)
     if args.block == 4 and "https://youtu.be/sPzE-fm-V-Y" in body:
         body = embed_society_video(body)
     article = '<article class="reading-content" aria-label="Texto del documento original">' + body + "</article>"

@@ -79,6 +79,37 @@
   const pointers = new Map();
   let gesture;
   let dragged = false;
+  let peaceArrows;
+  const peaceCallout = root.querySelector(".np-peace-callout");
+  const updatePeaceArrows = () => {
+    if (!svg || !peaceArrows) return;
+    const bounds = svg.getBoundingClientRect();
+    const box = svg.viewBox.baseVal;
+    const toSvg = (x, y) => {
+      return {
+        x: box.x + (x - bounds.left) * box.width / bounds.width,
+        y: box.y + (y - bounds.top) * box.height / bounds.height,
+      };
+    };
+    const panel = peaceCallout.getBoundingClientRect();
+    const gibraltar = svg.querySelector('[data-peace="gibraltar"] circle').getBBox();
+    const menorca = svg.querySelector('[data-peace="menorca"] path').getBBox();
+    const endpoints = [
+      {
+        path: peaceArrows.gibraltar,
+        start: toSvg(panel.left, panel.top + panel.height * 0.78),
+        target: { x: gibraltar.x + gibraltar.width / 2, y: gibraltar.y + gibraltar.height / 2 },
+      },
+      {
+        path: peaceArrows.menorca,
+        start: toSvg(panel.left + panel.width * 0.8, panel.top),
+        target: { x: menorca.x + menorca.width / 2, y: menorca.y + menorca.height / 2 },
+      },
+    ];
+    endpoints.forEach(({ path, start, target }) => {
+      path.setAttribute("d", `M${start.x},${start.y} L${target.x},${target.y}`);
+    });
+  };
   const updateView = () => {
     view.x = Math.max(0, Math.min(800 - 800 / zoom, view.x));
     view.y = Math.max(0, Math.min(560 - 560 / zoom, view.y));
@@ -86,6 +117,7 @@
     root.querySelector(".np-zoom-level").textContent = `${Math.round(zoom * 100)} %`;
     root.querySelector("[data-np-zoom=in]").disabled = zoom >= 4;
     root.querySelector("[data-np-zoom=out]").disabled = zoom <= 1;
+    updatePeaceArrows();
   };
   const setZoom = (value, center = { x: 0.5, y: 0.5 }) => {
     const next = Math.max(1, Math.min(4, value));
@@ -107,6 +139,9 @@
     root.querySelector(".np-castile-label").textContent = mode === "before"
       ? "Corona de Castilla"
       : "Modelo de centralización borbónica";
+    root.querySelector(".np-peace-context").textContent = mode === "before"
+      ? "Contexto posterior al mapa de hacia 1700."
+      : "Cesiones distintas de los Decretos de Nueva Planta.";
     svg.querySelector("#map-title").textContent = mode === "before"
       ? "Territorios antes de Nueva Planta (hacia 1700)"
       : "Territorios después de Nueva Planta (tras 1716)";
@@ -143,7 +178,35 @@
       svg = parsed.documentElement;
       svg.setAttribute("role", "group");
       svg.setAttribute("aria-label", "Mapa interactivo de Nueva Planta");
-      stage.replaceChildren(svg);
+      const namespace = "http://www.w3.org/2000/svg";
+      const connectorGroup = document.createElementNS(namespace, "g");
+      connectorGroup.setAttribute("class", "np-peace-connectors");
+      connectorGroup.setAttribute("aria-hidden", "true");
+      const definitions = document.createElementNS(namespace, "defs");
+      const arrowhead = document.createElementNS(namespace, "marker");
+      arrowhead.setAttribute("id", "np-peace-arrowhead");
+      arrowhead.setAttribute("viewBox", "0 0 10 10");
+      arrowhead.setAttribute("refX", "9");
+      arrowhead.setAttribute("refY", "5");
+      arrowhead.setAttribute("markerWidth", "7");
+      arrowhead.setAttribute("markerHeight", "7");
+      arrowhead.setAttribute("orient", "auto");
+      const arrowShape = document.createElementNS(namespace, "path");
+      arrowShape.setAttribute("d", "M0 0 10 5 0 10z");
+      arrowShape.setAttribute("fill", "#c20e18");
+      arrowhead.append(arrowShape);
+      definitions.append(arrowhead);
+      const gibraltarArrow = document.createElementNS(namespace, "path");
+      const menorcaArrow = document.createElementNS(namespace, "path");
+      gibraltarArrow.setAttribute("class", "np-peace-arrow");
+      menorcaArrow.setAttribute("class", "np-peace-arrow");
+      gibraltarArrow.setAttribute("marker-end", "url(#np-peace-arrowhead)");
+      menorcaArrow.setAttribute("marker-end", "url(#np-peace-arrowhead)");
+      connectorGroup.append(gibraltarArrow, menorcaArrow);
+      svg.append(definitions, connectorGroup);
+      peaceArrows = { gibraltar: gibraltarArrow, menorca: menorcaArrow };
+      stage.replaceChildren(svg, peaceCallout);
+      window.addEventListener("resize", updatePeaceArrows, { passive: true });
       svg.querySelectorAll("[data-territory]").forEach((element) => {
         const id = element.dataset.territory;
         element.setAttribute("tabindex", "0");
@@ -247,7 +310,10 @@
   window.addEventListener("beforeprint", () => {
     summaryWasOpen = historicalSummary.open;
     historicalSummary.open = true;
-    if (svg) svg.setAttribute("viewBox", "0 0 800 560");
+    if (svg) {
+      svg.setAttribute("viewBox", "0 0 800 560");
+      updatePeaceArrows();
+    }
   });
   window.addEventListener("afterprint", () => {
     historicalSummary.open = summaryWasOpen;
