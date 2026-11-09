@@ -136,13 +136,29 @@ def run():
         assert "No se pudieron guardar" in failure.locator(".annotation-status").text_content()
         assert failure.locator("mark[data-annotation]").count() == 0
         stale = browser.new_context(service_workers="block")
-        stale.add_init_script("""localStorage.setItem('pau-he.annotations.v1.4',
-            JSON.stringify({text:'otro texto',records:[]}))""")
+        stale.add_init_script("""if (!localStorage.getItem('pau-he.annotations.v1.4')) {
+            localStorage.setItem('pau-he.annotations.v1.4',
+                JSON.stringify({text:'otro texto',records:[]}));
+        }""")
         older = stale.new_page()
         older.goto(f"{BASE}/apuntes/bloque-4.html")
-        assert not older.locator(".annotation-status").is_visible()
+        assert "Los apuntes han cambiado" not in older.locator(".annotation-status").text_content()
         assert older.evaluate("""JSON.parse(localStorage.getItem('pau-he.annotations.v1.4')).text""") == "otro texto"
         assert older.locator("mark[data-annotation]").count() == 0
+        select_text(older)
+        older.get_by_role("button", name="Subrayar en amarillo", exact=True).click()
+        assert older.locator("mark.annotation-amarillo").count() > 0
+        select_text(older, 30, 60)
+        older.get_by_role("button", name="Añadir nota", exact=True).click()
+        older.locator("#annotation-note").fill("Nota tras actualizar los apuntes")
+        older.get_by_role("button", name="Guardar nota", exact=True).click()
+        assert older.locator("mark.annotation-with-note").count() > 0
+        assert older.evaluate("""() => Object.keys(localStorage)
+            .filter(key => key.startsWith('pau-he.annotations.v1.4.archive.'))
+            .some(key => JSON.parse(localStorage.getItem(key)).text === 'otro texto')""")
+        older.reload()
+        assert older.locator("mark.annotation-with-note").count() > 0
+        assert older.locator("mark.annotation-amarillo").count() > 0
         browser.close()
     print("OK: cinco colores, notas, edición, persistencia, errores, enlaces y vídeo.")
 

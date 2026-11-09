@@ -325,9 +325,9 @@
         && stored.text.length === sourceText.length
         && stored.text.toLocaleLowerCase("es") === sourceText.toLocaleLowerCase("es");
       if (stored.text !== sourceText && !caseOnlyChange) {
-        available = false;
-        status.hidden = true;
-        console.warn("Los apuntes han cambiado. Las anotaciones anteriores se conservan, pero no se aplican para evitar desplazarlas a otro texto.");
+        const archiveKey = `${key}.archive.${crypto.randomUUID()}`;
+        localStorage.setItem(archiveKey, raw);
+        console.info("Anotaciones de la versión anterior archivadas en este navegador:", archiveKey);
       } else {
         if (!Array.isArray(stored.records) || !stored.records.every((record) =>
           Number.isInteger(record.start) && Number.isInteger(record.end)
