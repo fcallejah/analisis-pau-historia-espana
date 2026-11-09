@@ -140,7 +140,8 @@ def run():
             JSON.stringify({text:'otro texto',records:[]}))""")
         older = stale.new_page()
         older.goto(f"{BASE}/apuntes/bloque-4.html")
-        assert "Los apuntes han cambiado" in older.locator(".annotation-status").text_content()
+        assert not older.locator(".annotation-status").is_visible()
+        assert older.evaluate("""JSON.parse(localStorage.getItem('pau-he.annotations.v1.4')).text""") == "otro texto"
         assert older.locator("mark[data-annotation]").count() == 0
         browser.close()
     print("OK: cinco colores, notas, edición, persistencia, errores, enlaces y vídeo.")

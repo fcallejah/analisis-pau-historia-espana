@@ -64,6 +64,7 @@
   let sourceText = "";
   let available = true;
   const message = (text, alert = false) => {
+    status.hidden = false;
     status.textContent = text;
     status.setAttribute("role", alert ? "alert" : "status");
   };
@@ -323,26 +324,31 @@
       const caseOnlyChange = typeof stored.text === "string"
         && stored.text.length === sourceText.length
         && stored.text.toLocaleLowerCase("es") === sourceText.toLocaleLowerCase("es");
-      if (stored.text !== sourceText && !caseOnlyChange) throw new Error("Los apuntes han cambiado. Las anotaciones anteriores se conservan, pero no se aplican para evitar desplazarlas a otro texto");
-      if (!Array.isArray(stored.records) || !stored.records.every((record) =>
-        Number.isInteger(record.start) && Number.isInteger(record.end)
-        && record.start >= 0 && record.end > record.start && record.end <= sourceText.length
-        && record.quote === stored.text.slice(record.start, record.end)
-        && colors.includes(record.color) && typeof record.note === "string"
-        && typeof record.id === "string" && /^[\w-]+$/.test(record.id)
-      )) throw new Error("Los datos de las anotaciones no tienen un formato válido");
-      records = stored.records;
-      if (stored.text !== sourceText) {
-        const updated = records.map((record) => ({
-          ...record, quote: sourceText.slice(record.start, record.end),
-        }));
-        if (!persist(updated)) {
-          available = false;
-          return;
+      if (stored.text !== sourceText && !caseOnlyChange) {
+        available = false;
+        status.hidden = true;
+        console.warn("Los apuntes han cambiado. Las anotaciones anteriores se conservan, pero no se aplican para evitar desplazarlas a otro texto.");
+      } else {
+        if (!Array.isArray(stored.records) || !stored.records.every((record) =>
+          Number.isInteger(record.start) && Number.isInteger(record.end)
+          && record.start >= 0 && record.end > record.start && record.end <= sourceText.length
+          && record.quote === stored.text.slice(record.start, record.end)
+          && colors.includes(record.color) && typeof record.note === "string"
+          && typeof record.id === "string" && /^[\w-]+$/.test(record.id)
+        )) throw new Error("Los datos de las anotaciones no tienen un formato válido");
+        records = stored.records;
+        if (stored.text !== sourceText) {
+          const updated = records.map((record) => ({
+            ...record, quote: sourceText.slice(record.start, record.end),
+          }));
+          if (!persist(updated)) {
+            available = false;
+            return;
+          }
+          message("Tus subrayados y notas se han conservado tras corregir las mayúsculas de los apuntes.");
         }
-        message("Tus subrayados y notas se han conservado tras corregir las mayúsculas de los apuntes.");
+        render();
       }
-      render();
     }
   } catch (failure) {
     available = false;
