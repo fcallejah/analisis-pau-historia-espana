@@ -12,6 +12,16 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_removes_import_notice_but_preserves_other_sources(self):
+        notice = (
+            '<p class="source-note">Texto e imágenes importados del '
+            '<a href="https://docs.google.com/document/d/example/edit">documento original en Google Docs</a>. '
+            'Las imágenes se reproducen tal como aparecen allí; consulta la fuente para su contexto y autoría.</p>'
+        )
+        other = '<p class="source-note">Créditos de la imagen.</p>'
+        self.assertEqual(importer.remove_import_notice(notice + other), other)
+        self.assertEqual(importer.remove_import_notice(other), other)
+
     def test_practice_capitals_only_changes_final_section(self):
         source = ('<p>Despotismo Ilustrado y Reales Fábricas</p>'
                   '<h3>Ejemplos de preguntas cortas del bloque 4</h3>'

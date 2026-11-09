@@ -734,6 +734,14 @@ def embed_society_video(body):
     return updated
 
 
+def remove_import_notice(page):
+    return re.sub(
+        r'<p class="source-note">Texto e imágenes importados del .*?'
+        r'Las imágenes se reproducen tal como aparecen allí; consulta la fuente para su contexto y autoría\.</p>',
+        "", page, flags=re.S,
+    )
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("block", type=int, choices=sorted(IDS))
@@ -784,7 +792,7 @@ def main():
             schemes.append(matches[0])
             page = re.sub(pattern, "", page, count=1, flags=re.S)
         article = "".join(schemes) + article
-    updated = replace_imported_article(page, native_index, article)
+    updated = remove_import_notice(replace_imported_article(page, native_index, article))
     if args.block == 4:
         updated = place_block_four_schemes(updated)
     image_dir = ROOT / "apuntes/imagenes"
