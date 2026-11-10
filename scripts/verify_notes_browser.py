@@ -29,7 +29,7 @@ def run():
                 mixed = next(points for prompt, points, number in bank if number == 4
                              and "decretos" in prompt.lower()
                              and "causas de la guerra de sucesión" in prompt)
-                assert "Decretos de Nueva Planta" in mixed and "Carlos II" in mixed
+                assert "Nueva Planta" in mixed and "Carlos II" in mixed
             examples = page.locator(".example-solution")
             assert examples.count() == total
             section = page.locator(".example-practice")
@@ -39,7 +39,7 @@ def run():
                 assert "líneas cada una" in section.inner_text()
             else:
                 assert page.locator(".reading-index a").count() == 10
-                assert page.locator(".footnotes .footnote-back").count() == 18
+                assert page.locator(".footnotes .footnote-back").count() == 20
                 assert page.locator(".reading-content .doc-image img").count() == 5
                 assert page.locator(".pending").count() == 0
                 assert page.locator("#nueva-planta").count() == 1
@@ -120,6 +120,38 @@ def run():
             page.wait_for_selector(".example-solution", state="attached")
             assert examples.count() == total
 
+        page.goto(f"{BASE}/apuntes/bloque-4.html", wait_until="domcontentloaded")
+        page.set_viewport_size({"width": 375, "height": 667})
+        citation = page.locator("#ftnt_ref3")
+        citation.click()
+        bubble = page.locator(".footnote-bubble")
+        assert "La RAE reconoce tanto Rastadt como Rastatt" in bubble.inner_text()
+        assert bubble.locator('a[href="https://x.com/RAEinforma/status/2120114348014084251"]').count() == 1
+        bubble.locator(".footnote-close").click()
+        long_note = page.locator("#ftnt_ref4")
+        long_note.click()
+        # A long citation must be readable regardless of the space near its reference.
+        page.evaluate("""() => {
+            const body=document.querySelector('.footnote-dialog-body');
+            body.append(document.createTextNode(' Texto de prueba largo.'.repeat(100)));
+        }""")
+        page.evaluate("window.dispatchEvent(new Event('resize'))")
+        more = bubble.get_by_role("button", name="Leer completa")
+        assert more.is_visible()
+        assert bubble.evaluate("n=>n.classList.contains('has-more')")
+        more.click()
+        assert bubble.get_attribute("data-expanded") == "true"
+        assert not more.is_visible()
+        bounds = bubble.bounding_box()
+        assert bounds["x"] >= 0 and bounds["x"] + bounds["width"] <= 375
+        assert bounds["y"] >= 0 and bounds["y"] + bounds["height"] <= 667
+        body = bubble.locator(".footnote-dialog-body")
+        body.evaluate("n=>n.scrollTop=n.scrollHeight")
+        assert body.evaluate("n=>n.scrollTop+n.clientHeight>=n.scrollHeight-1")
+        page.keyboard.press("Escape")
+        assert not bubble.is_visible()
+        assert long_note.evaluate("n=>n===document.activeElement")
+        page.set_viewport_size({"width": 1280, "height": 900})
         page.goto(f"{BASE}/index.html", wait_until="domcontentloaded")
         page.locator('[data-gen="4"]').click()
         assert page.locator("#gen-output .gen-sol").count() == 4

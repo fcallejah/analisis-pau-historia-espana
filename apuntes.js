@@ -157,14 +157,33 @@ function setupFootnotes() {
   title.id = "footnote-dialog-title";
   const body = document.createElement("div");
   body.className = "footnote-dialog-body";
+  body.id = "footnote-dialog-body";
+  const more = document.createElement("button");
+  more.type = "button";
+  more.className = "footnote-more";
+  more.textContent = "Leer completa →";
+  more.setAttribute("aria-controls", body.id);
+  more.setAttribute("aria-expanded", "false");
+  more.hidden = true;
   const close = document.createElement("button");
   close.type = "button";
   close.className = "footnote-close";
   close.setAttribute("aria-label", "Cerrar nota");
   close.textContent = "×";
-  dialog.append(title, body, close);
+  dialog.append(title, body, more, close);
   document.body.append(dialog);
   let trigger = null;
+  const updateOverflow = () => {
+    const clipped = body.scrollHeight > body.clientHeight + 1;
+    more.hidden = dialog.dataset.expanded === "true" || !clipped;
+    dialog.classList.toggle("has-more", clipped && body.scrollTop + body.clientHeight < body.scrollHeight - 1);
+  };
+  const resetPreview = () => {
+    delete dialog.dataset.expanded;
+    more.setAttribute("aria-expanded", "false");
+    more.hidden = true;
+    body.scrollTop = 0;
+  };
   const hide = () => {
     if (dialog.hidden) return;
     dialog.hidden = true;
@@ -177,6 +196,14 @@ function setupFootnotes() {
     const rect = trigger.getBoundingClientRect();
     const gap = 10;
     const margin = 12;
+    if (dialog.dataset.expanded === "true") {
+      dialog.style.width = `${Math.min(640, window.innerWidth - margin * 2)}px`;
+      dialog.style.maxHeight = `${window.innerHeight - margin * 2}px`;
+      dialog.style.left = `${(window.innerWidth - dialog.getBoundingClientRect().width) / 2}px`;
+      dialog.style.top = `${Math.max(margin, (window.innerHeight - dialog.getBoundingClientRect().height) / 2)}px`;
+      updateOverflow();
+      return;
+    }
     const width = Math.min(420, window.innerWidth - margin * 2);
     const left = Math.max(margin, Math.min(rect.left - 16, window.innerWidth - width - margin));
     dialog.style.width = `${width}px`;
@@ -191,7 +218,17 @@ function setupFootnotes() {
     const height = dialog.getBoundingClientRect().height;
     dialog.style.top = `${Math.max(margin, dialog.dataset.side === "below" ? rect.bottom + gap : rect.top - gap - height)}px`;
     dialog.style.setProperty("--arrow-left", `${Math.max(18, Math.min(width - 18, rect.left + rect.width / 2 - left))}px`);
+    updateOverflow();
   };
+  more.addEventListener("click", () => {
+    dialog.dataset.expanded = "true";
+    more.setAttribute("aria-expanded", "true");
+    more.hidden = true;
+    position();
+    body.tabIndex = 0;
+    body.focus({ preventScroll: true });
+  });
+  body.addEventListener("scroll", updateOverflow, { passive: true });
   close.addEventListener("click", hide);
   content.querySelectorAll("a.footnote-ref,button[data-note-text]").forEach((link) => {
     link.setAttribute("aria-controls", dialog.id);
@@ -207,6 +244,7 @@ function setupFootnotes() {
     if (link === trigger && !dialog.hidden) { hide(); return; }
     trigger?.setAttribute("aria-expanded", "false");
     trigger = link;
+    resetPreview();
     trigger.setAttribute("aria-expanded", "true");
     if (link.dataset.noteText) {
       title.textContent = link.dataset.noteTitle;
