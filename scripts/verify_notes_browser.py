@@ -112,7 +112,7 @@ def run():
                 }
                 const copy = document.querySelector('.reading-content').cloneNode(true);
                 copy.querySelectorAll('.np-map,.ob-chart').forEach(n => n.remove());
-                copy.querySelectorAll('.gen-sol,.practice-status,.related-practice').forEach(n => n.remove());
+                copy.querySelectorAll('.gen-sol,.practice-status,.practice-marks,.related-practice').forEach(n => n.remove());
                 return copy.textContent === source.querySelector('.reading-content').textContent;
             }""")
             assert page.locator("#generador").count() == 0

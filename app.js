@@ -117,6 +117,11 @@ document.querySelectorAll(".question-list li").forEach((question) => {
   meta.replaceChildren(...references.map(examPill));
   // Keep the source text available for counting even after decorating it.
   question.dataset.exams = JSON.stringify(references);
+  const promptNode = question.querySelector("p").cloneNode(true);
+  promptNode.querySelectorAll("br").forEach((br) => br.replaceWith(document.createTextNode(" ")));
+  const prompt = promptNode.textContent;
+  const block = [...document.querySelectorAll(".block")].indexOf(question.closest(".block")) + 1;
+  window.pauSavedQuestions.attach(question, { prompt, block, answer: null, source: references.join("; ") });
   appendErratum(question, question.querySelector("p").textContent);
   appendSpellingNote(question, question.querySelector("p").textContent);
 });

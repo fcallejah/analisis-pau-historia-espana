@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
-@import url("practice.css?v=1");
+@import url("practice.css?v=3");
 :root{--paper:#f5f3ed;--ink:#20231d;--muted:#6f7169;--line:#deddd4;--accent:#4b2e83;--heading:#48632b;--highlight:#d6ee7a;--surface:#fffefa}
 :root[data-theme=dark]{--paper:#1c1921;--ink:#ece8f0;--muted:#bdb2c5;--line:#51465c;--accent:#c6a9ff;--heading:#d6ee7a;--highlight:#d6ee7a;--surface:#26212c;color-scheme:dark}
 *{box-sizing:border-box}

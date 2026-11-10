@@ -938,6 +938,10 @@ window.pauPractice = (() => {
       appendErratum(art, it.f[0]);
       appendSpellingNote(art, it.f[0]);
       out.append(art);
+      window.pauSavedQuestions.attach(art, {
+        prompt: it.f[0], block: it.b, answer: it.f[1] || null,
+        source: exams ? exams.join("; ") : (it.f[2] || ""),
+      });
     });
     status.textContent = `${label}: ${items.length} cuestiones generadas.`;
     const rb = root.querySelector("#gen-reset");

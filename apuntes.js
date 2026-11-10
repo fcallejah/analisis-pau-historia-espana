@@ -430,6 +430,13 @@ function setupExampleSolutions() {
             }
           }
           prompt.after(details);
+          const marks = document.createElement("div");
+          marks.className = "practice-marks";
+          details.after(marks);
+          window.pauSavedQuestions.attach(marks, {
+            prompt: question, block, answer: answer || (sourceHint ? details.querySelector("p").textContent.replace(/^Debe incluir(?:\s*\/\s*Pistas)?\s*:\s*/i, "") : null),
+            source: "Ejemplo de los apuntes",
+          });
         });
       }
       heading.dataset.solutionsReady = "true";
@@ -509,6 +516,10 @@ function setupRelatedPractice() {
             details.dataset.solutionState = answer ? "mapped" : "pending";
             item.append(details);
             panel.append(item);
+            window.pauSavedQuestions.attach(item, {
+              prompt: `${question.pregunta} ${question.subpregunta || ""}`.trim(),
+              block, answer: answer || null, source: question.convocatoria,
+            });
           });
         } else {
           const links = document.createElement("p");

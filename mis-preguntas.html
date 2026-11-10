@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mis preguntas cortas · PAU Historia</title>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="apuntes.css?v=26">
+  <link rel="stylesheet" href="practice.css?v=3">
+  <script src="mis-preguntas.js?v=1" defer></script>
+  <script src="generador.js?v=26" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <header class="reading-header"><a href="index.html">← PAU Historia de España</a></header>
+  <main class="reading-main" id="main">
+    <h1>Mis preguntas cortas</h1>
+    <p>Guarda tus favoritas y las que necesitas repasar.</p>
+    <noscript>Activa JavaScript para consultar y guardar tus preguntas.</noscript>
+    <div class="saved-tabs" role="group" aria-label="Listas de preguntas">
+      <button type="button" data-saved-list="all" aria-pressed="true">Todas (<span>0</span>)</button>
+      <button type="button" data-saved-list="favorite" aria-pressed="false">Favoritas (<span>0</span>)</button>
+      <button type="button" data-saved-list="review" aria-pressed="false">Para repasar (<span>0</span>)</button>
+    </div>
+    <div class="saved-filter"><label for="saved-block">Filtrar por bloque</label>
+      <span class="saved-select"><select id="saved-block"><option value="">Todos los bloques</option><option value="1">Bloque 1, prehistoria–visigodos, hasta 711</option><option value="2">Bloque 2, Edad Media, 711–1474</option><option value="3">Bloque 3, Monarquía Hispánica, 1474–1700</option><option value="4">Bloque 4, reformismo borbónico, 1700–1788</option></select><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    </div>
+    <div id="saved-questions"></div>
+    <p><a href="index.html#bloques-cuestiones">Buscar preguntas de años anteriores</a> · <a href="index.html#generador">Generar preguntas</a></p>
+  </main>
+</body>
+</html>

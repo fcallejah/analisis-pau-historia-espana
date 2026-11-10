@@ -5,7 +5,7 @@
   const block = document.querySelector(".reading-number").textContent.trim();
   const key = `pau-he.annotations.v1.${block}`;
   const colors = ["amarillo", "verde", "azul", "rosa", "violeta"];
-  const excluded = ".np-map,.ob-chart,.gen-sol,.practice-status,.related-practice,.footnotes,.heading-alias,.reading-video";
+  const excluded = ".np-map,.ob-chart,.gen-sol,.practice-status,.practice-marks,.related-practice,.footnotes,.heading-alias,.reading-video";
   const bar = document.createElement("div");
   bar.className = "annotation-toolbar";
   bar.setAttribute("role", "group");
