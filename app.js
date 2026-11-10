@@ -287,11 +287,11 @@ function apNormalize() {
   if (apDrag) apDrag.left -= shift;
   apTrack.scrollTo({ left: apTrack.scrollLeft - shift, behavior: "instant" });
   apWrapping = false;
-  requestAnimationFrame(() => {
+  requestAnimationFrame(() => requestAnimationFrame(() => {
     apNormalizing = false;
     apTrack.classList.remove("is-looping");
     apSync();
-  });
+  }));
 }
 let apActive = -1;
 const apDots = apCards.map((card, i) => {
@@ -309,13 +309,14 @@ const apGo = (i) => {
   apTrack.scrollTo({ left: apLeft(apCards[i]), behavior: apReduce.matches ? "instant" : "smooth" });
 };
 const apCurrent = () => {
-  const i = apCards.findIndex((c) => apLeft(c) + c.offsetWidth / 2 > apTrack.scrollLeft + 1);
+  const position = apTrack.scrollLeft % apLeft(apCopies[0]);
+  const i = apCards.findIndex((c) => apLeft(c) + c.offsetWidth / 2 > position + 1);
   return i < 0 ? apCards.length - 1 : i;
 };
 function apSync() {
   if (apNormalizing) return;
   if (apTrack.scrollLeft >= apLeft(apCopies[0]) - 1) {
-    apNormalize();
+    if (apDrag?.moved) apNormalize();
     return;
   }
   const i = Math.max(0, apCurrent());
@@ -345,7 +346,6 @@ apDots.forEach((dot) => dot.firstElementChild.addEventListener("animationend", (
   if (apWrapping || apDrag) return;
   if (apActive === apCards.length - 1) {
     apWrapping = true;
-    apTrack.classList.add("is-looping");
     apTrack.scrollTo({ left: apLeft(apCopies[0]), behavior: "smooth" });
   } else apGo(apActive + 1);
 }));
@@ -356,7 +356,18 @@ const apMotion = () => {
 apReduce.addEventListener("change", apMotion);
 apMotion();
 apNav.forEach((b) => b.addEventListener("click", () => apGo(Math.min(apCards.length - 1, Math.max(0, apCurrent() + Number(b.dataset.dir))))));
-apTrack.addEventListener("scroll", () => requestAnimationFrame(apSync), { passive: true });
+let apScrollEndTimer;
+const apSettle = () => {
+  clearTimeout(apScrollEndTimer);
+  if (!apDrag?.moved) apNormalize();
+};
+apTrack.addEventListener("scrollend", apSettle);
+apTrack.addEventListener("scroll", () => {
+  requestAnimationFrame(apSync);
+  // Fallback for browsers without scrollend.
+  clearTimeout(apScrollEndTimer);
+  apScrollEndTimer = setTimeout(apSettle, 150);
+}, { passive: true });
 let apDrag = null;
 let apSuppressClick = false;
 apTrack.addEventListener("pointerdown", (event) => {

@@ -391,6 +391,18 @@ function practiceAvailable(content) {
   return false;
 }
 
+function attachQuestionMarks(parent, question) {
+  if (typeof window.pauSavedQuestions?.attach === "function") {
+    window.pauSavedQuestions.attach(parent, question);
+    return;
+  }
+  const content = document.querySelector(".reading-content");
+  if (!content.querySelector(".saved-questions-error")) {
+    const warning = practiceStatus(content, "No se pudieron cargar las marcas personales. Las preguntas y sus soluciones siguen disponibles. Recarga para recuperar Favoritas y Para repasar.", true);
+    warning.classList.add("saved-questions-error");
+  }
+}
+
 function setupExampleSolutions() {
   const content = document.querySelector(".reading-content");
   const block = Number(document.querySelector(".reading-number")?.textContent.trim());
@@ -433,7 +445,7 @@ function setupExampleSolutions() {
           const marks = document.createElement("div");
           marks.className = "practice-marks";
           details.after(marks);
-          window.pauSavedQuestions.attach(marks, {
+          attachQuestionMarks(marks, {
             prompt: question, block, answer: answer || (sourceHint ? details.querySelector("p").textContent.replace(/^Debe incluir(?:\s*\/\s*Pistas)?\s*:\s*/i, "") : null),
             source: "Ejemplo de los apuntes",
           });
@@ -516,7 +528,7 @@ function setupRelatedPractice() {
             details.dataset.solutionState = answer ? "mapped" : "pending";
             item.append(details);
             panel.append(item);
-            window.pauSavedQuestions.attach(item, {
+            attachQuestionMarks(item, {
               prompt: `${question.pregunta} ${question.subpregunta || ""}`.trim(),
               block, answer: answer || null, source: question.convocatoria,
             });

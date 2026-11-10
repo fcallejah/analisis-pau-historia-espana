@@ -67,8 +67,6 @@
       caption.append(label);
       if (illustration && (data.credit || data.license)) {
         caption.append(document.createTextNode(` · ${[data.credit, data.license].filter(Boolean).join(" · ")}`));
-      } else if (box.dataset.localSrc && (data.credit || data.license)) {
-        caption.append(document.createTextNode(` · ${[data.credit, data.license].filter(Boolean).join(" · ")}`));
       }
       const img = new Image();
       img.alt = illustration ? box.dataset.caption || "Imagen contextual del bloque" : "";

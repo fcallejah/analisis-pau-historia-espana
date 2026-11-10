@@ -108,6 +108,16 @@ def run():
         broken.goto(f"{BASE}/mis-preguntas.html")
         assert "No se pudieron leer" in broken.locator(".saved-status").text_content()
         assert broken.evaluate("localStorage.getItem('pau-he.questions.v1')") == "{roto"
+        missing = browser.new_context(service_workers="block")
+        missing.route("**/mis-preguntas.js*", lambda route: route.abort())
+        fallback = missing.new_page()
+        fallback.goto(f"{BASE}/apuntes/bloque-4.html")
+        fallback.wait_for_function("document.querySelector('.reading-content').dataset.relatedPractice === 'ready'")
+        assert fallback.locator(".example-solution").count() == 18
+        assert fallback.locator(".related-question").count() == 21
+        assert fallback.locator(".saved-questions-error").count() == 1
+        fallback.locator(".related-question .gen-sol summary").first.click()
+        assert fallback.locator(".related-question .gen-sol p").first.is_visible()
         offline = browser.new_context()
         cached = offline.new_page()
         cached.goto(BASE)

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap");
-@import url("practice.css?v=3");
+@import url("practice.css?v=4");
 :root{--paper:#f5f3ed;--ink:#20231d;--muted:#6f7169;--line:#deddd4;--olive:#4b2e83;--lime:#d6ee7a;--rust:#7a4fc4;--blue:#4b2e83;--sans:"DM Sans",Arial,sans-serif;--serif:"Playfair Display",Georgia,serif;--mono:"DM Mono","Courier New",monospace}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -86,8 +86,7 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .apuntes-track{cursor:grab;-webkit-user-select:none;user-select:none}
 .apuntes-track.is-dragging{cursor:grabbing;scroll-snap-type:none;scroll-behavior:auto;user-select:none}
 .apuntes-track.is-looping{scroll-snap-type:none;scroll-behavior:auto}
-.apuntes-loop-gap{flex:0 0 min(250px,72%)}
-.apunte-loop{visibility:hidden}
+.apuntes-loop-gap{flex:0 0 100%;pointer-events:none}
 .hero-apuntes:has(.is-dragging) .note-dot span{animation-play-state:paused}
 .apunte-chip{--acc:var(--lime);width:30px;height:30px;border:2px solid var(--acc);border-radius:50%;background:var(--acc);color:#20231d;cursor:pointer;font:700 12px var(--sans)}
 .apunte-chip[data-g=II],:is(.apunte,.apunte-loop)[data-g=II]{--acc:#d9ad39}
@@ -104,7 +103,7 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .apunte-group{font:700 9px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .apunte-n{font:700 46px/1 var(--serif);color:var(--acc);-webkit-text-stroke:1px #20231d33}
 :is(.apunte,.apunte-loop) strong{display:block;font-size:14px;line-height:1.25}
-.apunte small{display:block;color:var(--muted);font-size:12px}
+:is(.apunte,.apunte-loop) small{display:block;color:var(--muted);font-size:12px}
 .apunte-img{position:relative;flex:1;min-height:110px;margin:6px 0 10px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 45%,transparent),color-mix(in srgb,var(--acc) 12%,transparent))}
 .apunte-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .apunte-cap{position:absolute;left:0;right:0;bottom:0;padding:14px 8px 5px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:11px;line-height:1.25;text-decoration:none}
