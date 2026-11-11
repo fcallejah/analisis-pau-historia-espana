@@ -12,6 +12,16 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_succession_war_lowercase_everywhere(self):
+        source = ('<h3>La Guerra de Sucesión</h3>'
+                  '<p>guerra de Sucesión española; Guerra de Sucesión Española</p>'
+                  '<section class="footnotes"><p>Guerra de Sucesión</p></section>')
+        expected = ('<h3>La guerra de sucesión</h3>'
+                    '<p>guerra de sucesión española; guerra de sucesión española</p>'
+                    '<section class="footnotes"><p>guerra de sucesión</p></section>')
+        self.assertEqual(importer.normalize_succession_war(source), expected)
+        self.assertEqual(importer.normalize_succession_war(expected), expected)
+
     def test_docs_button_only_at_footer_and_idempotent(self):
         source = (
             '<div class="print-tools"><button class="print-button">Imprimir</button></div>'

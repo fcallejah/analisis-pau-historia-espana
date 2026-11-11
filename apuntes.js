@@ -363,7 +363,7 @@ const PRACTICE_TAGS = {
     { match: /felipe iv/i, tags: ["Validos", "Felipe IV", "Siglo XVII"] },
   ],
   4: [
-    { match: /guerra de sucesión/i, tags: ["Guerra de Sucesión", "Tratados de Utrecht y Rastadt"] },
+    { match: /guerra de sucesión/i, tags: ["guerra de sucesión", "Tratados de Utrecht y Rastadt"] },
     { match: /decretos de nueva planta/i, tags: ["Decretos de Nueva Planta"] },
     { match: /reforma de la administración/i, tags: ["Reformismo borbónico"] },
     { match: /motín de esquilache/i, tags: ["Motín de Esquilache"] },

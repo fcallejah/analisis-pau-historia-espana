@@ -3,6 +3,8 @@
   const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("es").replace(/[^\p{L}\p{N}]+/gu, "");
   const identity = (question) => `${question.block}:${normalize(question.prompt)}`;
+  const spelling = (text) => text.replace(/\bguerra de sucesión(?: española)?\b/gi,
+    (match) => match.toLocaleLowerCase("es"));
   let saved = {};
   let available = true;
   const status = document.createElement("p");
@@ -145,9 +147,9 @@
       const meta = document.createElement("small");
       meta.textContent = `Bloque ${item.block}${item.source ? ` · ${item.source}` : ""}`;
       const prompt = document.createElement("p");
-      prompt.textContent = item.prompt;
+      prompt.textContent = spelling(item.prompt);
       const answer = window.pauPractice.find(item.prompt, "", item.block) || item.answer;
-      article.append(meta, prompt, window.pauPractice.render(answer));
+      article.append(meta, prompt, window.pauPractice.render(answer ? spelling(answer) : answer));
       host.append(article);
       attach(article, item);
     }

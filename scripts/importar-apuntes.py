@@ -693,6 +693,11 @@ def quote_latin_expression(body):
                   "«universitas christiana»", body, flags=re.I)
 
 
+def normalize_succession_war(text):
+    return re.sub(r"\bguerra de sucesión(?: española)?\b",
+                  lambda match: match[0].lower(), text, flags=re.I)
+
+
 def normalize_practice_capitals(body):
     parser = Fragment()
     parser.feed(body)
@@ -810,6 +815,7 @@ def main():
         remove_import_notice(replace_imported_article(page, native_index, article)), args.block)
     if args.block == 4:
         updated = place_block_four_schemes(updated)
+    updated = normalize_succession_war(updated)
     image_dir = ROOT / "apuntes/imagenes"
     for name, data in importer.images.items():
         destination = image_dir / name
