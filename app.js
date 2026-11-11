@@ -504,28 +504,6 @@ if (phaseNav) {
   sync();
 }
 
-const themeToggle = document.getElementById("theme-toggle");
-if (themeToggle) {
-  const root = document.documentElement;
-  const paintTheme = () => {
-    const dark = root.dataset.theme === "dark";
-    themeToggle.setAttribute("aria-pressed", String(dark));
-    themeToggle.setAttribute("aria-label", dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
-  };
-  themeToggle.addEventListener("click", () => {
-    const dark = root.dataset.theme !== "dark";
-    const apply = () => {
-      if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
-      paintTheme();
-    };
-    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const zoomed = window.visualViewport && window.visualViewport.scale > 1;
-    if (document.startViewTransition && !calm && !zoomed) document.startViewTransition(apply); else apply();
-    try { localStorage.setItem("pau-he.theme", dark ? "dark" : "light"); } catch (e) {}
-  });
-  paintTheme();
-}
-
 if ("serviceWorker" in navigator && window.isSecureContext) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch((error) => {

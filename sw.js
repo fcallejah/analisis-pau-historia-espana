@@ -1,6 +1,6 @@
-const CACHE = "pau-he-v185";
+const CACHE = "pau-he-v200";
 const CORE = [
-  "./", "./index.html", "./styles.css", "./practice.css", "./app.js", "./generador.js",
+  "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./manifest.json", "./data/preguntas-cortas.json", "./assets/icon.svg",
   "./assets/icon-192.png", "./assets/icon-512.png", "./assets/apple-touch-icon.png",
   "./assets/favicon-32.png",
@@ -12,6 +12,9 @@ const CORE = [
   "./apuntes.css", "./apuntes.js", "./imagenes-apuntes.js",
   "./anotaciones.js", "./videos-apuntes.js",
   "./mis-preguntas.html", "./mis-preguntas.js",
+  "./documentos.html", "./documentos.css", "./documentos.js", "./data/documentos.json",
+  "./assets/documentos/goya-tres-de-mayo.png", "./assets/documentos/portada-constitucion-1812.png",
+  "./assets/documentos/miembros-cortes-cadiz.png",
   "./nueva-planta.css", "./nueva-planta.js", "./assets/apuntes/nueva-planta.svg",
   "./organizacion-borbonica.css", "./organizacion-borbonica.js",
   ...Array.from({ length: 12 }, (_, i) => `./apuntes/bloque-${i + 1}.html`),

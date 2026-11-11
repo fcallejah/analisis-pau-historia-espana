@@ -20,6 +20,8 @@ with sync_playwright() as p:
         page.locator(".note-dot").nth(11).click()
         page.wait_for_function("document.querySelectorAll('.note-dot')[11].getAttribute('aria-current') === 'true'")
         page.wait_for_timeout(800)
+        assert page.evaluate("""() => document.querySelector('.apuntes-controls').getBoundingClientRect().bottom
+            <= document.querySelector('.hero-caption').getBoundingClientRect().top"""), width
         assert page.locator(".apunte-credit-toggle").count() == 0
         result = page.evaluate("""async () => {
             const track = document.querySelector('#apuntes-track');

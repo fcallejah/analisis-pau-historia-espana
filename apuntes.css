@@ -169,7 +169,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #bc6e3f;outline-offset:4p
   @page{margin:18mm}
   :root,:root[data-theme=dark]{color-scheme:light;--paper:#fff;--surface:#fff;--ink:#000;--muted:#222;--accent:#000;--line:#777}
   body{background:#fff;color:#000;font-size:11pt;line-height:1.45}
-  .skip,.reading-header,.reading-nav,.reading-footer,.print-tools,.reading-tools,.related-practice,.footnote-bubble,.resume-dialog,.example-solution summary,.practice-status{display:none!important}
+  .skip,.site-header,.reading-header,.reading-nav,.reading-footer,.print-tools,.reading-tools,.related-practice,.footnote-bubble,.resume-dialog,.example-solution summary,.practice-status{display:none!important}
   .example-practice{margin:0;padding:0;border-radius:0;background:none!important}
   .example-solution{border:0;background:none;box-shadow:none}
   .example-solution>p{display:block!important;font:inherit}

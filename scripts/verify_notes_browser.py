@@ -214,7 +214,7 @@ def run():
                 assert page.evaluate("window.scrollY") == before
                 assert reference.evaluate("(n) => n === document.activeElement")
                 reference.click()
-                page.locator(".reading-header").dispatch_event("click")
+                page.locator(".site-header").dispatch_event("click")
                 assert not bubble.is_visible()
                 assert page.evaluate("window.scrollY") == before
         linked_note = page.evaluate("""() => {

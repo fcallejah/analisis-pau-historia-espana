@@ -1,0 +1,293 @@
+{
+  "version": 1,
+  "scope": "Lote inicial de los bloques 5, 10 y 12. Apariciones contrastadas con la recopilación aportada, pendientes de cotejo con los PDF oficiales. Textos reorganizados por párrafos y artículos sin completar omisiones editoriales. No es un inventario completo.",
+  "source": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit",
+  "documents": [
+    {
+      "id": "constitucion-1812-articulos-2008",
+      "title": "La Constitución de 1812: soberanía y derechos",
+      "type": "texto",
+      "blocks": [5],
+      "tags": ["Constitución de 1812", "Liberalismo", "Cortes de Cádiz"],
+      "date": "19 de marzo de 1812",
+      "sourceCaption": "Constitución española de 1812. Selección de artículos 3, 4, 14, 15, 287 y 371 recogida en 2008, Examen 2, opción A, documento 1.",
+      "quality": "Transcripción del corpus aportado; se conservan los artículos seleccionados y su redacción, incluida «Todos los españoles tiene». Pendiente de cotejo con el PDF del examen.",
+      "text": [
+        "Art. 3. La soberanía reside esencialmente en la Nación y por lo mismo pertenece a ésta exclusivamente el derecho de establecer sus leyes fundamentales.",
+        "Art. 4. La Nación está obligada a conservar y proteger por leyes sabias y justas la libertad civil, la propiedad y los demás derechos legítimos de todos los individuos que la componen.",
+        "Art. 14. El gobierno de la nación española es una monarquía moderada hereditaria.",
+        "Art. 15. La potestad de hacer las leyes reside en las Cortes con el Rey.",
+        "Art. 287. Ningún español podrá ser preso, sin que preceda información sumaria del hecho, por el que merezca según la ley ser castigado con pena corporal, y asimismo un mandamiento del juez por escrito, que se le notificará en el acto mismo de la prisión.",
+        "Art. 371. Todos los españoles tiene libertad de escribir, imprimir y publicar sus ideas políticas, sin necesidad de licencia, revisión o aprobación alguna anterior a la publicación, bajo las restricciones y responsabilidad que establezcan las leyes."
+      ],
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica una fuente primaria jurídica y política: artículos de la Constitución promulgada por las Cortes de Cádiz en 1812 y dirigida a la nación, en plena guerra contra la ocupación francesa. Distingue la autoría colectiva de las Cortes de un texto personal de opinión. Su idea central es la soberanía nacional (art. 3): corresponde a la nación establecer las leyes fundamentales, frente a la legitimidad del absolutismo. Relaciona con ella la protección de derechos (art. 4), la monarquía hereditaria limitada constitucionalmente (art. 14) y la potestad legislativa de Cortes y rey (art. 15). Como ideas complementarias, las garantías frente a la detención (art. 287) y la libertad de imprenta (art. 371) concretan límites al poder. Comenta las restricciones mencionadas en el texto, en vez de presentar estas libertades como ilimitadas. El fragmento refleja una transformación del orden político, no una abolición de la monarquía."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica la evolución de la crisis monárquica de 1808 hacia una revolución política: las abdicaciones de Bayona y la ocupación napoleónica crearon un vacío de poder que impulsó juntas y una organización alternativa de la resistencia. La convocatoria de Cortes y su reunión desde 1810 trasladaron el problema desde la defensa del reino hacia la definición de quién ejercía la soberanía. Relaciona el debate entre liberales y absolutistas con la Constitución de 1812 y la ruptura jurídica del Antiguo Régimen. La afirmación de derechos y la limitación del poder real no significaron una aplicación inmediata y estable: la guerra, las resistencias internas y la situación de los territorios americanos dificultaron ese proyecto. Fernando VII abolió la Constitución en 1814 y restauró el absolutismo. Su recuperación en el Trienio Liberal (1820–1823) muestra que Cádiz siguió siendo una referencia del constitucionalismo español. Centra la explicación en este conflicto político, sin narrar todas las campañas militares."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "2008-examen-2-a-1",
+          "year": 2008,
+          "exam": "Examen 2 (numeración del corpus)",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.blgbqc7asjia"
+        }
+      ]
+    },
+    {
+      "id": "miembros-cortes-cadiz",
+      "title": "¿Quiénes componían las Cortes de Cádiz?",
+      "type": "grafico",
+      "blocks": [5],
+      "tags": ["Cortes de Cádiz", "Liberalismo", "Representación política"],
+      "date": "Cortes de Cádiz, 1810–1813",
+      "sourceCaption": "«Miembros de las Cortes de Cádiz». Gráfico incorporado en 2008, Examen 2, opción A, documento 2. La tabla accesible reproduce sus categorías y cifras.",
+      "quality": "Gráfico del corpus: 420 × 262 píxeles, sin ampliación artificial. La tabla permite leer sus datos sin depender de la resolución. La fuente no indica aquí la metodología del recuento: no debe confundirse con un censo completo revisado.",
+      "image": {
+        "src": "assets/documentos/miembros-cortes-cadiz.png",
+        "alt": "Miembros de las Cortes de Cádiz por ocupación: destacan 90 eclesiásticos, 56 abogados y 49 funcionarios. La ficha incluye una transcripción completa en tabla.",
+        "width": 420,
+        "height": 262
+      },
+      "table": {
+        "caption": "Transcripción de los datos del gráfico",
+        "headers": ["Categoría", "Miembros"],
+        "rows": [
+          ["Eclesiásticos", 90],
+          ["Abogados", 56],
+          ["Funcionarios", 49],
+          ["Militares", 30],
+          ["Sin profesión determinada", 20],
+          ["Catedráticos de universidad", 15],
+          ["Nobles", 14],
+          ["Marinos", 9],
+          ["Comerciantes", 8],
+          ["Escritores", 2],
+          ["Arquitectos", 1],
+          ["Bachiller", 1],
+          ["Médicos", 1]
+        ]
+      },
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica un gráfico estadístico sobre la composición profesional de las Cortes de Cádiz, no sobre partidos. Destacan eclesiásticos (90), abogados (56) y funcionarios (49), frente a categorías menos numerosas. Explica el peso del clero y de profesiones vinculadas a la cultura escrita y la administración en una asamblea reunida durante la guerra. El gráfico no clasifica ideologías: ser eclesiástico no implica ser absolutista, ni una profesión demuestra por sí sola la posición política."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica cómo la crisis dinástica y la ocupación francesa de 1808 impulsaron juntas y una resistencia que acabó convocando Cortes. Su reunión en Cádiz desde 1810 se produjo en condiciones excepcionales: la guerra, los territorios ocupados y las dificultades de desplazamiento condicionaron la representación e hicieron necesaria la presencia de suplentes. Por eso estas cifras no pueden leerse como un reflejo proporcional de la sociedad española. Relaciona la composición de la asamblea con su actividad política, sin deducir automáticamente la ideología de cada profesión. Las Cortes afirmaron la soberanía nacional y desarrollaron reformas contra instituciones del Antiguo Régimen; la Constitución de 1812 fue su expresión fundamental. Estas transformaciones convivieron con oposiciones y con las limitaciones impuestas por la guerra. El regreso de Fernando VII en 1814 dio paso a la restauración absolutista, pero no borró el legado de Cádiz: sus principios reaparecieron en el Trienio Liberal. Usa el gráfico para explicar quiénes participaron en ese proceso, no para inventar un consenso entre todos los diputados."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "2008-examen-2-a-2",
+          "year": 2008,
+          "exam": "Examen 2 (numeración del corpus)",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.blgbqc7asjia"
+        }
+      ]
+    },
+    {
+      "id": "goya-tres-de-mayo",
+      "title": "Los fusilamientos del 3 de mayo",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Guerra de la Independencia", "Ocupación napoleónica", "Violencia y represión"],
+      "date": "Hecho representado: 1808 · Pintura: 1814",
+      "sourceCaption": "Francisco de Goya, El 3 de mayo de 1808 en Madrid (1814). Reproducción incluida en la recopilación, 2025, Suplente B, documento 1. Obra de dominio público.",
+      "quality": "Reproducción del corpus a 1280 × 987 píxeles, conservada sin recrear detalles. No es un recorte cotejado del PDF del examen. Se distingue la fecha de la represión representada (1808) de la realización del cuadro (1814).",
+      "image": {
+        "src": "assets/documentos/goya-tres-de-mayo.png",
+        "alt": "Pintura de Goya: civiles ante un pelotón de fusilamiento nocturno; un hombre con camisa blanca levanta los brazos, iluminado por un farol, mientras los soldados apuntan de espaldas.",
+        "width": 1280,
+        "height": 987
+      },
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la represión francesa de los levantados en Madrid en mayo de 1808, representada por Goya en 1814. Distingue la fecha del hecho y la del cuadro. Describe el contraste entre los civiles individualizados y el pelotón uniforme, de espaldas. La camisa blanca y el farol concentran la atención en las víctimas; los cuerpos subrayan la violencia. Relaciona estos elementos con la denuncia de la represión, sin tratar una interpretación simbólica como un hecho probado."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica la evolución desde la alianza con Francia hacia la ocupación y la crisis de 1808. El Tratado de Fontainebleau de 1807 permitió la entrada de tropas francesas; la crisis de la monarquía y las abdicaciones de Bayona agravaron el vacío de poder. Relaciona el levantamiento madrileño y su represión con una resistencia más amplia frente a la ocupación, sin convertir el 2 de mayo en causa única de la guerra. La lucha combinó ejércitos regulares, guerrillas y ayuda exterior, mientras juntas y Cortes impulsaban una alternativa política. La Constitución de 1812 expresó la dimensión liberal de ese proceso. Como consecuencias, selecciona la destrucción material y las pérdidas humanas, el debilitamiento del Estado y la apertura de un conflicto duradero sobre la soberanía y el poder real. El regreso de Fernando VII en 1814 no consolidó el proyecto gaditano: restauró el absolutismo. Vincula el cuadro, realizado entonces, con la memoria de las víctimas de la guerra, sin sustituir el comentario por una lista de batallas."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "2025-suplente-b-documento-1-goya",
+          "year": 2025,
+          "exam": "Suplente B",
+          "route": "Bloque II",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6cr2y5ox1qsc"
+        }
+      ]
+    },
+    {
+      "id": "constitucion-1931-articulos-suplente-a",
+      "title": "La Constitución de 1931: República, autonomía y laicidad",
+      "type": "texto",
+      "blocks": [10],
+      "tags": ["Constitución de 1931", "Segunda República", "Autonomía", "Laicidad"],
+      "date": "9 de diciembre de 1931",
+      "sourceCaption": "Constitución de la República española de 1931. Selección de los artículos 1, 2, 3, 4, 11 y 26 recogida bajo el encabezado «2025 Suplente A» de la recopilación, documento 2. La identificación del encabezado está pendiente de cotejo con el PDF oficial.",
+      "quality": "Se unen las frases partidas entre renglones y se separan los artículos y párrafos del artículo 1. No se añaden pasajes ajenos a la selección; se conservan las omisiones […] del corpus. La recuperación de líneas no equivale al cotejo con el PDF del examen.",
+      "text": [
+        "Artículo 1. España es una República democrática de trabajadores de toda clase, que se organiza en régimen de Libertad y de Justicia.",
+        "Los poderes de todos sus órganos emanan del pueblo.",
+        "La República constituye un Estado integral, compatible con la autonomía de los Municipios y las Regiones.",
+        "La bandera de la República española es roja, amarilla y morada.",
+        "Artículo 2. Todos los españoles son iguales ante la ley.",
+        "Artículo 3. El Estado español no tiene religión oficial.",
+        "Artículo 4. El castellano es el idioma oficial de la República. Todo español tiene obligación de saberlo y derecho de usarlo, sin perjuicio de los derechos que las leyes del Estado reconozcan a las lenguas de las provincias o regiones.",
+        "Artículo 11. Si una o varias provincias limítrofes, con características históricas, culturales y económicas, comunes, acordaran organizarse en región autónoma para formar un núcleo político administrativo, dentro del Estado español, presentarán su Estatuto con arreglo a lo establecido en el Artículo 12 […].",
+        "Artículo 26. […]. Una ley especial regulará la total extinción, en un plazo máximo de dos años, del presupuesto del Clero. Quedan disueltas aquellas Órdenes religiosas que estatutariamente impongan, además de los tres votos canónicos, otro especial de obediencia a autoridad distinta de la legítima del Estado […]."
+      ],
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica una fuente primaria jurídica y política, elaborada por las Cortes Constituyentes de la Segunda República en 1931. La idea principal es la definición de un nuevo orden democrático: los poderes emanan del pueblo y se afirma la igualdad ante la ley. Relaciona el Estado integral con la posibilidad de autonomía, no con una federación ya constituida. Distingue la ausencia de religión oficial del artículo 3 de las medidas concretas del artículo 26. El texto reconoce el castellano como idioma oficial y contempla derechos de otras lenguas. Explica las ideas mediante los artículos seleccionados, sin atribuirles contenidos de partes omitidas."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el documento en la crisis final de la monarquía de Alfonso XIII, tras la dictadura de Primo de Rivera, y en la proclamación de la República en abril de 1931. Las elecciones constituyentes abrieron un proceso de transformación institucional que culminó en la Constitución de diciembre. Relaciona sus principios con las reformas del primer bienio: democratización, educación, relaciones entre Iglesia y Estado y organización territorial. Explica que el reconocimiento constitucional no resolvió por sí solo las tensiones sociales, económicas o religiosas ni convirtió todas las medidas en realizaciones inmediatas. El Estatuto catalán de 1932 permite concretar el desarrollo autonómico. La oposición a las reformas y las dificultades para aplicarlas contribuyeron a la conflictividad del período. Distingue la Constitución de las políticas de los gobiernos posteriores y evita presentar la guerra de 1936 como una consecuencia inevitable de sus artículos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "corpus-2025-suplente-a-5qiy-documento-2",
+          "year": 2025,
+          "exam": "Suplente A (encabezado del corpus; pendiente de cotejo)",
+          "route": "Bloque II",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5qiyxceviwuz"
+        }
+      ]
+    },
+    {
+      "id": "constitucion-1978-articulos-suplente-a",
+      "title": "La Constitución de 1978: Estado democrático y autonomía",
+      "type": "texto",
+      "blocks": [12],
+      "tags": ["Constitución de 1978", "Transición", "Democracia", "Autonomía"],
+      "date": "Constitución de 1978",
+      "sourceCaption": "Constitución española de 1978. Fórmula inicial y selección de los artículos 1, 2 y 3 recogidas bajo el encabezado «2025 Suplente A» de la recopilación, documento 2. Encabezado distinto del que contiene el texto de 1931; pendiente de cotejo con el PDF oficial.",
+      "quality": "Se recomponen las continuaciones de renglón y se separan los apartados 1.1–1.3 y 3.1–3.2. Se conserva la selección del corpus, incluida la omisión inicial […]; no se añade el apartado 3.3 ni el preámbulo, que no figuran en este fragmento.",
+      "text": [
+        "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
+        "[…] Art. 1.1. España se constituye en un Estado social y democrático de Derecho, que propugna como valores superiores de su ordenamiento jurídico, la libertad, la justicia, la igualdad y el pluralismo político.",
+        "1.2. La soberanía nacional reside en el pueblo español del que emanan los poderes del Estado.",
+        "1.3. La forma política del Estado español es la Monarquía parlamentaria.",
+        "Art. 2. La Constitución se fundamenta en la indisoluble unidad de la Nación española, patria común e indivisible de todos los españoles, y reconoce y garantiza el derecho a la autonomía de las nacionalidades y regiones que la integran y la solidaridad entre todas ellas.",
+        "Art. 3.1. El castellano es la lengua española oficial del Estado. Todos los españoles tienen el deber de conocerla y el derecho a usarla.",
+        "3.2. Las demás lenguas españolas serán también oficiales en las respectivas Comunidades Autónomas de acuerdo con sus Estatutos."
+      ],
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica una fuente primaria jurídica y política de la transición democrática: un fragmento de la Constitución de 1978, aprobada por las Cortes y ratificada en referéndum. Su eje es la soberanía popular dentro de un Estado social y democrático de Derecho. Distingue la monarquía parlamentaria de una monarquía con soberanía propia. Relaciona unidad, autonomía y solidaridad como principios simultáneos del artículo 2. En el artículo 3, diferencia la oficialidad del castellano en el Estado de la cooficialidad de otras lenguas según los estatutos. El fragmento establece principios constitucionales, no enumera un mapa autonómico ya concluido."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica el paso desde la dictadura franquista a una democracia parlamentaria tras la muerte de Franco en 1975. Relaciona la reforma política, la legalización de partidos y las elecciones de junio de 1977 con la apertura del proceso constituyente. El consenso entre fuerzas distintas permitió articular derechos, soberanía popular, monarquía parlamentaria y autonomía territorial; no supuso ausencia de conflicto ni acuerdo sobre todas las cuestiones. La ratificación del 6 de diciembre de 1978 y la entrada en vigor ese mes fijaron un marco jurídico para la nueva democracia. Como consecuencias, desarrolla la subordinación de los poderes a la Constitución, las garantías de derechos y la construcción gradual del Estado autonómico mediante estatutos. Distingue este marco de su posterior desarrollo por leyes y gobiernos. La violencia política, la crisis económica y el intento de golpe de 1981 muestran las dificultades de consolidación, no la inexistencia del nuevo sistema."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "corpus-2025-suplente-a-7bxj-documento-2",
+          "year": 2025,
+          "exam": "Suplente A (encabezado del corpus; pendiente de cotejo)",
+          "route": "Bloque II",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.7bxjd4xweowb"
+        }
+      ]
+    },
+    {
+      "id": "constitucion-1978-preambulo-suplente-b",
+      "title": "El preámbulo de la Constitución de 1978",
+      "type": "texto",
+      "blocks": [12],
+      "tags": ["Constitución de 1978", "Transición", "Democracia", "Derechos"],
+      "date": "Constitución de 1978",
+      "sourceCaption": "Constitución española de 1978. Fórmula inicial y preámbulo recogidos bajo el encabezado «2025 Suplente B» de la recopilación, documento 2. Es un fragmento distinto de la selección de artículos; no se fusionan sus apariciones.",
+      "quality": "Se unen renglones que cortaban frases como «orden económico y social justo» y se recupera un párrafo por cada propósito del preámbulo. No se añade la fórmula posterior «En consecuencia…», ausente de este fragmento. Encabezado y preguntas originales pendientes de cotejo con el PDF del examen.",
+      "text": [
+        "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
+        "PREÁMBULO",
+        "La Nación española, deseando establecer la justicia, la libertad y la seguridad y promover el bien de cuantos la integran, en uso de su soberanía, proclama su voluntad de:",
+        "Garantizar la convivencia democrática dentro de la Constitución y de las leyes conforme a un orden económico y social justo.",
+        "Consolidar un Estado de Derecho que asegure el imperio de la ley como expresión de la voluntad popular.",
+        "Proteger a todos los españoles y pueblos de España en el ejercicio de los derechos humanos, sus culturas y tradiciones, lenguas e instituciones.",
+        "Promover el progreso de la cultura y de la economía para asegurar a todos una digna calidad de vida.",
+        "Establecer una sociedad democrática avanzada, y",
+        "Colaborar en el fortalecimiento de unas relaciones pacíficas y de eficaz cooperación entre todos los pueblos de la Tierra."
+      ],
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica el preámbulo de la Constitución de 1978, una fuente primaria jurídica y política que presenta los propósitos del nuevo orden democrático. Su idea central vincula soberanía, convivencia democrática y Estado de Derecho. Agrupa los objetivos: derechos y diversidad cultural; progreso económico y social; y cooperación internacional. Diferencia estas declaraciones de finalidad de los artículos que regulan instituciones y garantías. El texto remite al pacto constitucional de la Transición, pero no describe todas sus negociaciones ni acredita por sí solo el cumplimiento inmediato de sus objetivos. Apoya el comentario en expresiones concretas, no en una lista de artículos ausentes."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el preámbulo en el proceso de sustitución de la dictadura por una democracia después de 1975. Explica cómo la reforma política y las elecciones de 1977 hicieron posible unas Cortes constituyentes y un pacto entre fuerzas con proyectos diferentes. Relaciona el lenguaje de convivencia, pluralidad y voluntad popular con ese acuerdo, sin presentar la Transición como un proceso sin oposición, violencia o dificultades económicas. La Constitución fue ratificada en diciembre de 1978 y estableció el marco de derechos e instituciones de la nueva etapa. El desarrollo de las autonomías, la alternancia política y las garantías constitucionales dieron contenido posterior a algunos de esos propósitos. La cooperación internacional puede relacionarse con la posterior integración europea, distinguiendo siempre el objetivo de 1978 de la adhesión efectiva en 1986. Selecciona las consecuencias que enlacen con el preámbulo, sin sustituir el comentario por toda la historia política reciente."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "corpus-2025-suplente-b-tyo9-documento-2",
+          "year": 2025,
+          "exam": "Suplente B (encabezado del corpus; pendiente de cotejo)",
+          "route": "Bloque II",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tyo9mvypmp5d"
+        }
+      ]
+    },
+    {
+      "id": "portada-constitucion-1812",
+      "title": "La Constitución de 1812 en una portada alegórica",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Constitución de 1812", "Liberalismo", "Cortes de Cádiz"],
+      "date": "Constitución promulgada el 19 de marzo de 1812",
+      "sourceCaption": "Portada ilustrada de la Constitución política de la Monarquía española, promulgada en Cádiz a 19 de marzo de 1812. Reproducción incluida en 2025, Titular ordinaria, documento 1. Imagen histórica de dominio público; autoría del grabado no identificada en la recopilación.",
+      "quality": "Reproducción del corpus: 452 × 678 píxeles. Resolución limitada para el detalle fino; pendiente de localizar una reproducción mayor y cotejar el PDF oficial. No se inventan los datos de autoría ni se reconstruye el grabado.",
+      "image": {
+        "src": "assets/documentos/portada-constitucion-1812.png",
+        "alt": "Portada con el título Constitución política de la Monarquía española, la fecha de promulgación en Cádiz y un medallón superior con una figura femenina y la inscripción Sic erat in fatis.",
+        "width": 452,
+        "height": 678
+      },
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica una portada ilustrada de la Constitución de 1812, no un fragmento de su articulado. Sitúa la promulgación en Cádiz durante la guerra y apóyate en el título, la fecha y el lugar impresos. Describe el medallón, la figura femenina y la inscripción «Sic erat in fatis» como recursos de exaltación simbólica del nuevo texto. No asignes a cada elemento una identidad alegórica precisa ni atribuyas el grabado a un autor sin fuente."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica cómo la crisis dinástica y la ocupación napoleónica de 1808 transformaron la resistencia militar en una disputa sobre la legitimidad del poder. Las juntas y la convocatoria de Cortes desembocaron en una asamblea reunida en Cádiz desde 1810, donde el liberalismo defendió la soberanía nacional frente al absolutismo. Vincula la portada con el proyecto de fundar un orden político constitucional: limitación del poder real, representación nacional y reconocimiento de derechos. La celebración simbólica del texto no debe confundirse con su aplicación efectiva: la guerra y la oposición de los defensores del Antiguo Régimen dificultaron su implantación. Fernando VII abolió la Constitución en 1814 y restauró el absolutismo, pero su recuperación entre 1820 y 1823 mostró la continuidad del proyecto liberal. Como consecuencia de largo recorrido, Cádiz quedó como referencia del constitucionalismo español y de otros procesos liberales. Relaciona esa evolución con el valor simbólico de la imagen, sin convertir b) en una enumeración de artículos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "2025-titular-ordinaria-documento-1-constitucion",
+          "year": 2025,
+          "exam": "Titular ordinaria",
+          "route": "Bloque II",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.vu325nx5299w"
+        }
+      ]
+    }
+  ]
+}

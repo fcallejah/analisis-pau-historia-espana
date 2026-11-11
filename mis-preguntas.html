@@ -4,15 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mis preguntas cortas · PAU Historia</title>
+  <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="apuntes.css?v=26">
   <link rel="stylesheet" href="practice.css?v=3">
+  <link rel="stylesheet" href="site-header.css?v=4">
   <script src="mis-preguntas.js?v=2" defer></script>
+  <script src="site-header.js?v=1" defer></script>
   <script src="generador.js?v=26" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Saltar al contenido</a>
-  <header class="reading-header"><a href="index.html">← PAU Historia de España</a></header>
+  <header class="site-header">
+    <a class="brand" href="index.html#apuntes"><span class="brand-icon" aria-hidden="true">H</span><span class="brand-text">PAU Andalucía <span class="muted">/</span> Historia de España</span></a>
+    <nav class="header-tools" aria-label="Preguntas personales, diccionario y RAE">
+      <a href="mis-preguntas.html" class="saved-nav" aria-current="page">Mis preguntas cortas</a>
+      <a class="header-tool" aria-label="Diccionario de la lengua española" title="Diccionario de la lengua española" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer"><img class="dle-logo" src="assets/dle-logo.jpg" alt="" width="592" height="592"><span>Diccionario</span></a>
+      <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" title="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer"><svg class="x-logo" aria-hidden="true" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span><b>@RAEinforma</b></span></a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false" title="Cambiar modo claro/oscuro">
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
+  </header>
   <main class="reading-main" id="main">
     <h1>Mis preguntas cortas</h1>
     <p>Guarda tus favoritas y las que necesitas repasar.</p>
@@ -26,7 +41,7 @@
       <span class="saved-select"><select id="saved-block"><option value="">Todos los bloques</option><option value="1">Bloque 1, prehistoria–visigodos, hasta 711</option><option value="2">Bloque 2, Edad Media, 711–1474</option><option value="3">Bloque 3, Monarquía Hispánica, 1474–1700</option><option value="4">Bloque 4, reformismo borbónico, 1700–1788</option></select><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
     </div>
     <div id="saved-questions"></div>
-    <p><a href="index.html#bloques-cuestiones">Buscar preguntas de años anteriores</a> · <a href="index.html#generador">Generar preguntas</a></p>
+    <p><a href="index.html#bloques-cuestiones">Buscar preguntas de años anteriores</a> · <a href="index.html#generador">Generar preguntas</a> · <a href="documentos.html">Banco de documentos PAU</a></p>
   </main>
 </body>
 </html>

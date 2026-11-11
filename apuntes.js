@@ -1,28 +1,6 @@
-const toggle = document.querySelector("#theme-toggle");
 const root = document.documentElement;
 const readStored = (key) => { try { return localStorage.getItem(key); } catch { return null; } };
 const writeStored = (key, value) => { try { localStorage.setItem(key, value); } catch {} };
-
-function paintTheme() {
-  if (!toggle) return;
-  const dark = root.dataset.theme === "dark";
-  toggle.setAttribute("aria-pressed", String(dark));
-  toggle.textContent = dark ? "Modo claro" : "Modo oscuro";
-}
-
-toggle?.addEventListener("click", () => {
-  const dark = root.dataset.theme !== "dark";
-  if (dark) root.dataset.theme = "dark"; else delete root.dataset.theme;
-  writeStored("pau-he.theme", dark ? "dark" : "light");
-  paintTheme();
-});
-window.addEventListener("storage", (event) => {
-  if (event.key === "pau-he.theme") {
-    if (event.newValue === "dark") root.dataset.theme = "dark"; else delete root.dataset.theme;
-    paintTheme();
-  }
-});
-paintTheme();
 
 document.querySelectorAll(".print-button").forEach((button) => {
   button.addEventListener("click", () => window.print());

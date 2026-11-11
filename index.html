@@ -22,10 +22,12 @@
     <meta name="twitter:card" content="summary_large_image">
     <title>PAU Andalucía · Historia de España</title>
     <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
-    <link rel="stylesheet" href="styles.css?v=109">
+    <link rel="stylesheet" href="styles.css?v=118">
+    <link rel="stylesheet" href="site-header.css?v=4">
     <script src="imagenes-apuntes.js?v=4" defer></script>
     <script src="mis-preguntas.js?v=2" defer></script>
-    <script src="app.js?v=45" defer></script>
+    <script src="site-header.js?v=1" defer></script>
+    <script src="app.js?v=46" defer></script>
     <script     src="generador.js?v=26" defer></script>
   </head>
   <body>
@@ -48,7 +50,7 @@
           <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
       <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo">
-        <span class="contact-symbol" aria-hidden="true">?</span>
+        <svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg>
         <span class="contact-label">Dudas</span>
       </a>
     </header>
@@ -62,6 +64,7 @@
       <div>
           <p class="eyebrow"><span class="dot"></span> APUNTES COMPLETOS · GENERADOR DE PREGUNTAS</p>
           <h1>PAU <span class="andalucia-title">Andalucía</span><br><em>Historia de España</em></h1>
+          <p class="hero-actions"><a href="documentos.html">Banco de documentos PAU →</a></p>
           <p class="study-pending hero-actions"><a href="#bloques-cuestiones">Preguntas de años anteriores<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a><a href="#generador">Generador de preguntas<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></p>
           <p class="hero-orientaciones"><a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones oficiales 2026–27 (PDF)<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></p>
         </div>
@@ -106,6 +109,22 @@
             </ul>
             <button type="button" class="apuntes-nav" data-dir="1" aria-label="Bloque siguiente">→</button>
           </div>
+          <a class="documents-cta" href="documentos.html">
+            <svg aria-hidden="true" focusable="false" viewBox="0 0 40 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="5" y="8" width="5" height="21" rx="1"/>
+              <rect x="10" y="10" width="5" height="19" rx="1"/>
+              <rect x="15" y="7" width="5" height="22" rx="1" fill="currentColor"/>
+              <rect x="20" y="8" width="5" height="21" rx="1"/>
+              <path d="M6 13h3M11 24h3M21 13h3"/>
+              <path d="M16 12h3M16 24h3" stroke="#4b2e83" stroke-width="1.5"/>
+              <g transform="rotate(-15 32 29)">
+                <rect x="32" y="7" width="5" height="22" rx="1"/>
+                <path d="M33 23h3"/>
+              </g>
+              <path d="M3 31h34"/>
+            </svg>
+            <span>Banco de documentos PAU</span>
+          </a>
           <div class="note-controls apuntes-controls" data-paused="true">
             <div class="note-dots" id="apuntes-dots" role="group" aria-label="Seleccionar un bloque de apuntes"></div>
           </div>
@@ -339,18 +358,22 @@
               <div class="card-body"><h3>Apuntes completos</h3><p>Consulta los apuntes disponibles de los tres primeros bloques; los demás llegarán pronto.</p></div>
               <span class="card-link">Ver los apuntes →</span>
             </a>
-            <a class="card olive card-anchor" href="#bloques-cuestiones" aria-label="Abrir los grupos de preguntas cortas de los bloques 1 a 4" data-format="cuestiones" data-groups="I" data-search="cuestiones cortas agrupación I bloque 1 bloque 2 bloque 3 bloque 4 bloques 1 2 3 4 dos cuatro nuevo modelo">
+            <a class="card olive card-anchor score-card" href="#bloques-cuestiones" aria-label="Abrir los grupos de preguntas cortas de los bloques 1 a 4" data-format="cuestiones" data-groups="I" data-search="cuestiones cortas agrupación I bloque 1 bloque 2 bloque 3 bloque 4 bloques 1 2 3 4 dos cuatro nuevo modelo">
               <div class="card-top"><span>02</span><span class="tag">DISPONIBLE</span></div>
               <div class="card-body"><p class="eyebrow">BLOQUES 1–4</p><h3>Preguntas cortas</h3><p>114 preguntas de años anteriores, organizadas por bloque y tema, con sus convocatorias.</p></div>
               <span class="card-link">Explorar los cuatro bloques →</span>
+              <span class="card-points" aria-hidden="true"><b>+3</b><span>puntos</span></span>
             </a>
-            <article class="card blue" data-format="documento imagenes" data-groups="II III" data-search="banco imágenes comentario texto documentos agrupaciones II III">
-              <div class="card-top"><span>03</span><span class="tag">PENDIENTE</span></div>
-              <div class="card-body"><h3>Imágenes y comentario de texto</h3><p>Banco de documentos y práctica de comentario, todavía no disponibles.</p></div>
-            </article>
-            <article class="card rust" data-format="tema" data-groups="II III" data-search="preguntas largas temas desarrollo agrupaciones II III">
+            <a class="card blue card-anchor score-card" href="documentos.html" data-format="documento imagenes" data-groups="II III" data-search="banco documentos PAU imágenes gráficos tablas comentario texto bloques temáticas palabras clave">
+              <div class="card-top"><span>03</span><span class="tag">PRIMER LOTE</span></div>
+              <div class="card-body"><p class="eyebrow">BLOQUES 5–12</p><h3>Banco de documentos PAU</h3><p>Textos, imágenes, gráficos y tablas por bloque y temática. Practica las preguntas a) y b) con claves desplegables.</p></div>
+              <span class="card-link">Explorar los documentos →</span>
+              <span class="card-points" aria-hidden="true"><b>+4</b><span>puntos</span></span>
+            </a>
+            <article class="card rust score-card" data-format="tema" data-groups="II III" data-search="preguntas largas temas desarrollo agrupaciones II III">
               <div class="card-top"><span>04</span><span class="tag">PENDIENTE</span></div>
-              <div class="card-body"><h3>Preguntas de desarrollo</h3><p>Temas y respuestas de desarrollo, pendientes de incorporación.</p></div>
+              <div class="card-body"><p class="eyebrow">BLOQUES 5–12</p><h3>Preguntas de desarrollo</h3><p>Temas y respuestas de desarrollo, pendientes de incorporación.</p></div>
+              <span class="card-points" aria-hidden="true"><b>+3</b><span>puntos</span></span>
             </article>
           </div>
           <p id="empty" class="empty" hidden>No hay contenidos que coincidan. Prueba otra búsqueda o limpia los filtros.</p>
@@ -361,7 +384,11 @@
         <div class="model-detail">
           <div class="lineup" id="alineacion" role="group" aria-label="Alineación 3-4-3: reparto de la nota">
             <p class="lineup-title"><span>PUNTUACIÓN</span> Alineación 3-4-3</p>
-            <div class="lineup-bar" aria-hidden="true"><i class="lu-a">3</i><i class="lu-b">4</i><i class="lu-c">3</i></div>
+            <div class="lineup-bar">
+              <a class="lu-a" href="#generador" aria-label="3 puntos: ir al generador de preguntas cortas" title="Generador de preguntas cortas">3<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+              <a class="lu-b" href="documentos.html" aria-label="4 puntos: ir al Banco de documentos PAU" title="Banco de documentos PAU">4<svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+              <i class="lu-c" aria-hidden="true">3</i>
+            </div>
             <ul class="lineup-list">
               <li><b>3 puntos</b><span>PREGUNTAS CORTAS</span><p>Dos de cuatro; proceden de la Agrupación I (bloques 1–4). 1,5 puntos cada una.</p></li>
               <li><b>4 puntos</b><span>DOCUMENTO</span><p>Texto, imagen o gráfico a escoger uno, cruzando las Agrupaciones II y III. Se escoge un documento.</p></li>

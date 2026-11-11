@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Banco de documentos PAU de Historia de España en Andalucía: textos, imágenes, gráficos y tablas, por bloque y temática.">
+  <title>Banco de documentos PAU · Historia de España</title>
+  <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="apuntes.css?v=26">
+  <link rel="stylesheet" href="site-header.css?v=4">
+  <link rel="stylesheet" href="documentos.css?v=2">
+  <script src="site-header.js?v=1" defer></script>
+  <script src="documentos.js?v=2" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="index.html#apuntes"><span class="brand-icon" aria-hidden="true">H</span><span class="brand-text">PAU Andalucía <span class="muted">/</span> Historia de España</span></a>
+    <nav class="header-tools" aria-label="Preguntas personales, diccionario y RAE">
+      <a href="mis-preguntas.html" class="saved-nav">Mis preguntas cortas</a>
+      <a class="header-tool" aria-label="Diccionario de la lengua española" title="Diccionario de la lengua española" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer"><img class="dle-logo" src="assets/dle-logo.jpg" alt="" width="592" height="592"><span>Diccionario</span></a>
+      <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" title="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer"><svg class="x-logo" aria-hidden="true" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span><b>@RAEinforma</b></span></a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false" title="Cambiar modo claro/oscuro">
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
+  </header>
+  <main class="documents-main" id="contenido">
+    <p class="eyebrow">Mira · relaciona · comenta</p>
+    <h1>Banco de documentos <em>PAU</em></h1>
+    <p class="documents-lead">Textos, imágenes y datos para aprender a leer la historia. Explora por bloque o tema y prueba a comentarlos antes de abrir las claves.</p>
+    <div class="documents-links"><a href="index.html#apuntes">← Apuntes por bloques</a><a href="#cobertura">Qué incluye este banco</a></div>
+    <section class="documents-filters" aria-label="Buscar y filtrar documentos">
+      <div class="document-types" role="group" aria-label="Tipo de documento">
+        <button type="button" data-type="all" aria-pressed="true">Todos</button>
+        <button type="button" data-type="texto" aria-pressed="false">Textos</button>
+        <button type="button" data-type="imagen" aria-pressed="false">Imágenes</button>
+        <button type="button" data-type="grafico" aria-pressed="false">Gráficos y tablas</button>
+      </div>
+      <div class="document-search-row">
+        <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar documentos por título, concepto o fecha" placeholder="Busca un título, concepto, fecha…" autocomplete="off"></label>
+        <label class="document-block-label" for="document-block">Bloque<select id="document-block">
+          <option value="">Todos los bloques (5–12)</option>
+          <option value="5">5 · La crisis del Antiguo Régimen, 1788–1833</option>
+          <option value="6">6 · El Estado liberal, 1833–1874</option>
+          <option value="7">7 · La Restauración, 1874–1902</option>
+          <option value="8">8 · La economía y la sociedad del siglo XIX</option>
+          <option value="9">9 · La crisis de la Restauración, 1902–1931</option>
+          <option value="10">10 · La Segunda República y la Guerra Civil, 1931–1939</option>
+          <option value="11">11 · La dictadura franquista, 1939–1975</option>
+          <option value="12">12 · La transición y la democracia, desde 1975</option>
+        </select></label>
+      </div>
+      <p class="document-topic-label" id="document-topic-label">Explora por temática</p>
+      <div id="document-topics" role="group" aria-labelledby="document-topic-label"></div>
+      <div class="document-results-bar"><p id="document-count" role="status">Cargando documentos…</p><button id="document-reset" type="button">Limpiar filtros ↺</button></div>
+    </section>
+    <p id="document-error" role="alert" hidden></p>
+    <button id="document-retry" type="button" hidden>Volver a cargar</button>
+    <noscript>Activa JavaScript para explorar el banco. Puedes consultar el <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit">documento de recopilación</a> sin esta herramienta.</noscript>
+    <p id="document-empty" hidden>No hay documentos incorporados con estos filtros. Prueba otro bloque o limpia los filtros; el banco está en construcción.</p>
+    <div id="document-grid"></div>
+    <section id="cobertura" class="document-coverage" aria-labelledby="coverage-title">
+      <h2 id="coverage-title">Un banco en construcción</h2>
+      <p>Documentos de los bloques 5–12, correspondientes a las Agrupaciones II y III. Los bloques 1–4 se trabajan en las preguntas cortas. Este primer lote incorpora siete fichas de los bloques 5, 10 y 12, extraídas de la recopilación aportada; aún no representa todos los documentos ni todos los exámenes. Los apuntes del bloque 5 siguen en redacción.</p>
+      <p><strong>Lectura de los textos:</strong> las frases cortadas por el cambio de renglón se unen, manteniendo separados los párrafos, artículos y apartados por su sentido. No se inventan continuaciones: los signos […] conservados indican omisiones de la selección, no saltos de línea. La tarjeta es una vista previa; la ficha permite leer el fragmento completo incorporado.</p>
+      <p>La recopilación reúne 2008, parte de 2009 y los años 2017–2026; quedan años y documentos por incorporar y contrastar con los originales. Las apariciones mostradas corresponden solo a las fichas revisadas aquí, no a una frecuencia completa ni a una predicción.</p>
+      <p><strong>Formatos distintos:</strong> estos documentos proceden de exámenes anteriores a 2026–27. La práctica los adapta a las dos preguntas del modelo 2026–27: a) análisis del hecho histórico, de 0 a 2 puntos; b) contexto y consecuencias, de 0 a 2 puntos. Total: 4 puntos. En imágenes y gráficos se propone un a) más breve y descriptivo y un b) más desarrollado; en textos pueden estar más equilibrados. Ambos apartados puntúan lo mismo. Su presencia histórica no garantiza su inclusión en el nuevo modelo. Las claves son orientaciones didácticas propias, no soluciones oficiales.</p>
+      <p><a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">Recopilación del corpus ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer">Archivo oficial de exámenes ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones 2026–27 ↗</a></p>
+    </section>
+  </main>
+  <dialog id="document-dialog" aria-labelledby="document-dialog-title">
+    <button class="document-close" type="button" aria-label="Cerrar documento" autofocus>×</button>
+    <div id="document-dialog-content"></div>
+  </dialog>
+</body>
+</html>
