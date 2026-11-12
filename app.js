@@ -244,7 +244,8 @@ updateResults();
 const apTrack = document.querySelector("#apuntes-track");
 const apCards = [...apTrack.querySelectorAll(".apunte")];
 {
-  const ready = apCards.filter((card) => !card.classList.contains("is-soon")).length;
+  const available = apCards.filter((card) => !card.classList.contains("is-soon"));
+  const ready = available.length;
   const lead = document.querySelector(".apuntes-lead");
   if (lead) {
     lead.textContent = ready === apCards.length
@@ -252,6 +253,23 @@ const apCards = [...apTrack.querySelectorAll(".apunte")];
       : `Pautas de estudio de cada bloque. ${ready} de ${apCards.length} listos; el resto llegará pronto.`;
     lead.innerHTML = lead.innerHTML.replace(/\d+ de \d+|Los \d+ bloques/, (m) => `<b id="apuntes-count">${m}</b>`);
   }
+  const ranges = [];
+  for (const number of available.map((card) => Number(card.dataset.n)).sort((a, b) => a - b)) {
+    const last = ranges[ranges.length - 1];
+    if (last && number === last[1] + 1) last[1] = number;
+    else ranges.push([number, number]);
+  }
+  const blocks = new Intl.ListFormat("es").format(
+    ranges.map(([first, last]) => first === last ? String(first) : `${first}–${last}`)
+  );
+  const notesCard = document.querySelector('.study-cards [data-format="apuntes"]');
+  notesCard.querySelector(".tag").textContent = ready
+    ? `${ready === 1 ? "BLOQUE" : "BLOQUES"} ${blocks}` : "PRÓXIMAMENTE";
+  notesCard.querySelector(".card-body p").textContent = ready === 0
+    ? "Los apuntes de los bloques llegarán pronto."
+    : ready === apCards.length
+      ? "Consulta los apuntes de todos los bloques."
+      : `Consulta los apuntes ${ready === 1 ? "del bloque" : "de los bloques"} ${blocks}; los demás llegarán pronto.`;
 }
 const apChips = [...document.querySelectorAll(".apunte-chip")];
 const apNav = [...document.querySelectorAll(".apuntes-nav")];
@@ -471,6 +489,9 @@ if (phaseNav) {
   const prevBtn = phaseNav.querySelector(".prev-phase");
   const stepEl = nextBtn.querySelector(".np-step");
   const nameEl = nextBtn.querySelector(".np-name");
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty("--phase-nav-width", `${phaseNav.getBoundingClientRect().width}px`);
+  }).observe(phaseNav);
   let current = -1;
   const MARGIN = 28;
   const anchorOf = (id) => {

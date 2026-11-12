@@ -8,10 +8,12 @@
   <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="apuntes.css?v=26">
+  <link rel="stylesheet" href="practice.css?v=5">
   <link rel="stylesheet" href="site-header.css?v=4">
-  <link rel="stylesheet" href="documentos.css?v=2">
+  <link rel="stylesheet" href="documentos.css?v=25">
   <script src="site-header.js?v=1" defer></script>
-  <script src="documentos.js?v=2" defer></script>
+  <script src="documentos.js?v=25" defer></script>
+<link rel="stylesheet" href="site-footer.css?v=2">
 </head>
 <body>
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -33,6 +35,7 @@
     <h1>Banco de documentos <em>PAU</em></h1>
     <p class="documents-lead">Textos, imágenes y datos para aprender a leer la historia. Explora por bloque o tema y prueba a comentarlos antes de abrir las claves.</p>
     <div class="documents-links"><a href="index.html#apuntes">← Apuntes por bloques</a><a href="#cobertura">Qué incluye este banco</a></div>
+    <p id="document-scope" class="document-scope" role="note">Cargando la cobertura del corpus…</p>
     <section class="documents-filters" aria-label="Buscar y filtrar documentos">
       <div class="document-types" role="group" aria-label="Tipo de documento">
         <button type="button" data-type="all" aria-pressed="true">Todos</button>
@@ -44,19 +47,43 @@
         <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar documentos por título, concepto o fecha" placeholder="Busca un título, concepto, fecha…" autocomplete="off"></label>
         <label class="document-block-label" for="document-block">Bloque<select id="document-block">
           <option value="">Todos los bloques (5–12)</option>
-          <option value="5">5 · La crisis del Antiguo Régimen, 1788–1833</option>
-          <option value="6">6 · El Estado liberal, 1833–1874</option>
-          <option value="7">7 · La Restauración, 1874–1902</option>
+          <option value="5">5 · La crisis del Antiguo Régimen (1788–1833)</option>
+          <option value="6">6 · El Estado liberal (1833–1874)</option>
+          <option value="7">7 · La Restauración (1874–1902)</option>
           <option value="8">8 · La economía y la sociedad del siglo XIX</option>
-          <option value="9">9 · La crisis de la Restauración, 1902–1931</option>
-          <option value="10">10 · La Segunda República y la Guerra Civil, 1931–1939</option>
-          <option value="11">11 · La dictadura franquista, 1939–1975</option>
-          <option value="12">12 · La transición y la democracia, desde 1975</option>
+          <option value="9">9 · La crisis de la Restauración (1902–1931)</option>
+          <option value="10">10 · La Segunda República y la Guerra Civil (1931–1939)</option>
+          <option value="11">11 · La dictadura franquista (1939–1975)</option>
+          <option value="12">12 · La transición y la democracia (desde 1975)</option>
         </select></label>
       </div>
-      <p class="document-topic-label" id="document-topic-label">Explora por temática</p>
-      <div id="document-topics" role="group" aria-labelledby="document-topic-label"></div>
-      <div class="document-results-bar"><p id="document-count" role="status">Cargando documentos…</p><button id="document-reset" type="button">Limpiar filtros ↺</button></div>
+      <div class="document-topic-heading">
+        <p class="document-topic-label" id="document-topic-label">Explora por temática</p>
+        <label class="document-topic-search" for="document-topic-search">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+          <input id="document-topic-search" type="search" aria-label="Buscar entre las temáticas" placeholder="Buscar temática…" autocomplete="off">
+        </label>
+        <label class="document-topic-sort-label" for="document-topic-sort">Orden
+          <select id="document-topic-sort">
+            <option value="alphabetical">Como ahora · A–Z</option>
+            <option value="frequency">Más repetidas</option>
+            <option value="chronology">Más antiguas primero</option>
+          </select>
+        </label>
+        <button id="document-reset" class="document-reset-top" type="button" title="Limpiar todos los filtros">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/>
+            <g transform="rotate(-42 12 10)"><rect x="8" y="3" width="8" height="14" rx="1.5" stroke-width="1.8"/><path stroke-width="1.5" d="M8.5 12h7"/></g>
+          </svg>
+          Limpiar filtros
+        </button>
+      </div>
+      <div id="document-topics" role="group" aria-labelledby="document-topic-label">
+        <button id="document-topic-toggle" class="document-topic-toggle" type="button" aria-controls="document-topics" aria-expanded="false" hidden>Ver más ↓</button>
+      </div>
+      <p class="document-topic-hint">El tamaño y la cifra de cada burbuja representan apariciones en esta recopilación, no una predicción. La cronología usa la fecha de las fichas; las que no indican un año concreto quedan al final.</p>
+      <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
+      <div class="document-results-bar"><p id="document-count" role="status">Cargando documentos…</p></div>
     </section>
     <p id="document-error" role="alert" hidden></p>
     <button id="document-retry" type="button" hidden>Volver a cargar</button>
@@ -65,10 +92,10 @@
     <div id="document-grid"></div>
     <section id="cobertura" class="document-coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Un banco en construcción</h2>
-      <p>Documentos de los bloques 5–12, correspondientes a las Agrupaciones II y III. Los bloques 1–4 se trabajan en las preguntas cortas. Este primer lote incorpora siete fichas de los bloques 5, 10 y 12, extraídas de la recopilación aportada; aún no representa todos los documentos ni todos los exámenes. Los apuntes del bloque 5 siguen en redacción.</p>
+      <p>Este banco reúne documentos de los bloques 5–12, correspondientes a las Agrupaciones II y III. Los bloques 1–4 se trabajan en las preguntas cortas. El corpus actual procede de la recopilación aportada; las fichas y apariciones están enlazadas a su fuente, pero aún deben cotejarse con los PDF oficiales. Los apuntes del bloque 5 siguen en redacción.</p>
       <p><strong>Lectura de los textos:</strong> las frases cortadas por el cambio de renglón se unen, manteniendo separados los párrafos, artículos y apartados por su sentido. No se inventan continuaciones: los signos […] conservados indican omisiones de la selección, no saltos de línea. La tarjeta es una vista previa; la ficha permite leer el fragmento completo incorporado.</p>
-      <p>La recopilación reúne 2008, parte de 2009 y los años 2017–2026; quedan años y documentos por incorporar y contrastar con los originales. Las apariciones mostradas corresponden solo a las fichas revisadas aquí, no a una frecuencia completa ni a una predicción.</p>
-      <p><strong>Formatos distintos:</strong> estos documentos proceden de exámenes anteriores a 2026–27. La práctica los adapta a las dos preguntas del modelo 2026–27: a) análisis del hecho histórico, de 0 a 2 puntos; b) contexto y consecuencias, de 0 a 2 puntos. Total: 4 puntos. En imágenes y gráficos se propone un a) más breve y descriptivo y un b) más desarrollado; en textos pueden estar más equilibrados. Ambos apartados puntúan lo mismo. Su presencia histórica no garantiza su inclusión en el nuevo modelo. Las claves son orientaciones didácticas propias, no soluciones oficiales.</p>
+      <p><strong>Corte por formato:</strong> hay ejercicios de comentario en 2008, parte de 2009 y 2025–2026. En 2017–2024 se conserva el modelo de cuestiones cortas y tema, sin ejercicio de comentario de documento; esos años no son documentos pendientes de este banco. La cobertura se refiere a la exportación actual del corpus y no representa una frecuencia de todos los exámenes ni una predicción.</p>
+      <p><strong>Modelo 2026–27:</strong> las fichas históricas se adaptan a las dos preguntas nuevas: a) análisis del hecho histórico, de 0 a 2 puntos; b) contexto y consecuencias, de 0 a 2 puntos. Total: 4 puntos. En imágenes y gráficos se propone un a) más breve y descriptivo y un b) más desarrollado; en textos pueden estar más equilibrados. Ambos apartados puntúan lo mismo. Su presencia histórica no garantiza su inclusión en el nuevo modelo. Las claves son orientaciones didácticas propias, no soluciones oficiales.</p>
       <p><a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">Recopilación del corpus ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer">Archivo oficial de exámenes ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones 2026–27 ↗</a></p>
     </section>
   </main>
@@ -76,5 +103,16 @@
     <button class="document-close" type="button" aria-label="Cerrar documento" autofocus>×</button>
     <div id="document-dialog-content"></div>
   </dialog>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="brand" href="index.html#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
+    <p class="credit">
+      <span class="credit-part">Página web creada por <a href="https://github.com/fcallejah" target="_blank" rel="noopener noreferrer">fcallejah</a></span>
+      <span class="credit-part">con mucho cariño desde</span>
+      <span class="credit-part credit-place"><a href="https://youtu.be/dGbyNi_Z25c" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)"><strong>Cuevas Bajas (Málaga)</strong><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></span>
+      <span class="credit-part credit-emojis"><a href="https://youtu.be/dGbyNi_Z25c" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)" aria-label="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)"><span aria-hidden="true">🥕 💜 🫒 🏞️</span></a></span>
+    </p>
+  </div>
+</footer>
 </body>
 </html>

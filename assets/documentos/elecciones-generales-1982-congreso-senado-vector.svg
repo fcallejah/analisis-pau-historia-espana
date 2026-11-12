@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2084" height="1418" viewBox="0 0 1042 709" role="img" aria-labelledby="title description">
+  <title id="title">Resultados de las Elecciones Generales de octubre de 1982</title>
+  <desc id="description">Redibujado vectorial de la tabla raster del PDF oficial de 2026, suplente 2, página 2, itinerario B, documento 2. Se conservan las candidaturas, cifras, totales y disposición en dos columnas; la tipografía no es una extracción del original.</desc>
+  <metadata>Referencia: sel_2026_historia_espana.zip, examen suplente 2, página 2. Recorte original conservado en elecciones-generales-1982-congreso-senado-oficial-2026.png. Redibujado manual, no extracción vectorial.</metadata>
+  <rect width="1042" height="709" fill="#fff"/>
+  <g fill="none" stroke="#000" stroke-width="3">
+    <path d="M25 40H980V625H25Z M510 40V625 M25 140H980 M25 578H980"/>
+  </g>
+  <g fill="#000" font-family="Arial, Helvetica, sans-serif" font-size="42">
+    <g text-anchor="middle">
+      <text x="267" y="81">CONGRESO</text>
+      <text x="267" y="132">Número de diputados</text>
+      <text x="745" y="81">SENADO</text>
+      <text x="745" y="132">Número de senadores</text>
+    </g>
+    <g>
+      <text x="50" y="180">PSOE</text>
+      <text x="50" y="228">CP (AP)</text>
+      <text x="50" y="276">UCD</text>
+      <text x="50" y="324">CIU</text>
+      <text x="50" y="372">PNV</text>
+      <text x="50" y="420">PCE-PSUC</text>
+      <text x="50" y="468">CDS</text>
+      <text x="50" y="516">HB</text>
+      <text x="50" y="564">Otros</text>
+      <text x="50" y="618">Total</text>
+      <text x="532" y="180">PSOE</text>
+      <text x="532" y="228">CP</text>
+      <text x="532" y="276">CIU</text>
+      <text x="532" y="324">PNV</text>
+      <text x="532" y="372">UCD</text>
+      <text x="532" y="420">Otros</text>
+      <text x="532" y="618">Total</text>
+    </g>
+    <g text-anchor="end">
+      <text x="490" y="180">202</text>
+      <text x="490" y="228">106</text>
+      <text x="490" y="276">12</text>
+      <text x="490" y="324">12</text>
+      <text x="490" y="372">8</text>
+      <text x="490" y="420">4</text>
+      <text x="490" y="468">2</text>
+      <text x="490" y="516">2</text>
+      <text x="490" y="564">2</text>
+      <text x="490" y="618">350</text>
+      <text x="960" y="180">134</text>
+      <text x="960" y="228">54</text>
+      <text x="960" y="276">7</text>
+      <text x="960" y="324">7</text>
+      <text x="960" y="372">4</text>
+      <text x="960" y="420">2</text>
+      <text x="960" y="618">208</text>
+    </g>
+    <text x="502" y="671" text-anchor="middle" font-size="37" font-style="italic">Resultados de las Elecciones Generales de octubre de 1982</text>
+  </g>
+</svg>

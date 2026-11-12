@@ -12,6 +12,20 @@ FIGURE = '<p><span><span class="doc-image" role="figure"><img src="x" alt=""><sp
 
 
 class CropTests(unittest.TestCase):
+    def test_import_preserves_shared_footer_outside_article(self):
+        root = Path(__file__).resolve().parent.parent
+        for block in range(1, 5):
+            with self.subTest(block=block):
+                source = (root / f"apuntes/bloque-{block}.html").read_text(encoding="utf-8")
+                updated = importer.replace_imported_article(
+                    source, '<nav class="reading-index">Índice actualizado</nav>',
+                    '<article class="reading-content">Contenido actualizado</article>',
+                )
+                pattern = r'<footer class="site-footer">.*?</footer>'
+                self.assertEqual(re.findall(pattern, source, re.S), re.findall(pattern, updated, re.S))
+                self.assertEqual(updated.count('<footer class="site-footer">'), 1)
+                self.assertIn('href="../site-footer.css?v=2"', updated)
+
     def test_succession_war_lowercase_everywhere(self):
         source = ('<h3>La Guerra de Sucesión</h3>'
                   '<p>guerra de Sucesión española; Guerra de Sucesión Española</p>'
