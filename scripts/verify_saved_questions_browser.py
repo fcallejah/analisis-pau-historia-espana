@@ -46,6 +46,21 @@ def run():
         assert page.locator(".saved-tab-icon svg").count() == 2
         assert page.locator(".saved-question").count() == 1
         assert page.locator(".saved-question>p").text_content() == prompt
+        heading = page.locator("h1 em")
+        assert heading.text_content() == "preguntas cortas"
+        assert heading.evaluate("""node => {
+            const s = getComputedStyle(node);
+            return s.color === 'rgb(32, 35, 29)' && s.backgroundColor === 'rgb(214, 238, 122)'
+                && parseFloat(s.webkitTextStrokeWidth) === 0 && s.textShadow === 'none';
+        }""")
+        page.locator("#saved-search").fill("sin coincidencia deliberada")
+        assert page.locator(".saved-question").count() == 0
+        assert page.locator("#saved-count").inner_text().startswith("0 preguntas")
+        page.locator("#saved-reset").click()
+        assert page.locator(".saved-question").count() == 1
+        page.locator("#saved-search").fill(prompt.split()[0].upper())
+        assert page.locator(".saved-question").count() == 1
+        page.locator("#saved-reset").click()
         page.get_by_text("Posible solución", exact=True).click()
         assert page.locator(".gen-sol p").is_visible()
         page.locator('[data-saved-list="review"]').click()

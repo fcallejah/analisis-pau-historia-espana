@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tus preguntas cortas PAU de Historia de España favoritas y pendientes de repaso, reunidas en una colección personal.">
   <title>Mis preguntas cortas · PAU Historia</title>
   <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="apuntes.css?v=26">
-  <link rel="stylesheet" href="practice.css?v=3">
-  <link rel="stylesheet" href="site-header.css?v=4">
-  <script src="mis-preguntas.js?v=2" defer></script>
-  <script src="site-header.js?v=1" defer></script>
-  <script src="generador.js?v=26" defer></script>
+  <link rel="stylesheet" href="practice.css?v=5">
+  <link rel="stylesheet" href="site-header.css?v=5">
+  <link rel="stylesheet" href="documentos.css?v=44">
+  <script src="mark-feedback.js?v=1" defer></script><script src="mis-preguntas.js?v=5" defer></script>
+  <script src="site-header.js?v=2" defer></script>
+  <script src="generador.js?v=27" defer></script>
 <link rel="stylesheet" href="site-footer.css?v=2">
 </head>
 <body>
@@ -29,20 +31,33 @@
     </button>
     <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
   </header>
-  <main class="reading-main" id="main">
-    <h1>Mis preguntas cortas</h1>
-    <p>Guarda tus favoritas y las que necesitas repasar.</p>
+  <main class="documents-main saved-questions-main" id="main">
+    <p class="eyebrow">Guarda · organiza · repasa</p>
+    <div class="personal-library-heading">
+      <h1><span class="personal-library-mis">Mis</span> <em>preguntas cortas</em></h1>
+      <a class="personal-library-back" href="index.html#bloques-cuestiones"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Volver a preguntas cortas</a>
+    </div>
+    <p class="documents-lead">Tus preguntas marcadas con estrella o birrete, reunidas para volver a ellas y practicar.</p>
+    <div class="documents-links"><a href="index.html#generador">Generar preguntas →</a><a href="mis-documentos.html">Mis documentos →</a></div>
     <noscript>Activa JavaScript para consultar y guardar tus preguntas.</noscript>
-    <div class="saved-tabs" role="group" aria-label="Listas de preguntas">
+    <section class="documents-filters" aria-label="Buscar y filtrar tus preguntas cortas">
+    <div class="saved-tabs document-saved-filters" role="group" aria-label="Listas de preguntas">
       <button type="button" data-saved-list="all" aria-pressed="true">Todas (<span>0</span>)</button>
       <button type="button" data-saved-list="favorite" aria-pressed="false">Favoritas (<span>0</span>)</button>
-      <button type="button" data-saved-list="review" aria-pressed="false">Para repasar (<span>0</span>)</button>
+      <button type="button" data-saved-list="review" aria-pressed="false">Pendientes de repaso (<span>0</span>)</button>
     </div>
-    <div class="saved-filter"><label for="saved-block">Filtrar por bloque</label>
-      <span class="saved-select"><select id="saved-block"><option value="">Todos los bloques</option><option value="1">Bloque 1, prehistoria–visigodos, hasta 711</option><option value="2">Bloque 2, Edad Media, 711–1474</option><option value="3">Bloque 3, Monarquía Hispánica, 1474–1700</option><option value="4">Bloque 4, reformismo borbónico, 1700–1788</option></select><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+    <div class="document-search-row">
+      <label class="document-search" for="saved-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="saved-search" type="search" aria-label="Buscar tus preguntas cortas por enunciado, respuesta o examen" placeholder="Busca entre tus preguntas cortas…" autocomplete="off"></label>
+      <label class="document-block-label" for="saved-block">Bloque<select id="saved-block"><option value="">Todos los bloques (1–4)</option><option value="1">1 · Desde prehistoria a visigodos (hasta 711)</option><option value="2">2 · Entre al-Ándalus y reinos cristianos (711–1474)</option><option value="3">3 · La Monarquía Hispánica (1474–1700)</option><option value="4">4 · El reformismo borbónico (1700–1788)</option></select></label>
     </div>
+    <div class="document-results-bar"><p id="saved-count" role="status">Cargando tus preguntas…</p><button id="saved-reset" class="document-reset-top" type="button">Limpiar filtros</button></div>
+    </section>
     <div id="saved-questions"></div>
-    <p><a href="index.html#bloques-cuestiones">Buscar preguntas de años anteriores</a> · <a href="index.html#generador">Generar preguntas</a> · <a href="documentos.html">Banco de documentos PAU</a></p>
+    <section class="document-coverage" aria-labelledby="saved-help-title">
+      <h2 id="saved-help-title">Tu colección personal</h2>
+      <p>La estrella conserva tus favoritas y el birrete señala lo que necesitas repasar. Puedes cambiar las marcas aquí, en los apuntes o en el banco de preguntas; todos comparten tu colección.</p>
+      <p>No se mezclan con tus documentos ni se sincronizan entre dispositivos. Las preguntas cortas del modelo 2026–27 corresponden a los bloques 1–4.</p>
+    </section>
   </main>
 <footer class="site-footer">
   <div class="footer-inner">

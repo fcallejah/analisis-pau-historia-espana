@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tus documentos PAU de Historia de España guardados como favoritos o pendientes de repaso.">
+  <title>Mis documentos · PAU Historia</title>
+  <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+  <script src="document-view.js?v=1"></script>
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="apuntes.css?v=26">
+  <link rel="stylesheet" href="practice.css?v=5">
+  <link rel="stylesheet" href="site-header.css?v=5">
+  <link rel="stylesheet" href="documentos.css?v=44">
+  <script src="mark-feedback.js?v=1" defer></script>
+  <link rel="stylesheet" href="site-footer.css?v=2">
+  <script src="site-header.js?v=2" defer></script>
+  <script src="documentos.js?v=45" defer></script>
+</head>
+<body data-document-library="saved">
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <a class="brand" href="index.html#apuntes"><span class="brand-icon" aria-hidden="true">H</span><span class="brand-text">PAU Andalucía <span class="muted">/</span> Historia de España</span></a>
+    <nav class="header-tools" aria-label="Listas personales, diccionario y RAE">
+      <a href="mis-preguntas.html" class="saved-nav">Mis preguntas cortas</a>
+      <a class="header-tool" aria-label="Diccionario de la lengua española" title="Diccionario de la lengua española" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer"><img class="dle-logo" src="assets/dle-logo.jpg" alt="" width="592" height="592"><span>Diccionario</span></a>
+      <a class="header-tool" aria-label="Preguntar a @RAEinforma en X" title="Preguntar a @RAEinforma en X" href="https://x.com/RAEinforma" target="_blank" rel="noopener noreferrer"><svg class="x-logo" aria-hidden="true" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span><b>@RAEinforma</b></span></a>
+    </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false" title="Cambiar modo claro/oscuro">
+      <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
+      <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
+  </header>
+  <main class="documents-main" id="contenido">
+    <p class="eyebrow">Guarda · organiza · repasa</p>
+    <div class="personal-library-heading">
+      <h1><span class="personal-library-mis">Mis</span> <em>documentos</em></h1>
+      <a class="personal-library-back" href="documentos.html"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>Volver a documentos</a>
+    </div>
+    <p class="documents-lead">Tus textos, imágenes y gráficos marcados con estrella o birrete, reunidos para volver a ellos y practicar.</p>
+    <div class="documents-links"><a href="mis-preguntas.html">Mis preguntas cortas →</a></div>
+    <section class="documents-filters" aria-label="Buscar y filtrar tus documentos">
+      <div class="document-saved-filters" role="group" aria-label="Mis listas de documentos">
+        <button type="button" data-document-saved="all" aria-pressed="true">Todos (<span data-document-saved-count>0</span>)</button>
+        <button type="button" data-document-saved="favorite" aria-pressed="false">Favoritos (<span data-document-saved-count>0</span>)</button>
+        <button type="button" data-document-saved="review" aria-pressed="false">Pendientes de repaso (<span data-document-saved-count>0</span>)</button>
+      </div>
+      <div class="document-types" role="group" aria-label="Tipo de documento">
+        <button type="button" data-type="all" aria-pressed="true">Todos los tipos</button>
+        <button type="button" data-type="texto" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h16M4 20h16"/></svg>Textos</button>
+        <button type="button" data-type="imagen" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg>Imágenes</button>
+        <button type="button" data-type="grafico" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 15l4-4 3 2 6-7M15 6h5v5"/></svg>Gráficos y tablas</button>
+      </div>
+      <div class="document-search-row">
+        <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar tus documentos por título, concepto o fecha" placeholder="Busca entre tus documentos…" autocomplete="off"></label>
+        <label class="document-block-label" for="document-block">Bloque<select id="document-block">
+          <option value="">Todos los bloques (5–12)</option>
+          <option value="5">5 · La crisis del Antiguo Régimen (1788–1833)</option>
+          <option value="6">6 · El Estado liberal (1833–1874)</option>
+          <option value="7">7 · La Restauración (1874–1902)</option>
+          <option value="8">8 · La economía y la sociedad del siglo XIX</option>
+          <option value="9">9 · La crisis de la Restauración (1902–1931)</option>
+          <option value="10">10 · La Segunda República y la Guerra Civil (1931–1939)</option>
+          <option value="11">11 · La dictadura franquista (1939–1975)</option>
+          <option value="12">12 · La transición y la democracia (desde 1975)</option>
+        </select></label>
+      </div>
+      <div class="document-topic-heading">
+        <p class="document-topic-label" id="document-topic-label">Explora tus temáticas</p>
+        <label class="document-topic-search" for="document-topic-search">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+          <input id="document-topic-search" type="search" aria-label="Buscar entre tus temáticas" placeholder="Buscar temática…" autocomplete="off">
+        </label>
+        <label class="document-topic-sort-label" for="document-topic-sort">Orden
+          <select id="document-topic-sort">
+            <option value="alphabetical">Como ahora · A–Z</option>
+            <option value="frequency">Más repetidas</option>
+            <option value="chronology">Más antiguas primero</option>
+          </select>
+        </label>
+        <button id="document-reset" class="document-reset-top" type="button" title="Limpiar todos los filtros">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/>
+            <g transform="rotate(-42 12 10)"><rect x="8" y="3" width="8" height="14" rx="1.5" stroke-width="1.8"/><path stroke-width="1.5" d="M8.5 12h7"/></g>
+          </svg>
+          Limpiar filtros
+        </button>
+      </div>
+      <div id="document-topics" role="group" aria-labelledby="document-topic-label">
+        <button id="document-topic-toggle" class="document-topic-toggle" type="button" aria-controls="document-topics" aria-expanded="false" hidden>Ver más ↓</button>
+      </div>
+      <p class="document-topic-hint">Las burbujas cuentan apariciones del corpus entre tus documentos filtrados; no son una predicción del examen.</p>
+      <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
+      <div class="document-results-bar"><p id="document-count" role="status">Cargando tus documentos…</p></div>
+    </section>
+    <p id="document-storage-status" class="document-storage-status" role="status" hidden></p>
+    <p id="document-error" role="alert" hidden></p>
+    <button id="document-retry" type="button" hidden>Volver a cargar</button>
+    <noscript>Activa JavaScript para consultar tus documentos guardados. Puedes leer la <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit">recopilación del corpus</a> sin esta herramienta.</noscript>
+    <p id="document-empty" hidden>No hay documentos guardados con estos filtros. Marca con estrella o birrete los que quieras conservar en el <a href="documentos.html">banco de documentos</a>, o limpia los filtros.</p>
+    <div id="document-grid"></div>
+    <section class="document-coverage" aria-labelledby="saved-help-title">
+      <h2 id="saved-help-title">Tu colección personal</h2>
+      <p>La estrella conserva tus favoritos y el birrete señala lo que necesitas repasar. Puedes cambiar las marcas aquí o en el banco; ambas páginas comparten tu colección. Los filtros y la posición se conservan por separado en cada página.</p>
+      <p>No se mezclan con tus preguntas cortas ni se sincronizan entre dispositivos. Las fichas proceden de la <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">recopilación del corpus <svg class="document-link-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a>; el <a href="documentos.html#cobertura">banco explica su cobertura y el cambio al modelo 2026–27</a>.</p>
+    </section>
+  </main>
+  <dialog id="document-dialog" aria-labelledby="document-dialog-title">
+    <button class="document-close" type="button" aria-label="Cerrar documento" autofocus>×</button>
+    <p id="document-dialog-storage-status" class="document-storage-status" role="status" hidden></p>
+    <div id="document-dialog-content"></div>
+    <div class="document-scroll-cue" aria-hidden="true"></div>
+  </dialog>
+  <footer class="site-footer">
+  <div class="footer-inner">
+    <a class="brand" href="index.html#inicio"><span class="brand-icon" aria-hidden="true">H</span> PAU Andalucía <span class="muted">/</span> Historia de España</a>
+    <p class="credit">
+      <span class="credit-part">Página web creada por <a href="https://github.com/fcallejah" target="_blank" rel="noopener noreferrer">fcallejah</a></span>
+      <span class="credit-part">con mucho cariño desde</span>
+      <span class="credit-part credit-place"><a href="https://youtu.be/dGbyNi_Z25c" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)"><strong>Cuevas Bajas (Málaga)</strong><svg class="ext-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a></span>
+      <span class="credit-part credit-emojis"><a href="https://youtu.be/dGbyNi_Z25c" target="_blank" rel="noopener noreferrer" title="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)" aria-label="Ver vídeo sobre Cuevas Bajas (se abre en nueva pestaña)"><span aria-hidden="true">🥕 💜 🫒 🏞️</span></a></span>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

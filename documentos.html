@@ -6,13 +6,15 @@
   <meta name="description" content="Banco de documentos PAU de Historia de España en Andalucía: textos, imágenes, gráficos y tablas, por bloque y temática.">
   <title>Banco de documentos PAU · Historia de España</title>
   <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
+  <script src="document-view.js?v=1"></script>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="apuntes.css?v=26">
   <link rel="stylesheet" href="practice.css?v=5">
-  <link rel="stylesheet" href="site-header.css?v=4">
-  <link rel="stylesheet" href="documentos.css?v=25">
-  <script src="site-header.js?v=1" defer></script>
-  <script src="documentos.js?v=25" defer></script>
+  <link rel="stylesheet" href="site-header.css?v=5">
+  <link rel="stylesheet" href="documentos.css?v=44">
+  <script src="mark-feedback.js?v=1" defer></script>
+  <script src="site-header.js?v=2" defer></script>
+  <script src="documentos.js?v=45" defer></script>
 <link rel="stylesheet" href="site-footer.css?v=2">
 </head>
 <body>
@@ -32,16 +34,16 @@
   </header>
   <main class="documents-main" id="contenido">
     <p class="eyebrow">Mira · relaciona · comenta</p>
-    <h1>Banco de documentos <em>PAU</em></h1>
+    <h1>Banco de <em>documentos</em> PAU</h1>
     <p class="documents-lead">Textos, imágenes y datos para aprender a leer la historia. Explora por bloque o tema y prueba a comentarlos antes de abrir las claves.</p>
     <div class="documents-links"><a href="index.html#apuntes">← Apuntes por bloques</a><a href="#cobertura">Qué incluye este banco</a></div>
     <p id="document-scope" class="document-scope" role="note">Cargando la cobertura del corpus…</p>
     <section class="documents-filters" aria-label="Buscar y filtrar documentos">
       <div class="document-types" role="group" aria-label="Tipo de documento">
         <button type="button" data-type="all" aria-pressed="true">Todos</button>
-        <button type="button" data-type="texto" aria-pressed="false">Textos</button>
-        <button type="button" data-type="imagen" aria-pressed="false">Imágenes</button>
-        <button type="button" data-type="grafico" aria-pressed="false">Gráficos y tablas</button>
+        <button type="button" data-type="texto" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h16M4 20h16"/></svg>Textos</button>
+        <button type="button" data-type="imagen" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg>Imágenes</button>
+        <button type="button" data-type="grafico" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 15l4-4 3 2 6-7M15 6h5v5"/></svg>Gráficos y tablas</button>
       </div>
       <div class="document-search-row">
         <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar documentos por título, concepto o fecha" placeholder="Busca un título, concepto, fecha…" autocomplete="off"></label>
@@ -57,6 +59,12 @@
           <option value="12">12 · La transición y la democracia (desde 1975)</option>
         </select></label>
       </div>
+      <div class="document-saved-filters" role="group" aria-label="Marcas del banco de documentos">
+        <button type="button" data-document-saved="all" aria-pressed="true">Todos los documentos</button>
+        <button type="button" data-document-saved="favorite" aria-pressed="false">Favoritos</button>
+        <button type="button" data-document-saved="review" aria-pressed="false">Pendientes de repaso</button>
+      </div>
+      <p class="document-saving-hint">La vista se conserva en esta pestaña. La estrella y el birrete se guardan en este navegador, separados de Mis preguntas cortas. Quitar el birrete significa “ya repasado”.</p>
       <div class="document-topic-heading">
         <p class="document-topic-label" id="document-topic-label">Explora por temática</p>
         <label class="document-topic-search" for="document-topic-search">
@@ -85,6 +93,7 @@
       <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
       <div class="document-results-bar"><p id="document-count" role="status">Cargando documentos…</p></div>
     </section>
+    <p id="document-storage-status" class="document-storage-status" role="status" hidden></p>
     <p id="document-error" role="alert" hidden></p>
     <button id="document-retry" type="button" hidden>Volver a cargar</button>
     <noscript>Activa JavaScript para explorar el banco. Puedes consultar el <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit">documento de recopilación</a> sin esta herramienta.</noscript>
@@ -94,14 +103,16 @@
       <h2 id="coverage-title">Un banco en construcción</h2>
       <p>Este banco reúne documentos de los bloques 5–12, correspondientes a las Agrupaciones II y III. Los bloques 1–4 se trabajan en las preguntas cortas. El corpus actual procede de la recopilación aportada; las fichas y apariciones están enlazadas a su fuente, pero aún deben cotejarse con los PDF oficiales. Los apuntes del bloque 5 siguen en redacción.</p>
       <p><strong>Lectura de los textos:</strong> las frases cortadas por el cambio de renglón se unen, manteniendo separados los párrafos, artículos y apartados por su sentido. No se inventan continuaciones: los signos […] conservados indican omisiones de la selección, no saltos de línea. La tarjeta es una vista previa; la ficha permite leer el fragmento completo incorporado.</p>
-      <p><strong>Corte por formato:</strong> hay ejercicios de comentario en 2008, parte de 2009 y 2025–2026. En 2017–2024 se conserva el modelo de cuestiones cortas y tema, sin ejercicio de comentario de documento; esos años no son documentos pendientes de este banco. La cobertura se refiere a la exportación actual del corpus y no representa una frecuencia de todos los exámenes ni una predicción.</p>
+      <p><strong>Corte por formato:</strong> hay ejercicios de comentario en 2008, 2009 y 2025–2026. Están incorporados los seis exámenes de 2009 (24 apariciones documentales). En 2017–2024 se conserva el modelo de cuestiones cortas y tema, sin ejercicio de comentario de documento; esos años no son documentos pendientes de este banco. La cobertura se refiere a la exportación actual del corpus y no representa una frecuencia de todos los exámenes ni una predicción.</p>
       <p><strong>Modelo 2026–27:</strong> las fichas históricas se adaptan a las dos preguntas nuevas: a) análisis del hecho histórico, de 0 a 2 puntos; b) contexto y consecuencias, de 0 a 2 puntos. Total: 4 puntos. En imágenes y gráficos se propone un a) más breve y descriptivo y un b) más desarrollado; en textos pueden estar más equilibrados. Ambos apartados puntúan lo mismo. Su presencia histórica no garantiza su inclusión en el nuevo modelo. Las claves son orientaciones didácticas propias, no soluciones oficiales.</p>
-      <p><a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">Recopilación del corpus ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer">Archivo oficial de exámenes ↗</a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones 2026–27 ↗</a></p>
+      <p><a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">Recopilación del corpus <svg class="document-link-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/?q=grados&amp;d=g_b_examenes_anteriores.php" target="_blank" rel="noopener noreferrer">Archivo oficial de exámenes <svg class="document-link-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a> · <a href="https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026-2027-Orientaciones_historia_espana.pdf" target="_blank" rel="noopener noreferrer">Orientaciones 2026–27 <svg class="document-link-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a></p>
     </section>
   </main>
   <dialog id="document-dialog" aria-labelledby="document-dialog-title">
     <button class="document-close" type="button" aria-label="Cerrar documento" autofocus>×</button>
+    <p id="document-dialog-storage-status" class="document-storage-status" role="status" hidden></p>
     <div id="document-dialog-content"></div>
+    <div class="document-scroll-cue" aria-hidden="true"></div>
   </dialog>
 <footer class="site-footer">
   <div class="footer-inner">

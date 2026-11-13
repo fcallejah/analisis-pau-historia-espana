@@ -1,4 +1,20 @@
 (() => {
+  const questionsLink = document.querySelector(".header-tools .saved-nav");
+  if (questionsLink && !questionsLink.closest(".saved-nav-stack")) {
+    const stack = document.createElement("div");
+    stack.className = "saved-nav-stack";
+    questionsLink.before(stack);
+    stack.append(questionsLink);
+    const documentsLink = document.createElement("a");
+    documentsLink.href = new URL("mis-documentos.html", questionsLink.href).href;
+    documentsLink.className = "saved-nav";
+    documentsLink.textContent = "Mis documentos";
+    if (new URL(documentsLink.href).pathname === location.pathname) {
+      documentsLink.setAttribute("aria-current", "page");
+    }
+    stack.append(documentsLink);
+    stack.closest("nav").setAttribute("aria-label", "Listas personales, diccionario y RAE");
+  }
   const toggle = document.querySelector("#theme-toggle");
   if (!toggle) return;
   const root = document.documentElement;

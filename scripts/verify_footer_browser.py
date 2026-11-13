@@ -5,7 +5,7 @@ from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "documentos.html", "mis-preguntas.html",
+PAGES = ["index.html", "documentos.html", "mis-preguntas.html", "mis-documentos.html",
          *[path.relative_to(ROOT).as_posix() for path in sorted((ROOT / "apuntes").glob("bloque-*.html"))]]
 BASE = "http://127.0.0.1:8765"
 VIDEO = "https://youtu.be/dGbyNi_Z25c"
@@ -79,7 +79,7 @@ def run():
             static_page.close()
         static.close()
         browser.close()
-    print("OK: pie estático en 15 páginas, cuatro anchos, claro/oscuro, enlaces e impresión.")
+    print(f"OK: pie estático en {len(PAGES)} páginas, cuatro anchos, claro/oscuro, enlaces e impresión.")
 
 
 if __name__ == "__main__":

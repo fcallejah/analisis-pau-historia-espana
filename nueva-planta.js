@@ -135,7 +135,7 @@
       : "Después · Centralización borbónica (reino de España) · tras 1716";
     root.querySelector(".np-aragon-label").textContent = mode === "before"
       ? "Territorios de la Corona de Aragón"
-      : "Aragón, Cataluña, Valencia y Mallorca: Felipe V abolió sus fueros e instituciones políticas mediante los Decretos de Nueva Planta (1707–1716), tras la guerra de sucesión española. Invocó el «derecho de conquista» para justificar la abolición en el decreto de 1707.";
+      : "Aragón, Cataluña, Valencia y Mallorca: Felipe V abolió sus fueros e instituciones políticas mediante los Decretos de Nueva Planta (1707–1716), tras la guerra de sucesión española. Invocó el “derecho de conquista” para justificar la abolición en el decreto de 1707.";
     root.querySelector(".np-castile-label").textContent = mode === "before"
       ? "Corona de Castilla"
       : "Modelo de centralización borbónica";

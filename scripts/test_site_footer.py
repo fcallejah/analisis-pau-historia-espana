@@ -31,10 +31,10 @@ class FooterTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "varios pies"):
             footer.update_page("<head></head><body><footer>A</footer><footer>B</footer></body>")
 
-    def test_all_fifteen_pages_are_synchronized(self):
-        pages = [ROOT / "index.html", ROOT / "documentos.html", ROOT / "mis-preguntas.html",
+    def test_all_collection_and_notes_pages_are_synchronized(self):
+        pages = [ROOT / "index.html", ROOT / "documentos.html", ROOT / "mis-preguntas.html", ROOT / "mis-documentos.html",
                  *sorted((ROOT / "apuntes").glob("bloque-*.html"))]
-        self.assertEqual(len(pages), 15)
+        self.assertEqual(len(pages), 16)
         for path in pages:
             with self.subTest(page=path.name):
                 source = path.read_text(encoding="utf-8")

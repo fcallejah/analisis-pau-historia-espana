@@ -45,20 +45,6 @@
   const star = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg>';
   const cap = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5Z M5 10v6q7 5 14 0v-6 M22 8v8"/><path d="M10 15a2 2 0 0 1 4 0c0 1-2 1-2 2 M12 19h.01"/></svg>';
   const controls = new Set();
-  function celebrate(button, flag) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const icon = button.querySelector("svg");
-    const bounds = icon.getBoundingClientRect();
-    const particle = document.createElement("span");
-    particle.className = `favorite-particle${flag === "review" ? " review-particle" : ""}`;
-    particle.setAttribute("aria-hidden", "true");
-    particle.append(icon.cloneNode(true));
-    particle.style.left = `${bounds.left + bounds.width / 2}px`;
-    particle.style.top = `${bounds.top + bounds.height / 2}px`;
-    document.body.append(particle);
-    particle.addEventListener("animationend", () => particle.remove(), { once: true });
-    setTimeout(() => particle.remove(), 1600);
-  }
   function refresh() {
     for (const entry of controls) {
       if (!entry.node.isConnected && entry.connected) { controls.delete(entry); continue; }
@@ -103,7 +89,7 @@
           if (!next[id].favorite && !next[id].review) delete next[id];
           localStorage.setItem(key, JSON.stringify(next));
           saved = next;
-          if (next[id]?.[flag]) celebrate(button, flag);
+          if (next[id]?.[flag]) window.pauMarkFeedback(button, flag);
           refresh();
           renderList();
           report("Preguntas actualizadas. Se guardan solo en este navegador.");
@@ -121,13 +107,19 @@
   const host = document.querySelector("#saved-questions");
   let active = "all";
   const filter = document.querySelector("#saved-block");
+  const search = document.querySelector("#saved-search");
+  const answerFor = (item) => window.pauPractice.find(item.prompt, "", item.block) || item.answer;
   function renderList() {
     if (!host) return;
     const focused = document.activeElement;
     const oldIndex = [...host.querySelectorAll("button")].indexOf(focused);
     host.replaceChildren();
+    const terms = (search?.value || "").trim().split(/\s+/).map(normalize);
     const items = Object.values(saved).filter((item) => (active === "all" || item[active])
-      && (!filter.value || item.block === Number(filter.value)));
+      && (!filter.value || item.block === Number(filter.value))
+      && terms.every((term) => normalize(`${item.prompt} ${answerFor(item) || ""} ${item.source}`).includes(term)));
+    const count = document.querySelector("#saved-count");
+    if (count) count.textContent = `${items.length} ${items.length === 1 ? "pregunta guardada" : "preguntas guardadas"} con estos filtros`;
     document.querySelectorAll("[data-saved-list]").forEach((button) => {
       button.setAttribute("aria-pressed", String(button.dataset.savedList === active));
       button.querySelector("span:not(.saved-tab-icon)").textContent = Object.values(saved).filter((item) => button.dataset.savedList === "all" || item[button.dataset.savedList]).length;
@@ -148,7 +140,7 @@
       meta.textContent = `Bloque ${item.block}${item.source ? ` · ${item.source}` : ""}`;
       const prompt = document.createElement("p");
       prompt.textContent = spelling(item.prompt);
-      const answer = window.pauPractice.find(item.prompt, "", item.block) || item.answer;
+      const answer = answerFor(item);
       article.append(meta, prompt, window.pauPractice.render(answer ? spelling(answer) : answer));
       host.append(article);
       attach(article, item);
@@ -170,6 +162,13 @@
       button.addEventListener("click", () => { active = button.dataset.savedList; renderList(); });
     });
     filter.addEventListener("change", renderList);
+    search?.addEventListener("input", renderList);
+    document.querySelector("#saved-reset")?.addEventListener("click", () => {
+      active = "all";
+      filter.value = "";
+      search.value = "";
+      renderList();
+    });
     window.addEventListener("DOMContentLoaded", renderList);
   }
   window.addEventListener("storage", (event) => {

@@ -210,7 +210,7 @@
     if (!selected.quote.trim()) { selected = null; return; }
     bar.classList.add("annotation-floating");
     positionToolbar();
-    message("Elige un color o pulsa «Añadir nota» para el texto seleccionado.");
+    message("Elige un color o pulsa “Añadir nota” para el texto seleccionado.");
   }
   function positionToolbar() {
     if (!bar.classList.contains("annotation-floating") || dialog.open) return;
@@ -235,7 +235,7 @@
       return null;
     }
     if (records.some((record) => record.start < selected.end && record.end > selected.start)) {
-      message("Ese texto ya tiene una anotación. Edítala o elimínala desde «Mis subrayados y notas».");
+      message("Ese texto ya tiene una anotación. Edítala o elimínala desde “Mis subrayados y notas”.");
       return null;
     }
     const id = [...crypto.getRandomValues(new Uint32Array(4))].map((value) => value.toString(16)).join("-");

@@ -18,6 +18,244 @@ def normalize(value):
     return "".join(character for character in unicodedata.normalize("NFD", value.lower())
                    if not unicodedata.combining(character))
 
+def check_document_attributions(browser):
+    records = {record["id"]: record for record in DATA["documents"]}
+    for width in (1440, 375):
+        context = browser.new_context(viewport={"width": width, "height": 1000}, service_workers="block")
+        page = context.new_page()
+        page.goto(f"{BASE}/documentos.html")
+        for identifier, record in records.items():
+            if record["type"] != "texto":
+                continue
+            page.locator(f'.document-card[data-id="{identifier}"] .document-open').click()
+            check_collection_link(page, record)
+            font = page.locator(".document-full-source blockquote").evaluate(
+                "node => getComputedStyle(node).fontFamily")
+            assert font.startswith('"PAU Caption"'), (identifier, font)
+            assert page.locator(f'.document-card[data-id="{identifier}"] blockquote').evaluate(
+                "node => getComputedStyle(node).fontFamily") == font
+            paragraphs = page.locator(".document-full-source blockquote p")
+            assert paragraphs.all_text_contents() == record["text"]
+            count = record.get("attributionParagraphs", 0)
+            for index, paragraph in enumerate(paragraphs.all()):
+                style = paragraph.evaluate("""node => {
+                    const s = getComputedStyle(node);
+                    return {align:s.textAlign,last:s.textAlignLast,style:s.fontStyle};
+                }""")
+                if index >= len(record["text"]) - count:
+                    assert style == {"align": "right", "last": "right", "style": "normal"}, (identifier, style)
+                    emphasis = record.get("attributionEmphasis", []) if index == len(record["text"]) - 1 else []
+                    assert paragraph.locator("em").all_text_contents() == emphasis, identifier
+                    for part in paragraph.locator("em").all():
+                        assert part.evaluate("node => getComputedStyle(node).fontStyle") == "italic"
+                    if identifier == "ley-general-de-ferrocarriles":
+                        assert paragraph.locator("em").all_text_contents() == ["Ley general de ferrocarriles"]
+                    if identifier == "antonio-maura-critica-la-representacion-politica":
+                        assert paragraph.locator("em").all_text_contents() == ["Antonio Maura"]
+                    assert paragraph.evaluate("""node => {
+                        const range = document.createRange();
+                        range.selectNodeContents(node);
+                        return Math.abs(range.getBoundingClientRect().right - node.getBoundingClientRect().right) < 1;
+                    }""")
+                else:
+                    assert style == {"align": "justify", "last": "left", "style": "normal"}, (identifier, style)
+            page.keyboard.press("Escape")
+        context.close()
+
+def check_collection_link(page, record):
+    assert page.locator(".document-provenance, .document-quality").count() == 0
+    collection = page.get_by_role("link", name="Ver en la recopilación", exact=True)
+    assert collection.count() == 1
+    appearance = next(item for item in record["appearances"]
+                      if item["id"] == record["examCaption"]["appearanceId"]) if record.get("examCaption") else record["appearances"][0]
+    assert collection.get_attribute("href") == appearance["sourceUrl"]
+    assert collection.inner_text() == "Ver en la recopilación"
+    icon = collection.locator("svg")
+    assert icon.count() == 1 and icon.get_attribute("aria-hidden") == "true"
+    assert icon.evaluate("(node) => node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0")
+
+
+def appearance_label(appearance):
+    exam = re.sub(rf"^{appearance['year']}\s+", "", appearance["exam"])
+    exam = re.sub(r"\s*\([^)]*\)\s*$", "", exam)
+    return " · ".join(str(part) for part in (
+        appearance["year"], exam,
+        "" if appearance["route"].endswith("sin cotejar") else appearance["route"],
+        f"Documento {appearance['document']}",
+    ) if part != "")
+
+
+def check_card_badges(page):
+    badges = page.locator(".document-card").evaluate_all("""cards => Object.fromEntries(
+        cards.map(card => [card.dataset.id,
+            [...card.querySelectorAll('.document-exams .exam-pill')].map(pill => pill.textContent)])
+    )""")
+    for record in DATA["documents"]:
+        assert badges[record["id"]] == [
+            appearance_label(appearance) for appearance in record["appearances"]
+        ], record["id"]
+
+def check_fitted_media_and_people(browser):
+    for width, height in ((1440, 1000), (768, 1024), (375, 812)):
+        context = browser.new_context(viewport={"width": width, "height": height},
+                                      service_workers="block", has_touch=True)
+        page = context.new_page()
+        page.goto(f"{BASE}/documentos.html")
+        page.wait_for_selector(".document-card")
+        for record in DATA["documents"]:
+            if not record.get("image") and not record.get("tableImage"):
+                continue
+            card = page.locator(f'.document-card[data-id="{record["id"]}"]')
+            card.locator(".document-preview-zoom").tap()
+            check_collection_link(page, record)
+            box = page.locator(".document-full-source")
+            assert not box.evaluate("(node) => node.classList.contains('is-zoomed')")
+            for image in box.locator("img").all():
+                image.evaluate("(node) => node.decode()")
+                geometry = image.evaluate("""image => {
+                    const r = image.getBoundingClientRect();
+                    const visible = (image.closest('.doc-image-crop') || image).getBoundingClientRect();
+                    return {ratio:r.width/r.height, natural:image.naturalWidth/image.naturalHeight,
+                        height:visible.height, width:visible.width};
+                }""")
+                assert abs(geometry["ratio"] - geometry["natural"]) < 0.001, (record["id"], width, geometry)
+                assert geometry["height"] <= height * .52 + 1, (record["id"], geometry)
+                assert geometry["width"] <= box.evaluate("(node) => node.clientWidth"), record["id"]
+            data = record.get("image", {}).get("annotations")
+            caption = record.get("examCaption")
+            foot = box.locator(".document-exam-caption")
+            assert foot.count() == 1
+            assert foot.locator("p").inner_text() == (caption["text"] if caption else "(Sin descripción)")
+            assert foot.locator("em").all_text_contents() == (caption.get("emphasis", []) if caption else [])
+            assert foot.locator("small").count() == 0
+            assert foot.evaluate("""node => {
+                const p = node.querySelector('p');
+                const style = getComputedStyle(p);
+                const media = node.closest('figure').querySelector('.document-person-stage, .doc-image-crop, img, object');
+                return parseFloat(style.fontSize) >= 18 && style.fontWeight === '400'
+                    && style.fontStyle === 'normal' && style.fontFamily.startsWith('"PAU Caption"')
+                    && node.getBoundingClientRect().top >= media.getBoundingClientRect().bottom - 1
+                    && !!node.closest('.document-full-source');
+            }"""), record["id"]
+            toggle = box.locator(".document-person-toggle")
+            assert toggle.count() == bool(data), record["id"]
+            if data:
+                assert toggle.get_attribute("aria-expanded") == "false"
+                assert not box.locator(".document-person-overlay").is_visible()
+                before = box.locator(".document-person-stage").bounding_box()
+                toggle.tap()
+                after = box.locator(".document-person-stage").bounding_box()
+                assert abs(before["width"] - after["width"]) < 1 and abs(before["height"] - after["height"]) < 1
+                assert toggle.inner_text() == "Ocultar personajes"
+                assert box.locator(".document-person-overlay").is_visible()
+                assert box.locator(".document-person-name").all_text_contents() == [
+                    person["name"] for person in data["people"]
+                ]
+                margins = width == 1440 and data["layout"] == "margins"
+                assert box.locator(".document-person-bubble").first.is_visible() == margins
+                assert box.locator(".document-person-names").is_visible() != margins
+                assert page.locator(".document-person-sources").count() == 0
+                assert box.locator(".document-person-role").all_text_contents() == [
+                    person["role"] for person in data["people"]
+                ]
+                for zoomed in (False, True):
+                    if zoomed:
+                        box.locator(".document-zoom").tap()
+                    page.wait_for_timeout(60)
+                    stage = box.locator(".document-person-stage")
+                    geometry = stage.evaluate("""stage => {
+                        const media = stage.querySelector('.doc-image-crop, img').getBoundingClientRect();
+                        const r = stage.getBoundingClientRect();
+                        const image = stage.querySelector('img');
+                        const i = image.getBoundingClientRect();
+                        return {aligned:Math.abs(r.width-media.width)<1 && Math.abs(r.height-media.height)<1,
+                            ratio:i.width/i.height, natural:image.naturalWidth/image.naturalHeight};
+                    }""")
+                    assert geometry["aligned"], (record["id"], width, zoomed, geometry)
+                    assert abs(geometry["ratio"] - geometry["natural"]) < .001
+                    if margins:
+                        assert box.locator(".document-person-lines line").first.evaluate("""line => {
+                            const style = getComputedStyle(line);
+                            return style.stroke === 'rgb(229, 57, 53)' && parseFloat(style.strokeWidth) >= 2.5;
+                        }""")
+                        assert stage.evaluate("""stage => {
+                            const line = stage.querySelector('.document-person-lines line');
+                            const dot = stage.querySelector('.document-person-lines circle');
+                            return getComputedStyle(dot).fill === 'rgb(229, 57, 53)'
+                                && dot.r.baseVal.value * 2 === 10
+                                && dot.cx.baseVal.value === line.x1.baseVal.value
+                                && dot.cy.baseVal.value === line.y1.baseVal.value;
+                        }""")
+                        assert stage.evaluate("""stage => {
+                            const r = document.querySelector('#document-dialog').getBoundingClientRect();
+                            const labels = [...stage.querySelectorAll('.document-person-bubble')]
+                                .filter(b => !b.hidden).map(b => b.getBoundingClientRect());
+                            return labels.every(label => label.right <= r.left || label.left >= r.right)
+                                && labels.every((label, index) => labels.slice(index + 1).every(other =>
+                                    label.right <= other.left || label.left >= other.right
+                                    || label.bottom <= other.top || label.top >= other.bottom));
+                        }"""), record["id"]
+                toggle.tap()
+                assert toggle.get_attribute("aria-expanded") == "false"
+                assert not box.locator(".document-person-details").is_visible()
+            page.locator(".document-close").tap()
+        context.close()
+
+def check_external_people(browser):
+    context = browser.new_context(viewport={"width": 1440, "height": 1000}, service_workers="block")
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    page.goto(f"{BASE}/documentos.html")
+    page.locator('.document-card[data-id="reunion-expresidentes-gobierno"] .document-open').click()
+    page.locator(".document-person-stage img").evaluate("(image) => image.decode()")
+    page.locator(".document-person-toggle").click()
+    for width in (1440, 1280, 1100, 375, 1440):
+        page.set_viewport_size({"width": width, "height": 1000})
+        placement = "external" if width >= 1280 else "numbered"
+        page.wait_for_function("""placement => {
+            const figure = document.querySelector('.document-person-figure');
+            if (figure.dataset.peoplePlacement !== placement) return false;
+            if (placement === 'numbered') return !document.querySelector(':popover-open');
+            const stage = figure.querySelector('.document-person-stage').getBoundingClientRect();
+            const line = figure.querySelector('line');
+            const point = new DOMPoint(Number(line.getAttribute('x1')), Number(line.getAttribute('y1')))
+                .matrixTransform(line.getScreenCTM());
+            return Math.abs(point.x - stage.left - .1 * stage.width) < 1
+                && Math.abs(point.y - stage.top - .48 * stage.height) < 1;
+        }""", arg=placement)
+        assert page.locator(".document-person-names").is_visible() == (placement == "numbered")
+    line = page.locator(".document-person-lines line").first
+    before_y = float(line.get_attribute("y1"))
+    delta = page.locator("#document-dialog").evaluate("""dialog => {
+        const before = dialog.scrollTop;
+        dialog.scrollTop += 80;
+        return dialog.scrollTop - before;
+    }""")
+    assert delta > 0
+    page.wait_for_function("expected => Math.abs(Number(document.querySelector('.document-person-lines line').getAttribute('y1')) - expected) < 1",
+                           arg=before_y - delta)
+    label = page.locator(".document-person-label").first.bounding_box()
+    page.mouse.move(label["x"] + 1, label["y"] + label["height"] / 2)
+    page.mouse.down()
+    page.mouse.move(label["x"] + label["width"] - 1, label["y"] + label["height"] / 2, steps=10)
+    page.mouse.up()
+    assert "Felipe González" in page.evaluate("getSelection().toString()")
+    page.keyboard.press("Escape")
+    page.wait_for_function("!document.querySelector('#document-dialog').open && !document.querySelector(':popover-open')")
+    assert not errors, errors
+    context.close()
+
+    fallback = browser.new_context(viewport={"width": 1440, "height": 1000}, service_workers="block")
+    fallback.add_init_script("HTMLElement.prototype.showPopover = undefined")
+    page = fallback.new_page()
+    page.goto(f"{BASE}/documentos.html")
+    page.locator('.document-card[data-id="reunion-expresidentes-gobierno"] .document-open').click()
+    page.locator(".document-person-toggle").click()
+    assert page.locator(".document-person-names").is_visible()
+    assert not page.locator(".document-person-bubble").first.is_visible()
+    fallback.close()
+
 
 def search_matches(query):
     return [
@@ -46,7 +284,10 @@ def topic_statistics():
 def check_text_card(page):
     card = page.locator(f'.document-card[data-id="{TEXT_DOCUMENT["id"]}"]')
     opener = card.locator(".document-open")
-    assert card.locator("button, a, [tabindex]").count() == 1
+    assert card.locator("button, a, [tabindex]").count() == 3
+    assert card.locator(".document-open").count() == 1
+    assert card.locator('button.question-mark-favorite[aria-pressed]').count() == 1
+    assert card.locator('button.question-mark-review[aria-pressed]').count() == 1
     assert card.locator(".document-read-more").inner_text() == "… Leer más"
     assert card.locator(".document-read-more").get_attribute("aria-hidden") == "true"
     assert card.locator(".document-read-more span").evaluate(
@@ -62,6 +303,11 @@ def check_text_card(page):
                          bounds["y"] + bounds["height"] / 2)
         assert page.locator("#document-dialog").is_visible(), selector
         assert page.locator(".document-full-source blockquote p").count() == len(TEXT_DOCUMENT["text"])
+        assert page.locator(".document-full-source blockquote").evaluate("""node => {
+            const style = getComputedStyle(node);
+            return style.textAlign === 'justify' && style.textAlignLast === 'left'
+                && node.scrollWidth <= node.clientWidth;
+        }""")
         assert page.locator(".document-read-more").count() == page.locator(
             '.document-card[data-document-type="texto"]'
         ).count()
@@ -119,9 +365,10 @@ def run():
         page.goto(f"{BASE}/documentos.html")
         page.wait_for_selector(".document-card")
         assert page.locator(".document-card").count() == len(DATA["documents"])
+        check_card_badges(page)
         scope_text = page.locator("#document-scope").inner_text()
         assert str(len(DATA["documents"])) in scope_text
-        assert "72 apariciones documentales" in scope_text
+        assert f"{DATA['coverage']['sourceDocumentOccurrences']} apariciones documentales" in scope_text
         assert "2017–2024" in scope_text
         assert page.locator("#document-block option").evaluate_all("(options) => options.map(option => option.value)") == ["", "5", "6", "7", "8", "9", "10", "11", "12"]
         assert page.locator('#document-block option[value="7"]').inner_text() == "7 · La Restauración (1874–1902)"
@@ -133,6 +380,17 @@ def run():
             if any(int(option["value"]) in document["blocks"] for document in DATA["documents"])
         ]
         check_dialog_scroll(page)
+        page.locator('.document-card[data-id="mapa-desamortizacion-madoz"] .document-open').click()
+        map_record = next(d for d in DATA["documents"] if d["id"] == "mapa-desamortizacion-madoz")
+        assert page.locator("#document-dialog .document-exams .exam-pill").all_text_contents() == [
+            appearance_label(appearance) for appearance in map_record["appearances"]
+        ]
+        assert page.locator(".document-original-link").get_attribute("href") == map_record["image"]["originalSrc"]
+        assert page.locator(".document-corpus-link").get_attribute("href") == map_record["image"]["corpusSrc"]
+        assert "leyenda distinta" in page.locator(".document-corpus-link").inner_text()
+        assert "70 millones de reales" in page.locator("#document-dialog .document-table").text_content()
+        assert "400 millones de reales" not in page.locator("#document-dialog .document-table").text_content()
+        page.locator(".document-close").click()
         for selected_type in ("texto", "imagen", "grafico", "all"):
             page.locator(f'[data-type="{selected_type}"]').click()
             page.reload()
@@ -241,7 +499,9 @@ def run():
                 assert geometry["contained"], (width, geometry)
                 crop = document.get("image", {}).get("crop")
                 image_data = document.get("image") or document["tableImage"]
-                ratio = crop["width"] / crop["height"] if crop else image_data["width"] / image_data["height"]
+                ratio = image_data["width"] / image_data["height"]
+                if crop:
+                    ratio *= crop["width"] / crop["imageWidth"] * crop["imageHeight"] / crop["height"]
                 assert abs(geometry["ratio"] - ratio) < 0.01, (width, geometry)
         page.set_viewport_size(original_viewport)
         for document in DATA["documents"]:
@@ -265,7 +525,8 @@ def run():
                 }""")
                 assert geometry["overflow"] == "hidden"
                 for key, expected in {
-                    "ratio": crop["width"] / crop["height"],
+                    "ratio": document["image"]["width"] / document["image"]["height"]
+                        * crop["width"] / crop["imageWidth"] * crop["imageHeight"] / crop["height"],
                     "left": crop["left"] / crop["width"],
                     "top": crop["top"] / crop["height"],
                     "width": crop["imageWidth"] / crop["width"],
@@ -278,8 +539,8 @@ def run():
         assert page.locator(".document-full-source img").evaluate(
             "(image) => [image.naturalWidth, image.naturalHeight]"
         ) == [940, 615]
-        assert page.get_by_role("link", name="Fuente de esta reproducción ↗").get_attribute("href") == casas_viejas["image"]["sourceUrl"]
-        assert "no se presenta como captura exacta del examen" in page.locator(".document-quality").inner_text()
+        assert page.get_by_role("link", name="Fuente de esta reproducción", exact=True).get_attribute("href") == casas_viejas["image"]["sourceUrl"]
+        assert page.locator(".document-reproduction-note").inner_text() == casas_viejas["image"]["reproductionNote"]
         page.locator(".document-close").click()
         page.locator('[data-type="imagen"]').click()
         assert page.locator(".document-card").count() == sum(document["type"] == "imagen" for document in DATA["documents"])
@@ -296,11 +557,21 @@ def run():
         preview_zoom.click()
         assert page.locator(".document-dialog").count() == 0
         assert page.locator("#document-dialog").is_visible()
-        assert page.locator(".document-full-source").get_attribute("class").endswith("is-zoomed")
+        assert not page.locator(".document-full-source").evaluate("(node) => node.classList.contains('is-zoomed')")
         page.locator(".document-close").click()
         assert preview_zoom.evaluate("(button) => button === document.activeElement")
         opener.click()
         assert page.locator("#document-dialog").is_visible()
+        assert page.locator(".document-task h3").inner_text() == "Enunciado de PAU · 4 puntos"
+        assert page.locator(".document-task").get_attribute("aria-label") == "Enunciado de PAU · 4 puntos"
+        for theme in ("light", "dark"):
+            page.evaluate("(theme) => document.documentElement.dataset.theme = theme", theme)
+            assert page.locator(".document-task").evaluate("""node => {
+                const task = getComputedStyle(node);
+                const source = getComputedStyle(document.querySelector('.document-full-source'));
+                return task.backgroundColor === source.backgroundColor && task.borderColor === source.borderColor;
+            }""")
+        page.evaluate("document.documentElement.dataset.theme = 'light'")
         assert page.locator(".document-task").inner_text().count("De 0 a 2 puntos.") == 2
         assert "a) Analice el hecho histórico" in page.locator(".document-task").inner_text()
         assert "b) Explique el contexto histórico" in page.locator(".document-task").inner_text()
@@ -311,8 +582,10 @@ def run():
         assert page.locator(".document-guide h3").count() == 2
         assert page.locator(".document-guide h3").first.inner_text().startswith("a) ")
         assert page.locator(".document-guide h3").nth(1).inner_text().startswith("b) ")
-        assert page.locator(".document-appearances li").count() == len(GOYA_DOCUMENT["appearances"])
-        pills = page.locator(".document-appearances .exam-pill")
+        assert page.locator(".document-appearances").count() == 0
+        assert "Formato histórico, anterior a 2026" not in page.locator("#document-dialog-content").inner_text()
+        pills = page.locator("#document-dialog-content > .document-exams .exam-pill")
+        assert pills.count() == len(GOYA_DOCUMENT["appearances"])
         assert pills.all_text_contents() == [
             " · ".join(part for part in (
                 str(appearance["year"]),
@@ -367,7 +640,7 @@ def run():
             assert image.evaluate("(node) => [node.naturalWidth, node.naturalHeight]") == [
                 capture["width"], capture["height"]
             ]
-            assert source.locator("figcaption").filter(has_text="SVG extraído del PDF oficial").count() == 1
+            check_collection_link(page, document)
             details = source.locator("details.document-table-details")
             assert details.locator("summary").inner_text() == "Leer la tabla en texto"
             details.locator("summary").click()
@@ -380,10 +653,10 @@ def run():
         page.locator(f'.document-card[data-id="{official_id}"] .document-open').click()
         official_image = page.locator(".document-full-source img")
         assert official_image.evaluate("(node) => [node.naturalWidth, node.naturalHeight]") == [2084, 1418]
-        assert "PDF oficial" in page.locator(".document-quality").inner_text()
-        assert "Redibujado vectorial" in page.locator(".document-quality").inner_text()
-        assert page.get_by_role("link", name="Ver recorte del PDF original ↗").get_attribute("href") == official["image"]["originalSrc"]
-        assert page.locator(".document-appearances .exam-pill").inner_text() == "2026 · Suplente ordinaria · Itinerario B · Documento 2"
+        check_collection_link(page, official)
+        assert page.locator(".document-reproduction-note").inner_text() == official["image"]["reproductionNote"]
+        assert page.get_by_role("link", name="Ver recorte del PDF original", exact=True).get_attribute("href") == official["image"]["originalSrc"]
+        assert page.locator("#document-dialog-content > .document-exams .exam-pill").inner_text() == "2026 · Suplente ordinaria · Itinerario B · Documento 2"
         official_details = page.locator(".document-table-details")
         official_details.locator("summary").click()
         assert official_details.locator("tbody tr").count() == len(official["table"]["rows"])
@@ -394,11 +667,8 @@ def run():
         page.locator(f'.document-card[data-id="{desamortizaciones["id"]}"] .document-open').click()
         image = page.locator(".document-full-source img")
         assert image.evaluate("(node) => [node.naturalWidth, node.naturalHeight]") == [1492, 1088]
-        assert "Extracción vectorial del PDF oficial de 2008" in page.locator(".document-quality").inner_text()
-        assert page.locator(".document-appearances .exam-pill").first.inner_text() == "2008 · Examen 6 · Opción A · Documento 2"
-        assert page.locator(".document-appearance-note").all_text_contents() == [
-            "Itinerario pendiente de comprobar en el PDF oficial.",
-        ]
+        check_collection_link(page, desamortizaciones)
+        assert page.locator("#document-dialog-content > .document-exams .exam-pill").first.inner_text() == "2008 · Examen 6 · Opción A · Documento 2"
         page.locator(".document-close").click()
         page.locator("#document-reset").click()
         page.locator("#document-search").fill("constitucion")
@@ -518,10 +788,20 @@ def run():
         for width in (320, 375, 768, 1440):
             page.set_viewport_size({"width": width, "height": 900})
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth"), width
+            assert page.locator(".document-card .document-exams .exam-pill").evaluate_all("""pills =>
+                pills.every(pill => {
+                    const box = pill.getBoundingClientRect();
+                    const card = pill.closest('.document-card').getBoundingClientRect();
+                    return box.left >= card.left && box.right <= card.right && pill.scrollWidth <= pill.clientWidth;
+                })
+            """), width
             check_text_card(page)
             page.locator(f'.document-card[data-id="{TEXT_DOCUMENT["id"]}"] .document-open').click()
             assert page.locator("#document-dialog").evaluate("(el) => el.scrollWidth <= el.clientWidth"), width
             page.locator(".document-close").click()
+        check_fitted_media_and_people(browser)
+        check_external_people(browser)
+        check_document_attributions(browser)
         assert not errors, errors
         context.close()
 
@@ -549,10 +829,14 @@ def run():
         multi_page.goto(f"{BASE}/documentos.html")
         multi_page.wait_for_selector(".document-card")
         assert multi_page.locator(".document-card").count() == len(DATA["documents"])
+        assert multi_page.locator(
+            f'.document-card[data-id="{multi_target["id"]}"] .document-exams .exam-pill'
+        ).count() == 2
         total_appearances = sum(len(document["appearances"]) for document in DATA["documents"])
         assert f"{total_appearances + 1} apariciones" in multi_page.locator("#document-count").inner_text()
         multi_page.locator(f'.document-card[data-id="{multi_target["id"]}"] .document-open').click()
-        assert multi_page.locator(".document-appearances li").count() == 2
+        assert multi_page.locator("#document-dialog-content > .document-exams li").count() == 2
+        assert multi_page.locator("#document-dialog .document-exams .exam-pill").count() == 2
         multi_page.locator(".document-close").click()
         multi_page.select_option("#document-block", "6")
         assert multi_page.locator(".document-card").count() == sum(

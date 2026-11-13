@@ -2,7 +2,7 @@
    del autor (sin años) con los enunciados literales de la PAU 2017-2026 del corpus
    (data/preguntas-cortas.json). Los puntos clave de las preguntas PAU de los bloques 1-3 se han
    redactado a partir de los apuntes; el bloque 4 no tiene soluciones hasta recibir sus apuntes. */
-const CLAVES_VALIDO = "valido o privado: noble de máxima confianza y favorecido por el rey; delegación de las principales tareas y funciones de gobierno; gran poder político, dependiente del favor real; similar a un «primer ministro», sin ser un cargo equivalente ni sustituir la autoridad del rey; Austrias menores, siglo XVII: Felipe III, Felipe IV y Carlos II; ejemplos: duque de Lerma (Felipe III) y conde-duque de Olivares (Felipe IV)";
+const CLAVES_VALIDO = "valido o privado: noble de máxima confianza y favorecido por el rey; delegación de las principales tareas y funciones de gobierno; gran poder político, dependiente del favor real; similar a un “primer ministro”, sin ser un cargo equivalente ni sustituir la autoridad del rey; Austrias menores, siglo XVII: Felipe III, Felipe IV y Carlos II; ejemplos: duque de Lerma (Felipe III) y conde-duque de Olivares (Felipe IV)";
 
 const FICHAS = {
  "1": [
@@ -437,7 +437,7 @@ const FICHAS = {
   ],
   [
    "¿Qué rey de España fue también emperador en Europa en la Edad Moderna? Explique brevemente las características de la política exterior de dicho monarca.",
-   "Carlos I; «universitas christiana»; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
+   "Carlos I; “universitas christiana”; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
    "PAU 2018"
   ],
   [
@@ -457,7 +457,7 @@ const FICHAS = {
   ],
   [
    "¿En qué reinado tuvo lugar la derrota de la “Armada Invencible”? Explique brevemente las diferencias de la política internacional de este monarca con la de su padre, Carlos I.",
-   "Felipe II; defensa del catolicismo (Contrarreforma) y de la hegemonía hispánica; San Quintín (1557) y Lepanto (1571); Unión Ibérica con Portugal (1580); rebelión de Flandes; Armada Invencible (1588); bancarrotas; Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Felipe II; defensa del catolicismo (Contrarreforma) y de la hegemonía hispánica; San Quintín (1557) y Lepanto (1571); Unión Ibérica con Portugal (1580); rebelión de Flandes; Armada Invencible (1588); bancarrotas; Carlos I: imperio europeo, “universitas christiana” y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2019, 2020, 2021, 2023"
   ],
   [
@@ -482,7 +482,7 @@ const FICHAS = {
   ],
   [
    "¿Qué rey de España fue también emperador en Europa en la Edad Moderna? Explique brevemente las características de la política exterior europea de dicho monarca.",
-   "Carlos I; «universitas christiana»; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
+   "Carlos I; “universitas christiana”; enemigos: Francia, Imperio otomano y protestantismo; Paz de Augsburgo (1555); abdicación en 1556",
    "PAU 2020, 2024"
   ],
   [
@@ -537,7 +537,7 @@ const FICHAS = {
   ],
   [
    "Explique brevemente las diferencias de la política internacional de Carlos I y Felipe II.",
-   "Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Carlos I: imperio europeo, “universitas christiana” y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2025, 2026"
   ],
   [
@@ -547,7 +547,7 @@ const FICHAS = {
   ],
   [
    "Señale los dos monarcas de más amplio reinado en el siglo XVI y las diferencias en su política exterior.",
-   "Carlos I y Felipe II; Carlos I: imperio europeo, «universitas christiana» y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
+   "Carlos I y Felipe II; Carlos I: imperio europeo, “universitas christiana” y lucha contra Francia, otomanos y protestantes; Felipe II: imperio de base hispánica, capital en Madrid, Contrarreforma, Lepanto, Portugal (1580), Flandes y Armada Invencible",
    "PAU 2025, 2026"
   ],
   [
@@ -766,7 +766,7 @@ const CLAVES_BLOQUE_4 = {
   planta: "abolición de fueros e instituciones de la Corona de Aragón (1707-1716); supresión de Cortes y Consejos propios; leyes, tribunales y fiscalidad de Castilla; capitanes generales e intendentes; castellano administrativo; Navarra y País Vasco exentos",
   motivoPlanta: "apoyo aragonés al archiduque Carlos; derecho de conquista; absolutismo y centralización según modelo castellano",
   administracion: "secretarías de Estado y del Despacho; Junta Suprema de Estado (1787); capitanías generales, audiencias, intendentes y corregidores; refuerzo de autoridad real y recaudación",
-  despotismo: "absolutismo con reformas ilustradas; modernización sin participación política del pueblo; «Todo para el pueblo, pero sin el pueblo»; sociedad estamental intacta",
+  despotismo: "absolutismo con reformas ilustradas; modernización sin participación política del pueblo; “Todo para el pueblo, pero sin el pueblo”; sociedad estamental intacta",
   agricultura: "aumentar productividad; regadíos (canales de Castilla y Aragón), colonización de Sierra Morena, nuevos cultivos (maíz, patata), límites a la Mesta; mayorazgos y manos muertas; ley agraria de Jovellanos; reformas limitadas",
   economia: "agricultura: regadíos y colonización; reales fábricas y proteccionismo; catastro de Ensenada; Banco de San Carlos; libre comercio con América (1765, 1778); oposición de privilegiados",
   luces: "difusión de la Ilustración; razón, ciencia, educación y progreso; crítica a sociedad estamental; minoritaria y católica, condicionada por Iglesia e Inquisición; academias, Sociedades Económicas, prensa",

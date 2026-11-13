@@ -1,10 +1,12 @@
 {
   "version": 1,
-  "scope": "Banco generado desde la exportación actual del corpus aportado: 72 apariciones documentales y 29 apariciones de imágenes, enlazadas a 65 fichas. Incluye comentarios de 2008, parte de 2009 y 2025–2026. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. Las apariciones y transcripciones aún requieren cotejo con los PDF oficiales.",
+  "scope": "Banco generado desde la exportación actual del corpus aportado: 88 apariciones documentales y 36 apariciones de imágenes, enlazadas a 79 fichas. Incluye los seis exámenes de 2009 (24 documentos), además de los comentarios de 2008 y 2025–2026 ya incorporados. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. La cobertura se refiere al corpus aportado, no a todos los exámenes celebrados; las transcripciones y reproducciones no expresamente cotejadas siguen pendientes de revisión.",
   "source": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit",
   "documents": [
     {
       "id": "bando-de-murat-tras-el-levantamiento-del-2-de-mayo",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Murat"],
       "title": "Bando de Murat tras el levantamiento del 2 de mayo",
       "type": "texto",
       "blocks": [
@@ -41,26 +43,13 @@
         }
       ],
       "text": [
-        "“Orden del día: Soldados: mal aconsejado el populacho de Madrid,",
-        "se ha levantado y ha cometido asesinatos. Bien sé que los",
-        "españoles que merecen el nombre de tales han lamentado tamaños",
-        "desórdenes y estoy muy distante de confundir con ellos a unos",
-        "miserables que solo respiran robos y delitos. Pero la sangre",
-        "francesa vertida clama venganza. Por lo tanto, mando lo siguiente:",
+        "“Orden del día: Soldados: mal aconsejado el populacho de Madrid, se ha levantado y ha cometido asesinatos. Bien sé que los españoles que merecen el nombre de tales han lamentado tamaños desórdenes y estoy muy distante de confundir con ellos a unos miserables que solo respiran robos y delitos. Pero la sangre francesa vertida clama venganza. Por lo tanto, mando lo siguiente:",
         "Art. 1. Esta noche convocará el general Grouchy la comisión militar.",
-        "Art. 2. Serán arcabuceados todos cuantos durante la rebelión han",
-        "sido presos con armas.",
-        "Art. 3. La Junta de Gobierno va a mandar desarmar a los vecinos",
-        "de Madrid. Todos los moradores de la Corte que, pasado el tiempo",
-        "prescrito para la ejecución de esta resolución, anden con armas, o",
-        "las conserven en su casa sin licencia especial, serán arcabuceados.",
-        "Art. 4. Todo corrillo que pase de ocho personas, se reputará reunión",
-        "de sediciosos y se disipará a fusilazos.",
-        "Art. 5. Toda villa o aldea donde sea asesinado un francés será",
-        "incendiada.",
-        "Art. 6. Los amos responderán de sus criados; los empresarios de",
-        "fábricas, de sus oficiales; los padres, de sus hijos, y los prelados de",
-        "conventos, de sus religiosos”.",
+        "Art. 2. Serán arcabuceados todos cuantos durante la rebelión han sido presos con armas.",
+        "Art. 3. La Junta de Gobierno va a mandar desarmar a los vecinos de Madrid. Todos los moradores de la Corte que, pasado el tiempo prescrito para la ejecución de esta resolución, anden con armas, o las conserven en su casa sin licencia especial, serán arcabuceados.",
+        "Art. 4. Todo corrillo que pase de ocho personas, se reputará reunión de sediciosos y se disipará a fusilazos.",
+        "Art. 5. Toda villa o aldea donde sea asesinado un francés será incendiada.",
+        "Art. 6. Los amos responderán de sus criados; los empresarios de fábricas, de sus oficiales; los padres, de sus hijos, y los prelados de conventos, de sus religiosos”.",
         "Murat, Madrid, a 2 de mayo de 1808."
       ]
     },
@@ -88,7 +77,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica una portada ilustrada de la Constitución de 1812, no un fragmento de su articulado. Sitúa la promulgación en Cádiz durante la guerra y apóyate en el título, la fecha y el lugar impresos. Describe el medallón, la figura femenina y la inscripción «Sic erat in fatis» como recursos de exaltación simbólica del nuevo texto. No asignes a cada elemento una identidad alegórica precisa ni atribuyas el grabado a un autor sin fuente."
+          "text": "Identifica una portada ilustrada de la Constitución de 1812, no un fragmento de su articulado. Sitúa la promulgación en Cádiz durante la guerra y apóyate en el título, la fecha y el lugar impresos. Describe el medallón, la figura femenina y la inscripción “Sic erat in fatis” como recursos de exaltación simbólica del nuevo texto. No asignes a cada elemento una identidad alegórica precisa ni atribuyas el grabado a un autor sin fuente."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -103,12 +92,18 @@
           "route": "Bloque II",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.vu325nx5299w",
-          "sourceKey": "h.vu325nx5299w:1"
+          "sourceKey": "h.vu325nx5299w:1",
+          "sourceImages": [
+            26
+          ],
+          "sourceOrdinal": 1
         }
       ]
     },
     {
       "id": "constitucion-1812-articulos-2008",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Constitución Española de 1812"],
       "title": "La Constitución de 1812: soberanía y derechos",
       "type": "texto",
       "blocks": [
@@ -121,14 +116,15 @@
       ],
       "date": "19 de marzo de 1812",
       "sourceCaption": "Constitución española de 1812. Selección de artículos 3, 4, 14, 15, 287 y 371 recogida en 2008, Examen 2, opción A, documento 1.",
-      "quality": "Transcripción del corpus aportado; se conservan los artículos seleccionados y su redacción, incluida «Todos los españoles tiene». Pendiente de cotejo con el PDF del examen.",
+      "quality": "Transcripción del corpus aportado; se conservan los artículos seleccionados y su redacción, incluida “Todos los españoles tiene”. Referencia final recuperada de la misma aparición en la recopilación. Pendiente de cotejo con el PDF del examen.",
       "text": [
         "Art. 3. La soberanía reside esencialmente en la Nación y por lo mismo pertenece a ésta exclusivamente el derecho de establecer sus leyes fundamentales.",
         "Art. 4. La Nación está obligada a conservar y proteger por leyes sabias y justas la libertad civil, la propiedad y los demás derechos legítimos de todos los individuos que la componen.",
         "Art. 14. El gobierno de la nación española es una monarquía moderada hereditaria.",
         "Art. 15. La potestad de hacer las leyes reside en las Cortes con el Rey.",
         "Art. 287. Ningún español podrá ser preso, sin que preceda información sumaria del hecho, por el que merezca según la ley ser castigado con pena corporal, y asimismo un mandamiento del juez por escrito, que se le notificará en el acto mismo de la prisión.",
-        "Art. 371. Todos los españoles tiene libertad de escribir, imprimir y publicar sus ideas políticas, sin necesidad de licencia, revisión o aprobación alguna anterior a la publicación, bajo las restricciones y responsabilidad que establezcan las leyes."
+        "Art. 371. Todos los españoles tiene libertad de escribir, imprimir y publicar sus ideas políticas, sin necesidad de licencia, revisión o aprobación alguna anterior a la publicación, bajo las restricciones y responsabilidad que establezcan las leyes.",
+        "Constitución Española de 1812"
       ],
       "commentary": [
         {
@@ -148,12 +144,15 @@
           "route": "Opción A",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.blgbqc7asjia",
-          "sourceKey": "h.blgbqc7asjia:1"
+          "sourceKey": "h.blgbqc7asjia:1",
+          "sourceOrdinal": 1
         }
       ]
     },
     {
       "id": "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Declaración de la Junta Suprema de Sevilla"],
       "title": "La Junta Suprema de Sevilla declara la guerra a Francia",
       "type": "texto",
       "blocks": [
@@ -190,16 +189,7 @@
         }
       ],
       "text": [
-        "“Don Fernando VII, Rey de España y de las Indias y en su nombre",
-        "la Suprema Junta. La Francia, o más bien su Emperador Napoleón",
-        "I ha violado con España los pactos más sagrados; le ha arrebatado",
-        "sus monarcas y ha obligado a estos a abdicaciones y renuncias",
-        "violentas y nulas manifiestamente [...] y nos ha forzado a que, para",
-        "el remedio único de tan graves males, los manifestemos a Europa",
-        "toda y le declaremos la guerra. Por tanto, en nombre de nuestro",
-        "Rey Fernando VII, y de toda la nación española, declaramos la",
-        "guerra por tierra y mar al Emperador Napoleón I y a la Francia",
-        "[...]”.",
+        "“Don Fernando VII, Rey de España y de las Indias y en su nombre la Suprema Junta. La Francia, o más bien su Emperador Napoleón I ha violado con España los pactos más sagrados; le ha arrebatado sus monarcas y ha obligado a estos a abdicaciones y renuncias violentas y nulas manifiestamente [...] y nos ha forzado a que, para el remedio único de tan graves males, los manifestemos a Europa toda y le declaremos la guerra. Por tanto, en nombre de nuestro Rey Fernando VII, y de toda la nación española, declaramos la guerra por tierra y mar al Emperador Napoleón I y a la Francia [...]”.",
         "Declaración de la Junta Suprema de Sevilla, 6 de junio de 1808"
       ]
     },
@@ -242,7 +232,11 @@
           "route": "Bloque II",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6cr2y5ox1qsc",
-          "sourceKey": "h.6cr2y5ox1qsc:1"
+          "sourceKey": "h.6cr2y5ox1qsc:1",
+          "sourceImages": [
+            23
+          ],
+          "sourceOrdinal": 1
         }
       ]
     },
@@ -259,7 +253,7 @@
         "Representación política"
       ],
       "date": "Cortes de Cádiz, 1810–1813",
-      "sourceCaption": "«Miembros de las Cortes de Cádiz». SVG extraído del PDF oficial de 2008, Examen 2, opción A, documento 2. La tabla accesible reproduce sus categorías y cifras.",
+      "sourceCaption": "“Miembros de las Cortes de Cádiz”. SVG extraído del PDF oficial de 2008, Examen 2, opción A, documento 2. La tabla accesible reproduce sus categorías y cifras.",
       "quality": "Extracción vectorial del PDF oficial: conserva los trazados, glifos y datos originales, sin reconstrucción ni reescalado de la imagen de Google Docs. La fuente no indica aquí la metodología del recuento: no debe confundirse con un censo completo revisado.",
       "image": {
         "src": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
@@ -348,12 +342,22 @@
           "route": "Opción A",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.blgbqc7asjia",
-          "sourceKey": "h.blgbqc7asjia:2"
+          "sourceKey": "h.blgbqc7asjia:2",
+          "sourceImages": [
+            3
+          ],
+          "sourceOrdinal": 2
         }
       ]
     },
     {
       "id": "amadeo-i-ante-cadaver-prim",
+      "examCaption": {
+        "emphasis": ["Amadeo I ante el cadáver de Prim", "Antonio Gisbert"],
+        "text": "Amadeo I ante el cadáver de Prim, obra de Antonio Gisbert (1870).",
+        "appearanceId": "fuente-h-usbeys37qf3h-2",
+        "italic": true
+      },
       "title": "Amadeo I ante el cadáver del general Prim",
       "type": "imagen",
       "blocks": [
@@ -401,7 +405,7 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5qiyxceviwuz",
           "sourceImages": [
-            15
+            22
           ]
         },
         {
@@ -414,12 +418,40 @@
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.o5sje6pvryxx",
           "sourceImages": [
-            26
+            33
           ]
         }
       ],
       "image": {
         "src": "assets/documentos/amadeo-i-ante-cadaver-prim.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "La recopilación identifica a Amadeo junto al féretro de Prim. No se atribuyen nombres a los demás militares del cuadro.",
+          "sources": [
+            {
+              "title": "Descripción de la escena en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.usbeys37qf3h"
+            }
+          ],
+          "people": [
+            {
+              "name": "Amadeo I de Saboya",
+              "role": "Rey electo de España",
+              "position": "De pie, junto al féretro.",
+              "x": 0.38,
+              "y": 0.64,
+              "side": "left"
+            },
+            {
+              "name": "Juan Prim",
+              "role": "General y presidente del Consejo de Ministros hasta su muerte en 1870",
+              "position": "En el féretro situado a la izquierda.",
+              "x": 0.29,
+              "y": 0.79,
+              "side": "left"
+            }
+          ]
+        },
         "alt": "Pintura de una escena fúnebre: Amadeo I permanece de pie ante el féretro de Prim, rodeado por militares y autoridades.",
         "width": 1216,
         "height": 802
@@ -427,6 +459,8 @@
     },
     {
       "id": "castelar-y-la-proclamacion-de-la-primera-republica",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Proclamación de la Primera República", "Emilio Castelar"],
       "title": "Castelar y la proclamación de la Primera República",
       "type": "texto",
       "blocks": [
@@ -463,16 +497,14 @@
         }
       ],
       "text": [
-        "\"Señores diputados: Aquí, el partido republicano reivindica la gloria que sería haber destruido la monarquía; no os echéis en cara la responsabilidad de este momento supremo. No; nadie ha matado. Yo, que tanto he contribuido a que llegase este momento, debo decir que no siento, no, en mi conciencia,",
-        "mérito alguno de haber concluido con la monarquía. La monarquía ha muerto sin que nadie,",
-        "absolutamente nadie, haya contribuido a ello, más que la Providencia. Señores: con Fernando VII murió",
-        "la monarquía tradicional; con la fuga de Isabel II, la monarquía parlamentaria, y con la renuncia de Amadeo, nadie ha acabado con ella. Ha muerto por sí misma. Nadie trae la República; la traen las circunstancias; la trae una conspiración de la Sociedad, de la Naturaleza, de la Historia. Señores,",
-        "saludémosla, como el sol que se levanta por su propia fuerza en el cielo de nuestra patria.\"",
+        "\"Señores diputados: Aquí, el partido republicano reivindica la gloria que sería haber destruido la monarquía; no os echéis en cara la responsabilidad de este momento supremo. No; nadie ha matado. Yo, que tanto he contribuido a que llegase este momento, debo decir que no siento, no, en mi conciencia, mérito alguno de haber concluido con la monarquía. La monarquía ha muerto sin que nadie, absolutamente nadie, haya contribuido a ello, más que la Providencia. Señores: con Fernando VII murió la monarquía tradicional; con la fuga de Isabel II, la monarquía parlamentaria, y con la renuncia de Amadeo, nadie ha acabado con ella. Ha muerto por sí misma. Nadie trae la República; la traen las circunstancias; la trae una conspiración de la Sociedad, de la Naturaleza, de la Historia. Señores, saludémosla, como el sol que se levanta por su propia fuerza en el cielo de nuestra patria.\"",
         "Proclamación de la Primera República Discurso de Emilio Castelar en el Congreso el 11 de febrero de 1873"
       ]
     },
     {
       "id": "circular-de-pi-y-margall-tras-proclamarse-la-republica",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Francisco Pi y Margall"],
       "title": "Circular de Pi y Margall tras proclamarse la República",
       "type": "texto",
       "blocks": [
@@ -510,22 +542,15 @@
       ],
       "text": [
         "Circular del Ministerio de la Gobernación a todos los gobernadores de provincias",
-        "“Vacante el trono por renuncia de Amadeo I de Saboya, el Congreso y el Senado, constituidos",
-        "en las Cortes Soberanas, han reasumido todos los poderes y proclamado la República. A",
-        "consolidarla y darle prestigio han de dirigirse ahora los esfuerzos de todas las autoridades que",
-        "de este Ministerio dependen. Se ha establecido sin sangre, sin convulsiones, sin la más",
-        "pequeña alteración del orden y sin disturbios conviene que se la sostenga para que acaben de",
-        "desengañarse los que la consideraban como inseparable de la anarquía.",
-        "Orden, Libertad y Justicia: este es el lema de la República. Se contrariarían sus fines si no se",
-        "respetara y se hiciera respetar el derecho de todos los ciudadanos. Se le contrariarían sus fines,",
-        "si no se dejara amplia y absoluta libertad a las manifestaciones de pensamiento y de",
-        "conciencia; si se violara el más pequeño de los derechos consignados en el Título I de la",
-        "Constitución de 1869”.",
+        "“Vacante el trono por renuncia de Amadeo I de Saboya, el Congreso y el Senado, constituidos en las Cortes Soberanas, han reasumido todos los poderes y proclamado la República. A consolidarla y darle prestigio han de dirigirse ahora los esfuerzos de todas las autoridades que de este Ministerio dependen. Se ha establecido sin sangre, sin convulsiones, sin la más pequeña alteración del orden y sin disturbios conviene que se la sostenga para que acaben de desengañarse los que la consideraban como inseparable de la anarquía.",
+        "Orden, Libertad y Justicia: este es el lema de la República. Se contrariarían sus fines si no se respetara y se hiciera respetar el derecho de todos los ciudadanos. Se le contrariarían sus fines, si no se dejara amplia y absoluta libertad a las manifestaciones de pensamiento y de conciencia; si se violara el más pequeño de los derechos consignados en el Título I de la Constitución de 1869”.",
         "Francisco Pi y Margall"
       ]
     },
     {
       "id": "constitucion-de-1845-corona-y-senado",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Constitución de 1845"],
       "title": "Constitución de 1845: Corona y Senado",
       "type": "texto",
       "blocks": [
@@ -576,7 +601,7 @@
       "title": "Decreto de desamortización de Mendizábal",
       "type": "texto",
       "blocks": [
-        6
+        8
       ],
       "tags": [
         "Desamortización",
@@ -585,7 +610,7 @@
       ],
       "date": "19 de febrero de 1836",
       "sourceCaption": "Decreto de desamortización de Mendizábal. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "quality": "Se han retirado las cabeceras del examen y el final del Tratado de París que se había mezclado con este decreto. La separación se ha cotejado con el PDF oficial de 2026, titular extraordinaria, páginas 1–2. Se conserva la redacción de la recopilación.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -609,32 +634,10 @@
         }
       ],
       "text": [
-        "“Atendiendo a la necesidad y conveniencia de disminuir la",
-        "deuda pública [..] conformándome con lo propuesto por el",
-        "Consejo de Ministros, en nombre de mi excelsa hija la reina",
-        "doña Isabel II, he venido en decretar lo siguiente:",
-        "Artículo 1o. Quedan declarados en venta desde ahora todos",
-        "los bienes raíces de cualquier clase que hubiesen",
-        "pertenecido a las comunidades y corporaciones religiosas",
-        "extinguidas y los demás que hayan sido adjudicados a la",
-        "Nación por cualquier título o motivo.",
-        "Artículo 2o. Se exceptúan de esta medida general los edificios",
-        "que el gobierno destine para el servicio público o para",
-        "conservar monumentos de las artes, o para honrar la",
-        "memoria de hazañas nacionales. El mismo gobierno",
-        "publicará la lista de los edificios que con este objeto deben",
-        "quedar excluidos de la venta pública.",
-        "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez",
-        "Mendizábal”.",
-        "ADMISIÓN",
-        "HISTORIA DE",
-        "ANDALUCÍA, CEUTA, MELILLA y CENTROS en MARRUECOS",
-        "ESPAÑA",
-        "CURSO 2025-2026",
-        "dentro de los tres meses después del canje de ratificaciones",
-        "del presente Tratado [...]”.",
-        "Tratado de paz entre España y Estados Unidos de América,",
-        "10 de diciembre de 1898"
+        "“Atendiendo a la necesidad y conveniencia de disminuir la deuda pública [..] conformándome con lo propuesto por el Consejo de Ministros, en nombre de mi excelsa hija la reina doña Isabel II, he venido en decretar lo siguiente:",
+        "Artículo 1o. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
+        "Artículo 2o. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
+        "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez Mendizábal”."
       ]
     },
     {
@@ -642,7 +645,7 @@
       "title": "Decreto de venta de bienes eclesiásticos de Mendizábal",
       "type": "texto",
       "blocks": [
-        6
+        8
       ],
       "tags": [
         "Desamortización",
@@ -651,7 +654,7 @@
       ],
       "date": "19 de febrero de 1836",
       "sourceCaption": "Decreto de venta de bienes eclesiásticos de Mendizábal. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial. La aparición de 2009 reproduce la misma selección de artículos y se agrupa tras cotejar su contenido; solo varían la división en renglones, los signos de omisión y otros detalles de transcripción.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -672,34 +675,37 @@
           "route": "Itinerario sin cotejar",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.7bxjd4xweowb"
+        },
+        {
+          "id": "fuente-h-ife1u9yvtus7-1",
+          "sourceKey": "h.ife1u9yvtus7:1",
+          "sourceOrdinal": 1,
+          "year": 2009,
+          "exam": "2009 Examen 6",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ife1u9yvtus7",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
+          "officialPage": 1,
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
-        "“Atendiendo a la necesidad y conveniencia de disminuir la",
-        "deuda pública [..] conformándome con lo propuesto por el",
-        "Consejo de Ministros, en nombre de mi excelsa hija la reina",
-        "doña Isabel II, he venido en decretar lo siguiente:",
-        "Artículo 1o. Quedan declarados en venta desde ahora todos",
-        "los bienes raíces de cualquier clase que hubiesen",
-        "pertenecido a las comunidades y corporaciones religiosas",
-        "extinguidas y los demás que hayan sido adjudicados a la",
-        "Nación por cualquier título o motivo.",
-        "Artículo 2o. Se exceptúan de esta medida general los edificios",
-        "que el gobierno destine para el servicio público o para",
-        "conservar monumentos de las artes, o para honrar la",
-        "memoria de hazañas nacionales. El mismo gobierno",
-        "publicará la lista de los edificios que con este objeto deben",
-        "quedar excluidos de la venta pública.",
-        "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez",
-        "Mendizábal”."
+        "“Atendiendo a la necesidad y conveniencia de disminuir la deuda pública [..] conformándome con lo propuesto por el Consejo de Ministros, en nombre de mi excelsa hija la reina doña Isabel II, he venido en decretar lo siguiente:",
+        "Artículo 1o. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
+        "Artículo 2o. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
+        "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez Mendizábal”."
       ]
     },
     {
       "id": "exposicion-de-mendizabal-sobre-los-objetivos-de-la-desamortizacion",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Gaceta de Madrid"],
       "title": "Exposición de Mendizábal sobre los objetivos de la desamortización",
       "type": "texto",
       "blocks": [
-        6
+        8
       ],
       "tags": [
         "Desamortización",
@@ -733,29 +739,22 @@
       ],
       "text": [
         "“Señora:",
-        "Vender la masa de bienes que han venido a ser propiedad del",
-        "Estado, no es tan solo cumplir una promesa solemne y dar",
-        "garantía positiva la deuda nacional por medio de una",
-        "amortización exactamente igual al producto de las ventas, es",
-        "abrir una fuente abundantísima de felicidad pública; vivificar",
-        "una riqueza muerta [...].",
-        "El decreto que voy a tener la honra de someter a la augusta",
-        "aprobación de V. M. sobre la venta de esos bienes adquiridos",
-        "ya para la nación, así como en su resultado material ha de",
-        "producir el beneficio de minorar la fuerte suma de la deuda",
-        "pública, es necesario que [...] se funda en la alta idea de crear",
-        "una copiosa familia de propietarios, cuyos goces y cuya",
-        "existencia se apoye principalmente en el triunfo completo de",
-        "nuestras actuales instituciones [...]”",
+        "Vender la masa de bienes que han venido a ser propiedad del Estado, no es tan solo cumplir una promesa solemne y dar garantía positiva la deuda nacional por medio de una amortización exactamente igual al producto de las ventas, es abrir una fuente abundantísima de felicidad pública; vivificar una riqueza muerta [...].",
+        "El decreto que voy a tener la honra de someter a la augusta aprobación de V. M. sobre la venta de esos bienes adquiridos ya para la nación, así como en su resultado material ha de producir el beneficio de minorar la fuerte suma de la deuda pública, es necesario que [...] se funda en la alta idea de crear una copiosa familia de propietarios, cuyos goces y cuya existencia se apoye principalmente en el triunfo completo de nuestras actuales instituciones [...]”",
         "Gaceta de Madrid, 21 de febrero de 1836"
       ]
     },
     {
       "id": "grafico-desamortizaciones-siglo-xix",
+      "examCaption": {
+        "text": "Desamortización eclesiástica y civil\n(en millones de reales de vellón)",
+        "appearanceId": "fuente-h-37pk5wvpyw40-2",
+        "italic": true
+      },
       "title": "Gráfico de las desamortizaciones del siglo XIX",
       "type": "grafico",
       "blocks": [
-        6
+        8
       ],
       "tags": [
         "Desamortización",
@@ -799,7 +798,7 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.37pk5wvpyw40",
           "sourceImages": [
-            28
+            35
           ]
         }
       ],
@@ -814,6 +813,8 @@
     },
     {
       "id": "la-constitucion-moderada-de-1845",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Constitución de 1845"],
       "title": "La Constitución moderada de 1845",
       "type": "texto",
       "blocks": [
@@ -861,10 +862,12 @@
     },
     {
       "id": "mendizabal-explica-la-desamortizacion-de-1836",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Juan Álvarez y Mendizábal"],
       "title": "Mendizábal explica la desamortización de 1836",
       "type": "texto",
       "blocks": [
-        6
+        8
       ],
       "tags": [
         "Desamortización",
@@ -906,6 +909,8 @@
     },
     {
       "id": "renuncia-de-maria-cristina-a-la-regencia",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["María Cristina"],
       "title": "Renuncia de María Cristina a la regencia",
       "type": "texto",
       "blocks": [
@@ -942,35 +947,16 @@
         }
       ],
       "text": [
-        "“A las Cortes. El actual estado de la nación y el delicado en que mí",
-        "salud se encuentra me han hecho decidir a renunciar la Regencia",
-        "del reino, que durante la menor edad de mi excelsa Hija Doña Isabel",
-        "II me fue conferida por las Cortes constituyentes de la nación",
-        "reunidas en 1836, a pesar de que mis Consejeros, con la honradez",
-        "y patriotismo que les distingue, me han rogado encarecidamente",
-        "continuara en ella, cuando menos hasta la reunión de las próximas",
-        "Cortes, por creerlo así conveniente al país y a la causa pública; pero",
-        "no pudiendo acceder a algunas de las exigencias de los pueblos,",
-        "que mis Consejeros mismos creen deber ser consultadas para",
-        "calmar los ánimos y terminar la actual situación, me es",
-        "absolutamente imposible continuar desempeñándola, y creo obrar",
-        "como exige el interés de la nación renunciando a ella. Espero que",
-        "las Cortes nombraran personas para tan alto y elevado encargo,",
-        "que contribuyan a hacer tan feliz esta nación como merece por sus",
-        "virtudes. A la misma dejo encomendadas mis augustas Hijas, y los",
-        "Ministros que deben, conforme al espíritu de la Constitución,",
-        "gobernar el reino hasta que se reúnan, me tienen dadas sobradas",
-        "pruebas de lealtad para no confiarles con el mayor gusto depósito",
-        "tan sagrado. Para que produzca, pues, los efectos",
-        "correspondientes, firmo este documento autógrafo de la renuncia,",
-        "que en presencia de las autoridades y corporaciones de esta",
-        "ciudad, entrego al Presidente de mi Consejo para que lo presente a",
-        "su tiempo a las Cortes. María Cristina”.",
+        "“A las Cortes. El actual estado de la nación y el delicado en que mí salud se encuentra me han hecho decidir a renunciar la Regencia del reino, que durante la menor edad de mi excelsa Hija Doña Isabel II me fue conferida por las Cortes constituyentes de la nación reunidas en 1836, a pesar de que mis Consejeros, con la honradez y patriotismo que les distingue, me han rogado encarecidamente continuara en ella, cuando menos hasta la reunión de las próximas Cortes, por creerlo así conveniente al país y a la causa pública; pero no pudiendo acceder a algunas de las exigencias de los pueblos, que mis Consejeros mismos creen deber ser consultadas para calmar los ánimos y terminar la actual situación, me es absolutamente imposible continuar desempeñándola, y creo obrar como exige el interés de la nación renunciando a ella. Espero que las Cortes nombraran personas para tan alto y elevado encargo, que contribuyan a hacer tan feliz esta nación como merece por sus virtudes. A la misma dejo encomendadas mis augustas Hijas, y los Ministros que deben, conforme al espíritu de la Constitución, gobernar el reino hasta que se reúnan, me tienen dadas sobradas pruebas de lealtad para no confiarles con el mayor gusto depósito tan sagrado. Para que produzca, pues, los efectos correspondientes, firmo este documento autógrafo de la renuncia, que en presencia de las autoridades y corporaciones de esta ciudad, entrego al Presidente de mi Consejo para que lo presente a su tiempo a las Cortes. María Cristina”.",
         "María Cristina, Valencia 12 de octubre de 1840."
       ]
     },
     {
       "id": "retrato-ramon-maria-narvaez",
+      "examCaption": {
+        "text": "General Ramón María Narváez",
+        "appearanceId": "fuente-h-6dwbo8kwnrna-2"
+      },
       "title": "Retrato del general Ramón María Narváez",
       "type": "imagen",
       "blocks": [
@@ -1011,6 +997,26 @@
       ],
       "image": {
         "src": "assets/documentos/retrato-ramon-maria-narvaez.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "El retrato está identificado en la recopilación. La marca se sitúa sobre el uniforme, no sobre la cara.",
+          "sources": [
+            {
+              "title": "Identificación del retrato en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6dwbo8kwnrna"
+            }
+          ],
+          "people": [
+            {
+              "name": "Ramón María Narváez",
+              "role": "General liberal moderado; varias veces presidente del Gobierno entre 1844 y 1868",
+              "position": "Único personaje del retrato.",
+              "x": 0.5,
+              "y": 0.6,
+              "side": "right"
+            }
+          ]
+        },
         "crop": {
           "width": 362,
           "height": 352,
@@ -1026,7 +1032,11 @@
     },
     {
       "id": "caricatura-se-colocan-reyes-1869",
-      "title": "«Se colocan reyes»: caricatura de La Flaca",
+      "examCaption": {
+        "text": "Subasta de reyes",
+        "appearanceId": "fuente-h-9bxnjdlqrc89-1"
+      },
+      "title": "“Se colocan reyes”: caricatura de La Flaca",
       "type": "imagen",
       "blocks": [
         6
@@ -1037,7 +1047,7 @@
         "La Flaca"
       ],
       "date": "1869",
-      "sourceCaption": "«Se colocan reyes»: caricatura de La Flaca. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
+      "sourceCaption": "“Se colocan reyes”: caricatura de La Flaca. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
       "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
       "commentary": [
         {
@@ -1073,12 +1083,56 @@
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tvlhtdubp2jf",
           "sourceImages": [
-            21
+            28
           ]
         }
       ],
       "image": {
         "src": "assets/documentos/caricatura-se-colocan-reyes-1869.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "La caricatura representa la búsqueda de rey tras el exilio de Isabel II. Su hijo es todavía un niño, el futuro Alfonso XII. El pretendiente carlista es Carlos VII, no Carlos VIII. La identificación se apoya en el comentario de la misma viñeta y sus atributos: la boina carlista, el carnero de juguete y el perro con el collar “Orleans”.",
+          "sources": [
+            {
+              "title": "Comentario de la misma caricatura: personajes y atributos (GEOGHISTORIA, Luis Pueyo)",
+              "url": "https://geoghistoria.blogspot.com/2012/08/comentario-de-una-caricatura.html"
+            }
+          ],
+          "people": [
+            {
+              "name": "Isabel II",
+              "role": "Reina destronada y exiliada desde 1868",
+              "position": "A la izquierda, con vestido de rayas.",
+              "x": 0.2,
+              "y": 0.64,
+              "side": "left"
+            },
+            {
+              "name": "Alfonso XII",
+              "role": "Hijo de Isabel II y futuro rey de España",
+              "position": "El niño junto a su madre, con un carnero de juguete.",
+              "x": 0.275,
+              "y": 0.75,
+              "side": "left"
+            },
+            {
+              "name": "Carlos VII",
+              "role": "Pretendiente carlista al trono de España",
+              "position": "Con boina roja, detrás del niño y de Montpensier.",
+              "x": 0.32,
+              "y": 0.56,
+              "side": "right"
+            },
+            {
+              "name": "Duque de Montpensier",
+              "role": "Antonio de Orleans, aspirante al trono español",
+              "position": "Antonio de Orleans, en primer plano con el perro cuyo collar dice “Orleans”.",
+              "x": 0.43,
+              "y": 0.61,
+              "side": "right"
+            }
+          ]
+        },
         "alt": "Caricatura satírica de 1869: varios candidatos a rey miran un anuncio de una agencia que ofrece colocar reyes.",
         "width": 1600,
         "height": 1067
@@ -1086,6 +1140,8 @@
     },
     {
       "id": "antonio-maura-critica-la-representacion-politica",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Antonio Maura"],
       "title": "Antonio Maura critica la representación política",
       "type": "texto",
       "blocks": [
@@ -1122,26 +1178,14 @@
         }
       ],
       "text": [
-        "“La realidad es ésta: la inmensa mayoría del pueblo español está",
-        "abstenida, no interviene para nada en la vida pública; de los que",
-        "quedan, eliminad las muchedumbres socialistas, anarquistas y",
-        "libertarias que están sobre el horizonte, en el firmamento, pero",
-        "forman otra constelación y nada tienen que ver con este sistema",
-        "parlamentario. De los que quedan restad las masas carlistas y las",
-        "masas republicanas de todos los matices; id contando mentalmente",
-        "lo que os queda, subdividirlo entre fracciones gobernantes, y",
-        "decidme la fuerza verdadera que le queda en el país a cada una ,",
-        "la fuerza que representa cada organismo gobernante, con su",
-        "mayoría, con su voto decisivo, con la acción y la dirección que",
-        "ejerce en los negocios de la nación. Ésta es la realidad, se pueden",
-        "presenciar los hechos que estamos viendo, las pruebas, a veces",
-        "lamentables, a veces asombrosas, del absoluto divorcio, de la falta",
-        "de trato y comunicación entre el Gobierno y el pueblo.”",
+        "“La realidad es ésta: la inmensa mayoría del pueblo español está abstenida, no interviene para nada en la vida pública; de los que quedan, eliminad las muchedumbres socialistas, anarquistas y libertarias que están sobre el horizonte, en el firmamento, pero forman otra constelación y nada tienen que ver con este sistema parlamentario. De los que quedan restad las masas carlistas y las masas republicanas de todos los matices; id contando mentalmente lo que os queda, subdividirlo entre fracciones gobernantes, y decidme la fuerza verdadera que le queda en el país a cada una , la fuerza que representa cada organismo gobernante, con su mayoría, con su voto decisivo, con la acción y la dirección que ejerce en los negocios de la nación. Ésta es la realidad, se pueden presenciar los hechos que estamos viendo, las pruebas, a veces lamentables, a veces asombrosas, del absoluto divorcio, de la falta de trato y comunicación entre el Gobierno y el pueblo.”",
         "Antonio Maura."
       ]
     },
     {
       "id": "antonio-maura-sobre-el-sistema-electoral",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Antonio Maura"],
       "title": "Antonio Maura sobre el sistema electoral",
       "type": "texto",
       "blocks": [
@@ -1178,27 +1222,14 @@
         }
       ],
       "text": [
-        "“La realidad es ésta: la inmensa mayoría del pueblo español está",
-        "abstenida, no interviene para nada en la vida pública; de los que",
-        "quedan, eliminad las muchedumbres socialistas, anarquistas y",
-        "libertarias que están sobre el horizonte, en el firmamento, pero",
-        "forman otra constelación y nada tienen que ver con este sistema",
-        "parlamentario. De los que quedan restad las masas carlistas y las",
-        "masas republicanas de todos los matices; id contando",
-        "mentalmente lo que os queda, subdividirlo entre fracciones",
-        "gobernantes, y decidme la fuerza verdadera que le queda en el",
-        "país a cada una, la fuerza que representa cada organismo",
-        "gobernante, con su mayoría, con su voto decisivo, con la acción y",
-        "la dirección que ejerce en los negocios de la nación. Ésta es la",
-        "realidad, se pueden presenciar los hechos que estamos viendo,",
-        "las pruebas, a veces lamentables, a veces asombrosas, del",
-        "absoluto divorcio, de la falta de trato y comunicación entre el",
-        "Gobierno y el pueblo.”",
+        "“La realidad es ésta: la inmensa mayoría del pueblo español está abstenida, no interviene para nada en la vida pública; de los que quedan, eliminad las muchedumbres socialistas, anarquistas y libertarias que están sobre el horizonte, en el firmamento, pero forman otra constelación y nada tienen que ver con este sistema parlamentario. De los que quedan restad las masas carlistas y las masas republicanas de todos los matices; id contando mentalmente lo que os queda, subdividirlo entre fracciones gobernantes, y decidme la fuerza verdadera que le queda en el país a cada una, la fuerza que representa cada organismo gobernante, con su mayoría, con su voto decisivo, con la acción y la dirección que ejerce en los negocios de la nación. Ésta es la realidad, se pueden presenciar los hechos que estamos viendo, las pruebas, a veces lamentables, a veces asombrosas, del absoluto divorcio, de la falta de trato y comunicación entre el Gobierno y el pueblo.”",
         "Antonio Maura sobre el regeneracionismo."
       ]
     },
     {
       "id": "critica-del-sistema-electoral-de-la-restauracion",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Pérez Galdós, B.", "Política española", "Antología de artículos"],
       "title": "Crítica del sistema electoral de la Restauración",
       "type": "texto",
       "blocks": [
@@ -1235,7 +1266,8 @@
         }
       ],
       "text": [
-        "Es muy triste considerar cómo se han hecho las últimas elecciones, con el menor número posible de electores, con bastantes resurrecciones de muertos y no pocas violencias y atropellos. Ya es costumbre que sólo voten los que de una manera u otra sacan partido de las amistades y servicios políticos, y la inmensa mayoría de la nación, mirando tan importante acto con desdén, se abstiene de tomar parte en él, segura de no alcanzar por procedimientos representativos el remedio de sus males. Por esto vemos que no hay gobierno que no saque mayoría en el número y forma que más le cuadra y desde que un bando político, cualquiera que sea, se entroniza en el Ministerio de Gobernación, ya puede estar seguro de que el país le ha de graciar con unas cámaras a su gusto. Pérez Galdós, B.: “Política española”. Antología de artículos, 1884"
+        "Es muy triste considerar cómo se han hecho las últimas elecciones, con el menor número posible de electores, con bastantes resurrecciones de muertos y no pocas violencias y atropellos. Ya es costumbre que sólo voten los que de una manera u otra sacan partido de las amistades y servicios políticos, y la inmensa mayoría de la nación, mirando tan importante acto con desdén, se abstiene de tomar parte en él, segura de no alcanzar por procedimientos representativos el remedio de sus males. Por esto vemos que no hay gobierno que no saque mayoría en el número y forma que más le cuadra y desde que un bando político, cualquiera que sea, se entroniza en el Ministerio de Gobernación, ya puede estar seguro de que el país le ha de graciar con unas cámaras a su gusto.",
+        "Pérez Galdós, B.: “Política española”. Antología de artículos, 1884"
       ]
     },
     {
@@ -1334,6 +1366,10 @@
     },
     {
       "id": "entrada-alfonso-xii-madrid-1875",
+      "examCaption": {
+        "text": "Entrada de Alfonso XII en Madrid el 15 de enero de 1875",
+        "appearanceId": "fuente-h-c4qpyusgk1fw-2"
+      },
       "title": "Entrada de Alfonso XII en Madrid",
       "type": "imagen",
       "blocks": [
@@ -1374,6 +1410,26 @@
       ],
       "image": {
         "src": "assets/documentos/entrada-alfonso-xii-madrid-1875.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "La recopilación identifica al rey a caballo. Las demás figuras se mantienen sin nombres.",
+          "sources": [
+            {
+              "title": "Descripción de la entrada del rey en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.c4qpyusgk1fw"
+            }
+          ],
+          "people": [
+            {
+              "name": "Alfonso XII",
+              "role": "Rey de España tras la restauración de la monarquía en 1874",
+              "position": "Jinete central que saluda a la multitud.",
+              "x": 0.54,
+              "y": 0.48,
+              "side": "right"
+            }
+          ]
+        },
         "crop": {
           "width": 549.51,
           "height": 364.57,
@@ -1425,13 +1481,13 @@
         }
       ],
       "text": [
-        "“He recibido de España un gran número de felicitaciones con motivo",
-        "de mi cumpleaños, y algunas de compatriotas nuestros residentes",
-        "en Francia [...]"
+        "“He recibido de España un gran número de felicitaciones con motivo de mi cumpleaños, y algunas de compatriotas nuestros residentes en Francia [...]"
       ]
     },
     {
       "id": "manifiesto-de-sandhurst-llamamiento-a-la-restauracion",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Alfonso de Borbón", "Manifiesto de Sandhurst"],
       "title": "Manifiesto de Sandhurst: llamamiento a la Restauración",
       "type": "texto",
       "blocks": [
@@ -1444,7 +1500,7 @@
       ],
       "date": "1 de diciembre de 1874",
       "sourceCaption": "Manifiesto de Sandhurst: llamamiento a la Restauración. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Fragmento más amplio que el incluido en 2025; se conserva como selección independiente.",
+      "quality": "Fragmento más amplio que el incluido en 2025; se conserva como selección independiente. Se ha retirado la cabecera del examen intercalada en el texto, sin suprimir la continuación del manifiesto.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -1468,45 +1524,19 @@
         }
       ],
       "text": [
-        "“He recibido de España un gran número de felicitaciones con",
-        "motivo de mi cumpleaños, y algunas de nuestros compatriotas",
-        "residentes en Francia. Deseo que con todos sea usted intérprete",
-        "de mi gratitud y mis opiniones.",
-        "Cuantos me han escrito muestran igual convicción de que sólo el",
-        "restablecimiento de la monarquía constitucional puede poner",
-        "término a la opresión, a la incertidumbre y a las crueles",
-        "perturbaciones que experimenta España. Dícenme que así lo",
-        "reconocen ya la mayoría de nuestros compatriotas, y que antes de",
-        "mucho estarán conmigo todos los de buena fe, sean cuales fueren",
-        "sus antecedentes políticos, comprendiendo que no pueda tener",
-        "exclusiones ni de un monarca nuevo y desapasionado ni de un",
-        "régimen que precisamente hoy se impone porque representa la",
-        "unión y la paz.",
-        "[...] Por virtud de la espontánea y solemne abdicación de mi",
-        "augusta madre, tan generosa como infortunada, soy único",
-        "representante yo del derecho monárquico en España.",
-        "[...] Por todo esto, sin duda, lo único que inspira y confianza en",
-        "España es una monarquía hereditaria y representativa, mirándola",
-        "como irreemplazable garantía de sus derechos e intereses desde",
-        "las clases obreras hasta las más elevadas.",
-        "ADMISIÓN",
-        "HISTORIA DE",
-        "ANDALUCÍA, CEUTA, MELILLA y CENTROS en MARRUECOS",
-        "ESPAÑA",
-        "CURSO 2025-2026",
-        "[...] Por mi parte, debo al infortunio estar en contacto con los",
-        "hombres y las cosas de la España moderna, y si en ella no alcanza",
-        "España una posición digna de su historia y de consuno",
-        "independiente y simpática, culpa mía no será ni ahora ni nunca.",
-        "Sea lo que quiera mi propia suerte ni dejaré de ser buen español",
-        "ni, como todos mis antepasados, buen católico, ni, como hombre",
-        "del siglo, verdaderamente liberal”.",
-        "Alfonso de Borbón, Manifiesto de Sandhurst. 1 de diciembre de",
-        "1874."
+        "“He recibido de España un gran número de felicitaciones con motivo de mi cumpleaños, y algunas de nuestros compatriotas residentes en Francia. Deseo que con todos sea usted intérprete de mi gratitud y mis opiniones.",
+        "Cuantos me han escrito muestran igual convicción de que sólo el restablecimiento de la monarquía constitucional puede poner término a la opresión, a la incertidumbre y a las crueles perturbaciones que experimenta España. Dícenme que así lo reconocen ya la mayoría de nuestros compatriotas, y que antes de mucho estarán conmigo todos los de buena fe, sean cuales fueren sus antecedentes políticos, comprendiendo que no pueda tener exclusiones ni de un monarca nuevo y desapasionado ni de un régimen que precisamente hoy se impone porque representa la unión y la paz.",
+        "[...] Por virtud de la espontánea y solemne abdicación de mi augusta madre, tan generosa como infortunada, soy único representante yo del derecho monárquico en España.",
+        "[...] Por todo esto, sin duda, lo único que inspira y confianza en España es una monarquía hereditaria y representativa, mirándola como irreemplazable garantía de sus derechos e intereses desde las clases obreras hasta las más elevadas.",
+        "[...] Por mi parte, debo al infortunio estar en contacto con los hombres y las cosas de la España moderna, y si en ella no alcanza España una posición digna de su historia y de consuno independiente y simpática, culpa mía no será ni ahora ni nunca.",
+        "Sea lo que quiera mi propia suerte ni dejaré de ser buen español ni, como todos mis antepasados, buen católico, ni, como hombre del siglo, verdaderamente liberal”.",
+        "Alfonso de Borbón, Manifiesto de Sandhurst. 1 de diciembre de 1874."
       ]
     },
     {
       "id": "perez-galdos-sobre-las-elecciones-de-la-restauracion",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Pérez Galdós, B.", "Política española", "Antología de artículos"],
       "title": "Pérez Galdós sobre las elecciones de la Restauración",
       "type": "texto",
       "blocks": [
@@ -1543,33 +1573,17 @@
         }
       ],
       "text": [
-        "“Es muy triste como se han hecho las últimas elecciones, con",
-        "el menor número posible de electores, con bastantes",
-        "resurrecciones de muertos y no pocas violencias y atropellos.",
-        "Ya es costumbre que sólo voten los que de una manera u otra",
-        "sacan partido de las amistades y servicios políticos y la",
-        "inmensa mayoría de la nación, mirando tan importante acto",
-        "con desdén, se abstiene de tomar parte en él, segura de no",
-        "alcanzar por procedimientos representativos el remedio de",
-        "sus males. [...] Resultado de este fraude político, es que las",
-        "elecciones las hace el ministro de la Gobernación y de aquella",
-        "fábrica de votos salen también las minorías. No pudiendo",
-        "marchar bien el sistema sin oposición, el gobierno la fábrica",
-        "con el mismo celo que pone en la construcción de la mayoría.",
-        "[...] El mismo Padre Eterno, que quisiera tener un puesto en",
-        "el Congreso, no lo conseguiría sin el auxilio de ese Espíritu",
-        "Santo político, a quien llamamos ministro de la Gobernación.",
-        "Cuando más, hay un poco de animación, batalla en los",
-        "preparativos electorales; el gobierno destituyendo",
-        "ayuntamientos arbitraria y violentamente, las oposiciones",
-        "organizando comités y pronunciando algún discurso",
-        "moderno; pero en la elección propiamente dicha, ni hay lucha",
-        "ni la puede haber.",
+        "“Es muy triste como se han hecho las últimas elecciones, con el menor número posible de electores, con bastantes resurrecciones de muertos y no pocas violencias y atropellos.",
+        "Ya es costumbre que sólo voten los que de una manera u otra sacan partido de las amistades y servicios políticos y la inmensa mayoría de la nación, mirando tan importante acto con desdén, se abstiene de tomar parte en él, segura de no alcanzar por procedimientos representativos el remedio de sus males. [...] Resultado de este fraude político, es que las elecciones las hace el ministro de la Gobernación y de aquella fábrica de votos salen también las minorías. No pudiendo marchar bien el sistema sin oposición, el gobierno la fábrica con el mismo celo que pone en la construcción de la mayoría.",
+        "[...] El mismo Padre Eterno, que quisiera tener un puesto en el Congreso, no lo conseguiría sin el auxilio de ese Espíritu Santo político, a quien llamamos ministro de la Gobernación.",
+        "Cuando más, hay un poco de animación, batalla en los preparativos electorales; el gobierno destituyendo ayuntamientos arbitraria y violentamente, las oposiciones organizando comités y pronunciando algún discurso moderno; pero en la elección propiamente dicha, ni hay lucha ni la puede haber.",
         "Pérez Galdós, B.: “Política española”. Antología de artículos, 1884."
       ]
     },
     {
       "id": "valenti-almirall-denuncia-el-falseamiento-electoral",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["VALENTÍ ALMIRALL", "España tal como es"],
       "title": "Valentí Almirall denuncia el falseamiento electoral",
       "type": "texto",
       "blocks": [
@@ -1613,6 +1627,8 @@
     },
     {
       "id": "ley-general-de-ferrocarriles",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Ley general de ferrocarriles"],
       "title": "Ley General de Ferrocarriles",
       "type": "texto",
       "blocks": [
@@ -1649,29 +1665,14 @@
         }
       ],
       "text": [
-        "“Art. 1o. Los ferrocarriles se dividirán en líneas de servicio general y",
-        "de servicio particular.",
-        "Art. 2o. Entre las líneas de servicio general se clasificarán como de",
-        "primer orden las que, partiendo de Madrid, terminen en las costas o",
-        "fronteras del reino.",
-        "Art.3o. Todas las líneas de ferrocarriles destinadas al servicio",
-        "general son del dominio público, y serán consideradas como obras",
-        "de utilidad general. [...]",
-        "Art. 6o. Los particulares o compañías no podrán construir línea",
-        "alguna, bien sea de servicio general, bien de servicio particular, si",
-        "no han obtenido previamente la concesión de ella.",
-        "Art. 19o. Los capitales extranjeros que se empleen en la",
-        "construcción de ferrocarriles o en empréstitos para este objeto,",
-        "quedan bajo la salvaguardia del Estado y están exentos de",
-        "represalias, confiscaciones o embargos por causa de guerra.",
-        "Art. 20o- Se conceden desde luego a todas las empresas de",
-        "ferrocarriles:",
-        "I. Los terrenos de dominio público que hayan de ocupar el camino",
-        "y sus dependencias.",
-        "II. El beneficio de vecindad para el aprovechamiento de leña, pastos",
-        "y demás de que disfrutan los vecinos de los pueblos cuyos términos",
-        "abrazare la línea para los dependientes y trabajadores de las",
-        "empresas, y para la manutención de los ganados [...]”.",
+        "“Art. 1o. Los ferrocarriles se dividirán en líneas de servicio general y de servicio particular.",
+        "Art. 2o. Entre las líneas de servicio general se clasificarán como de primer orden las que, partiendo de Madrid, terminen en las costas o fronteras del reino.",
+        "Art.3o. Todas las líneas de ferrocarriles destinadas al servicio general son del dominio público, y serán consideradas como obras de utilidad general. [...]",
+        "Art. 6o. Los particulares o compañías no podrán construir línea alguna, bien sea de servicio general, bien de servicio particular, si no han obtenido previamente la concesión de ella.",
+        "Art. 19o. Los capitales extranjeros que se empleen en la construcción de ferrocarriles o en empréstitos para este objeto, quedan bajo la salvaguardia del Estado y están exentos de represalias, confiscaciones o embargos por causa de guerra.",
+        "Art. 20o- Se conceden desde luego a todas las empresas de ferrocarriles:",
+        "I. Los terrenos de dominio público que hayan de ocupar el camino y sus dependencias.",
+        "II. El beneficio de vecindad para el aprovechamiento de leña, pastos y demás de que disfrutan los vecinos de los pueblos cuyos términos abrazare la línea para los dependientes y trabajadores de las empresas, y para la manutención de los ganados [...]”.",
         "Ley general de ferrocarriles, 3 de junio de 1855."
       ]
     },
@@ -1798,6 +1799,11 @@
     },
     {
       "id": "acorazado-maine-1898",
+      "examCaption": {
+        "emphasis": ["La Ilustración Española y Americana"],
+        "text": "El acorazado Maine (La Ilustración Española y Americana).",
+        "appearanceId": "fuente-h-vu325nx5299w-3"
+      },
       "title": "El acorazado Maine",
       "type": "imagen",
       "blocks": [
@@ -1809,8 +1815,8 @@
         "Cuba"
       ],
       "date": "1898",
-      "sourceCaption": "El acorazado Maine. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
-      "quality": "La identificación como USS Maine procede del pie de la recopilación. La causa de la explosión es discutida; no se da por probada la versión del pie.",
+      "sourceCaption": "Grabado de La Ilustración Española y Americana, 30 de enero de 1898, página 4. Recorte aproximado de la reproducción de la Hemeroteca Digital de la BNE, no recorte exacto del examen.",
+      "quality": "Se mantienen las dos apariciones de la recopilación. El grabado es anterior a la explosión del Maine y no demuestra su causa; no se da por probada la versión del pie.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -1832,7 +1838,7 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.vu325nx5299w",
           "sourceImages": [
-            20
+            27
           ]
         },
         {
@@ -1845,19 +1851,30 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.w7386l5spoh3",
           "sourceImages": [
-            23
+            30
           ]
         }
       ],
       "image": {
-        "src": "assets/documentos/acorazado-maine-1898.png",
-        "alt": "Fotografía de un acorazado de finales del siglo XIX identificado en la recopilación como el Maine.",
-        "width": 432,
-        "height": 339
+        "src": "assets/documentos/acorazado-maine-bne.jpg",
+        "alt": "Grabado del acorazado Maine fondeado en la bahía de La Habana, con dos mástiles, dos chimeneas y pequeñas embarcaciones.",
+        "width": 1080,
+        "height": 848,
+        "attribution": {
+          "text": "Biblioteca Nacional de España · recorte",
+          "url": "https://hemerotecadigital.bne.es/hd/viewer?oid=0001179167&page=4",
+          "license": "CC BY 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by/4.0/deed.es"
+        }
       }
     },
     {
       "id": "huelga-general-1917-fotografia",
+      "examCaption": {
+        "text": "Huelga general de 1917",
+        "appearanceId": "fuente-h-37pk5wvpyw40-3",
+        "italic": true
+      },
       "title": "Huelga general de 1917",
       "type": "imagen",
       "blocks": [
@@ -1892,7 +1909,7 @@
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.37pk5wvpyw40",
           "sourceImages": [
-            29
+            36
           ]
         }
       ],
@@ -1905,6 +1922,7 @@
     },
     {
       "id": "la-asamblea-de-parlamentarios-de-barcelona",
+      "attributionParagraphs": 1,
       "title": "La Asamblea de Parlamentarios de Barcelona",
       "type": "texto",
       "blocks": [
@@ -1917,7 +1935,7 @@
       ],
       "date": "19 de julio de 1917",
       "sourceCaption": "La Asamblea de Parlamentarios de Barcelona. Fragmento transcrito de la recopilación aportada.",
-      "quality": "La exportación solo conserva «La Asamblea adopta los siguientes acuerdos: Primero.» y se interrumpe ahí. Se presenta como fragmento incompleto; el acuerdo no se reconstruye.",
+      "quality": "Se recuperan los acuerdos y la referencia final de esta misma aparición en la recopilación, que antes solo se había incorporado hasta “Primero.”. Se conservan las omisiones editoriales del corpus; pendiente de cotejo con el PDF oficial.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -1942,11 +1960,18 @@
       ],
       "text": [
         "“La Asamblea adopta los siguientes acuerdos:",
-        "Primero."
+        "Primero.",
+        "A) La política del actual Gobierno, […], constituye a la vez un agravio al Parlamento y un obstáculo a que las ansias de renovación que siente el país puedan obtener normal satisfacción.",
+        "B) Que habiendo declarado el Gobierno y los partidos que tienen mayoría en las actuales Cortes, que éstas no pueden actuar en funciones de Constituyentes, y considerando la Asamblea que urge deliberar y resolver sobre la organización del Estado, la autonomía de los municipios y los demás problemas que las circunstancias plantean con apremio inaplazable para la vida del país, entiende que es indispensable la convocatoria de nuevas Cortes que, en funciones de Constituyentes […].",
+        "C) Que para que el país pueda manifestar libremente su opinión, y el pueblo no vea cerrada toda esperanza de que su voluntad sea conocida y respetada, las Cortes Constituyentes no pueden ser convocadas por un Gobierno de partido, que fatalmente seguiría los habituales procedimientos de adulteración del sufragio, sino por un Gobierno que encarne y represente la voluntad soberana del país.",
+        "El acto de Barcelona descrito por los parlamentarios […]”.",
+        "Barcelona, 19 de julio de 1917, (hoja clandestina)."
       ]
     },
     {
       "id": "manifiesto-de-primo-de-rivera",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Manifiesto del General Primo de Rivera", "ABC"],
       "title": "Manifiesto de Primo de Rivera",
       "type": "texto",
       "blocks": [
@@ -1990,6 +2015,8 @@
     },
     {
       "id": "manifiesto-del-comite-de-huelga",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Manifiesto del Comité de Huelga"],
       "title": "Manifiesto del Comité de Huelga",
       "type": "texto",
       "blocks": [
@@ -2027,34 +2054,14 @@
         }
       ],
       "text": [
-        "“A los obreros y a la opinión pública: Ha llegado el momento de",
-        "poner en práctica, sin vacilación, los propósitos anunciados por los",
-        "representantes de la Unión General de Trabajadores y la",
-        "Confederación Nacional del Trabajo en el manifiesto suscrito por",
-        "estos organismos en el mes de marzo. Desde entonces, la",
-        "afirmación hecha por el proletariado de demandar, como remedio",
-        "de los males que padece España, un cambio fundamental de",
-        "régimen político ha sido corroborada por la actitud que han ido",
-        "adoptando importantes organismos nacionales, desde la enérgica",
-        "afirmación de la existencia de las Juntas de Defensa del Arma de",
-        "Infantería frente a los intentos de su disolución por los poderes",
-        "públicos, hasta la Asamblea de Parlamentarios celebrada en",
-        "Barcelona el 19 de julio, y la adhesión a sus conclusiones de",
-        "numerosos Ayuntamientos, que dan público testimonio de las",
-        "ansias de renovación que hay en todo el país. [...] El proletariado",
-        "español ha asistido en silencio durante los últimos meses a un",
-        "espectáculo vergonzoso, mezcla de incompetencia y repulsiva",
-        "jactancia, de descarado desprecio de la vida y de los derechos del",
-        "pueblo e impúdica utilización de las más degradantes mentiras",
-        "como supremo recurso del Gobierno. [...] ¿Qué no habrán hecho",
-        "los poderes públicos con el pueblo inerme e indefenso bajo un",
-        "régimen constitucional ficticio, bajo un régimen económico de",
-        "miseria y despilfarro, y en un estado cultural mantenido por los",
-        "oligarcas en el más bajo nivel, y sobre el cual la masa ciudadana"
+        "“A los obreros y a la opinión pública: Ha llegado el momento de poner en práctica, sin vacilación, los propósitos anunciados por los representantes de la Unión General de Trabajadores y la Confederación Nacional del Trabajo en el manifiesto suscrito por estos organismos en el mes de marzo. Desde entonces, la afirmación hecha por el proletariado de demandar, como remedio de los males que padece España, un cambio fundamental de régimen político ha sido corroborada por la actitud que han ido adoptando importantes organismos nacionales, desde la enérgica afirmación de la existencia de las Juntas de Defensa del Arma de Infantería frente a los intentos de su disolución por los poderes públicos, hasta la Asamblea de Parlamentarios celebrada en Barcelona el 19 de julio, y la adhesión a sus conclusiones de numerosos Ayuntamientos, que dan público testimonio de las ansias de renovación que hay en todo el país. [...] El proletariado español ha asistido en silencio durante los últimos meses a un espectáculo vergonzoso, mezcla de incompetencia y repulsiva jactancia, de descarado desprecio de la vida y de los derechos del pueblo e impúdica utilización de las más degradantes mentiras como supremo recurso del Gobierno. [...] ¿Qué no habrán hecho los poderes públicos con el pueblo inerme e indefenso bajo un régimen constitucional ficticio, bajo un régimen económico de miseria y despilfarro, y en un estado cultural mantenido por los oligarcas en el más bajo nivel, y sobre el cual la masa ciudadana sólo puede irse paulatinamente elevando merced a ímprobos y perseverantes esfuerzos?”.",
+        "Manifiesto del Comité de Huelga, 12 de agosto de 1917."
       ]
     },
     {
       "id": "manifiesto-del-comite-de-huelga-de-1917",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Manifiesto del Comité de Huelga"],
       "title": "Manifiesto del Comité de Huelga de 1917",
       "type": "texto",
       "blocks": [
@@ -2091,37 +2098,16 @@
         }
       ],
       "text": [
-        "“A los obreros y a la opinión pública: Ha llegado el momento de",
-        "poner en práctica, sin vacilación, los propósitos anunciados por los",
-        "representantes de la Unión General de Trabajadores y la",
-        "Confederación Nacional del Trabajo en el manifiesto suscrito por",
-        "estos organismos en el mes de marzo. Desde entonces, la",
-        "afirmación hecha por el proletariado de demandar, como remedio",
-        "de los males que padece España, un cambio fundamental de",
-        "régimen político ha sido corroborada por la actitud que han ido",
-        "adoptando importantes organismos nacionales, desde la enérgica",
-        "afirmación de la existencia de las Juntas de Defensa del Arma de",
-        "Infantería frente a los intentos de su disolución por los poderes",
-        "públicos, hasta la Asamblea de Parlamentarios celebrada en",
-        "Barcelona el 19 de julio, y la adhesión a sus conclusiones de",
-        "numerosos Ayuntamientos, que dan público testimonio de las",
-        "ansias de renovación que hay en todo el país. [...] El proletariado",
-        "español ha asistido en silencio durante los últimos meses a un",
-        "espectáculo vergonzoso, mezcla de incompetencia y repulsiva",
-        "jactancia, de descarado desprecio de la vida y de los derechos del",
-        "pueblo e impúdica utilización de las más degradantes mentiras",
-        "como supremo recurso del Gobierno. [...] ¿Qué no habrán hecho",
-        "los poderes públicos con el pueblo inerme e indefenso bajo un",
-        "régimen constitucional ficticio, bajo un régimen económico de",
-        "miseria y despilfarro, y en un estado cultural mantenido por los",
-        "oligarcas en el más bajo nivel, y sobre el cual la masa ciudadana",
-        "sólo puede irse paulatinamente elevando merced a ímprobos y",
-        "perseverantes esfuerzos?”.",
+        "“A los obreros y a la opinión pública: Ha llegado el momento de poner en práctica, sin vacilación, los propósitos anunciados por los representantes de la Unión General de Trabajadores y la Confederación Nacional del Trabajo en el manifiesto suscrito por estos organismos en el mes de marzo. Desde entonces, la afirmación hecha por el proletariado de demandar, como remedio de los males que padece España, un cambio fundamental de régimen político ha sido corroborada por la actitud que han ido adoptando importantes organismos nacionales, desde la enérgica afirmación de la existencia de las Juntas de Defensa del Arma de Infantería frente a los intentos de su disolución por los poderes públicos, hasta la Asamblea de Parlamentarios celebrada en Barcelona el 19 de julio, y la adhesión a sus conclusiones de numerosos Ayuntamientos, que dan público testimonio de las ansias de renovación que hay en todo el país. [...] El proletariado español ha asistido en silencio durante los últimos meses a un espectáculo vergonzoso, mezcla de incompetencia y repulsiva jactancia, de descarado desprecio de la vida y de los derechos del pueblo e impúdica utilización de las más degradantes mentiras como supremo recurso del Gobierno. [...] ¿Qué no habrán hecho los poderes públicos con el pueblo inerme e indefenso bajo un régimen constitucional ficticio, bajo un régimen económico de miseria y despilfarro, y en un estado cultural mantenido por los oligarcas en el más bajo nivel, y sobre el cual la masa ciudadana sólo puede irse paulatinamente elevando merced a ímprobos y perseverantes esfuerzos?”.",
         "Manifiesto del Comité de Huelga, 12 de agosto de 1917"
       ]
     },
     {
       "id": "primo-rivera-visita-tropas-marruecos",
+      "examCaption": {
+        "text": "Primo de Rivera visita las tropas españolas en Marruecos.",
+        "appearanceId": "fuente-h-536lll6xgtag-4"
+      },
       "title": "Primo de Rivera visita tropas españolas en Marruecos",
       "type": "imagen",
       "blocks": [
@@ -2162,6 +2148,26 @@
       ],
       "image": {
         "src": "assets/documentos/primo-rivera-visita-tropas-marruecos.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "El pie identifica a Primo de Rivera. Se señala la figura de primer plano a la derecha del recorte, según la posición indicada por el usuario; no se identifican los acompañantes.",
+          "sources": [
+            {
+              "title": "Pie de la reproducción en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.536lll6xgtag"
+            }
+          ],
+          "people": [
+            {
+              "name": "Miguel Primo de Rivera",
+              "role": "Dictador y jefe del Gobierno durante el reinado de Alfonso XIII",
+              "position": "A la derecha del recorte, en primer plano.",
+              "x": 0.79,
+              "y": 0.5,
+              "side": "right"
+            }
+          ]
+        },
         "crop": {
           "width": 309,
           "height": 461,
@@ -2177,6 +2183,8 @@
     },
     {
       "id": "tratado-de-paris-y-perdida-del-imperio-colonial",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Tratado de paz entre España y Estados Unidos de América"],
       "title": "Tratado de París y pérdida del imperio colonial",
       "type": "texto",
       "blocks": [
@@ -2190,7 +2198,7 @@
       ],
       "date": "10 de diciembre de 1898",
       "sourceCaption": "Tratado de París y pérdida del imperio colonial. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Selección transcrita del corpus; se conserva distinta de la versión de 2008 por sus diferencias de extensión y corte.",
+      "quality": "Selección transcrita del corpus, distinta de la versión de 2008. Se ha reintegrado el final del artículo 3 y su referencia, mezclados con el decreto de Mendizábal en la recopilación. La continuidad se ha cotejado con el PDF oficial de 2026, titular extraordinaria, páginas 1–2.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -2214,22 +2222,11 @@
         }
       ],
       "text": [
-        "“S.M. la Reina Regente de España, en nombre de su augusto",
-        "hijo D. Alfonso XIII y los Estados Unidos de América, desando",
-        "poner término al estado de guerra hoy existente entre ambas",
-        "naciones [...] previa discusión de las materias pendientes,",
-        "han convenido en los siguientes artículos:",
-        "1o) España renuncia a todo derecho de soberanía y",
-        "propiedad sobre Cuba. En atención a que dicha isla, cuando",
-        "sea evacuada por España, va a ser ocupada por los Estados",
-        "Unidos [...].",
-        "2o) España cede a los Estados Unidos la isla de Puerto Rico",
-        "y las demás que ahora están bajo su soberanía en las Islas",
-        "Occidentales y la isla de Guam en el archipiélago de las",
-        "Marianas o Ladrones.",
-        "3o) España cede a los Estados Unidos el archipiélago",
-        "conocido por las Islas Filipinas [...] los Estados Unidos",
-        "pagarán a España la suma de veinte millones de dólares"
+        "“S.M. la Reina Regente de España, en nombre de su augusto hijo D. Alfonso XIII y los Estados Unidos de América, desando poner término al estado de guerra hoy existente entre ambas naciones [...] previa discusión de las materias pendientes, han convenido en los siguientes artículos:",
+        "1o) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...].",
+        "2o) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
+        "3o) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado [...]”.",
+        "Tratado de paz entre España y Estados Unidos de América, 10 de diciembre de 1898"
       ]
     },
     {
@@ -2277,6 +2274,8 @@
     },
     {
       "id": "bando-de-mola-y-declaracion-del-estado-de-guerra-en-navarra",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Diario de Navarra"],
       "title": "Bando de Mola y declaración del estado de guerra en Navarra",
       "type": "texto",
       "blocks": [
@@ -2322,6 +2321,11 @@
     },
     {
       "id": "detenidos-revolucion-asturias-1934",
+      "examCaption": {
+        "text": "Revolución de octubre de 1934 en Asturias. Conducción de los detenidos por la Guardia Civil tras el fracaso del movimiento insurreccional",
+        "appearanceId": "fuente-h-llgamonvamkm-3",
+        "italic": true
+      },
       "title": "Detenidos tras la revolución de Asturias",
       "type": "imagen",
       "blocks": [
@@ -2356,7 +2360,7 @@
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.llgamonvamkm",
           "sourceImages": [
-            25
+            32
           ]
         }
       ],
@@ -2369,6 +2373,10 @@
     },
     {
       "id": "casas-viejas-detenciones-1933",
+      "examCaption": {
+        "text": "Campesinos detenidos por la Guardia Civil después del levantamiento de Casas Viejas (1933)",
+        "appearanceId": "fuente-h-pkvy8jbq5hq-4"
+      },
       "title": "Detenidos tras los sucesos de Casas Viejas",
       "type": "imagen",
       "blocks": [
@@ -2409,6 +2417,7 @@
       ],
       "image": {
         "src": "assets/documentos/casas-viejas-detenciones-1933-eldebate.png",
+        "reproductionNote": "Imagen alternativa · Encuadre distinto al examen.",
         "sourceUrl": "https://imagenes.eldebate.com/files/vertical_composte_image/uploads/2025/03/05/67c86f1339e22.jpeg",
         "alt": "Fotografía en blanco y negro de varios campesinos detenidos junto a guardias civiles.",
         "width": 940,
@@ -2417,6 +2426,10 @@
     },
     {
       "id": "reparto-armas-madrid-1936",
+      "examCaption": {
+        "text": "Entrega de fusiles a la población de Madrid por el gobierno de la República",
+        "appearanceId": "fuente-h-tyo9mvypmp5d-2"
+      },
       "title": "Entrega de armas a la población de Madrid",
       "type": "imagen",
       "blocks": [
@@ -2451,7 +2464,7 @@
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tyo9mvypmp5d",
           "sourceImages": [
-            18
+            25
           ]
         }
       ],
@@ -2472,6 +2485,10 @@
     },
     {
       "id": "franco-mola-cavalcanti-burgos",
+      "examCaption": {
+        "text": "Los generales Franco, Mola y Cavalcanti en Burgos en agosto de 1936",
+        "appearanceId": "fuente-h-w7386l5spoh3-4"
+      },
       "title": "Franco, Mola y Cavalcanti en Burgos",
       "type": "imagen",
       "blocks": [
@@ -2506,12 +2523,48 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.w7386l5spoh3",
           "sourceImages": [
-            24
+            31
           ]
         }
       ],
       "image": {
         "src": "assets/documentos/franco-mola-cavalcanti-burgos.png",
+        "annotations": {
+          "layout": "numbered",
+          "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus uniformes.",
+          "sources": [
+            {
+              "title": "Descripción y metadatos de esta fotografía",
+              "url": "https://commons.wikimedia.org/wiki/File:Franco_y_Mola_(Burgos,_1936).jpg"
+            }
+          ],
+          "people": [
+            {
+              "name": "José Cavalcanti",
+              "role": "General de caballería del bando sublevado",
+              "position": "A la izquierda, con las manos detrás.",
+              "x": 0.25,
+              "y": 0.6,
+              "side": "left"
+            },
+            {
+              "name": "Francisco Franco",
+              "role": "General sublevado, jefe del Ejército de África; todavía no era jefe del Estado",
+              "position": "En el centro y en primer plano.",
+              "x": 0.48,
+              "y": 0.62,
+              "side": "right"
+            },
+            {
+              "name": "Emilio Mola",
+              "role": "General organizador del golpe de 1936 y jefe de las fuerzas sublevadas del norte",
+              "position": "A la derecha, algo más atrás.",
+              "x": 0.64,
+              "y": 0.6,
+              "side": "right"
+            }
+          ]
+        },
         "alt": "Fotografía de Franco, Mola y otros militares caminando entre tropas en Burgos.",
         "width": 2000,
         "height": 1517
@@ -2531,8 +2584,8 @@
         "Laicidad"
       ],
       "date": "9 de diciembre de 1931",
-      "sourceCaption": "Constitución de la República española de 1931. Selección de los artículos 1, 2, 3, 4, 11 y 26 recogida bajo el encabezado «2025 Suplente A» de la recopilación, documento 2. La identificación del encabezado está pendiente de cotejo con el PDF oficial.",
-      "quality": "Se unen las frases partidas entre renglones y se separan los artículos y párrafos del artículo 1. No se añaden pasajes ajenos a la selección; se conservan las omisiones […] del corpus. La recuperación de líneas no equivale al cotejo con el PDF del examen.",
+      "sourceCaption": "Constitución de la República española de 1931. Selección de los artículos 1, 2, 3, 4, 11 y 26 recogida bajo el encabezado “2025 Suplente A” de la recopilación, documento 2. La identificación del encabezado está pendiente de cotejo con el PDF oficial.",
+      "quality": "Se unen las frases partidas entre renglones y se separan los artículos y párrafos del artículo 1. No se añaden pasajes ajenos a la selección; se conservan las omisiones […] del corpus. La recuperación de líneas no equivale al cotejo con el PDF del examen. La aparición de 2009 reproduce la misma selección de artículos y se agrupa tras cotejar su contenido; solo varían la división en renglones, los signos de omisión y otros detalles de transcripción.",
       "text": [
         "Artículo 1. España es una República democrática de trabajadores de toda clase, que se organiza en régimen de Libertad y de Justicia.",
         "Los poderes de todos sus órganos emanan del pueblo.",
@@ -2562,12 +2615,29 @@
           "route": "Bloque II",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5qiyxceviwuz",
-          "sourceKey": "h.5qiyxceviwuz:4"
+          "sourceKey": "h.5qiyxceviwuz:4",
+          "sourceOrdinal": 4
+        },
+        {
+          "id": "fuente-h-ife1u9yvtus7-3",
+          "sourceKey": "h.ife1u9yvtus7:3",
+          "sourceOrdinal": 3,
+          "year": 2009,
+          "exam": "2009 Examen 6",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ife1u9yvtus7",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
+          "officialPage": 2,
+          "sameDocumentReviewed": true
         }
       ]
     },
     {
       "id": "la-segunda-republica-y-la-cuestion-agraria",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Manuel Azaña", "Causas de la guerra de España"],
       "title": "La Segunda República y la cuestión agraria",
       "type": "texto",
       "blocks": [
@@ -2604,11 +2674,14 @@
         }
       ],
       "text": [
-        "\"El nuevo régimen se instauró sin causar víctimas ni daños. Una alegría desbordante inundó el país. La República venia realmente a dar forma a las aspiraciones que desde los comienzos del siglo trabajaban el espíritu público, a satisfacer las exigencias más urgentes del pueblo. La sociedad española ofrecía los contrastes más violentos. En ciertos núcleos urbanos, un nivel de vida alto, adaptado a todos los usos de la civilización contemporánea, y a los pocos kilómetros, aldeas que aparecen detenidas en el siglo XIX. Casi a la vista de los palacios de Madrid, los albergues miserables de la montaña. Provincias del noroeste donde la tierra está desmenuzada en pedacitos. que no bastan para mantener al cultivador; provincias del sur y oeste donde el propietario de 14 000 hectáreas detenta en una sola mano todo el territorio de un pueblo. La República, como era su deber, acentuó la acción del Estado. Acción inaplazable en cuanto a los obreros campesinos. El paro que afectaba a todas las industrias españolas, era enorme, crónico, en la explotación de la tierra. Cuantos conocen algo de la economía española saben que la explotación lucrativa de las grandes propiedades rurales se basaba en los jornales mínimos y en el paro periódico durante cuatro o cinco meses al año, en los cuales el bracero campesino no trabaja ni come. Con socialistas ni sin socialistas, ningún régimen que atienda al deber de procurar a sus súbditos unas condiciones de vida medianamente humanas, podía dejar las cosa en la situación en que las halló la República\". Manuel Azaña: Causas de la guerra de España."
+        "\"El nuevo régimen se instauró sin causar víctimas ni daños. Una alegría desbordante inundó el país. La República venia realmente a dar forma a las aspiraciones que desde los comienzos del siglo trabajaban el espíritu público, a satisfacer las exigencias más urgentes del pueblo. La sociedad española ofrecía los contrastes más violentos. En ciertos núcleos urbanos, un nivel de vida alto, adaptado a todos los usos de la civilización contemporánea, y a los pocos kilómetros, aldeas que aparecen detenidas en el siglo XIX. Casi a la vista de los palacios de Madrid, los albergues miserables de la montaña. Provincias del noroeste donde la tierra está desmenuzada en pedacitos. que no bastan para mantener al cultivador; provincias del sur y oeste donde el propietario de 14 000 hectáreas detenta en una sola mano todo el territorio de un pueblo. La República, como era su deber, acentuó la acción del Estado. Acción inaplazable en cuanto a los obreros campesinos. El paro que afectaba a todas las industrias españolas, era enorme, crónico, en la explotación de la tierra. Cuantos conocen algo de la economía española saben que la explotación lucrativa de las grandes propiedades rurales se basaba en los jornales mínimos y en el paro periódico durante cuatro o cinco meses al año, en los cuales el bracero campesino no trabaja ni come. Con socialistas ni sin socialistas, ningún régimen que atienda al deber de procurar a sus súbditos unas condiciones de vida medianamente humanas, podía dejar las cosa en la situación en que las halló la República\".",
+        "Manuel Azaña: Causas de la guerra de España."
       ]
     },
     {
       "id": "pascual-carrion-y-el-problema-de-los-latifundios",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Pascual Carrión", "Los latifundios en España"],
       "title": "Pascual Carrión y el problema de los latifundios",
       "type": "texto",
       "blocks": [
@@ -2621,7 +2694,7 @@
       ],
       "date": "1932",
       "sourceCaption": "Pascual Carrión y el problema de los latifundios. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial. Se ha retirado la cabecera administrativa del examen que aparecía después de la referencia bibliográfica.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -2645,35 +2718,18 @@
         }
       ],
       "text": [
-        "“[...] El problema de los latifundios en España [es] una",
-        "cuestión grave de enorme trascendencia económica y social",
-        "para nuestra patria. No se trata solo del hecho de que unos",
-        "7.000 propietarios posean más de 6 millones de hectáreas en",
-        "las regiones manchega, extremeña y andaluza, sino también",
-        "de que disfrutan la mayor parte de la riqueza que en ellas",
-        "reproduce, dejado al resto de sus habitantes en situación",
-        "precaria, y, sobre todo, impidiendo que se intensifique la",
-        "producción y puedan progresar esas provincias [...].",
-        "Consecuencia de ellos son: la despoblación de los campos,",
-        "el deficiente cultivo, los jornales bajos, los arrendamientos",
-        "caros, la escasa y raquítica ganadería, y, en general, la",
-        "situación precaria en que se encuentra la tercera parte del",
-        "territorio nacional [...]. Ante estos hechos, es suicida y",
-        "criminal cerrar los ojos para no verlos y dejar que pasen los",
-        "años y aun siglos, como hasta ahora ha ocurrido, sin ponerles",
-        "remedio. Hay, pues, que afrontar su solución con serenidad",
-        "pero con energía [...]”.",
-        "Pascual Carrión, Los latifundios en España, Gráficas",
-        "Reunidas, 1932.",
-        "ADMISIÓN",
-        "HISTORIA DE ESPAÑA",
-        "ANDALUCÍA, CEUTA, MELILLA y CENTROS en MARRUECOS",
-        "CURSO 2024-2025"
+        "“[...] El problema de los latifundios en España [es] una cuestión grave de enorme trascendencia económica y social para nuestra patria. No se trata solo del hecho de que unos 7.000 propietarios posean más de 6 millones de hectáreas en las regiones manchega, extremeña y andaluza, sino también de que disfrutan la mayor parte de la riqueza que en ellas reproduce, dejado al resto de sus habitantes en situación precaria, y, sobre todo, impidiendo que se intensifique la producción y puedan progresar esas provincias [...].",
+        "Consecuencia de ellos son: la despoblación de los campos, el deficiente cultivo, los jornales bajos, los arrendamientos caros, la escasa y raquítica ganadería, y, en general, la situación precaria en que se encuentra la tercera parte del territorio nacional [...]. Ante estos hechos, es suicida y criminal cerrar los ojos para no verlos y dejar que pasen los años y aun siglos, como hasta ahora ha ocurrido, sin ponerles remedio. Hay, pues, que afrontar su solución con serenidad pero con energía [...]”.",
+        "Pascual Carrión, Los latifundios en España, Gráficas Reunidas, 1932."
       ]
     },
     {
       "id": "cartel-ejercito-popular-republica",
-      "title": "«El Ejército Popular es el Ejército de la República»",
+      "examCaption": {
+        "text": "Cartel de la Junta Delegada de Defensa de Madrid (1937)",
+        "appearanceId": "fuente-h-6dwbo8kwnrna-4"
+      },
+      "title": "“El Ejército Popular es el Ejército de la República”",
       "type": "imagen",
       "blocks": [
         10
@@ -2684,7 +2740,7 @@
         "Propaganda republicana"
       ],
       "date": "Guerra Civil española",
-      "sourceCaption": "«El Ejército Popular es el Ejército de la República». Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
+      "sourceCaption": "“El Ejército Popular es el Ejército de la República”. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
       "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
       "commentary": [
         {
@@ -2713,20 +2769,24 @@
       ],
       "image": {
         "src": "assets/documentos/cartel-ejercito-popular-republica.png",
-        "alt": "Cartel de la Junta Delegada de Defensa de Madrid: una figura alegórica une a un trabajador y un soldado; abajo se lee «El Ejército Popular es el Ejército de la República».",
+        "alt": "Cartel de la Junta Delegada de Defensa de Madrid: una figura alegórica une a un trabajador y un soldado; abajo se lee “El Ejército Popular es el Ejército de la República”.",
         "width": 980,
         "height": 1411
       }
     },
     {
       "id": "militantes-pce-acto-multitudinario",
+      "examCaption": {
+        "text": "Los comunistas celebran la legalización de su partido en abril de 1977",
+        "appearanceId": "fuente-h-cwvz2sm9irie-4"
+      },
       "title": "Acto multitudinario del PCE",
       "type": "imagen",
       "blocks": [
-        11
+        12
       ],
       "tags": [
-        "Franquismo",
+        "Democracia",
         "PCE",
         "Transición"
       ],
@@ -2740,7 +2800,7 @@
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
-          "text": "Sitúa la escena en la actividad pública del Partido Comunista durante el final de la dictadura y la Transición. Explica las causas y consecuencias pertinentes y enlázalas con elementos visibles de la imagen, indicando las incertidumbres que señale su ficha."
+          "text": "Sitúa la escena en la Transición y la incorporación del Partido Comunista a la vida política legal, dentro del bloque 12. Relaciona la legalización del PCE en 1977 con la construcción de la democracia y distingue ese acontecimiento de su IX Congreso, celebrado en 1978. La fecha exacta de esta fotografía sigue pendiente de cotejo."
         }
       ],
       "appearances": [
@@ -2767,6 +2827,10 @@
     },
     {
       "id": "cartel-falange",
+      "examCaption": {
+        "text": "Cartel de Falange",
+        "appearanceId": "fuente-h-blgbqc7asjia-4"
+      },
       "title": "Cartel de Falange",
       "type": "imagen",
       "blocks": [
@@ -2779,7 +2843,7 @@
       ],
       "date": "Fecha no indicada en la recopilación",
       "sourceCaption": "Cartel de Falange. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
-      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "quality": "Reproducción alternativa del Museo Nacional Centro de Arte Reina Sofía, aportada por el usuario. No es una captura del PDF del examen. Se conserva y enlaza también la reproducción de la recopilación; la fecha y autoría siguen pendientes de cotejo.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -2806,14 +2870,20 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/cartel-falange.png",
+        "src": "assets/documentos/cartel-falange-reina-sofia.png",
         "alt": "Cartel de Falange con emblemas del movimiento y figuras que sostienen banderas.",
-        "width": 226,
-        "height": 290
+        "width": 1155,
+        "height": 1440,
+        "caption": "Reproducción del Museo Nacional Centro de Arte Reina Sofía (recurso AD05635_2), aportada por el usuario.",
+        "sourceUrl": "https://recursos.museoreinasofia.es/styles/large_portrait/public/Obra/AD05635_2.jpg.webp",
+        "corpusSrc": "assets/documentos/cartel-falange.png",
+        "corpusLabel": "Ver reproducción original de la recopilación ↗"
       }
     },
     {
       "id": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Fuero de los Españoles", "BOE"],
       "title": "El Fuero de los Españoles y los límites de los derechos",
       "type": "texto",
       "blocks": [
@@ -2850,27 +2920,18 @@
         }
       ],
       "text": [
-        "“Francisco Franco Bahamonde, Caudillo de España, Jefe del",
-        "Estado y Generalísimo de los Ejércitos de la Nación:",
-        "Por cuanto las Cortes españolas, como órgano superior de",
-        "participación del pueblo en las tareas del Estado, según la",
-        "ley de su creación, han elaborado el Fuero de los Españoles,",
-        "texto fundamental definidor de los derechos y deberes de los",
-        "mismos y amparador de sus garantías;",
-        "Vengo a disponer:",
-        "[...] Art. 2. Los españoles deben servicio fiel a la Patria,",
-        "lealtad al Jefe del Estado y obediencia a las leyes. [...]",
-        "Art. 12. Todo español podrá expresar libremente sus ideas",
-        "mientras no atenten a los principios fundamentales del",
-        "Estado. [...]",
-        "Art. 33. El ejercicio de los derechos que se recorren en este",
-        "Fuero no podrá atentar a la unidad espiritual, nacional y",
-        "social de España [...]”.",
+        "“Francisco Franco Bahamonde, Caudillo de España, Jefe del Estado y Generalísimo de los Ejércitos de la Nación:",
+        "Por cuanto las Cortes españolas, como órgano superior de participación del pueblo en las tareas del Estado, según la ley de su creación, han elaborado el Fuero de los Españoles, texto fundamental definidor de los derechos y deberes de los mismos y amparador de sus garantías; Vengo a disponer:",
+        "[...] Art. 2. Los españoles deben servicio fiel a la Patria, lealtad al Jefe del Estado y obediencia a las leyes. [...]",
+        "Art. 12. Todo español podrá expresar libremente sus ideas mientras no atenten a los principios fundamentales del Estado. [...]",
+        "Art. 33. El ejercicio de los derechos que se recorren en este Fuero no podrá atentar a la unidad espiritual, nacional y social de España [...]”.",
         "Fuero de los Españoles, BOE, 18 de julio de 1945."
       ]
     },
     {
       "id": "el-fuero-de-los-espanoles-deberes-y-derechos-limitados",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["BOE"],
       "title": "El Fuero de los Españoles: deberes y derechos limitados",
       "type": "texto",
       "blocks": [
@@ -2907,9 +2968,7 @@
         }
       ],
       "text": [
-        "\"Francisco Franco Bahamonde, Caudillo de España, Jefe del Estado y Generalísimo de los Ejércitos de la Nación: Por cuanto las Cortes españolas, como órgano superior de participación del pueblo en las tareas del Estado, según",
-        "la ley de su creación, han elaborado el Fuero de los Españoles, texto fundamental definidor de los derechos y",
-        "deberes de los mismos y amparador de sus garantías; Vengo a disponer: (...)",
+        "\"Francisco Franco Bahamonde, Caudillo de España, Jefe del Estado y Generalísimo de los Ejércitos de la Nación: Por cuanto las Cortes españolas, como órgano superior de participación del pueblo en las tareas del Estado, según la ley de su creación, han elaborado el Fuero de los Españoles, texto fundamental definidor de los derechos y deberes de los mismos y amparador de sus garantías; Vengo a disponer: (...)",
         "Art. 2. Los españoles deben servicio fiel a la Patria, lealtad al Jefe del Estado y obediencia a las leyes. (...)",
         "Art. 12. Todo español podrá expresar libremente sus ideas mientras no atenten a los principios fundamentales del Estado\":",
         "BOE, 18 de julio de 1945"
@@ -2917,6 +2976,8 @@
     },
     {
       "id": "el-fuero-de-los-espanoles-seleccion-de-articulos",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Fuero de los Españoles", "BOE"],
       "title": "El Fuero de los Españoles: selección de artículos",
       "type": "texto",
       "blocks": [
@@ -2953,27 +3014,18 @@
         }
       ],
       "text": [
-        "“Francisco Franco Bahamonde, Caudillo de España, Jefe del",
-        "Estado y Generalísimo de los Ejércitos de la Nación:",
-        "Por cuanto las Cortes españolas, como órgano superior de",
-        "participación del pueblo en las tareas del Estado, según la ley",
-        "de su creación, han elaborado el Fuero de los Españoles,",
-        "texto fundamental definidor de los derechos y deberes de los",
-        "mismos y amparador de sus garantías;",
-        "Vengo a disponer:",
-        "[...] Art. 2. Los españoles deben servicio fiel a la Patria,",
-        "lealtad al Jefe del Estado y obediencia a las leyes. [...]",
-        "Art. 12. Todo español podrá expresar libremente sus ideas",
-        "mientras no atenten a los principios fundamentales del",
-        "Estado. [...]",
-        "Art. 33. El ejercicio de los derechos que se recorren en este",
-        "Fuero no podrá atentar a la unidad espiritual, nacional y social",
-        "de España [...]”",
+        "“Francisco Franco Bahamonde, Caudillo de España, Jefe del Estado y Generalísimo de los Ejércitos de la Nación:",
+        "Por cuanto las Cortes españolas, como órgano superior de participación del pueblo en las tareas del Estado, según la ley de su creación, han elaborado el Fuero de los Españoles, texto fundamental definidor de los derechos y deberes de los mismos y amparador de sus garantías; Vengo a disponer:",
+        "[...] Art. 2. Los españoles deben servicio fiel a la Patria, lealtad al Jefe del Estado y obediencia a las leyes. [...]",
+        "Art. 12. Todo español podrá expresar libremente sus ideas mientras no atenten a los principios fundamentales del Estado. [...]",
+        "Art. 33. El ejercicio de los derechos que se recorren en este Fuero no podrá atentar a la unidad espiritual, nacional y social de España [...]”",
         "Fuero de los Españoles, BOE, 18 de julio de 1945."
       ]
     },
     {
       "id": "franco-ante-las-cortes-sobre-democracia-y-partidos",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Franco"],
       "title": "Franco ante las Cortes sobre democracia y partidos",
       "type": "texto",
       "blocks": [
@@ -2986,7 +3038,7 @@
       ],
       "date": "22 de noviembre de 1966",
       "sourceCaption": "Franco ante las Cortes sobre democracia y partidos. Fragmento transcrito de la recopilación aportada.",
-      "quality": "La exportación interrumpe el final del texto entre columnas. El fragmento disponible se conserva y no se completa de memoria.",
+      "quality": "Se ha retirado la cabecera administrativa intercalada y recuperado la continuación final y la atribución del PDF oficial de 2025, Examen_Titular-B_Historia de España.pdf, páginas 1–2. Se conserva “constituyen a perfeccionar”, tal como aparece en el PDF, sin corregir su redacción.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -3010,36 +3062,16 @@
         }
       ],
       "text": [
-        "“La democracia, que bien entendida es el más preciado",
-        "legado civilizador de la cultura occidental, aparece en cada",
-        "época ligada a las circunstancias concretas que se resuelven",
-        "en fórmulas políticas y varias a lo largo de la historia. No hay",
-        "democracia sin bienestar; no existe verdadera libertad sin",
-        "capacidad del pueblo para la satisfacción de las necesidades",
-        "morales y materiales; no hay representación auténtica sin",
-        "verdadera ciudadanía. [...]",
-        "Los partidos no son un elemento esencial y permanente sin",
-        "los cuales la democracia pueda realizarse. A lo largo de la",
-        "historia ha habido muchas experiencias democráticas sin",
-        "conocer el fenómeno de los partidos políticos, que son, sin",
-        "embargo, un experimento relativamente reciente, que nace",
-        "de la crisis y de la descomposición de los vínculos orgánicos",
-        "de la sociedad tradicional.",
-        "Desde el momento en que los partidos se convierten en",
-        "plataformas para la lucha de clases y en desintegradores de",
-        "la unidad nacional, los partidos políticos no son una solución",
-        "constructiva ni tolerable, para abrir la vida española a una",
-        "democracia auténtica, ordenada y eficaz. Pero la exclusión de",
-        "los partidos políticos en manera alguna implica la exclusión",
-        "del legítimo contraste de pareceres, del análisis crítico de las",
-        "ADMISIÓN",
-        "HISTORIA DE ESPAÑA",
-        "ANDALUCÍA, CEUTA, MELILLA y CENTROS en MARRUECOS",
-        "CURSO 2024-2025"
+        "“La democracia, que bien entendida es el más preciado legado civilizador de la cultura occidental, aparece en cada época ligada a las circunstancias concretas que se resuelven en fórmulas políticas y varias a lo largo de la historia. No hay democracia sin bienestar; no existe verdadera libertad sin capacidad del pueblo para la satisfacción de las necesidades morales y materiales; no hay representación auténtica sin verdadera ciudadanía. [...]",
+        "Los partidos no son un elemento esencial y permanente sin los cuales la democracia pueda realizarse. A lo largo de la historia ha habido muchas experiencias democráticas sin conocer el fenómeno de los partidos políticos, que son, sin embargo, un experimento relativamente reciente, que nace de la crisis y de la descomposición de los vínculos orgánicos de la sociedad tradicional.",
+        "Desde el momento en que los partidos se convierten en plataformas para la lucha de clases y en desintegradores de la unidad nacional, los partidos políticos no son una solución constructiva ni tolerable, para abrir la vida española a una democracia auténtica, ordenada y eficaz. Pero la exclusión de los partidos políticos en manera alguna implica la exclusión del legítimo contraste de pareceres, del análisis crítico de las soluciones de gobierno, de la formulación pública de programas y medidas que constituyen a perfeccionar la marcha de la comunidad”.",
+        "Discurso de Franco ante las Cortes, 22 de noviembre de 1966."
       ]
     },
     {
       "id": "franco-ante-las-cortes-critica-del-pluralismo-politico",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Franco"],
       "title": "Franco ante las Cortes: crítica del pluralismo político",
       "type": "texto",
       "blocks": [
@@ -3118,7 +3150,7 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6cr2y5ox1qsc",
           "sourceImages": [
-            17
+            24
           ]
         }
       ],
@@ -3126,11 +3158,65 @@
         "src": "assets/documentos/franco-hitler-hendaya-1940.png",
         "alt": "Fotografía en blanco y negro de Franco y Hitler conversando en Hendaya, junto a otros mandos.",
         "width": 1900,
-        "height": 1069
+        "height": 1069,
+        "annotations": {
+          "layout": "margins",
+          "note": "Además de Franco y Hitler, se señalan los ministros de Asuntos Exteriores Ramón Serrano Suñer (España), a la izquierda, y Joachim von Ribbentrop (Alemania), en el centro. Sus posiciones proceden de la revisión indicada por el usuario; la fuente histórica enlazada documenta sus cargos y su participación en la entrevista, no esas posiciones concretas.",
+          "sources": [
+            {
+              "title": "Pie de la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6cr2y5ox1qsc"
+            },
+            {
+              "title": "Descripción de la ubicación de los protagonistas",
+              "url": "https://www.xuletas.es/ficha/hitos-historia-espana-encuentro-hendaya-autonomias/"
+            },
+            {
+              "title": "Participación de los ministros de Asuntos Exteriores en Hendaya (Europa Press)",
+              "url": "https://www.europapress.es/nacional/noticia-cumplen-85-anos-encuentro-franco-hitler-hendaya-20251022102846.html"
+            }
+          ],
+          "people": [
+            {
+              "name": "Francisco Franco",
+              "role": "Dictador de España y jefe del Estado",
+              "position": "Protagonista del saludo situado a la izquierda.",
+              "x": 0.3,
+              "y": 0.65,
+              "side": "left"
+            },
+            {
+              "name": "Adolf Hitler",
+              "role": "Dictador y canciller de la Alemania nazi",
+              "position": "Protagonista del saludo situado a la derecha.",
+              "x": 0.8,
+              "y": 0.65,
+              "side": "right"
+            },
+            {
+              "name": "Ramón Serrano Suñer",
+              "role": "Ministro de Asuntos Exteriores de España",
+              "position": "En primer plano, a la izquierda.",
+              "x": 0.11,
+              "y": 0.62,
+              "side": "left"
+            },
+            {
+              "name": "Joachim von Ribbentrop",
+              "role": "Ministro de Asuntos Exteriores de la Alemania nazi",
+              "position": "En el centro, entre Franco y Hitler.",
+              "x": 0.445,
+              "y": 0.51,
+              "side": "right"
+            }
+          ]
+        }
       }
     },
     {
       "id": "la-jefatura-del-estado-en-la-ley-organica-de-1967",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Ley Orgánica del Estado"],
       "title": "La jefatura del Estado en la Ley Orgánica de 1967",
       "type": "texto",
       "blocks": [
@@ -3167,11 +3253,16 @@
         }
       ],
       "text": [
-        "“El Jefe del Estado es el representante supremo de la Nación; personifica la soberanía nacional; ejerce el poder supremo político y administrativo, ostenta la Jefatura Nacional del Movimiento y cuida de las más exacta observancia de los Principios del mismo y demás Leyes Fundamentales del Reino, así como la continuidad del Estado y del Movimiento Nacional; garantiza y asegura el regular funcionamiento del Estado de los Altos Órganos del Estado y la debida coordinación entre los mismos; sanciona y promulga las leyes y provee a su ejecución; ejerce el mando supremo de los Ejércitos (...); vela por la conservación del orden público (...); en su nombre se administra justicia; ejerce la prerrogativa de gracia; contiene, con arreglo a las leyes, empleos, cargos públicos y honores (...)”. Artículo 6 de la Ley Orgánica del Estado (1967)"
+        "“El Jefe del Estado es el representante supremo de la Nación; personifica la soberanía nacional; ejerce el poder supremo político y administrativo, ostenta la Jefatura Nacional del Movimiento y cuida de las más exacta observancia de los Principios del mismo y demás Leyes Fundamentales del Reino, así como la continuidad del Estado y del Movimiento Nacional; garantiza y asegura el regular funcionamiento del Estado de los Altos Órganos del Estado y la debida coordinación entre los mismos; sanciona y promulga las leyes y provee a su ejecución; ejerce el mando supremo de los Ejércitos (...); vela por la conservación del orden público (...); en su nombre se administra justicia; ejerce la prerrogativa de gracia; contiene, con arreglo a las leyes, empleos, cargos públicos y honores (...)”.",
+        "Artículo 6 de la Ley Orgánica del Estado (1967)"
       ]
     },
     {
       "id": "exaltacion-franco",
+      "examCaption": {
+        "text": "Exaltación de Franco",
+        "appearanceId": "fuente-h-usbeys37qf3h-4"
+      },
       "title": "Representación alegórica de Franco como cruzado",
       "type": "imagen",
       "blocks": [
@@ -3227,6 +3318,11 @@
     },
     {
       "id": "elecciones-generales-1982-congreso-senado",
+      "examCaption": {
+        "text": "Resultados de las Elecciones Generales de octubre de 1982",
+        "appearanceId": "fuente-h-o5sje6pvryxx-4",
+        "italic": true
+      },
       "title": "Composición del Congreso y el Senado en 1982",
       "type": "grafico",
       "blocks": [
@@ -3262,12 +3358,13 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.o5sje6pvryxx",
           "sourceImages": [
-            27
+            34
           ]
         }
       ],
       "image": {
         "src": "assets/documentos/elecciones-generales-1982-congreso-senado-vector.svg",
+        "reproductionNote": "Redibujado didáctico · No es un facsímil.",
         "kind": "table",
         "alt": "Redibujado vectorial de la tabla de resultados de octubre de 1982: 350 escaños del Congreso y 208 del Senado.",
         "width": 2084,
@@ -3362,8 +3459,8 @@
         "Derechos"
       ],
       "date": "Constitución de 1978",
-      "sourceCaption": "Constitución española de 1978. Fórmula inicial y preámbulo recogidos bajo el encabezado «2025 Suplente B» de la recopilación, documento 2. Es un fragmento distinto de la selección de artículos; no se fusionan sus apariciones.",
-      "quality": "Se unen renglones que cortaban frases como «orden económico y social justo» y se recupera un párrafo por cada propósito del preámbulo. No se añade la fórmula posterior «En consecuencia…», ausente de este fragmento. Encabezado y preguntas originales pendientes de cotejo con el PDF del examen.",
+      "sourceCaption": "Constitución española de 1978. Fórmula inicial y preámbulo recogidos bajo el encabezado “2025 Suplente B” de la recopilación, documento 2. Es un fragmento distinto de la selección de artículos; no se fusionan sus apariciones.",
+      "quality": "Se unen renglones que cortaban frases como “orden económico y social justo” y se recupera un párrafo por cada propósito del preámbulo. No se añade la fórmula posterior “En consecuencia…”, ausente de este fragmento. Encabezado y preguntas originales pendientes de cotejo con el PDF del examen.",
       "text": [
         "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
         "PREÁMBULO",
@@ -3403,12 +3500,17 @@
           "route": "Bloque II",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tyo9mvypmp5d",
-          "sourceKey": "h.tyo9mvypmp5d:4"
+          "sourceKey": "h.tyo9mvypmp5d:4",
+          "sourceOrdinal": 4
         }
       ]
     },
     {
       "id": "reunion-expresidentes-gobierno",
+      "examCaption": {
+        "text": "Presidentes del gobierno en la Monarquía de Juan Carlos",
+        "appearanceId": "fuente-h-c4qpyusgk1fw-4"
+      },
       "title": "Encuentro de antiguos presidentes del Gobierno",
       "type": "imagen",
       "blocks": [
@@ -3456,7 +3558,7 @@
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tvlhtdubp2jf",
           "sourceImages": [
-            22
+            29
           ]
         }
       ],
@@ -3464,11 +3566,61 @@
         "src": "assets/documentos/reunion-expresidentes-gobierno.png",
         "alt": "Fotografía de varios políticos españoles, entre ellos José María Aznar, Felipe González y Adolfo Suárez.",
         "width": 990,
-        "height": 794
+        "height": 794,
+        "annotations": {
+          "layout": "margins",
+          "note": "El comentario del corpus describe la ubicación de los cuatro presidentes; la referencia enlazada confirma ese orden. No se identifican otras figuras del encuadre.",
+          "sources": [
+            {
+              "title": "Identificaciones y posiciones en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.c4qpyusgk1fw"
+            },
+            {
+              "title": "José Enrique Viola Nevado: comentario de esta fotografía",
+              "url": "https://enriqueviolanevado.blogspot.com/2014/06/la-fotografia-de-los-presidentes-de.html"
+            }
+          ],
+          "people": [
+            {
+              "name": "Felipe González",
+              "role": "Presidente del Gobierno entre 1982 y 1996",
+              "position": "De pie, a la izquierda y de perfil.",
+              "x": 0.1,
+              "y": 0.48,
+              "side": "left"
+            },
+            {
+              "name": "Adolfo Suárez",
+              "role": "Presidente del Gobierno entre 1976 y 1981",
+              "position": "De pie, en el centro, riendo.",
+              "x": 0.5,
+              "y": 0.45,
+              "side": "right"
+            },
+            {
+              "name": "Leopoldo Calvo-Sotelo",
+              "role": "Presidente del Gobierno entre 1981 y 1982",
+              "position": "De pie, a la derecha, con una mano sobre la otra.",
+              "x": 0.9,
+              "y": 0.62,
+              "side": "right"
+            },
+            {
+              "name": "José María Aznar",
+              "role": "Presidente del Gobierno entre 1996 y 2004",
+              "position": "Abajo, centrado en primer plano.",
+              "x": 0.22,
+              "y": 0.93,
+              "side": "left"
+            }
+          ]
+        }
       }
     },
     {
       "id": "investidura-de-felipe-gonzalez-y-politica-exterior",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Felipe González", "Diario ABC"],
       "title": "Investidura de Felipe González y política exterior",
       "type": "texto",
       "blocks": [
@@ -3505,14 +3657,16 @@
         }
       ],
       "text": [
-        "«El Gobierno cumplirá y hará cumplir la ley. No permitiremos ninguna actuación al margen de la Constitución, y los que piensen que pueden violentarla encontrarán una respuesta rigurosa por nuestra parte (...) Ni el terror, ni el chantaje, ni los intentos involucionistas desviarán la decisión del Gobierno de hacer cumplir la Constitución (...) El 28 de octubre supone la más importante derrota moral para los que desean suplantar la voluntad de los ciudadanos(...)",
+        "“El Gobierno cumplirá y hará cumplir la ley. No permitiremos ninguna actuación al margen de la Constitución, y los que piensen que pueden violentarla encontrarán una respuesta rigurosa por nuestra parte (...) Ni el terror, ni el chantaje, ni los intentos involucionistas desviarán la decisión del Gobierno de hacer cumplir la Constitución (...) El 28 de octubre supone la más importante derrota moral para los que desean suplantar la voluntad de los ciudadanos(...)",
         "Trabajaremos con tesón para allanar los obstáculos que aún se oponen a nuestra plena integración en las Comunidades Europeas y creemos que no será pretencioso conseguir la adhesión, dentro del horizonte dado por la presente legislatura (...)",
-        "Examinaremos también con toda atención los términos de nuestra relación defensiva y de cooperación con los Estados Unidos de América y reestudiaremos, con el rigor necesario para la defensa de nuestros intereses y de nuestra dignidad, la decisión adoptada por el anterior Gobierno español en relación con el Tratado del Atlántico Norte, manteniendo nuestros compromisos con el pueblo español».",
+        "Examinaremos también con toda atención los términos de nuestra relación defensiva y de cooperación con los Estados Unidos de América y reestudiaremos, con el rigor necesario para la defensa de nuestros intereses y de nuestra dignidad, la decisión adoptada por el anterior Gobierno español en relación con el Tratado del Atlántico Norte, manteniendo nuestros compromisos con el pueblo español”.",
         "Discurso de investidura de Felipe González en 1982. Diario ABC. 1 de diciembre de 1982."
       ]
     },
     {
       "id": "investidura-de-jose-maria-aznar",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["D. Jose Maria Aznar"],
       "title": "Investidura de José María Aznar",
       "type": "texto",
       "blocks": [
@@ -3552,7 +3706,8 @@
         "Señor Presidente, Comparezco ante sus señorías para solicitar la confianza de la Cámara, conforme a lo dispuesto en el artículo 99 de la Constitución.",
         "Las elecciones del 3 de marzo han abierto una nueva etapa política en España. Los españoles, tras un largo periodo de gobiernos socialistas, han manifestado su deseo de renovar nuestra vida pública; renovación para dar el impulso de modernización que España ahora necesita y que debe afectar a los comportamientos políticos, al modo en que se ejerce el poder, al funcionamientos de nuestra democracia y traducirse en nuevas políticas para solucionar problemas, no resueltos, corregir errores y alcanzar mayores cotas de libertad y de bienestar para los españoles.",
         "El pueblo español ha promovido la alternancia al convertir al Partido Popular (...) en la opción política más votada y con mayor número de escaños en cada una de las Cámaras, sin disponer, sin embargo, de mayoría absoluta en el Congreso.",
-        "De este resultado electoral se derivan unas consecuencias que quiero resaltar al principio de mi discurso y que, en mi opinión, han de fijar la orientación de la Legislatura: en primer lugar, una voluntad de cambio politico; en segundo lugar, la necesidad de un mayor diálogo, de una mayor capacidad de compromiso, de más decisiones compartidas en nuestra vida pública Discurso de D. Jose Maria Aznar en la sesión de investidura, en el Congreso de los Diputados. Madrid, 3 de mayo de 1996"
+        "De este resultado electoral se derivan unas consecuencias que quiero resaltar al principio de mi discurso y que, en mi opinión, han de fijar la orientación de la Legislatura: en primer lugar, una voluntad de cambio politico; en segundo lugar, la necesidad de un mayor diálogo, de una mayor capacidad de compromiso, de más decisiones compartidas en nuestra vida pública",
+        "Discurso de D. Jose Maria Aznar en la sesión de investidura, en el Congreso de los Diputados. Madrid, 3 de mayo de 1996"
       ]
     },
     {
@@ -3569,7 +3724,7 @@
         "Autonomía"
       ],
       "date": "Constitución de 1978",
-      "sourceCaption": "Constitución española de 1978. Fórmula inicial y selección de los artículos 1, 2 y 3 recogidas bajo el encabezado «2025 Suplente A» de la recopilación, documento 2. Encabezado distinto del que contiene el texto de 1931; pendiente de cotejo con el PDF oficial.",
+      "sourceCaption": "Constitución española de 1978. Fórmula inicial y selección de los artículos 1, 2 y 3 recogidas bajo el encabezado “2025 Suplente A” de la recopilación, documento 2. Encabezado distinto del que contiene el texto de 1931; pendiente de cotejo con el PDF oficial.",
       "quality": "Se recomponen las continuaciones de renglón y se separan los apartados 1.1–1.3 y 3.1–3.2. Se conserva la selección del corpus, incluida la omisión inicial […]; no se añade el apartado 3.3 ni el preámbulo, que no figuran en este fragmento.",
       "text": [
         "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
@@ -3598,7 +3753,8 @@
           "route": "Bloque II",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.7bxjd4xweowb",
-          "sourceKey": "h.7bxjd4xweowb:4"
+          "sourceKey": "h.7bxjd4xweowb:4",
+          "sourceOrdinal": 4
         }
       ]
     },
@@ -3616,7 +3772,7 @@
       ],
       "date": "28 de octubre de 1982",
       "sourceCaption": "Elecciones Generales de 28 de octubre de 1982: distribución de votos y escaños en el Congreso. SVG extraído del PDF oficial de 2008, Examen 3, opción B, documento 1; cotejado también con el PDF aportado.",
-      "quality": "Extracción vectorial del PDF oficial, idéntico al PDF aportado: conserva la tabla completa, notas y fuente, sin reconstrucción. El original sitúa «350» en la fila «Otros***» de la columna «Escaños»; se conserva esa disposición sin corregirla ni interpretarla como escaños obtenidos por esas candidaturas. La tabla accesible mantiene las mismas celdas.",
+      "quality": "Extracción vectorial del PDF oficial, idéntico al PDF aportado: conserva la tabla completa, notas y fuente, sin reconstrucción. El original sitúa “350” en la fila “Otros***” de la columna “Escaños”; se conserva esa disposición sin corregirla ni interpretarla como escaños obtenidos por esas candidaturas. La tabla accesible mantiene las mismas celdas.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -3850,13 +4006,917 @@
         "*** Candidaturas restantes que han obtenido votos, pero no escaños",
         "Fuente: Junta Electoral Central. Ministerio del Interior."
       ]
+    },
+    {
+      "id": "debate-parlamentario-desastre-1899",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Diario de Sesiones del Congreso"],
+      "title": "La polémica del Desastre: debate parlamentario de 1899",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Crisis de 1898",
+        "Cuba",
+        "Imperio colonial"
+      ],
+      "date": "23 de febrero de 1899",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 3, opción A, documento 1.",
+      "quality": "Transcripción de la recopilación aportada; opción y documento contrastados con el PDF oficial escaneado de 2009. Las erratas de transcripción se conservan salvo las correcciones expresamente indicadas.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la derrota de 1898, la pérdida de las colonias y el debate político sobre la responsabilidad del gobierno. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-y1u3euanbxcl-1",
+          "sourceKey": "h.y1u3euanbxcl:1",
+          "sourceOrdinal": 1,
+          "year": 2009,
+          "exam": "2009 Examen 3",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.y1u3euanbxcl",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico03.pdf",
+          "officialPage": 1
+        }
+      ],
+      "text": [
+        "La polémica del Desastre \"¿Qué quería S.S. que hubiese hecho? ¿Qué ante ese ultimátum requiriéndonos para que abandonáramos Cuba hubiésemos cedido en el acto y les hubiéramos entregado Cuba sólo porque los norteamericanos la querían? ¡Ah! Su Señoría que se lamenta de cómo ha venido el ejército español, Su Señoría que se lamenta de la situación en que se halla España, ¿cómo se lamentaría... si hubiéramos cedido sin más ni más a la pretensión de los Estados Unidos de despedirnos, como se puede despedir a un lacayo, de un país en que llevábamos 400 años de dominación y en que teníamos 200.000 soldados y entre voluntarios y guerrilleros otros 100.000, es decir, un ejército de 300.000 hombres? ¡Ah! ¿Era eso posible? Claro está que nosotros no podíamos hacer más de lo que hemos hecho, defendiéndonos de la agresión como hemos podido y hasta donde hemos podido; hemos sido vencidos, pero después el vencido no ha quedado deshonrado; en cambio, si nuestros soldados hubieran venido sin hacer la más mínima resistencia... ¡ah! entonces España hubiera quedado borrada del número de las naciones civilizadas y nuestro ejército no hubiera venido cubierto por la desgracia ni la nación sería en estos momentos desgraciada; no, nuestro ejército hubiese venido cubierto de oprobio y la nación española sería una nación despreciable, (..)\"",
+        "Diario de Sesiones del Congreso, 23 de febrero de 1899"
+      ]
+    },
+    {
+      "id": "general-valeriano-weyler",
+      "examCaption": {
+        "text": "General Valeriano Weyler",
+        "appearanceId": "fuente-h-y1u3euanbxcl-2",
+        "bold": true
+      },
+      "title": "El general Valeriano Weyler y la guerra de Cuba",
+      "blocks": [
+        7
+      ],
+      "tags": [
+        "Cuba",
+        "Weyler",
+        "Crisis de 1898"
+      ],
+      "date": "1896–1897 (contexto)",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 3, opción A, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la guerra de Cuba, la política de reconcentración de Weyler en 1896–1897 y la crisis colonial de la Restauración, dentro del bloque 7 (1874–1902). Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-y1u3euanbxcl-2",
+          "sourceKey": "h.y1u3euanbxcl:2",
+          "sourceOrdinal": 2,
+          "year": 2009,
+          "exam": "2009 Examen 3",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.y1u3euanbxcl",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico03.pdf",
+          "officialPage": 1,
+          "sourceImages": [
+            15
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/general-valeriano-weyler.jpg",
+        "annotations": {
+          "layout": "margins",
+          "note": "El pie del examen identifica al general Weyler. La marca se sitúa sobre el uniforme.",
+          "sources": [
+            {
+              "title": "Pie del examen 3 de 2009, opción A, documento 2",
+              "url": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
+            }
+          ],
+          "people": [
+            {
+              "name": "Valeriano Weyler",
+              "role": "General y capitán general de Cuba entre 1896 y 1897",
+              "position": "Único personaje del retrato.",
+              "x": 0.5,
+              "y": 0.6,
+              "side": "right"
+            }
+          ]
+        },
+        "crop": {
+          "width": 467.92,
+          "height": 627.5,
+          "imageWidth": 467.92,
+          "imageHeight": 671.21,
+          "left": 0,
+          "top": 0
+        },
+        "alt": "Retrato de uniforme del general Valeriano Weyler, reproducido en la recopilación.",
+        "width": 972,
+        "height": 1390
+      }
+    },
+    {
+      "id": "decreto-unificacion-1937",
+      "title": "Decreto de Unificación de 1937",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Franquismo",
+        "Partido único"
+      ],
+      "date": "19 de abril de 1937",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 3, opción B, documento 1.",
+      "quality": "Transcripción cotejada con el PDF oficial escaneado de 2009. Se recuperan pasajes omitidos o corrompidos por el OCR de la recopilación, se reúnen los renglones y se normalizan los signos de omisión sin completar texto ausente del examen.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la unificación de falangistas y carlistas bajo la jefatura de Franco durante la Guerra Civil. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-y1u3euanbxcl-3",
+          "sourceKey": "h.y1u3euanbxcl:3",
+          "sourceOrdinal": 3,
+          "year": 2009,
+          "exam": "2009 Examen 3",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.y1u3euanbxcl",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico03.pdf",
+          "officialPage": 2
+        }
+      ],
+      "text": [
+        "Decreto nº 255",
+        "Una acción de gobierno eficiente [...] exige supeditar al destino común la acción individual y colectiva de todos los españoles [...]",
+        "Llegada la guerra a punto muy avanzado y próxima la hora de la victoria, urge acometer la gran tarea de la paz, cristalizando el Estado nuevo del pensamiento y estilo de nuestra Revolución Nacional [...]",
+        "Esta unificación que exijo en el nombre de España y en el nombre sagrado de los que por ella cayeron —héroes y mártires— [...] no quiere decir ni conglomerado de fuerzas ni mera concentración gubernamental, ni unión pasajera [...] No cerramos el horizonte a la posibilidad de instaurar en la Nación el régimen secular que forjó su unidad y su grandeza histórica [...]",
+        "Por todo lo expuesto, DISPONGO:",
+        "Artículo Primero: Falange Española y Requetés, con sus actuales servicios y elementos, se integran, bajo Mi Jefatura, en una sola entidad política de carácter nacional que, de momento, se denominará Falange Española Tradicionalista y de las JONS [...]",
+        "Dado en Salamanca a diecinueve de abril de 1937. Francisco Franco."
+      ]
+    },
+    {
+      "id": "no-pasaran-sitio-madrid",
+      "examCaption": {
+        "text": "Sitio de Madrid durante la Guerra Civil",
+        "appearanceId": "fuente-h-y1u3euanbxcl-4"
+      },
+      "title": "“¡No pasarán!”: la defensa de Madrid",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Madrid",
+        "Propaganda"
+      ],
+      "date": "1936–1939",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 3, opción B, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la defensa de Madrid y el uso de consignas y propaganda en la zona republicana. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-y1u3euanbxcl-4",
+          "sourceKey": "h.y1u3euanbxcl:4",
+          "sourceOrdinal": 4,
+          "year": 2009,
+          "exam": "2009 Examen 3",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.y1u3euanbxcl",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico03.pdf",
+          "officialPage": 2,
+          "sourceImages": [
+            16
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/no-pasaran-sitio-madrid.png",
+        "alt": "Fotografía de la calle de Toledo en Madrid con una pancarta de “¡No pasarán!” sobre el arco.",
+        "width": 1564,
+        "height": 2048
+      }
+    },
+    {
+      "id": "manifiesto-manzanares-1854",
+      "title": "Manifiesto de Manzanares",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Isabel II",
+        "Bienio Progresista",
+        "Liberalismo"
+      ],
+      "date": "6 de julio de 1854",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 4, opción A, documento 1.",
+      "quality": "Transcripción de la recopilación aportada; opción y documento contrastados con el PDF oficial escaneado de 2009. Las erratas de transcripción se conservan salvo las correcciones expresamente indicadas.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la revolución de 1854 y las demandas políticas que preceden al Bienio Progresista. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-6ddndgb4ypzx-1",
+          "sourceKey": "h.6ddndgb4ypzx:1",
+          "sourceOrdinal": 1,
+          "year": 2009,
+          "exam": "2009 Examen 4",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6ddndgb4ypzx",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico04.pdf",
+          "officialPage": 1
+        }
+      ],
+      "text": [
+        "MANIFIESTO DE MANZANARES Nosotros queremos la conservación del Trono, pero sin la camarilla que le deshonra; queremos la práctica rigurosa de las leyes fundamentales, mejorándolas, sobre todo la Electoral y la de Imprenta; queremos la rebaja de los impuestos, fundada en una estricta economía; queremos que se respeten en los empleos militares y civiles la antigüedad y los merecimientos; queremos arrancar los pueblos a la centralización que los devora, dándoles la independencia local necesaria para que conserven y aumenten sus intereses propios, y como garantía de todo esto, queremos plantearnos la Milicia Nacional. Tales son nuestros intentos [...] las Cortes generales que luego se reúnan, la misma nación, en fin, fijará las bases definitivas de la regeneración liberal a que aspiramos.",
+        "Madrid 6 de julio de 1854"
+      ]
+    },
+    {
+      "id": "isabel-ii-jura-constitucion-1837",
+      "examCaption": {
+        "text": "Jura de la Constitución de 1837",
+        "appearanceId": "fuente-h-6ddndgb4ypzx-2"
+      },
+      "title": "Isabel II jura la Constitución de 1837",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Isabel II",
+        "Constitucionalismo",
+        "Estado liberal"
+      ],
+      "date": "1843",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 4, opción A, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la mayoría de edad de Isabel II y la consolidación de la monarquía constitucional. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-6ddndgb4ypzx-2",
+          "sourceKey": "h.6ddndgb4ypzx:2",
+          "sourceOrdinal": 2,
+          "year": 2009,
+          "exam": "2009 Examen 4",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6ddndgb4ypzx",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico04.pdf",
+          "officialPage": 1,
+          "sourceImages": [
+            17
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/isabel-ii-jura-constitucion-1837.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "La reina de esta escena es Isabel II, no Isabel I. No se rotula como Narváez a una figura cuya identificación es dudosa en la recopilación.",
+          "sources": [
+            {
+              "title": "Pie del examen 4 de 2009, opción A, documento 2",
+              "url": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
+            }
+          ],
+          "people": [
+            {
+              "name": "Isabel II",
+              "role": "Reina de España. Es declarada mayor de edad con 13 años, en 1843, y jura la entonces vigente Constitución de 1837.",
+              "position": "En el estrado, con vestido claro, prestando juramento.",
+              "x": 0.62,
+              "y": 0.69,
+              "side": "right"
+            }
+          ]
+        },
+        "crop": {
+          "width": 425,
+          "height": 355,
+          "imageWidth": 508,
+          "imageHeight": 434.32,
+          "left": -42,
+          "top": -41.26
+        },
+        "alt": "Pintura de la jura constitucional de Isabel II ante las Cortes, con el recorte de la recopilación.",
+        "width": 2048,
+        "height": 1751
+      }
+    },
+    {
+      "id": "garcia-cortazar-transicion-democracia",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["Fernando García de Cortázar", "Álbum de la Historia de España"],
+      "title": "García de Cortázar: “Cuando España dio ejemplo”",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Transición",
+        "Juan Carlos I",
+        "Adolfo Suárez"
+      ],
+      "date": "1995 (sobre 1975–1977)",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 4, opción B, documento 1.",
+      "quality": "Transcripción cotejada con el PDF oficial escaneado de 2009. Se recuperan pasajes omitidos o corrompidos por el OCR de la recopilación, se reúnen los renglones y se normalizan los signos de omisión sin completar texto ausente del examen.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la muerte de Franco, la actuación del rey y de Adolfo Suárez y la reforma política hacia la democracia. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-6ddndgb4ypzx-3",
+          "sourceKey": "h.6ddndgb4ypzx:3",
+          "sourceOrdinal": 3,
+          "year": 2009,
+          "exam": "2009 Examen 4",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6ddndgb4ypzx",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico04.pdf",
+          "officialPage": 2
+        }
+      ],
+      "text": [
+        "[...] Franco se murió en la cama, atesorando las arcas de poder que nadie se atrevió a quitarle en vida. Cuando las lágrimas de Arias Navarro salpicaron las pantallas de televisión de los hogares españoles, el champán fue la bebida más demandada por los que habrían deseado adelantar unos cuantos años el entierro.",
+        "[...] Un espíritu nuevo se dejó entrever desde el primer discurso del Rey Juan Carlos I, que, pese al testigo recogido de Franco, pasó por alto los dogmas anteriores de la Guerra Civil y el Movimiento. Como no estaba dispuesto a aceptar el papel de continuador, alzó hasta la presidencia del gobierno a un desconocido Adolfo Suárez, un burócrata del antiguo régimen que le ayudaría a que el franquismo cerrase los ojos mientras sentía la espada de sus propias leyes internándose por sus venas. De este modo, las viejas Cortes franquistas autorizaron la transición a la democracia, que muchos españoles querían hacer llegar sin las violencias que los agoreros franquistas habían vaticinado.",
+        "Fernando García de Cortázar. Álbum de la Historia de España. 1995."
+      ]
+    },
+    {
+      "id": "constitucion-1978-gobierno-97-98-101",
+      "title": "Constitución de 1978: composición y funciones del Gobierno",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Constitución de 1978",
+        "Gobierno",
+        "Democracia"
+      ],
+      "date": "1978",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 4, opción B, documento 2.",
+      "quality": "Transcripción cotejada con el PDF escaneado de 2009. El artículo 101 del examen imprime “por disminución o fallecimiento”, que se conserva sin presentarlo como redacción legal corregida. Se elimina una “U” suelta al final que solo aparece en el OCR de la recopilación.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la organización del poder ejecutivo en la Constitución de 1978 y su responsabilidad parlamentaria. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-6ddndgb4ypzx-4",
+          "sourceKey": "h.6ddndgb4ypzx:4",
+          "sourceOrdinal": 4,
+          "year": 2009,
+          "exam": "2009 Examen 4",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6ddndgb4ypzx",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico04.pdf",
+          "officialPage": 2
+        }
+      ],
+      "text": [
+        "CONSTITUCIÓN ESPAÑOLA DE 1.978 Artículo 97:",
+        "El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado. Ejerce la función ejecutiva y la potestad reglamentaria de acuerdo con la Constitución y las leyes.",
+        "Articulo 98:",
+        "1. El Gobierno se compone del Presidente, de los Vicepresidentes en su caso, de los Ministros y de los demás miembros que establezca la ley.",
+        "2. El Presidente dirige la acción del Gobierno y coordina las funciones de los demás miembros del mismo, sin perjuicio de la competencia y responsabilidad directa de éstos en su gestión.",
+        "3. Los miembros del Gobierno no podrán ejercer otras funciones representativas que las propias del mandato parlamentario, ni cualquier otra función pública que no derive de su cargo, ni actividad profesional o mercantil alguna.",
+        "•Articulo 101:",
+        "1. El Gobierno cesa tras la celebración de elecciones generales, en los casos de pérdida de la confianza parlamentaria previstos en la Constitución, o por disminución o fallecimiento de su Presidente.",
+        "2. El Gobierno cesante continuará en funciones hasta la toma de posesión del nuevo Gobierno."
+      ]
+    },
+    {
+      "id": "napoleon-espanoles-bayona-1808",
+      "title": "Napoleón se dirige a los españoles desde Bayona",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Guerra de la Independencia",
+        "Napoleón",
+        "Abdicaciones de Bayona"
+      ],
+      "date": "25 de mayo de 1808",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 5, opción A, documento 1.",
+      "quality": "Transcripción de la recopilación aportada; opción y documento contrastados con el PDF oficial escaneado de 2009. Las erratas de transcripción se conservan salvo las correcciones expresamente indicadas.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con las abdicaciones de Bayona y la intervención napoleónica en la monarquía española. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-nbuyh1njnq9k-1",
+          "sourceKey": "h.nbuyh1njnq9k:1",
+          "sourceOrdinal": 1,
+          "year": 2009,
+          "exam": "2009 Examen 5",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nbuyh1njnq9k",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico05.pdf",
+          "officialPage": 1
+        }
+      ],
+      "text": [
+        "Españoles: después de una larga agonía vuestra nación iba a perecer. He visto vuestros males, y voy a remediarlos. Vuestra grandeza y vuestro poder parte del mío.",
+        "Vuestros príncipes me han cedido todos sus derechos a la corona de las Españas: yo no quiero reinar en vuestras provincias; pero quiero adquirir derechos eternos al amor y al reconocimiento de vuestra prosperidad. (...)",
+        "Españoles: acordaos de lo que han sido vuestros padres, y mirad a lo que habéis llegado. No es vuestra la culpa sino del mal gobierno que os regía. (...).",
+        "Dado en nuestro palacio imperial y real de Bayona a 25 de mayo de 1808."
+      ]
+    },
+    {
+      "id": "rendicion-bailen-casado-alisal",
+      "examCaption": {
+        "emphasis": ["La rendición de Bailén", "Casado del Alisal"],
+        "text": "La rendición de Bailén, de Casado del Alisal.",
+        "appearanceId": "fuente-h-nbuyh1njnq9k-2",
+        "serif": true,
+        "bold": true
+      },
+      "title": "La rendición de Bailén, de Casado del Alisal",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Guerra de la Independencia",
+        "Bailén",
+        "Napoleón"
+      ],
+      "date": "19 de julio de 1808 (hecho representado)",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 5, opción A, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la batalla de Bailén y la resistencia a la ocupación napoleónica; distingue la pintura posterior del acontecimiento. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-nbuyh1njnq9k-2",
+          "sourceKey": "h.nbuyh1njnq9k:2",
+          "sourceOrdinal": 2,
+          "year": 2009,
+          "exam": "2009 Examen 5",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nbuyh1njnq9k",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico05.pdf",
+          "officialPage": 1,
+          "sourceImages": [
+            18
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/rendicion-bailen-casado-alisal.png",
+        "alt": "Reproducción de La rendición de Bailén, de José Casado del Alisal.",
+        "width": 2048,
+        "height": 1385
+      }
+    },
+    {
+      "id": "constitucion-directorio-militar-1923",
+      "attributionParagraphs": 1,
+      "attributionEmphasis": ["La Gaceta"],
+      "title": "Constitución del Directorio Militar de Primo de Rivera",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Dictadura de Primo de Rivera",
+        "Directorio Militar",
+        "Golpe de Estado"
+      ],
+      "date": "16 de septiembre de 1923",
+      "type": "texto",
+      "sourceCaption": "2009 Examen 5, opción B, documento 1.",
+      "quality": "Transcripción de la recopilación aportada; opción y documento contrastados con el PDF oficial escaneado de 2009. Las erratas de transcripción se conservan salvo las correcciones expresamente indicadas.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con el golpe de 1923 y la sustitución del gobierno constitucional por el Directorio Militar. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-nbuyh1njnq9k-3",
+          "sourceKey": "h.nbuyh1njnq9k:3",
+          "sourceOrdinal": 3,
+          "year": 2009,
+          "exam": "2009 Examen 5",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nbuyh1njnq9k",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico05.pdf",
+          "officialPage": 2
+        }
+      ],
+      "text": [
+        "Constitución del Directorio Militar Artículo 1.- Se confiere al Teniente General Don Miguel Primo de Rivera y Orbaneja, Marqués de Estella, el cargo de",
+        "Presidente del Directorio militar encargado de la Gobernación del Estado, con poderes para proponer cuantos Decretos convengan a la salud pública, los que tendrán fuerza de ley, interín en su día no sean modificados por leyes aprobadas por las Cortes del Reino y sometidas a Mi Real sanción (...)",
+        "Artículo 4.- Se suprimen por esta disposición los cargos de Presidente del consejo de Ministros, Ministros de la Corona y los de Subsecretario de la Presidencia y de los demás Ministros, excepto Estado y Guerra. Los sueldos y demás devengos consignados en Presupuesto para estos cargos quedarán a beneficio del Tesoro.",
+        "La Gaceta, Madrid, 16 de septiembre de 1923"
+      ]
+    },
+    {
+      "id": "primo-rivera-sanjurjo-alhucemas-1925",
+      "examCaption": {
+        "text": "Parada militar con Primo de Rivera y Sanjurjo tras la victoria de Alhucemas en 1925.",
+        "appearanceId": "fuente-h-nbuyh1njnq9k-4",
+        "bold": true
+      },
+      "title": "Primo de Rivera y Sanjurjo tras la victoria de Alhucemas",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Dictadura de Primo de Rivera",
+        "Marruecos",
+        "Alhucemas"
+      ],
+      "date": "1925",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 5, opción B, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la guerra de Marruecos y la utilización política de la victoria de Alhucemas. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-nbuyh1njnq9k-4",
+          "sourceKey": "h.nbuyh1njnq9k:4",
+          "sourceOrdinal": 4,
+          "year": 2009,
+          "exam": "2009 Examen 5",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nbuyh1njnq9k",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico05.pdf",
+          "officialPage": 2,
+          "sourceImages": [
+            19
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/primo-rivera-sanjurjo-alhucemas-1925.png",
+        "annotations": {
+          "layout": "margins",
+          "note": "El pie identifica a Primo de Rivera y Sanjurjo en la escena. Ambos nombres comparten una línea que parte del coche principal, según lo indicado por el usuario, sin atribuirles posiciones individuales a izquierda o derecha.",
+          "sources": [
+            {
+              "title": "Pie de la escena en la recopilación",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nbuyh1njnq9k"
+            }
+          ],
+          "people": [
+            {
+              "name": "Miguel Primo de Rivera y José Sanjurjo",
+              "role": "Jefe del Gobierno y general del Ejército, respectivamente",
+              "position": "Coche principal, sin distinguir la posición de cada uno.",
+              "x": 0.515,
+              "y": 0.60,
+              "side": "left"
+            }
+          ]
+        },
+        "alt": "Fotografía de una parada militar con Primo de Rivera y Sanjurjo en un automóvil ante tropas.",
+        "width": 2048,
+        "height": 1315
+      }
+    },
+    {
+      "id": "mapa-desamortizacion-madoz",
+      "examCaption": {
+        "text": "Mapa de la Desamortización de Madoz",
+        "appearanceId": "fuente-h-ife1u9yvtus7-2"
+      },
+      "title": "Mapa de la desamortización de Madoz",
+      "blocks": [
+        8
+      ],
+      "tags": [
+        "Desamortización",
+        "Madoz",
+        "Propiedad agraria"
+      ],
+      "date": "Desde 1855",
+      "type": "grafico",
+      "sourceCaption": "2009 Examen 6, opción A, documento 2.",
+      "quality": "Redibujado didáctico sobre la plantilla provincial de Wikimedia Commons, con colores sólidos y texto seleccionable. No es un facsímil ni una extracción de vectores nativos del examen. Las categorías de color se han cotejado con el PDF oficial escaneado de 2009, Examen 6, opción A, documento 2; se conserva el recorte original para comparar. Se utilizan límites y nombres de una base provincial moderna; Ceuta y Melilla no tienen categoría en la fuente. La imagen de la recopilación tiene una leyenda distinta (400, 300, 200, 100, 50, 10, 5 y 1 millones), frente a 70, 50, 40, 30, 10, 5 y 1 millones en el examen. No se mezclan las escalas ni se asignan valores exactos a cada provincia.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la desamortización de Madoz y las diferencias territoriales del valor de las fincas vendidas; las clases de la leyenda no son cifras exactas por provincia. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-ife1u9yvtus7-2",
+          "sourceKey": "h.ife1u9yvtus7:2",
+          "sourceOrdinal": 2,
+          "year": 2009,
+          "exam": "2009 Examen 6",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ife1u9yvtus7",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
+          "officialPage": 1,
+          "sourceImages": [
+            20
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/mapa-desamortizacion-madoz-vector-2009.svg",
+        "alt": "Mapa provincial de España con las clases de valor en remate de las fincas del examen oficial de 2009, incluida Canarias.",
+        "width": 1288,
+        "height": 1160,
+        "selectable": true,
+        "caption": "Redibujado didáctico con ocho colores sólidos. Los rótulos y la leyenda se pueden seleccionar y copiar en la ficha ampliada. La leyenda corresponde al examen, no a la reproducción alternativa del corpus.",
+        "attribution": {
+          "text": "Créditos del mapa",
+          "url": "creditos-mapa.html",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        },
+        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+        "originalSrc": "assets/documentos/mapa-desamortizacion-madoz-oficial-2009.png",
+        "corpusSrc": "assets/documentos/mapa-desamortizacion-madoz.png"
+      },
+      "table": {
+        "caption": "Leyenda del mapa del examen oficial de 2009",
+        "headers": [
+          "Color de la leyenda",
+          "Valor en remate de las fincas"
+        ],
+        "rows": [
+          [
+            "Salmón",
+            "70 millones de reales"
+          ],
+          [
+            "Naranja pálido",
+            "50 millones de reales"
+          ],
+          [
+            "Naranja oscuro",
+            "40 millones de reales"
+          ],
+          [
+            "Azul claro",
+            "30 millones de reales"
+          ],
+          [
+            "Azul celeste",
+            "10 millones de reales"
+          ],
+          [
+            "Púrpura",
+            "5 millones de reales"
+          ],
+          [
+            "Verde lima",
+            "1 millón de reales"
+          ],
+          [
+            "Blanco",
+            "No se produce desamortización"
+          ]
+        ],
+        "notes": [
+          "Transcripción de las categorías de la leyenda; no es una tabla de cifras exactas por provincia. La versión de la recopilación utiliza otra escala."
+        ]
+      }
+    },
+    {
+      "id": "azana-homenaje-coruna-franco",
+      "examCaption": {
+        "text": "Manuel Azaña recibe un homenaje en la Coruña. A su izquierda, en un discreto segundo plano, el general Franco",
+        "appearanceId": "fuente-h-ife1u9yvtus7-4"
+      },
+      "title": "Manuel Azaña recibe un homenaje en La Coruña",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Segunda República",
+        "Azaña",
+        "Ejército"
+      ],
+      "date": "1931–1936",
+      "type": "imagen",
+      "sourceCaption": "2009 Examen 6, opción B, documento 2.",
+      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza de la fuente, su asunto, su fecha y su autoría solo cuando constan. Describe los elementos o argumentos observables y distingue la información del documento de la interpretación histórica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con la Segunda República y la relación entre el poder civil y el Ejército; la presencia de Franco en la imagen no basta para deducir adhesión política. Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-ife1u9yvtus7-4",
+          "sourceKey": "h.ife1u9yvtus7:4",
+          "sourceOrdinal": 4,
+          "year": 2009,
+          "exam": "2009 Examen 6",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ife1u9yvtus7",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
+          "officialPage": 2,
+          "sourceImages": [
+            21
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/azana-homenaje-coruna-franco.png",
+        "crop": {
+          "width": 548.5,
+          "height": 362.12,
+          "imageWidth": 1068.6,
+          "imageHeight": 617.73,
+          "left": -520.1,
+          "top": -23.08
+        },
+        "alt": "Manuel Azaña recibe un homenaje, con Santiago Casares Quiroga a la izquierda y Francisco Franco a la derecha, en segundo plano.",
+        "width": 1024,
+        "height": 593,
+        "annotations": {
+          "layout": "numbered",
+          "note": "Identificaciones cotejadas con el examen de 2009 y la misma reproducción en Portal Fuenterrebollo. Las demás autoridades quedan sin identificar.",
+          "sources": [
+            {
+              "title": "Pie del documento 2, opción B, examen 6 de 2009 (página 2)",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ife1u9yvtus7"
+            },
+            {
+              "title": "PDF oficial: sel_2009_historia_espana.zip/historico06.pdf",
+              "url": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
+            },
+            {
+              "title": "Misma fotografía con pie que sitúa a Santiago Casares Quiroga (Portal Fuenterrebollo)",
+              "url": "https://www.fuenterrebollo.com/Gobiernos/imagen-casares-quiroga.html"
+            }
+          ],
+          "people": [
+            {
+              "name": "Manuel Azaña",
+              "role": "Presidente del Consejo de Ministros de la Segunda República",
+              "position": "Figura en primer plano que recibe el homenaje.",
+              "x": 0.318,
+              "y": 0.75,
+              "side": "left"
+            },
+            {
+              "name": "Francisco Franco",
+              "role": "General del Ejército durante la Segunda República",
+              "position": "A la derecha, en segundo plano, con uniforme.",
+              "x": 0.69,
+              "y": 0.53,
+              "side": "right"
+            },
+            {
+              "name": "Santiago Casares Quiroga",
+              "role": "Ministro de la Gobernación",
+              "position": "En el extremo izquierdo del recorte.",
+              "x": 0.1,
+              "y": 0.58,
+              "side": "left"
+            }
+          ]
+        }
+      }
     }
   ],
   "coverage": {
-    "sourceSha256": "9c68b4766735583b76d0c0340e6f7b86eb0a03f901a3a4757fe8fd1e18026995",
-    "sourceDocumentOccurrences": 72,
-    "sourceImageOccurrences": 29,
-    "sourceHeadingCount": 67,
+    "sourceSha256": "ce2b72ad0afe777d9a5f5ee77a139be32313ecbdec6356ef9ca9132904a6176e",
+    "sourceDocumentOccurrences": 88,
+    "sourceImageOccurrences": 36,
+    "sourceHeadingCount": 73,
     "sourceYearsWithDocumentComment": [
       2008,
       2009,
@@ -4160,6 +5220,148 @@
         ]
       },
       {
+        "key": "h.y1u3euanbxcl:1",
+        "heading": "h.y1u3euanbxcl",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "debate-parlamentario-desastre-1899",
+        "images": []
+      },
+      {
+        "key": "h.y1u3euanbxcl:2",
+        "heading": "h.y1u3euanbxcl",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "general-valeriano-weyler",
+        "images": [
+          15
+        ]
+      },
+      {
+        "key": "h.y1u3euanbxcl:3",
+        "heading": "h.y1u3euanbxcl",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "decreto-unificacion-1937",
+        "images": []
+      },
+      {
+        "key": "h.y1u3euanbxcl:4",
+        "heading": "h.y1u3euanbxcl",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "no-pasaran-sitio-madrid",
+        "images": [
+          16
+        ]
+      },
+      {
+        "key": "h.6ddndgb4ypzx:1",
+        "heading": "h.6ddndgb4ypzx",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "manifiesto-manzanares-1854",
+        "images": []
+      },
+      {
+        "key": "h.6ddndgb4ypzx:2",
+        "heading": "h.6ddndgb4ypzx",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "isabel-ii-jura-constitucion-1837",
+        "images": [
+          17
+        ]
+      },
+      {
+        "key": "h.6ddndgb4ypzx:3",
+        "heading": "h.6ddndgb4ypzx",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "garcia-cortazar-transicion-democracia",
+        "images": []
+      },
+      {
+        "key": "h.6ddndgb4ypzx:4",
+        "heading": "h.6ddndgb4ypzx",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "constitucion-1978-gobierno-97-98-101",
+        "images": []
+      },
+      {
+        "key": "h.nbuyh1njnq9k:1",
+        "heading": "h.nbuyh1njnq9k",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "napoleon-espanoles-bayona-1808",
+        "images": []
+      },
+      {
+        "key": "h.nbuyh1njnq9k:2",
+        "heading": "h.nbuyh1njnq9k",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "rendicion-bailen-casado-alisal",
+        "images": [
+          18
+        ]
+      },
+      {
+        "key": "h.nbuyh1njnq9k:3",
+        "heading": "h.nbuyh1njnq9k",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "constitucion-directorio-militar-1923",
+        "images": []
+      },
+      {
+        "key": "h.nbuyh1njnq9k:4",
+        "heading": "h.nbuyh1njnq9k",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "primo-rivera-sanjurjo-alhucemas-1925",
+        "images": [
+          19
+        ]
+      },
+      {
+        "key": "h.ife1u9yvtus7:1",
+        "heading": "h.ife1u9yvtus7",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal",
+        "images": []
+      },
+      {
+        "key": "h.ife1u9yvtus7:2",
+        "heading": "h.ife1u9yvtus7",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "mapa-desamortizacion-madoz",
+        "images": [
+          20
+        ]
+      },
+      {
+        "key": "h.ife1u9yvtus7:3",
+        "heading": "h.ife1u9yvtus7",
+        "year": 2009,
+        "document": 1,
+        "assignedTo": "constitucion-1931-articulos-suplente-a",
+        "images": []
+      },
+      {
+        "key": "h.ife1u9yvtus7:4",
+        "heading": "h.ife1u9yvtus7",
+        "year": 2009,
+        "document": 2,
+        "assignedTo": "azana-homenaje-coruna-franco",
+        "images": [
+          21
+        ]
+      },
+      {
         "key": "h.5qiyxceviwuz:1",
         "heading": "h.5qiyxceviwuz",
         "year": 2025,
@@ -4182,7 +5384,7 @@
         "document": 2,
         "assignedTo": "amadeo-i-ante-cadaver-prim",
         "images": [
-          15
+          22
         ]
       },
       {
@@ -4200,7 +5402,7 @@
         "document": 1,
         "assignedTo": "goya-tres-de-mayo",
         "images": [
-          16
+          23
         ]
       },
       {
@@ -4226,7 +5428,7 @@
         "document": 2,
         "assignedTo": "franco-hitler-hendaya-1940",
         "images": [
-          17
+          24
         ]
       },
       {
@@ -4276,7 +5478,7 @@
         "document": 1,
         "assignedTo": "reparto-armas-madrid-1936",
         "images": [
-          18
+          25
         ]
       },
       {
@@ -4302,7 +5504,7 @@
         "document": 1,
         "assignedTo": "portada-constitucion-1812",
         "images": [
-          19
+          26
         ]
       },
       {
@@ -4320,7 +5522,7 @@
         "document": 2,
         "assignedTo": "acorazado-maine-1898",
         "images": [
-          20
+          27
         ]
       },
       {
@@ -4338,7 +5540,7 @@
         "document": 1,
         "assignedTo": "caricatura-se-colocan-reyes-1869",
         "images": [
-          21
+          28
         ]
       },
       {
@@ -4364,7 +5566,7 @@
         "document": 2,
         "assignedTo": "reunion-expresidentes-gobierno",
         "images": [
-          22
+          29
         ]
       },
       {
@@ -4382,7 +5584,7 @@
         "document": 2,
         "assignedTo": "acorazado-maine-1898",
         "images": [
-          23
+          30
         ]
       },
       {
@@ -4400,7 +5602,7 @@
         "document": 2,
         "assignedTo": "franco-mola-cavalcanti-burgos",
         "images": [
-          24
+          31
         ]
       },
       {
@@ -4426,7 +5628,7 @@
         "document": 1,
         "assignedTo": "detenidos-revolucion-asturias-1934",
         "images": [
-          25
+          32
         ]
       },
       {
@@ -4444,7 +5646,7 @@
         "document": 1,
         "assignedTo": "amadeo-i-ante-cadaver-prim",
         "images": [
-          26
+          33
         ]
       },
       {
@@ -4470,7 +5672,7 @@
         "document": 2,
         "assignedTo": "elecciones-generales-1982-congreso-senado",
         "images": [
-          27
+          34
         ]
       },
       {
@@ -4488,7 +5690,7 @@
         "document": 2,
         "assignedTo": "grafico-desamortizaciones-siglo-xix",
         "images": [
-          28
+          35
         ]
       },
       {
@@ -4498,7 +5700,7 @@
         "document": 1,
         "assignedTo": "huelga-general-1917-fotografia",
         "images": [
-          29
+          36
         ]
       },
       {

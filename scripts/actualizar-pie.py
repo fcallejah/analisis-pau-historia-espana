@@ -43,7 +43,7 @@ def update_page(page, prefix="", home=False):
 
 
 def main():
-    pages = [ROOT / "index.html", ROOT / "documentos.html", ROOT / "mis-preguntas.html",
+    pages = [ROOT / "index.html", ROOT / "documentos.html", ROOT / "mis-preguntas.html", ROOT / "mis-documentos.html",
              *sorted((ROOT / "apuntes").glob("bloque-*.html"))]
     for path in pages:
         source = path.read_text(encoding="utf-8")
