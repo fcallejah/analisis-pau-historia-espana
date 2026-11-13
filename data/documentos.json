@@ -1,12 +1,14 @@
 {
   "version": 1,
-  "scope": "Banco generado desde la exportación actual del corpus aportado: 88 apariciones documentales y 36 apariciones de imágenes, enlazadas a 79 fichas. Incluye los seis exámenes de 2009 (24 documentos), además de los comentarios de 2008 y 2025–2026 ya incorporados. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. La cobertura se refiere al corpus aportado, no a todos los exámenes celebrados; las transcripciones y reproducciones no expresamente cotejadas siguen pendientes de revisión.",
+  "scope": "Banco generado desde la exportación actual del corpus aportado: 160 apariciones documentales y 56 apariciones de imágenes, enlazadas a 110 fichas. Incluye seis exámenes de 2009, los 18 exámenes recopilados de 2010–2012 y comentarios de 2008 y 2025–2026. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. La cobertura se refiere al corpus aportado, no a todos los exámenes celebrados; las transcripciones y reproducciones no expresamente cotejadas siguen pendientes de revisión.",
   "source": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit",
   "documents": [
     {
       "id": "bando-de-murat-tras-el-levantamiento-del-2-de-mayo",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Murat"],
+      "attributionEmphasis": [
+        "Murat"
+      ],
       "title": "Bando de Murat tras el levantamiento del 2 de mayo",
       "type": "texto",
       "blocks": [
@@ -70,6 +72,7 @@
       "quality": "Reproducción del corpus: 452 × 678 píxeles. Resolución limitada para el detalle fino; pendiente de localizar una reproducción mayor y cotejar el PDF oficial. No se inventan los datos de autoría ni se reconstruye el grabado.",
       "image": {
         "src": "assets/documentos/portada-constitucion-1812.png",
+        "filter": "grayscale(0.82) contrast(1.18) brightness(0.98)",
         "alt": "Portada con el título Constitución política de la Monarquía española, la fecha de promulgación en Cádiz y un medallón superior con una figura femenina y la inscripción Sic erat in fatis.",
         "width": 452,
         "height": 678
@@ -103,7 +106,9 @@
     {
       "id": "constitucion-1812-articulos-2008",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Constitución Española de 1812"],
+      "attributionEmphasis": [
+        "Constitución Española de 1812"
+      ],
       "title": "La Constitución de 1812: soberanía y derechos",
       "type": "texto",
       "blocks": [
@@ -152,7 +157,9 @@
     {
       "id": "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Declaración de la Junta Suprema de Sevilla"],
+      "attributionEmphasis": [
+        "Declaración de la Junta Suprema de Sevilla"
+      ],
       "title": "La Junta Suprema de Sevilla declara la guerra a Francia",
       "type": "texto",
       "blocks": [
@@ -347,13 +354,27 @@
             3
           ],
           "sourceOrdinal": 2
+        },
+        {
+          "id": "fuente-h.ap6vdvuofbyh-2",
+          "sourceKey": "h.ap6vdvuofbyh:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Titular reserva A",
+          "route": "Titular reserva A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ap6vdvuofbyh",
+          "sameDocumentReviewed": true
         }
       ]
     },
     {
       "id": "amadeo-i-ante-cadaver-prim",
       "examCaption": {
-        "emphasis": ["Amadeo I ante el cadáver de Prim", "Antonio Gisbert"],
+        "emphasis": [
+          "Amadeo I ante el cadáver de Prim",
+          "Antonio Gisbert"
+        ],
         "text": "Amadeo I ante el cadáver de Prim, obra de Antonio Gisbert (1870).",
         "appearanceId": "fuente-h-usbeys37qf3h-2",
         "italic": true
@@ -394,6 +415,20 @@
           "sourceImages": [
             11
           ]
+        },
+        {
+          "id": "fuente-h.wkz78yy8to0h-2",
+          "sourceKey": "h.wkz78yy8to0h:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 2",
+          "route": "Ordinaria examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.wkz78yy8to0h",
+          "sourceImages": [
+            46
+          ],
+          "sameDocumentReviewed": true
         },
         {
           "id": "fuente-h-5qiyxceviwuz-3",
@@ -460,7 +495,10 @@
     {
       "id": "castelar-y-la-proclamacion-de-la-primera-republica",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Proclamación de la Primera República", "Emilio Castelar"],
+      "attributionEmphasis": [
+        "Proclamación de la Primera República",
+        "Emilio Castelar"
+      ],
       "title": "Castelar y la proclamación de la Primera República",
       "type": "texto",
       "blocks": [
@@ -504,7 +542,9 @@
     {
       "id": "circular-de-pi-y-margall-tras-proclamarse-la-republica",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Francisco Pi y Margall"],
+      "attributionEmphasis": [
+        "Francisco Pi y Margall"
+      ],
       "title": "Circular de Pi y Margall tras proclamarse la República",
       "type": "texto",
       "blocks": [
@@ -550,7 +590,9 @@
     {
       "id": "constitucion-de-1845-corona-y-senado",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Constitución de 1845"],
+      "attributionEmphasis": [
+        "Constitución de 1845"
+      ],
       "title": "Constitución de 1845: Corona y Senado",
       "type": "texto",
       "blocks": [
@@ -667,16 +709,6 @@
       ],
       "appearances": [
         {
-          "id": "fuente-h-7bxjd4xweowb-3",
-          "sourceKey": "h.7bxjd4xweowb:3",
-          "sourceOrdinal": 3,
-          "year": 2025,
-          "exam": "2025 Suplente A",
-          "route": "Itinerario sin cotejar",
-          "document": 2,
-          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.7bxjd4xweowb"
-        },
-        {
           "id": "fuente-h-ife1u9yvtus7-1",
           "sourceKey": "h.ife1u9yvtus7:1",
           "sourceOrdinal": 1,
@@ -689,6 +721,38 @@
           "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
           "officialPage": 1,
           "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.galhj1bh4771-1",
+          "sourceKey": "h.galhj1bh4771:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Titular reserva B",
+          "route": "Titular reserva B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.galhj1bh4771",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.zcjs1kuc46s8-1",
+          "sourceKey": "h.zcjs1kuc46s8:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 1",
+          "route": "Extraordinaria examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.zcjs1kuc46s8",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h-7bxjd4xweowb-3",
+          "sourceKey": "h.7bxjd4xweowb:3",
+          "sourceOrdinal": 3,
+          "year": 2025,
+          "exam": "2025 Suplente A",
+          "route": "Itinerario sin cotejar",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.7bxjd4xweowb"
         }
       ],
       "text": [
@@ -701,7 +765,9 @@
     {
       "id": "exposicion-de-mendizabal-sobre-los-objetivos-de-la-desamortizacion",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Gaceta de Madrid"],
+      "attributionEmphasis": [
+        "Gaceta de Madrid"
+      ],
       "title": "Exposición de Mendizábal sobre los objetivos de la desamortización",
       "type": "texto",
       "blocks": [
@@ -789,6 +855,20 @@
           ]
         },
         {
+          "id": "fuente-h.zcjs1kuc46s8-2",
+          "sourceKey": "h.zcjs1kuc46s8:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 1",
+          "route": "Extraordinaria examen 1",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.zcjs1kuc46s8",
+          "sourceImages": [
+            48
+          ],
+          "sameDocumentReviewed": true
+        },
+        {
           "id": "fuente-h-37pk5wvpyw40-2",
           "sourceKey": "h.37pk5wvpyw40:2",
           "sourceOrdinal": 2,
@@ -814,7 +894,9 @@
     {
       "id": "la-constitucion-moderada-de-1845",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Constitución de 1845"],
+      "attributionEmphasis": [
+        "Constitución de 1845"
+      ],
       "title": "La Constitución moderada de 1845",
       "type": "texto",
       "blocks": [
@@ -848,6 +930,17 @@
           "route": "Opción sin cotejar",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6dwbo8kwnrna"
+        },
+        {
+          "id": "fuente-h.8yldd9xqtm5t-1",
+          "sourceKey": "h.8yldd9xqtm5t:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Titular ordinaria",
+          "route": "Titular ordinaria",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.8yldd9xqtm5t",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -863,7 +956,9 @@
     {
       "id": "mendizabal-explica-la-desamortizacion-de-1836",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Juan Álvarez y Mendizábal"],
+      "attributionEmphasis": [
+        "Juan Álvarez y Mendizábal"
+      ],
       "title": "Mendizábal explica la desamortización de 1836",
       "type": "texto",
       "blocks": [
@@ -910,7 +1005,9 @@
     {
       "id": "renuncia-de-maria-cristina-a-la-regencia",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["María Cristina"],
+      "attributionEmphasis": [
+        "María Cristina"
+      ],
       "title": "Renuncia de María Cristina a la regencia",
       "type": "texto",
       "blocks": [
@@ -935,6 +1032,17 @@
         }
       ],
       "appearances": [
+        {
+          "id": "fuente-h.3e75gt50uc57-2",
+          "sourceKey": "h.3e75gt50uc57:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 3",
+          "route": "Extraordinaria examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.3e75gt50uc57",
+          "sameDocumentReviewed": true
+        },
         {
           "id": "fuente-h-6cr2y5ox1qsc-3",
           "sourceKey": "h.6cr2y5ox1qsc:3",
@@ -1141,7 +1249,9 @@
     {
       "id": "antonio-maura-critica-la-representacion-politica",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Antonio Maura"],
+      "attributionEmphasis": [
+        "Antonio Maura"
+      ],
       "title": "Antonio Maura critica la representación política",
       "type": "texto",
       "blocks": [
@@ -1185,7 +1295,9 @@
     {
       "id": "antonio-maura-sobre-el-sistema-electoral",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Antonio Maura"],
+      "attributionEmphasis": [
+        "Antonio Maura"
+      ],
       "title": "Antonio Maura sobre el sistema electoral",
       "type": "texto",
       "blocks": [
@@ -1229,7 +1341,11 @@
     {
       "id": "critica-del-sistema-electoral-de-la-restauracion",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Pérez Galdós, B.", "Política española", "Antología de artículos"],
+      "attributionEmphasis": [
+        "Pérez Galdós, B.",
+        "Política española",
+        "Antología de artículos"
+      ],
       "title": "Crítica del sistema electoral de la Restauración",
       "type": "texto",
       "blocks": [
@@ -1406,6 +1522,20 @@
           "sourceImages": [
             13
           ]
+        },
+        {
+          "id": "fuente-h.d40v7ql2zdxq-1",
+          "sourceKey": "h.d40v7ql2zdxq:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 2",
+          "route": "Extraordinaria examen 2",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.d40v7ql2zdxq",
+          "sourceImages": [
+            50
+          ],
+          "sameDocumentReviewed": true
         }
       ],
       "image": {
@@ -1487,7 +1617,10 @@
     {
       "id": "manifiesto-de-sandhurst-llamamiento-a-la-restauracion",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Alfonso de Borbón", "Manifiesto de Sandhurst"],
+      "attributionEmphasis": [
+        "Alfonso de Borbón",
+        "Manifiesto de Sandhurst"
+      ],
       "title": "Manifiesto de Sandhurst: llamamiento a la Restauración",
       "type": "texto",
       "blocks": [
@@ -1536,7 +1669,11 @@
     {
       "id": "perez-galdos-sobre-las-elecciones-de-la-restauracion",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Pérez Galdós, B.", "Política española", "Antología de artículos"],
+      "attributionEmphasis": [
+        "Pérez Galdós, B.",
+        "Política española",
+        "Antología de artículos"
+      ],
       "title": "Pérez Galdós sobre las elecciones de la Restauración",
       "type": "texto",
       "blocks": [
@@ -1562,6 +1699,28 @@
       ],
       "appearances": [
         {
+          "id": "fuente-h.stpkw5j6kku2-1",
+          "sourceKey": "h.stpkw5j6kku2:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva A",
+          "route": "Extraordinaria reserva A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.stpkw5j6kku2",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.d40v7ql2zdxq-2",
+          "sourceKey": "h.d40v7ql2zdxq:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 2",
+          "route": "Extraordinaria examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.d40v7ql2zdxq",
+          "sameDocumentReviewed": true
+        },
+        {
           "id": "fuente-h-tyo9mvypmp5d-3",
           "sourceKey": "h.tyo9mvypmp5d:3",
           "sourceOrdinal": 3,
@@ -1583,7 +1742,10 @@
     {
       "id": "valenti-almirall-denuncia-el-falseamiento-electoral",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["VALENTÍ ALMIRALL", "España tal como es"],
+      "attributionEmphasis": [
+        "VALENTÍ ALMIRALL",
+        "España tal como es"
+      ],
       "title": "Valentí Almirall denuncia el falseamiento electoral",
       "type": "texto",
       "blocks": [
@@ -1628,7 +1790,9 @@
     {
       "id": "ley-general-de-ferrocarriles",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Ley general de ferrocarriles"],
+      "attributionEmphasis": [
+        "Ley general de ferrocarriles"
+      ],
       "title": "Ley General de Ferrocarriles",
       "type": "texto",
       "blocks": [
@@ -1681,10 +1845,10 @@
       "title": "Bajas españolas en Cuba y Filipinas",
       "type": "grafico",
       "blocks": [
-        9
+        7
       ],
       "tags": [
-        "Crisis de 1898",
+        "Restauración borbónica",
         "Cuba",
         "Filipinas"
       ],
@@ -1711,6 +1875,28 @@
           "route": "Opción A",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.cwvz2sm9irie"
+        },
+        {
+          "id": "fuente-h.l9y8o87u5u46-2",
+          "sourceKey": "h.l9y8o87u5u46:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Titular extraordinaria",
+          "route": "Titular extraordinaria",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.9apmzvqvjh65-1",
+          "sourceKey": "h.9apmzvqvjh65:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 5",
+          "route": "Examen 5",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9apmzvqvjh65",
+          "sameDocumentReviewed": true
         }
       ],
       "table": {
@@ -1800,17 +1986,19 @@
     {
       "id": "acorazado-maine-1898",
       "examCaption": {
-        "emphasis": ["La Ilustración Española y Americana"],
+        "emphasis": [
+          "La Ilustración Española y Americana"
+        ],
         "text": "El acorazado Maine (La Ilustración Española y Americana).",
         "appearanceId": "fuente-h-vu325nx5299w-3"
       },
       "title": "El acorazado Maine",
       "type": "imagen",
       "blocks": [
-        9
+        7
       ],
       "tags": [
-        "Crisis de 1898",
+        "Restauración borbónica",
         "Guerra hispano-estadounidense",
         "Cuba"
       ],
@@ -1857,6 +2045,7 @@
       ],
       "image": {
         "src": "assets/documentos/acorazado-maine-bne.jpg",
+        "filter": "contrast(1.32) brightness(0.96)",
         "alt": "Grabado del acorazado Maine fondeado en la bahía de La Habana, con dos mástiles, dos chimeneas y pequeñas embarcaciones.",
         "width": 1080,
         "height": 848,
@@ -1971,7 +2160,10 @@
     {
       "id": "manifiesto-de-primo-de-rivera",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Manifiesto del General Primo de Rivera", "ABC"],
+      "attributionEmphasis": [
+        "Manifiesto del General Primo de Rivera",
+        "ABC"
+      ],
       "title": "Manifiesto de Primo de Rivera",
       "type": "texto",
       "blocks": [
@@ -2016,7 +2208,9 @@
     {
       "id": "manifiesto-del-comite-de-huelga",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Manifiesto del Comité de Huelga"],
+      "attributionEmphasis": [
+        "Manifiesto del Comité de Huelga"
+      ],
       "title": "Manifiesto del Comité de Huelga",
       "type": "texto",
       "blocks": [
@@ -2061,7 +2255,9 @@
     {
       "id": "manifiesto-del-comite-de-huelga-de-1917",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Manifiesto del Comité de Huelga"],
+      "attributionEmphasis": [
+        "Manifiesto del Comité de Huelga"
+      ],
       "title": "Manifiesto del Comité de Huelga de 1917",
       "type": "texto",
       "blocks": [
@@ -2144,6 +2340,20 @@
           "sourceImages": [
             10
           ]
+        },
+        {
+          "id": "fuente-h.zcjs1kuc46s8-4",
+          "sourceKey": "h.zcjs1kuc46s8:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 1",
+          "route": "Extraordinaria examen 1",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.zcjs1kuc46s8",
+          "sourceImages": [
+            49
+          ],
+          "sameDocumentReviewed": true
         }
       ],
       "image": {
@@ -2184,7 +2394,9 @@
     {
       "id": "tratado-de-paris-y-perdida-del-imperio-colonial",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Tratado de paz entre España y Estados Unidos de América"],
+      "attributionEmphasis": [
+        "Tratado de paz entre España y Estados Unidos de América"
+      ],
       "title": "Tratado de París y pérdida del imperio colonial",
       "type": "texto",
       "blocks": [
@@ -2198,7 +2410,7 @@
       ],
       "date": "10 de diciembre de 1898",
       "sourceCaption": "Tratado de París y pérdida del imperio colonial. Fragmento transcrito de la recopilación aportada.",
-      "quality": "Selección transcrita del corpus, distinta de la versión de 2008. Se ha reintegrado el final del artículo 3 y su referencia, mezclados con el decreto de Mendizábal en la recopilación. La continuidad se ha cotejado con el PDF oficial de 2026, titular extraordinaria, páginas 1–2.",
+      "quality": "Selección transcrita del corpus, distinta de la versión de 2008. Se ha reintegrado el final del artículo 3 y su referencia, mezclados con el decreto de Mendizábal en la recopilación. La continuidad se ha cotejado con el PDF oficial de 2026, titular extraordinaria, páginas 1–2. La selección transcrita para 2010 incorpora además el artículo 4, añadido sin alterar el fragmento anterior; pendiente de cotejo con el PDF oficial.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -2210,6 +2422,27 @@
         }
       ],
       "appearances": [
+        {
+          "id": "fuente-h.l9y8o87u5u46-1",
+          "sourceKey": "h.l9y8o87u5u46:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Titular extraordinaria",
+          "route": "Titular extraordinaria",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.tf1mgx8e973v-2",
+          "sourceKey": "h.tf1mgx8e973v:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 1",
+          "route": "Ordinaria examen 1",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tf1mgx8e973v"
+        },
         {
           "id": "fuente-h-llgamonvamkm-1",
           "sourceKey": "h.llgamonvamkm:1",
@@ -2226,6 +2459,7 @@
         "1o) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...].",
         "2o) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
         "3o) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado [...]”.",
+        "4o) Los Estados Unidos, durante el término de diez años a contar desde el canje de ratificación del presente Tratado, admitirán en los puertos de las Islas Filipinas los buques y mercancías españolas, bajo las mismas condiciones que los buques y mercancías de los Estados Unidos (...).",
         "Tratado de paz entre España y Estados Unidos de América, 10 de diciembre de 1898"
       ]
     },
@@ -2275,7 +2509,9 @@
     {
       "id": "bando-de-mola-y-declaracion-del-estado-de-guerra-en-navarra",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Diario de Navarra"],
+      "attributionEmphasis": [
+        "Diario de Navarra"
+      ],
       "title": "Bando de Mola y declaración del estado de guerra en Navarra",
       "type": "texto",
       "blocks": [
@@ -2350,6 +2586,20 @@
         }
       ],
       "appearances": [
+        {
+          "id": "fuente-h.tf1mgx8e973v-4",
+          "sourceKey": "h.tf1mgx8e973v:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 1",
+          "route": "Ordinaria examen 1",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tf1mgx8e973v",
+          "sourceImages": [
+            45
+          ],
+          "sameDocumentReviewed": true
+        },
         {
           "id": "fuente-h-llgamonvamkm-3",
           "sourceKey": "h.llgamonvamkm:3",
@@ -2609,16 +2859,6 @@
       ],
       "appearances": [
         {
-          "id": "corpus-2025-suplente-a-5qiy-documento-2",
-          "year": 2025,
-          "exam": "Suplente A (encabezado del corpus; pendiente de cotejo)",
-          "route": "Bloque II",
-          "document": 2,
-          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5qiyxceviwuz",
-          "sourceKey": "h.5qiyxceviwuz:4",
-          "sourceOrdinal": 4
-        },
-        {
           "id": "fuente-h-ife1u9yvtus7-3",
           "sourceKey": "h.ife1u9yvtus7:3",
           "sourceOrdinal": 3,
@@ -2631,13 +2871,37 @@
           "officialFile": "sel_2009_historia_espana.zip/historico06.pdf",
           "officialPage": 2,
           "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.80y8d229dcm-3",
+          "sourceKey": "h.80y8d229dcm:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 3",
+          "route": "Examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.80y8d229dcm",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "corpus-2025-suplente-a-5qiy-documento-2",
+          "year": 2025,
+          "exam": "Suplente A (encabezado del corpus; pendiente de cotejo)",
+          "route": "Bloque II",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5qiyxceviwuz",
+          "sourceKey": "h.5qiyxceviwuz:4",
+          "sourceOrdinal": 4
         }
       ]
     },
     {
       "id": "la-segunda-republica-y-la-cuestion-agraria",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Manuel Azaña", "Causas de la guerra de España"],
+      "attributionEmphasis": [
+        "Manuel Azaña",
+        "Causas de la guerra de España"
+      ],
       "title": "La Segunda República y la cuestión agraria",
       "type": "texto",
       "blocks": [
@@ -2671,6 +2935,17 @@
           "route": "Opción sin cotejar",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.pkvy8jbq5hq"
+        },
+        {
+          "id": "fuente-h.80y8d229dcm-4",
+          "sourceKey": "h.80y8d229dcm:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 3",
+          "route": "Examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.80y8d229dcm",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -2681,7 +2956,10 @@
     {
       "id": "pascual-carrion-y-el-problema-de-los-latifundios",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Pascual Carrión", "Los latifundios en España"],
+      "attributionEmphasis": [
+        "Pascual Carrión",
+        "Los latifundios en España"
+      ],
       "title": "Pascual Carrión y el problema de los latifundios",
       "type": "texto",
       "blocks": [
@@ -2883,7 +3161,10 @@
     {
       "id": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Fuero de los Españoles", "BOE"],
+      "attributionEmphasis": [
+        "Fuero de los Españoles",
+        "BOE"
+      ],
       "title": "El Fuero de los Españoles y los límites de los derechos",
       "type": "texto",
       "blocks": [
@@ -2909,6 +3190,17 @@
       ],
       "appearances": [
         {
+          "id": "fuente-h.lnfwvqsmz1yq-3",
+          "sourceKey": "h.lnfwvqsmz1yq:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 3",
+          "route": "Ordinaria examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.lnfwvqsmz1yq",
+          "sameDocumentReviewed": true
+        },
+        {
           "id": "fuente-h-llgamonvamkm-4",
           "sourceKey": "h.llgamonvamkm:4",
           "sourceOrdinal": 4,
@@ -2931,7 +3223,9 @@
     {
       "id": "el-fuero-de-los-espanoles-deberes-y-derechos-limitados",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["BOE"],
+      "attributionEmphasis": [
+        "BOE"
+      ],
       "title": "El Fuero de los Españoles: deberes y derechos limitados",
       "type": "texto",
       "blocks": [
@@ -2977,7 +3271,10 @@
     {
       "id": "el-fuero-de-los-espanoles-seleccion-de-articulos",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Fuero de los Españoles", "BOE"],
+      "attributionEmphasis": [
+        "Fuero de los Españoles",
+        "BOE"
+      ],
       "title": "El Fuero de los Españoles: selección de artículos",
       "type": "texto",
       "blocks": [
@@ -3025,7 +3322,9 @@
     {
       "id": "franco-ante-las-cortes-sobre-democracia-y-partidos",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Franco"],
+      "attributionEmphasis": [
+        "Franco"
+      ],
       "title": "Franco ante las Cortes sobre democracia y partidos",
       "type": "texto",
       "blocks": [
@@ -3051,6 +3350,17 @@
       ],
       "appearances": [
         {
+          "id": "fuente-h.lnfwvqsmz1yq-4",
+          "sourceKey": "h.lnfwvqsmz1yq:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 3",
+          "route": "Ordinaria examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.lnfwvqsmz1yq",
+          "sameDocumentReviewed": true
+        },
+        {
           "id": "fuente-h-tvlhtdubp2jf-3",
           "sourceKey": "h.tvlhtdubp2jf:3",
           "sourceOrdinal": 3,
@@ -3071,7 +3381,9 @@
     {
       "id": "franco-ante-las-cortes-critica-del-pluralismo-politico",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Franco"],
+      "attributionEmphasis": [
+        "Franco"
+      ],
       "title": "Franco ante las Cortes: crítica del pluralismo político",
       "type": "texto",
       "blocks": [
@@ -3216,7 +3528,9 @@
     {
       "id": "la-jefatura-del-estado-en-la-ley-organica-de-1967",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Ley Orgánica del Estado"],
+      "attributionEmphasis": [
+        "Ley Orgánica del Estado"
+      ],
       "title": "La jefatura del Estado en la Ley Orgánica de 1967",
       "type": "texto",
       "blocks": [
@@ -3250,6 +3564,17 @@
           "route": "Opción sin cotejar",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.blgbqc7asjia"
+        },
+        {
+          "id": "fuente-h.l9y8o87u5u46-3",
+          "sourceKey": "h.l9y8o87u5u46:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Titular extraordinaria",
+          "route": "Titular extraordinaria",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -3348,6 +3673,17 @@
         }
       ],
       "appearances": [
+        {
+          "id": "fuente-h-wkz78yy8to0h-3",
+          "sourceKey": "h.wkz78yy8to0h:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 2",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.wkz78yy8to0h",
+          "sourceImages": []
+        },
         {
           "id": "fuente-h-o5sje6pvryxx-4",
           "sourceKey": "h.o5sje6pvryxx:4",
@@ -3494,6 +3830,28 @@
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.cwvz2sm9irie"
         },
         {
+          "id": "fuente-h.stpkw5j6kku2-4",
+          "sourceKey": "h.stpkw5j6kku2:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva A",
+          "route": "Extraordinaria reserva A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.stpkw5j6kku2",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.3e75gt50uc57-4",
+          "sourceKey": "h.3e75gt50uc57:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 3",
+          "route": "Extraordinaria examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.3e75gt50uc57",
+          "sameDocumentReviewed": true
+        },
+        {
           "id": "corpus-2025-suplente-b-tyo9-documento-2",
           "year": 2025,
           "exam": "Suplente B (encabezado del corpus; pendiente de cotejo)",
@@ -3547,6 +3905,20 @@
           "sourceImages": [
             14
           ]
+        },
+        {
+          "id": "fuente-h.8yldd9xqtm5t-4",
+          "sourceKey": "h.8yldd9xqtm5t:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Titular ordinaria",
+          "route": "Titular ordinaria",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.8yldd9xqtm5t",
+          "sourceImages": [
+            41
+          ],
+          "sameDocumentReviewed": true
         },
         {
           "id": "fuente-h-tvlhtdubp2jf-4",
@@ -3620,7 +3992,10 @@
     {
       "id": "investidura-de-felipe-gonzalez-y-politica-exterior",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Felipe González", "Diario ABC"],
+      "attributionEmphasis": [
+        "Felipe González",
+        "Diario ABC"
+      ],
       "title": "Investidura de Felipe González y política exterior",
       "type": "texto",
       "blocks": [
@@ -3654,6 +4029,28 @@
           "route": "Opción sin cotejar",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9bxnjdlqrc89"
+        },
+        {
+          "id": "fuente-h.8yldd9xqtm5t-3",
+          "sourceKey": "h.8yldd9xqtm5t:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Titular ordinaria",
+          "route": "Titular ordinaria",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.8yldd9xqtm5t",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.9apmzvqvjh65-4",
+          "sourceKey": "h.9apmzvqvjh65:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 5",
+          "route": "Examen 5",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9apmzvqvjh65",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -3666,7 +4063,9 @@
     {
       "id": "investidura-de-jose-maria-aznar",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["D. Jose Maria Aznar"],
+      "attributionEmphasis": [
+        "D. Jose Maria Aznar"
+      ],
       "title": "Investidura de José María Aznar",
       "type": "texto",
       "blocks": [
@@ -3700,6 +4099,17 @@
           "route": "Opción sin cotejar",
           "document": 1,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.c4qpyusgk1fw"
+        },
+        {
+          "id": "fuente-h.wkz78yy8to0h-4",
+          "sourceKey": "h.wkz78yy8to0h:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 2",
+          "route": "Ordinaria examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.wkz78yy8to0h",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -4010,7 +4420,9 @@
     {
       "id": "debate-parlamentario-desastre-1899",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Diario de Sesiones del Congreso"],
+      "attributionEmphasis": [
+        "Diario de Sesiones del Congreso"
+      ],
       "title": "La polémica del Desastre: debate parlamentario de 1899",
       "blocks": [
         9
@@ -4047,6 +4459,17 @@
           "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
           "officialFile": "sel_2009_historia_espana.zip/historico03.pdf",
           "officialPage": 1
+        },
+        {
+          "id": "fuente-h.9apmzvqvjh65-2",
+          "sourceKey": "h.9apmzvqvjh65:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 5",
+          "route": "Examen 5",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9apmzvqvjh65",
+          "sameDocumentReviewed": true
         }
       ],
       "text": [
@@ -4236,6 +4659,7 @@
       ],
       "image": {
         "src": "assets/documentos/no-pasaran-sitio-madrid.png",
+        "filter": "grayscale(1) contrast(1.24) brightness(0.97)",
         "alt": "Fotografía de la calle de Toledo en Madrid con una pancarta de “¡No pasarán!” sobre el arco.",
         "width": 1564,
         "height": 2048
@@ -4279,6 +4703,27 @@
           "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
           "officialFile": "sel_2009_historia_espana.zip/historico04.pdf",
           "officialPage": 1
+        },
+        {
+          "id": "fuente-h.8yldd9xqtm5t-2",
+          "sourceKey": "h.8yldd9xqtm5t:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Titular ordinaria",
+          "route": "Titular ordinaria",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.8yldd9xqtm5t",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h-xt7pfpw2sian-2",
+          "sourceKey": "h.xt7pfpw2sian:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 6",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.xt7pfpw2sian"
         }
       ],
       "text": [
@@ -4331,6 +4776,20 @@
           "sourceImages": [
             17
           ]
+        },
+        {
+          "id": "fuente-h.3e75gt50uc57-1",
+          "sourceKey": "h.3e75gt50uc57:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 3",
+          "route": "Extraordinaria examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.3e75gt50uc57",
+          "sourceImages": [
+            51
+          ],
+          "sameDocumentReviewed": true
         }
       ],
       "image": {
@@ -4371,7 +4830,10 @@
     {
       "id": "garcia-cortazar-transicion-democracia",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["Fernando García de Cortázar", "Álbum de la Historia de España"],
+      "attributionEmphasis": [
+        "Fernando García de Cortázar",
+        "Álbum de la Historia de España"
+      ],
       "title": "García de Cortázar: “Cuando España dio ejemplo”",
       "blocks": [
         12
@@ -4518,7 +4980,10 @@
     {
       "id": "rendicion-bailen-casado-alisal",
       "examCaption": {
-        "emphasis": ["La rendición de Bailén", "Casado del Alisal"],
+        "emphasis": [
+          "La rendición de Bailén",
+          "Casado del Alisal"
+        ],
         "text": "La rendición de Bailén, de Casado del Alisal.",
         "appearanceId": "fuente-h-nbuyh1njnq9k-2",
         "serif": true,
@@ -4563,6 +5028,20 @@
           "sourceImages": [
             18
           ]
+        },
+        {
+          "id": "fuente-h.ddnqmfjydqh9-1",
+          "sourceKey": "h.ddnqmfjydqh9:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 4",
+          "route": "Examen 4",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ddnqmfjydqh9",
+          "sourceImages": [
+            54
+          ],
+          "sameDocumentReviewed": true
         }
       ],
       "image": {
@@ -4575,7 +5054,9 @@
     {
       "id": "constitucion-directorio-militar-1923",
       "attributionParagraphs": 1,
-      "attributionEmphasis": ["La Gaceta"],
+      "attributionEmphasis": [
+        "La Gaceta"
+      ],
       "title": "Constitución del Directorio Militar de Primo de Rivera",
       "blocks": [
         9
@@ -4612,6 +5093,16 @@
           "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
           "officialFile": "sel_2009_historia_espana.zip/historico05.pdf",
           "officialPage": 2
+        },
+        {
+          "id": "fuente-h-xt7pfpw2sian-3",
+          "sourceKey": "h.xt7pfpw2sian:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 6",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.xt7pfpw2sian"
         }
       ],
       "text": [
@@ -4667,13 +5158,29 @@
           "sourceImages": [
             19
           ]
+        },
+        {
+          "id": "fuente-h-xt7pfpw2sian-4",
+          "sourceKey": "h.xt7pfpw2sian:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 6",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.xt7pfpw2sian",
+          "sourceImages": [
+            39
+          ]
         }
       ],
       "image": {
-        "src": "assets/documentos/primo-rivera-sanjurjo-alhucemas-1925.png",
+        "src": "assets/documentos/primo-rivera-sanjurjo-examen-2009-05.png",
+        "corpusSrc": "assets/documentos/primo-rivera-sanjurjo-examen-2012-06.png",
+        "corpusLabel": "Ver imagen del examen 6 de 2012 en la recopilación",
+        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
         "annotations": {
           "layout": "margins",
-          "note": "El pie identifica a Primo de Rivera y Sanjurjo en la escena. Ambos nombres comparten una línea que parte del coche principal, según lo indicado por el usuario, sin atribuirles posiciones individuales a izquierda o derecha.",
+          "note": "El recorte procede del documento 2 del examen oficial de 2009, examen 5. Se señalan por separado Primo de Rivera y Sanjurjo en el coche principal; las posiciones individuales son aproximadas porque el escaneo no permite confirmarlas con más precisión.",
           "sources": [
             {
               "title": "Pie de la escena en la recopilación",
@@ -4682,18 +5189,26 @@
           ],
           "people": [
             {
-              "name": "Miguel Primo de Rivera y José Sanjurjo",
-              "role": "Jefe del Gobierno y general del Ejército, respectivamente",
-              "position": "Coche principal, sin distinguir la posición de cada uno.",
-              "x": 0.515,
-              "y": 0.60,
+              "name": "Miguel Primo de Rivera",
+              "role": "Jefe del Gobierno y dictador de España (1923–1930)",
+              "position": "En el coche principal; la posición exacta es aproximada por la resolución del escaneo.",
+              "x": 0.505,
+              "y": 0.55,
               "side": "left"
+            },
+            {
+              "name": "José Sanjurjo",
+              "role": "General del Ejército",
+              "position": "En el coche principal; la posición exacta es aproximada por la resolución del escaneo.",
+              "x": 0.54,
+              "y": 0.55,
+              "side": "right"
             }
           ]
         },
-        "alt": "Fotografía de una parada militar con Primo de Rivera y Sanjurjo en un automóvil ante tropas.",
-        "width": 2048,
-        "height": 1315
+        "alt": "Recorte del documento 2 del examen oficial de 2009, examen 5: Primo de Rivera y Sanjurjo en un automóvil durante una parada militar.",
+        "width": 1700,
+        "height": 1128
       }
     },
     {
@@ -4901,7 +5416,7 @@
             },
             {
               "name": "Santiago Casares Quiroga",
-              "role": "Ministro de la Gobernación",
+              "role": "Ministro de la Gobernación; sería presidente del Consejo de Ministros cuando se produjo el golpe de Estado, el 17 de julio de 1936.",
               "position": "En el extremo izquierdo del recorte.",
               "x": 0.1,
               "y": 0.58,
@@ -4910,16 +5425,2112 @@
           ]
         }
       }
+    },
+    {
+      "id": "mapa-primera-guerra-carlista-2012",
+      "title": "Mapa de la Primera Guerra Carlista",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Primera Guerra Carlista",
+        "Guerra civil",
+        "Liberalismo"
+      ],
+      "date": "1833–1840",
+      "type": "imagen",
+      "sourceCaption": "2012 Examen 6, opción A, documento 1.",
+      "quality": "Reproducción del mapa en blanco y negro de la recopilación aportada. Se conserva sin colorear; la versión moderna a color compartida por el usuario se usa solo como referencia y no sustituye al mapa del examen. Pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Describe la distribución territorial que muestra el mapa y lee sus símbolos directamente en la leyenda. Distingue las zonas controladas de las áreas de influencia y las expediciones; no deduzcas límites o recorridos que la reproducción no permita asegurar."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el mapa en la Primera Guerra Carlista, iniciada tras la muerte de Fernando VII y el conflicto sucesorio entre Isabel II y Carlos María Isidro. Relaciona el enfrentamiento con la construcción del Estado liberal y sus apoyos sociales y territoriales, sin presentar la leyenda como una explicación completa del conflicto."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-xt7pfpw2sian-1",
+          "sourceKey": "h.xt7pfpw2sian:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 6",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.xt7pfpw2sian",
+          "sourceImages": [
+            37,
+            38
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/mapa-primera-guerra-carlista-2012-bn.png",
+        "alt": "Mapa en blanco y negro de la Primera Guerra Carlista, con leyenda de zonas, ciudades y expediciones.",
+        "width": 507,
+        "height": 453
+      },
+      "table": {
+        "caption": "Leyenda descrita en las notas de la recopilación",
+        "headers": [
+          "Elemento",
+          "Símbolo descrito"
+        ],
+        "rows": [
+          [
+            "Zonas controladas por los carlistas",
+            "Elipses"
+          ],
+          [
+            "Área de influencia carlista",
+            "Sombreado gris"
+          ],
+          [
+            "Ciudades carlistas",
+            "Círculo blanco"
+          ],
+          [
+            "Ciudades liberales",
+            "Círculo negro"
+          ],
+          [
+            "Expedición del general Miguel Gómez",
+            "Flecha de línea continua"
+          ],
+          [
+            "Expedición de don Carlos",
+            "Flecha discontinua"
+          ],
+          [
+            "Paz de Vergara",
+            "Círculo con triángulo"
+          ]
+        ],
+        "notes": [
+          "La leyenda accesible se ha transcrito de las notas del recopilador y queda pendiente de cotejo con el PDF oficial; no se ha usado para recolorear ni redibujar el mapa."
+        ]
+      }
+    },
+    {
+      "id": "desamortizacion-eclesiastica-civil-1834-1856",
+      "title": "Desamortización eclesiástica y civil (1834–1856)",
+      "type": "grafico",
+      "blocks": [
+        8
+      ],
+      "tags": [
+        "Desamortización",
+        "Mendizábal",
+        "Madoz",
+        "Economía del siglo XIX"
+      ],
+      "date": "1834–1856",
+      "sourceCaption": "2010 Titular reserva B, opción A, documento 2.",
+      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica los períodos y las categorías de bienes, y describe los valores que aparecen. Compara los procesos eclesiásticos y civiles sin atribuirles cifras o efectos que no figuren en la tabla."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa las medidas desamortizadoras en la construcción del Estado liberal y en las transformaciones económicas del siglo XIX. Distingue las iniciativas de Mendizábal y Madoz, sus objetivos y sus efectos, evitando presentar la tabla como una descripción completa de sus resultados."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-galhj1bh4771-2",
+          "sourceKey": "h.galhj1bh4771:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Titular reserva B",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.galhj1bh4771",
+          "sourceImages": [
+            40
+          ]
+        },
+        {
+          "id": "fuente-h.80y8d229dcm-1",
+          "sourceKey": "h.80y8d229dcm:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 3",
+          "route": "Examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.80y8d229dcm",
+          "sourceImages": [
+            53
+          ],
+          "sameDocumentReviewed": true
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/tabla-desamortizacion-1834-1856.svg",
+        "kind": "table",
+        "alt": "Tabla de fincas rústicas y urbanas desamortizadas en distintos períodos entre 1834 y 1856.",
+        "width": 898,
+        "height": 324,
+        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación.",
+        "corpusSrc": "assets/documentos/tabla-desamortizacion-1834-1856-original-2010.png",
+        "corpusLabel": "Ver gráfico original de la recopilación"
+      },
+      "table": {
+        "caption": "Fincas desamortizadas, según las categorías y períodos de la recopilación",
+        "headers": [
+          "Tipo",
+          "Periodo o entidad",
+          "Fincas rústicas",
+          "Fincas urbanas"
+        ],
+        "rows": [
+          [
+            "Eclesiástica",
+            "1836–1844",
+            "110.945",
+            "13.113"
+          ],
+          [
+            "Eclesiástica",
+            "1845–1854",
+            "3.731",
+            "1.329"
+          ],
+          [
+            "Eclesiástica",
+            "1854–1856",
+            "24.845",
+            "5.205"
+          ],
+          [
+            "Civil",
+            "Corporaciones",
+            "16.859",
+            "3.327"
+          ],
+          [
+            "Civil",
+            "Estado",
+            "5.074",
+            "661"
+          ]
+        ],
+        "notes": [
+          "Cifras transcritas de la recopilación; pendientes de cotejo con el PDF oficial."
+        ]
+      }
+    },
+    {
+      "id": "resultados-electorales-restauracion-1876-1886",
+      "title": "Escaños por grupos políticos, 1876–1886",
+      "type": "grafico",
+      "blocks": [
+        7
+      ],
+      "tags": [
+        "Restauración borbónica",
+        "Sistema canovista",
+        "Elecciones",
+        "Congreso"
+      ],
+      "date": "1876–1886",
+      "sourceCaption": "Tabla de escaños por grupos políticos en las elecciones de 1876, 1879, 1881, 1884 y 1886.",
+      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías, cifras y totales; queda pendiente cotejarla con los PDF oficiales.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Compara los escaños atribuidos a cada grupo en las cinco elecciones y describe los cambios que muestra la tabla. No deduzcas por sí sola la limpieza del proceso electoral ni confundas el número de escaños con el de votos."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la alternancia parlamentaria con el sistema canovista, el turno entre conservadores y liberales y las prácticas electorales de la Restauración. Explica los límites de la representación política y distingue los datos tabulados de su interpretación histórica."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-stpkw5j6kku2-2",
+          "sourceKey": "h.stpkw5j6kku2:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva A",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.stpkw5j6kku2",
+          "sourceImages": []
+        },
+        {
+          "id": "fuente-h-exlr9h20zowj-2",
+          "sourceKey": "h.exlr9h20zowj:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 1",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.exlr9h20zowj",
+          "sourceImages": []
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/tabla-resultados-restauracion-1876-1886.svg",
+        "kind": "table",
+        "alt": "Tabla de escaños de republicanos, liberales, conservadores y otros grupos en cinco elecciones entre 1876 y 1886.",
+        "width": 943,
+        "height": 324,
+        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+      },
+      "table": {
+        "caption": "Escaños por grupos políticos en el Congreso de los Diputados",
+        "headers": [
+          "Partidos o grupos",
+          "1876",
+          "1879",
+          "1881",
+          "1884",
+          "1886"
+        ],
+        "rows": [
+          [
+            "Republicanos",
+            1,
+            7,
+            32,
+            5,
+            22
+          ],
+          [
+            "Liberales",
+            32,
+            63,
+            297,
+            67,
+            288
+          ],
+          [
+            "Conservadores",
+            333,
+            293,
+            39,
+            318,
+            67
+          ],
+          [
+            "Otros",
+            19,
+            26,
+            24,
+            2,
+            15
+          ],
+          [
+            "Total escaños",
+            391,
+            392,
+            392,
+            392,
+            393
+          ]
+        ],
+        "notes": [
+          "La fuente transcrita cita a M. M. Cuadrado, Elecciones y partidos políticos de España."
+        ]
+      }
+    },
+    {
+      "id": "composicion-congreso-elecciones-febrero-1936",
+      "title": "Composición del Congreso tras las elecciones de febrero de 1936",
+      "type": "grafico",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Segunda República",
+        "Elecciones de 1936",
+        "Frente Popular",
+        "Congreso"
+      ],
+      "date": "Febrero de 1936",
+      "sourceCaption": "2010 Extraordinaria reserva B, opción B, documento 2.",
+      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica las fuerzas y el número de escaños que recoge la tabla. Describe su composición y sus límites, sin convertir la clasificación de la fuente en una medida directa de votos o de afiliación."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa los resultados en las elecciones de febrero de 1936 y en la polarización política de la Segunda República. Explica la formación del gobierno del Frente Popular y el contexto de la crisis republicana, distinguiendo los datos de la tabla de las interpretaciones posteriores."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-a4tcharkltvm-4",
+          "sourceKey": "h.a4tcharkltvm:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva B",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.a4tcharkltvm",
+          "sourceImages": []
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/tabla-congreso-1936.svg",
+        "kind": "table",
+        "alt": "Tabla con el número de escaños asignados a distintos partidos y grupos tras las elecciones de febrero de 1936.",
+        "width": 908,
+        "height": 792,
+        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+      },
+      "table": {
+        "caption": "Composición del Congreso tras las elecciones de febrero de 1936",
+        "headers": [
+          "Partidos",
+          "Escaños"
+        ],
+        "rows": [
+          [
+            "Socialistas",
+            99
+          ],
+          [
+            "Izquierda Republicana",
+            87
+          ],
+          [
+            "Unión Republicana",
+            38
+          ],
+          [
+            "PCE",
+            17
+          ],
+          [
+            "Izquierda catalana",
+            37
+          ],
+          [
+            "Nacionalistas vascos",
+            10
+          ],
+          [
+            "Lliga Catalana",
+            12
+          ],
+          [
+            "Republicano progresistas",
+            6
+          ],
+          [
+            "CEDA",
+            88
+          ],
+          [
+            "Radicales",
+            5
+          ],
+          [
+            "Centristas",
+            16
+          ],
+          [
+            "Renovación Española (Monárquicos)",
+            12
+          ],
+          [
+            "Agrarios",
+            11
+          ],
+          [
+            "Tradicionalistas",
+            10
+          ],
+          [
+            "Republicanos conservadores",
+            3
+          ],
+          [
+            "Independientes de derecha",
+            3
+          ],
+          [
+            "Otros",
+            19
+          ],
+          [
+            "Total",
+            473
+          ]
+        ]
+      }
+    },
+    {
+      "id": "composicion-congreso-elecciones-1977",
+      "title": "Composición del Congreso tras las elecciones de 1977",
+      "type": "grafico",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Transición",
+        "Elecciones de 1977",
+        "Congreso",
+        "Partidos políticos"
+      ],
+      "date": "Junio de 1977",
+      "sourceCaption": "2012 Examen 1, opción B, documento 2.",
+      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las denominaciones y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica los partidos y grupos, y describe la distribución de escaños que muestra la tabla. Ten en cuenta que el fragmento aportado no incluye una fila de total ni refleja por sí solo todos los aspectos de la representación parlamentaria."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la composición de las Cortes con las elecciones de junio de 1977, las primeras elecciones generales democráticas desde la Segunda República. Explica la pluralidad política y el proceso constituyente que condujo a la Constitución de 1978."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-exlr9h20zowj-4",
+          "sourceKey": "h.exlr9h20zowj:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 1",
+          "route": "Opción B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.exlr9h20zowj",
+          "sourceImages": []
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/tabla-congreso-1977.svg",
+        "kind": "table",
+        "alt": "Tabla de diputados por partidos y coaliciones tras las elecciones de 1977.",
+        "width": 1108,
+        "height": 540,
+        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+      },
+      "table": {
+        "caption": "Composición del Congreso de los Diputados tras las elecciones de 1977",
+        "headers": [
+          "Partidos políticos",
+          "N.º de diputados"
+        ],
+        "rows": [
+          [
+            "AP – Alianza Popular",
+            16
+          ],
+          [
+            "UCD – Unión de Centro Democrático",
+            165
+          ],
+          [
+            "Independientes",
+            2
+          ],
+          [
+            "DCC – Unió del Centre: La Democràcia Cristiana de Catalunya",
+            2
+          ],
+          [
+            "PNV – Partido Nacionalista Vasco",
+            8
+          ],
+          [
+            "PDC – Pacte Democràtic per Catalunya",
+            11
+          ],
+          [
+            "PSOE – Partido Socialista Obrero Español",
+            118
+          ],
+          [
+            "PSP/FPS – Partido Socialista Popular/Federación de Partidos Socialistas",
+            6
+          ],
+          [
+            "PCE – Partido Comunista de España",
+            20
+          ],
+          [
+            "EC – Esquerra de Catalunya",
+            1
+          ],
+          [
+            "EE – Euskadiko Ezquerra",
+            1
+          ]
+        ],
+        "notes": [
+          "La tabla de la recopilación no incluye una fila de total; no se añade una cifra calculada."
+        ]
+      }
+    },
+    {
+      "id": "decreto-cortes-soberania-isla-leon-1810",
+      "title": "Primer decreto de las Cortes reunidas en la isla de León",
+      "type": "texto",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Cortes de Cádiz",
+        "Soberanía nacional",
+        "Constitución de 1812",
+        "Guerra de la Independencia"
+      ],
+      "date": "24 de septiembre de 1810",
+      "sourceCaption": "Primer decreto de las Cortes reunidas en la isla de León. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza la declaración de soberanía y la constitución de las Cortes como órgano nacional; distingue el texto jurídico de las medidas posteriores."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa la reunión de las Cortes en la guerra contra la ocupación napoleónica y relaciona su labor con el proceso constituyente de Cádiz, sin presentar la Constitución de 1812 como ya aprobada en esta fecha."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ap6vdvuofbyh-1",
+          "sourceKey": "h.ap6vdvuofbyh:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Titular reserva A",
+          "route": "Titular reserva A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ap6vdvuofbyh"
+        }
+      ],
+      "text": [
+        "PRIMER DECRETO DE LAS CORTES REUNIDAS EN LA ISLA DE LEÓN (CÁDIZ)",
+        "Los diputados que componen este Congreso, y que representan la Nación española, se declaran",
+        "legítimamente constituidos en Cortes generales y extraordinarias, y que reside en ellas la soberanía",
+        "nacional.",
+        "Las Cortes generales y extraordinarias de la Nación española, congregadas en la real isla de León,",
+        "conformes en todo con la voluntad general, pronunciada del modo más enérgico y patente, reconocen,",
+        "proclaman y juran de nuevo por su único y legítimo rey al Señor D. Fernando VII de Borbón; y declaran",
+        "nula y de ningún valor ni efecto la cesión de la corona que se dice hecha a favor de Napoleón, no sólo por",
+        "la violencia que intervino en aquellos actos injustos e ilegales, sino principalmente por fallarle el",
+        "consentimiento de la nación.",
+        "No conviniendo queden reunidos el Poder legislativo, el ejecutivo y el judiciario, declaran las Cortes",
+        "generales y extraordinarias que se reservan el ejercicio del poder legislativo en toda su extensión (...).",
+        "Real Isla de León, 24 septiembre de 1810”"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "manifiesto-franco-julio-1936",
+      "title": "Manifiesto del general Franco",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Golpe de Estado de 1936",
+        "Franco",
+        "Tetuán"
+      ],
+      "date": "17 de julio de 1936",
+      "sourceCaption": "Manifiesto del general Franco. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica el manifiesto como una proclama de los sublevados y analiza los llamamientos a la patria y al Ejército."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el texto en el inicio del golpe de Estado de julio de 1936 y distingue la justificación ofrecida por el autor de una descripción neutral de los hechos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ap6vdvuofbyh-3",
+          "sourceKey": "h.ap6vdvuofbyh:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Titular reserva A",
+          "route": "Titular reserva A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ap6vdvuofbyh"
+        },
+        {
+          "id": "fuente-h.d40v7ql2zdxq-3",
+          "sourceKey": "h.d40v7ql2zdxq:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 2",
+          "route": "Extraordinaria examen 2",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.d40v7ql2zdxq",
+          "sameDocumentReviewed": true
+        }
+      ],
+      "text": [
+        "MANIFIESTO DEL GENERAL FRANCO",
+        "Españoles: a cuantos sentís el santo amor a España, a los que en las filas del Ejército y la Armada habéis",
+        "hecho profesión de fe en el servicio a la Patria, a cuantos jurasteis defenderla de sus enemigos hasta",
+        "perder la vida, la nación os llama en su defensa. La situación de España es cada día más crítica, la",
+        "anarquía reina en la mayoría de los campos y pueblos; autoridades de nombramiento gubernativo",
+        "presiden, cuando no fomentan, las revueltas: a tiros de pistolas y ametralladoras se dirimen las",
+        "diferencias entre los ciudadanos que alevosa y traidoramente asesinan sin que los poderes públicos",
+        "impongan la paz y la justicia. (...)",
+        "¿Es que se puede consentir un día más el vergonzoso espectáculo que estamos dando al mundo? (...).",
+        "Españoles: ¡Viva España! ¡Viva el honrado pueblo español!",
+        "Tetuán, 17 de julio de 1936"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+      "title": "Dos fotografías de la Guerra Civil: entrega de fusiles y mandos sublevados en Burgos",
+      "type": "imagen",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Franco",
+        "Emilio Mola",
+        "José Cavalcanti",
+        "Madrid",
+        "Burgos"
+      ],
+      "date": "Julio y agosto de 1936",
+      "sourceCaption": "Dos fotografías de la Guerra Civil: entrega de fusiles y mandos sublevados en Burgos. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Las dos fotografías documentan escenas distintas: la entrega de fusiles en Madrid y la presencia de Franco, Mola y Cavalcanti en Burgos. No deben interpretarse como una única escena."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la primera imagen con la entrega de armas a la población de Madrid el 18 de julio y la segunda con los mandos sublevados en Burgos durante agosto. Mantén separadas sus fechas, lugares y protagonistas."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ap6vdvuofbyh-4",
+          "sourceKey": "h.ap6vdvuofbyh:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Titular reserva A",
+          "route": "Titular reserva A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ap6vdvuofbyh"
+        },
+        {
+          "id": "fuente-h.d40v7ql2zdxq-4",
+          "sourceKey": "h.d40v7ql2zdxq:4",
+          "sourceOrdinal": 4,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 2",
+          "route": "Extraordinaria examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.d40v7ql2zdxq",
+          "sameDocumentReviewed": true
+        },
+        {
+          "id": "fuente-h.s6w9kjl20asd-3",
+          "sourceKey": "h.s6w9kjl20asd:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 2",
+          "route": "Examen 2",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.s6w9kjl20asd",
+          "sameDocumentReviewed": true
+        }
+      ],
+      "examCaption": {
+        "text": "Dos imágenes distintas de la Guerra Civil: la entrega de fusiles en Madrid y mandos sublevados en Burgos.",
+        "appearanceId": "fuente-h.ap6vdvuofbyh-4"
+      },
+      "image": {
+        "src": "assets/documentos/reparto-armas-madrid-1936.png",
+        "crop": {
+          "width": 401.34,
+          "height": 315.5,
+          "imageWidth": 453.3,
+          "imageHeight": 315.5,
+          "left": 0,
+          "top": 0
+        },
+        "alt": "Fotografía en blanco y negro de civiles y milicianos reunidos mientras reciben fusiles.",
+        "width": 640,
+        "height": 445,
+        "examCaption": {
+          "text": "Entrega de fusiles a la población de Madrid por el gobierno de la República, 18 de julio de 1936."
+        },
+        "additionalImages": [
+          {
+            "src": "assets/documentos/franco-mola-cavalcanti-burgos.png",
+            "annotations": {
+              "layout": "numbered",
+              "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus uniformes.",
+              "sources": [
+                {
+                  "title": "Descripción y metadatos de esta fotografía",
+                  "url": "https://commons.wikimedia.org/wiki/File:Franco_y_Mola_(Burgos,_1936).jpg"
+                }
+              ],
+              "people": [
+                {
+                  "name": "José Cavalcanti",
+                  "role": "General de caballería del bando sublevado",
+                  "position": "A la izquierda, con las manos detrás.",
+                  "x": 0.25,
+                  "y": 0.6,
+                  "side": "left"
+                },
+                {
+                  "name": "Francisco Franco",
+                  "role": "General sublevado, jefe del Ejército de África; todavía no era jefe del Estado",
+                  "position": "En el centro y en primer plano.",
+                  "x": 0.48,
+                  "y": 0.62,
+                  "side": "right"
+                },
+                {
+                  "name": "Emilio Mola",
+                  "role": "General organizador del golpe de 1936 y jefe de las fuerzas sublevadas del norte",
+                  "position": "A la derecha, algo más atrás.",
+                  "x": 0.64,
+                  "y": 0.6,
+                  "side": "right"
+                }
+              ]
+            },
+            "alt": "Fotografía de Franco, Mola y otros militares caminando entre tropas en Burgos.",
+            "width": 2000,
+            "height": 1517,
+            "examCaption": {
+              "text": "Los generales Franco, Mola y Cavalcanti en Burgos en agosto de 1936."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "proclama-prim-revolucion-1868",
+      "title": "Proclama de Prim durante la revolución de 1868",
+      "type": "texto",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Juan Prim",
+        "Revolución de 1868",
+        "Sexenio Democrático",
+        "Cádiz"
+      ],
+      "date": "19 de septiembre de 1868",
+      "sourceCaption": "Proclama de Prim durante la revolución de 1868. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Localiza el llamamiento de Prim en el movimiento revolucionario que puso fin al reinado de Isabel II y resume sus demandas políticas."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Explica el contexto de la revolución de 1868 y la apertura del Sexenio Democrático; no atribuyas a la proclama decisiones constitucionales que aún no se habían adoptado."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.a4tcharkltvm-1",
+          "sourceKey": "h.a4tcharkltvm:1",
+          "sourceOrdinal": 1,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva B",
+          "route": "Extraordinaria reserva B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.a4tcharkltvm"
+        },
+        {
+          "id": "fuente-h.wkz78yy8to0h-1",
+          "sourceKey": "h.wkz78yy8to0h:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 2",
+          "route": "Ordinaria examen 2",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.wkz78yy8to0h"
+        }
+      ],
+      "text": [
+        "PROCLAMA DE PRIM",
+        "Españoles: la ciudad de Cádiz puesta en armas con toda su provincia, con la Armada anclada en su",
+        "puerto y todo el departamento marítimo de la Carraca, declara solemnemente que niega obediencia al",
+        "Gobierno que reside en Madrid, asegura que es leal intérprete de los ciudadanos que, en el dilatado",
+        "ejercicio de la paciencia, no hayan perdido el sentimiento de la dignidad, y resulta a no deponer las",
+        "armas hasta que la nación recobre su soberanía, manifiesta su voluntad y se cumpla.",
+        "¿Habrá algún español tan ajeno a las desventuras de su país que nos pregunte las causas de tan grave",
+        "acontecimiento? (...). Que cada uno repare en su memoria y todos acudiréis a las armas.",
+        "Hollada la ley fundamental; convertida siempre antes en celada que en defensa del ciudadano;",
+        "corrompido el sufragio por la amenaza del soborno (...).",
+        "No, no será. Ya basta de escándalos (...). Queremos vivir la vida de la honra y de la libertad.",
+        "Queremos que un gobierno provisional que represente todas las fuerzas vivas del país asegure el orden,",
+        "en tanto que el sufragio universal echa los cimientos de nuestra regeneración social y política.",
+        "¡Viva España con honra!",
+        "Cádiz, 19 de Septiembre de 1868."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "decreto-suspension-garantias-1923",
+      "title": "Decreto de suspensión de garantías tras el golpe de Primo de Rivera",
+      "type": "texto",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Primo de Rivera",
+        "Dictadura",
+        "Constitución",
+        "Estado de excepción"
+      ],
+      "date": "17 de septiembre de 1923",
+      "sourceCaption": "Decreto de suspensión de garantías tras el golpe de Primo de Rivera. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Examina la suspensión de garantías y el uso de poderes excepcionales en el decreto del Directorio Militar."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el texto tras el golpe de Estado de septiembre de 1923 y explica el establecimiento de la dictadura, sin confundir el decreto con la Constitución de 1876."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.galhj1bh4771-3",
+          "sourceKey": "h.galhj1bh4771:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Titular reserva B",
+          "route": "Titular reserva B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.galhj1bh4771"
+        }
+      ],
+      "text": [
+        "Excmo. Sr. En uso de las facultades que me confiere el Real Decreto de esta fecha.",
+        "Vengo en disponer lo siguiente:",
+        "Art. 1.° Se suspenden temporalmente en todas las provincias del Reino las garantías expresadas en los",
+        "artículos 4.°, 5.°, 6.° y 9.° y párrafo primero, segundo y tercero del artículo 13 de la Constitución.",
+        "Art. 2.° Se confirma el estado de guerra declarado por los capitanes generales de las regiones de",
+        "Baleares y Canarias, cesando desde luego en sus funciones los gobernadores civiles de todas las",
+        "provincias (...).",
+        "Art. 3.° Lo sueldos consignados en los presupuestos para los gobernadores civiles quedarán en beneficio",
+        "del Tesoro (...).",
+        "Dios guarde a Vuecencia muchos años. Madrid, 15 de septiembre de 1923.",
+        "El Presidente del Directorio Militar, Miguel Primo de Rivera y Orbaneja. Señor.",
+        "Gaceta de Madrid, 17 de septiembre de 1923."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "primo-rivera-directorio-civil-fotografia-1925",
+      "title": "Pie transcrito: Primo de Rivera y Alfonso XIII ante el Directorio civil",
+      "type": "texto",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Primo de Rivera",
+        "Alfonso XIII",
+        "Directorio Civil",
+        "Dictadura"
+      ],
+      "date": "1925",
+      "sourceCaption": "Pie transcrito: Primo de Rivera y Alfonso XIII ante el Directorio civil. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "La recopilación conserva un pie que identifica a Primo de Rivera y Alfonso XIII junto al Directorio Civil."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "La exportación del corpus no contiene la fotografía que acompaña al pie. Se mantiene la transcripción sin sustituirla por una imagen de otro acto."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.galhj1bh4771-4",
+          "sourceKey": "h.galhj1bh4771:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Titular reserva B",
+          "route": "Titular reserva B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.galhj1bh4771"
+        }
+      ],
+      "text": [
+        "Miguel Primo de Rivera (sentado a la derecha) al frente del directorio civil en 1925, a su lado el rey Alfonso XIII"
+      ]
+    },
+    {
+      "id": "franco-y-pont-i-gol-1958",
+      "title": "Franco y la Iglesia: fotografía de Francisco Franco ante un arzobispo",
+      "type": "imagen",
+      "blocks": [
+        11
+      ],
+      "tags": [
+        "Franco",
+        "Iglesia",
+        "Franquismo",
+        "Josep Pont i Gol"
+      ],
+      "date": "14 de junio de 1958; lugar pendiente de verificar",
+      "sourceCaption": "Franco y la Iglesia: fotografía de Francisco Franco ante un arzobispo. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Observa la ceremonia y diferencia la identificación de las personas que consta en la recopilación de aquello que la imagen permite describir directamente."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la escena con las relaciones entre el franquismo y la Iglesia católica. La identificación del arzobispo y el lugar indicado en las notas de la recopilación quedan pendientes de cotejo con el documento oficial."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.l9y8o87u5u46-4",
+          "sourceKey": "h.l9y8o87u5u46:4",
+          "sourceOrdinal": 4,
+          "year": 2010,
+          "exam": "2010 Titular extraordinaria",
+          "route": "Titular extraordinaria",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46",
+          "sourceImages": [
+            42
+          ],
+          "sameDocumentReviewed": true
+        }
+      ],
+      "examCaption": {
+        "text": "Franco y la Iglesia.",
+        "appearanceId": "fuente-h.l9y8o87u5u46-4"
+      },
+      "image": {
+        "src": "assets/documentos/franco-arzobispo-pont-i-gol-1958.png",
+        "alt": "Fotografía de Francisco Franco arrodillado ante un obispo con mitra y báculo, rodeado por clérigos durante una ceremonia.",
+        "width": 423,
+        "height": 536,
+        "annotations": {
+          "layout": "numbered",
+          "note": "La identificación de las personas sigue las notas de la recopilación aportada; el lugar de la ceremonia queda pendiente de cotejo.",
+          "sources": [
+            {
+              "title": "Pie e identificación en la recopilación aportada",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46"
+            }
+          ],
+          "people": [
+            {
+              "name": "Josep Pont i Gol",
+              "role": "Arzobispo identificado en las notas de la recopilación",
+              "position": "De pie en el centro, con mitra y báculo.",
+              "x": 0.47,
+              "y": 0.27,
+              "side": "left"
+            },
+            {
+              "name": "Francisco Franco",
+              "role": "Jefe del Estado, arrodillado ante el obispo",
+              "position": "Arrodillado en primer plano, a la derecha.",
+              "x": 0.59,
+              "y": 0.56,
+              "side": "right"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "comision-redactora-constitucion-1978",
+      "title": "Comisión redactora del proyecto de Constitución de 1978",
+      "type": "imagen",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Constitución de 1978",
+        "Consenso",
+        "Transición",
+        "Ponencia constitucional"
+      ],
+      "date": "1978",
+      "sourceCaption": "Comisión redactora del proyecto de Constitución de 1978. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "En la transcripción asociada se enumeran nombres y adscripciones políticas. 2. MIQUEL ROCA I JUNYENT (MINORÍA CATALANA / PACTE DEMOCRÀTIC PER CATALUNYA) 3. GREGORIO PECES-BARBA MARTÍNEZ (PARTIDO SOCIALISTA OBRERO ESPAÑOL - PSOE) 4. GABRIEL CISNEROS LABORDA (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 5. JOSÉ PEDRO PÉREZ-LLORCA RODRIGO (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 6. MIGUEL HERRERO Y RODRÍGUEZ DE MIÑÓN (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 7. JORDI SOLÉ TURA (PARTIDO COMUNISTA DE ESPAÑA / PARTIT SOCIALISTA UNIFICAT DE CATALUNYA - PCE-PSUC) La fuente no asigna cada nombre a una posición de la fotografía."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa la ponencia en el proceso constituyente de la Transición. La lista transcrita sirve para reconocer a sus integrantes, no para asignar identidades a cada figura sin una fuente de posiciones."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.stpkw5j6kku2-3",
+          "sourceKey": "h.stpkw5j6kku2:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva A",
+          "route": "Extraordinaria reserva A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.stpkw5j6kku2",
+          "sourceImages": [
+            43
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "Comisión redactora del Proyecto de Constitución de 1978",
+        "appearanceId": "fuente-h.stpkw5j6kku2-3"
+      },
+      "image": {
+        "src": "assets/documentos/comision-redactora-constitucion-1978.png",
+        "alt": "Fotografía en blanco y negro de siete integrantes de la comisión redactora del proyecto constitucional de 1978 reunidos en torno a una mesa.",
+        "width": 1024,
+        "height": 761
+      }
+    },
+    {
+      "id": "disolucion-cortes-general-pavia-1874",
+      "title": "El general Pavía disuelve las Cortes",
+      "type": "imagen",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Pavía",
+        "Primera República",
+        "Golpe de Estado",
+        "Cortes"
+      ],
+      "date": "3 de enero de 1874",
+      "sourceCaption": "El general Pavía disuelve las Cortes. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Describe la escena como una representación de la disolución de las Cortes por las tropas del general Pavía."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el episodio con la crisis de la Primera República y el paso a la dictadura de Serrano; distingue la representación gráfica de un testimonio fotográfico."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.a4tcharkltvm-2",
+          "sourceKey": "h.a4tcharkltvm:2",
+          "sourceOrdinal": 2,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva B",
+          "route": "Extraordinaria reserva B",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.a4tcharkltvm",
+          "sourceImages": [
+            44
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "El general Pavía disuelve las Cortes en 1874",
+        "appearanceId": "fuente-h.a4tcharkltvm-2"
+      },
+      "image": {
+        "src": "assets/documentos/disolucion-congreso-pavia-1874.jpg",
+        "alt": "Grabado de la disolución de las Cortes por las tropas del general Pavía en enero de 1874.",
+        "width": 414,
+        "height": 292
+      }
+    },
+    {
+      "id": "azana-espana-ha-dejado-de-ser-catolica-1931",
+      "title": "Azaña: «España ha dejado de ser católica»",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Manuel Azaña",
+        "Segunda República",
+        "Laicidad",
+        "Relaciones Iglesia-Estado"
+      ],
+      "date": "1931",
+      "sourceCaption": "Azaña: «España ha dejado de ser católica». Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza la afirmación de Azaña sobre el problema religioso y el cambio en la relación entre sociedad, Estado e Iglesia."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el discurso en el debate constituyente de 1931 y diferencia la valoración política de Azaña de una descripción estadística de las creencias de la población."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.a4tcharkltvm-3",
+          "sourceKey": "h.a4tcharkltvm:3",
+          "sourceOrdinal": 3,
+          "year": 2010,
+          "exam": "2010 Extraordinaria reserva B",
+          "route": "Extraordinaria reserva B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.a4tcharkltvm"
+        }
+      ],
+      "text": [
+        "Yo no me refiero a las dos primeras, me refiero a esto que llaman problema religioso. La premisa de este problema,",
+        "hoy político, la formulo yo de esta manera: España ha dejado de ser católica; el problema político consiguiente es",
+        "organizar el Estado en forma tal que quede adecuado a esta fase nueva e histórica del pueblo español.",
+        "Yo no puedo admitir, señores diputados, que a esto se le llame problema religioso. El auténtico problema religioso",
+        "no puede exceder de los límites de la conciencia personal, porque es en la conciencia personal donde se formula y",
+        "se responde la pregunta sobre el misterio de nuestro destino. Este es un problema político, de constitución del",
+        "estado, y es ahora precisamente cuando este problema pierde hasta las semejas de religión, de religiosidad, porque",
+        "nuestro Estado, a diferencia del Estado antiguo, que tomaba sobre sí la tutela de las conciencias y daba medios de",
+        "impulsar a las almas, incluso contra su voluntad, por el camino de su salvación, excluye toda preocupación",
+        "ultraterrena y todo cuidado de la fidelidad, y quita a la Iglesia aquel famoso brazo secular que tantos y tan grandes",
+        "servicios le prestó. Se trata simplemente de organizar el Estado español con sujeción a las premisas que acabo de",
+        "establecer. (...)",
+        "Discurso de Azaña en el Congreso de los Diputados en 1931."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "ultimatum-mckinley-cuba-1898",
+      "title": "Ultimátum de McKinley a España sobre Cuba",
+      "type": "texto",
+      "blocks": [
+        7
+      ],
+      "tags": [
+        "Cuba",
+        "Guerra de 1898",
+        "Estados Unidos",
+        "Crisis de 1898"
+      ],
+      "date": "18 de abril de 1898",
+      "sourceCaption": "Ultimátum de McKinley a España sobre Cuba. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica el texto como una resolución del Congreso de los Estados Unidos que exige la retirada española de Cuba y examina el lenguaje de la resolución."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el ultimátum en la crisis cubana y el estallido de la guerra entre España y Estados Unidos. Distingue la decisión del Congreso de la posterior firma del Tratado de París."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.tf1mgx8e973v-1",
+          "sourceKey": "h.tf1mgx8e973v:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 1",
+          "route": "Ordinaria examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tf1mgx8e973v"
+        }
+      ],
+      "text": [
+        "“Considerando que las horribles condiciones que han existido en la isla de Cuba, tan próxima a nuestras",
+        "costas, por más de tres años, condiciones que han ofendido el sentido moral del pueblo de los EE UU",
+        "[...], y que han culminado en la destrucción de un acorazado de los EE UU durante una visita amistosa al",
+        "puerto de la Habana [...], no pueden soportarse por más tiempo como lo afirma el presidente de los",
+        "Estados Unidos en su mensaje de 11 de Abril de 1898, sobre el cual el Congreso ha sido invitado a",
+        "pronunciarse.",
+        "En consecuencia, el Senado y la Cámara de Representantes de los Estados Unidos, reunidos en",
+        "Congreso han resuelto:",
+        "Primero: que el pueblo de la isla de Cuba es, y tiene derecho a ser, libre e independiente.",
+        "Segundo: que los Estados Unidos tienen el deber de pedir, y por tanto el Gobierno de los Estados Unidos",
+        "pide, que el Gobierno español renuncie inmediatamente a su autoridad y gobierno sobre la isla de Cuba y",
+        "retire de Cuba y de las aguas cubanas sus fuerzas terrestres y navales [...].",
+        "Si a la hora del mediodía del sábado próximo, 23 de abril, no ha sido comunicada a este Gobierno por el",
+        "de España una completa y satisfactoria respuesta a la Resolución, en tales términos que la paz de Cuba",
+        "quede asegurada, el presidente procederá sin ulterior aviso a usar poder y autorización ordenados y",
+        "conferidos a él, tan extensamente como sea necesario.”",
+        "Ultimátum a España, Congreso de los EE.UU, 18 de abril de 1898"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "episcopado-ante-constitucion-1931",
+      "title": "Declaración colectiva del episcopado ante la Constitución de 1931",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Segunda República",
+        "Iglesia católica",
+        "Constitución de 1931",
+        "Laicidad"
+      ],
+      "date": "Diciembre de 1931",
+      "sourceCaption": "Declaración colectiva del episcopado ante la Constitución de 1931. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza la crítica episcopal a las disposiciones constitucionales sobre religión y libertad religiosa como una posición institucional."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona el documento con el debate sobre la separación entre Iglesia y Estado, evitando presentarlo como una descripción imparcial del conjunto de la sociedad."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.tf1mgx8e973v-3",
+          "sourceKey": "h.tf1mgx8e973v:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 1",
+          "route": "Ordinaria examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.tf1mgx8e973v"
+        }
+      ],
+      "text": [
+        "“Los principios y preceptos constitucionales en materia confesional no sólo no responden al mínimum de respeto a",
+        "la libertad religiosa y de reconocimiento de los derechos esenciales de la Iglesia que hacían esperar el propio interés",
+        "y dignidad del Estado, sino que, inspirados por un criterio sectario, representan una verdadera oposición aun a",
+        "aquellas mínimas exigencias [...].",
+        "Más radicalmente todavía se ha cometido el grave y funesto error de excluir a la Iglesia de la vida pública y activa de",
+        "la nación, de las leyes, de la educación de la juventud, de la misma sociedad doméstica, con grave menosprecio de",
+        "los derechos sagrados y de la conciencia cristiana del país. [...] De semejante separación violenta e injusta, de tan",
+        "absurdo laicismo del Estado, la Iglesia no puede dejar de lamentarse y protestar, convencida como está de que las",
+        "sociedades humanas no pueden conducirse, sin lesión de deberes fundamentales, como si Dios no existiese, o",
+        "desatender a la Religión, como si ésta fuera un cuerpo extraño a ellas o cosa inútil y nociva [...].”",
+        "Declaración colectiva del episcopado ante la nueva Constitución (diciembre, 1931)"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "informe-murat-levantamiento-2-mayo-1808",
+      "title": "Murat informa a Napoleón sobre los sucesos del 2 de mayo",
+      "type": "texto",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "2 de mayo de 1808",
+        "Murat",
+        "Napoleón",
+        "Guerra de la Independencia"
+      ],
+      "date": "2 de mayo de 1808",
+      "sourceCaption": "Murat informa a Napoleón sobre los sucesos del 2 de mayo. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Reconoce el informe como una fuente del mando francés y examina su descripción de la revuelta y de las medidas represivas."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el levantamiento en la ocupación napoleónica y explica su relación con el inicio de la Guerra de la Independencia, atendiendo al punto de vista del autor."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.lnfwvqsmz1yq-1",
+          "sourceKey": "h.lnfwvqsmz1yq:1",
+          "sourceOrdinal": 1,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 3",
+          "route": "Ordinaria examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.lnfwvqsmz1yq"
+        }
+      ],
+      "text": [
+        "Sire: la tranquilidad pública ha sido turbada esta mañana. Desde hace varios días la gente del campo se reunía en",
+        "la ciudad, circulaban panfletos excitando a la rebelión, las cabezas de los generales y oficiales franceses",
+        "hospedados en la ciudad se ponía a precio, en fin todo anunciaba la crisis. Esta mañana desde las ocho la canalla",
+        "de Madrid y de los alrededores obstruía los accesos al castillo [...] mientras tanto un batallón de guardia alojado en",
+        "mi palacio, con dos cañones y un pelotón de cazadores polacos, ha marchado hacia el castillo atacando a la masa",
+        "allí reunida y dispersándola a tiros de fusil. El general Grouchy reunía sus tropas en el Prado y recibía órdenes de",
+        "dirigirse por la calle de Alcalá a la Puerta del Sol y Plaza Mayor donde se habían reunido más de veinte mil",
+        "rebeldes. Se asesinaba ya en las calles a los soldados aislados que intentaban incorporarse a sus puestos. [...]",
+        "Después ordené al general Grouchy que marchase a la Puerta del Sol por la calle Platería y disolviese a cañonazos",
+        "al populacho, esas dos columnas consiguieron ponerse en movimiento y limpiar las calles, no sin dificultad porque",
+        "esos miserables se refugiaban en las casas y disparaban contra nuestras tropas. Los campesinos que habían",
+        "logrado escapar de la ciudad han topado con la caballería y atacados a sablazos [...] al recibir informes de que no",
+        "quedaba nadie en las calles me dirigí al palacio a hablar con el infante don Antonio y decirle que la ciudad debía ser",
+        "desarmada inmediatamente.”",
+        "Murat informa a Napoleón de los sucesos del 2 de mayo. Madrid 2 de mayo a las 6 de la tarde"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "juramento-cortes-constituyentes-isla-leon-1810",
+      "title": "Juramento de las Cortes Constituyentes en la isla de León",
+      "type": "imagen",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Cortes de Cádiz",
+        "Guerra de la Independencia",
+        "Constitución de 1812",
+        "Casado del Alisal"
+      ],
+      "date": "24 de septiembre de 1810",
+      "sourceCaption": "Juramento de las Cortes Constituyentes en la isla de León. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "La recopilación atribuye la pintura a Casado del Alisal y la sitúa en el juramento de las Cortes Constituyentes en la isla de León."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Interpreta la obra como una representación posterior del inicio de la labor de las Cortes; no la confundas con una fotografía ni con la promulgación de la Constitución de 1812."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.lnfwvqsmz1yq-2",
+          "sourceKey": "h.lnfwvqsmz1yq:2",
+          "sourceOrdinal": 2,
+          "year": 2011,
+          "exam": "2011 Ordinaria examen 3",
+          "route": "Ordinaria examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.lnfwvqsmz1yq",
+          "sourceImages": [
+            47
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León, 24 de Septiembre de 1810. (Óleo",
+        "appearanceId": "fuente-h.lnfwvqsmz1yq-2"
+      },
+      "image": {
+        "src": "assets/documentos/juramento-cortes-cadiz-1810.png",
+        "alt": "Pintura de la jura de las Cortes Constituyentes en la iglesia mayor de la Real Isla de León el 24 de septiembre de 1810.",
+        "width": 2048,
+        "height": 1749
+      }
+    },
+    {
+      "id": "firmantes-pactos-moncloa-1977",
+      "title": "Firmantes de los Pactos de la Moncloa",
+      "type": "imagen",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Pactos de la Moncloa",
+        "Transición",
+        "Consenso",
+        "Crisis económica"
+      ],
+      "date": "1977",
+      "sourceCaption": "Firmantes de los Pactos de la Moncloa. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "La imagen muestra a los firmantes reunidos; el pie de la recopilación no identifica individualmente a las personas."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona los Pactos con la búsqueda de acuerdos políticos y económicos durante la Transición, sin deducir de la fotografía por sí sola el contenido de cada acuerdo."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.3e75gt50uc57-3",
+          "sourceKey": "h.3e75gt50uc57:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 3",
+          "route": "Extraordinaria examen 3",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.3e75gt50uc57",
+          "sourceImages": [
+            52
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "Firmantes de los Pactos de la Moncloa",
+        "appearanceId": "fuente-h.3e75gt50uc57-3"
+      },
+      "image": {
+        "src": "assets/documentos/pactos-moncloa-firmantes-1977.png",
+        "alt": "Fotografía de los firmantes de los Pactos de la Moncloa reunidos en torno a una mesa.",
+        "width": 447,
+        "height": 330
+      }
+    },
+    {
+      "id": "manifiesto-sandhurst-1874",
+      "title": "Manifiesto de Sandhurst: llamamiento a la restauración",
+      "type": "texto",
+      "blocks": [
+        7
+      ],
+      "tags": [
+        "Restauración borbónica",
+        "Alfonso XII",
+        "Cánovas del Castillo",
+        "Manifiesto de Sandhurst"
+      ],
+      "date": "1 de diciembre de 1874",
+      "sourceCaption": "Manifiesto de Sandhurst: llamamiento a la restauración. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza el llamamiento de Alfonso de Borbón y los argumentos empleados para presentar la restauración monárquica."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el manifiesto en la crisis de la Primera República y en la preparación de la Restauración. Diferencia el programa del texto del pronunciamiento posterior de Martínez Campos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.exlr9h20zowj-1",
+          "sourceKey": "h.exlr9h20zowj:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 1",
+          "route": "Examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.exlr9h20zowj"
+        }
+      ],
+      "text": [
+        "Manifiesto de Sandhurst",
+        "“[...] Cuantos me han escrito muestran igual convicción de que sólo el restablecimiento de la monarquía",
+        "constitucional puede poner término a la opresión, a la incertidumbre y a las crueles perturbaciones que",
+        "experimenta España. Dícenme que así lo reconoce ya la mayoría de nuestros compatriotas, y que antes",
+        "de mucho estarán conmigo todos los de buena fe, sean cuales fueren sus antecedentes políticos,",
+        "comprendiendo que no pueda tener exclusiones ni de un monarca nuevo y desapasionado ni de un",
+        "régimen que precisamente hoy se impone porque representa la unión y la paz.",
+        "No sé yo cuando o cómo, ni siquiera si se ha de realizar esa esperanza. Sólo puedo decir que nada",
+        "omitiré para hacerme digno del difícil encargo de restablecer en nuestra noble nación, al tiempo que la",
+        "concordia, el orden legal y la libertad política, si Dios en sus altos designios me la confía.",
+        "Por virtud de la espontánea y solemne abdicación de mi augusta madre, tan generosa como infortunada,",
+        "soy único representante yo del derecho monárquico en España.",
+        "[...]Sea lo que quiera mi propia suerte, ni dejaré de ser buen español ni, como todos mis antepasados,",
+        "buen católicos, ni, como hombre del siglo, verdaderamente liberal.”",
+        "Alfonso de Borbón",
+        "Nork-Town (Sandhurst, 1 de diciembre de 1874)"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "suarez-transicion-1985",
+      "title": "Adolfo Suárez reflexiona sobre la Transición",
+      "type": "texto",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Adolfo Suárez",
+        "Transición",
+        "Reforma política",
+        "Reconciliación"
+      ],
+      "date": "1985",
+      "sourceCaption": "Adolfo Suárez reflexiona sobre la Transición. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza el recuerdo retrospectivo de Suárez sobre el temor social y el cambio político tras la muerte de Franco."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Distingue el testimonio de 1985 de los acontecimientos de 1976 y valora su perspectiva retrospectiva sin convertirla en una descripción neutral de todas las posiciones."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.exlr9h20zowj-3",
+          "sourceKey": "h.exlr9h20zowj:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 1",
+          "route": "Examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.exlr9h20zowj"
+        }
+      ],
+      "text": [
+        "En la España de 1976 el pueblo español mostraba ansiedad y temor ante el recuerdo de la Guerra Civil y",
+        "el tránsito que se avecinaba. Yo era consciente de ese temor, como también lo era de la nueva",
+        "conciencia del pueblo español y de la mentalidad de nuestro Rey. Era necesaria una acción política",
+        "audaz y sincera que transformara las estructuras del régimen anterior, conectando con la realidad",
+        "española, sin violencia, sin traumas, sin vacíos de poder. Y había que hacerlo desde la legalidad vigente,",
+        "y con serenidad y rapidez, para evitar las reacciones de los sectores más continuistas que detentaban",
+        "enormes parcelas de poder. Aquel cambio político desde un sistema autoritario a un sistema democrático,",
+        "sin traumas, elegido libre y auténticamente, era algo sobre lo que no existían precedentes. Lo cierto es",
+        "que constituimos un precedente y la inmensa mayoría del pueblo español ratificó nuestro proyecto",
+        "político, alcanzando el Estado democrático que hoy disfrutamos sin ajustes de cuentas y sin traumas.",
+        "Adolfo Suárez, \"10 años sin Franco. Desatado y bien desatado\". 1985"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "junta-revolucionaria-sevilla-septiembre-1868",
+      "title": "Proclama de la Junta revolucionaria de Sevilla",
+      "type": "texto",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Revolución de 1868",
+        "Junta revolucionaria",
+        "Soberanía nacional",
+        "Sexenio Democrático"
+      ],
+      "date": "20 de septiembre de 1868",
+      "sourceCaption": "Proclama de la Junta revolucionaria de Sevilla. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Resume los principios políticos que la Junta de Sevilla declara defender y el lenguaje con el que legitima la revolución."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la proclama con el derrocamiento de Isabel II y el inicio del Sexenio Democrático, distinguiendo las demandas locales del programa político nacional."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.s6w9kjl20asd-1",
+          "sourceKey": "h.s6w9kjl20asd:1",
+          "sourceOrdinal": 1,
+          "year": 2012,
+          "exam": "2012 Examen 2",
+          "route": "Examen 2",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.s6w9kjl20asd"
+        }
+      ],
+      "text": [
+        "“ESPAÑOLES: La Junta revolucionaria de Sevilla faltaría al primero de sus deberes si no empezara por",
+        "dirigir su voz a los habitantes todos de esta provincia y a la nación entera, manifestándoles los principios",
+        "que se propone sustentar y defender como base de la regeneración de este desgraciado país, cuyo",
+        "entusiasmo no ha podido entibiar tantos siglos de tiranía y cuya virilidad no han podido debilitar tantos",
+        "años de degradación.",
+        "1o) La consagración del sufragio universal y libre como base y fundamento de la legitimidad de todos los",
+        "poderes y única verdadera expresión de la voluntad nacional.",
+        "2o) La libertad absoluta de imprenta, sin depósito, fianza ni editores responsables, y sólo con sujeción a",
+        "las penas que marca el código para los delitos de injuria y calumnia.",
+        "3o) La consagración práctica e inmediata de todas las demás libertades, la de enseñanza, la de cultos, la",
+        "de tráfico e industria, etc., y la reforma prudente y liberal de las leyes arancelarias, hasta que el estado",
+        "del país permita establecer de lleno la libertad de comercio.",
+        "11o) Cortes constituyentes por sufragio universal directo, para que decreten una Constitución en armonía",
+        "con las necesidades de la época [...].",
+        "¡¡Viva la libertad!! ¡¡Abajo la dinastía!! ¡¡Viva la Soberanía Nacional!!",
+        "Sevilla, 20 de septiembre de 1868.”"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "carta-colectiva-episcopado-guerra-civil-1937",
+      "title": "Carta colectiva del episcopado español sobre la Guerra Civil",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Iglesia católica",
+        "Episcopado",
+        "Propaganda de guerra"
+      ],
+      "date": "1 de julio de 1937",
+      "sourceCaption": "Carta colectiva del episcopado español sobre la Guerra Civil. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Examina la formulación de la guerra como «plebiscito armado» y la interpretación política y religiosa que ofrece el episcopado."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa la carta en la Guerra Civil y en su contexto de propaganda y polarización. Atribuye sus juicios a sus firmantes y no los presentes como consenso social."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.s6w9kjl20asd-4",
+          "sourceKey": "h.s6w9kjl20asd:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 2",
+          "route": "Examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.s6w9kjl20asd"
+        }
+      ],
+      "text": [
+        "“La guerra es, pues, como un plebiscito armado. La lucha blanca de los comicios de febrero de 1936, en",
+        "que la falta de conciencia política del gobierno nacional dio arbitrariamente a las fuerzas revolucionarias",
+        "un triunfo que no habían logrado en las urnas, se transformó, por la conciencia cívico-militar, en la lucha",
+        "cruenta de un pueblo partido en dos tendencias: la espiritual, del lado de los sublevados, que salió a la",
+        "defensa del orden, la paz social, la civilización tradicional y la patria, y muy ostensiblemente, en un gran",
+        "sector, para la defensa de la religión; y de la otra parte, la materialista, llámese marxista, comunista o",
+        "anarquista, que quiso sustituir la vieja civilización de España, con todos sus factores, por la novísima",
+        "\"civilización\" de los soviets rusos...",
+        "La Iglesia no podía ser indiferente en la lucha. De una parte, se suprimía a Dios, cuya obra ha de realizar",
+        "la Iglesia en el mundo y se causaba a la misma un daño inmenso, en personas, cosas y derechos; de la",
+        "otra estaba el esfuerzo por la conservación del viejo espíritu, español y cristiano. [...]”",
+        "Carta colectiva del episcopado español sobre la guerra (1 de julio de 1937)"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "ley-desamortizacion-madoz-1855",
+      "title": "Ley de desamortización general de Madoz",
+      "type": "texto",
+      "blocks": [
+        8
+      ],
+      "tags": [
+        "Desamortización",
+        "Madoz",
+        "Hacienda",
+        "Economía del siglo XIX"
+      ],
+      "date": "19 de mayo de 1855 (fecha del documento transcrito)",
+      "sourceCaption": "Ley de desamortización general de Madoz. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica los bienes afectados y las condiciones que establece el fragmento de la ley."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa la norma en la desamortización general de 1855 y explica sus objetivos fiscales y económicos distinguiendo el alcance legal de sus resultados sociales."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.80y8d229dcm-2",
+          "sourceKey": "h.80y8d229dcm:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 3",
+          "route": "Examen 3",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.80y8d229dcm"
+        }
+      ],
+      "text": [
+        "I.- Se declaran en estado de venta, con arreglo a las prescripciones de la presente ley, y sin perjuicio de",
+        "las cargas y servidumbres a que legítimamente estén sujetos, todos los predios rústicos y urbanos,",
+        "censos y foros pertenecientes:",
+        "Al Estado; al clero; a las órdenes militares de Santiago, Alcántara, Calatrava, Montesa y San Juan de",
+        "Jerusalén; a cofradías, obras pías y santuarios; a los propios y comunes de los pueblos; a la",
+        "beneficencia, a la instrucción pública y cualesquiera otros pertenecientes a manos muertas, ya estén o no",
+        "mandados vender por leyes anteriores (...).",
+        "III. Se procederá a la enajenación de todos y cada uno de los bienes mandados vender por esta ley,",
+        "sacando a pública licitación las fincas o sus suertes (...).",
+        "VI. Los compradores de las fincas o suertes quedan obligados al pago en metálico de la suma en que se",
+        "les adjudiquen (...).",
+        "Aranjuez, a 19 de mayo de 1855.- Yo, la Reina.",
+        "El Ministro de Hacienda, Pascual Madoz’"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "constitucion-cadiz-articulos-1812",
+      "title": "Artículos de la Constitución de 1812",
+      "type": "texto",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Constitución de 1812",
+        "Cortes de Cádiz",
+        "Soberanía nacional",
+        "Liberalismo"
+      ],
+      "date": "19 de marzo de 1812",
+      "sourceCaption": "Artículos de la Constitución de 1812. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza la definición de nación y las disposiciones constitucionales que aparecen en la selección, sin extender sus artículos a los que no figuran."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa la Constitución en la guerra y en el proceso abierto por las Cortes de Cádiz. Explica su carácter liberal y su vigencia interrumpida, sin tratar la selección como el texto íntegro."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ddnqmfjydqh9-2",
+          "sourceKey": "h.ddnqmfjydqh9:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 4",
+          "route": "Examen 4",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ddnqmfjydqh9"
+        }
+      ],
+      "text": [
+        "Art. 1. La Nación española es la reunión de todos los españoles de ambos hemisferios.",
+        "Art. 2. La Nación española es libre e independiente, y no es ni puede ser patrimonio de ninguna familia ni",
+        "persona.",
+        "Art. 3. La soberanía reside esencialmente en la Nación, y por lo mismo pertenece a ésta exclusivamente",
+        "el derecho de establecer sus leyes fundamentales.",
+        "Art. 4. La Nación está obligada a conservar y proteger por leyes sabias y justas la libertad civil, la",
+        "propiedad y los demás derechos legítimos de todos los individuos que la componen.",
+        "Art. 14. El Gobierno de la Nación española es una Monarquía moderada hereditaria.",
+        "Art. 15. La potestad de hacer las leyes reside en las Cortes con el Rey.",
+        "Art. 16. La potestad de hacer ejecutar las leyes reside en el Rey.",
+        "Art. 17. La potestad de aplicar las leyes en las causas civiles y criminales reside en los tribunales",
+        "establecidos por la ley.",
+        "Artículos de la Constitución de 1812"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "alegoria-victoria-franco-1939",
+      "title": "Alegoría de la Victoria: representación de Franco",
+      "type": "imagen",
+      "blocks": [
+        11
+      ],
+      "tags": [
+        "Franco",
+        "Propaganda",
+        "Franquismo",
+        "Guerra Civil"
+      ],
+      "date": "Fecha no indicada en la recopilación",
+      "sourceCaption": "Alegoría de la Victoria: representación de Franco. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Describe los elementos visibles y la representación alegórica de Franco como jefe militar victorioso."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la imagen con la construcción propagandística del poder franquista al final de la Guerra Civil. La fecha y la procedencia concreta no constan en la recopilación."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ddnqmfjydqh9-3",
+          "sourceKey": "h.ddnqmfjydqh9:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 4",
+          "route": "Examen 4",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ddnqmfjydqh9",
+          "sourceImages": [
+            55
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "Francisco Franco, Generalísimo de los Ejércitos y Caudillo de España. Alegoría de la Victoria",
+        "appearanceId": "fuente-h.ddnqmfjydqh9-3"
+      },
+      "image": {
+        "src": "assets/documentos/alegoria-victoria-franco-1939.png",
+        "alt": "Ilustración alegórica de Franco como Generalísimo y Caudillo, asociada a la victoria franquista; la fecha no consta en el pie transcrito.",
+        "width": 2048,
+        "height": 1441
+      }
+    },
+    {
+      "id": "normas-escuela-primaria-1939",
+      "title": "Normas para la Escuela Primaria en 1939",
+      "type": "texto",
+      "blocks": [
+        11
+      ],
+      "tags": [
+        "Franquismo",
+        "Educación",
+        "Nacionalcatolicismo",
+        "Posguerra"
+      ],
+      "date": "6 de mayo de 1939",
+      "sourceCaption": "Normas para la Escuela Primaria en 1939. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza el lenguaje sobre la escuela, la religión y la formación patriótica que emplean las normas."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el texto en la inmediata posguerra y en la reorganización ideológica de la enseñanza por la dictadura; no lo confundas con una descripción neutral de la educación."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.ddnqmfjydqh9-4",
+          "sourceKey": "h.ddnqmfjydqh9:4",
+          "sourceOrdinal": 4,
+          "year": 2012,
+          "exam": "2012 Examen 4",
+          "route": "Examen 4",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ddnqmfjydqh9"
+        }
+      ],
+      "text": [
+        "“El oprobio de una escuela laica ha terminado. Para formar españoles hondos, creyentes y patriotas",
+        "austeros España resurge, gloriosa, por el esfuerzo decidido y gigante de sus hijos, de los que murieron",
+        "alegremente por ella, de los que por ella se sacrificaron y quisieron rendirle lo mejor y más espléndido de",
+        "su vida. La Escuela tiene que recoger el ambiente heroico de las juventudes guiadas por el Caudillo a la",
+        "victoria [...].",
+        "Primera. La reposición del Santo Crucifijo marca la apertura del curso, que será rápida e inmediata.",
+        "Segunda. Además del retrato del Caudillo, habrá en el salón de clase una imagen de la Virgen, con",
+        "preferencia de la Inmaculada, y en sitio preferente.",
+        "Cuarta.- A la entrada en la escuela los niños saludarán con el tradicional \"Ave María Purísima\", siendo",
+        "contestados por el maestro: ‘Sin pecado concebida’ [...].",
+        "Sexta.- La ceremonia de colocar la Bandera antes de empezar las clases y arriarla al terminar, mientras",
+        "se entona el Himno Nacional, es obligatoria para todas las Escuelas [...]”.",
+        "Séptima. Con el fin de cumplir el precepto de oír misa los domingos, asistiendo los niños con sus",
+        "maestros al frente, acudirán a la iglesia en que la celebren las Organizaciones Juveniles...”",
+        "Normas para la Escuela Primaria. 6 de mayo de 1939. Año de la Victoria."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "fotografia-tejero-golpe-23f-1981",
+      "title": "Tejero en el Congreso durante el golpe del 23-F",
+      "type": "imagen",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "23-F",
+        "Antonio Tejero",
+        "Golpe de Estado",
+        "Congreso de los Diputados"
+      ],
+      "date": "23 de febrero de 1981",
+      "sourceCaption": "Tejero en el Congreso durante el golpe del 23-F. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "El pie de la recopilación identifica a Tejero en el Parlamento; la fotografía muestra el asalto al Congreso."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Relaciona la imagen con el intento de golpe de Estado del 23 de febrero de 1981 y con la consolidación de la democracia, sin inferir por la imagen sola el desenlace político."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.9apmzvqvjh65-3",
+          "sourceKey": "h.9apmzvqvjh65:3",
+          "sourceOrdinal": 3,
+          "year": 2012,
+          "exam": "2012 Examen 5",
+          "route": "Examen 5",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9apmzvqvjh65",
+          "sourceImages": [
+            56
+          ]
+        }
+      ],
+      "examCaption": {
+        "text": "23 de febrero de 1981. Tejero en el Parlamento",
+        "appearanceId": "fuente-h.9apmzvqvjh65-3"
+      },
+      "image": {
+        "src": "assets/documentos/golpe-estado-23f-tejero-1981.png",
+        "alt": "Fotografía en blanco y negro del asalto al Congreso el 23-F; Tejero aparece de pie, en primer plano, con el brazo levantado.",
+        "width": 2048,
+        "height": 1452,
+        "annotations": {
+          "layout": "numbered",
+          "note": "El pie de la recopilación identifica a Tejero; la marca señala la figura de pie en primer plano.",
+          "sources": [
+            {
+              "title": "Pie de foto en la recopilación aportada",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.9apmzvqvjh65"
+            }
+          ],
+          "people": [
+            {
+              "name": "Antonio Tejero",
+              "role": "Figura identificada como Tejero en el pie de la recopilación",
+              "position": "De pie, en primer plano, con el brazo derecho levantado.",
+              "x": 0.42,
+              "y": 0.31,
+              "side": "right"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "manifiesto-primo-rivera-al-pais-y-al-ejercito-1923",
+      "title": "Manifiesto de Primo de Rivera al país y al Ejército",
+      "type": "texto",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Primo de Rivera",
+        "Golpe de Estado de 1923",
+        "Dictadura",
+        "Ejército"
+      ],
+      "date": "13 de septiembre de 1923",
+      "sourceCaption": "Manifiesto de Primo de Rivera al país y al Ejército. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza el llamamiento al país y al Ejército y las razones que el manifiesto ofrece para justificar el golpe."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el texto en el golpe de 1923 y la crisis de la Restauración. Es una proclama de sus autores, no una valoración neutral de la situación política."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.zcjs1kuc46s8-3",
+          "sourceKey": "h.zcjs1kuc46s8:3",
+          "sourceOrdinal": 3,
+          "year": 2011,
+          "exam": "2011 Extraordinaria examen 1",
+          "route": "Extraordinaria examen 1",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.zcjs1kuc46s8"
+        }
+      ],
+      "text": [
+        "Al país y al ejército de españoles:",
+        "Ha llegado para nosotros el momento más temido que esperado (porque hubiéramos querido vivir",
+        "siempre en la legalidad y que ella rigiera sin interrupción la vida española) de recoger las ansias, de",
+        "atender el clamoroso requerimiento de cuantos amando a la patria no ven para ella otra solución que",
+        "libertarla de los profesionales de la política, de los que por una u otra razón nos ofrecen el cuadro de",
+        "desdichas e inmoralidades que empezaron en el año 98 y amenazan a España con un próximo fin trágico",
+        "y deshonroso [...]. No tenemos que justificar nuestro acto, que el pueblo sano demanda e impone [...]. En",
+        "virtud de la confianza y mandato que en mí han depositado, se constituirá en Madrid un Directorio Militar",
+        "con carácter provisional encargado de mantener el orden público [...]. No somos imperialistas, ni creemos",
+        "pendiente de un terco empeño en Marruecos el honor del ejército [...]. Para esto, y cuando el ejército",
+        "haya cumplido las órdenes recibidas [...] buscaremos al problema de Marruecos solución pronta, digna y",
+        "sensata [...], La responsabilidad colectiva de los partidos políticos la sancionaremos con este",
+        "apartamiento total a que los condenamos”.",
+        "La Vanguardia, Barcelona, 13 de septiembre de 1923"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "castelar-discurso-sobre-proclamacion-republica-1873",
+      "title": "Emilio Castelar sobre la proclamación de la Primera República",
+      "type": "texto",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Emilio Castelar",
+        "Primera República",
+        "Abdicación de Amadeo I",
+        "Cortes"
+      ],
+      "date": "11 de febrero de 1873",
+      "sourceCaption": "Emilio Castelar sobre la proclamación de la Primera República. Fragmento transcrito de la recopilación aportada.",
+      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Analiza cómo Castelar presenta la caída de la monarquía y la proclamación de la República en su intervención parlamentaria."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el discurso en la proclamación de la Primera República y distingue la interpretación retórica de Castelar de la secuencia de cambios dinásticos y políticos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h.s6w9kjl20asd-2",
+          "sourceKey": "h.s6w9kjl20asd:2",
+          "sourceOrdinal": 2,
+          "year": 2012,
+          "exam": "2012 Examen 2",
+          "route": "Examen 2",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.s6w9kjl20asd"
+        }
+      ],
+      "text": [
+        "“Señores diputados: Aquí, el partido republicano reivindica la gloria de haber destruido la monarquía. No",
+        "os echéis en cara la responsabilidad de este momento supremo. No, nadie ha matado. Yo, que tanto he",
+        "contribuido a que llegase este momento, debo decir que no siento mérito alguno de haber concluido con",
+        "la monarquía. La monarquía ha muerto sin que nadie haya contribuido a ello. Señores, con Fernando VII",
+        "murió la monarquía tradicional; con la fuga de Isabel II, la monarquía parlamentaria, y con la renuncia de",
+        "Amadeo nadie ha acabado con ella. Ha muerto por sí misma.”",
+        "Discurso de Castelar en la Cortes. 11 de febrero de 1873",
+        "HISTORIA DE",
+        "ESPAÑA"
+      ],
+      "attributionParagraphs": 1
     }
   ],
   "coverage": {
-    "sourceSha256": "ce2b72ad0afe777d9a5f5ee77a139be32313ecbdec6356ef9ca9132904a6176e",
-    "sourceDocumentOccurrences": 88,
-    "sourceImageOccurrences": 36,
-    "sourceHeadingCount": 73,
+    "sourceSha256": "40abdd0f45253c3fd364bad6d351c02c3271c0bfaf6c1e1102d6b0c4f6abe300",
+    "sourceDocumentOccurrences": 160,
+    "sourceImageOccurrences": 56,
+    "sourceHeadingCount": 90,
     "sourceYearsWithDocumentComment": [
       2008,
       2009,
+      2010,
+      2011,
+      2012,
       2025,
       2026
     ],
@@ -5709,6 +8320,621 @@
         "year": 2026,
         "document": 2,
         "assignedTo": "franco-ante-las-cortes-critica-del-pluralismo-politico",
+        "images": []
+      },
+      {
+        "key": "h.xt7pfpw2sian:1",
+        "heading": "h.xt7pfpw2sian",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "mapa-primera-guerra-carlista-2012",
+        "images": [
+          37,
+          38
+        ]
+      },
+      {
+        "key": "h.xt7pfpw2sian:2",
+        "heading": "h.xt7pfpw2sian",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "manifiesto-manzanares-1854",
+        "images": []
+      },
+      {
+        "key": "h.xt7pfpw2sian:3",
+        "heading": "h.xt7pfpw2sian",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "constitucion-directorio-militar-1923",
+        "images": []
+      },
+      {
+        "key": "h.xt7pfpw2sian:4",
+        "heading": "h.xt7pfpw2sian",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "primo-rivera-sanjurjo-alhucemas-1925",
+        "images": [
+          39
+        ]
+      },
+      {
+        "key": "h.galhj1bh4771:2",
+        "heading": "h.galhj1bh4771",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "desamortizacion-eclesiastica-civil-1834-1856",
+        "images": [
+          40
+        ]
+      },
+      {
+        "key": "h.stpkw5j6kku2:2",
+        "heading": "h.stpkw5j6kku2",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "resultados-electorales-restauracion-1876-1886",
+        "images": []
+      },
+      {
+        "key": "h.a4tcharkltvm:4",
+        "heading": "h.a4tcharkltvm",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "composicion-congreso-elecciones-febrero-1936",
+        "images": []
+      },
+      {
+        "key": "h.wkz78yy8to0h:3",
+        "heading": "h.wkz78yy8to0h",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "elecciones-generales-1982-congreso-senado",
+        "images": []
+      },
+      {
+        "key": "h.exlr9h20zowj:2",
+        "heading": "h.exlr9h20zowj",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "resultados-electorales-restauracion-1876-1886",
+        "images": []
+      },
+      {
+        "key": "h.exlr9h20zowj:4",
+        "heading": "h.exlr9h20zowj",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "composicion-congreso-elecciones-1977",
+        "images": []
+      },
+      {
+        "key": "h.8yldd9xqtm5t:1",
+        "heading": "h.8yldd9xqtm5t",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "la-constitucion-moderada-de-1845",
+        "images": []
+      },
+      {
+        "key": "h.8yldd9xqtm5t:2",
+        "heading": "h.8yldd9xqtm5t",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "manifiesto-manzanares-1854",
+        "images": []
+      },
+      {
+        "key": "h.8yldd9xqtm5t:3",
+        "heading": "h.8yldd9xqtm5t",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "investidura-de-felipe-gonzalez-y-politica-exterior",
+        "images": []
+      },
+      {
+        "key": "h.8yldd9xqtm5t:4",
+        "heading": "h.8yldd9xqtm5t",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "reunion-expresidentes-gobierno",
+        "images": [
+          41
+        ]
+      },
+      {
+        "key": "h.ap6vdvuofbyh:1",
+        "heading": "h.ap6vdvuofbyh",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "decreto-cortes-soberania-isla-leon-1810",
+        "images": []
+      },
+      {
+        "key": "h.ap6vdvuofbyh:2",
+        "heading": "h.ap6vdvuofbyh",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "miembros-cortes-cadiz",
+        "images": []
+      },
+      {
+        "key": "h.ap6vdvuofbyh:3",
+        "heading": "h.ap6vdvuofbyh",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "manifiesto-franco-julio-1936",
+        "images": []
+      },
+      {
+        "key": "h.ap6vdvuofbyh:4",
+        "heading": "h.ap6vdvuofbyh",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+        "images": []
+      },
+      {
+        "key": "h.galhj1bh4771:1",
+        "heading": "h.galhj1bh4771",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal",
+        "images": []
+      },
+      {
+        "key": "h.galhj1bh4771:3",
+        "heading": "h.galhj1bh4771",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "decreto-suspension-garantias-1923",
+        "images": []
+      },
+      {
+        "key": "h.galhj1bh4771:4",
+        "heading": "h.galhj1bh4771",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "primo-rivera-directorio-civil-fotografia-1925",
+        "images": []
+      },
+      {
+        "key": "h.l9y8o87u5u46:1",
+        "heading": "h.l9y8o87u5u46",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "tratado-de-paris-y-perdida-del-imperio-colonial",
+        "images": []
+      },
+      {
+        "key": "h.l9y8o87u5u46:2",
+        "heading": "h.l9y8o87u5u46",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "bajas-espanolas-en-cuba-y-filipinas",
+        "images": []
+      },
+      {
+        "key": "h.l9y8o87u5u46:3",
+        "heading": "h.l9y8o87u5u46",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "la-jefatura-del-estado-en-la-ley-organica-de-1967",
+        "images": []
+      },
+      {
+        "key": "h.l9y8o87u5u46:4",
+        "heading": "h.l9y8o87u5u46",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "franco-y-pont-i-gol-1958",
+        "images": [
+          42
+        ]
+      },
+      {
+        "key": "h.stpkw5j6kku2:1",
+        "heading": "h.stpkw5j6kku2",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "perez-galdos-sobre-las-elecciones-de-la-restauracion",
+        "images": []
+      },
+      {
+        "key": "h.stpkw5j6kku2:3",
+        "heading": "h.stpkw5j6kku2",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "comision-redactora-constitucion-1978",
+        "images": [
+          43
+        ]
+      },
+      {
+        "key": "h.stpkw5j6kku2:4",
+        "heading": "h.stpkw5j6kku2",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "constitucion-1978-preambulo-suplente-b",
+        "images": []
+      },
+      {
+        "key": "h.a4tcharkltvm:1",
+        "heading": "h.a4tcharkltvm",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "proclama-prim-revolucion-1868",
+        "images": []
+      },
+      {
+        "key": "h.a4tcharkltvm:2",
+        "heading": "h.a4tcharkltvm",
+        "year": 2010,
+        "document": 2,
+        "assignedTo": "disolucion-cortes-general-pavia-1874",
+        "images": [
+          44
+        ]
+      },
+      {
+        "key": "h.a4tcharkltvm:3",
+        "heading": "h.a4tcharkltvm",
+        "year": 2010,
+        "document": 1,
+        "assignedTo": "azana-espana-ha-dejado-de-ser-catolica-1931",
+        "images": []
+      },
+      {
+        "key": "h.tf1mgx8e973v:1",
+        "heading": "h.tf1mgx8e973v",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "ultimatum-mckinley-cuba-1898",
+        "images": []
+      },
+      {
+        "key": "h.tf1mgx8e973v:2",
+        "heading": "h.tf1mgx8e973v",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "tratado-de-paris-y-perdida-del-imperio-colonial",
+        "images": []
+      },
+      {
+        "key": "h.tf1mgx8e973v:3",
+        "heading": "h.tf1mgx8e973v",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "episcopado-ante-constitucion-1931",
+        "images": []
+      },
+      {
+        "key": "h.tf1mgx8e973v:4",
+        "heading": "h.tf1mgx8e973v",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "detenidos-revolucion-asturias-1934",
+        "images": [
+          45
+        ]
+      },
+      {
+        "key": "h.wkz78yy8to0h:1",
+        "heading": "h.wkz78yy8to0h",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "proclama-prim-revolucion-1868",
+        "images": []
+      },
+      {
+        "key": "h.wkz78yy8to0h:2",
+        "heading": "h.wkz78yy8to0h",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "amadeo-i-ante-cadaver-prim",
+        "images": [
+          46
+        ]
+      },
+      {
+        "key": "h.wkz78yy8to0h:4",
+        "heading": "h.wkz78yy8to0h",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "investidura-de-jose-maria-aznar",
+        "images": []
+      },
+      {
+        "key": "h.lnfwvqsmz1yq:1",
+        "heading": "h.lnfwvqsmz1yq",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "informe-murat-levantamiento-2-mayo-1808",
+        "images": []
+      },
+      {
+        "key": "h.lnfwvqsmz1yq:2",
+        "heading": "h.lnfwvqsmz1yq",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "juramento-cortes-constituyentes-isla-leon-1810",
+        "images": [
+          47
+        ]
+      },
+      {
+        "key": "h.lnfwvqsmz1yq:3",
+        "heading": "h.lnfwvqsmz1yq",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
+        "images": []
+      },
+      {
+        "key": "h.lnfwvqsmz1yq:4",
+        "heading": "h.lnfwvqsmz1yq",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "franco-ante-las-cortes-sobre-democracia-y-partidos",
+        "images": []
+      },
+      {
+        "key": "h.zcjs1kuc46s8:1",
+        "heading": "h.zcjs1kuc46s8",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal",
+        "images": []
+      },
+      {
+        "key": "h.zcjs1kuc46s8:2",
+        "heading": "h.zcjs1kuc46s8",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "grafico-desamortizaciones-siglo-xix",
+        "images": [
+          48
+        ]
+      },
+      {
+        "key": "h.zcjs1kuc46s8:3",
+        "heading": "h.zcjs1kuc46s8",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "manifiesto-primo-rivera-al-pais-y-al-ejercito-1923",
+        "images": []
+      },
+      {
+        "key": "h.zcjs1kuc46s8:4",
+        "heading": "h.zcjs1kuc46s8",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "primo-rivera-visita-tropas-marruecos",
+        "images": [
+          49
+        ]
+      },
+      {
+        "key": "h.d40v7ql2zdxq:1",
+        "heading": "h.d40v7ql2zdxq",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "entrada-alfonso-xii-madrid-1875",
+        "images": [
+          50
+        ]
+      },
+      {
+        "key": "h.d40v7ql2zdxq:2",
+        "heading": "h.d40v7ql2zdxq",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "perez-galdos-sobre-las-elecciones-de-la-restauracion",
+        "images": []
+      },
+      {
+        "key": "h.d40v7ql2zdxq:3",
+        "heading": "h.d40v7ql2zdxq",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "manifiesto-franco-julio-1936",
+        "images": []
+      },
+      {
+        "key": "h.d40v7ql2zdxq:4",
+        "heading": "h.d40v7ql2zdxq",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+        "images": []
+      },
+      {
+        "key": "h.3e75gt50uc57:1",
+        "heading": "h.3e75gt50uc57",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "isabel-ii-jura-constitucion-1837",
+        "images": [
+          51
+        ]
+      },
+      {
+        "key": "h.3e75gt50uc57:2",
+        "heading": "h.3e75gt50uc57",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "renuncia-de-maria-cristina-a-la-regencia",
+        "images": []
+      },
+      {
+        "key": "h.3e75gt50uc57:3",
+        "heading": "h.3e75gt50uc57",
+        "year": 2011,
+        "document": 1,
+        "assignedTo": "firmantes-pactos-moncloa-1977",
+        "images": [
+          52
+        ]
+      },
+      {
+        "key": "h.3e75gt50uc57:4",
+        "heading": "h.3e75gt50uc57",
+        "year": 2011,
+        "document": 2,
+        "assignedTo": "constitucion-1978-preambulo-suplente-b",
+        "images": []
+      },
+      {
+        "key": "h.exlr9h20zowj:1",
+        "heading": "h.exlr9h20zowj",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "manifiesto-sandhurst-1874",
+        "images": []
+      },
+      {
+        "key": "h.exlr9h20zowj:3",
+        "heading": "h.exlr9h20zowj",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "suarez-transicion-1985",
+        "images": []
+      },
+      {
+        "key": "h.s6w9kjl20asd:1",
+        "heading": "h.s6w9kjl20asd",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "junta-revolucionaria-sevilla-septiembre-1868",
+        "images": []
+      },
+      {
+        "key": "h.s6w9kjl20asd:2",
+        "heading": "h.s6w9kjl20asd",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "castelar-discurso-sobre-proclamacion-republica-1873",
+        "images": []
+      },
+      {
+        "key": "h.s6w9kjl20asd:3",
+        "heading": "h.s6w9kjl20asd",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+        "images": []
+      },
+      {
+        "key": "h.s6w9kjl20asd:4",
+        "heading": "h.s6w9kjl20asd",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "carta-colectiva-episcopado-guerra-civil-1937",
+        "images": []
+      },
+      {
+        "key": "h.80y8d229dcm:1",
+        "heading": "h.80y8d229dcm",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "desamortizacion-eclesiastica-civil-1834-1856",
+        "images": [
+          53
+        ]
+      },
+      {
+        "key": "h.80y8d229dcm:2",
+        "heading": "h.80y8d229dcm",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "ley-desamortizacion-madoz-1855",
+        "images": []
+      },
+      {
+        "key": "h.80y8d229dcm:3",
+        "heading": "h.80y8d229dcm",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "constitucion-1931-articulos-suplente-a",
+        "images": []
+      },
+      {
+        "key": "h.80y8d229dcm:4",
+        "heading": "h.80y8d229dcm",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "la-segunda-republica-y-la-cuestion-agraria",
+        "images": []
+      },
+      {
+        "key": "h.ddnqmfjydqh9:1",
+        "heading": "h.ddnqmfjydqh9",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "rendicion-bailen-casado-alisal",
+        "images": [
+          54
+        ]
+      },
+      {
+        "key": "h.ddnqmfjydqh9:2",
+        "heading": "h.ddnqmfjydqh9",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "constitucion-cadiz-articulos-1812",
+        "images": []
+      },
+      {
+        "key": "h.ddnqmfjydqh9:3",
+        "heading": "h.ddnqmfjydqh9",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "alegoria-victoria-franco-1939",
+        "images": [
+          55
+        ]
+      },
+      {
+        "key": "h.ddnqmfjydqh9:4",
+        "heading": "h.ddnqmfjydqh9",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "normas-escuela-primaria-1939",
+        "images": []
+      },
+      {
+        "key": "h.9apmzvqvjh65:1",
+        "heading": "h.9apmzvqvjh65",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "bajas-espanolas-en-cuba-y-filipinas",
+        "images": []
+      },
+      {
+        "key": "h.9apmzvqvjh65:2",
+        "heading": "h.9apmzvqvjh65",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "debate-parlamentario-desastre-1899",
+        "images": []
+      },
+      {
+        "key": "h.9apmzvqvjh65:3",
+        "heading": "h.9apmzvqvjh65",
+        "year": 2012,
+        "document": 1,
+        "assignedTo": "fotografia-tejero-golpe-23f-1981",
+        "images": [
+          56
+        ]
+      },
+      {
+        "key": "h.9apmzvqvjh65:4",
+        "heading": "h.9apmzvqvjh65",
+        "year": 2012,
+        "document": 2,
+        "assignedTo": "investidura-de-felipe-gonzalez-y-politica-exterior",
         "images": []
       }
     ]

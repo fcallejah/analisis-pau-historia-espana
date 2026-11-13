@@ -234,6 +234,15 @@
     data.overlay.classList.remove("is-external");
     data.figure.dataset.peoplePlacement = "numbered";
   }
+  function roundedLeaderPath(x, y, endX, endY) {
+    const horizontal = endX - x;
+    const vertical = endY - y;
+    if (!vertical) return `M${x} ${y}H${endX}`;
+    const radius = Math.min(12, Math.abs(horizontal) / 2, Math.abs(vertical) / 2);
+    const bendX = endX - Math.sign(horizontal) * radius;
+    const bendY = y + Math.sign(vertical) * radius;
+    return `M${x} ${y}H${bendX}Q${endX} ${y} ${endX} ${bendY}V${endY}`;
+  }
   function positionPeople(stage) {
     const data = peopleStages.get(stage);
     if (!data) return;
@@ -256,24 +265,25 @@
     data.svg.setAttribute("viewBox", `0 0 ${data.overlay.clientWidth} ${data.overlay.clientHeight}`);
     const source = stage.closest(".document-full-source").getBoundingClientRect();
     const labels = [];
-    data.items.forEach(({ person, bubble, line, dot }) => {
+    data.items.forEach(({ person, bubble, leader, dot }) => {
       const x = bounds.left + person.x * bounds.width;
       const y = bounds.top + person.y * bounds.height;
       const visible = x >= Math.max(source.left, modal.left) && x <= Math.min(source.right, modal.right)
         && y >= Math.max(source.top, modal.top) && y <= Math.min(source.bottom, modal.bottom);
       bubble.hidden = !visible;
-      line.style.display = visible ? "" : "none";
+      leader.style.display = visible ? "" : "none";
       dot.style.display = visible ? "" : "none";
       if (!visible) return;
       const height = bubble.getBoundingClientRect().height;
       const top = Math.max(12, Math.min(y - height / 2, window.innerHeight - height - 12));
       bubble.style.left = `${person.side === "left" ? modal.left - gap - labelWidth : modal.right + gap}px`;
-      line.setAttribute("x1", x);
-      line.setAttribute("y1", y);
       dot.setAttribute("cx", x);
       dot.setAttribute("cy", y);
-      line.setAttribute("x2", person.side === "left" ? modal.left - gap + 4 : modal.right + gap - 4);
-      labels.push({ side: person.side, bubble, line, y, height, top });
+      labels.push({
+        side: person.side, bubble, leader, x, y,
+        endX: person.side === "left" ? modal.left - gap : modal.right + gap,
+        height, top,
+      });
     });
     for (const side of ["left", "right"]) {
       const column = labels.filter((label) => label.side === side).sort((a, b) => a.y - b.y);
@@ -292,7 +302,9 @@
         const label = column[index];
         label.top = Math.min(label.top, ceiling - label.height);
         label.bubble.style.top = `${label.top}px`;
-        label.line.setAttribute("y2", label.top + label.height / 2);
+        label.leader.setAttribute("d", roundedLeaderPath(
+          label.x, label.y, label.endX, label.top + label.height / 2,
+        ));
         ceiling = label.top - 8;
       }
     }
@@ -342,8 +354,9 @@
     const items = data.people.map((person, index) => {
       const line = window.document.createElementNS("http://www.w3.org/2000/svg", "line");
       const dot = window.document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      const leader = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
       dot.setAttribute("r", "5");
-      svg.append(line, dot);
+      svg.append(leader, dot);
       const point = element("span", String(index + 1), "document-person-point");
       point.setAttribute("aria-hidden", "true");
       point.style.left = `${person.x * 100}%`;
@@ -357,7 +370,7 @@
       item.append(element("span", person.name, "document-person-name"), ` · ${person.role} · ${person.position}`);
       names.append(item);
       overlay.append(point, bubble);
-      return { person, bubble, line, dot };
+      return { person, bubble, leader, dot };
     });
     overlay.prepend(svg);
     stage.append(overlay);
@@ -467,10 +480,12 @@
     if (preview && (document.tableImage || cardImage?.kind === "table")) {
       box.classList.add("document-preview-table");
     }
-    const fullImages = [document.image, document.tableImage]
+    const fullImages = [document.image, ...(document.image?.additionalImages || []), document.tableImage]
       .filter((image, index, images) => image && images.findIndex((candidate) => candidate?.src === image.src) === index);
     const visibleImages = preview ? [cardImage].filter(Boolean) : fullImages;
-    visibleImages.forEach((imageData) => {
+    const imageGroup = !preview && visibleImages.length > 1
+      ? element("div", undefined, "document-image-pair") : null;
+    visibleImages.forEach((imageData, imageIndex) => {
       const figure = element("figure", undefined, "document-image-figure");
       const mediaWidth = imageData.crop
         ? imageData.width * imageData.crop.width / imageData.crop.imageWidth : imageData.width;
@@ -490,6 +505,7 @@
         image.src = imageData.src;
         image.alt = imageData.alt;
         image.loading = preview ? "lazy" : "eager";
+        if (imageData.filter) image.style.filter = imageData.filter;
       }
       image.width = imageData.width;
       image.height = imageData.height;
@@ -516,12 +532,14 @@
         figure.append(element("p", imageData.reproductionNote, "document-reproduction-note"));
       }
       if (!preview) {
-        const caption = document.examCaption;
+        const caption = imageData.examCaption || document.examCaption;
         const foot = element("figcaption", undefined, "document-exam-caption");
         foot.append(sourceParagraph(caption?.text || "(Sin descripción)", caption?.emphasis));
         figure.append(foot);
       }
-      if (!preview && imageData.annotations) annotatePhoto(figure, imageData, document.id);
+      if (!preview && imageData.annotations) {
+        annotatePhoto(figure, imageData, imageIndex ? `${document.id}-${imageIndex}` : document.id);
+      }
       if (!preview && imageData.attribution) {
         const attribution = imageData.attribution;
         const credit = element("p", undefined, "document-image-caption");
@@ -543,8 +561,9 @@
         corpus.className = "document-image-caption document-corpus-link";
         figure.append(corpus);
       }
-      box.append(figure);
+      (imageGroup || box).append(figure);
     });
+    if (imageGroup) box.append(imageGroup);
     if (visibleImages.length && !preview) {
       panControls = element("label", undefined, "document-pan-controls");
       panControls.hidden = true;

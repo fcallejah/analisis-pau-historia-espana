@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1108" height="540" viewBox="0 0 1108 540" role="img" aria-labelledby="title desc">
+<title id="title">Composición del Congreso tras las elecciones de 1977</title>
+<desc id="desc">Tabla vectorial reproducida a partir de la recopilación aportada.</desc>
+<style>text{font-family:Arial,sans-serif;fill:#181818}.title{font-size:22px;font-weight:700}.cell{font-size:17px}.head{font-size:17px;font-weight:700}.grid{fill:#fff;stroke:#444;stroke-width:1}</style>
+<text class="title" x="24" y="38">Composición del Congreso tras las elecciones de 1977</text>
+<rect class="grid" x="24" y="78" width="880" height="42"/>
+<text class="head" x="36" y="105" text-anchor="start">Partidos políticos</text>
+<rect class="grid" x="904" y="78" width="180" height="42"/>
+<text class="head" x="994.0" y="105" text-anchor="middle">N.º de diputados</text>
+<rect class="grid" x="24" y="120" width="880" height="36"/>
+<text class="cell" x="36" y="144" text-anchor="start">AP - Alianza Popular</text>
+<rect class="grid" x="904" y="120" width="180" height="36"/>
+<text class="cell" x="994.0" y="144" text-anchor="middle">16</text>
+<rect class="grid" x="24" y="156" width="880" height="36"/>
+<text class="cell" x="36" y="180" text-anchor="start">UCD - Unión de Centro Democrático</text>
+<rect class="grid" x="904" y="156" width="180" height="36"/>
+<text class="cell" x="994.0" y="180" text-anchor="middle">165</text>
+<rect class="grid" x="24" y="192" width="880" height="36"/>
+<text class="cell" x="36" y="216" text-anchor="start">Independientes</text>
+<rect class="grid" x="904" y="192" width="180" height="36"/>
+<text class="cell" x="994.0" y="216" text-anchor="middle">2</text>
+<rect class="grid" x="24" y="228" width="880" height="36"/>
+<text class="cell" x="36" y="252" text-anchor="start">DCC - Unió del Centre: La Democràcia Cristiana de Catalunya</text>
+<rect class="grid" x="904" y="228" width="180" height="36"/>
+<text class="cell" x="994.0" y="252" text-anchor="middle">2</text>
+<rect class="grid" x="24" y="264" width="880" height="36"/>
+<text class="cell" x="36" y="288" text-anchor="start">PNV - Partido Nacionalista Vasco</text>
+<rect class="grid" x="904" y="264" width="180" height="36"/>
+<text class="cell" x="994.0" y="288" text-anchor="middle">8</text>
+<rect class="grid" x="24" y="300" width="880" height="36"/>
+<text class="cell" x="36" y="324" text-anchor="start">PDC - Pacte Democratic per Catalunya</text>
+<rect class="grid" x="904" y="300" width="180" height="36"/>
+<text class="cell" x="994.0" y="324" text-anchor="middle">11</text>
+<rect class="grid" x="24" y="336" width="880" height="36"/>
+<text class="cell" x="36" y="360" text-anchor="start">PSOE - Partido Socialista Obrero Español</text>
+<rect class="grid" x="904" y="336" width="180" height="36"/>
+<text class="cell" x="994.0" y="360" text-anchor="middle">118</text>
+<rect class="grid" x="24" y="372" width="880" height="36"/>
+<text class="cell" x="36" y="396" text-anchor="start">PSP/FPS - Partido Socialista Popular/Federación de Partidos Socialistas</text>
+<rect class="grid" x="904" y="372" width="180" height="36"/>
+<text class="cell" x="994.0" y="396" text-anchor="middle">6</text>
+<rect class="grid" x="24" y="408" width="880" height="36"/>
+<text class="cell" x="36" y="432" text-anchor="start">PCE - Partido Comunista de España</text>
+<rect class="grid" x="904" y="408" width="180" height="36"/>
+<text class="cell" x="994.0" y="432" text-anchor="middle">20</text>
+<rect class="grid" x="24" y="444" width="880" height="36"/>
+<text class="cell" x="36" y="468" text-anchor="start">EC - Esquerra de Catalunya</text>
+<rect class="grid" x="904" y="444" width="180" height="36"/>
+<text class="cell" x="994.0" y="468" text-anchor="middle">1</text>
+<rect class="grid" x="24" y="480" width="880" height="36"/>
+<text class="cell" x="36" y="504" text-anchor="start">EE - Euskadiko Ezquerra</text>
+<rect class="grid" x="904" y="480" width="180" height="36"/>
+<text class="cell" x="994.0" y="504" text-anchor="middle">1</text>
+</svg>

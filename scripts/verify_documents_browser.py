@@ -121,22 +121,34 @@ def check_fitted_media_and_people(browser):
                 assert abs(geometry["ratio"] - geometry["natural"]) < 0.001, (record["id"], width, geometry)
                 assert geometry["height"] <= height * .52 + 1, (record["id"], geometry)
                 assert geometry["width"] <= box.evaluate("(node) => node.clientWidth"), record["id"]
-            data = record.get("image", {}).get("annotations")
-            caption = record.get("examCaption")
-            foot = box.locator(".document-exam-caption")
-            assert foot.count() == 1
-            assert foot.locator("p").inner_text() == (caption["text"] if caption else "(Sin descripción)")
-            assert foot.locator("em").all_text_contents() == (caption.get("emphasis", []) if caption else [])
-            assert foot.locator("small").count() == 0
-            assert foot.evaluate("""node => {
-                const p = node.querySelector('p');
-                const style = getComputedStyle(p);
-                const media = node.closest('figure').querySelector('.document-person-stage, .doc-image-crop, img, object');
-                return parseFloat(style.fontSize) >= 18 && style.fontWeight === '400'
-                    && style.fontStyle === 'normal' && style.fontFamily.startsWith('"PAU Caption"')
-                    && node.getBoundingClientRect().top >= media.getBoundingClientRect().bottom - 1
-                    && !!node.closest('.document-full-source');
-            }"""), record["id"]
+            visible_images = [
+                image for image in [
+                    record.get("image"),
+                    *(record.get("image", {}).get("additionalImages") or []),
+                    record.get("tableImage"),
+                ] if image
+            ]
+            data = next((image["annotations"] for image in visible_images if image.get("annotations")), None)
+            if record.get("image", {}).get("filter"):
+                assert box.locator("img").first.evaluate(
+                    "(image) => getComputedStyle(image).filter"
+                ) == record["image"]["filter"]
+            feet = box.locator(".document-exam-caption")
+            assert feet.count() == len(visible_images)
+            for foot, image_data in zip(feet.all(), visible_images):
+                caption = image_data.get("examCaption", record.get("examCaption"))
+                assert foot.locator("p").inner_text() == (caption["text"] if caption else "(Sin descripción)")
+                assert foot.locator("em").all_text_contents() == (caption.get("emphasis", []) if caption else [])
+                assert foot.locator("small").count() == 0
+                assert foot.evaluate("""node => {
+                    const p = node.querySelector('p');
+                    const style = getComputedStyle(p);
+                    const media = node.closest('figure').querySelector('.document-person-stage, .doc-image-crop, img, object');
+                    return parseFloat(style.fontSize) >= 18 && style.fontWeight === '400'
+                        && style.fontStyle === 'normal' && style.fontFamily.startsWith('"PAU Caption"')
+                        && node.getBoundingClientRect().top >= media.getBoundingClientRect().bottom - 1
+                        && !!node.closest('.document-full-source');
+                }"""), record["id"]
             toggle = box.locator(".document-person-toggle")
             assert toggle.count() == bool(data), record["id"]
             if data:
@@ -174,17 +186,21 @@ def check_fitted_media_and_people(browser):
                     assert geometry["aligned"], (record["id"], width, zoomed, geometry)
                     assert abs(geometry["ratio"] - geometry["natural"]) < .001
                     if margins:
-                        assert box.locator(".document-person-lines line").first.evaluate("""line => {
-                            const style = getComputedStyle(line);
-                            return style.stroke === 'rgb(229, 57, 53)' && parseFloat(style.strokeWidth) >= 2.5;
+                        assert box.locator(".document-person-lines path").first.evaluate("""path => {
+                            const style = getComputedStyle(path);
+                            const commands = path.getAttribute('d').match(/[A-Za-z]/g);
+                            return style.stroke === 'rgb(229, 57, 53)' && parseFloat(style.strokeWidth) >= 2.5
+                                && commands.every(command => ['M','H','Q','V'].includes(command))
+                                && commands.includes('H') && (!commands.includes('Q') || commands.includes('V'));
                         }""")
                         assert stage.evaluate("""stage => {
-                            const line = stage.querySelector('.document-person-lines line');
+                            const leader = stage.querySelector('.document-person-lines path');
                             const dot = stage.querySelector('.document-person-lines circle');
+                            const start = leader.getPointAtLength(0);
                             return getComputedStyle(dot).fill === 'rgb(229, 57, 53)'
                                 && dot.r.baseVal.value * 2 === 10
-                                && dot.cx.baseVal.value === line.x1.baseVal.value
-                                && dot.cy.baseVal.value === line.y1.baseVal.value;
+                                && dot.cx.baseVal.value === start.x
+                                && dot.cy.baseVal.value === start.y;
                         }""")
                         assert stage.evaluate("""stage => {
                             const r = document.querySelector('#document-dialog').getBoundingClientRect();
@@ -218,22 +234,31 @@ def check_external_people(browser):
             if (figure.dataset.peoplePlacement !== placement) return false;
             if (placement === 'numbered') return !document.querySelector(':popover-open');
             const stage = figure.querySelector('.document-person-stage').getBoundingClientRect();
-            const line = figure.querySelector('line');
-            const point = new DOMPoint(Number(line.getAttribute('x1')), Number(line.getAttribute('y1')))
-                .matrixTransform(line.getScreenCTM());
+            const leader = figure.querySelector('.document-person-lines path');
+            const point = leader.getPointAtLength(0).matrixTransform(leader.getScreenCTM());
             return Math.abs(point.x - stage.left - .1 * stage.width) < 1
                 && Math.abs(point.y - stage.top - .48 * stage.height) < 1;
         }""", arg=placement)
         assert page.locator(".document-person-names").is_visible() == (placement == "numbered")
-    line = page.locator(".document-person-lines line").first
-    before_y = float(line.get_attribute("y1"))
+        if width == 1440:
+            order = page.evaluate("""() => {
+                const bubbles = [...document.querySelectorAll('.document-person-bubble')];
+                const top = name => bubbles.find(bubble =>
+                    bubble.querySelector('.document-person-label').textContent === name
+                ).getBoundingClientRect().top;
+                return top('José María Aznar') > top('Felipe González')
+                    && top('Leopoldo Calvo-Sotelo') > top('Adolfo Suárez');
+            }""")
+            assert order
+    leader = page.locator(".document-person-lines path").first
+    before_y = leader.evaluate("path => path.getPointAtLength(0).y")
     delta = page.locator("#document-dialog").evaluate("""dialog => {
         const before = dialog.scrollTop;
         dialog.scrollTop += 80;
         return dialog.scrollTop - before;
     }""")
     assert delta > 0
-    page.wait_for_function("expected => Math.abs(Number(document.querySelector('.document-person-lines line').getAttribute('y1')) - expected) < 1",
+    page.wait_for_function("expected => Math.abs(document.querySelector('.document-person-lines path').getPointAtLength(0).y - expected) < 1",
                            arg=before_y - delta)
     label = page.locator(".document-person-label").first.bounding_box()
     page.mouse.move(label["x"] + 1, label["y"] + label["height"] / 2)
@@ -390,6 +415,26 @@ def run():
         assert "leyenda distinta" in page.locator(".document-corpus-link").inner_text()
         assert "70 millones de reales" in page.locator("#document-dialog .document-table").text_content()
         assert "400 millones de reales" not in page.locator("#document-dialog .document-table").text_content()
+        page.locator(".document-close").click()
+        page.locator(
+            '.document-card[data-id="fotografias-guerra-civil-entrega-fusiles-y-burgos-1936"] .document-open'
+        ).click()
+        paired_figures = page.locator("#document-dialog .document-image-figure")
+        assert paired_figures.count() == 2
+        assert "18 de julio de 1936" in paired_figures.nth(0).locator("figcaption").inner_text()
+        assert "Burgos en agosto de 1936" in paired_figures.nth(1).locator("figcaption").inner_text()
+        assert paired_figures.nth(1).locator(".document-person-toggle").inner_text() == "Revelar personajes"
+        first_photo = paired_figures.nth(0).bounding_box()
+        second_photo = paired_figures.nth(1).bounding_box()
+        assert second_photo["x"] > first_photo["x"]
+        assert abs(second_photo["y"] - first_photo["y"]) <= 2
+        original_viewport = page.viewport_size
+        page.set_viewport_size({"width": 320, "height": 900})
+        page.evaluate("() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))")
+        first_photo = paired_figures.nth(0).bounding_box()
+        second_photo = paired_figures.nth(1).bounding_box()
+        assert second_photo["y"] >= first_photo["y"] + first_photo["height"] - 2
+        page.set_viewport_size(original_viewport)
         page.locator(".document-close").click()
         for selected_type in ("texto", "imagen", "grafico", "all"):
             page.locator(f'[data-type="{selected_type}"]').click()
@@ -656,7 +701,9 @@ def run():
         check_collection_link(page, official)
         assert page.locator(".document-reproduction-note").inner_text() == official["image"]["reproductionNote"]
         assert page.get_by_role("link", name="Ver recorte del PDF original", exact=True).get_attribute("href") == official["image"]["originalSrc"]
-        assert page.locator("#document-dialog-content > .document-exams .exam-pill").inner_text() == "2026 · Suplente ordinaria · Itinerario B · Documento 2"
+        assert page.locator("#document-dialog-content > .document-exams .exam-pill").all_text_contents() == [
+            appearance_label(appearance) for appearance in official["appearances"]
+        ]
         official_details = page.locator(".document-table-details")
         official_details.locator("summary").click()
         assert official_details.locator("tbody tr").count() == len(official["table"]["rows"])
@@ -691,6 +738,11 @@ def run():
         topic_toggle = page.locator("#document-topic-toggle")
         all_topics = {tag for document in DATA["documents"] for tag in document["tags"]}
         topic_stats = topic_statistics()
+        representation_count = topic_stats["Representación política"][0]
+        representation_label = (
+            f"Representación política: {representation_count} "
+            f"{'aparición' if representation_count == 1 else 'apariciones'} en 1 ficha del corpus"
+        )
         assert page.locator("#document-topics button").nth(1).inner_text().startswith("1808 (")
         assert topic_toggle.is_visible()
         assert topic_toggle.inner_text() == "Ver más ↓"
@@ -735,12 +787,12 @@ def run():
         assert page.locator("#document-topics button.document-topic-bubble").count() == 1
         assert topic_toggle.is_hidden()
         topic_button = page.get_by_role(
-            "button", name="Representación política: 1 aparición en 1 ficha del corpus", exact=True,
+            "button", name=representation_label, exact=True,
         )
         assert topic_button.is_visible()
         topic_search.fill("")
         page.get_by_role(
-            "button", name="Representación política: 1 aparición en 1 ficha del corpus", exact=True,
+            "button", name=representation_label, exact=True,
         ).click()
         assert page.locator(".document-card").count() == 1
         page.locator(".document-open").click()

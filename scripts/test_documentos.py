@@ -3,6 +3,7 @@ import json
 import hashlib
 import importlib.util
 from pathlib import Path
+import unicodedata
 import unittest
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
@@ -34,6 +35,7 @@ class DocumentCorpusTests(unittest.TestCase):
             "grafico-desamortizaciones-siglo-xix",
             "mendizabal-explica-la-desamortizacion-de-1836",
             "mapa-desamortizacion-madoz",
+            "desamortizacion-eclesiastica-civil-1834-1856",
         ):
             with self.subTest(document=identifier):
                 self.assertEqual(records[identifier]["blocks"], [8])
@@ -82,7 +84,9 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(decree, records["decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal"]["text"])
         self.assertNotIn("Tratado", " ".join(decree))
         treaty = records["tratado-de-paris-y-perdida-del-imperio-colonial"]["text"]
-        self.assertIn("veinte millones de dólares dentro de los tres meses después del canje", treaty[-2])
+        self.assertTrue(any("veinte millones de dólares dentro de los tres meses después del canje" in paragraph
+                            for paragraph in treaty))
+        self.assertTrue(any("durante el término de diez años" in paragraph for paragraph in treaty))
         self.assertIn("10 de diciembre de 1898", treaty[-1])
         sandhurst = records["manifiesto-de-sandhurst-llamamiento-a-la-restauracion"]["text"]
         self.assertTrue(any("Por mi parte, debo al infortunio" in paragraph for paragraph in sandhurst))
@@ -131,14 +135,51 @@ class DocumentCorpusTests(unittest.TestCase):
         for name in ("general-valeriano-weyler", "isabel-ii-jura-constitucion-1837", "azana-homenaje-coruna-franco"):
             self.assertTrue(records[name]["image"]["crop"])
 
-    def test_alhucemas_names_share_the_car_instead_of_unverified_individual_positions(self):
+    def test_alhucemas_people_have_separate_callouts_on_the_official_exam_crop(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(d for d in data["documents"] if d["id"] == "primo-rivera-sanjurjo-alhucemas-1925")
         people = record["image"]["annotations"]["people"]
-        self.assertEqual(len(people), 1)
-        self.assertEqual(people[0]["name"], "Miguel Primo de Rivera y José Sanjurjo")
-        self.assertIn("sin distinguir", people[0]["position"])
-        self.assertTrue(0.45 < people[0]["x"] < 0.60 and 0.55 < people[0]["y"] < 0.65)
+        self.assertEqual([person["name"] for person in people], ["Miguel Primo de Rivera", "José Sanjurjo"])
+        self.assertEqual(record["sourceCaption"], "2009 Examen 5, opción B, documento 2.")
+        self.assertEqual(record["image"]["width"], 1700)
+        self.assertEqual(record["image"]["height"], 1128)
+        self.assertTrue((ROOT / record["image"]["src"]).is_file())
+        self.assertTrue(all(person["position"].startswith("En el coche principal") for person in people))
+        self.assertTrue(all(0.48 < person["x"] < 0.57 and 0.5 < person["y"] < 0.6 for person in people))
+
+    def test_2012_carlist_map_preserves_the_monochrome_source_and_legend(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {document["id"]: document for document in data["documents"]}
+        carlist_map = records["mapa-primera-guerra-carlista-2012"]
+        image_path = ROOT / carlist_map["image"]["src"]
+        self.assertEqual(carlist_map["blocks"], [6])
+        self.assertEqual((carlist_map["image"]["width"], carlist_map["image"]["height"]), (507, 453))
+        self.assertEqual(hashlib.sha256(image_path.read_bytes()).hexdigest(),
+                         "2b224bf713d3fa6a2363b5f2f67eb1420eea5feb7c92c8f9976f524876b801f3")
+        self.assertIn("blanco y negro", carlist_map["quality"])
+        self.assertNotIn("filter", carlist_map["image"])
+        self.assertEqual(len(carlist_map["table"]["rows"]), 7)
+        self.assertIn(2012, data["coverage"]["sourceYearsWithDocumentComment"])
+        alhucemas = records["primo-rivera-sanjurjo-alhucemas-1925"]
+        self.assertTrue(any(appearance["year"] == 2012 for appearance in alhucemas["appearances"]))
+        self.assertTrue((ROOT / alhucemas["image"]["corpusSrc"]).is_file())
+
+    def test_colonial_losses_and_maine_are_in_restoration_block_and_images_are_toned(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {d["id"]: d for d in data["documents"]}
+        for identifier in ("bajas-espanolas-en-cuba-y-filipinas", "acorazado-maine-1898"):
+            self.assertEqual(records[identifier]["blocks"], [7])
+            self.assertIn("Restauración borbónica", records[identifier]["tags"])
+        for identifier in ("portada-constitucion-1812", "acorazado-maine-1898", "no-pasaran-sitio-madrid"):
+            self.assertTrue(records[identifier]["image"]["filter"])
+
+    def test_casares_quiroga_role_includes_the_1936_coup_context(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "azana-homenaje-coruna-franco")
+        role = next(p["role"] for p in record["image"]["annotations"]["people"]
+                    if p["name"] == "Santiago Casares Quiroga")
+        self.assertIn("presidente del Consejo de Ministros", role)
+        self.assertIn("17 de julio de 1936", role)
 
     def test_emphasis_parts_are_ordered_literal_fragments(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -338,6 +379,8 @@ class DocumentCorpusTests(unittest.TestCase):
             document["id"]: document["image"]["crop"]
             for document in data["documents"] if document.get("image", {}).get("crop")
         }
+        paired_crop = crops.pop("fotografias-guerra-civil-entrega-fusiles-y-burgos-1936")
+        self.assertEqual(paired_crop, crops["reparto-armas-madrid-1936"])
         source_geometry = {
             "retrato-ramon-maria-narvaez": (362, 352, 514, 800, -92, -96),
             "entrada-alfonso-xii-madrid-1875": (549.51, 364.57, 639.86, 454.92, -45.7, -45.79),
@@ -404,9 +447,105 @@ class DocumentCorpusTests(unittest.TestCase):
                         if attribute.endswith("href"):
                             self.assertTrue(value.startswith("#"))
                             self.assertIn(value[1:], ids)
-                metadata = root.find(f"{namespace}metadata").text
-                if "redibujado" not in document["quality"].lower():
-                    self.assertIn("SHA-256 del PDF:", metadata)
+                metadata = root.find(f"{namespace}metadata")
+                if "PDF oficial de 2008" in document.get("sourceCaption", ""):
+                    self.assertIsNotNone(metadata)
+                    self.assertIn("SHA-256 del PDF:", metadata.text)
+
+    def test_new_corpus_tables_match_their_accessible_data_and_occurrences(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        documents = {document["id"]: document for document in data["documents"]}
+        expected = {
+            "desamortizacion-eclesiastica-civil-1834-1856": 2,
+            "resultados-electorales-restauracion-1876-1886": 2,
+            "composicion-congreso-elecciones-febrero-1936": 1,
+            "composicion-congreso-elecciones-1977": 1,
+        }
+        for identifier, appearances in expected.items():
+            with self.subTest(document=identifier):
+                document = documents[identifier]
+                self.assertEqual(document["type"], "grafico")
+                self.assertEqual(len(document["appearances"]), appearances)
+                self.assertEqual(document["image"]["kind"], "table")
+                self.assertTrue((ROOT / document["image"]["src"]).is_file())
+                self.assertEqual((ROOT / document["image"]["src"]).suffix, ".svg")
+                self.assertTrue(document["table"]["rows"])
+
+        restoration = documents["resultados-electorales-restauracion-1876-1886"]
+        self.assertEqual(
+            [appearance["year"] for appearance in restoration["appearances"]],
+            [2010, 2012],
+        )
+        desamortization = documents["desamortizacion-eclesiastica-civil-1834-1856"]
+        original = desamortization["image"]["corpusSrc"]
+        self.assertTrue((ROOT / original).is_file())
+        self.assertEqual(
+            (image_dimensions(ROOT / original)),
+            (700, 435),
+        )
+        self.assertEqual(
+            documents["composicion-congreso-elecciones-1977"]["table"]["rows"][-1],
+            ["EE – Euskadiko Ezquerra", 1],
+        )
+        senate_table = documents["elecciones-generales-1982-congreso-senado"]
+        self.assertIn(
+            "h.wkz78yy8to0h:3",
+            [appearance["sourceKey"] for appearance in senate_table["appearances"]],
+        )
+        namespace = "{http://www.w3.org/2000/svg}"
+        for identifier in expected:
+            document = documents[identifier]
+            rendered = {
+                self._normalize_table_text(node.text.strip())
+                for node in ET.parse(ROOT / document["image"]["src"]).iter(f"{namespace}text")
+                if node.text and node.text.strip()
+            }
+            table = document["table"]
+            values = table["headers"] + [
+                str(value) for row in table["rows"] for value in row
+            ]
+            for value in values:
+                with self.subTest(document=identifier, value=value):
+                    self.assertIn(self._normalize_table_text(value), rendered)
+
+    def test_2010_through_2012_corpus_coverage_and_source_images(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        manifest = data["coverage"]["sourceManifest"]
+        years = [item for item in manifest if item["year"] in (2010, 2011, 2012)]
+        self.assertEqual(len(years), 72)
+        self.assertEqual(len({item["heading"] for item in years}), 18)
+        self.assertEqual(sum(len(item["images"]) for item in years), 20)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 160)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 56)
+        image_ids = [image_id for item in manifest for image_id in item["images"]]
+        self.assertEqual(sorted(image_ids), list(range(1, 57)))
+        self.assertEqual(len(image_ids), len(set(image_ids)))
+        self.assertIn(
+            "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+            {item["assignedTo"] for item in years},
+        )
+
+    def test_paired_war_photos_keep_separate_captions_and_local_images(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"]
+                      if item["id"] == "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936")
+        images = [record["image"], *record["image"]["additionalImages"]]
+        self.assertEqual(len(images), 2)
+        self.assertIn("18 de julio de 1936", images[0]["examCaption"]["text"])
+        self.assertIn("Burgos en agosto de 1936", images[1]["examCaption"]["text"])
+        for image in images:
+            self.assertTrue((ROOT / image["src"]).is_file())
+        self.assertEqual(
+            [appearance["sourceKey"] for appearance in record["appearances"]],
+            ["h.ap6vdvuofbyh:4", "h.d40v7ql2zdxq:4", "h.s6w9kjl20asd:3"],
+        )
+
+    @staticmethod
+    def _normalize_table_text(value):
+        normalized = unicodedata.normalize("NFKD", str(value).casefold())
+        normalized = "".join(character for character in normalized
+                             if not unicodedata.combining(character))
+        return " ".join(normalized.replace("–", "-").replace("—", "-").split())
 
     def test_redrawn_table_matches_its_accessible_cells(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
