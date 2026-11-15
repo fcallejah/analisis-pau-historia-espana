@@ -89,9 +89,13 @@
           if (!next[id].favorite && !next[id].review) delete next[id];
           localStorage.setItem(key, JSON.stringify(next));
           saved = next;
-          if (next[id]?.[flag]) window.pauMarkFeedback(button, flag);
           refresh();
           renderList();
+          if (next[id]?.[flag]) {
+            const target = button.isConnected ? button
+              : [...controls].find(entry => entry.id === id && entry.node.isConnected)?.[flag];
+            if (target) window.pauMarkFeedback(target, flag);
+          }
           report("Preguntas actualizadas. Se guardan solo en este navegador.");
         } catch (error) {
           report(`No se pudieron guardar tus preguntas: ${error.message}.`, true);

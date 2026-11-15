@@ -68,12 +68,14 @@ def check_mark_feedback(browser):
     particle.wait_for(state="detached")
     card(page).locator(".document-open").click()
     mark(page, "favorite", in_dialog=True).click()
-    assert particle.evaluate("node => node.parentElement.matches('dialog[open]')")
+    assert particle.evaluate("node => node.parentElement.matches('button') && !!node.closest('dialog[open]')")
     assert particle.evaluate("""node => {
         const icon = document.querySelector('#document-dialog [data-document-mark="favorite"] svg')
             .getBoundingClientRect();
-        return Math.abs(parseFloat(node.style.left) - icon.left - icon.width / 2) < 1
-            && Math.abs(parseFloat(node.style.top) - icon.top - icon.height / 2) < 1;
+        const r = node.getBoundingClientRect();
+        return Math.abs(r.left + r.width / 2 - icon.left - icon.width / 2) < 1
+            && (icon.top + icon.height / 2 - r.top - r.height / 2) / icon.height >= 1.09
+            && (icon.top + icon.height / 2 - r.top - r.height / 2) / icon.height <= 2.71;
     }""")
     particle.wait_for(state="detached")
     close_dialog(page)
@@ -86,9 +88,13 @@ def check_mark_feedback(browser):
     mark(page, "favorite").click()
     assert not old_button.evaluate("node => node.isConnected")
     assert particle.count() == 1
-    coordinates = particle.evaluate("node => ({left:parseFloat(node.style.left),top:parseFloat(node.style.top)})")
+    coordinates = particle.evaluate("""node => {
+        const r = node.getBoundingClientRect();
+        return {left: r.left + r.width / 2, top: r.top + r.height / 2};
+    }""")
     assert abs(coordinates["left"] - bounds["x"] - bounds["width"] / 2) < 1
-    assert abs(coordinates["top"] - bounds["y"] - bounds["height"] / 2) < 1
+    rise = (bounds["y"] + bounds["height"] / 2 - coordinates["top"]) / bounds["height"]
+    assert 1.09 <= rise <= 2.71
     particle.wait_for(state="detached")
     mark(page, "favorite").click()
     page.emulate_media(reduced_motion="reduce")
@@ -112,7 +118,7 @@ def check_mark_feedback(browser):
     context.close()
 
 
-def check_horizontal_zoom(browser):
+def check_native_zoom_defaults(browser):
     for width, height in ((1440, 1000), (375, 812)):
         context = browser.new_context(viewport={"width": width, "height": height},
                                       service_workers="block", reduced_motion="reduce")
@@ -125,53 +131,19 @@ def check_horizontal_zoom(browser):
         box = page.locator(".document-full-source")
         image = box.locator(".document-person-stage img")
         image.evaluate("node => node.decode()")
-        pan = page.get_by_role("slider", name="Desplazar imagen ampliada")
-        assert not pan.is_visible()
-        background = position(page)
-        box.locator(".document-zoom").click()
-        pan.wait_for(state="visible")
-        assert float(pan.get_attribute("max")) > 0
-        pan.press("End")
-        page.wait_for_function("""() => {
-            const box = document.querySelector('.document-full-source');
-            const range = document.querySelector('.document-pan-range');
-            return box.scrollLeft > 0 && Math.abs(box.scrollLeft - Number(range.max)) < 1;
-        }""")
-        assert position(page) == background
+        assert page.locator(".document-zoom, .document-pan-controls").count() == 0
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
         assert image.evaluate("""node => {
             const rect = node.getBoundingClientRect();
             return Math.abs(rect.width / rect.height - node.naturalWidth / node.naturalHeight) < .001;
         }""")
-        assert pan.evaluate("""node => {
-            const range = node.getBoundingClientRect();
-            const dialog = document.querySelector('#document-dialog').getBoundingClientRect();
-            return range.left >= dialog.left && range.right <= dialog.right;
-        }""")
-        page.locator("#document-dialog").evaluate("node => node.scrollTop = 500")
-        assert position(page) == background
-        assert pan.evaluate("""node => {
-            const bar = node.closest('label').getBoundingClientRect();
-            const close = document.querySelector('.document-close').getBoundingClientRect();
-            return bar.top >= close.bottom && bar.bottom <= innerHeight;
-        }""")
-        page.wait_for_function("""key => {
-            const saved = JSON.parse(sessionStorage.getItem(key));
-            const box = document.querySelector('.document-full-source');
-            return saved.dialog?.zoom && saved.dialog.source.left === box.scrollLeft
-                && saved.dialog.position.top === document.querySelector('#document-dialog').scrollTop;
-        }""", arg=VIEW)
+        legacy = snapshot(page)
+        legacy["dialog"]["zoom"] = True
+        legacy["dialog"]["source"]["left"] = 120
+        page.add_init_script(f"sessionStorage.setItem({json.dumps(VIEW)}, {json.dumps(json.dumps(legacy))});")
         reload(page)
-        pan.wait_for(state="visible")
-        page.wait_for_function("""() => {
-            const box = document.querySelector('.document-full-source');
-            const range = document.querySelector('.document-pan-range');
-            return box.scrollLeft > 0 && Math.abs(box.scrollLeft - Number(range.value)) < 1;
-        }""")
-        pan.press("Home")
-        page.wait_for_function("document.querySelector('.document-full-source').scrollLeft === 0")
-        box.locator(".document-zoom").click()
-        assert not pan.is_visible()
+        assert page.locator(".document-zoom, .document-pan-controls").count() == 0
+        assert not box.evaluate("node => node.classList.contains('is-zoomed')")
         assert box.evaluate("node => node.scrollLeft") == 0
         assert not errors, errors
         context.close()
@@ -345,7 +317,7 @@ def run():
         reload(page)
         assert page.locator("#document-dialog").is_visible()
         assert page.locator(".document-guide").evaluate("(node) => node.open")
-        assert page.locator(".document-full-source blockquote").is_visible()
+        assert page.locator(".document-full-source > blockquote").is_visible()
         assert abs(page.locator("#document-dialog").evaluate("(node) => node.scrollTop") - state["dialog"]["position"]["top"]) < 2
         assert_position(position(page), state["page"])
         close_dialog(page)
@@ -442,18 +414,16 @@ def run():
         page.wait_for_function("document.activeElement?.dataset.documentSaved === 'review'")
         page.locator("#document-reset").click()
 
-        # Zoom, horizontal overflow, and source details survive without relying on img.
+        # Source details and reader position survive without restoring obsolete image zoom.
         card(page, IMAGE).locator(".document-preview-zoom").click()
-        page.locator(".document-zoom").click()
         page.locator(".document-full-source img").evaluate("(node) => node.decode()")
         page.locator(".document-full-source").evaluate("(node) => node.scrollLeft = 120")
         page.locator("#document-dialog").evaluate("(node) => node.scrollTop = 180")
         page.wait_for_timeout(100)
         state = snapshot(page)
-        assert state["dialog"]["zoom"]
-        assert state["dialog"]["source"]["left"] > 0
+        assert "zoom" not in state["dialog"]
         reload(page)
-        assert page.locator(".document-full-source").evaluate("(node) => node.classList.contains('is-zoomed')")
+        assert not page.locator(".document-full-source").evaluate("(node) => node.classList.contains('is-zoomed')")
         assert page.locator(".document-full-source").evaluate("(node) => node.scrollLeft") == state["dialog"]["source"]["left"]
         assert abs(page.locator("#document-dialog").evaluate("(node) => node.scrollTop") - state["dialog"]["position"]["top"]) < 2
         close_dialog(page)
@@ -489,7 +459,6 @@ def run():
         page.goto(URL)
         ready(page)
         card(page, IMAGE).locator(".document-preview-zoom").click()
-        page.locator(".document-zoom").click()
         page.locator("#document-dialog").evaluate("(node) => node.scrollTop = 400")
         page.wait_for_timeout(100)
         state = snapshot(page)
@@ -579,9 +548,9 @@ def run():
             isolated.close()
         check_saved_library(browser)
         check_mark_feedback(browser)
-        check_horizontal_zoom(browser)
+        check_native_zoom_defaults(browser)
         browser.close()
-        print("PASS: view recovery, marks, animations, horizontal zoom, saved library, mobile, offline, storage errors")
+        print("PASS: view recovery, marks, rising animations, legacy zoom removal, saved library, mobile, offline, storage errors")
 
 
 if __name__ == "__main__":

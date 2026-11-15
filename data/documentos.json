@@ -1,14 +1,125 @@
 {
   "version": 1,
-  "scope": "Banco generado desde la exportación actual del corpus aportado: 160 apariciones documentales y 56 apariciones de imágenes, enlazadas a 110 fichas. Incluye seis exámenes de 2009, los 18 exámenes recopilados de 2010–2012 y comentarios de 2008 y 2025–2026. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. La cobertura se refiere al corpus aportado, no a todos los exámenes celebrados; las transcripciones y reproducciones no expresamente cotejadas siguen pendientes de revisión.",
+  "scope": "Banco parcialmente incorporado del corpus aportado: 164 apariciones documentales y 60 apariciones de imágenes, con 112 selecciones conservadas en 98 fichas agrupadas. Incluye seis exámenes de 2009, los 18 exámenes recopilados de 2010–2012, comentarios de 2008 y 2025–2026, Esquilache de 2013, el abrazo de Vergara de 2014 y las apariciones de «¡No pasarán!» de 2014 y 2015. La recopilación del usuario ya abarca 2008–2026, pero su ampliación aún no está íntegramente importada. Los exámenes 2017–2024 siguen otro formato y no se contabilizan como documentos faltantes. Las transcripciones y reproducciones no expresamente cotejadas siguen pendientes de revisión.",
   "source": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit",
+  "textGroups": [
+    ["constitucion-1812-articulos-2008", "constitucion-cadiz-articulos-1812"],
+    ["castelar-y-la-proclamacion-de-la-primera-republica", "castelar-discurso-sobre-proclamacion-republica-1873"],
+    ["constitucion-de-1845-corona-y-senado", "la-constitucion-moderada-de-1845"],
+    ["decreto-de-desamortizacion-de-mendizabal", "decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal"],
+    ["exposicion-de-mendizabal-sobre-los-objetivos-de-la-desamortizacion", "mendizabal-explica-la-desamortizacion-de-1836"],
+    ["antonio-maura-critica-la-representacion-politica", "antonio-maura-sobre-el-sistema-electoral"],
+    ["manifiesto-de-sandhurst-llamamiento-a-la-restauracion", "manifiesto-de-sandhurst", "manifiesto-sandhurst-1874"],
+    ["manifiesto-del-comite-de-huelga", "manifiesto-del-comite-de-huelga-de-1917"],
+    ["tratado-de-paris-y-perdida-del-imperio-colonial", "tratado-de-paris-fin-de-la-guerra-de-1898"],
+    ["el-fuero-de-los-espanoles-y-los-limites-de-los-derechos", "el-fuero-de-los-espanoles-deberes-y-derechos-limitados", "el-fuero-de-los-espanoles-seleccion-de-articulos"],
+    ["franco-ante-las-cortes-sobre-democracia-y-partidos", "franco-ante-las-cortes-critica-del-pluralismo-politico"],
+    ["manifiesto-de-primo-de-rivera", "manifiesto-primo-rivera-al-pais-y-al-ejercito-1923"]
+  ],
   "documents": [
+    {
+      "id": "abrazo-vergara-1839",
+      "title": "El abrazo de Vergara",
+      "type": "imagen",
+      "blocks": [6],
+      "tags": ["Primera guerra carlista", "Convenio de Vergara", "Espartero", "Maroto"],
+      "date": "Hecho representado: 31 de agosto de 1839",
+      "sourceCaption": "Abrazo de Vergara (grabado, 1839). 2014 Reserva B, opción A, documento 1.",
+      "quality": "Imagen extraída sin reescalado del PDF oficial de 2014, Reserva B, página 1. Se conserva el encuadre y el pie del examen; la fecha del acontecimiento no acredita por sí sola la fecha de realización del grabado.",
+      "examCaption": {
+        "text": "Abrazo de Vergara (grabado, 1839)",
+        "appearanceId": "fuente-h-x5utn9rerhqx-1"
+      },
+      "image": {
+        "src": "assets/documentos/abrazo-vergara-oficial-2014.jpg",
+        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+        "alt": "Grabado del abrazo de Vergara: dos militares a caballo se abrazan ante formaciones de soldados.",
+        "width": 640,
+        "height": 358
+      },
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica una representación del abrazo entre el general liberal Baldomero Espartero y el general carlista Rafael Maroto en Vergara, en 1839. Describe el encuentro a caballo ante las tropas y su significado como escenificación del acuerdo que puso fin a la mayor parte de la guerra en el norte."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el acuerdo en la primera guerra carlista y en el conflicto entre liberalismo y absolutismo durante la minoría de Isabel II. Explica el reconocimiento de empleos y grados de los militares carlistas y el compromiso de recomendar a las Cortes la concesión o modificación de los fueros. Distingue el final del principal frente del norte en 1839 de la continuación de la resistencia de Cabrera hasta 1840."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-x5utn9rerhqx-1",
+          "sourceKey": "h.x5utn9rerhqx:1",
+          "sourceOrdinal": 1,
+          "year": 2014,
+          "exam": "2014 Reserva B",
+          "route": "Opción A",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.x5utn9rerhqx",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2014_historia_espana.zip/sel_2014_texto_historico/reserva b.pdf",
+          "officialPage": 1,
+          "sourceImages": [58]
+        }
+      ]
+    },
+    {
+      "id": "motin-esquilache-1766",
+      "title": "Grabado sobre el motín de Esquilache",
+      "type": "imagen",
+      "blocks": [
+        4
+      ],
+      "tags": [
+        "Carlos III",
+        "Motín de Esquilache",
+        "Despotismo ilustrado"
+      ],
+      "date": "Hecho representado: 1766; fecha y autoría del grabado sin identificar",
+      "sourceCaption": "Grabado sobre el motín de Esquilache, 1766. Recopilación: 2013 Reserva B extraordinaria, opción A, documento 2.",
+      "quality": "Reproducción de Wikimedia Commons aportada por el usuario, sin modificaciones; archivo subido por Eldelcarro, bajo CC BY-SA 3.0. No se presenta como recorte exacto del examen; pendiente de cotejo con el PDF oficial. Documento histórico del bloque 4, fuera del comentario de documento del modelo 2026–27.",
+      "examCaption": {
+        "text": "Grabado sobre el motín de Esquilache, 1766",
+        "appearanceId": "fuente-h-6w2urkb44k1-2"
+      },
+      "image": {
+        "src": "assets/documentos/motin-esquilache-commons.png",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:El_mot%C3%ADn_de_Esquilache.png",
+        "reproductionNote": "Wikimedia Commons · archivo subido por Eldelcarro · CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/). Reproducción sin modificar.",
+        "alt": "Grabado con una multitud en una calle madrileña: aparecen hombres con capas y sombreros y dos figuras sentadas a la izquierda.",
+        "width": 2488,
+        "height": 1370
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento histórico.",
+          "text": "Identifica una representación del motín de Esquilache, ocurrido en Madrid en 1766, durante el reinado de Carlos III. Describe los grupos, las capas y los sombreros visibles. Distingue la fecha del acontecimiento de la fecha de realización del grabado, que no está identificada en la fuente aportada."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias.",
+          "text": "Relaciona el malestar por las medidas sobre la indumentaria con la carestía y el descontento popular. Explica las resistencias a las reformas del despotismo ilustrado y la destitución de Esquilache. Esta ficha conserva un documento de un formato histórico: el bloque 4 pertenece a las cuestiones cortas, no al comentario de documento del modelo 2026–27."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-h-6w2urkb44k1-2",
+          "sourceKey": "h.6w2urkb44k1:2",
+          "sourceOrdinal": 2,
+          "year": 2013,
+          "exam": "2013 Reserva B extraordinaria",
+          "route": "Opción A",
+          "document": 2,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6w2urkb44k1",
+          "sourceImages": [
+            57
+          ]
+        }
+      ]
+    },
     {
       "id": "bando-de-murat-tras-el-levantamiento-del-2-de-mayo",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Murat"
-      ],
       "title": "Bando de Murat tras el levantamiento del 2 de mayo",
       "type": "texto",
       "blocks": [
@@ -106,9 +217,6 @@
     {
       "id": "constitucion-1812-articulos-2008",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Constitución Española de 1812"
-      ],
       "title": "La Constitución de 1812: soberanía y derechos",
       "type": "texto",
       "blocks": [
@@ -157,9 +265,6 @@
     {
       "id": "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Declaración de la Junta Suprema de Sevilla"
-      ],
       "title": "La Junta Suprema de Sevilla declara la guerra a Francia",
       "type": "texto",
       "blocks": [
@@ -372,8 +477,7 @@
       "id": "amadeo-i-ante-cadaver-prim",
       "examCaption": {
         "emphasis": [
-          "Amadeo I ante el cadáver de Prim",
-          "Antonio Gisbert"
+          "Amadeo I ante el cadáver de Prim"
         ],
         "text": "Amadeo I ante el cadáver de Prim, obra de Antonio Gisbert (1870).",
         "appearanceId": "fuente-h-usbeys37qf3h-2",
@@ -495,10 +599,6 @@
     {
       "id": "castelar-y-la-proclamacion-de-la-primera-republica",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Proclamación de la Primera República",
-        "Emilio Castelar"
-      ],
       "title": "Castelar y la proclamación de la Primera República",
       "type": "texto",
       "blocks": [
@@ -541,10 +641,8 @@
     },
     {
       "id": "circular-de-pi-y-margall-tras-proclamarse-la-republica",
+      "headingParagraphs": [0],
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Francisco Pi y Margall"
-      ],
       "title": "Circular de Pi y Margall tras proclamarse la República",
       "type": "texto",
       "blocks": [
@@ -589,10 +687,8 @@
     },
     {
       "id": "constitucion-de-1845-corona-y-senado",
+      "primaryTextId": "la-constitucion-moderada-de-1845",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Constitución de 1845"
-      ],
       "title": "Constitución de 1845: Corona y Senado",
       "type": "texto",
       "blocks": [
@@ -677,8 +773,8 @@
       ],
       "text": [
         "“Atendiendo a la necesidad y conveniencia de disminuir la deuda pública [..] conformándome con lo propuesto por el Consejo de Ministros, en nombre de mi excelsa hija la reina doña Isabel II, he venido en decretar lo siguiente:",
-        "Artículo 1o. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
-        "Artículo 2o. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
+        "Artículo 1º. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
+        "Artículo 2º. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
         "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez Mendizábal”."
       ]
     },
@@ -757,8 +853,8 @@
       ],
       "text": [
         "“Atendiendo a la necesidad y conveniencia de disminuir la deuda pública [..] conformándome con lo propuesto por el Consejo de Ministros, en nombre de mi excelsa hija la reina doña Isabel II, he venido en decretar lo siguiente:",
-        "Artículo 1o. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
-        "Artículo 2o. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
+        "Artículo 1º. Quedan declarados en venta desde ahora todos los bienes raíces de cualquier clase que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la Nación por cualquier título o motivo.",
+        "Artículo 2º. Se exceptúan de esta medida general los edificios que el gobierno destine para el servicio público o para conservar monumentos de las artes, o para honrar la memoria de hazañas nacionales. El mismo gobierno publicará la lista de los edificios que con este objeto deben quedar excluidos de la venta pública.",
         "En el Pardo a 19 de febrero de 1836. D. Juan Álvarez Mendizábal”."
       ]
     },
@@ -893,10 +989,8 @@
     },
     {
       "id": "la-constitucion-moderada-de-1845",
+      "readingNote": "El examen de 2008 imprime «limitado» en el artículo 14, pero la Constitución de 1845 establece «ilimitado». Se conserva la redacción del examen; la otra transcripción puede consultarse en el desplegable.",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Constitución de 1845"
-      ],
       "title": "La Constitución moderada de 1845",
       "type": "texto",
       "blocks": [
@@ -956,9 +1050,6 @@
     {
       "id": "mendizabal-explica-la-desamortizacion-de-1836",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Juan Álvarez y Mendizábal"
-      ],
       "title": "Mendizábal explica la desamortización de 1836",
       "type": "texto",
       "blocks": [
@@ -1005,9 +1096,6 @@
     {
       "id": "renuncia-de-maria-cristina-a-la-regencia",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "María Cristina"
-      ],
       "title": "Renuncia de María Cristina a la regencia",
       "type": "texto",
       "blocks": [
@@ -1076,8 +1164,8 @@
         "Narváez"
       ],
       "date": "Siglo XIX",
-      "sourceCaption": "Retrato del general Ramón María Narváez. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
-      "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
+      "sourceCaption": "General Ramón María Narváez. 2008 Examen 5, documento 2.",
+      "quality": "JPEG extraído sin reescalado de la página 1 del PDF aportado de 2008, examen 5. Se conserva exactamente el recorte del examen, no el retrato de cuerpo entero. La reproducción de la recopilación permanece disponible para comparación.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -1095,16 +1183,22 @@
           "sourceOrdinal": 2,
           "year": 2008,
           "exam": "2008 Examen 5",
-          "route": "Opción sin cotejar",
+          "route": "Opción A",
           "document": 2,
           "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.6dwbo8kwnrna",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2008_historia_espana.zip/Texto Histórico 5 - Examen y criterios de corrección.pdf",
+          "officialPage": 1,
           "sourceImages": [
             7
           ]
         }
       ],
       "image": {
-        "src": "assets/documentos/retrato-ramon-maria-narvaez.png",
+        "src": "assets/documentos/retrato-ramon-maria-narvaez-oficial-2008.jpg",
+        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+        "corpusSrc": "assets/documentos/retrato-ramon-maria-narvaez.png",
+        "corpusLabel": "Ver reproducción anterior de la recopilación",
         "annotations": {
           "layout": "margins",
           "note": "El retrato está identificado en la recopilación. La marca se sitúa sobre el uniforme, no sobre la cara.",
@@ -1119,23 +1213,15 @@
               "name": "Ramón María Narváez",
               "role": "General liberal moderado; varias veces presidente del Gobierno entre 1844 y 1868",
               "position": "Único personaje del retrato.",
-              "x": 0.5,
-              "y": 0.6,
+              "x": 0.53,
+              "y": 0.39,
               "side": "right"
             }
           ]
         },
-        "crop": {
-          "width": 362,
-          "height": 352,
-          "imageWidth": 514,
-          "imageHeight": 800,
-          "left": -92,
-          "top": -96
-        },
-        "alt": "Retrato de cuerpo entero de Ramón María Narváez con uniforme militar y banda, en un interior palaciego.",
-        "width": 514,
-        "height": 800
+        "alt": "Retrato de Ramón María Narváez con uniforme, banda y condecoraciones, con el encuadre del examen de 2008.",
+        "width": 363,
+        "height": 350
       }
     },
     {
@@ -1249,9 +1335,6 @@
     {
       "id": "antonio-maura-critica-la-representacion-politica",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Antonio Maura"
-      ],
       "title": "Antonio Maura critica la representación política",
       "type": "texto",
       "blocks": [
@@ -1295,9 +1378,6 @@
     {
       "id": "antonio-maura-sobre-el-sistema-electoral",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Antonio Maura"
-      ],
       "title": "Antonio Maura sobre el sistema electoral",
       "type": "texto",
       "blocks": [
@@ -1342,8 +1422,6 @@
       "id": "critica-del-sistema-electoral-de-la-restauracion",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Pérez Galdós, B.",
-        "Política española",
         "Antología de artículos"
       ],
       "title": "Crítica del sistema electoral de la Restauración",
@@ -1539,7 +1617,11 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/entrada-alfonso-xii-madrid-1875.png",
+        "src": "assets/documentos/entrada-alfonso-xii-madrid-1875-ampliada-ia.jpg",
+        "sourceUrl": "https://photos.app.goo.gl/EaMTT3MjLuG4zxV78",
+        "reproductionNote": "Ampliación con IA aportada por el usuario; conserva el recorte de la ficha.",
+        "corpusSrc": "assets/documentos/entrada-alfonso-xii-madrid-1875.png",
+        "corpusLabel": "Ver reproducción anterior de la recopilación",
         "annotations": {
           "layout": "margins",
           "note": "La recopilación identifica al rey a caballo. Las demás figuras se mantienen sin nombres.",
@@ -1569,8 +1651,8 @@
           "top": -45.79
         },
         "alt": "Ilustración histórica de Alfonso XII a caballo entrando en Madrid entre tropas y una multitud.",
-        "width": 909,
-        "height": 647
+        "width": 3636,
+        "height": 2588
       }
     },
     {
@@ -1617,10 +1699,6 @@
     {
       "id": "manifiesto-de-sandhurst-llamamiento-a-la-restauracion",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Alfonso de Borbón",
-        "Manifiesto de Sandhurst"
-      ],
       "title": "Manifiesto de Sandhurst: llamamiento a la Restauración",
       "type": "texto",
       "blocks": [
@@ -1670,8 +1748,6 @@
       "id": "perez-galdos-sobre-las-elecciones-de-la-restauracion",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Pérez Galdós, B.",
-        "Política española",
         "Antología de artículos"
       ],
       "title": "Pérez Galdós sobre las elecciones de la Restauración",
@@ -1743,7 +1819,6 @@
       "id": "valenti-almirall-denuncia-el-falseamiento-electoral",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "VALENTÍ ALMIRALL",
         "España tal como es"
       ],
       "title": "Valentí Almirall denuncia el falseamiento electoral",
@@ -1790,9 +1865,6 @@
     {
       "id": "ley-general-de-ferrocarriles",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Ley general de ferrocarriles"
-      ],
       "title": "Ley General de Ferrocarriles",
       "type": "texto",
       "blocks": [
@@ -1829,11 +1901,11 @@
         }
       ],
       "text": [
-        "“Art. 1o. Los ferrocarriles se dividirán en líneas de servicio general y de servicio particular.",
-        "Art. 2o. Entre las líneas de servicio general se clasificarán como de primer orden las que, partiendo de Madrid, terminen en las costas o fronteras del reino.",
-        "Art.3o. Todas las líneas de ferrocarriles destinadas al servicio general son del dominio público, y serán consideradas como obras de utilidad general. [...]",
-        "Art. 6o. Los particulares o compañías no podrán construir línea alguna, bien sea de servicio general, bien de servicio particular, si no han obtenido previamente la concesión de ella.",
-        "Art. 19o. Los capitales extranjeros que se empleen en la construcción de ferrocarriles o en empréstitos para este objeto, quedan bajo la salvaguardia del Estado y están exentos de represalias, confiscaciones o embargos por causa de guerra.",
+        "“Art. 1º. Los ferrocarriles se dividirán en líneas de servicio general y de servicio particular.",
+        "Art. 2º. Entre las líneas de servicio general se clasificarán como de primer orden las que, partiendo de Madrid, terminen en las costas o fronteras del reino.",
+        "Art.3º. Todas las líneas de ferrocarriles destinadas al servicio general son del dominio público, y serán consideradas como obras de utilidad general. [...]",
+        "Art. 6º. Los particulares o compañías no podrán construir línea alguna, bien sea de servicio general, bien de servicio particular, si no han obtenido previamente la concesión de ella.",
+        "Art. 19º. Los capitales extranjeros que se empleen en la construcción de ferrocarriles o en empréstitos para este objeto, quedan bajo la salvaguardia del Estado y están exentos de represalias, confiscaciones o embargos por causa de guerra.",
         "Art. 20o- Se conceden desde luego a todas las empresas de ferrocarriles:",
         "I. Los terrenos de dominio público que hayan de ocupar el camino y sus dependencias.",
         "II. El beneficio de vecindad para el aprovechamiento de leña, pastos y demás de que disfrutan los vecinos de los pueblos cuyos términos abrazare la línea para los dependientes y trabajadores de las empresas, y para la manutención de los ganados [...]”.",
@@ -2161,7 +2233,6 @@
       "id": "manifiesto-de-primo-de-rivera",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Manifiesto del General Primo de Rivera",
         "ABC"
       ],
       "title": "Manifiesto de Primo de Rivera",
@@ -2208,9 +2279,6 @@
     {
       "id": "manifiesto-del-comite-de-huelga",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Manifiesto del Comité de Huelga"
-      ],
       "title": "Manifiesto del Comité de Huelga",
       "type": "texto",
       "blocks": [
@@ -2255,9 +2323,6 @@
     {
       "id": "manifiesto-del-comite-de-huelga-de-1917",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Manifiesto del Comité de Huelga"
-      ],
       "title": "Manifiesto del Comité de Huelga de 1917",
       "type": "texto",
       "blocks": [
@@ -2357,7 +2422,10 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/primo-rivera-visita-tropas-marruecos.png",
+        "src": "assets/documentos/primo-rivera-visita-tropas-marruecos-sepia.png",
+        "reproductionNote": "Referencia de color: fotografía del PDF de muestra aportado, curso 2012–2013. Se conservan la fotografía y el recorte de la recopilación.",
+        "corpusSrc": "assets/documentos/primo-rivera-visita-tropas-marruecos.png",
+        "corpusLabel": "Ver reproducción anterior en blanco y negro",
         "annotations": {
           "layout": "margins",
           "note": "El pie identifica a Primo de Rivera. Se señala la figura de primer plano a la derecha del recorte, según la posición indicada por el usuario; no se identifican los acompañantes.",
@@ -2394,9 +2462,6 @@
     {
       "id": "tratado-de-paris-y-perdida-del-imperio-colonial",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Tratado de paz entre España y Estados Unidos de América"
-      ],
       "title": "Tratado de París y pérdida del imperio colonial",
       "type": "texto",
       "blocks": [
@@ -2456,15 +2521,16 @@
       ],
       "text": [
         "“S.M. la Reina Regente de España, en nombre de su augusto hijo D. Alfonso XIII y los Estados Unidos de América, desando poner término al estado de guerra hoy existente entre ambas naciones [...] previa discusión de las materias pendientes, han convenido en los siguientes artículos:",
-        "1o) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...].",
-        "2o) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
-        "3o) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado [...]”.",
-        "4o) Los Estados Unidos, durante el término de diez años a contar desde el canje de ratificación del presente Tratado, admitirán en los puertos de las Islas Filipinas los buques y mercancías españolas, bajo las mismas condiciones que los buques y mercancías de los Estados Unidos (...).",
+        "1º) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...].",
+        "2º) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
+        "3º) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado [...]”.",
+        "4º) Los Estados Unidos, durante el término de diez años a contar desde el canje de ratificación del presente Tratado, admitirán en los puertos de las Islas Filipinas los buques y mercancías españolas, bajo las mismas condiciones que los buques y mercancías de los Estados Unidos (...).",
         "Tratado de paz entre España y Estados Unidos de América, 10 de diciembre de 1898"
       ]
     },
     {
       "id": "tratado-de-paris-fin-de-la-guerra-de-1898",
+      "headingParagraphs": [0],
       "title": "Tratado de París: fin de la guerra de 1898",
       "type": "texto",
       "blocks": [
@@ -2502,12 +2568,13 @@
       ],
       "text": [
         "Tratado de paz entre España y Estados Unidos de América, 1898",
-        "“1o) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...] 2o) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
-        "3o) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado.”"
+        "“1º) España renuncia a todo derecho de soberanía y propiedad sobre Cuba. En atención a que dicha isla, cuando sea evacuada por España, va a ser ocupada por los Estados Unidos [...] 2º) España cede a los Estados Unidos la isla de Puerto Rico y las demás que ahora están bajo su soberanía en las Islas Occidentales y la isla de Guam en el archipiélago de las Marianas o Ladrones.",
+        "3º) España cede a los Estados Unidos el archipiélago conocido por las Islas Filipinas [...] los Estados Unidos pagarán a España la suma de veinte millones de dólares dentro de los tres meses después del canje de ratificaciones del presente Tratado.”"
       ]
     },
     {
       "id": "bando-de-mola-y-declaracion-del-estado-de-guerra-en-navarra",
+      "headingParagraphs": [0],
       "attributionParagraphs": 1,
       "attributionEmphasis": [
         "Diario de Navarra"
@@ -2551,7 +2618,7 @@
         "Bando del general Mola proclamando el estado de guerra",
         "\"Una vez más el Ejército unido a las demás fuerzas de la Nación se ve obligado a recoger el anhelo de la gran mayoría de los españoles. Se trata de establecer el imperio del ORDEN, no solamente en sus apariencias externas, sino también en su misma esencia; para ello precisa obrar con JUSTICIA, que no repara en clases ni categorías sociales, a las que ni se halaga ni se persigue, cesando de estar dividido el país en dos bandos, el de los que disfrutan del Poder y el de los que son atropellados en sus derechos. La conducta de cada uno guiará la de la AUTORIDAD, otro elemento desaparecido en nuestra Nación, y que es indispensable en toda colectividad humana. El restablecimiento del principio de AUTORIDAD exige inexcusablemente que los castigos sean ejemplares, por la seriedad con que se impondrán y la rapidez con que se llevarán a cabo, sin titubeos ni vacilaciones [...].",
         "Para llevar a cabo la labor anunciada, ORDENO Y MANDO:",
-        "Artículo 1o. Queda declarado el ESTADO DE GUERRA en todo el territorio de la provincia de Navarra y como primera providencia militarizadas todas sus fuerzas, sea cualquiera la AUTORIDAD de quien dependían anteriormente, [...]\".",
+        "Artículo 1º. Queda declarado el ESTADO DE GUERRA en todo el territorio de la provincia de Navarra y como primera providencia militarizadas todas sus fuerzas, sea cualquiera la AUTORIDAD de quien dependían anteriormente, [...]\".",
         "Diario de Navarra, 19 de julio de 1936"
       ]
     },
@@ -2781,7 +2848,7 @@
         "src": "assets/documentos/franco-mola-cavalcanti-burgos.png",
         "annotations": {
           "layout": "numbered",
-          "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus uniformes.",
+          "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus gorras para acortar los conectores sin tapar las caras.",
           "sources": [
             {
               "title": "Descripción y metadatos de esta fotografía",
@@ -2794,15 +2861,15 @@
               "role": "General de caballería del bando sublevado",
               "position": "A la izquierda, con las manos detrás.",
               "x": 0.25,
-              "y": 0.6,
+              "y": 0.28,
               "side": "left"
             },
             {
               "name": "Francisco Franco",
               "role": "General sublevado, jefe del Ejército de África; todavía no era jefe del Estado",
               "position": "En el centro y en primer plano.",
-              "x": 0.48,
-              "y": 0.62,
+              "x": 0.495,
+              "y": 0.245,
               "side": "right"
             },
             {
@@ -2810,7 +2877,7 @@
               "role": "General organizador del golpe de 1936 y jefe de las fuerzas sublevadas del norte",
               "position": "A la derecha, algo más atrás.",
               "x": 0.64,
-              "y": 0.6,
+              "y": 0.17,
               "side": "right"
             }
           ]
@@ -2899,7 +2966,6 @@
       "id": "la-segunda-republica-y-la-cuestion-agraria",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Manuel Azaña",
         "Causas de la guerra de España"
       ],
       "title": "La Segunda República y la cuestión agraria",
@@ -2957,7 +3023,6 @@
       "id": "pascual-carrion-y-el-problema-de-los-latifundios",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Pascual Carrión",
         "Los latifundios en España"
       ],
       "title": "Pascual Carrión y el problema de los latifundios",
@@ -3162,7 +3227,6 @@
       "id": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Fuero de los Españoles",
         "BOE"
       ],
       "title": "El Fuero de los Españoles y los límites de los derechos",
@@ -3272,7 +3336,6 @@
       "id": "el-fuero-de-los-espanoles-seleccion-de-articulos",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Fuero de los Españoles",
         "BOE"
       ],
       "title": "El Fuero de los Españoles: selección de artículos",
@@ -3322,9 +3385,6 @@
     {
       "id": "franco-ante-las-cortes-sobre-democracia-y-partidos",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Franco"
-      ],
       "title": "Franco ante las Cortes sobre democracia y partidos",
       "type": "texto",
       "blocks": [
@@ -3381,9 +3441,6 @@
     {
       "id": "franco-ante-las-cortes-critica-del-pluralismo-politico",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Franco"
-      ],
       "title": "Franco ante las Cortes: crítica del pluralismo político",
       "type": "texto",
       "blocks": [
@@ -3493,24 +3550,24 @@
               "name": "Francisco Franco",
               "role": "Dictador de España y jefe del Estado",
               "position": "Protagonista del saludo situado a la izquierda.",
-              "x": 0.3,
-              "y": 0.65,
+              "x": 0.25,
+              "y": 0.18,
               "side": "left"
             },
             {
               "name": "Adolf Hitler",
               "role": "Dictador y canciller de la Alemania nazi",
               "position": "Protagonista del saludo situado a la derecha.",
-              "x": 0.8,
-              "y": 0.65,
+              "x": 0.66,
+              "y": 0.08,
               "side": "right"
             },
             {
               "name": "Ramón Serrano Suñer",
               "role": "Ministro de Asuntos Exteriores de España",
               "position": "En primer plano, a la izquierda.",
-              "x": 0.11,
-              "y": 0.62,
+              "x": 0.13,
+              "y": 0.14,
               "side": "left"
             },
             {
@@ -3518,7 +3575,7 @@
               "role": "Ministro de Asuntos Exteriores de la Alemania nazi",
               "position": "En el centro, entre Franco y Hitler.",
               "x": 0.445,
-              "y": 0.51,
+              "y": 0.17,
               "side": "right"
             }
           ]
@@ -3528,9 +3585,6 @@
     {
       "id": "la-jefatura-del-estado-en-la-ley-organica-de-1967",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "Ley Orgánica del Estado"
-      ],
       "title": "La jefatura del Estado en la Ley Orgánica de 1967",
       "type": "texto",
       "blocks": [
@@ -3783,6 +3837,7 @@
     },
     {
       "id": "constitucion-1978-preambulo-suplente-b",
+      "headingParagraphs": [1],
       "title": "El preámbulo de la Constitución de 1978",
       "type": "texto",
       "blocks": [
@@ -3796,7 +3851,7 @@
       ],
       "date": "Constitución de 1978",
       "sourceCaption": "Constitución española de 1978. Fórmula inicial y preámbulo recogidos bajo el encabezado “2025 Suplente B” de la recopilación, documento 2. Es un fragmento distinto de la selección de artículos; no se fusionan sus apariciones.",
-      "quality": "Se unen renglones que cortaban frases como “orden económico y social justo” y se recupera un párrafo por cada propósito del preámbulo. No se añade la fórmula posterior “En consecuencia…”, ausente de este fragmento. Encabezado y preguntas originales pendientes de cotejo con el PDF del examen.",
+      "quality": "Texto y párrafos cotejados con la página 2 del PDF oficial de 2008, examen 4, opción B, documento 1. Se conserva la fórmula de Juan Carlos I, se distingue el encabezado PREÁMBULO y se mantiene un párrafo por cada propósito. No se añade la fórmula posterior “En consecuencia…”, ausente del examen. Las demás apariciones siguen pendientes de cotejo individual.",
       "text": [
         "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
         "PREÁMBULO",
@@ -3825,9 +3880,12 @@
           "sourceOrdinal": 3,
           "year": 2008,
           "exam": "2008 Examen 4",
-          "route": "Opción sin cotejar",
+          "route": "Opción B",
           "document": 1,
-          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.cwvz2sm9irie"
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.cwvz2sm9irie",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2008_historia_espana.zip/Texto Histórico 4 - Examen y criterios de corrección.pdf",
+          "officialPage": 2
         },
         {
           "id": "fuente-h.stpkw5j6kku2-4",
@@ -3866,10 +3924,10 @@
     {
       "id": "reunion-expresidentes-gobierno",
       "examCaption": {
-        "text": "Presidentes del gobierno en la Monarquía de Juan Carlos",
+        "text": "Presidentes del gobierno (1976-2004)",
         "appearanceId": "fuente-h-c4qpyusgk1fw-4"
       },
-      "title": "Encuentro de antiguos presidentes del Gobierno",
+      "title": "Presidentes del gobierno (1976-2004)",
       "type": "imagen",
       "blocks": [
         12
@@ -3879,9 +3937,9 @@
         "Gobiernos de la Monarquía",
         "Transición"
       ],
-      "date": "Fecha y ocasión pendientes de verificación",
-      "sourceCaption": "Encuentro de antiguos presidentes del Gobierno. Reproducción incluida en la recopilación aportada; fecha y pie sujetos a la nota de calidad.",
-      "quality": "El pie de la recopilación identifica a varios presidentes, pero la fecha, la ocasión y la relación completa de personas requieren cotejo. No se asigna la fotografía al año del examen.",
+      "date": "Mandatos: 1976–2004; fecha de la fotografía pendiente de verificación",
+      "sourceCaption": "Presidentes del gobierno (1976-2004). Pie unificado por el recopilador; el intervalo se refiere a los mandatos, no a la fecha de la fotografía.",
+      "quality": "Una sola ficha reúne las apariciones de esta fotografía de Felipe González, Adolfo Suárez, Leopoldo Calvo-Sotelo y José María Aznar. El título y el pie se unifican a propuesta del recopilador; no se presentan como transcripción literal de todos los pies originales. La fecha y la ocasión de la fotografía siguen pendientes de verificación.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -3936,7 +3994,7 @@
       ],
       "image": {
         "src": "assets/documentos/reunion-expresidentes-gobierno.png",
-        "alt": "Fotografía de varios políticos españoles, entre ellos José María Aznar, Felipe González y Adolfo Suárez.",
+        "alt": "Fotografía de Felipe González, Adolfo Suárez, Leopoldo Calvo-Sotelo y José María Aznar.",
         "width": 990,
         "height": 794,
         "annotations": {
@@ -3993,8 +4051,7 @@
       "id": "investidura-de-felipe-gonzalez-y-politica-exterior",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Felipe González",
-        "Diario ABC"
+        "ABC"
       ],
       "title": "Investidura de Felipe González y política exterior",
       "type": "texto",
@@ -4063,9 +4120,6 @@
     {
       "id": "investidura-de-jose-maria-aznar",
       "attributionParagraphs": 1,
-      "attributionEmphasis": [
-        "D. Jose Maria Aznar"
-      ],
       "title": "Investidura de José María Aznar",
       "type": "texto",
       "blocks": [
@@ -4114,10 +4168,10 @@
       ],
       "text": [
         "Señor Presidente, Comparezco ante sus señorías para solicitar la confianza de la Cámara, conforme a lo dispuesto en el artículo 99 de la Constitución.",
-        "Las elecciones del 3 de marzo han abierto una nueva etapa política en España. Los españoles, tras un largo periodo de gobiernos socialistas, han manifestado su deseo de renovar nuestra vida pública; renovación para dar el impulso de modernización que España ahora necesita y que debe afectar a los comportamientos políticos, al modo en que se ejerce el poder, al funcionamientos de nuestra democracia y traducirse en nuevas políticas para solucionar problemas, no resueltos, corregir errores y alcanzar mayores cotas de libertad y de bienestar para los españoles.",
+        "Las elecciones del 3 de marzo han abierto una nueva etapa política en España. Los españoles, tras un largo período de gobiernos socialistas, han manifestado su deseo de renovar nuestra vida pública; renovación para dar el impulso de modernización que España ahora necesita y que debe afectar a los comportamientos políticos, al modo en que se ejerce el poder, al funcionamientos de nuestra democracia y traducirse en nuevas políticas para solucionar problemas, no resueltos, corregir errores y alcanzar mayores cotas de libertad y de bienestar para los españoles.",
         "El pueblo español ha promovido la alternancia al convertir al Partido Popular (...) en la opción política más votada y con mayor número de escaños en cada una de las Cámaras, sin disponer, sin embargo, de mayoría absoluta en el Congreso.",
-        "De este resultado electoral se derivan unas consecuencias que quiero resaltar al principio de mi discurso y que, en mi opinión, han de fijar la orientación de la Legislatura: en primer lugar, una voluntad de cambio politico; en segundo lugar, la necesidad de un mayor diálogo, de una mayor capacidad de compromiso, de más decisiones compartidas en nuestra vida pública",
-        "Discurso de D. Jose Maria Aznar en la sesión de investidura, en el Congreso de los Diputados. Madrid, 3 de mayo de 1996"
+        "De este resultado electoral se derivan unas consecuencias que quiero resaltar al principio de mi discurso y que, en mi opinión, han de fijar la orientación de la Legislatura: en primer lugar, una voluntad de cambio político; en segundo lugar, la necesidad de un mayor diálogo, de una mayor capacidad de compromiso, de más decisiones compartidas en nuestra vida pública.",
+        "Discurso de D. José María Aznar en la sesión de investidura, en el Congreso de los Diputados. Madrid, 3 de mayo de 1996"
       ]
     },
     {
@@ -4419,6 +4473,9 @@
     },
     {
       "id": "debate-parlamentario-desastre-1899",
+      "headingParagraphs": [0],
+      "centerHeadings": true,
+      "headingEmphasis": {"0": ["Desastre"]},
       "attributionParagraphs": 1,
       "attributionEmphasis": [
         "Diario de Sesiones del Congreso"
@@ -4473,7 +4530,8 @@
         }
       ],
       "text": [
-        "La polémica del Desastre \"¿Qué quería S.S. que hubiese hecho? ¿Qué ante ese ultimátum requiriéndonos para que abandonáramos Cuba hubiésemos cedido en el acto y les hubiéramos entregado Cuba sólo porque los norteamericanos la querían? ¡Ah! Su Señoría que se lamenta de cómo ha venido el ejército español, Su Señoría que se lamenta de la situación en que se halla España, ¿cómo se lamentaría... si hubiéramos cedido sin más ni más a la pretensión de los Estados Unidos de despedirnos, como se puede despedir a un lacayo, de un país en que llevábamos 400 años de dominación y en que teníamos 200.000 soldados y entre voluntarios y guerrilleros otros 100.000, es decir, un ejército de 300.000 hombres? ¡Ah! ¿Era eso posible? Claro está que nosotros no podíamos hacer más de lo que hemos hecho, defendiéndonos de la agresión como hemos podido y hasta donde hemos podido; hemos sido vencidos, pero después el vencido no ha quedado deshonrado; en cambio, si nuestros soldados hubieran venido sin hacer la más mínima resistencia... ¡ah! entonces España hubiera quedado borrada del número de las naciones civilizadas y nuestro ejército no hubiera venido cubierto por la desgracia ni la nación sería en estos momentos desgraciada; no, nuestro ejército hubiese venido cubierto de oprobio y la nación española sería una nación despreciable, (..)\"",
+        "La polémica del Desastre",
+        "\"¿Qué quería S.S. que hubiese hecho? ¿Qué ante ese ultimátum requiriéndonos para que abandonáramos Cuba hubiésemos cedido en el acto y les hubiéramos entregado Cuba sólo porque los norteamericanos la querían? ¡Ah! Su Señoría que se lamenta de cómo ha venido el ejército español, Su Señoría que se lamenta de la situación en que se halla España, ¿cómo se lamentaría... si hubiéramos cedido sin más ni más a la pretensión de los Estados Unidos de despedirnos, como se puede despedir a un lacayo, de un país en que llevábamos 400 años de dominación y en que teníamos 200.000 soldados y entre voluntarios y guerrilleros otros 100.000, es decir, un ejército de 300.000 hombres? ¡Ah! ¿Era eso posible? Claro está que nosotros no podíamos hacer más de lo que hemos hecho, defendiéndonos de la agresión como hemos podido y hasta donde hemos podido; hemos sido vencidos, pero después el vencido no ha quedado deshonrado; en cambio, si nuestros soldados hubieran venido sin hacer la más mínima resistencia... ¡ah! entonces España hubiera quedado borrada del número de las naciones civilizadas y nuestro ejército no hubiera venido cubierto por la desgracia ni la nación sería en estos momentos desgraciada; no, nuestro ejército hubiese venido cubierto de oprobio y la nación española sería una nación despreciable, (..)\"",
         "Diario de Sesiones del Congreso, 23 de febrero de 1899"
       ]
     },
@@ -4504,7 +4562,7 @@
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
-          "text": "Relaciona el documento con la guerra de Cuba, la política de reconcentración de Weyler en 1896–1897 y la crisis colonial de la Restauración, dentro del bloque 7 (1874–1902). Explica las causas, el desarrollo y las consecuencias pertinentes sin atribuir a la fuente datos que no contiene."
+          "text": "Durante la guerra de independencia cubana, iniciada en 1895, Weyler aplicó la reconcentración de la población rural para privar de apoyo a los insurgentes. La medida causó hambre, enfermedades y una elevada mortalidad civil, y alimentó la hostilidad antiespañola en Estados Unidos. Distingue este antecedente del detonante inmediato de la guerra hispano-estadounidense de 1898: la crisis tras la explosión del Maine y el ultimátum estadounidense."
         }
       ],
       "appearances": [
@@ -4539,7 +4597,7 @@
           "people": [
             {
               "name": "Valeriano Weyler",
-              "role": "General y capitán general de Cuba entre 1896 y 1897",
+              "role": "General y capitán general de Cuba entre 1896 y 1897. Impuso una dura reconcentración de la población rural para aislar a los independentistas, con hambre, enfermedades y una elevada mortalidad civil. Su actuación agravó la hostilidad antiespañola en Estados Unidos.",
               "position": "Único personaje del retrato.",
               "x": 0.5,
               "y": 0.6,
@@ -4562,6 +4620,7 @@
     },
     {
       "id": "decreto-unificacion-1937",
+      "headingParagraphs": [0],
       "title": "Decreto de Unificación de 1937",
       "blocks": [
         10
@@ -4627,8 +4686,8 @@
       ],
       "date": "1936–1939",
       "type": "imagen",
-      "sourceCaption": "2009 Examen 3, opción B, documento 2.",
-      "quality": "Reproducción de la recopilación; la identidad y la aparición se han contrastado con el PDF oficial de 2009. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
+      "sourceCaption": "2009 Examen 3, opción B, documento 2; 2014 examen sin numerar (reserva C en el corpus) y 2015 Examen 6, opción B, documento 1.",
+      "quality": "Reproducción de la recopilación; la identidad y las tres apariciones se han contrastado con los PDF oficiales de 2009, 2014 y 2015. En 2014 el archivo oficial se llama Examen.pdf: se conserva la denominación incierta «Examen ? (reserva C)» del corpus, sin certificar una numeración. No se presenta como recorte exacto del examen; conserva el encuadre del archivo aportado.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -4655,6 +4714,34 @@
           "sourceImages": [
             16
           ]
+        },
+        {
+          "id": "fuente-h-yjixy43rc4v8-3",
+          "sourceKey": "h.yjixy43rc4v8:3",
+          "sourceOrdinal": 3,
+          "year": 2014,
+          "exam": "2014 Examen ? (reserva C)",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.yjixy43rc4v8",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2014_historia_espana.zip/sel_2014_texto_historico/Examen.pdf",
+          "officialPage": 2,
+          "sourceImages": [59]
+        },
+        {
+          "id": "fuente-h-nprbq3qsjt1l-3",
+          "sourceKey": "h.nprbq3qsjt1l:3",
+          "sourceOrdinal": 3,
+          "year": 2015,
+          "exam": "2015 Examen 6",
+          "route": "Opción B",
+          "document": 1,
+          "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.nprbq3qsjt1l",
+          "officialSourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+          "officialFile": "sel_2015_historia_espana.zip/texto_historico/Ua6HIST ESPAÑAexamen.pdf",
+          "officialPage": 2,
+          "sourceImages": [60]
         }
       ],
       "image": {
@@ -4667,6 +4754,8 @@
     },
     {
       "id": "manifiesto-manzanares-1854",
+      "headingParagraphs": [0],
+      "centerHeadings": true,
       "title": "Manifiesto de Manzanares",
       "blocks": [
         6
@@ -4727,7 +4816,8 @@
         }
       ],
       "text": [
-        "MANIFIESTO DE MANZANARES Nosotros queremos la conservación del Trono, pero sin la camarilla que le deshonra; queremos la práctica rigurosa de las leyes fundamentales, mejorándolas, sobre todo la Electoral y la de Imprenta; queremos la rebaja de los impuestos, fundada en una estricta economía; queremos que se respeten en los empleos militares y civiles la antigüedad y los merecimientos; queremos arrancar los pueblos a la centralización que los devora, dándoles la independencia local necesaria para que conserven y aumenten sus intereses propios, y como garantía de todo esto, queremos plantearnos la Milicia Nacional. Tales son nuestros intentos [...] las Cortes generales que luego se reúnan, la misma nación, en fin, fijará las bases definitivas de la regeneración liberal a que aspiramos.",
+        "MANIFIESTO DE MANZANARES",
+        "Nosotros queremos la conservación del Trono, pero sin la camarilla que le deshonra; queremos la práctica rigurosa de las leyes fundamentales, mejorándolas, sobre todo la Electoral y la de Imprenta; queremos la rebaja de los impuestos, fundada en una estricta economía; queremos que se respeten en los empleos militares y civiles la antigüedad y los merecimientos; queremos arrancar los pueblos a la centralización que los devora, dándoles la independencia local necesaria para que conserven y aumenten sus intereses propios, y como garantía de todo esto, queremos plantearnos la Milicia Nacional. Tales son nuestros intentos [...] las Cortes generales que luego se reúnan, la misma nación, en fin, fijará las bases definitivas de la regeneración liberal a que aspiramos.",
         "Madrid 6 de julio de 1854"
       ]
     },
@@ -4831,7 +4921,6 @@
       "id": "garcia-cortazar-transicion-democracia",
       "attributionParagraphs": 1,
       "attributionEmphasis": [
-        "Fernando García de Cortázar",
         "Álbum de la Historia de España"
       ],
       "title": "García de Cortázar: “Cuando España dio ejemplo”",
@@ -4880,6 +4969,9 @@
     },
     {
       "id": "constitucion-1978-gobierno-97-98-101",
+      "headingParagraphs": [0],
+      "centerHeadings": true,
+      "readingNote": "El examen imprime «disminución» en el artículo 101, donde la Constitución establece «dimisión». Se conserva la redacción del examen.",
       "title": "Constitución de 1978: composición y funciones del Gobierno",
       "blocks": [
         12
@@ -4919,13 +5011,14 @@
         }
       ],
       "text": [
-        "CONSTITUCIÓN ESPAÑOLA DE 1.978 Artículo 97:",
+        "CONSTITUCIÓN ESPAÑOLA DE 1.978",
+        "Artículo 97:",
         "El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado. Ejerce la función ejecutiva y la potestad reglamentaria de acuerdo con la Constitución y las leyes.",
-        "Articulo 98:",
+        "Artículo 98:",
         "1. El Gobierno se compone del Presidente, de los Vicepresidentes en su caso, de los Ministros y de los demás miembros que establezca la ley.",
         "2. El Presidente dirige la acción del Gobierno y coordina las funciones de los demás miembros del mismo, sin perjuicio de la competencia y responsabilidad directa de éstos en su gestión.",
         "3. Los miembros del Gobierno no podrán ejercer otras funciones representativas que las propias del mandato parlamentario, ni cualquier otra función pública que no derive de su cargo, ni actividad profesional o mercantil alguna.",
-        "•Articulo 101:",
+        "Artículo 101:",
         "1. El Gobierno cesa tras la celebración de elecciones generales, en los casos de pérdida de la confianza parlamentaria previstos en la Constitución, o por disminución o fallecimiento de su Presidente.",
         "2. El Gobierno cesante continuará en funciones hasta la toma de posesión del nuevo Gobierno."
       ]
@@ -4981,8 +5074,7 @@
       "id": "rendicion-bailen-casado-alisal",
       "examCaption": {
         "emphasis": [
-          "La rendición de Bailén",
-          "Casado del Alisal"
+          "La rendición de Bailén"
         ],
         "text": "La rendición de Bailén, de Casado del Alisal.",
         "appearanceId": "fuente-h-nbuyh1njnq9k-2",
@@ -5053,6 +5145,8 @@
     },
     {
       "id": "constitucion-directorio-militar-1923",
+      "paragraphStarts": [0, 1, 3, 4],
+      "headingParagraphs": [0],
       "attributionParagraphs": 1,
       "attributionEmphasis": [
         "La Gaceta"
@@ -5106,7 +5200,8 @@
         }
       ],
       "text": [
-        "Constitución del Directorio Militar Artículo 1.- Se confiere al Teniente General Don Miguel Primo de Rivera y Orbaneja, Marqués de Estella, el cargo de",
+        "Constitución del Directorio Militar",
+        "Artículo 1.- Se confiere al Teniente General Don Miguel Primo de Rivera y Orbaneja, Marqués de Estella, el cargo de",
         "Presidente del Directorio militar encargado de la Gobernación del Estado, con poderes para proponer cuantos Decretos convengan a la salud pública, los que tendrán fuerza de ley, interín en su día no sean modificados por leyes aprobadas por las Cortes del Reino y sometidas a Mi Real sanción (...)",
         "Artículo 4.- Se suprimen por esta disposición los cargos de Presidente del consejo de Ministros, Ministros de la Corona y los de Subsecretario de la Presidencia y de los demás Ministros, excepto Estado y Guerra. Los sueldos y demás devengos consignados en Presupuesto para estos cargos quedarán a beneficio del Tesoro.",
         "La Gaceta, Madrid, 16 de septiembre de 1923"
@@ -5180,7 +5275,7 @@
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
         "annotations": {
           "layout": "margins",
-          "note": "El recorte procede del documento 2 del examen oficial de 2009, examen 5. Se señalan por separado Primo de Rivera y Sanjurjo en el coche principal; las posiciones individuales son aproximadas porque el escaneo no permite confirmarlas con más precisión.",
+          "note": "El recorte procede del documento 2 del examen oficial de 2009, examen 5. Las marcas se sitúan en la parte trasera del coche principal, siguiendo la indicación aportada por el usuario. Las posiciones individuales siguen siendo aproximadas por la resolución del escaneo; no señalan al conductor ni al oficial situado delante.",
           "sources": [
             {
               "title": "Pie de la escena en la recopilación",
@@ -5191,17 +5286,17 @@
             {
               "name": "Miguel Primo de Rivera",
               "role": "Jefe del Gobierno y dictador de España (1923–1930)",
-              "position": "En el coche principal; la posición exacta es aproximada por la resolución del escaneo.",
-              "x": 0.505,
-              "y": 0.55,
+              "position": "En la parte trasera del coche principal, junto a Sanjurjo; posición individual aproximada por la resolución del escaneo.",
+              "x": 0.385,
+              "y": 0.543,
               "side": "left"
             },
             {
               "name": "José Sanjurjo",
-              "role": "General del Ejército",
-              "position": "En el coche principal; la posición exacta es aproximada por la resolución del escaneo.",
-              "x": 0.54,
-              "y": 0.55,
+              "role": "General del Ejército, destacado en las operaciones del desembarco de Alhucemas de 1925",
+              "position": "En la parte trasera del coche principal, junto a Primo de Rivera; posición individual aproximada por la resolución del escaneo.",
+              "x": 0.423,
+              "y": 0.543,
               "side": "right"
             }
           ]
@@ -5438,13 +5533,13 @@
         "Liberalismo"
       ],
       "date": "1833–1840",
-      "type": "imagen",
+      "type": "grafico",
       "sourceCaption": "2012 Examen 6, opción A, documento 1.",
-      "quality": "Reproducción del mapa en blanco y negro de la recopilación aportada. Se conserva sin colorear; la versión moderna a color compartida por el usuario se usa solo como referencia y no sustituye al mapa del examen. Pendiente de cotejo con el PDF oficial.",
+      "quality": "Mapa vectorial a color sobre la misma base de la península ibérica de Wikimedia Commons aportada por el usuario, con costa y fronteras sin alterar. Las ciudades mencionadas, las tres elipses de control y las curvas de las expediciones se basan en el mapa en blanco y negro de la recopilación, manteniendo los colores didácticos anteriores. Los recorridos y áreas son aproximados; no es una reproducción del examen certificada. Se conserva la simbología aportada, incluidos los círculos blancos de Pamplona y Zaragoza. La posición de Morella reproduce el orden esquemático del escaneo. El escaneo sigue disponible para comparar y queda pendiente el cotejo con el PDF oficial.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Describe la distribución territorial que muestra el mapa y lee sus símbolos directamente en la leyenda. Distingue las zonas controladas de las áreas de influencia y las expediciones; no deduzcas límites o recorridos que la reproducción no permita asegurar."
+          "text": "Distingue los contornos ocres huecos de control y las áreas verdes de influencia carlista; identifica los símbolos de ciudades mediante los círculos blancos o negros. León y Huesca quedan en entrantes abiertos sin sombreado; Logroño se muestra como un hueco cerrado ampliado. El área sobre Madrid queda retraída al norte, con el borde más cercano a Cuenca. Sigue la línea roja de Gómez, con regreso directo a Amurrio, y la verde discontinua de don Carlos, que pasa por Cantavieja, y localiza la paz de Vergara. La reconstrucción adapta la disposición y simbología de la imagen aportada con ajustes didácticos; compárala con el escaneo antes de extraer conclusiones históricas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -5468,49 +5563,64 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/mapa-primera-guerra-carlista-2012-bn.png",
-        "alt": "Mapa en blanco y negro de la Primera Guerra Carlista, con leyenda de zonas, ciudades y expediciones.",
-        "width": 507,
-        "height": 453
+        "src": "assets/documentos/mapa-primera-guerra-carlista-vector.svg",
+        "alt": "Reconstrucción vectorial a color del mapa de 2012, examen 6: tres elipses de contorno ocre sin relleno, influencia verde con el tramo litoral del Maestrazgo reducido a la mitad y el área sobre Madrid retraída al norte; hueco ampliado para Logroño, círculos blancos en Pamplona y Zaragoza, regreso directo de Gómez a Amurrio y paso de don Carlos por Cantavieja. Morella se dispone esquemáticamente debajo de Cantavieja como en el escaneo; leyenda inferior.",
+        "width": 1184,
+        "height": 1190,
+        "selectable": true,
+        "examCaption": {
+          "text": "Principales focos y expediciones carlistas (1833–1840)."
+        },
+        "reproductionNote": "Reconstrucción vectorial con colores añadidos, basada en el mapa en blanco y negro de la recopilación; no es un facsímil certificado.",
+        "attribution": {
+          "text": "Base cartográfica: NordNordWest y Sting, Wikimedia Commons; adaptación didáctica",
+          "url": "https://commons.wikimedia.org/wiki/File:Iberian_Peninsula_location_map.svg",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        },
+        "corpusSrc": "assets/documentos/mapa-primera-guerra-carlista-2012-bn.png",
+        "corpusLabel": "Ver mapa en blanco y negro de la recopilación"
       },
       "table": {
-        "caption": "Leyenda descrita en las notas de la recopilación",
+        "caption": "Leyenda del mapa reconstruido a color",
         "headers": [
           "Elemento",
           "Símbolo descrito"
         ],
         "rows": [
           [
-            "Zonas controladas por los carlistas",
-            "Elipses"
+            "zonas controladas por los carlistas",
+            "Elipses huecas con contorno ocre grueso"
           ],
           [
-            "Área de influencia carlista",
-            "Sombreado gris"
+            "área de influencia carlista",
+            "Sombreado verde claro"
           ],
           [
-            "Ciudades carlistas",
-            "Círculo blanco"
+            "ciudades carlistas",
+            "Círculo blanco con borde oscuro"
           ],
           [
-            "Ciudades liberales",
+            "ciudades liberales",
             "Círculo negro"
           ],
           [
-            "Expedición del general Miguel Gómez",
-            "Flecha de línea continua"
+            "expedición del general Miguel Gómez",
+            "Línea roja continua con flechas"
           ],
           [
-            "Expedición de don Carlos",
-            "Flecha discontinua"
+            "expedición de Don Carlos (1837)",
+            "Línea verde oscura discontinua con flechas"
           ],
           [
-            "Paz de Vergara",
-            "Círculo con triángulo"
+            "Paz de Vergara (1839)",
+            "Círculo blanco con triángulo oscuro"
           ]
         ],
         "notes": [
-          "La leyenda accesible se ha transcrito de las notas del recopilador y queda pendiente de cotejo con el PDF oficial; no se ha usado para recolorear ni redibujar el mapa."
+          "Las zonas y rutas son aproximadas y resumen distintos momentos de la guerra, no un control territorial simultáneo. La Expedición Real llegó a las inmediaciones de Madrid, sin ocupar la ciudad.",
+          "Pamplona y Zaragoza conservan círculos blancos según la referencia aportada; la simbología del dibujo no acredita por sí sola el control histórico de esas ciudades.",
+          "La posición de Morella es esquemática: aparece debajo de Cantavieja como en el escaneo, aunque geográficamente se sitúa ligeramente al norte."
         ]
       }
     },
@@ -5974,6 +6084,7 @@
     },
     {
       "id": "decreto-cortes-soberania-isla-leon-1810",
+      "paragraphStarts": [0, 1, 4, 10, 12],
       "title": "Primer decreto de las Cortes reunidas en la isla de León",
       "type": "texto",
       "blocks": [
@@ -6029,6 +6140,7 @@
     },
     {
       "id": "manifiesto-franco-julio-1936",
+      "paragraphStarts": [0, 1, 8, 9, 10],
       "title": "Manifiesto del general Franco",
       "type": "texto",
       "blocks": [
@@ -6178,7 +6290,7 @@
             "src": "assets/documentos/franco-mola-cavalcanti-burgos.png",
             "annotations": {
               "layout": "numbered",
-              "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus uniformes.",
+              "note": "El pie de la misma fotografía en Wikimedia Commons y sus metadatos de Ullstein identifican, de izquierda a derecha, a Cavalcanti, Franco y Mola. Las marcas se sitúan sobre sus gorras para acortar los conectores sin tapar las caras.",
               "sources": [
                 {
                   "title": "Descripción y metadatos de esta fotografía",
@@ -6191,15 +6303,15 @@
                   "role": "General de caballería del bando sublevado",
                   "position": "A la izquierda, con las manos detrás.",
                   "x": 0.25,
-                  "y": 0.6,
+                  "y": 0.28,
                   "side": "left"
                 },
                 {
                   "name": "Francisco Franco",
                   "role": "General sublevado, jefe del Ejército de África; todavía no era jefe del Estado",
                   "position": "En el centro y en primer plano.",
-                  "x": 0.48,
-                  "y": 0.62,
+                  "x": 0.495,
+                  "y": 0.245,
                   "side": "right"
                 },
                 {
@@ -6207,7 +6319,7 @@
                   "role": "General organizador del golpe de 1936 y jefe de las fuerzas sublevadas del norte",
                   "position": "A la derecha, algo más atrás.",
                   "x": 0.64,
-                  "y": 0.6,
+                  "y": 0.17,
                   "side": "right"
                 }
               ]
@@ -6224,6 +6336,7 @@
     },
     {
       "id": "proclama-prim-revolucion-1868",
+      "paragraphStarts": [0, 1, 6, 8, 10, 11, 13, 14],
       "title": "Proclama de Prim durante la revolución de 1868",
       "type": "texto",
       "blocks": [
@@ -6291,6 +6404,8 @@
     },
     {
       "id": "decreto-suspension-garantias-1923",
+      "attributionEmphasis": ["Gaceta de Madrid"],
+      "paragraphStarts": [0, 1, 2, 4, 7, 9, 10, 11],
       "title": "Decreto de suspensión de garantías tras el golpe de Primo de Rivera",
       "type": "texto",
       "blocks": [
@@ -6387,7 +6502,7 @@
     },
     {
       "id": "franco-y-pont-i-gol-1958",
-      "title": "Franco y la Iglesia: fotografía de Francisco Franco ante un arzobispo",
+      "title": "Franco y la Iglesia: Francisco Franco ante Josep Pont i Gol",
       "type": "imagen",
       "blocks": [
         11
@@ -6399,7 +6514,7 @@
         "Josep Pont i Gol"
       ],
       "date": "14 de junio de 1958; lugar pendiente de verificar",
-      "sourceCaption": "Franco y la Iglesia: fotografía de Francisco Franco ante un arzobispo. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
+      "sourceCaption": "Franco y la Iglesia: Francisco Franco ante Josep Pont i Gol. Imagen incluida en la recopilación aportada; procedencia pendiente de cotejo con el PDF oficial.",
       "quality": "Transcripción de la recopilación aportada; pendiente de cotejo con el PDF oficial.",
       "commentary": [
         {
@@ -6408,7 +6523,7 @@
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
-          "text": "Relaciona la escena con las relaciones entre el franquismo y la Iglesia católica. La identificación del arzobispo y el lugar indicado en las notas de la recopilación quedan pendientes de cotejo con el documento oficial."
+          "text": "La imagen refleja la estrecha relación entre el franquismo y la jerarquía católica, uno de los principales apoyos del régimen dictatorial y de su legitimación nacionalcatólica. La Iglesia no mantuvo una posición uniforme: tras el Concilio Vaticano II (1962–1965), sectores renovadores se distanciaron del franquismo y defendieron una mayor autonomía eclesial. Pont i Gol, próximo a Tarancón, participó en esa renovación. Como arzobispo de Tarragona desde 1970, impulsó la aplicación del Concilio y la cultura catalana; promovió el retorno de los restos del cardenal Vidal i Barraquer en 1978. Estos cambios posteriores no deben confundirse con la ceremonia de 1958, cuyo lugar sigue pendiente de cotejo."
         }
       ],
       "appearances": [
@@ -6432,10 +6547,14 @@
         "appearanceId": "fuente-h.l9y8o87u5u46-4"
       },
       "image": {
-        "src": "assets/documentos/franco-arzobispo-pont-i-gol-1958.png",
+        "src": "assets/documentos/franco-pont-i-gol-ampliada.jpg",
+        "sourceUrl": "https://photos.app.goo.gl/MBTfD5Z7FuPDKG8w8",
+        "reproductionNote": "Reproducción ampliada aportada por el usuario; se conservan las identificaciones de la ficha.",
+        "corpusSrc": "assets/documentos/franco-arzobispo-pont-i-gol-1958.png",
+        "corpusLabel": "Ver reproducción anterior de la recopilación",
         "alt": "Fotografía de Francisco Franco arrodillado ante un obispo con mitra y báculo, rodeado por clérigos durante una ceremonia.",
-        "width": 423,
-        "height": 536,
+        "width": 846,
+        "height": 1072,
         "annotations": {
           "layout": "numbered",
           "note": "La identificación de las personas sigue las notas de la recopilación aportada; el lugar de la ceremonia queda pendiente de cotejo.",
@@ -6443,12 +6562,16 @@
             {
               "title": "Pie e identificación en la recopilación aportada",
               "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.l9y8o87u5u46"
+            },
+            {
+              "title": "Institut d’Estudis Catalans: Pont i Gol y la renovación conciliar de Tarragona",
+              "url": "https://publicacions.iec.cat/repository/pdf/00000308/00000014.pdf"
             }
           ],
           "people": [
             {
               "name": "Josep Pont i Gol",
-              "role": "Arzobispo identificado en las notas de la recopilación",
+              "role": "Obispo de Segorbe-Castellón en 1958. La jerarquía católica fue un importante sostén del régimen dictatorial. Tras el Concilio Vaticano II, Pont i Gol participó en el sector renovador y aperturista, próximo a Tarancón, partidario de una mayor autonomía de la Iglesia frente al franquismo.",
               "position": "De pie en el centro, con mitra y báculo.",
               "x": 0.47,
               "y": 0.27,
@@ -6485,11 +6608,11 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "En la transcripción asociada se enumeran nombres y adscripciones políticas. 2. MIQUEL ROCA I JUNYENT (MINORÍA CATALANA / PACTE DEMOCRÀTIC PER CATALUNYA) 3. GREGORIO PECES-BARBA MARTÍNEZ (PARTIDO SOCIALISTA OBRERO ESPAÑOL - PSOE) 4. GABRIEL CISNEROS LABORDA (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 5. JOSÉ PEDRO PÉREZ-LLORCA RODRIGO (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 6. MIGUEL HERRERO Y RODRÍGUEZ DE MIÑÓN (UNIÓN DE CENTRO DEMOCRÁTICO - UCD) 7. JORDI SOLÉ TURA (PARTIDO COMUNISTA DE ESPAÑA / PARTIT SOCIALISTA UNIFICAT DE CATALUNYA - PCE-PSUC) La fuente no asigna cada nombre a una posición de la fotografía."
+          "text": "La fotografía muestra a los siete diputados de la ponencia constitucional de 1978. Identifica a Cisneros, Pérez-Llorca y Herrero de Miñón (UCD), Peces-Barba (PSOE), Solé Tura (PCE-PSUC), Roca (Minoría Catalana, CDC) y Fraga (AP). Su composición plural permite explicar la negociación entre fuerzas centristas, socialistas, comunistas, nacionalistas catalanas y conservadoras. Distingue la redacción del proyecto de su posterior aprobación parlamentaria y ratificación en referéndum."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
-          "text": "Sitúa la ponencia en el proceso constituyente de la Transición. La lista transcrita sirve para reconocer a sus integrantes, no para asignar identidades a cada figura sin una fuente de posiciones."
+          "text": "Sitúa la ponencia en el proceso constituyente abierto por las elecciones de junio de 1977. Explica el consenso entre fuerzas con proyectos políticos diferentes y la negociación del marco democrático, los derechos y la organización territorial. La Constitución fue ratificada en el referéndum del 6 de diciembre de 1978. Diferencia el trabajo de estos siete ponentes de los debates y decisiones del conjunto de las Cortes."
         }
       ],
       "appearances": [
@@ -6515,7 +6638,87 @@
         "src": "assets/documentos/comision-redactora-constitucion-1978.png",
         "alt": "Fotografía en blanco y negro de siete integrantes de la comisión redactora del proyecto constitucional de 1978 reunidos en torno a una mesa.",
         "width": 1024,
-        "height": 761
+        "height": 761,
+        "annotations": {
+          "layout": "margins",
+          "note": "Identificaciones revisadas con el usuario para esta fotografía de la recopilación; adscripciones políticas contrastadas con el Congreso de los Diputados.",
+          "sources": [
+            {
+              "title": "Recopilación aportada: fotografía de la comisión redactora; identificaciones revisadas con el usuario",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.stpkw5j6kku2"
+            },
+            {
+              "title": "Congreso de los Diputados: composición y partidos de la ponencia constitucional",
+              "url": "https://blog.congreso.es/1-de-agosto-del-77-hoy-empieza-a-elaborarse-la-constitucion/"
+            },
+            {
+              "title": "Representación de las minorías nacionalistas y ausencia de un ponente propio del PNV",
+              "url": "https://www.elmundo.es/espana/constitucion-espanola-40-aniversario/2018/12/05/5c07f1fcfdddffd7678b4716.html"
+            },
+            {
+              "title": "Campaña del PNV de abstención en el referéndum constitucional de 1978",
+              "url": "https://www.abc.es/espana/abci-tergiversa-referendum-78-para-negar-constitucion-201812010201_noticia.html"
+            }
+          ],
+          "people": [
+            {
+              "name": "Manuel Fraga Iribarne",
+              "role": "Alianza Popular (AP). Representante de la derecha conservadora en la ponencia constitucional.",
+              "position": "Cabeza del primer ponente por la izquierda.",
+              "x": 0.065,
+              "y": 0.327,
+              "side": "left"
+            },
+            {
+              "name": "Miquel Roca i Junyent",
+              "role": "Convergència Democràtica de Catalunya (CDC), derecha catalanista. Representó a las minorías nacionalistas periféricas en la ponencia. El PNV no tuvo un ponente propio y, disconforme con el texto constitucional, promovió la abstención en el referéndum del 6 de diciembre de 1978.",
+              "position": "Solapa del traje del segundo ponente por la izquierda.",
+              "x": 0.125,
+              "y": 0.438,
+              "side": "left"
+            },
+            {
+              "name": "Miguel Herrero y Rodríguez de Miñón",
+              "role": "Unión de Centro Democrático (UCD). Entre sus tres ponentes, destacó por su perfil técnico-jurídico como letrado del Consejo de Estado.",
+              "position": "Chaqueta del tercer ponente por la izquierda.",
+              "x": 0.183,
+              "y": 0.49,
+              "side": "left"
+            },
+            {
+              "name": "José Pedro Pérez-Llorca Rodrigo",
+              "role": "Unión de Centro Democrático (UCD). Uno de los tres ponentes de la coalición centrista.",
+              "position": "Cabeza del cuarto ponente, que aparece de pie.",
+              "x": 0.306,
+              "y": 0.207,
+              "side": "left"
+            },
+            {
+              "name": "Gabriel Cisneros Laborda",
+              "role": "Unión de Centro Democrático (UCD). Uno de los tres ponentes de la coalición centrista.",
+              "position": "Cabeza del quinto ponente por la izquierda.",
+              "x": 0.45,
+              "y": 0.41,
+              "side": "right"
+            },
+            {
+              "name": "Gregorio Peces-Barba Martínez",
+              "role": "Partido Socialista Obrero Español (PSOE). Representante socialista en la ponencia constitucional.",
+              "position": "Cabeza del sexto ponente por la izquierda.",
+              "x": 0.61,
+              "y": 0.436,
+              "side": "right"
+            },
+            {
+              "name": "Jordi Solé Tura",
+              "role": "Partido Comunista de España (PCE) / Partit Socialista Unificat de Catalunya (PSUC). Representante del grupo comunista.",
+              "position": "Cabeza del séptimo ponente, en primer plano a la derecha.",
+              "x": 0.807,
+              "y": 0.499,
+              "side": "right"
+            }
+          ]
+        }
       }
     },
     {
@@ -6566,12 +6769,13 @@
       "image": {
         "src": "assets/documentos/disolucion-congreso-pavia-1874.jpg",
         "alt": "Grabado de la disolución de las Cortes por las tropas del general Pavía en enero de 1874.",
-        "width": 414,
-        "height": 292
+        "width": 4000,
+        "height": 2824
       }
     },
     {
       "id": "azana-espana-ha-dejado-de-ser-catolica-1931",
+      "paragraphStarts": [0, 3, 12],
       "title": "Azaña: «España ha dejado de ser católica»",
       "type": "texto",
       "blocks": [
@@ -6627,6 +6831,7 @@
     },
     {
       "id": "ultimatum-mckinley-cuba-1898",
+      "paragraphStarts": [0, 6, 8, 9, 12, 16],
       "title": "Ultimátum de McKinley a España sobre Cuba",
       "type": "texto",
       "blocks": [
@@ -6686,6 +6891,7 @@
     },
     {
       "id": "episcopado-ante-constitucion-1931",
+      "paragraphStarts": [0, 4, 10],
       "title": "Declaración colectiva del episcopado ante la Constitución de 1931",
       "type": "texto",
       "blocks": [
@@ -6739,6 +6945,7 @@
     },
     {
       "id": "informe-murat-levantamiento-2-mayo-1808",
+      "paragraphStarts": [0, 8, 14],
       "title": "Murat informa a Napoleón sobre los sucesos del 2 de mayo",
       "type": "texto",
       "blocks": [
@@ -6865,7 +7072,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "La imagen muestra a los firmantes reunidos; el pie de la recopilación no identifica individualmente a las personas."
+          "text": "La imagen muestra la reunión de los firmantes de los Pactos de la Moncloa. Adolfo Suárez, presidente del Gobierno en 1977, preside la mesa desde el centro al fondo. Relaciona la escena con la búsqueda de acuerdos durante la Transición."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -6895,11 +7102,36 @@
         "src": "assets/documentos/pactos-moncloa-firmantes-1977.png",
         "alt": "Fotografía de los firmantes de los Pactos de la Moncloa reunidos en torno a una mesa.",
         "width": 447,
-        "height": 330
+        "height": 330,
+        "annotations": {
+          "layout": "margins",
+          "note": "Identificación de Adolfo Suárez en el centro al fondo de la mesa revisada con el usuario; su cargo se contextualiza con la biografía oficial de La Moncloa.",
+          "sources": [
+            {
+              "title": "Recopilación aportada: fotografía de los firmantes de los Pactos de la Moncloa",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.3e75gt50uc57"
+            },
+            {
+              "title": "La Moncloa: Adolfo Suárez y los Pactos de octubre de 1977",
+              "url": "https://www.lamoncloa.gob.es/presidente/presidentes/Paginas/Suarez_BIO.aspx"
+            }
+          ],
+          "people": [
+            {
+              "name": "Adolfo Suárez González",
+              "role": "Presidente del Gobierno de España en 1977. Por ese cargo preside la reunión desde el centro al fondo de la mesa.",
+              "position": "Torso de Adolfo Suárez, sentado en el centro al fondo de la mesa.",
+              "x": 0.393,
+              "y": 0.452,
+              "side": "left"
+            }
+          ]
+        }
       }
     },
     {
       "id": "manifiesto-sandhurst-1874",
+      "paragraphStarts": [0, 1, 7, 10, 12, 14, 15],
       "title": "Manifiesto de Sandhurst: llamamiento a la restauración",
       "type": "texto",
       "blocks": [
@@ -6958,6 +7190,7 @@
     },
     {
       "id": "suarez-transicion-1985",
+      "paragraphStarts": [0, 10],
       "title": "Adolfo Suárez reflexiona sobre la Transición",
       "type": "texto",
       "blocks": [
@@ -7011,6 +7244,7 @@
     },
     {
       "id": "junta-revolucionaria-sevilla-septiembre-1868",
+      "paragraphStarts": [0, 5, 7, 9, 12, 14, 15],
       "title": "Proclama de la Junta revolucionaria de Sevilla",
       "type": "texto",
       "blocks": [
@@ -7053,14 +7287,14 @@
         "que se propone sustentar y defender como base de la regeneración de este desgraciado país, cuyo",
         "entusiasmo no ha podido entibiar tantos siglos de tiranía y cuya virilidad no han podido debilitar tantos",
         "años de degradación.",
-        "1o) La consagración del sufragio universal y libre como base y fundamento de la legitimidad de todos los",
+        "1º) La consagración del sufragio universal y libre como base y fundamento de la legitimidad de todos los",
         "poderes y única verdadera expresión de la voluntad nacional.",
-        "2o) La libertad absoluta de imprenta, sin depósito, fianza ni editores responsables, y sólo con sujeción a",
+        "2º) La libertad absoluta de imprenta, sin depósito, fianza ni editores responsables, y sólo con sujeción a",
         "las penas que marca el código para los delitos de injuria y calumnia.",
-        "3o) La consagración práctica e inmediata de todas las demás libertades, la de enseñanza, la de cultos, la",
+        "3º) La consagración práctica e inmediata de todas las demás libertades, la de enseñanza, la de cultos, la",
         "de tráfico e industria, etc., y la reforma prudente y liberal de las leyes arancelarias, hasta que el estado",
         "del país permita establecer de lleno la libertad de comercio.",
-        "11o) Cortes constituyentes por sufragio universal directo, para que decreten una Constitución en armonía",
+        "11º) Cortes constituyentes por sufragio universal directo, para que decreten una Constitución en armonía",
         "con las necesidades de la época [...].",
         "¡¡Viva la libertad!! ¡¡Abajo la dinastía!! ¡¡Viva la Soberanía Nacional!!",
         "Sevilla, 20 de septiembre de 1868.”"
@@ -7069,6 +7303,7 @@
     },
     {
       "id": "carta-colectiva-episcopado-guerra-civil-1937",
+      "paragraphStarts": [0, 8, 11],
       "title": "Carta colectiva del episcopado español sobre la Guerra Civil",
       "type": "texto",
       "blocks": [
@@ -7123,6 +7358,7 @@
     },
     {
       "id": "ley-desamortizacion-madoz-1855",
+      "paragraphStarts": [0, 3, 7, 9, 11, 12],
       "title": "Ley de desamortización general de Madoz",
       "type": "texto",
       "blocks": [
@@ -7178,6 +7414,7 @@
     },
     {
       "id": "constitucion-cadiz-articulos-1812",
+      "paragraphStarts": [0, 1, 3, 5, 7, 8, 9, 10, 12],
       "title": "Artículos de la Constitución de 1812",
       "type": "texto",
       "blocks": [
@@ -7250,11 +7487,11 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Describe los elementos visibles y la representación alegórica de Franco como jefe militar victorioso."
+          "text": "Analiza la alegoría como una representación simbólica de ideas abstractas: la figura de Franco, a mayor escala que las tropas, personifica la victoria y el poder militar. Identifica el bastón de mando, las banderas falangistas, tradicionalistas y de las fuerzas marroquíes, el escudo con el águila de San Juan y el último parte de guerra. Relaciona estos elementos con la exaltación propagandística del caudillo y de los apoyos del bando sublevado, no con una representación neutral de los hechos."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
-          "text": "Relaciona la imagen con la construcción propagandística del poder franquista al final de la Guerra Civil. La fecha y la procedencia concreta no constan en la recopilación."
+          "text": "Relaciona la imagen con el final de la guerra y la construcción de la dictadura. Explica cómo la propaganda reunió los símbolos del Ejército, Falange y el tradicionalismo en torno al poder personal de Franco."
         }
       ],
       "appearances": [
@@ -7280,11 +7517,104 @@
         "src": "assets/documentos/alegoria-victoria-franco-1939.png",
         "alt": "Ilustración alegórica de Franco como Generalísimo y Caudillo, asociada a la victoria franquista; la fecha no consta en el pie transcrito.",
         "width": 2048,
-        "height": 1441
+        "height": 1441,
+        "annotations": {
+          "layout": "margins",
+          "note": "Identificación didáctica apoyada en la reproducción, el comentario aportado por el usuario y las fuentes históricas enlazadas.",
+          "sources": [
+            {
+              "title": "Recopilación aportada: 2012, examen 4; comentario explicativo complementado por el usuario",
+              "url": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.ddnqmfjydqh9"
+            },
+            {
+              "title": "BOE de 20 de mayo de 1939: concesión de la Gran Cruz Laureada a Franco el 19 de mayo",
+              "url": "https://www.boe.es/gazeta/dias/1939/05/20/pdfs/BOE-1939-140.pdf"
+            },
+            {
+              "title": "Reglamento de la Real y Militar Orden de San Fernando: máxima recompensa militar española",
+              "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2001-15950"
+            }
+          ],
+          "symbols": [
+            {
+              "name": "Bastón de mando",
+              "role": "Atributo de autoridad militar, sostenido en la mano derecha de Franco.",
+              "position": "Bastón bajo la mano, en la parte inferior de la ilustración.",
+              "x": 0.302,
+              "y": 0.941,
+              "side": "left"
+            },
+            {
+              "name": "Yugo y flechas de Falange",
+              "role": "Emblema falangista en la bandera roja y negra; representa uno de los apoyos del bando sublevado.",
+              "position": "Haz de flechas sobre la franja negra de la bandera del extremo izquierdo.",
+              "x": 0.043,
+              "y": 0.575,
+              "side": "left"
+            },
+            {
+              "name": "Cruz de San Andrés",
+              "role": "Cruz aspada o de Borgoña en la bandera blanca de los tradicionalistas, carlistas y requetés.",
+              "position": "Bandera blanca con aspa roja, detrás de las tropas.",
+              "x": 0.347,
+              "y": 0.245,
+              "side": "left"
+            },
+            {
+              "name": "Bandera de las fuerzas marroquíes",
+              "role": "Enseña verde con estrella: alusión a las fuerzas del Ejército de África.",
+              "position": "Bandera verde con estrella, entre las banderas del fondo izquierdo.",
+              "x": 0.187,
+              "y": 0.22,
+              "side": "left"
+            },
+            {
+              "name": "Águila de San Juan",
+              "role": "Escudo adaptado por el régimen para vincularse simbólicamente a los Reyes Católicos.",
+              "position": "Escudo con águila sobre el último parte de guerra, abajo a la izquierda.",
+              "x": 0.128,
+              "y": 0.774,
+              "side": "left"
+            },
+            {
+              "name": "Último parte de guerra",
+              "role": "«LA GVERRA HA TERMINADO»: parte del 1 de abril de 1939, integrado en la exaltación de la victoria.",
+              "position": "Texto del parte bajo el escudo, en la esquina inferior izquierda.",
+              "x": 0.125,
+              "y": 0.906,
+              "side": "left"
+            },
+            {
+              "name": "Gran Cruz Laureada de San Fernando",
+              "role": "De concesión excepcional, premia el valor heroico y es la máxima recompensa militar española. Franco la recibió el 19 de mayo de 1939.",
+              "position": "Placa de la Gran Cruz Laureada en el pecho de Franco.",
+              "x": 0.723,
+              "y": 0.612,
+              "side": "right"
+            },
+            {
+              "name": "Divisa de capitán general del Ejército",
+              "role": "Bastones cruzados y estrellas: distintivo del máximo empleo del Ejército. Refuerza la representación de Franco como Generalísimo y jefe de las Fuerzas Armadas.",
+              "position": "Bastones cruzados y estrellas en el cuello del uniforme de Franco.",
+              "x": 0.696,
+              "y": 0.477,
+              "side": "right"
+            },
+            {
+              "name": "Aviación",
+              "role": "La aviación militar forma parte de la representación propagandística de la victoria del bando sublevado.",
+              "position": "Aviones sobre el horizonte de la esquina superior derecha.",
+              "x": 0.929,
+              "y": 0.08,
+              "side": "right"
+            }
+          ]
+        }
       }
     },
     {
       "id": "normas-escuela-primaria-1939",
+      "paragraphStarts": [0, 5, 6, 8, 10, 12, 14],
       "title": "Normas para la Escuela Primaria en 1939",
       "type": "texto",
       "blocks": [
@@ -7402,7 +7732,7 @@
           "people": [
             {
               "name": "Antonio Tejero",
-              "role": "Figura identificada como Tejero en el pie de la recopilación",
+              "role": "Teniente coronel de la Guardia Civil que encabezó el asalto al Congreso el 23 de febrero de 1981, durante la votación de investidura de Leopoldo Calvo-Sotelo, tras la dimisión de Adolfo Suárez.",
               "position": "De pie, en primer plano, con el brazo derecho levantado.",
               "x": 0.42,
               "y": 0.31,
@@ -7414,6 +7744,8 @@
     },
     {
       "id": "manifiesto-primo-rivera-al-pais-y-al-ejercito-1923",
+      "attributionEmphasis": ["La Vanguardia"],
+      "paragraphStarts": [0, 1, 13],
       "title": "Manifiesto de Primo de Rivera al país y al Ejército",
       "type": "texto",
       "blocks": [
@@ -7470,6 +7802,7 @@
     },
     {
       "id": "castelar-discurso-sobre-proclamacion-republica-1873",
+      "paragraphStarts": [0, 6],
       "title": "Emilio Castelar sobre la proclamación de la Primera República",
       "type": "texto",
       "blocks": [
@@ -7513,24 +7846,26 @@
         "la monarquía. La monarquía ha muerto sin que nadie haya contribuido a ello. Señores, con Fernando VII",
         "murió la monarquía tradicional; con la fuga de Isabel II, la monarquía parlamentaria, y con la renuncia de",
         "Amadeo nadie ha acabado con ella. Ha muerto por sí misma.”",
-        "Discurso de Castelar en la Cortes. 11 de febrero de 1873",
-        "HISTORIA DE",
-        "ESPAÑA"
+        "Discurso de Castelar en la Cortes. 11 de febrero de 1873"
       ],
       "attributionParagraphs": 1
     }
   ],
   "coverage": {
     "sourceSha256": "40abdd0f45253c3fd364bad6d351c02c3271c0bfaf6c1e1102d6b0c4f6abe300",
-    "sourceDocumentOccurrences": 160,
-    "sourceImageOccurrences": 56,
-    "sourceHeadingCount": 90,
+    "supplementNote": "La huella sourceSha256 corresponde a la importación base. Se añaden puntualmente Esquilache (2013 Reserva B extraordinaria, reproducción de Commons aportada por el usuario), el abrazo de Vergara (2014 Reserva B, imagen extraída del PDF oficial) y dos apariciones de «¡No pasarán!» (2014, examen sin numerar identificado como reserva C en el corpus, y 2015 Examen 6, cotejadas con sus PDF oficiales). El resto de la ampliación del corpus 2008–2026 aún no está íntegramente importado. textGroups agrupa selecciones afines en la vista sin eliminar sus registros ni sus apariciones; paragraphStarts recompone renglones sin cambiar las palabras.",
+    "sourceDocumentOccurrences": 164,
+    "sourceImageOccurrences": 60,
+    "sourceHeadingCount": 92,
     "sourceYearsWithDocumentComment": [
       2008,
       2009,
       2010,
       2011,
       2012,
+      2013,
+      2014,
+      2015,
       2025,
       2026
     ],
@@ -7546,6 +7881,24 @@
     ],
     "formatNote": "En la recopilación, los exámenes 2017–2024 siguen el formato de cuestiones cortas y tema, sin fichas de comentario de documento. Se excluyen de este banco por criterio de formato; no se contabilizan como documentos faltantes.",
     "sourceManifest": [
+      {
+        "key": "h.x5utn9rerhqx:1",
+        "heading": "h.x5utn9rerhqx",
+        "year": 2014,
+        "document": 1,
+        "assignedTo": "abrazo-vergara-1839",
+        "images": [58]
+      },
+      {
+        "key": "h.6w2urkb44k1:2",
+        "heading": "h.6w2urkb44k1",
+        "year": 2013,
+        "document": 2,
+        "assignedTo": "motin-esquilache-1766",
+        "images": [
+          57
+        ]
+      },
       {
         "key": "h.pkvy8jbq5hq:1",
         "heading": "h.pkvy8jbq5hq",
@@ -8936,6 +9289,22 @@
         "document": 2,
         "assignedTo": "investidura-de-felipe-gonzalez-y-politica-exterior",
         "images": []
+      },
+      {
+        "key": "h.yjixy43rc4v8:3",
+        "heading": "h.yjixy43rc4v8",
+        "year": 2014,
+        "document": 1,
+        "assignedTo": "no-pasaran-sitio-madrid",
+        "images": [59]
+      },
+      {
+        "key": "h.nprbq3qsjt1l:3",
+        "heading": "h.nprbq3qsjt1l",
+        "year": 2015,
+        "document": 1,
+        "assignedTo": "no-pasaran-sitio-madrid",
+        "images": [60]
       }
     ]
   }

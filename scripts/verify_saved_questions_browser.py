@@ -21,12 +21,9 @@ def run():
         assert particle.locator("svg").evaluate("n=>getComputedStyle(n).fill") == "none"
         assert particle.evaluate("""n => {
             const frames = n.getAnimations()[0].effect.getKeyframes();
-            return frames[0].filter === 'blur(0px)' && frames[0].opacity === '1'
-                && frames.find(frame => frame.offset === 0.45).filter === 'blur(0px)'
-                && frames.find(frame => frame.offset === 0.45).opacity === '1'
-                && frames.at(-1).filter === 'blur(3px)' && frames.at(-1).opacity === '0'
-                && frames[0].transform.includes('24px')
-                && frames.at(-1).transform.includes('59px');
+            return frames[0].opacity === '1' && frames.at(-1).opacity === '0'
+                && frames[0].transform === 'translateY(-110%)' && frames.at(-1).transform === 'translateY(-270%)'
+                && n.parentElement.matches('button');
         }""")
         particle.wait_for(state="detached")
         review = question.locator(".question-marks").get_by_role("button", name="Necesito repasar", exact=True)
@@ -36,8 +33,10 @@ def run():
         assert page.locator(".review-particle svg").count() == 1
         assert page.locator(".review-particle").evaluate("""n => {
             const icon = document.querySelector('.question-mark-review[aria-pressed=true] svg').getBoundingClientRect();
-            return Math.abs(parseFloat(n.style.left) - (icon.left + icon.width / 2)) < 1
-                && Math.abs(parseFloat(n.style.top) - (icon.top + icon.height / 2)) < 1;
+            const r = n.getBoundingClientRect();
+            return Math.abs(r.left + r.width / 2 - icon.left - icon.width / 2) < 1
+                && (icon.top + icon.height / 2 - r.top - r.height / 2) / icon.height >= 1.09
+                && (icon.top + icon.height / 2 - r.top - r.height / 2) / icon.height <= 2.71;
         }""")
         page.locator(".review-particle").wait_for(state="detached")
         prompt = question.locator("p").first.inner_text().replace("\n", " ")

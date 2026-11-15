@@ -10,10 +10,12 @@
 .question-marks .question-mark-favorite[aria-pressed=true]{background:#4b2e83;color:#fff;border-color:#4b2e83}
 .question-marks .question-mark-review{background:#fff;color:#48632b;border-color:#789326}
 .question-marks .question-mark-review[aria-pressed=true]{background:#d6ee7a;color:#26320c;border-color:#48632b;box-shadow:inset 0 0 0 2px #48632b}
-.favorite-particle{position:fixed;z-index:1200;width:24px;height:24px;color:#7b45bd;pointer-events:none;animation:favorite-rise .7s ease-out forwards}
+.question-marks button{position:relative}
+.favorite-particle{position:absolute;z-index:3;width:22px;height:22px;color:#7b45bd;pointer-events:none;transform-origin:center;animation:favorite-rise .7s ease-out forwards}
 .favorite-particle svg{display:block;width:100%;height:100%;fill:none}
+.question-marks button[aria-pressed=true] .favorite-particle svg{fill:none}
 .review-particle{color:#48632b}
-@keyframes favorite-rise{0%{transform:translate(-50%,calc(-50% - 24px));opacity:1;filter:blur(0)}45%{opacity:1;filter:blur(0)}100%{transform:translate(-50%,calc(-50% - 59px));opacity:0;filter:blur(3px)}}
+@keyframes favorite-rise{0%{transform:translateY(-110%);opacity:1;filter:blur(0)}45%{opacity:1;filter:blur(0)}100%{transform:translateY(-270%);opacity:0;filter:blur(3px)}}
 @media(prefers-reduced-motion:reduce){.favorite-particle{display:none;animation:none}}
 .question-marks button:focus-visible,.saved-tabs button:focus-visible{outline:3px solid #bc6e3f;outline-offset:3px}
 .saved-tabs{display:flex;flex-wrap:wrap;gap:10px}

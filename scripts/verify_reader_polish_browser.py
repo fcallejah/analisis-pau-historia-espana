@@ -53,7 +53,7 @@ def check(browser, options):
     page.locator("#document-search").fill("Primo")
     open_card(page, LARGE)
     box = page.locator(".document-full-source")
-    box.locator(".document-zoom").click()
+    assert box.locator(".document-zoom").count() == 0
     assert centered(page)
     box.evaluate("node => node.scrollLeft = (node.scrollWidth - node.clientWidth) * .7")
     dialog = page.locator("#document-dialog")
@@ -62,7 +62,7 @@ def check(browser, options):
         const saved = JSON.parse(sessionStorage.getItem(key));
         const dialog = document.querySelector('#document-dialog');
         const box = document.querySelector('.document-full-source');
-        return saved?.dialog?.zoom && saved.dialog.position.top === dialog.scrollTop
+        return saved?.dialog && saved.dialog.position.top === dialog.scrollTop
             && saved.dialog.source.left === box.scrollLeft;
     }""", arg=VIEW)
     saved = page.evaluate("key => JSON.parse(sessionStorage.getItem(key))", VIEW)
@@ -70,6 +70,7 @@ def check(browser, options):
         const old = JSON.parse(sessionStorage.getItem(key));
         delete old.savedFilter;
         delete old.dialog.opener;
+        old.dialog.zoom = true;
         sessionStorage.setItem(key, JSON.stringify(old));
     }""", VIEW)
     page.add_init_script("""
@@ -117,10 +118,8 @@ def check(browser, options):
     for identifier in (LARGE, "retrato-ramon-maria-narvaez"):
         open_card(page, identifier)
         assert centered(page)
-        box.locator(".document-zoom").click()
-        assert centered(page), identifier
-        box.locator(".document-zoom").click()
-        assert centered(page), identifier
+        assert box.locator(".document-zoom").count() == 0
+        assert dialog.locator(".document-reader-controls button").count() == 3
         page.keyboard.press("Escape")
     open_card(page, "azana-homenaje-coruna-franco")
     page.locator(".document-person-toggle").click()
@@ -210,4 +209,4 @@ if __name__ == "__main__":
             browser = engine.launch()
             check(browser, options)
             browser.close()
-    print("PASS: legacy recovery without visible jumps, centered zoom, reading cue, roles and personal-list headings")
+    print("PASS: legacy recovery without visible jumps, centered reproductions, reader controls, reading cue, roles and personal-list headings")
