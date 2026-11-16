@@ -178,6 +178,33 @@ def check(browser, options):
                 && parseFloat(s.paddingRight) >= Math.max(0, m.actualBoundingBoxRight - m.width) + 1;
         }""")
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+        for theme, expected in (("light", "rgb(178, 58, 48)"), ("dark", "rgb(255, 170, 160)")):
+            page.evaluate("theme=>document.documentElement.dataset.theme=theme", theme)
+            for year in range(2017, 2025):
+                page.select_option("#document-year", str(year))
+                exam = page.locator("#document-exam")
+                assert exam.is_disabled()
+                assert exam.locator("option:checked").inner_text() == "Sin comentario de documento"
+                assert exam.evaluate("node=>getComputedStyle(node).color") == expected
+                assert exam.evaluate("node=>getComputedStyle(node).webkitTextFillColor") == expected
+                assert page.locator("#document-exam-hint").evaluate("node=>getComputedStyle(node).color") == expected
+                assert page.locator("#document-exam-hint").inner_text() == (
+                    "Entre 2017-2024, ambos inclusive, el formato PAU era solo de cuestiones cortas y tema; "
+                    "no faltan comentarios de documentos porque no cayó ninguno."
+                )
+                assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+            for year, count in ((2025, 6), (2026, 4), (2014, 5), (2016, 5)):
+                page.select_option("#document-year", str(year))
+                assert page.locator("#document-exam option:not(:disabled)").count() == count + 1
+                assert page.locator("#document-exam option").count() == 7
+                if year in (2014, 2016):
+                    label = "Reserva ? - No existe" if year == 2014 else "Suplente ? - No existe"
+                    assert page.locator("#document-exam option:disabled").all_text_contents() == [label]
+                assert "is-format-warning" not in (page.locator("#document-exam").get_attribute("class") or "")
+                assert not page.locator("#document-exam").is_disabled()
+                assert page.locator("#document-exam option").nth(1).inner_text() == "Titular ordinaria"
+                assert page.locator("#document-exam option").nth(2).inner_text() == "Titular extraordinaria"
+        page.evaluate("document.documentElement.dataset.theme='light'")
     page.goto(f"{BASE}/mis-preguntas.html")
     check_handwritten_title(page)
     assert page.locator("main").get_attribute("class") == "documents-main saved-questions-main"

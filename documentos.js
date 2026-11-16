@@ -31,6 +31,7 @@
   }
   window.visualViewport?.addEventListener("resize", syncPageZoom);
   let documents = [];
+  let officialExams = new Map();
   const searchIndex = new Map();
   let type = "all";
   let savedFilter = "all";
@@ -243,6 +244,8 @@
     && (!exam.value || examKey(appearance) === exam.value);
   const matchingAppearances = (record) => record.appearances.filter(matchesExam);
   function updateExamOptions(selected = "") {
+    const withoutDocumentExercise = Number(examYear.value) >= 2017 && Number(examYear.value) <= 2024;
+    const availability = officialExams.get(Number(examYear.value));
     const options = new Map();
     if (examYear.value) {
       documents.flatMap((record) => record.appearances).filter((appearance) =>
@@ -251,6 +254,7 @@
       });
     }
     const placeholder = element("option", !examYear.value ? "Elige un año"
+      : withoutDocumentExercise ? "Sin comentario de documento"
       : options.size ? "Todos los exámenes" : "Sin exámenes incorporados");
     placeholder.value = "";
     exam.replaceChildren(placeholder);
@@ -261,14 +265,24 @@
       option.value = key;
       exam.append(option);
     });
+    (availability?.unavailableExams || []).forEach((label, index) => {
+      const option = element("option", label);
+      option.value = `unavailable-${index + 1}`;
+      option.disabled = true;
+      exam.append(option);
+    });
     exam.disabled = !options.size;
     exam.value = options.has(selected) ? selected : "";
     if (selected && !options.has(selected)) console.warn("El examen guardado ya no está incorporado; se muestran todos los del año.");
+    exam.classList.toggle("is-format-warning", withoutDocumentExercise);
+    examHint.classList.toggle("is-format-warning", withoutDocumentExercise);
+    if (withoutDocumentExercise) exam.title = placeholder.textContent;
+    else exam.removeAttribute("title");
     examHint.textContent = !examYear.value ? "Elige un año para consultar sus exámenes incorporados."
-      : options.size ? `${options.size} ${options.size === 1 ? "examen con documentos incorporados" : "exámenes con documentos incorporados"} de ${examYear.value}. Se conservan las etiquetas de la recopilación; su importación aún no es completa.`
-      : Number(examYear.value) >= 2017 && Number(examYear.value) <= 2024
-        ? "En 2017–2024 el formato es de cuestiones cortas y tema, sin comentario de documento."
-        : "Todavía no hay documentos de este año incorporados al banco; la recopilación completa aún está pendiente de importar.";
+      : withoutDocumentExercise ? "Entre 2017-2024, ambos inclusive, el formato PAU era solo de cuestiones cortas y tema; no faltan comentarios de documentos porque no cayó ninguno."
+      : availability ? `${options.size} exámenes con documentos incorporados de ${examYear.value}. ${availability.note}${availability.unavailableExams?.length ? " Las opciones desactivadas señalan huecos del archivo; no se cuentan como exámenes." : ""}`
+      : options.size ? `${options.size} ${options.size === 1 ? "examen con documentos incorporados" : "exámenes con documentos incorporados"} de ${examYear.value}. Se conservan las etiquetas de la recopilación; el cotejo íntegro de textos e imágenes sigue pendiente.`
+      : "Todavía no hay documentos de este año incorporados al banco; la recopilación completa aún está pendiente de importar.";
   }
   const star = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg>';
   const cap = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5Z M5 10v6q7 5 14 0v-6 M22 8v8"/><path d="M10 15a2 2 0 0 1 4 0c0 1-2 1-2 2 M12 19h.01"/></svg>';
@@ -1247,6 +1261,7 @@
         throw new Error("Las apariciones y las imágenes no coinciden con el inventario");
       }
       documents = groupTexts(data.documents, data.textGroups);
+      officialExams = new Map((coverage.officialExamAvailability || []).map((entry) => [entry.year, entry]));
       searchIndex.clear();
       documents.forEach((record) => searchIndex.set(record.id, normalize(searchableText(record))));
       examYear.replaceChildren(element("option", "Todos los años"));
@@ -1261,7 +1276,7 @@
         scope.textContent =
           `${documents.length} fichas · ${data.documents.length} selecciones conservadas · ${coverage.sourceDocumentOccurrences} apariciones documentales · `
           + `${coverage.sourceImageOccurrences} apariciones de imágenes. ${coverage.formatNote} `
-          + "El recuento refleja solo la exportación disponible; las transcripciones y la cobertura deben cotejarse con los PDF oficiales.";
+          + "El recuento refleja solo las fuentes incorporadas; las transcripciones y la cobertura deben cotejarse con los PDF oficiales.";
       }
       const requestedBlock = new URLSearchParams(location.search).get("bloque");
       if (restoredView) {

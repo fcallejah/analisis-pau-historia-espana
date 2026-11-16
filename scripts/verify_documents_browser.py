@@ -134,6 +134,7 @@ def check_reader_navigation(browser):
         assert abs(page.evaluate("scrollY") - position) < 2
         page.locator("#document-reset").click()
         page.select_option("#document-year", "2013")
+        page.locator("#document-search").fill("Esquilache")
         assert page.locator(".document-card").count() == 1
         page.locator(".document-open").click()
         assert page.locator(".document-previous").is_disabled()
@@ -213,13 +214,16 @@ def check_grouped_texts_and_exam_filters(browser):
     assert years == [""] + [str(year) for year in range(2008, 2027)]
     for year in range(2008, 2027):
         page.select_option("#document-year", str(year))
-        options = page.locator("#document-exam option").evaluate_all("(options)=>options.map(option=>option.value)")
+        options = page.locator("#document-exam option:not(:disabled)").evaluate_all("(options)=>options.map(option=>option.value)")
         expected_exams = {exam_key(appearance) for record in DATA["documents"] for appearance in record["appearances"]
                           if appearance["year"] == year}
         assert set(options[1:]) == expected_exams, (year, options, expected_exams)
         priority = [key for key in ("titular ordinaria", "titular extraordinaria") if key in expected_exams]
         assert options[1:1 + len(priority)] == priority, (year, options)
         assert page.locator("#document-exam").is_disabled() == (not expected_exams)
+        missing = next((entry.get("unavailableExams", []) for entry in RAW_DATA["coverage"]["officialExamAvailability"]
+                        if entry["year"] == year), [])
+        assert page.locator("#document-exam option:disabled").all_text_contents() == missing
         for selected in options:
             if expected_exams:
                 page.select_option("#document-exam", selected)
@@ -236,7 +240,7 @@ def check_grouped_texts_and_exam_filters(browser):
                 f'{len(expected)} {"documento" if len(expected) == 1 else "documentos"} · '
                 f'{total} {"aparición incorporada" if total == 1 else "apariciones incorporadas"}')
         if year == 2017:
-            assert "sin comentario de documento" in page.locator("#document-exam-hint").inner_text()
+            assert "no faltan comentarios de documentos porque no cayó ninguno" in page.locator("#document-exam-hint").inner_text()
 
     page.select_option("#document-year", "2012")
     page.select_option("#document-exam", "examen 4")
@@ -268,7 +272,7 @@ def check_grouped_texts_and_exam_filters(browser):
     assert page.locator("#document-exam").is_disabled()
     assert page.locator(".document-card").count() == len(DATA["documents"])
 
-    canonical, alias = RAW_DATA["textGroups"][5]
+    canonical, alias = RAW_DATA["textGroups"][5][:2]
     page.evaluate("""({canonical,alias})=>localStorage.setItem('pau-he.documents.marks.v1',JSON.stringify({
         [canonical]:{favorite:false,review:true},[alias]:{favorite:true,review:false}}))""",
                   {"canonical": canonical, "alias": alias})
@@ -288,7 +292,7 @@ def check_grouped_texts_and_exam_filters(browser):
     page.wait_for_selector("#document-dialog[open]", state="attached")
     assert page.locator("#document-year").input_value() == "2026"
     page.locator(".document-close").click()
-    canonical, alias = RAW_DATA["textGroups"][0]
+    canonical, alias = RAW_DATA["textGroups"][0][:2]
     page.evaluate("""({alias})=>{
         const key='pau-he.documents.view.v1';
         const state=JSON.parse(sessionStorage.getItem(key));
@@ -483,8 +487,8 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=57"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=51"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=59"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=53"]').count() == 1
         context.close()
 
 def check_fitted_media_and_people(browser):
@@ -1278,7 +1282,7 @@ def run():
         page.locator('.document-card[data-id="motin-esquilache-1766"] .document-open').click()
         assert page.locator(".document-task").count() == 0
         assert "fuera del comentario de documento del modelo 2026–27" in page.locator("#document-dialog-content").inner_text()
-        assert "2013 · Reserva B extraordinaria · Opción A · Documento 2" in page.locator("#document-dialog .exam-pill").inner_text()
+        assert "2013 · Reserva B extraordinaria · Opción A · Documento 2" in page.locator("#document-dialog .exam-pill").all_text_contents()
         page.locator(".document-close").click()
         page.reload()
         page.wait_for_selector(".document-card")
@@ -1689,7 +1693,7 @@ def run():
         page.locator("#document-reset").click()
         page.select_option("#document-block", "10")
         page.locator('.document-card[data-id="constitucion-1931-articulos-suplente-a"] .document-open').click()
-        paragraphs = page.locator(".document-full-source blockquote p").all_text_contents()
+        paragraphs = page.locator(".document-full-source > blockquote p").all_text_contents()
         assert "trabajadores de toda clase, que se organiza" in paragraphs[0]
         assert paragraphs[1] == "Los poderes de todos sus órganos emanan del pueblo."
         assert paragraphs[4] == "Artículo 2. Todos los españoles son iguales ante la ley."
@@ -1699,7 +1703,7 @@ def run():
         page.select_option("#document-block", "12")
         assert page.locator(".document-card").count() == sum(12 in document["blocks"] for document in DATA["documents"])
         page.get_by_role("button", name="Ver documento: El preámbulo de la Constitución de 1978", exact=True).click()
-        paragraphs = page.locator(".document-full-source blockquote p").all_text_contents()
+        paragraphs = page.locator(".document-full-source > blockquote p").all_text_contents()
         assert "orden económico y social justo." in paragraphs[3]
         assert paragraphs[-1].endswith("pueblos de la Tierra.")
         assert len(paragraphs) == 9

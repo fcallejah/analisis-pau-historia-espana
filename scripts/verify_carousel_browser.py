@@ -119,6 +119,10 @@ with sync_playwright() as p:
         check_study_cards(page, width)
         check_footer(page, width)
         page.locator("#apuntes-track").scroll_into_view_if_needed()
+        controls = page.locator(".apuntes-controls").bounding_box()
+        cta = page.locator(".documents-cta").bounding_box()
+        assert controls["y"] + controls["height"] <= cta["y"], (width, controls, cta)
+        assert 0 <= cta["x"] < cta["x"] + cta["width"] <= width
         assert page.locator(".apuntes-loop-gap[aria-hidden=true]").count() == 1
         assert page.evaluate("""() => {
             const last = document.querySelectorAll('#apuntes-track > .apunte')[11];

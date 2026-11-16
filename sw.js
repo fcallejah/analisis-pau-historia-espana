@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v302";
+const CACHE = "pau-he-v304";
 const CORE = [
   "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./site-footer.css",
@@ -68,6 +68,15 @@ const CORE = [
   "./assets/documentos/elecciones-generales-1982-congreso-senado-oficial-2026.png",
   "./assets/documentos/primo-rivera-sanjurjo-examen-2009-05.png",
   "./assets/documentos/motin-esquilache-commons.png",
+  "./assets/documentos/prim-busca-regimen.jpg",
+  "./assets/documentos/seccion-femenina-1950.jpg",
+  "./assets/documentos/mural-constitucion-1812.jpg",
+  "./assets/documentos/presidentes-2014.jpg",
+  "./assets/documentos/directorio-civil-1925.jpg",
+  "./assets/documentos/espartero-2016.png",
+  "./assets/documentos/narvaez-2016.png",
+  "./assets/documentos/carteles-guerra-civil-2016.png",
+  "./assets/documentos/elecciones-cortes-1931.svg",
   "./assets/documentos/abrazo-vergara-oficial-2014.jpg",
   "./assets/documentos/primo-rivera-sanjurjo-examen-2012-06.png",
   "./assets/documentos/mapa-primera-guerra-carlista-2012-bn.png",

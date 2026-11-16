@@ -165,7 +165,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(image_dimensions(ROOT / record["image"]["src"]), (2488, 1370))
         self.assertIn("CC BY-SA 3.0", record["image"]["reproductionNote"])
         self.assertIn("fuera del comentario", record["quality"])
-        self.assertEqual(len(record["appearances"]), 1)
+        self.assertEqual(len(record["appearances"]), 2)
         appearance = record["appearances"][0]
         self.assertEqual((appearance["year"], appearance["exam"], appearance["route"], appearance["document"]),
                          (2013, "2013 Reserva B extraordinaria", "Opción A", 2))
@@ -726,8 +726,8 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         documents = {document["id"]: document for document in data["documents"]}
         expected = {
-            "desamortizacion-eclesiastica-civil-1834-1856": 2,
-            "resultados-electorales-restauracion-1876-1886": 2,
+            "desamortizacion-eclesiastica-civil-1834-1856": 4,
+            "resultados-electorales-restauracion-1876-1886": 3,
             "composicion-congreso-elecciones-febrero-1936": 1,
             "composicion-congreso-elecciones-1977": 1,
         }
@@ -744,7 +744,7 @@ class DocumentCorpusTests(unittest.TestCase):
         restoration = documents["resultados-electorales-restauracion-1876-1886"]
         self.assertEqual(
             [appearance["year"] for appearance in restoration["appearances"]],
-            [2010, 2012],
+            [2010, 2012, 2014],
         )
         desamortization = documents["desamortizacion-eclesiastica-civil-1834-1856"]
         original = desamortization["image"]["corpusSrc"]
@@ -785,10 +785,10 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(len(years), 72)
         self.assertEqual(len({item["heading"] for item in years}), 18)
         self.assertEqual(sum(len(item["images"]) for item in years), 20)
-        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 164)
-        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 60)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 248)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 96)
         image_ids = [image_id for item in manifest for image_id in item["images"]]
-        self.assertEqual(sorted(image_ids), list(range(1, 61)))
+        self.assertEqual(sorted(image_ids), list(range(1, 97)))
         self.assertEqual(len(image_ids), len(set(image_ids)))
         self.assertIn(
             "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
@@ -833,8 +833,64 @@ class DocumentCorpusTests(unittest.TestCase):
             self.assertTrue((ROOT / image["src"]).is_file())
         self.assertEqual(
             [appearance["sourceKey"] for appearance in record["appearances"]],
-            ["h.ap6vdvuofbyh:4", "h.d40v7ql2zdxq:4", "h.s6w9kjl20asd:3"],
+            ["h.ap6vdvuofbyh:4", "h.d40v7ql2zdxq:4", "h.s6w9kjl20asd:3", "h.r47y1233hkke:4"],
         )
+
+    def test_completed_exam_years_preserve_four_distinct_documents_per_exam(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        appearances = [appearance for record in data["documents"] for appearance in record["appearances"]]
+        availability = {entry["year"]: entry for entry in data["coverage"]["officialExamAvailability"]}
+        for year, count in {2013: 6, 2014: 5, 2015: 6, 2016: 5, 2025: 6, 2026: 4}.items():
+            with self.subTest(year=year):
+                selected = [a for a in appearances if a["year"] == year]
+                headings = {a["sourceKey"].split(":")[0] for a in selected}
+                self.assertEqual(len(headings), count)
+                self.assertEqual(len(selected), count * 4)
+                self.assertEqual(availability[year]["exams"], count)
+                self.assertEqual(count + len(availability[year].get("unavailableExams", [])), 6)
+                for heading in headings:
+                    exam = [a for a in selected if a["sourceKey"].startswith(heading + ":")]
+                    self.assertEqual({a["sourceOrdinal"] for a in exam}, {1, 2, 3, 4})
+                    if year < 2017:
+                        self.assertEqual({(a["route"], a["document"]) for a in exam},
+                                         {("Opción A", 1), ("Opción A", 2), ("Opción B", 1), ("Opción B", 2)})
+                        self.assertTrue(all(a["officialPage"] in (1, 2) and a["officialFile"].endswith(".pdf") for a in exam))
+        expected = {"h.5qiyxceviwuz": "2025 Suplente 1 A", "h.6cr2y5ox1qsc": "2025 Suplente 1 B",
+                    "h.7bxjd4xweowb": "2025 Suplente 2 A", "h.tyo9mvypmp5d": "2025 Suplente 2 B",
+                    "h.vu325nx5299w": "2025 Titular ordinaria", "h.tvlhtdubp2jf": "2025 Titular extraordinaria"}
+        self.assertEqual({a["sourceKey"].split(":")[0]: a["exam"] for a in appearances if a["year"] == 2025}, expected)
+
+    def test_new_reproductions_do_not_merge_different_compositions(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        for new, old in [
+            ("prim-busca-regimen-caricatura", "caricatura-se-colocan-reyes-1869"),
+            ("mural-constitucion-1812-cadiz", "juramento-cortes-constituyentes-isla-leon-1810"),
+            ("presidentes-monarquia-juan-carlos-2014", "reunion-expresidentes-gobierno"),
+            ("carteles-guerra-civil-2016", "cartel-falange"),
+            ("directorio-civil-alfonso-xiii-1925", "primo-rivera-directorio-civil-fotografia-1925"),
+        ]:
+            with self.subTest(document=new):
+                image = records[new]["image"]
+                self.assertTrue((ROOT / image["src"]).is_file())
+                self.assertNotEqual(image["src"], records[old].get("image", {}).get("src"))
+        portraits = records["espartero-narvaez-retratos-2016"]["image"]
+        self.assertEqual(portraits["examCaption"]["text"], "General Baldomero Espartero")
+        self.assertEqual(portraits["additionalImages"][0]["examCaption"]["text"], "General Ramón María Narváez")
+        for image in [portraits, *portraits["additionalImages"]]:
+            self.assertEqual(image_dimensions(ROOT / image["src"]), (image["width"], image["height"]))
+        visits = records["primo-rivera-visita-tropas-marruecos"]["appearances"]
+        self.assertEqual([a["year"] for a in visits], [2008, 2011, 2013])
+
+    def test_1931_election_table_preserves_its_official_figures_and_parties(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "elecciones-cortes-1931")
+        rows = record["table"]["rows"]
+        self.assertEqual([row[2:] for row in rows], [["279", "2.881.056"], ["119", "1.165.692"], ["41", "657.872"]])
+        rendered = " ".join(ET.parse(ROOT / record["image"]["src"]).getroot().itertext())
+        for row in rows:
+            for value in [row[0], *row[1].split("; "), *row[2:]]:
+                self.assertIn(value, rendered)
 
     @staticmethod
     def _normalize_table_text(value):
