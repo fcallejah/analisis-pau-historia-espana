@@ -6,16 +6,16 @@
   <meta name="description" content="Tus documentos PAU de Historia de España guardados como favoritos o pendientes de repaso.">
   <title>Mis documentos · PAU Historia</title>
   <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
-  <script src="document-view.js?v=1"></script>
+  <script src="document-view.js?v=2"></script>
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="apuntes.css?v=26">
   <link rel="stylesheet" href="practice.css?v=6">
   <link rel="stylesheet" href="site-header.css?v=5">
-  <link rel="stylesheet" href="documentos.css?v=53">
+  <link rel="stylesheet" href="documentos.css?v=60">
   <script src="mark-feedback.js?v=1" defer></script>
   <link rel="stylesheet" href="site-footer.css?v=2">
   <script src="site-header.js?v=2" defer></script>
-  <script src="documentos.js?v=59" defer></script>
+  <script src="documentos.js?v=71" defer></script>
 </head>
 <body data-document-library="saved">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -30,7 +30,7 @@
       <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z" fill="currentColor"/></svg>
       <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
-    <a class="header-tool contact-tool" href="mailto:fcalhid2503@g.educaand.es" aria-label="Enviar una duda por correo" title="Enviar una duda por correo"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
+    <a class="header-tool contact-tool" href="https://forms.gle/QoCjZw2A3EdgHps8A" target="_blank" rel="noopener noreferrer" aria-label="Enviar una duda mediante el formulario" title="Enviar una duda mediante el formulario"><svg class="contact-symbol" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.4 2.4 0 1 1 4.1 1.7c-1.1 1-1.7 1.5-1.7 3"/><path d="M12 17.4h.01"/></svg><span class="contact-label">Dudas</span></a>
   </header>
   <main class="documents-main" id="contenido">
     <p class="eyebrow">Guarda · organiza · repasa</p>
@@ -54,9 +54,9 @@
       </div>
       <div class="document-search-row">
         <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar en tus documentos, textos, comentarios, pies, personajes y símbolos" placeholder="Busca entre tus documentos…" autocomplete="off"></label>
-        <label class="document-block-label document-year-label" for="document-year">Año de examen<select id="document-year" aria-describedby="document-exam-hint"><option value="">Todos los años</option></select></label>
-        <label class="document-block-label document-exam-label" for="document-exam">Examen<select id="document-exam" aria-describedby="document-exam-hint" disabled><option value="">Elige un año</option></select></label>
-        <label class="document-block-label" for="document-block">Bloque<select id="document-block">
+        <label class="document-block-label document-year-label" for="document-year"><select id="document-year" aria-label="Año de examen" aria-describedby="document-exam-hint"><option value="">Todos los años</option></select></label>
+        <label class="document-block-label document-exam-label" for="document-exam"><select id="document-exam" aria-label="Examen" aria-describedby="document-exam-hint" disabled><option value="">Elige un año</option></select></label>
+        <label class="document-block-label" for="document-block"><select id="document-block" aria-label="Bloque">
           <option value="">Todos los bloques (4–12)</option>
           <option value="4">4 · Reformismo de los Borbones (solo archivo histórico)</option>
           <option value="5">5 · La crisis del Antiguo Régimen (1788–1833)</option>
@@ -69,7 +69,8 @@
           <option value="12">12 · La transición y la democracia (desde 1975)</option>
         </select></label>
       </div>
-      <p id="document-exam-hint" class="document-exam-hint" role="status">Elige un año para consultar sus exámenes incorporados.</p>
+      <p id="document-exam-hint" class="document-exam-hint" role="status" hidden></p>
+      <hr class="document-filter-divider">
       <div class="document-topic-heading">
         <p class="document-topic-label" id="document-topic-label">Explora tus temáticas</p>
         <label class="document-topic-search" for="document-topic-search">
@@ -96,6 +97,12 @@
       </div>
       <p class="document-topic-hint">Las burbujas cuentan apariciones del corpus entre tus documentos filtrados; no son una predicción del examen.</p>
       <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
+      <hr class="document-filter-divider">
+      <div class="document-frequency-controls" role="group" aria-labelledby="document-frequency-label">
+        <p class="document-topic-label" id="document-frequency-label">Frecuencias por subbloque · 26–27</p>
+        <select id="document-unit" class="document-unit-select" aria-label="Subbloque de las orientaciones 2026–27"><option value="">Todos los subbloques</option></select>
+        <button id="document-frequency-sort" class="document-frequency-sort" type="button" aria-pressed="false">↓ Más frecuentes primero</button>
+      </div>
       <div class="document-results-bar"><p id="document-count" role="status">Cargando tus documentos…</p></div>
     </section>
     <p id="document-storage-status" class="document-storage-status" role="status" hidden></p>
@@ -107,6 +114,7 @@
     <section class="document-coverage" aria-labelledby="saved-help-title">
       <h2 id="saved-help-title">Tu colección personal</h2>
       <p>La estrella conserva tus favoritos y el birrete señala lo que necesitas repasar. Puedes cambiar las marcas aquí o en el banco; ambas páginas comparten tu colección. Los filtros y la posición se conservan por separado en cada página.</p>
+      <p>Las píldoras moradas abren el PDF concreto de cada examen en Drive, en otra pestaña. Estos PDF externos requieren conexión; tu colección y las fichas descargadas siguen disponibles sin conexión.</p>
       <p>No se mezclan con tus preguntas cortas ni se sincronizan entre dispositivos. Las fichas proceden de la <a href="https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit" target="_blank" rel="noopener noreferrer">recopilación del corpus <svg class="document-link-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg></a>; el <a href="documentos.html#cobertura">banco explica su cobertura y el cambio al modelo 2026–27</a>.</p>
     </section>
   </main>

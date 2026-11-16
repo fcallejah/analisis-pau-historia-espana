@@ -10,16 +10,30 @@ BASE = "http://localhost:8765"
 RAW_DATA = json.loads((Path(__file__).resolve().parent.parent / "data/documentos.json").read_text())
 
 
+def text_content_size(record):
+    end = len(record["text"]) - record.get("attributionParagraphs", 0)
+    body = " ".join(line for index, line in enumerate(record["text"])
+                    if index < end and index not in record.get("headingParagraphs", []))
+    return len(re.findall(r"[^\W_]+", body))
+
+
+def ordered_versions(records, identities):
+    ranked = sorted((records[identity] for identity in identities), key=text_content_size, reverse=True)
+    primary = records[records[identities[0]]["primaryTextId"]] if "primaryTextId" in records[identities[0]] else ranked[0]
+    return [primary] + [version for version in ranked if version["id"] != primary["id"]]
+
+
 def grouped_records(data):
     records = {record["id"]: record for record in data["documents"]}
     secondary = set()
     replacements = {}
     for identities in data.get("textGroups", []):
         canonical = records[identities[0]]
-        primary = records[canonical.get("primaryTextId", canonical["id"])]
-        versions = [primary] + [records[identity] for identity in identities if identity != primary["id"]]
+        versions = ordered_versions(records, identities)
+        primary = versions[0]
         replacements[identities[0]] = {
             **primary, "id": canonical["id"], "memberIds": identities, "textVersions": versions,
+            **({"studyCompilation": canonical["studyCompilation"]} if "studyCompilation" in canonical else {}),
             "tags": list(dict.fromkeys(tag for version in versions for tag in version["tags"])),
             "blocks": list(dict.fromkeys(block for version in versions for block in version["blocks"])),
             "appearances": sorted((appearance for version in versions for appearance in version["appearances"]),
@@ -32,7 +46,9 @@ def grouped_records(data):
 DATA = {**RAW_DATA, "documents": grouped_records(RAW_DATA), "textGroups": []}
 
 
-def reading_paragraphs(record):
+def reading_paragraphs(record, *, use_compilation=True):
+    if use_compilation:
+        record = record.get("studyCompilation") or record
     numbered = re.compile(r"""^\s*[«“"']*\d+[ºª]?\)\s""")
     starts = sorted(set(record.get("paragraphStarts", range(len(record["text"])))) |
                     {index for index, line in enumerate(record["text"]) if numbered.match(line)})
@@ -52,6 +68,11 @@ def normalize(value):
     return "".join(character for character in unicodedata.normalize("NFD", value.lower())
                    if not unicodedata.combining(character))
 
+def reveal_historical(page):
+    toggle = page.locator(".document-history-toggle")
+    if toggle.count() and toggle.get_attribute("aria-expanded") == "false":
+        toggle.click()
+
 
 def check_numbered_paragraphs(browser):
     fixture = json.loads(json.dumps(RAW_DATA))
@@ -62,6 +83,7 @@ def check_numbered_paragraphs(browser):
                  "con su continuación.", "3º) Tercer apartado. 11º) Undécimo apartado.",
                  "4ª) Cuarto apartado.", "Referencia final"],
         "paragraphStarts": [0, 5], "attributionParagraphs": 1,
+        "primaryTextId": record["id"],
     })
     context = browser.new_context(service_workers="block")
     page = context.new_page()
@@ -92,10 +114,10 @@ def check_reader_navigation(browser):
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto(f"{BASE}/documentos.html")
-        page.wait_for_selector(".document-card")
-        first_ids = page.locator(".document-card").evaluate_all(
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+        first_ids = page.locator(".document-card:visible").evaluate_all(
             "(cards)=>cards.slice(0,2).map(card=>card.dataset.id)")
-        page.locator(".document-open").first.click()
+        page.locator(".document-open:visible").first.click()
         assert page.locator(".document-previous").is_disabled()
         page.locator(".document-next").click()
         assert page.locator("#document-dialog-title").inner_text() == records[first_ids[1]]["title"]
@@ -135,6 +157,7 @@ def check_reader_navigation(browser):
         page.locator("#document-reset").click()
         page.select_option("#document-year", "2013")
         page.locator("#document-search").fill("Esquilache")
+        reveal_historical(page)
         assert page.locator(".document-card").count() == 1
         page.locator(".document-open").click()
         assert page.locator(".document-previous").is_disabled()
@@ -145,7 +168,7 @@ def check_reader_navigation(browser):
         for identity in first_ids:
             page.locator(f'.document-card[data-id="{identity}"] [data-document-mark="favorite"]').click()
         page.goto(f"{BASE}/mis-documentos.html")
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert page.locator(".document-card").count() == 2
         page.locator(".document-open").first.click()
         page.locator(".document-next").click()
@@ -160,6 +183,41 @@ def check_reader_navigation(browser):
         context.close()
 
 
+def check_text_content_ranking(browser):
+    fixture = json.loads(json.dumps(RAW_DATA))
+    records = {record["id"]: record for record in fixture["documents"]}
+    shortest = records["manifiesto-de-sandhurst"]
+    shortest["text"] = ["Encabezado extenso " * 300] + shortest["text"] + ["Referencia extensa " * 300]
+    shortest["headingParagraphs"] = [0]
+    shortest["attributionParagraphs"] = 1
+    context = browser.new_context(service_workers="block")
+    page = context.new_page()
+    page.route("**/data/documentos.json", lambda route: route.fulfill(json=fixture))
+    page.goto(f"{BASE}/documentos.html")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+    page.locator('.document-card[data-id="manifiesto-de-sandhurst-llamamiento-a-la-restauracion"] .document-open').click()
+    group = next(group for group in fixture["textGroups"]
+                 if group[0] == "manifiesto-de-sandhurst-llamamiento-a-la-restauracion")
+    versions = ordered_versions(records, group)
+    complete = versions[0]
+    assert complete["id"] != shortest["id"]
+    assert page.locator(".document-full-source > blockquote p").all_text_contents() == reading_paragraphs(complete)
+    page.locator(".document-text-versions > summary").click()
+    assert page.locator(".document-text-version").evaluate_all(
+        "nodes=>nodes.map(node=>node.dataset.versionId)") == [version["id"] for version in versions[1:]]
+    legacy = page.evaluate("JSON.parse(sessionStorage.getItem('pau-he.documents.view.v1'))")
+    legacy["dialog"].pop("selectionsGrouped", None)
+    legacy["dialog"]["details"] = [False, True, False, True]
+    page.add_init_script(
+        f"sessionStorage.setItem('pau-he.documents.view.v1', {json.dumps(json.dumps(legacy))})")
+    page.reload()
+    page.wait_for_selector("#document-dialog[open]", state="attached")
+    page.wait_for_function("!document.documentElement.hasAttribute('data-document-restoring')")
+    assert page.locator(".document-text-versions").evaluate("node=>node.open")
+    assert page.locator(".document-guide").evaluate("node=>node.open")
+    context.close()
+
+
 def check_grouped_texts_and_exam_filters(browser):
     raw_records = {record["id"]: record for record in RAW_DATA["documents"]}
     context = browser.new_context(service_workers="block", reduced_motion="reduce")
@@ -167,39 +225,56 @@ def check_grouped_texts_and_exam_filters(browser):
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.goto(f"{BASE}/documentos.html")
-    page.wait_for_selector(".document-card")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+    reveal_historical(page)
     assert page.locator(".document-card").count() == len(DATA["documents"])
     for identities in RAW_DATA["textGroups"]:
         canonical = raw_records[identities[0]]
-        primary = raw_records[canonical.get("primaryTextId", canonical["id"])]
+        versions = ordered_versions(raw_records, identities)
+        primary = versions[0]
         for identity in identities[1:]:
             assert page.locator(f'.document-card[data-id="{identity}"]').count() == 0
         page.locator(f'.document-card[data-id="{canonical["id"]}"] .document-open').click()
-        assert page.locator(".document-full-source > blockquote p").all_text_contents() == reading_paragraphs(primary)
-        expected_sources = [appearance["sourceUrl"] for identity in identities for appearance in raw_records[identity]["appearances"]]
+        assert page.locator(".document-full-source > blockquote p").all_text_contents() == reading_paragraphs(
+            canonical.get("studyCompilation") or primary)
+        expected_sources = [appearance["pdfUrl"] for identity in identities for appearance in raw_records[identity]["appearances"]]
         assert sorted(page.locator("#document-dialog-content > .document-exams a").evaluate_all(
             "(links)=>links.map(link=>link.href)")) == sorted(expected_sources)
         selections = {}
-        for identity in [primary["id"]] + [item for item in identities if item != primary["id"]]:
-            version = raw_records[identity]
-            text = " ".join(" ".join(version["text"]).split())
+        for version in versions:
+            text = (" ".join(" ".join(version["text"]).split()),
+                    any(a.get("sourceReviewStatus") == "transcription-copy" for a in version["appearances"]))
             if text in selections:
                 selections[text]["appearances"].extend(version["appearances"])
             else:
                 selections[text] = {**version, "appearances": list(version["appearances"])}
         main, *alternatives = selections.values()
-        main_sources = page.locator(".document-full-source > .document-variant-sources")
-        assert main_sources.locator(".exam-pill").all_text_contents() == [
-            appearance_label(appearance) for appearance in main["appearances"]]
-        assert main_sources.locator("a").evaluate_all("(links)=>links.map(link=>link.href)") == [
-            appearance["sourceUrl"] for appearance in main["appearances"]]
+        if canonical.get("studyCompilation"):
+            alternatives = [main, *alternatives]
+        variants = page.locator(".document-text-versions")
+        assert variants.count() == 1
+        assert not variants.evaluate("(node)=>node.open")
+        total = sum(len(raw_records[identity]["appearances"]) for identity in identities)
+        assert page.locator("#document-dialog-content > .document-meta strong").inner_text() == (
+            f'{total} {"aparición" if total == 1 else "apariciones"} en total')
+        main_sources = variants.locator(":scope > .document-variant-sources")
+        assert not main_sources.is_visible()
+        variants.locator(":scope > summary").click()
+        if canonical.get("studyCompilation"):
+            assert main_sources.count() == 0
+        else:
+            assert main_sources.locator(".exam-pill").all_text_contents() == [
+                appearance_label(appearance) for appearance in main["appearances"]]
+            assert main_sources.locator("a").evaluate_all("(links)=>links.map(link=>link.href)") == [
+                appearance["pdfUrl"] for appearance in main["appearances"]]
         assert page.locator(".document-text-version").count() == len(alternatives)
+        assert page.locator(".document-text-version").evaluate_all(
+            "(nodes)=>nodes.map(node=>node.dataset.versionId)") == [version["id"] for version in alternatives]
         for version in alternatives:
             identity = version["id"]
             details = page.locator(f'.document-text-version[data-version-id="{identity}"]')
-            assert not details.evaluate("(node)=>node.open")
-            details.locator("summary").click()
-            assert details.locator("blockquote p").all_text_contents() == reading_paragraphs(version)
+            assert details.is_visible()
+            assert details.locator("blockquote p").all_text_contents() == reading_paragraphs(version, use_compilation=False)
             assert details.locator(".exam-pill").all_text_contents() == [
                 appearance_label(appearance) for appearance in version["appearances"]]
             assert details.locator("blockquote p:not(.document-attribution):not(.document-source-heading)").evaluate_all(
@@ -211,14 +286,15 @@ def check_grouped_texts_and_exam_filters(browser):
         return " ".join(normalize(re.sub(r"\s*\([^)]*\)\s*$", "", label)).split())
 
     years = page.locator("#document-year option").evaluate_all("(options)=>options.map(option=>option.value)")
-    assert years == [""] + [str(year) for year in range(2008, 2027)]
-    for year in range(2008, 2027):
+    assert years == [""] + [str(year) for year in range(2002, 2028)]
+    for year in range(2002, 2028):
         page.select_option("#document-year", str(year))
         options = page.locator("#document-exam option:not(:disabled)").evaluate_all("(options)=>options.map(option=>option.value)")
         expected_exams = {exam_key(appearance) for record in DATA["documents"] for appearance in record["appearances"]
                           if appearance["year"] == year}
         assert set(options[1:]) == expected_exams, (year, options, expected_exams)
-        priority = [key for key in ("titular ordinaria", "titular extraordinaria") if key in expected_exams]
+        priority = [key for key in ("titular ordinaria", "titular extraordinaria", "modelo orientaciones pau")
+                    if key in expected_exams]
         assert options[1:1 + len(priority)] == priority, (year, options)
         assert page.locator("#document-exam").is_disabled() == (not expected_exams)
         missing = next((entry.get("unavailableExams", []) for entry in RAW_DATA["coverage"]["officialExamAvailability"]
@@ -227,18 +303,22 @@ def check_grouped_texts_and_exam_filters(browser):
         for selected in options:
             if expected_exams:
                 page.select_option("#document-exam", selected)
-            expected = {record["id"]: [appearance for appearance in record["appearances"]
-                                      if appearance["year"] == year and (not selected or exam_key(appearance) == selected)]
-                        for record in DATA["documents"]}
-            expected = {identity: appearances for identity, appearances in expected.items() if appearances}
+            expected = {record["id"]: record["appearances"] for record in DATA["documents"]
+                        if any(appearance["year"] == year and (not selected or exam_key(appearance) == selected)
+                               for appearance in record["appearances"])}
             actual = page.locator(".document-card").evaluate_all("""cards=>Object.fromEntries(cards.map(card=>[
                 card.dataset.id,[...card.querySelectorAll('.exam-pill')].map(pill=>pill.textContent)]))""")
             assert actual == {identity: [appearance_label(appearance) for appearance in appearances]
                               for identity, appearances in expected.items()}, (year, selected)
+            metadata = page.locator(".document-card").evaluate_all("""cards=>Object.fromEntries(cards.map(card=>[
+                card.dataset.id,card.querySelector('.document-meta').textContent]))""")
+            for identity, appearances in expected.items():
+                label = "aparición incorporada" if len(appearances) == 1 else "apariciones incorporadas"
+                assert f"{len(appearances)} {label}" in metadata[identity], (year, selected, identity)
             total = sum(len(appearances) for appearances in expected.values())
             assert page.locator("#document-count").inner_text() == (
                 f'{len(expected)} {"documento" if len(expected) == 1 else "documentos"} · '
-                f'{total} {"aparición incorporada" if total == 1 else "apariciones incorporadas"}')
+                f'{total} {"aparición" if total == 1 else "apariciones"} en total')
         if year == 2017:
             assert "no faltan comentarios de documentos porque no cayó ninguno" in page.locator("#document-exam-hint").inner_text()
 
@@ -251,9 +331,9 @@ def check_grouped_texts_and_exam_filters(browser):
     assert card.count() == 1
     card.locator(".document-open").click()
     assert page.locator(".document-full-source > blockquote p").all_text_contents() == reading_paragraphs(
-        raw_records["constitucion-1812-articulos-2008"])
+        TEXT_DOCUMENT)
     details = page.locator('.document-text-version[data-version-id="constitucion-cadiz-articulos-1812"]')
-    details.locator("summary").click()
+    page.locator(".document-text-versions > summary").click()
     assert details.locator("blockquote p").first.inner_text().startswith("Art. 1.")
     assert all("2012" in text for text in details.locator(".exam-pill").all_text_contents())
     page.reload()
@@ -306,7 +386,8 @@ def check_grouped_texts_and_exam_filters(browser):
     assert page.locator("#document-year").input_value() == ""
     assert page.locator("#document-exam").is_disabled()
     assert page.locator('#document-dialog [data-document-mark="favorite"]').get_attribute("data-document-id") == canonical
-    assert page.locator(f'.document-text-version[data-version-id="{alias}"]').evaluate("(node)=>node.open")
+    assert page.locator(f'.document-text-version[data-version-id="{alias}"]').evaluate(
+        "(node)=>node.closest('details').open")
     assert not errors, errors
     context.close()
 
@@ -317,6 +398,8 @@ def check_document_attributions(browser):
         context = browser.new_context(viewport={"width": width, "height": 1000}, service_workers="block")
         page = context.new_page()
         page.goto(f"{BASE}/documentos.html")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+        reveal_historical(page)
         for identifier, record in records.items():
             if record["type"] != "texto":
                 continue
@@ -329,8 +412,9 @@ def check_document_attributions(browser):
                 "node => getComputedStyle(node).fontFamily") == font
             paragraphs = page.locator(".document-full-source > blockquote p")
             assert paragraphs.all_text_contents() == reading_paragraphs(record)
-            starts = record.get("paragraphStarts", list(range(len(record["text"]))))
-            attribution_start = len(record["text"]) - record.get("attributionParagraphs", 0)
+            content = record.get("studyCompilation") or record
+            starts = content.get("paragraphStarts", list(range(len(content["text"]))))
+            attribution_start = len(content["text"]) - content.get("attributionParagraphs", 0)
             for index, paragraph in enumerate(paragraphs.all()):
                 style = paragraph.evaluate("""node => {
                     const s = getComputedStyle(node);
@@ -338,7 +422,7 @@ def check_document_attributions(browser):
                 }""")
                 if starts[index] >= attribution_start:
                     assert style == {"align": "right", "last": "right", "style": "normal"}, (identifier, style)
-                    emphasis = record.get("attributionEmphasis", []) if index == len(starts) - 1 else []
+                    emphasis = content.get("attributionEmphasis", []) if index == len(starts) - 1 else []
                     assert paragraph.locator("em").all_text_contents() == emphasis, identifier
                     for part in paragraph.locator("em").all():
                         assert part.evaluate("node => getComputedStyle(node).fontStyle") == "italic"
@@ -356,11 +440,11 @@ def check_document_attributions(browser):
                         return Math.abs(range.getBoundingClientRect().right - node.getBoundingClientRect().right) < 1;
                     }""")
                 else:
-                    heading = starts[index] in record.get("headingParagraphs", [])
-                    align = ("center" if record.get("centerHeadings") else "left") if heading else "justify"
+                    heading = starts[index] in content.get("headingParagraphs", [])
+                    align = ("center" if content.get("centerHeadings") else "left") if heading else "justify"
                     assert style == {"align": align, "last": "center" if align == "center" else "left",
                                      "style": "normal"}, (identifier, style)
-                    emphasis = record.get("headingEmphasis", {}).get(str(starts[index]), []) if heading else []
+                    emphasis = content.get("headingEmphasis", {}).get(str(starts[index]), []) if heading else []
                     assert paragraph.locator("em").all_text_contents() == emphasis, identifier
                     if heading:
                         assert paragraph.evaluate("node=>getComputedStyle(node).fontWeight") == "700"
@@ -374,7 +458,7 @@ def check_full_content_search(browser):
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.goto(f"{BASE}/documentos.html")
-    page.wait_for_selector(".document-card")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
     expected = {record["id"] for record in DATA["documents"] if any(
         "suñer" in person["name"].lower() for person in record.get("image", {}).get("annotations", {}).get("people", []))}
     assert expected
@@ -420,7 +504,7 @@ def check_full_content_search(browser):
     page = context.new_page()
     page.route("**/data/documentos.json", lambda route: route.fulfill(json=fixture))
     page.goto(f"{BASE}/documentos.html")
-    page.wait_for_selector(".document-card")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
     for query in ("comentariobusc", "piedefoto", "simbolobusc", "significadobusc", "posicionbusc",
                   "notabusc", "segundaimagenbusc"):
         page.locator("#document-search").fill(query)
@@ -431,12 +515,14 @@ def check_full_content_search(browser):
 
 def check_collection_link(page, record):
     assert page.locator(".document-provenance, .document-full-source > .document-quality").count() == 0
-    collection = page.get_by_role("link", name="Ver en la recopilación", exact=True)
-    assert collection.count() == 1
     appearance = next(item for item in record["appearances"]
                       if item["id"] == record["examCaption"]["appearanceId"]) if record.get("examCaption") else record["appearances"][0]
+    label = ("Ver copia PDF de origen" if appearance.get("sourceReviewStatus") == "transcription-copy"
+             else "Ver PDF de origen") if appearance.get("sourceType") == "pdf" else "Ver en la recopilación"
+    collection = page.get_by_role("link", name=label, exact=True)
+    assert collection.count() == 1
     assert collection.get_attribute("href") == appearance["sourceUrl"]
-    assert collection.inner_text() == "Ver en la recopilación"
+    assert collection.inner_text().strip() == label
     icon = collection.locator("svg")
     assert icon.count() == 1 and icon.get_attribute("aria-hidden") == "true"
     assert icon.evaluate("(node) => node.getBoundingClientRect().width > 0 && node.getBoundingClientRect().height > 0")
@@ -450,7 +536,7 @@ def appearance_label(appearance):
     return " · ".join(str(part) for part in (
         appearance["year"], exam,
         "" if appearance["route"].endswith("sin cotejar") or f" {route_words} " in f" {exam_words} " else appearance["route"],
-        f"Documento {appearance['document']}",
+        "" if appearance["document"] is None else f"Documento {appearance['document']}",
     ) if part != "")
 
 
@@ -487,8 +573,8 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=59"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=53"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=71"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=60"]').count() == 1
         context.close()
 
 def check_fitted_media_and_people(browser):
@@ -497,7 +583,8 @@ def check_fitted_media_and_people(browser):
                                       service_workers="block", has_touch=True)
         page = context.new_page()
         page.goto(f"{BASE}/documentos.html")
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+        reveal_historical(page)
         for record in DATA["documents"]:
             if not record.get("image") and not record.get("tableImage"):
                 continue
@@ -703,6 +790,7 @@ def search_matches(query):
         fields += [table.get("caption", ""), *table.get("headers", []), *table.get("notes", [])]
         fields += [str(cell) for row in table.get("rows", []) for cell in row]
         fields += [content(version) for version in record.get("textVersions", [])]
+        fields += record.get("studyCompilation", {}).get("text", []) if record.get("studyCompilation") else []
         return " ".join(fields)
     return [
         document for document in DATA["documents"]
@@ -726,7 +814,8 @@ def topic_statistics():
 def check_text_card(page):
     card = page.locator(f'.document-card[data-id="{TEXT_DOCUMENT["id"]}"]')
     opener = card.locator(".document-open")
-    assert card.locator("button, a, [tabindex]").count() == 3
+    assert card.locator("button, [tabindex]").count() == 3
+    assert card.locator(".document-exams a").count() == len(TEXT_DOCUMENT["appearances"])
     assert card.locator(".document-open").count() == 1
     assert card.locator('button.question-mark-favorite[aria-pressed]').count() == 1
     assert card.locator('button.question-mark-review[aria-pressed]').count() == 1
@@ -1094,7 +1183,7 @@ def check_reader_updates(browser, mobile_device):
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto(f"{BASE}/documentos.html", wait_until="domcontentloaded")
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         check_card_badges(page)
         pair = page.locator(f'.document-card[data-id="{pair_id}"] .document-preview')
         pair.scroll_into_view_if_needed()
@@ -1224,7 +1313,7 @@ def check_anchored_feedback(browser, mobile_device):
     page = context.new_page()
     cdp = context.new_cdp_session(page)
     page.goto(f"{BASE}/documentos.html", wait_until="domcontentloaded")
-    page.wait_for_selector(".document-card")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
     for in_dialog in (False, True):
         if in_dialog:
             cdp.send("Emulation.setPageScaleFactor", {"pageScaleFactor": 1})
@@ -1270,22 +1359,25 @@ def run():
         errors = []
         page.on("pageerror", lambda error: errors.append(str(error)))
         page.goto(f"{BASE}/documentos.html")
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert page.locator(".document-card").count() == len(DATA["documents"])
         check_card_badges(page)
         scope_text = page.locator("#document-scope").inner_text()
-        assert str(len(DATA["documents"])) in scope_text
-        assert f"{DATA['coverage']['sourceDocumentOccurrences']} apariciones documentales" in scope_text
-        assert "2017–2024" in scope_text
+        exams = len({appearance["pdfUrl"] for record in DATA["documents"] for appearance in record["appearances"]})
+        assert scope_text == (
+            f"{DATA['coverage']['sourceDocumentOccurrences']} documentos recopilados · "
+            f"{exams} exámenes · Desde 2001-02 hasta 2026-27, ambos inclusive.")
+        assert "2017–2024" in page.locator("#cobertura").inner_text()
         assert page.locator("#document-block option").evaluate_all("(options) => options.map(option => option.value)") == ["", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         page.select_option("#document-block", "4")
+        reveal_historical(page)
         page.locator('.document-card[data-id="motin-esquilache-1766"] .document-open').click()
         assert page.locator(".document-task").count() == 0
         assert "fuera del comentario de documento del modelo 2026–27" in page.locator("#document-dialog-content").inner_text()
         assert "2013 · Reserva B extraordinaria · Opción A · Documento 2" in page.locator("#document-dialog .exam-pill").all_text_contents()
         page.locator(".document-close").click()
         page.reload()
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert page.locator("#document-block").input_value() == "4"
         page.select_option("#document-block", "")
         assert page.locator('#document-block option[value="7"]').inner_text() == "7 · La Restauración (1874–1902)"
@@ -1332,7 +1424,7 @@ def run():
         for selected_type in ("texto", "imagen", "grafico", "all"):
             page.locator(f'[data-type="{selected_type}"]').click()
             page.reload()
-            page.wait_for_selector(".document-card")
+            page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
             assert page.locator(f'[data-type="{selected_type}"]').get_attribute("aria-pressed") == "true"
             assert page.evaluate("sessionStorage.getItem('pau-he.document-type')") == selected_type
             expected_count = len(DATA["documents"]) if selected_type == "all" else sum(
@@ -1363,6 +1455,8 @@ def run():
         original_viewport = page.viewport_size
         page.set_viewport_size({"width": 320, "height": 900})
         for heading in page.locator(".document-block-heading").all():
+            if "has-history-toggle" in (heading.get_attribute("class") or ""):
+                continue
             assert heading.evaluate(
                 "(node) => {const title=node.querySelector('h2').getBoundingClientRect();"
                 "const button=node.querySelector('a').getBoundingClientRect();"
@@ -1411,36 +1505,43 @@ def run():
             page.set_viewport_size({"width": width, "height": 900})
             for preview in page.locator(".document-preview:has(img)").all():
                 preview.scroll_into_view_if_needed()
-                geometry = preview.evaluate("""async (box) => {
-                    const image = box.querySelector('img');
-                    await image.decode();
+                geometries = preview.evaluate("""async (box) => {
                     const preview = box.getBoundingClientRect();
-                    const figure = box.querySelector('figure').getBoundingClientRect();
-                    const crop = box.querySelector('.doc-image-crop');
-                    const bounds = (crop || image).getBoundingClientRect();
-                    return {
-                        id: box.closest('.document-card').dataset.id,
-                        table: box.classList.contains('document-preview-table'),
-                        horizontal: Math.abs(bounds.left+bounds.width/2-figure.left-figure.width/2),
-                        vertical: Math.abs(bounds.top+bounds.height/2-preview.top-preview.height/2),
-                        top: Math.abs(bounds.top-figure.top),
-                        contained: bounds.top>=preview.top && bounds.bottom<=preview.bottom
-                            && bounds.left>=preview.left && bounds.right<=preview.right,
-                        ratio: bounds.width/bounds.height,
-                    };
+                    return Promise.all([...box.querySelectorAll('figure')].map(async node => {
+                        const image = node.querySelector('img');
+                        await image.decode();
+                        const figure = node.getBoundingClientRect();
+                        const crop = node.querySelector('.doc-image-crop');
+                        const bounds = (crop || image).getBoundingClientRect();
+                        return {
+                            id: box.closest('.document-card').dataset.id,
+                            src: image.getAttribute('src'),
+                            table: box.classList.contains('document-preview-table'),
+                            horizontal: Math.abs(bounds.left+bounds.width/2-figure.left-figure.width/2),
+                            vertical: Math.abs(bounds.top+bounds.height/2-preview.top-preview.height/2),
+                            top: Math.abs(bounds.top-figure.top),
+                            contained: bounds.top>=preview.top && bounds.bottom<=preview.bottom
+                                && bounds.left>=preview.left && bounds.right<=preview.right,
+                            ratio: bounds.width/bounds.height,
+                        };
+                    }));
                 }""")
-                document = next(item for item in DATA["documents"] if item["id"] == geometry["id"])
-                expected_table = bool(document.get("tableImage") or document.get("image", {}).get("kind") == "table")
-                assert geometry["table"] == expected_table, (width, geometry)
-                assert geometry["horizontal"] <= 1, (width, geometry)
-                assert geometry["top" if expected_table else "vertical"] <= 1, (width, geometry)
-                assert geometry["contained"], (width, geometry)
-                crop = document.get("image", {}).get("crop")
-                image_data = document.get("image") or document["tableImage"]
-                ratio = image_data["width"] / image_data["height"]
-                if crop:
-                    ratio *= crop["width"] / crop["imageWidth"] * crop["imageHeight"] / crop["height"]
-                assert abs(geometry["ratio"] - ratio) < 0.01, (width, geometry)
+                for geometry in geometries:
+                    document = next(item for item in DATA["documents"] if item["id"] == geometry["id"])
+                    expected_table = bool(document.get("tableImage") or document.get("image", {}).get("kind") == "table")
+                    assert geometry["table"] == expected_table, (width, geometry)
+                    assert geometry["horizontal"] <= 1, (width, geometry)
+                    assert geometry["top" if expected_table else "vertical"] <= 1, (width, geometry)
+                    assert geometry["contained"], (width, geometry)
+                    image_data = next(image for image in [
+                        document.get("image"), *document.get("image", {}).get("additionalImages", []),
+                        document.get("tableImage"),
+                    ] if image and image["src"] == geometry["src"])
+                    crop = image_data.get("crop")
+                    ratio = image_data["width"] / image_data["height"]
+                    if crop:
+                        ratio *= crop["width"] / crop["imageWidth"] * crop["imageHeight"] / crop["height"]
+                    assert abs(geometry["ratio"] - ratio) < 0.01, (width, geometry)
         page.set_viewport_size(original_viewport)
         for document in DATA["documents"]:
             crop = document.get("image", {}).get("crop")
@@ -1473,9 +1574,11 @@ def run():
         page.locator('.document-card[data-id="casas-viejas-detenciones-1933"] .document-open').click()
         assert page.locator(".document-full-source img").evaluate(
             "(image) => [image.naturalWidth, image.naturalHeight]"
-        ) == [940, 615]
-        assert page.get_by_role("link", name="Fuente de esta reproducción", exact=True).get_attribute("href") == casas_viejas["image"]["sourceUrl"]
-        assert page.locator(".document-reproduction-note").inner_text() == casas_viejas["image"]["reproductionNote"]
+        ) == [771, 567]
+        assert page.locator(".document-full-source img").get_attribute("src") == casas_viejas["image"]["src"]
+        assert page.locator(".document-full-source img").evaluate("(image) => getComputedStyle(image).filter") == "grayscale(1)"
+        assert page.get_by_role("link", name="Ver recorte del PDF original", exact=True).get_attribute("href") == casas_viejas["image"]["originalSrc"]
+        assert page.get_by_role("link", name="Ver reproducción anterior de El Debate", exact=True).get_attribute("href") == casas_viejas["image"]["corpusSrc"]
         page.locator(".document-close").click()
         page.locator('[data-type="imagen"]').click()
         assert page.locator(".document-card").count() == sum(document["type"] == "imagen" for document in DATA["documents"])
@@ -1704,8 +1807,9 @@ def run():
         assert page.locator(".document-card").count() == sum(12 in document["blocks"] for document in DATA["documents"])
         page.get_by_role("button", name="Ver documento: El preámbulo de la Constitución de 1978", exact=True).click()
         paragraphs = page.locator(".document-full-source > blockquote p").all_text_contents()
-        assert "orden económico y social justo." in paragraphs[3]
-        assert paragraphs[-1].endswith("pueblos de la Tierra.")
+        assert "orden económico y social justo." in paragraphs[2]
+        assert paragraphs[-2] == "En consecuencia, las Cortes aprueban y el pueblo español ratifica la siguiente CONSTITUCIÓN."
+        assert paragraphs[-1] == "Constitución de 1978, Preámbulo"
         assert len(paragraphs) == 9
         page.locator(".document-close").click()
         page.select_option("#document-block", "11")
@@ -1722,7 +1826,7 @@ def run():
         assert page.locator(".document-full-source > blockquote p").count() == len(reading_paragraphs(TEXT_DOCUMENT))
         page.locator(".document-close").click()
         page.goto(f"{BASE}/documentos.html?bloque=5")
-        page.wait_for_selector(".document-card")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert page.locator("#document-block").input_value() == "5"
         page.locator("#theme-toggle").click()
         assert page.locator("html").get_attribute("data-theme") == "dark"
@@ -1751,6 +1855,7 @@ def run():
         check_document_attributions(browser)
         check_numbered_paragraphs(browser)
         check_grouped_texts_and_exam_filters(browser)
+        check_text_content_ranking(browser)
         check_full_content_search(browser)
         assert not errors, errors
         context.close()
@@ -1772,21 +1877,22 @@ def run():
             "images": [],
         })
         multi["coverage"]["sourceDocumentOccurrences"] += 1
+        expected_appearances = len(multi_target["appearances"])
         multi_target["blocks"].append(6)
         multi_context = browser.new_context(service_workers="block")
         multi_page = multi_context.new_page()
         multi_page.route("**/data/documentos.json", lambda route: route.fulfill(json=multi))
         multi_page.goto(f"{BASE}/documentos.html")
-        multi_page.wait_for_selector(".document-card")
+        multi_page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert multi_page.locator(".document-card").count() == len(DATA["documents"])
         assert multi_page.locator(
             f'.document-card[data-id="{multi_target["id"]}"] .document-exams .exam-pill'
-        ).count() == 2
+        ).count() == expected_appearances
         total_appearances = sum(len(document["appearances"]) for document in DATA["documents"])
         assert f"{total_appearances + 1} apariciones" in multi_page.locator("#document-count").inner_text()
         multi_page.locator(f'.document-card[data-id="{multi_target["id"]}"] .document-open').click()
-        assert multi_page.locator("#document-dialog-content > .document-exams li").count() == 2
-        assert multi_page.locator("#document-dialog .document-exams .exam-pill").count() == 2
+        assert multi_page.locator("#document-dialog-content > .document-exams li").count() == expected_appearances
+        assert multi_page.locator("#document-dialog-content > .document-exams .exam-pill").count() == expected_appearances
         multi_page.locator(".document-close").click()
         multi_page.select_option("#document-block", "6")
         assert multi_page.locator(".document-card").count() == sum(
@@ -1804,7 +1910,7 @@ def run():
         assert failed_page.locator("#document-retry").is_visible()
         failed_page.unroute("**/data/documentos.json")
         failed_page.locator("#document-retry").click()
-        failed_page.wait_for_selector(".document-card")
+        failed_page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert not failed_page.locator("#document-error").is_visible()
         invalid = json.loads(json.dumps(DATA))
         invalid["documents"][0]["blocks"] = [3]
@@ -1813,6 +1919,19 @@ def run():
         failed_page.locator("#document-error").wait_for(state="visible")
         assert "bloques 4–12" in failed_page.locator("#document-error").inner_text()
         assert failed_page.locator(".document-card").count() == 0
+        for pdf_url in (None, "https://drive.google.com/drive/folders/no-es-un-pdf"):
+            invalid_pdf = json.loads(json.dumps(RAW_DATA))
+            appearance = invalid_pdf["documents"][0]["appearances"][0]
+            if pdf_url is None:
+                del appearance["pdfUrl"]
+            else:
+                appearance["pdfUrl"] = pdf_url
+            failed_page.unroute("**/data/documentos.json")
+            failed_page.route("**/data/documentos.json", lambda route: route.fulfill(json=invalid_pdf))
+            failed_page.reload()
+            failed_page.locator("#document-error").wait_for(state="visible")
+            assert "PDF de un examen en Drive" in failed_page.locator("#document-error").inner_text()
+            assert failed_page.locator(".document-card").count() == 0
         failed.close()
 
         offline = browser.new_context()
@@ -1822,7 +1941,7 @@ def run():
         offline_page.wait_for_function("navigator.serviceWorker.controller !== null")
         offline.set_offline(True)
         offline_page.goto(f"{BASE}/documentos.html")
-        offline_page.wait_for_selector(".document-card")
+        offline_page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert offline_page.locator(".document-card").count() == len(DATA["documents"])
         offline_page.locator(".document-preview img").evaluate_all("(images) => images.forEach(image => image.loading = 'eager')")
         offline_page.wait_for_function("Array.from(document.querySelectorAll('.document-preview img')).every(image => image.complete && image.naturalWidth > 0)")

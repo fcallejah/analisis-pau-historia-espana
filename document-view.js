@@ -5,7 +5,8 @@
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   try {
     const saved = JSON.parse(sessionStorage.getItem(key));
-    if (saved?.version === 1 && saved.url === location.href) {
+    if (saved?.version === 1 && typeof saved.url === "string"
+      && saved.url.split("#")[0] === location.href.split("#")[0]) {
       root.setAttribute("data-document-restoring", "");
     }
   } catch (error) {

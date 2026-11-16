@@ -211,6 +211,9 @@ def check_saved_library(browser):
     bank = context.new_page()
     bank.goto(URL)
     ready(bank)
+    assert bank.input_value("#document-search") == "constitucion"
+    assert bank.locator('[data-type="texto"]').get_attribute("aria-pressed") == "true"
+    bank.locator("#document-reset").click()
     mark(bank, "favorite", IMAGE).click()
     card(page, IMAGE).wait_for(state="visible")
     assert counters.all_text_contents() == ["2", "2", "0"]
@@ -263,9 +266,113 @@ def check_saved_library(browser):
     offline.close()
 
 
+def check_exam_filter_reload(browser, options=None):
+    context = browser.new_context(service_workers="block", **(options or {}))
+    context.add_init_script(f"""localStorage.setItem({json.dumps(MARKS)},
+        JSON.stringify({{"baler-ultimos-filipinas": {{favorite: true, review: false}}}}));""")
+    page = context.new_page()
+    for path in ("documentos.html", "mis-documentos.html"):
+        page.goto(f"{BASE}/{path}")
+        ready(page)
+        if page.locator("#document-topic-toggle").is_visible():
+            page.locator("#document-topic-toggle").click()
+        page.select_option("#document-year", "2003")
+        reload(page)
+        assert page.input_value("#document-year") == "2003"
+        assert page.input_value("#document-exam") == ""
+        page.select_option("#document-exam", "examen 6")
+        before = page.locator(".document-card").evaluate_all("(nodes)=>nodes.map(n=>n.dataset.id)")
+        reload(page)
+        assert page.input_value("#document-year") == "2003"
+        assert page.input_value("#document-exam") == "examen 6"
+        assert page.locator(".document-card").evaluate_all("(nodes)=>nodes.map(n=>n.dataset.id)") == before
+        page.locator('[data-type="imagen"]').click()
+        page.select_option("#document-block", "7")
+        page.select_option("#document-unit", "ii-10")
+        page.locator("#document-frequency-sort").click()
+        page.locator("#document-search").fill("Filipinas")
+        page.select_option("#document-topic-sort", "chronology")
+        page.locator("#document-topic-search").fill("Filipinas")
+        page.locator(".document-topic-bubble:visible").first.click()
+        page.locator('[data-document-saved="favorite"]').click()
+        key = VIEW if path == "documentos.html" else "pau-he.documents.saved-view.v1"
+        filters_key = "pau-he.documents.filters.v1" if path == "documentos.html" else "pau-he.documents.saved-filters.v1"
+        page.wait_for_function("""key => {
+            const state = JSON.parse(localStorage.getItem(key));
+            return state?.search === 'Filipinas' && state.topic
+                && state.savedFilter === 'favorite';
+        }""", arg=filters_key)
+        expected = page.evaluate("key=>JSON.parse(sessionStorage.getItem(key))", key)
+        reopened = context.new_page()
+        reopened.goto(f"{BASE}/{path}#filtros")
+        ready(reopened)
+        page.close()
+        page = reopened
+        recovered = page.evaluate("key=>JSON.parse(sessionStorage.getItem(key))", key)
+        for field in ("type", "savedFilter", "block", "year", "exam", "search", "topic",
+                      "topicSearch", "sort", "expanded", "historicalVisible", "unit", "frequencyOrder"):
+            assert recovered[field] == expected[field], (path, field, recovered[field], expected[field])
+        assert page.input_value("#document-year") == "2003"
+        assert page.input_value("#document-exam") == "examen 6"
+        assert page.input_value("#document-search") == "Filipinas"
+        assert page.input_value("#document-block") == "7"
+        assert page.input_value("#document-unit") == "ii-10"
+        assert page.locator("#document-frequency-sort").get_attribute("aria-pressed") == "true"
+        assert not page.locator("#document-dialog").is_visible()
+        page.reload()
+        ready(page)
+        assert page.input_value("#document-year") == "2003"
+        assert page.input_value("#document-exam") == "examen 6"
+        page.locator("#document-reset").click()
+        reload(page)
+        assert page.input_value("#document-year") == ""
+        assert page.input_value("#document-exam") == ""
+        assert page.locator("#document-exam").is_disabled()
+        cleared = context.new_page()
+        cleared.goto(f"{BASE}/{path}")
+        ready(cleared)
+        assert cleared.input_value("#document-year") == ""
+        assert cleared.input_value("#document-search") == ""
+        assert cleared.input_value("#document-unit") == ""
+        cleared.close()
+    context.close()
+
+
+def check_persistent_filter_safety(browser):
+    context = browser.new_context(service_workers="block")
+    context.add_init_script("""Object.defineProperty(window, 'sessionStorage', {
+        get() { throw new DOMException('Denied', 'SecurityError'); }
+    });""")
+    page = context.new_page()
+    page.goto(URL)
+    ready(page)
+    page.select_option("#document-year", "2003")
+    page.select_option("#document-exam", "examen 6")
+    reload(page)
+    assert page.input_value("#document-year") == "2003"
+    assert page.input_value("#document-exam") == "examen 6"
+    context.close()
+
+    for invalid in ("{broken", '{"version":1}'):
+        context = browser.new_context(service_workers="block")
+        page = context.new_page()
+        warnings = []
+        page.on("console", lambda message: warnings.append(message.text) if message.type == "warning" else None)
+        page.goto(URL)
+        ready(page)
+        page.evaluate("value=>localStorage.setItem('pau-he.documents.filters.v1',value)", invalid)
+        reload(page)
+        page.select_option("#document-year", "2003")
+        assert page.evaluate("localStorage.getItem('pau-he.documents.filters.v1')") == invalid
+        assert any("filtros guardados" in warning for warning in warnings)
+        context.close()
+
+
 def run():
     with sync_playwright() as p:
         browser = p.chromium.launch()
+        check_exam_filter_reload(browser)
+        check_persistent_filter_safety(browser)
         context = browser.new_context(service_workers="block", viewport={"width": 1280, "height": 720})
         page = context.new_page()
         errors = []

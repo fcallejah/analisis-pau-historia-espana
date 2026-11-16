@@ -9,6 +9,8 @@
   const topicSort = document.querySelector("#document-topic-sort");
   const topicToggle = document.querySelector("#document-topic-toggle");
   const topicEmpty = document.querySelector("#document-topic-empty");
+  const unitSelect = document.querySelector("#document-unit");
+  const frequencySort = document.querySelector("#document-frequency-sort");
   const grid = document.querySelector("#document-grid");
   const count = document.querySelector("#document-count");
   const error = document.querySelector("#document-error");
@@ -23,6 +25,7 @@
   const savedOnly = document.body.dataset.documentLibrary === "saved";
   const typeStorageKey = savedOnly ? "pau-he.documents.saved-type" : "pau-he.document-type";
   const viewStorageKey = savedOnly ? "pau-he.documents.saved-view.v1" : "pau-he.documents.view.v1";
+  const filtersStorageKey = savedOnly ? "pau-he.documents.saved-filters.v1" : "pau-he.documents.filters.v1";
   const marksStorageKey = "pau-he.documents.marks.v1";
   const typeNames = { texto: "Texto", imagen: "Imagen", grafico: "Gráfico o tabla" };
   function syncPageZoom() {
@@ -31,12 +34,17 @@
   }
   window.visualViewport?.addEventListener("resize", syncPageZoom);
   let documents = [];
+  let thematicUnits = [];
+  let selectedUnit = "";
+  let frequencyOrder = false;
   let officialExams = new Map();
+  let historicalVisible = false;
   const searchIndex = new Map();
   let type = "all";
   let savedFilter = "all";
   let marks = {};
   let viewWritable = true;
+  let filtersWritable = true;
   let loaded = false;
   let restoring = true;
   let selectedId = null;
@@ -54,6 +62,7 @@
   }
   const positionValid = (value) => value && [value.left, value.top]
     .every((number) => Number.isFinite(number) && number >= 0);
+  const sameViewUrl = (url) => url.split("#")[0] === location.href.split("#")[0];
   function compatibleView(value) {
     if (!value || value.version !== 1) return value;
     // Earlier v1 snapshots predate saved filters and opener tracking.
@@ -62,6 +71,9 @@
       year: value.year === undefined ? "" : value.year,
       exam: value.exam === undefined ? "" : value.exam,
       savedFilter: value.savedFilter === undefined ? "all" : value.savedFilter,
+      historicalVisible: value.historicalVisible === undefined ? false : value.historicalVisible,
+      unit: value.unit === undefined ? "" : value.unit,
+      frequencyOrder: value.frequencyOrder === undefined ? false : value.frequencyOrder,
       dialog: value.dialog && {
         ...value.dialog,
         opener: value.dialog.opener === undefined ? "open" : value.dialog.opener,
@@ -74,30 +86,46 @@
       && ["all", "favorite", "review"].includes(value.savedFilter)
       && ["", "4", "5", "6", "7", "8", "9", "10", "11", "12"].includes(value.block)
       && (value.year === "" || typeof value.year === "string" && /^\d{4}$/.test(value.year)
-        && Number(value.year) >= 2008 && Number(value.year) <= 2026)
+        && Number(value.year) >= 2002 && Number(value.year) <= 2027)
       && typeof value.exam === "string" && (value.year !== "" || value.exam === "")
       && typeof value.search === "string" && typeof value.topic === "string"
       && typeof value.topicSearch === "string" && typeof value.expanded === "boolean"
+      && typeof value.historicalVisible === "boolean"
+      && typeof value.unit === "string" && typeof value.frequencyOrder === "boolean"
       && ["alphabetical", "frequency", "chronology"].includes(value.sort)
       && positionValid(value.page)
       && (value.dialog === null || (value.dialog && typeof value.dialog.id === "string"
         && ["open", "zoom"].includes(value.dialog.opener)
         && positionValid(value.dialog.position) && positionValid(value.dialog.source)
         && Array.isArray(value.dialog.details)
-        && value.dialog.details.every((open) => typeof open === "boolean")));
+        && value.dialog.details.every((open) => typeof open === "boolean")
+        && (value.dialog.selectionsGrouped === undefined || typeof value.dialog.selectionsGrouped === "boolean")));
   }
   try {
     const raw = sessionStorage.getItem(viewStorageKey);
     if (raw !== null) {
       const value = compatibleView(JSON.parse(raw));
       if (!validView(value)) throw new Error("Formato de vista no válido");
-      if (value.url === location.href) restoredView = value;
+      if (sameViewUrl(value.url)) restoredView = value;
     }
     const savedType = sessionStorage.getItem(typeStorageKey);
     if (["all", "texto", "imagen", "grafico"].includes(savedType)) type = savedType;
   } catch (error) {
     viewWritable = false;
     console.warn("No se pudo recuperar la posición de lectura guardada:", error);
+  }
+  try {
+    const raw = localStorage.getItem(filtersStorageKey);
+    if (raw !== null) {
+      const value = compatibleView(JSON.parse(raw));
+      if (!validView(value)) throw new Error("Formato de filtros no válido");
+      if (!restoredView && sameViewUrl(value.url)) {
+        restoredView = { ...value, page: { left: 0, top: 0 }, dialog: null };
+      }
+    }
+  } catch (error) {
+    filtersWritable = false;
+    console.warn("No se pudieron recuperar los filtros guardados:", error);
   }
   function setType(value) {
     type = value;
@@ -138,7 +166,7 @@
     reportStorage("marks", "No se pudieron leer las marcas del banco. No se sobrescribirán datos inválidos.", true);
   }
   function saveView() {
-    if (!loaded || restoring || !viewWritable) return;
+    if (!loaded || restoring) return;
     const box = content.querySelector(".document-full-source");
     const position = (node) => ({ left: node?.scrollLeft || 0, top: node?.scrollTop || 0 });
     const value = {
@@ -146,20 +174,35 @@
       year: examYear.value, exam: exam.value,
       search: search.value, topic, topicSearch: topicSearch.value, sort: topicSort.value,
       expanded: topicsExpanded,
+      historicalVisible,
+      unit: selectedUnit, frequencyOrder,
       page: dialog.open && pagePosition ? pagePosition : { left: scrollX, top: scrollY },
       dialog: dialog.open ? {
         id: selectedId, opener: opener?.matches(".document-preview-zoom") ? "zoom" : "open",
         position: position(dialog), source: position(box),
         details: [...content.querySelectorAll("details")].map((node) => node.open),
+        selectionsGrouped: true,
       } : null,
     };
-    try {
-      const current = sessionStorage.getItem(viewStorageKey);
-      if (current !== null && !validView(compatibleView(JSON.parse(current)))) throw new Error("Formato de vista no válido");
-      sessionStorage.setItem(viewStorageKey, JSON.stringify(value));
-      sessionStorage.setItem(typeStorageKey, type);
-    } catch (error) {
-      console.warn("No se pudo guardar la posición de lectura:", error);
+    if (viewWritable) {
+      try {
+        const current = sessionStorage.getItem(viewStorageKey);
+        if (current !== null && !validView(compatibleView(JSON.parse(current)))) throw new Error("Formato de vista no válido");
+        sessionStorage.setItem(viewStorageKey, JSON.stringify(value));
+        sessionStorage.setItem(typeStorageKey, type);
+      } catch (error) {
+        console.warn("No se pudo guardar la posición de lectura:", error);
+      }
+    }
+    if (filtersWritable) {
+      try {
+        const current = localStorage.getItem(filtersStorageKey);
+        if (current !== null && !validView(compatibleView(JSON.parse(current)))) throw new Error("Formato de filtros no válido");
+        const filters = JSON.stringify({ ...value, page: { left: 0, top: 0 }, dialog: null });
+        if (current !== filters) localStorage.setItem(filtersStorageKey, filters);
+      } catch (error) {
+        console.warn("No se pudieron guardar los filtros:", error);
+      }
     }
   }
   let saveFrame = 0;
@@ -213,26 +256,28 @@
     const words = (value) => normalize(value).match(/[\p{L}\p{N}]+/gu)?.join(" ") || "";
     const route = ` ${words(shortExam)} `.includes(` ${words(appearance.route)} `) ? "" : appearance.route;
     const pendingRoute = appearance.route.endsWith("sin cotejar");
+    const documentLabel = appearance.document === null ? "" : `Documento ${appearance.document}`;
     const label = [
       appearance.year, compact ? shortExam : exam,
-      pendingRoute ? "" : route, `Documento ${appearance.document}`,
+      pendingRoute ? "" : route, documentLabel,
     ].filter((part) => part !== "").join(" · ");
     const pill = element("span", label, "exam-pill");
-    pill.title = [appearance.year, exam, route, `Documento ${appearance.document}`].filter(Boolean).join(" · ");
+    pill.title = [appearance.year, exam, route, documentLabel].filter(Boolean).join(" · ");
     return pill;
   }
-  function appearanceBadges(record, linked = false, appearances = matchingAppearances(record)) {
+  function appearanceBadges(record, appearances = record.appearances) {
     const list = element("ul", undefined, "document-exams");
     list.setAttribute("aria-label", "Apariciones en exámenes");
     appearances.forEach((appearance) => {
       const item = element("li");
       const pill = appearancePill(appearance, true);
-      if (linked) {
-        const anchor = link("", appearance.sourceUrl);
-        anchor.setAttribute("aria-label", `Ver en la recopilación: ${pill.textContent}`);
-        anchor.append(pill);
-        item.append(anchor);
-      } else item.append(pill);
+      const anchor = link("", appearance.pdfUrl);
+      anchor.target = "_blank";
+      anchor.rel = "noopener noreferrer";
+      anchor.setAttribute("aria-label", `Abrir PDF del examen en Drive (otra pestaña): ${pill.textContent}`);
+      anchor.title = "Abrir el PDF de este examen en Drive (otra pestaña)";
+      anchor.append(pill);
+      item.append(anchor);
       list.append(item);
     });
     return list;
@@ -258,7 +303,8 @@
       : options.size ? "Todos los exámenes" : "Sin exámenes incorporados");
     placeholder.value = "";
     exam.replaceChildren(placeholder);
-    const priority = (key) => key === "titular ordinaria" ? 0 : key === "titular extraordinaria" ? 1 : 2;
+    const priority = (key) => key === "titular ordinaria" ? 0 : key === "titular extraordinaria" ? 1
+      : key === "modelo orientaciones pau" ? 2 : 3;
     [...options].sort((a, b) => priority(a[0]) - priority(b[0])
       || a[1].localeCompare(b[1], "es", { numeric: true })).forEach(([key, label]) => {
       const option = element("option", label);
@@ -278,7 +324,8 @@
     examHint.classList.toggle("is-format-warning", withoutDocumentExercise);
     if (withoutDocumentExercise) exam.title = placeholder.textContent;
     else exam.removeAttribute("title");
-    examHint.textContent = !examYear.value ? "Elige un año para consultar sus exámenes incorporados."
+    examHint.hidden = !examYear.value;
+    examHint.textContent = !examYear.value ? ""
       : withoutDocumentExercise ? "Entre 2017-2024, ambos inclusive, el formato PAU era solo de cuestiones cortas y tema; no faltan comentarios de documentos porque no cayó ninguno."
       : availability ? `${options.size} exámenes con documentos incorporados de ${examYear.value}. ${availability.note}${availability.unavailableExams?.length ? " Las opciones desactivadas señalan huecos del archivo; no se cuentan como exámenes." : ""}`
       : options.size ? `${options.size} ${options.size === 1 ? "examen con documentos incorporados" : "exámenes con documentos incorporados"} de ${examYear.value}. Se conservan las etiquetas de la recopilación; el cotejo íntegro de textos e imágenes sigue pendiente.`
@@ -539,6 +586,12 @@
       reportStorage("marks", "No se pudieron actualizar las marcas del banco. No se sobrescribirán datos inválidos.", true);
     }
   });
+  function textContentSize(record) {
+    const end = record.text.length - (record.attributionParagraphs || 0);
+    return record.text.filter((_, index) =>
+      index < end && !record.headingParagraphs?.includes(index))
+      .join(" ").match(/[\p{L}\p{N}]+/gu)?.length || 0;
+  }
   function groupTexts(records, groups = []) {
     if (!Array.isArray(groups)) throw new Error("Las agrupaciones de textos no son válidas");
     const byId = new Map(records.map((record) => [record.id, record]));
@@ -551,16 +604,18 @@
         throw new Error("Una agrupación de textos contiene selecciones repetidas, ausentes o incompatibles");
       }
       const versions = ids.map((id) => byId.get(id));
+      const ranked = [...versions].sort((a, b) => textContentSize(b) - textContentSize(a));
       const canonical = versions[0];
       if (canonical.primaryTextId !== undefined && !ids.includes(canonical.primaryTextId)) {
         throw new Error("La selección principal no pertenece a su agrupación de textos");
       }
-      const primary = canonical.primaryTextId === undefined ? canonical : byId.get(canonical.primaryTextId);
+      const primary = canonical.primaryTextId === undefined ? ranked[0] : byId.get(canonical.primaryTextId);
       grouped.set(canonical.id, {
         ...primary,
         id: canonical.id,
+        studyCompilation: canonical.studyCompilation,
         memberIds: ids,
-        textVersions: [primary, ...versions.filter((version) => version !== primary)],
+        textVersions: [primary, ...ranked.filter((version) => version !== primary)],
         tags: [...new Set(versions.flatMap((record) => record.tags))],
         blocks: [...new Set(versions.flatMap((record) => record.blocks))],
         appearances: versions.flatMap((record) => record.appearances)
@@ -573,11 +628,42 @@
     }
     return records.filter((record) => !secondary.has(record.id)).map((record) => grouped.get(record.id) || record);
   }
+  function readThematicUnits(curriculum, records) {
+    if (!curriculum || curriculum.academicYear !== "2026-27"
+      || !Array.isArray(curriculum.units) || curriculum.units.length !== 25) {
+      throw new Error("Las unidades temáticas de las orientaciones 2026–27 no son válidas");
+    }
+    const byId = new Map(records.map((record) => [record.id, record]));
+    const ids = new Set();
+    const assigned = new Set();
+    for (const unit of curriculum.units) {
+      if (!unit || !["II", "III"].includes(unit.group) || !Number.isInteger(unit.number)
+        || unit.number < 1 || unit.number > (unit.group === "II" ? 12 : 13)
+        || unit.id !== `${unit.group.toLowerCase()}-${unit.number}` || ids.has(unit.id)
+        || !Number.isInteger(unit.block) || unit.block < (unit.group === "II" ? 5 : 9)
+        || unit.block > (unit.group === "II" ? 8 : 12)
+        || typeof unit.title !== "string" || !unit.title.trim()
+        || !Array.isArray(unit.documentIds)) {
+        throw new Error("Una unidad temática tiene un identificador, bloque o título incompatible");
+      }
+      if (new Set(unit.documentIds).size !== unit.documentIds.length
+        || unit.documentIds.some((id) => !byId.has(id) || !byId.get(id).blocks.includes(unit.block))) {
+        throw new Error("Una unidad temática contiene documentos repetidos, ausentes o de otro bloque");
+      }
+      ids.add(unit.id);
+      unit.documentIds.forEach((id) => assigned.add(id));
+    }
+    if (records.some((record) => record.blocks.some((number) => number >= 5) && !assigned.has(record.id))) {
+      throw new Error("Hay documentos de los bloques 5–12 sin clasificar en las unidades temáticas");
+    }
+    return curriculum.units;
+  }
   function searchableText(record) {
     const images = [record.image, ...(record.image?.additionalImages || []), record.tableImage].filter(Boolean);
     return [
       record.title, record.date, record.sourceCaption, record.quality, record.readingNote, ...record.tags,
       ...(record.text || []),
+      ...(record.studyCompilation?.text || []),
       ...record.commentary.flatMap((section) => [section.title, section.text]),
       ...record.appearances.flatMap((appearance) => [appearance.year, appearance.exam, appearance.route]),
       ...images.flatMap((image) => [
@@ -619,13 +705,19 @@
   }
   function versionSources(record) {
     const sources = element("div", undefined, "document-variant-sources");
-    sources.append(element("p", "Esta selección apareció en:"), appearanceBadges(record, true, record.appearances));
+    const count = record.appearances.length;
+    sources.append(element("p",
+      `Esta selección: ${count} ${count === 1 ? "aparición" : "apariciones"}, ya ${count === 1 ? "incluida" : "incluidas"} en el total.`),
+      appearanceBadges(record, record.appearances));
     return sources;
   }
   function textSelections(record) {
     const selections = new Map();
     for (const version of record.textVersions || [record]) {
-      const key = version.text.join(" ").replace(/\s+/g, " ").trim();
+      const key = JSON.stringify([
+        version.text.join(" ").replace(/\s+/g, " ").trim(),
+        version.appearances.some((appearance) => appearance.sourceReviewStatus === "transcription-copy"),
+      ]);
       const existing = selections.get(key);
       if (existing) existing.appearances.push(...version.appearances);
       else selections.set(key, { ...version, appearances: [...version.appearances] });
@@ -669,7 +761,7 @@
       image.height = imageData.height;
       image.addEventListener("error", () => {
         image.hidden = true;
-        box.append(element("p", "No se pudo cargar la imagen. Consulta la recopilación enlazada en las apariciones.", "document-quality"));
+        box.append(element("p", "No se pudo cargar la imagen. Consulta el PDF enlazado en las apariciones.", "document-quality"));
       }, { once: true });
       if (imageData.crop) {
         const crop = imageData.crop;
@@ -777,25 +869,38 @@
         box.append(details);
       }
     } else if (!document.image && !document.table) {
-      const [primary, ...alternatives] = textSelections(document);
-      if (!preview && document.textVersions) {
-        box.append(element("p", "Texto principal para el estudio: se mantiene la selección más completa del grupo aunque filtres por un examen con un fragmento menor. Debajo puedes consultar las versiones parciales o alternativas y sus apariciones. Se conservan las diferencias y no se mezclan transcripciones para fabricar un texto único.", "document-group-note"));
-        box.append(versionSources(primary));
+      const selections = textSelections(document);
+      const primary = document.studyCompilation || selections[0];
+      const alternatives = document.studyCompilation ? selections : selections.slice(1);
+      if (!preview && document.studyCompilation) {
+        box.append(element("h3", primary.title));
+      } else if (!preview && document.textVersions) {
+        box.append(element("p", "La selección principal para estudiar; variantes y procedencia por examen en el desplegable. El total ya reúne todas sus apariciones.", "document-group-note"));
       }
       if (!preview && primary.readingNote) {
         box.append(element("p", primary.readingNote, "document-reading-note"));
       }
       box.append(textQuote(primary, preview));
+      if (!preview && document.studyCompilation) {
+        box.append(sourceLink("Consultar el texto constitucional de referencia", primary.sourceUrl));
+      }
       if (!preview && document.textVersions) {
-        alternatives.forEach((version) => {
-          const details = element("details", undefined, "document-text-version");
-          details.dataset.versionId = version.id;
-          details.append(element("summary", "Ver versión parcial o alternativa"));
-          details.append(versionSources(version));
-          if (version.readingNote) details.append(element("p", version.readingNote, "document-reading-note"));
-          details.append(element("p", version.quality, "document-quality"), textQuote(version));
-          box.append(details);
+        const details = element("details", undefined, "document-text-versions");
+        details.append(element("summary", "Ver selecciones y variantes por examen"));
+        if (!document.studyCompilation) {
+          details.append(element("h3", "Procedencia de la selección principal"), versionSources(primary));
+        }
+        alternatives.forEach((version, index) => {
+          const section = element("section", undefined, "document-text-version");
+          section.dataset.versionId = version.id;
+          section.append(element("h3",
+            `${document.studyCompilation ? "Selección del examen" : "Selección alternativa"} ${index + 1}`),
+            versionSources(version));
+          if (version.readingNote) section.append(element("p", version.readingNote, "document-reading-note"));
+          section.append(element("p", version.quality, "document-quality"), textQuote(version));
+          details.append(section);
         });
+        box.append(details);
       }
       if (preview) {
         const more = element("span", "… ", "document-read-more");
@@ -817,7 +922,18 @@
     title.id = "document-dialog-title";
     content.append(title);
     attachMarks(content, document);
-    content.append(element("p", document.date, "document-meta"), appearanceBadges(document, true), source(document));
+    const meta = element("p", document.date, "document-meta");
+    const total = document.appearances.length;
+    const filtered = matchingAppearances(document).length;
+    meta.append(" · ", element("strong", `${total} ${total === 1 ? "aparición" : "apariciones"} en total`));
+    if (filtered !== total) meta.append(` · ${filtered} con los filtros actuales`);
+    content.append(meta, appearanceBadges(document), source(document));
+    if (document.textVersions && matchingAppearances(document).some((appearance) =>
+      appearance.sourceReviewStatus === "transcription-copy")) {
+      content.append(element("p",
+        "La selección de 2006 procede de una copia no original y está pendiente de cotejo. Sus imágenes y gráficos no están incorporados.",
+        "document-reading-note"));
+    }
     const guide = element("details", undefined, "document-guide");
     guide.append(element("summary", "Claves para responder a) y b)"));
     guide.append(element("p", "Orientación didáctica propia; no es una solución oficial.", "document-meta"));
@@ -842,7 +958,10 @@
     const sourceAppearance = document.examCaption
       ? document.appearances.find((appearance) => appearance.id === document.examCaption.appearanceId)
       : matchingAppearances(document)[0] || document.appearances[0];
-    const collectionLink = sourceLink("Ver en la recopilación", sourceAppearance.sourceUrl);
+    const sourceLabel = sourceAppearance.sourceType === "pdf"
+      ? sourceAppearance.sourceReviewStatus === "transcription-copy" ? "Ver copia PDF de origen" : "Ver PDF de origen"
+      : "Ver en la recopilación";
+    const collectionLink = sourceLink(sourceLabel, sourceAppearance.sourceUrl);
     collectionLink.className = "document-collection-link";
     const footer = element("p");
     footer.append(collectionLink);
@@ -855,7 +974,7 @@
     saveView();
   }
   function updateReaderNavigation() {
-    const cards = [...grid.querySelectorAll(".document-card")];
+    const cards = visibleCards();
     const index = cards.findIndex((card) => card.dataset.id === selectedId);
     previousDocument.disabled = index <= 0;
     nextDocument.disabled = index < 0 || index >= cards.length - 1;
@@ -864,7 +983,7 @@
       : `Documento ${index + 1} de ${cards.length}: ${content.querySelector("h2").textContent}`;
   }
   function navigateDocument(direction) {
-    const cards = [...grid.querySelectorAll(".document-card")];
+    const cards = visibleCards();
     const index = cards.findIndex((card) => card.dataset.id === selectedId);
     const card = index >= 0 ? cards[index + direction] : null;
     if (!card) return;
@@ -962,7 +1081,7 @@
   new ResizeObserver(([entry]) => {
     if (entry.contentRect.width === topicWidth) return;
     topicWidth = entry.contentRect.width;
-    fitTopics();
+    requestAnimationFrame(fitTopics);
   }).observe(topics);
   document.fonts.ready.then(fitTopics);
   function renderTopics() {
@@ -976,7 +1095,7 @@
       }));
       return [tag, {
         documents: tagged.length,
-        appearances: tagged.reduce((total, document) => total + matchingAppearances(document).length, 0),
+        appearances: tagged.reduce((total, document) => total + document.appearances.length, 0),
         firstYear,
       }];
     }));
@@ -1037,42 +1156,114 @@
     topics.append(topicToggle);
     fitTopics();
   }
+  function renderUnits(available) {
+    const all = element("option", "Todos los subbloques");
+    all.value = "";
+    unitSelect.replaceChildren(all);
+    for (const number of [...new Set(thematicUnits.map((unit) => unit.block))]) {
+      const units = thematicUnits.filter((unit) => unit.block === number);
+      const group = element("optgroup");
+      group.label = `Bloque ${number} · Agrupación ${units[0].group}`;
+      for (const unit of units) {
+        const total = available.filter((record) => unit.documentIds.includes(record.id))
+          .reduce((sum, record) => sum + record.appearances.length, 0);
+        const option = element("option", `${unit.number}. ${unit.title} (${total})`);
+        option.value = unit.id;
+        group.append(option);
+      }
+      unitSelect.append(group);
+    }
+    unitSelect.value = selectedUnit;
+    unitSelect.title = thematicUnits.find((unit) => unit.id === selectedUnit)?.title || "Todas las unidades temáticas de las orientaciones 2026–27";
+    frequencySort.setAttribute("aria-pressed", String(frequencyOrder));
+  }
   function render() {
     const focused = document.activeElement;
     const oldCard = focused.closest(".document-card");
     const oldCards = [...grid.querySelectorAll(".document-card")];
     const oldIndex = oldCards.indexOf(oldCard);
     renderTopics();
-    const matches = documents.filter((document) => baseMatches(document) && (!topic || document.tags.includes(topic)));
-    const appearances = matches.reduce((total, document) => total + matchingAppearances(document).length, 0);
-    count.textContent = `${matches.length} ${matches.length === 1 ? "documento" : "documentos"} · ${appearances} ${appearances === 1 ? "aparición incorporada" : "apariciones incorporadas"}`;
+    const available = documents.filter((document) => baseMatches(document) && (!topic || document.tags.includes(topic)));
+    renderUnits(available);
+    const unit = thematicUnits.find((unit) => unit.id === selectedUnit);
+    const matches = available.filter((record) => !unit || unit.documentIds.includes(record.id));
+    const appearances = matches.reduce((total, document) => total + document.appearances.length, 0);
+    const scope = examYear.value ? "en total" : appearances === 1 ? "incorporada" : "incorporadas";
+    count.textContent = `${matches.length} ${matches.length === 1 ? "documento" : "documentos"} · ${appearances} ${appearances === 1 ? "aparición" : "apariciones"} ${scope}`;
     grid.replaceChildren();
     document.querySelector("#document-empty").hidden = matches.length > 0;
     const numbers = block.value ? [Number(block.value)]
       : [...new Set(matches.flatMap((document) => document.blocks))].sort((a, b) => a - b);
+    const byFrequency = (a, b) => b.appearances.length - a.appearances.length
+      || a.title.localeCompare(b.title, "es");
+    const sections = frequencyOrder ? [
+      {
+        number: block.value && block.value !== "4" ? Number(block.value) : null,
+        records: matches.filter((record) => record.blocks.some((number) => number >= 5)).sort(byFrequency),
+      },
+      {
+        number: 4,
+        records: matches.filter((record) => record.blocks.every((number) => number === 4)).sort(byFrequency),
+      },
+    ] : numbers.map((number) => ({
+      number, records: matches.filter((record) => record.blocks.includes(number)),
+    }));
     const displayed = new Set();
-    for (const number of numbers) {
-      const group = matches.filter((document) => document.blocks.includes(number) && !displayed.has(document.id));
+    for (const { number, records } of sections) {
+      const group = records.filter((record) => !displayed.has(record.id));
       if (!group.length) continue;
       const section = element("section");
       const heading = element("div", undefined, "document-block-heading");
-      const blockName = block.querySelector(`option[value="${number}"]`).textContent.replace(/^\d+ · /, "");
-      const notes = link("", `apuntes/bloque-${number}.html`);
-      notes.setAttribute("aria-label", `Ver apuntes del bloque ${number}`);
-      const sheet = window.document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      sheet.setAttribute("viewBox", "0 0 24 24");
-      sheet.setAttribute("aria-hidden", "true");
-      sheet.setAttribute("fill", "none");
-      sheet.setAttribute("stroke", "currentColor");
-      sheet.setAttribute("stroke-width", "1.7");
-      sheet.setAttribute("stroke-linecap", "round");
-      sheet.setAttribute("stroke-linejoin", "round");
-      const lines = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
-      lines.setAttribute("d", "M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Zm0 0v5h5M8 12h8M8 16h8");
-      sheet.append(lines);
-      notes.append(sheet, element("span", "Ver apuntes"));
-      heading.append(element("h2", `Bloque ${number} · ${blockName}`), notes);
+      if (number === null) {
+        heading.append(element("h2", "Documentos · Más frecuentes primero"));
+      } else {
+        const blockName = block.querySelector(`option[value="${number}"]`).textContent.replace(/^\d+ · /, "");
+        const notes = link("", `apuntes/bloque-${number}.html`);
+        notes.setAttribute("aria-label", `Ver apuntes del bloque ${number}`);
+        const sheet = window.document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        sheet.setAttribute("viewBox", "0 0 24 24");
+        sheet.setAttribute("aria-hidden", "true");
+        sheet.setAttribute("fill", "none");
+        sheet.setAttribute("stroke", "currentColor");
+        sheet.setAttribute("stroke-width", "1.7");
+        sheet.setAttribute("stroke-linecap", "round");
+        sheet.setAttribute("stroke-linejoin", "round");
+        const lines = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
+        lines.setAttribute("d", "M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5Zm0 0v5h5M8 12h8M8 16h8");
+        sheet.append(lines);
+        notes.append(sheet, element("span", "Ver apuntes"));
+        heading.append(element("h2", `Bloque ${number} · ${blockName}`), notes);
+      }
       const cards = element("div", undefined, "document-card-grid");
+      if (number === 4) {
+        heading.classList.add("has-history-toggle");
+        cards.id = "document-block-4-cards";
+        const toggle = element("button", undefined, "document-history-toggle");
+        toggle.type = "button";
+        toggle.setAttribute("aria-controls", cards.id);
+        const syncToggle = () => {
+          cards.hidden = !historicalVisible;
+          toggle.setAttribute("aria-expanded", String(historicalVisible));
+          const label = `${historicalVisible ? "Ocultar" : "Mostrar"} documentos históricos del bloque 4`;
+          toggle.setAttribute("aria-label", label);
+          toggle.title = label;
+          toggle.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'
+            + (historicalVisible ? "" : '<path d="m3 3 18 18"/>') + "</svg>";
+        };
+        toggle.addEventListener("click", () => {
+          historicalVisible = !historicalVisible;
+          syncToggle();
+          if (dialog.open) updateReaderNavigation();
+          saveView();
+        });
+        syncToggle();
+        heading.prepend(toggle);
+        section.append(heading, element("p",
+          "Archivo histórico · Fuera del comentario de documentos del modelo 2026–27.",
+          "document-historical-notice"), cards);
+      } else {
+        section.append(heading, cards);
+      }
       for (const document of group) {
         displayed.add(document.id);
         const card = element("article", undefined, "document-card");
@@ -1080,8 +1271,9 @@
         card.dataset.documentType = document.type;
         card.append(source(document, true));
         const body = element("div", undefined, "document-card-body");
-        body.append(element("p", document.type === "texto" ? "Texto · vista previa" : typeNames[document.type], "document-kind"), element("h3", document.title));
-        const occurrences = matchingAppearances(document).length;
+        const kind = document.type === "texto" ? "Texto · vista previa" : typeNames[document.type];
+        body.append(element("p", kind + (frequencyOrder ? ` · Bloque ${document.blocks.join(" · ")}` : ""), "document-kind"), element("h3", document.title));
+        const occurrences = document.appearances.length;
         body.append(element("p", `${document.date} · ${occurrences} ${occurrences === 1 ? "aparición incorporada" : "apariciones incorporadas"}`, "document-meta"));
         body.append(appearanceBadges(document));
         body.append(element("p", document.tags.join(" · "), "document-card-topics"));
@@ -1094,7 +1286,6 @@
         card.append(body);
         cards.append(card);
       }
-      section.append(heading, cards);
       grid.append(section);
     }
     refreshMarks();
@@ -1114,6 +1305,9 @@
     }
     saveView();
   }
+  function visibleCards() {
+    return [...grid.querySelectorAll(".document-card")].filter((card) => !card.closest("[hidden]"));
+  }
   typeButtons.forEach((button) => {
     button.setAttribute("aria-pressed", String(button.dataset.type === type));
     button.addEventListener("click", () => {
@@ -1123,7 +1317,7 @@
   });
   topicSearch.addEventListener("input", () => {
     topic = "";
-    renderTopics();
+    render();
   });
   topicToggle.addEventListener("click", () => {
     topicsExpanded = !topicsExpanded;
@@ -1131,6 +1325,8 @@
     topicToggle.focus();
   });
   topicSort.addEventListener("change", renderTopics);
+  unitSelect.addEventListener("change", () => { selectedUnit = unitSelect.value; render(); });
+  frequencySort.addEventListener("click", () => { frequencyOrder = !frequencyOrder; render(); });
   search.addEventListener("input", render);
   block.addEventListener("change", render);
   examYear.addEventListener("change", () => { updateExamOptions(); render(); });
@@ -1145,7 +1341,10 @@
     topicSearch.value = "";
     topicsExpanded = false;
     savedFilter = "all";
+    historicalVisible = false;
     topicSort.value = "alphabetical";
+    selectedUnit = "";
+    frequencyOrder = false;
     render();
   });
   const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
@@ -1154,15 +1353,23 @@
     if (!saved) { restoring = false; saveView(); return; }
     const record = saved.dialog && documents.find((item) =>
       memberIds(item).includes(saved.dialog.id) && (!savedOnly || isMarked(item)));
+    if (record?.blocks.includes(4) && !historicalVisible) {
+      historicalVisible = true;
+      render();
+    }
     if (record) {
       const card = [...grid.querySelectorAll(".document-card")].find((node) => node.dataset.id === record.id);
       open(record, card?.querySelector(saved.dialog.opener === "zoom" ? ".document-preview-zoom" : ".document-open"));
+      let details = saved.dialog.details;
+      if (record.textVersions && !saved.dialog.selectionsGrouped) {
+        details = [details.slice(0, -1).some(Boolean), details[details.length - 1] || false];
+      }
       content.querySelectorAll("details").forEach((node, index) => {
-        node.open = saved.dialog.details[index] || false;
+        node.open = details[index] || false;
       });
       if (record.id !== saved.dialog.id) {
         const version = content.querySelector(`[data-version-id="${CSS.escape(saved.dialog.id)}"]`);
-        if (version) version.open = true;
+        if (version) version.closest("details").open = true;
       }
     }
     const applyPositions = () => {
@@ -1225,6 +1432,12 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
       if (!Array.isArray(data.documents) || !data.documents.length) throw new Error("El banco no contiene documentos");
+      if (data.documents.some((record) => !Array.isArray(record.appearances)
+        || record.appearances.some((appearance) =>
+          typeof appearance.pdfUrl !== "string"
+          || !/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(appearance.pdfUrl)))) {
+        throw new Error("Falta un enlace válido al PDF de un examen en Drive");
+      }
       if (data.documents.some((document) => !Array.isArray(document.blocks) || !document.blocks.length
         || document.blocks.some((number) => !Number.isInteger(number) || number < 4 || number > 12))) {
         throw new Error("Los documentos deben pertenecer a los bloques 4–12 (el bloque 4 es solo archivo histórico)");
@@ -1241,6 +1454,17 @@
         || record.headingParagraphs.some((index) => !Number.isInteger(index) || index < 0
           || index >= record.text.length || record.paragraphStarts && !record.paragraphStarts.includes(index))))) {
         throw new Error("Los encabezados de un texto no son válidos");
+      }
+      if (data.documents.some((record) => record.studyCompilation !== undefined && (
+        record.type !== "texto" || !record.studyCompilation
+        || !["title", "readingNote", "sourceUrl"].every((key) =>
+          typeof record.studyCompilation[key] === "string" && record.studyCompilation[key].trim())
+        || !Array.isArray(record.studyCompilation.text) || !record.studyCompilation.text.length
+        || record.studyCompilation.text.some((line) => typeof line !== "string" || !line.trim())
+        || !Number.isInteger(record.studyCompilation.attributionParagraphs)
+        || record.studyCompilation.attributionParagraphs < 0
+        || record.studyCompilation.attributionParagraphs >= record.studyCompilation.text.length))) {
+        throw new Error("La recopilación de estudio de un texto no es válida");
       }
       const coverage = data.coverage;
       if (!coverage || !Array.isArray(coverage.sourceManifest)
@@ -1261,22 +1485,25 @@
         throw new Error("Las apariciones y las imágenes no coinciden con el inventario");
       }
       documents = groupTexts(data.documents, data.textGroups);
+      thematicUnits = readThematicUnits(data.curriculum, documents);
       officialExams = new Map((coverage.officialExamAvailability || []).map((entry) => [entry.year, entry]));
       searchIndex.clear();
       documents.forEach((record) => searchIndex.set(record.id, normalize(searchableText(record))));
       examYear.replaceChildren(element("option", "Todos los años"));
       examYear.firstElementChild.value = "";
-      for (let year = 2008; year <= 2026; year++) {
+      for (let year = 2002; year <= 2027; year++) {
         const option = element("option", String(year));
         option.value = String(year);
         examYear.append(option);
       }
       const scope = document.querySelector("#document-scope");
       if (scope) {
+        const total = coverage.sourceDocumentOccurrences;
+        const exams = new Set(documents.flatMap((record) =>
+          record.appearances.map((appearance) => appearance.pdfUrl))).size;
         scope.textContent =
-          `${documents.length} fichas · ${data.documents.length} selecciones conservadas · ${coverage.sourceDocumentOccurrences} apariciones documentales · `
-          + `${coverage.sourceImageOccurrences} apariciones de imágenes. ${coverage.formatNote} `
-          + "El recuento refleja solo las fuentes incorporadas; las transcripciones y la cobertura deben cotejarse con los PDF oficiales.";
+          `${total} ${total === 1 ? "documento recopilado" : "documentos recopilados"} · `
+          + `${exams} ${exams === 1 ? "examen" : "exámenes"} · Desde 2001-02 hasta 2026-27, ambos inclusive.`;
       }
       const requestedBlock = new URLSearchParams(location.search).get("bloque");
       if (restoredView) {
@@ -1290,6 +1517,13 @@
         topicSearch.value = restoredView.topicSearch;
         topicSort.value = restoredView.sort;
         topicsExpanded = restoredView.expanded;
+        historicalVisible = restoredView.historicalVisible;
+        if (restoredView.unit && !thematicUnits.some((unit) => unit.id === restoredView.unit)) {
+          console.warn("El subbloque guardado ya no está disponible; se muestran todos.");
+        } else {
+          selectedUnit = restoredView.unit;
+        }
+        frequencyOrder = restoredView.frequencyOrder;
       } else {
         if (requestedBlock && block.querySelector(`option[value="${Number(requestedBlock)}"]`)) block.value = requestedBlock;
         updateExamOptions();

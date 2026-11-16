@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1128" height="637" viewBox="0 0 1128 637" role="img" aria-labelledby="title desc">
+<title id="title">Distribución de escaños en las constituyentes de Junio de 1931</title>
+<desc id="desc">Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. Se conserva el rótulo de Derechas sin cerrar el paréntesis, tal como aparece en la fuente.</desc>
+<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "original": "assets/documentos/pdf-2002-6-4.png", "originalSha256": "a6802874ff934d0ca9162adb1fd7aed53225ac5eaee44f005ce6d49570898472", "pdf": "https://drive.google.com/file/d/1iIwcjcprJrKXt-Sg-snpXer0uVnmxiLu/view", "pdfSha256": "d48666f622b7475a02d460d34c31e4189014421c554cf951b94e1b5666d07079", "file": "sel_2002_historia_espana/2002. Examen 6.pdf", "page": 2}</metadata>
+<style>text{font-family:Arial,sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
+<rect width="1128" height="637" fill="#fff"/>
+<text class="title" x="24" y="44" text-anchor="start">Distribución de escaños en las constituyentes de Junio de 1931</text>
+<rect x="24" y="80" width="750" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="399.0" y="118.0" text-anchor="middle">Partidos</text>
+<rect x="774" y="80" width="330" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="939.0" y="118.0" text-anchor="middle">Porcentaje de escaños</text>
+<g data-row="0" data-column="0">
+<rect x="24" y="139" width="750" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="173.5" text-anchor="start">Socialistas</text>
+</g>
+<g data-row="0" data-column="1">
+<rect x="774" y="139" width="330" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="173.5" text-anchor="middle">25,6 %</text>
+</g>
+<g data-row="1" data-column="0">
+<rect x="24" y="191" width="750" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="225.5" text-anchor="start">Radicales de Lerroux</text>
+</g>
+<g data-row="1" data-column="1">
+<rect x="774" y="191" width="330" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="225.5" text-anchor="middle">19,8 %</text>
+</g>
+<g data-row="2" data-column="0">
+<rect x="24" y="243" width="750" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="277.5" text-anchor="start">Radical Socialistas</text>
+</g>
+<g data-row="2" data-column="1">
+<rect x="774" y="243" width="330" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="277.5" text-anchor="middle">13,2 %</text>
+</g>
+<g data-row="3" data-column="0">
+<rect x="24" y="295" width="750" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="329.5" text-anchor="start">Acción Republicana de M. Azaña</text>
+</g>
+<g data-row="3" data-column="1">
+<rect x="774" y="295" width="330" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="329.5" text-anchor="middle">6,6 %</text>
+</g>
+<g data-row="4" data-column="0">
+<rect x="24" y="347" width="750" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="381.5" text-anchor="start">Federales</text>
+</g>
+<g data-row="4" data-column="1">
+<rect x="774" y="347" width="330" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="381.5" text-anchor="middle">3,7 %</text>
+</g>
+<g data-row="5" data-column="0">
+<rect x="24" y="399" width="750" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="433.5" text-anchor="start">Derechas (Agrarios, vascos y monárquicos</text>
+</g>
+<g data-row="5" data-column="1">
+<rect x="774" y="399" width="330" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="433.5" text-anchor="middle">13,2 %</text>
+</g>
+<g data-row="6" data-column="0">
+<rect x="24" y="451" width="750" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="485.5" text-anchor="start">Progresistas de A. Zamora y Maura</text>
+</g>
+<g data-row="6" data-column="1">
+<rect x="774" y="451" width="330" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="485.5" text-anchor="middle">4,6 %</text>
+</g>
+<g data-row="7" data-column="0">
+<rect x="24" y="503" width="750" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="537.5" text-anchor="start">Catalanes</text>
+</g>
+<g data-row="7" data-column="1">
+<rect x="774" y="503" width="330" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="537.5" text-anchor="middle">9,5 %</text>
+</g>
+<g data-row="8" data-column="0">
+<rect x="24" y="555" width="750" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="589.5" text-anchor="start">Gallegos</text>
+</g>
+<g data-row="8" data-column="1">
+<rect x="774" y="555" width="330" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="939.0" y="589.5" text-anchor="middle">3,5 %</text>
+</g>
+</svg>

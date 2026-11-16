@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1048" height="471" viewBox="0 0 1048 471" role="img" aria-labelledby="title desc">
+<title id="title">Renta per cápita en algunos países europeos (en dólares de 1970)</title>
+<desc id="desc">Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. Fuente: José Luis GARCÍA DELGADO y Juan Carlos JIMÉNEZ, “La economía”, en VV.AA., La época de Franco (1939-1975), vol XLI de la Historia de España, Espasa-Calpe, Madrid. 1996, p.450.</desc>
+<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "original": "assets/documentos/pdf-2002-4-4.png", "originalSha256": "f429e41251fca2464b5ace9bf79f9180ed2d57519d15231d24010046f076c3ee", "pdf": "https://drive.google.com/file/d/1XwtZwV9f_HwTMEX_XyrKVFc3Yt6_Wm1L/view", "pdfSha256": "423dc56c3c4c29b1c12e300b1dfa57a158c2ac03113e503604aad51a5e892d34", "file": "sel_2002_historia_espana/2002. Examen 4.pdf", "page": 2}</metadata>
+<style>text{font-family:Arial,sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
+<rect width="1048" height="471" fill="#fff"/>
+<text class="title" x="24" y="44" text-anchor="start">Renta per cápita en algunos países europeos (en dólares de</text>
+<text class="title" x="24" y="78" text-anchor="start">1970)</text>
+<rect x="24" y="114" width="340" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="194.0" y="152.0" text-anchor="middle">Países/Años</text>
+<rect x="364" y="114" width="220" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="474.0" y="152.0" text-anchor="middle">1940</text>
+<rect x="584" y="114" width="220" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="694.0" y="152.0" text-anchor="middle">1950</text>
+<rect x="804" y="114" width="220" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<text class="head" x="914.0" y="152.0" text-anchor="middle">1960</text>
+<g data-row="0" data-column="0">
+<rect x="24" y="173" width="340" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="207.5" text-anchor="start">Alemania</text>
+</g>
+<g data-row="0" data-column="1">
+<rect x="364" y="173" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="474.0" y="207.5" text-anchor="middle">1.230</text>
+</g>
+<g data-row="0" data-column="2">
+<rect x="584" y="173" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="694.0" y="207.5" text-anchor="middle">1.363</text>
+</g>
+<g data-row="0" data-column="3">
+<rect x="804" y="173" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="914.0" y="207.5" text-anchor="middle">1.610</text>
+</g>
+<g data-row="1" data-column="0">
+<rect x="24" y="225" width="340" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="259.5" text-anchor="start">España</text>
+</g>
+<g data-row="1" data-column="1">
+<rect x="364" y="225" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="474.0" y="259.5" text-anchor="middle">746</text>
+</g>
+<g data-row="1" data-column="2">
+<rect x="584" y="225" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="694.0" y="259.5" text-anchor="middle">694</text>
+</g>
+<g data-row="1" data-column="3">
+<rect x="804" y="225" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="914.0" y="259.5" text-anchor="middle">1.042</text>
+</g>
+<g data-row="2" data-column="0">
+<rect x="24" y="277" width="340" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="311.5" text-anchor="start">Francia</text>
+</g>
+<g data-row="2" data-column="1">
+<rect x="364" y="277" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="474.0" y="311.5" text-anchor="middle">1.456</text>
+</g>
+<g data-row="2" data-column="2">
+<rect x="584" y="277" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="694.0" y="311.5" text-anchor="middle">1.575</text>
+</g>
+<g data-row="2" data-column="3">
+<rect x="804" y="277" width="220" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="914.0" y="311.5" text-anchor="middle">2.234</text>
+</g>
+<g data-row="3" data-column="0">
+<rect x="24" y="329" width="340" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="40" y="363.5" text-anchor="start">Reino Unido</text>
+</g>
+<g data-row="3" data-column="1">
+<rect x="364" y="329" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="474.0" y="363.5" text-anchor="middle">1.715</text>
+</g>
+<g data-row="3" data-column="2">
+<rect x="584" y="329" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="694.0" y="363.5" text-anchor="middle">1.964</text>
+</g>
+<g data-row="3" data-column="3">
+<rect x="804" y="329" width="220" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<text class="cell" x="914.0" y="363.5" text-anchor="middle">2.442</text>
+</g>
+<text class="note" x="24" y="405" text-anchor="start">Fuente: José Luis GARCÍA DELGADO y Juan Carlos JIMÉNEZ, “La economía”, en VV.AA., La época de</text>
+<text class="note" x="24" y="429" text-anchor="start">Franco (1939-1975), vol XLI de la Historia de España, Espasa-Calpe, Madrid. 1996, p.450.</text>
+</svg>
