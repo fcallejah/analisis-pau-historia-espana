@@ -48,7 +48,7 @@ class DocumentCorpusTests(unittest.TestCase):
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "c6f5dfb6bb4e65acc8dd9f16d32ea21a7f6ca24032c3554a39644e8a02f8c871")
+        self.assertEqual(digest, "e446ce67f34c39d3bd863705095735a7d1d9ceaa9a20cb47905f1aee1bd04a1e")
         self.assertEqual(len(imported), 134)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 95)
@@ -172,13 +172,16 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertTrue(constitution[-2].endswith("que establezcan las leyes."))
         self.assertEqual(constitution[-1], "Constitución Española de 1812")
         for identifier in (
-            "napoleon-espanoles-bayona-1808",
             "decreto-unificacion-1937",
             "decreto-de-desamortizacion-de-mendizabal",
             "decreto-de-venta-de-bienes-eclesiasticos-de-mendizabal",
             "manifiesto-manzanares-1854",
         ):
             self.assertNotIn("attributionParagraphs", records[identifier])
+        napoleon = records["napoleon-espanoles-bayona-1808"]
+        self.assertEqual(napoleon["attributionParagraphs"], 1)
+        self.assertEqual(napoleon["text"][-1],
+                         "Dado en nuestro palacio imperial y real de Bayona a 25 de mayo de 1808.")
 
     def test_exam_headers_and_misplaced_treaty_tail_are_cleaned(self):
         records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
@@ -260,7 +263,8 @@ class DocumentCorpusTests(unittest.TestCase):
         record = next(d for d in data["documents"] if d["id"] == "motin-esquilache-1766")
         self.assertEqual(record["blocks"], [4])
         self.assertEqual(image_dimensions(ROOT / record["image"]["src"]), (2488, 1370))
-        self.assertIn("CC BY-SA 3.0", record["image"]["reproductionNote"])
+        self.assertEqual(record["image"]["attribution"]["license"], "CC BY-SA 3.0")
+        self.assertIn("Eldelcarro", record["image"]["attribution"]["text"])
         self.assertIn("fuera del comentario", record["quality"])
         self.assertEqual(len(record["appearances"]), 2)
         appearance = record["appearances"][0]
@@ -545,8 +549,12 @@ class DocumentCorpusTests(unittest.TestCase):
         for identifier in ("bajas-espanolas-en-cuba-y-filipinas", "acorazado-maine-1898"):
             self.assertEqual(records[identifier]["blocks"], [7])
             self.assertIn("Restauración borbónica", records[identifier]["tags"])
-        for identifier in ("portada-constitucion-1812", "acorazado-maine-1898", "no-pasaran-sitio-madrid"):
+        for identifier in ("acorazado-maine-1898", "no-pasaran-sitio-madrid"):
             self.assertTrue(records[identifier]["image"]["filter"])
+        cover = records["portada-constitucion-1812"]["image"]
+        self.assertNotIn("filter", cover)
+        self.assertEqual(hashlib.sha256((ROOT / cover["src"]).read_bytes()).hexdigest(),
+                         "0f045a05232f1bd97edc1f2196a45e3714e0c22aa77c6954cc768dda1cfa7204")
 
     def test_casares_quiroga_role_includes_the_1936_coup_context(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -834,19 +842,30 @@ class DocumentCorpusTests(unittest.TestCase):
         record = records["constitucion-1812-articulos-2008"]
         compilation = record["studyCompilation"]
         paragraphs = compilation["text"]
-        self.assertEqual(len(paragraphs), 13)
-        self.assertEqual([int(re.match(r"Art\. (\d+)\.", p)[1]) for p in paragraphs[2:-1]],
+        self.assertEqual(len(paragraphs), 20)
+        articles = [p for p in paragraphs if p.startswith("Art. ")]
+        self.assertEqual([int(re.match(r"Art\. (\d+)\.", p)[1]) for p in articles],
                          [1, 2, 3, 4, 14, 15, 16, 17, 287, 371])
+        self.assertEqual([paragraphs[i] for i in compilation["headingParagraphs"]], [
+            "CONSTITUCIÓN POLÍTICA DE LA MONARQUÍA ESPAÑOLA",
+            "TÍTULO I. DE LA NACIÓN ESPAÑOLA Y DE LOS ESPAÑOLES",
+            "CAPÍTULO I", "De la Nación Española",
+        ])
+        self.assertTrue(compilation["centerHeadings"])
+        self.assertEqual([(paragraphs[i - 1].split(".")[1].strip(),
+                           paragraphs[i + 1].split(".")[1].strip())
+                          for i, p in enumerate(paragraphs) if p == "[…]"],
+                         [("4", "14"), ("17", "287"), ("287", "371")])
         introduction = records["constitucion-1812-articulos-2008-pdf-2003-1-1"]["text"]
         self.assertEqual(paragraphs[0], introduction[0].removeprefix(
             "CONSTITUCIÓN DE CÁDIZ DE 1812 ").replace("SEPTIMO", "SÉPTIMO"))
-        self.assertEqual(paragraphs[1], introduction[1].removeprefix(
+        self.assertEqual(paragraphs[2], introduction[1].removeprefix(
             "CONSTITUCIÓN POLÍTICA DE LA MONARQUÍA ESPAÑOLA "))
         selected = records["constitucion-1812-articulos-2008-2015-lxhnexopmiob-2"]["text"]
         tokens = lambda text: re.findall(r"\w+", text.casefold())
-        self.assertEqual([tokens(p) for p in paragraphs[2:10]], [tokens(p) for p in selected[:8]])
-        self.assertEqual(paragraphs[10], record["text"][4])
-        self.assertEqual(paragraphs[11], record["text"][5].replace("tiene libertad", "tienen libertad"))
+        self.assertEqual([tokens(p) for p in articles[:8]], [tokens(p) for p in selected[:8]])
+        self.assertEqual(articles[8], record["text"][4])
+        self.assertEqual(articles[9], record["text"][5].replace("tiene libertad", "tienen libertad"))
         group = next(group for group in data["textGroups"] if group[0] == record["id"])
         appearances = [a for identity in group for a in records[identity]["appearances"]]
         self.assertEqual(sorted(a["year"] for a in appearances), [2003, 2004, 2006, 2007, 2008, 2012, 2015, 2016])

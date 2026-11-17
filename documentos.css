@@ -202,6 +202,9 @@ html[data-page-zoomed] #document-dialog,html[data-page-zoomed] .document-full-so
 .document-full-source:has(.document-selectable-map) figure{width:100%}
 .document-full-source figure:has(>.doc-image-crop){width:100%}
 .document-image-caption{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.5}
+.document-image-credits{margin-top:10px;color:var(--muted);font-size:12px;overflow-wrap:anywhere}
+.document-image-credits>summary{cursor:pointer}
+.document-image-credits>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .document-exam-caption{max-width:65ch;margin:14px auto 0;color:var(--ink);text-align:center;user-select:text;-webkit-user-select:text}
 .document-exam-caption p{margin:0;font:400 clamp(18px,2vw,21px)/1.4 "PAU Caption","Arial Narrow",Arial,sans-serif;white-space:pre-line}
 .document-reproduction-note{margin:10px 0;color:var(--muted);text-align:center;font-size:12px}

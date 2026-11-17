@@ -695,7 +695,7 @@
           : end === record.text.length && part === parts.length - 1 ? record.attributionEmphasis : undefined,
         className: start >= attributionStart ? "document-attribution"
           : record.headingParagraphs?.includes(start)
-            ? `document-source-heading${record.centerHeadings ? " is-centered" : ""}` : undefined,
+            ? `document-source-heading${record.centerHeadings !== false ? " is-centered" : ""}` : undefined,
       }));
     });
     (preview ? paragraphs.slice(0, 3) : paragraphs).forEach((paragraph) => {
@@ -792,9 +792,12 @@
       }
       if (!preview && imageData.attribution) {
         const attribution = imageData.attribution;
+        const details = element("details", undefined, "document-image-credits");
+        details.append(element("summary", "Créditos de la imagen"));
         const credit = element("p", undefined, "document-image-caption");
         credit.append(link(attribution.text, attribution.url), " · ", link(attribution.license, attribution.licenseUrl));
-        figure.append(credit);
+        details.append(credit);
+        figure.append(details);
       }
       if (!preview && imageData.sourceUrl) {
         const attribution = sourceLink("Fuente de esta reproducción", imageData.sourceUrl);
@@ -996,6 +999,19 @@
   }
   previousDocument.addEventListener("click", () => navigateDocument(-1));
   nextDocument.addEventListener("click", () => navigateDocument(1));
+  previousDocument.setAttribute("aria-keyshortcuts", "ArrowLeft");
+  nextDocument.setAttribute("aria-keyshortcuts", "ArrowRight");
+  previousDocument.title = "Documento anterior (←)";
+  nextDocument.title = "Documento siguiente (→)";
+  dialog.addEventListener("keydown", (event) => {
+    if (!dialog.open || event.defaultPrevented || event.isComposing
+      || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
+      || !["ArrowLeft", "ArrowRight"].includes(event.key)
+      || event.target.isContentEditable
+      || event.target.closest("input, textarea, select, [role='slider'], [role='tab'], [role='radio']")) return;
+    event.preventDefault();
+    navigateDocument(event.key === "ArrowLeft" ? -1 : 1);
+  });
   dialog.querySelector(".document-close").addEventListener("click", () => dialog.close());
   let backdropPressed = null;
   const outsideDialog = (event) => {

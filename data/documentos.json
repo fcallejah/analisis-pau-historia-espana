@@ -751,7 +751,12 @@
       "image": {
         "src": "assets/documentos/motin-esquilache-commons.png",
         "sourceUrl": "https://commons.wikimedia.org/wiki/File:El_mot%C3%ADn_de_Esquilache.png",
-        "reproductionNote": "Wikimedia Commons · archivo subido por Eldelcarro · CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/). Reproducción sin modificar.",
+        "attribution": {
+          "text": "Wikimedia Commons · archivo subido por Eldelcarro · Reproducción sin modificar",
+          "url": "https://commons.wikimedia.org/wiki/File:El_mot%C3%ADn_de_Esquilache.png",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        },
         "alt": "Grabado con una multitud en una calle madrileña: aparecen hombres con capas y sombreros y dos figuras sentadas a la izquierda.",
         "width": 2488,
         "height": 1370
@@ -872,7 +877,6 @@
       "quality": "Reproducción del corpus: 452 × 678 píxeles. Resolución limitada para el detalle fino; pendiente de localizar una reproducción mayor y cotejar el PDF oficial. No se inventan los datos de autoría ni se reconstruye el grabado.",
       "image": {
         "src": "assets/documentos/portada-constitucion-1812.png",
-        "filter": "grayscale(0.82) contrast(1.18) brightness(0.98)",
         "alt": "Portada con el título Constitución política de la Monarquía española, la fecha de promulgación en Cádiz y un medallón superior con una figura femenina y la inscripción Sic erat in fatis.",
         "width": 452,
         "height": 678
@@ -991,21 +995,35 @@
       "primaryTextId": "constitucion-1812-articulos-2008-pdf-2003-1-1",
       "studyCompilation": {
         "title": "Recopilación completa de fragmentos para estudiar",
-        "readingNote": "Reúne los dos párrafos introductorios y los artículos 1–4, 14–17, 287 y 371 de las distintas selecciones. No es el texto íntegro de la Constitución ni el fragmento exacto de un único examen. Las selecciones de cada convocatoria se conservan debajo.",
+        "readingNote": "Selección didáctica que integra la fórmula de promulgación, el preámbulo, los encabezados y los artículos 1–4, 14–17, 287 y 371 de las distintas selecciones. […] señala los pasajes omitidos entre bloques de artículos. No es el texto íntegro de la Constitución ni el fragmento exacto de un único examen. Las ocho selecciones de examen se conservan debajo sin cambios.",
         "sourceUrl": "https://es.wikisource.org/wiki/Constituci%C3%B3n_espa%C3%B1ola_de_1812",
         "attributionParagraphs": 1,
+        "headingParagraphs": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "centerHeadings": true,
         "text": [
           "DON FERNANDO SÉPTIMO, por la gracia de Dios y la Constitución de la Monarquía española, Rey de las Españas, y en su ausencia y cautividad la Regencia del reino, nombrada por las Cortes generales y extraordinarias, a todos los que las presentes vieren y entendieren, sabed: Que las mismas Cortes han decretado y sancionado la siguiente",
+          "CONSTITUCIÓN POLÍTICA DE LA MONARQUÍA ESPAÑOLA",
           "En el nombre de Dios todopoderoso, Padre, Hijo y Espíritu Santo autor y supremo legislador de la sociedad. Las Cortes generales y extraordinarias de la Nación española, bien convencidas, después del más detenido examen y madura deliberación, de que las antiguas leyes fundamentales de esta Monarquía, acompañadas de las oportunas providencias y precauciones, que aseguren de un modo estable y permanente su entero cumplimiento, podrán llenar debidamente el grande objeto de promover la gloria, la prosperidad y el bien de toda la Nación, decretan la siguiente Constitución política para el buen gobierno y recta administración del Estado.",
+          "TÍTULO I. DE LA NACIÓN ESPAÑOLA Y DE LOS ESPAÑOLES",
+          "CAPÍTULO I",
+          "De la Nación Española",
           "Art. 1. La Nación española es la reunión de todos los españoles de ambos hemisferios.",
           "Art. 2. La Nación española es libre e independiente, y no es ni puede ser patrimonio de ninguna familia ni persona.",
           "Art. 3. La soberanía reside esencialmente en la Nación, y por lo mismo pertenece a ésta exclusivamente el derecho de establecer sus leyes fundamentales.",
           "Art. 4. La Nación está obligada a conservar y proteger por leyes sabias y justas la libertad civil, la propiedad y los demás derechos legítimos de todos los individuos que la componen.",
+          "[…]",
           "Art. 14. El Gobierno de la Nación española es una Monarquía moderada hereditaria.",
           "Art. 15. La potestad de hacer las leyes reside en las Cortes con el Rey.",
           "Art. 16. La potestad de hacer ejecutar las leyes reside en el Rey.",
           "Art. 17. La potestad de aplicar las leyes en las causas civiles y criminales reside en los tribunales establecidos por la ley.",
+          "[…]",
           "Art. 287. Ningún español podrá ser preso, sin que preceda información sumaria del hecho, por el que merezca según la ley ser castigado con pena corporal, y asimismo un mandamiento del juez por escrito, que se le notificará en el acto mismo de la prisión.",
+          "[…]",
           "Art. 371. Todos los españoles tienen libertad de escribir, imprimir y publicar sus ideas políticas, sin necesidad de licencia, revisión o aprobación alguna anterior a la publicación, bajo las restricciones y responsabilidad que establezcan las leyes.",
           "Constitución española de 1812 · Recopilación de fragmentos"
         ]
@@ -1070,6 +1088,10 @@
       "date": "Hecho representado: 1808 · Pintura: 1814",
       "sourceCaption": "Francisco de Goya, El 3 de mayo de 1808 en Madrid (1814). Reproducción incluida en la recopilación, 2025, Suplente B, documento 1. Obra de dominio público.",
       "quality": "Reproducción del corpus a 1280 × 987 píxeles, conservada sin recrear detalles. No es un recorte cotejado del PDF del examen. Se distingue la fecha de la represión representada (1808) de la realización del cuadro (1814).",
+      "examCaption": {
+        "text": "Francisco de Goya, Los fusilamientos (Museo del Prado)",
+        "appearanceId": "fuente-h-lxhnexopmiob-1"
+      },
       "image": {
         "src": "assets/documentos/goya-tres-de-mayo.png",
         "alt": "Pintura de Goya: civiles ante un pelotón de fusilamiento nocturno; un hombre con camisa blanca levanta los brazos, iluminado por un farol, mientras los soldados apuntan de espaldas.",
@@ -6473,6 +6495,7 @@
     },
     {
       "id": "napoleon-espanoles-bayona-1808",
+      "attributionParagraphs": 1,
       "title": "Napoleón se dirige a los españoles desde Bayona",
       "blocks": [
         5
@@ -7731,6 +7754,11 @@
     },
     {
       "id": "decreto-cortes-soberania-isla-leon-1810",
+      "primaryTextId": "decreto-cortes-soberania-isla-leon-1810",
+      "headingParagraphs": [
+        0
+      ],
+      "centerHeadings": true,
       "paragraphStarts": [
         0,
         1,
@@ -8797,7 +8825,7 @@
         }
       ],
       "examCaption": {
-        "text": "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León, 24 de Septiembre de 1810. (Óleo",
+        "text": "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León, 24 de Septiembre de 1810. (Óleo sobre lienzo de Casado del Alisal, conservado en el Salón de Plenos del Congreso de los Diputados, Madrid).",
         "appearanceId": "fuente-h.lnfwvqsmz1yq-2"
       },
       "image": {
@@ -14920,6 +14948,10 @@
     },
     {
       "id": "mapa-guerra-independencia-1808-1814",
+      "examCaption": {
+        "text": "España durante la guerra de la Independencia (1808-1814)",
+        "appearanceId": "fuente-pdf-2003-1-2"
+      },
       "title": "España en la guerra de la Independencia: mapa",
       "type": "grafico",
       "blocks": [
@@ -17660,6 +17692,10 @@
         }
       ],
       "id": "decreto-cortes-soberania-isla-leon-1810-pdf-2005-3-1",
+      "headingParagraphs": [
+        0
+      ],
+      "centerHeadings": true,
       "text": [
         "Primer Decreto de las Cortes reunidas en la Isla de León (Cádiz)",
         "“Los diputados que componen este Congreso, y que representan la Nación española, se declaran legítimamente constituidos en Cortes generales y extraordinarias, y que reside en ellas la soberanía nacional. Las Cortes generales y extraordinarias de la Nación española, congregadas en la real isla de León, conformes en todo con la voluntad general, pronunciada del modo más enérgico y patente, reconocen, proclaman y juran de nuevo por su único y legítimo rey al Señor D. Fernando VII de Borbón; y declaran nula y de ningún valor ni efecto la cesión de la corona que se dice hecha a favor de Napoleón, no sólo por la violencia que intervino en aquellos actos injustos e ilegales, sino principalmente por fallarle el consentimiento de la nación.",

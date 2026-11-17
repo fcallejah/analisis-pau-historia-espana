@@ -121,6 +121,25 @@ def check_reader_navigation(browser):
         assert page.locator(".document-previous").is_disabled()
         page.locator(".document-next").click()
         assert page.locator("#document-dialog-title").inner_text() == records[first_ids[1]]["title"]
+        page.keyboard.press("ArrowLeft")
+        assert page.locator("#document-dialog-title").inner_text() == records[first_ids[0]]["title"]
+        page.keyboard.press("ArrowLeft")
+        assert page.locator("#document-dialog-title").inner_text() == records[first_ids[0]]["title"]
+        for key in ("Shift+ArrowRight", "Alt+ArrowRight", "Control+ArrowRight", "Meta+ArrowRight"):
+            page.keyboard.press(key)
+            assert page.locator("#document-dialog-title").inner_text() == records[first_ids[0]]["title"]
+        for markup in ('<input>', '<textarea></textarea>', '<select><option>A</option><option>B</option></select>',
+                       '<div contenteditable="true"><span>Texto editable</span></div>'):
+            page.locator("#document-dialog-content").evaluate("""(node, markup) => {
+                node.insertAdjacentHTML('beforeend', markup);
+                node.lastElementChild.focus();
+            }""", markup)
+            page.keyboard.press("ArrowRight")
+            assert page.locator("#document-dialog-title").inner_text() == records[first_ids[0]]["title"]
+            page.locator("#document-dialog-content > :last-child").evaluate("node => node.remove()")
+        page.locator(".document-close").focus()
+        page.keyboard.press("ArrowRight")
+        assert page.locator("#document-dialog-title").inner_text() == records[first_ids[1]]["title"]
         page.keyboard.press("Escape")
 
         page.select_option("#document-year", "2008")
@@ -140,7 +159,9 @@ def check_reader_navigation(browser):
             assert bounds[0]["x"] < bounds[1]["x"] < bounds[2]["x"]
             assert bounds[0]["x"] >= 0 and bounds[2]["x"] + bounds[2]["width"] <= width
             if index < len(identities) - 1:
-                page.locator(".document-next").click()
+                page.keyboard.press("ArrowRight")
+        page.keyboard.press("ArrowRight")
+        assert page.locator("#document-dialog-title").inner_text() == records[identities[-1]]["title"]
         page.locator(".document-previous").click()
         page.reload()
         page.wait_for_selector("#document-dialog[open]")
@@ -171,7 +192,7 @@ def check_reader_navigation(browser):
         page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
         assert page.locator(".document-card").count() == 2
         page.locator(".document-open").first.click()
-        page.locator(".document-next").click()
+        page.keyboard.press("ArrowRight")
         assert page.locator("#document-dialog-title").inner_text() == records[first_ids[1]]["title"]
         page.locator('#document-dialog [data-document-mark="favorite"]').click()
         assert page.locator(".document-card").count() == 1
@@ -412,6 +433,23 @@ def check_document_attributions(browser):
                 "node => getComputedStyle(node).fontFamily") == font
             paragraphs = page.locator(".document-full-source > blockquote p")
             assert paragraphs.all_text_contents() == reading_paragraphs(record)
+            if identifier == "napoleon-espanoles-bayona-1808":
+                assert paragraphs.last.get_attribute("class") == "document-attribution"
+                assert paragraphs.last.inner_text() == "Dado en nuestro palacio imperial y real de Bayona a 25 de mayo de 1808."
+            if identifier == "decreto-cortes-soberania-isla-leon-1810":
+                assert paragraphs.first.inner_text() == "PRIMER DECRETO DE LAS CORTES REUNIDAS EN LA ISLA DE LEÓN (CÁDIZ)"
+                assert paragraphs.first.evaluate("""node => {
+                    const style = getComputedStyle(node);
+                    return style.textAlign === 'center' && Number(style.fontWeight) >= 700;
+                }""")
+                page.locator(".document-text-versions > summary").click()
+                heading = page.locator('.document-text-version[data-version-id="decreto-cortes-soberania-isla-leon-1810-pdf-2005-3-1"] blockquote p').first
+                assert heading.evaluate("""node => {
+                    const style = getComputedStyle(node);
+                    return style.textAlign === 'center' && Number(style.fontWeight) >= 700;
+                }""")
+                reference = page.locator('.document-text-version[data-version-id="decreto-cortes-soberania-isla-leon-1810-pdf-2007-1-1"] blockquote p').last
+                assert reference.evaluate("node => getComputedStyle(node).textAlign") == "right"
             content = record.get("studyCompilation") or record
             starts = content.get("paragraphStarts", list(range(len(content["text"]))))
             attribution_start = len(content["text"]) - content.get("attributionParagraphs", 0)
@@ -441,7 +479,7 @@ def check_document_attributions(browser):
                     }""")
                 else:
                     heading = starts[index] in content.get("headingParagraphs", [])
-                    align = ("center" if content.get("centerHeadings") else "left") if heading else "justify"
+                    align = ("center" if content.get("centerHeadings") is not False else "left") if heading else "justify"
                     assert style == {"align": align, "last": "center" if align == "center" else "left",
                                      "style": "normal"}, (identifier, style)
                     emphasis = content.get("headingEmphasis", {}).get(str(starts[index]), []) if heading else []
@@ -573,9 +611,63 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=71"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=60"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=73"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=61"]').count() == 1
         context.close()
+
+def check_image_credits(browser):
+    for width in (1440, 375):
+        context = browser.new_context(viewport={"width": width, "height": 900}, service_workers="block")
+        page = context.new_page()
+        page.goto(f"{BASE}/documentos.html")
+        page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+        reveal_historical(page)
+        for identity in ("motin-esquilache-1766", "acorazado-maine-1898", "mapa-primera-guerra-carlista-2012"):
+            record = next(record for record in DATA["documents"] if record["id"] == identity)
+            page.locator(f'.document-card[data-id="{identity}"] .document-open').click()
+            details = page.locator("#document-dialog .document-image-credits")
+            credit = details.locator("p")
+            assert not details.evaluate("node => node.open")
+            assert not credit.is_visible()
+            summary = details.locator("summary")
+            assert summary.inner_text() == "Créditos de la imagen"
+            summary.focus()
+            page.keyboard.press("Enter")
+            assert credit.is_visible()
+            attribution = record["image"]["attribution"]
+            assert details.get_by_role("link", name=attribution["text"], exact=True).get_attribute("href") == attribution["url"]
+            assert details.get_by_role("link", name=attribution["license"], exact=True).get_attribute("href") == attribution["licenseUrl"]
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+            page.keyboard.press("Escape")
+        page.locator('.document-card[data-id="cartel-ayuda-republica-francia"] .document-open').click()
+        assert page.locator(".document-reproduction-note").is_visible()
+        assert "no incluye la franja inferior" in page.locator(".document-reproduction-note").inner_text()
+        page.keyboard.press("Escape")
+        cover = page.locator('.document-card[data-id="portada-constitucion-1812"]')
+        assert cover.locator(".document-preview img").evaluate("node => getComputedStyle(node).filter") == "none"
+        cover.locator(".document-open").click()
+        image = page.locator(".document-full-source img")
+        assert image.get_attribute("src") == "assets/documentos/portada-constitucion-1812.png"
+        assert image.evaluate("node => getComputedStyle(node).filter") == "none"
+        page.keyboard.press("Escape")
+        page.select_option("#document-year", "2015")
+        page.select_option("#document-exam", "examen 4")
+        page.locator('.document-card[data-id="goya-tres-de-mayo"] .document-open').click()
+        assert page.locator(".document-exam-caption").inner_text() == "Francisco de Goya, Los fusilamientos (Museo del Prado)"
+        assert page.get_by_role("link", name="Ver en la recopilación", exact=True).get_attribute("href").endswith("#heading=h.lxhnexopmiob")
+        page.keyboard.press("Escape")
+        page.locator("#document-reset").click()
+        page.select_option("#document-block", "5")
+        page.locator('.document-card[data-id="juramento-cortes-constituyentes-isla-leon-1810"] .document-open').click()
+        caption = page.locator(".document-exam-caption")
+        assert caption.inner_text() == (
+            "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León, "
+            "24 de Septiembre de 1810. (Óleo sobre lienzo de Casado del Alisal, conservado en el Salón de Plenos "
+            "del Congreso de los Diputados, Madrid)."
+        )
+        assert caption.evaluate("node => node.scrollWidth <= node.clientWidth")
+        context.close()
+
 
 def check_fitted_media_and_people(browser):
     for width, height in ((1440, 1000), (768, 1024), (375, 812)):
@@ -1849,6 +1941,7 @@ def run():
         check_constitution_people(browser)
         check_reader_updates(browser, p.devices["Pixel 7"])
         check_badges_without_repeated_exam_fields(browser)
+        check_image_credits(browser)
         check_fitted_media_and_people(browser)
         check_below_caption_people(browser)
         check_extended_annotation_palette(browser)

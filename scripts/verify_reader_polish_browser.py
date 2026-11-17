@@ -594,6 +594,17 @@ def check_1812_compilation_and_2004_reproductions(browser, options):
     quote = page.locator(".document-full-source > blockquote")
     assert quote.locator("p").all_text_contents() == expected
     assert page.get_by_role("heading", name="Recopilación completa de fragmentos para estudiar").is_visible()
+    headings = quote.locator(".document-source-heading")
+    assert headings.all_text_contents() == [
+        "CONSTITUCIÓN POLÍTICA DE LA MONARQUÍA ESPAÑOLA",
+        "TÍTULO I. DE LA NACIÓN ESPAÑOLA Y DE LOS ESPAÑOLES",
+        "CAPÍTULO I", "De la Nación Española",
+    ]
+    assert headings.evaluate_all("""nodes => nodes.every(node => {
+        const style = getComputedStyle(node);
+        return style.textAlign === 'center' && Number(style.fontWeight) >= 700;
+    })""")
+    assert quote.locator("p").all_text_contents().count("[…]") == 3
     assert "No es el texto íntegro" in page.locator(".document-full-source > .document-reading-note").inner_text()
     assert "8 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
     versions = page.locator(".document-text-versions")
