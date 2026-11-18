@@ -277,6 +277,19 @@ def check_filter_panel(browser, options=None):
             unit = page.locator("#document-unit")
             assert unit.is_visible()
             assert not page.locator("#document-topics").is_visible()
+            if path == "documentos.html":
+                favorite = page.get_by_role("button", name="Favoritos", exact=True)
+                review = page.get_by_role("button", name="Pendientes de repaso", exact=True)
+                assert favorite.is_visible() and review.is_visible()
+                assert favorite.locator(".saved-tab-icon svg").is_visible()
+                assert review.locator(".saved-tab-icon svg").is_visible()
+                if page.evaluate("innerWidth >= 768"):
+                    order_box = page.locator("#document-frequency-sort").bounding_box()
+                    for button in (favorite, review):
+                        box = button.bounding_box()
+                        assert box["x"] + box["width"] < order_box["x"]
+                        assert abs(box["y"] + box["height"] / 2 -
+                                   order_box["y"] - order_box["height"] / 2) <= 1
             block_box = page.locator("#document-block").bounding_box()
             unit_box = unit.bounding_box()
             if page.evaluate("matchMedia('(max-width: 520px)').matches"):
@@ -320,8 +333,8 @@ def check_filter_panel(browser, options=None):
             if path == "documentos.html":
                 more.click()
                 page.locator(".document-topic-bubble:visible").first.click()
-                page.locator('[data-document-saved="favorite"]').click()
                 more.click()
+                favorite.click()
                 assert page.locator("#document-empty").is_visible()
                 assert chips.locator('[data-filter="Temática"]').is_visible()
                 chips.locator('[data-filter="Marca"]').click()
@@ -337,6 +350,15 @@ def check_exam_filter_reload(browser, options=None):
     for path in ("documentos.html", "mis-documentos.html"):
         page.goto(f"{BASE}/{path}")
         ready(page)
+        for year in ("2012", "2015"):
+            page.select_option("#document-year", year)
+            assert page.locator("#document-exam option").all_text_contents()[1:5] == [
+                "Examen 1", "Examen 2", "Modelo orientaciones PAU", "Examen 3",
+            ]
+        page.select_option("#document-year", "2010")
+        assert page.locator("#document-exam option").all_text_contents()[1:4] == [
+            "Titular ordinaria", "Titular extraordinaria", "Modelo orientaciones PAU",
+        ]
         page.select_option("#document-year", "2003")
         reload(page)
         assert page.input_value("#document-year") == "2003"
@@ -542,13 +564,11 @@ def run():
         reload(page)
         assert mark(page, "review", in_dialog=True).get_attribute("aria-pressed") == "true"
         close_dialog(page)
-        page.locator(".document-more-filters summary").click()
         page.locator('[data-document-saved="favorite"]').click()
         assert page.locator(".document-card").count() == 1
         assert card(page).is_visible()
         reload(page)
         assert page.locator('[data-document-saved="favorite"]').get_attribute("aria-pressed") == "true"
-        page.locator(".document-more-filters summary").click()
         page.locator('[data-document-saved="review"]').click()
         assert page.locator(".document-card").count() == 1
         assert page.locator('[data-document-saved="review"]').evaluate(

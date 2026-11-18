@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v370";
+const CACHE = "pau-he-v406";
 const CORE = [
   "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./site-footer.css",
@@ -21,6 +21,7 @@ const CORE = [
   "./documentos.html", "./mis-documentos.html", "./documentos.css", "./documentos.js", "./data/documentos.json",
   "./assets/documentos/goya-tres-de-mayo.png", "./assets/documentos/portada-constitucion-1812.png",
   "./assets/documentos/miembros-cortes-cadiz.png",
+  "./assets/documentos/alfonso-xiii-directorio-militar-spaarnestad.jpg",
   "./assets/documentos/franco-arzobispo-pont-i-gol-1958.png",
   "./assets/documentos/franco-pont-i-gol-ampliada.jpg",
   "./assets/documentos/comision-redactora-constitucion-1978.png",
@@ -117,6 +118,7 @@ const CORE = [
   "./assets/documentos/pdf-2003-1-4.png",
   "./assets/documentos/pdf-2003-2-2.png",
   "./assets/documentos/pdf-2003-2-4.png",
+  "./assets/documentos/grafica-pib-habitante-1939-1973.svg",
   "./assets/documentos/pdf-2003-3-4.png",
   "./assets/documentos/pdf-2003-4-2.png",
   "./assets/documentos/pdf-2003-4-4.png",

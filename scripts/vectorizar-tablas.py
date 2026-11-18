@@ -1,4 +1,5 @@
-"""Rebuild the reviewed PDF tables as accessible, self-contained blue SVGs."""
+"""Rebuild the reviewed PDF tables as accessible, self-contained SVGs."""
+from base64 import b64encode
 import hashlib
 import json
 from pathlib import Path
@@ -47,7 +48,12 @@ TABLES = {
     "renta-europea-1940-1960": {
         "caption": "Renta per cápita en algunos países europeos (en dólares de 1970)",
         "headers": ["Países/Años", "1940", "1950", "1960"],
-        "widths": [340, 220, 220, 220],
+        "widths": [124, 156, 131, 135],
+        "examLayout": {
+            "size": (866, 412), "origin": (160, 82), "rowHeights": [50] * 5,
+            "fontSizes": (22, 22, 19), "titleBaselines": (25, 51),
+            "notePosition": (8, 376), "noteBreakBefore": "(1939-1975)",
+        },
         "rows": [
             ["Alemania", "1.230", "1.363", "1.610"],
             ["España", "746", "694", "1.042"],
@@ -83,7 +89,17 @@ TABLES = {
     "divisas-emigrantes-1961-1975": {
         "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES. 1961-1975",
         "headers": ["Años", "Millones de dólares"],
-        "widths": [210, 390],
+        "widths": [80, 196],
+        "examLayout": {
+            "size": (299, 512), "origin": (8, 70),
+            "rowHeights": [24] + [23] * 15,
+            "fontSizes": (17, 18, 12), "titleWeight": 400,
+            "titleLines": ["DIVISAS APORTADAS POR LOS", "EMIGRANTES ESPAÑOLES. 1961-", "1975"],
+            "titleBaselines": (17, 40, 63), "notePosition": (11, 493),
+            "rulesAfter": (0,), "verticalRules": False,
+            "italicHeader": True, "firstColumnLeft": True,
+            "noteEmphasis": ("La emigración española",),
+        },
         "rows": [[str(year), value] for year, value in zip(
             range(1961, 1976),
             ["115", "148", "201", "240", "301", "346", "325", "324", "402", "469",
@@ -111,7 +127,14 @@ TABLES = {
     "ayuda-economica-americana-1953-1957": {
         "caption": "AYUDA ECONÓMICA AMERICANA (en dólares)",
         "headers": ["Conceptos", "1953-1954", "1954-1955", "1955-1956", "1956-1957"],
-        "widths": [380, 250, 250, 250, 250],
+        "widths": [180, 112, 112, 112, 112],
+        "examLayout": {
+            "size": (632, 451), "origin": (2, 71),
+            "rowHeights": [42, 57, 44, 33, 50, 44, 33, 44],
+            "fontSizes": (21, 19, 18), "titleBaselines": (28, 54),
+            "notePosition": (16, 444), "rulesAfter": (0, 1, 4),
+            "boldHeader": True, "boldLabels": (1, 2, 5),
+        },
         "rows": [
             ["Ayuda programada", "85.000.000", "85.000.000", "85.000.000", "50.000.000"],
             ["Ayuda concedida", "84.634.153", "84.890.784", "84.890.784", "18.687.000"],
@@ -133,6 +156,8 @@ def lines(text, width, size):
 
 
 def render(table, provenance):
+    if table.get("examLayout"):
+        return render_exam_table(table, provenance)
     widths = table["widths"]
     width = sum(widths) + 48
     title = lines(table["caption"], width - 48, 28)
@@ -206,6 +231,96 @@ def render(table, provenance):
     return "\n".join(parts) + "\n", width, height
 
 
+def render_exam_table(table, provenance):
+    layout = table["examLayout"]
+    width, height = layout["size"]
+    title_size, cell_size, note_size = layout["fontSizes"]
+    baselines = layout["titleBaselines"]
+    title_weight = layout.get("titleWeight", 700)
+    if "titleLines" in layout:
+        title_lines = layout["titleLines"]
+        unit = None
+    elif " (" in table["caption"]:
+        title, unit = table["caption"].split(" (", 1)
+        title_lines = [title]
+    else:
+        title_lines = [table["caption"]]
+        unit = None
+    font = b64encode((ROOT / "assets/fonts/RobotoCondensed-Regular.ttf").read_bytes()).decode("ascii")
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
+        f'<title id="title">{escape(table["caption"])}</title>',
+        f'<desc id="desc">{escape(table["notes"][0])}</desc>',
+        f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
+        '<style>@font-face{font-family:PAUCondensed;src:local("Arial Narrow"),local("ArialNarrow"),'
+        f'url(data:font/ttf;base64,{font}) format("truetype")}}'
+        'text{font-family:PAUCondensed,"Arial Narrow",sans-serif;fill:#000}'
+        f'.title{{font-size:{title_size}px;font-weight:{title_weight}}}.cell{{font-size:{cell_size}px}}.note{{font-size:{note_size}px}}</style>',
+        f'<rect width="{width}" height="{height}" fill="#fff"/>',
+    ]
+    for index, line in enumerate(title_lines):
+        baseline = baselines[index] if index < len(baselines) else baselines[-1] + 24 * (index - len(baselines) + 1)
+        parts.append(f'<text class="title" x="{width / 2:g}" y="{baseline}" text-anchor="middle">{escape(line)}</text>')
+    if unit is not None:
+        parts.append(f'<text class="title" x="{width / 2:g}" y="{baselines[1]}" text-anchor="middle">({escape(unit)}</text>')
+    x0, y0 = layout["origin"]
+    grid_width = sum(table["widths"])
+    row_heights = layout["rowHeights"]
+    grid_height = sum(row_heights)
+    rows = [table["headers"], *table["rows"]]
+    assert len(rows) == len(row_heights)
+    parts.append(f'<g fill="none" stroke="#333"><rect x="{x0}" y="{y0}" width="{grid_width}" height="{grid_height}"/>')
+    x = x0
+    if layout.get("verticalRules", True):
+        for column_width in table["widths"][:-1]:
+            x += column_width
+            parts.append(f'<path d="M{x} {y0}v{grid_height}"/>')
+    y = y0
+    for row, row_height in enumerate(row_heights[:-1]):
+        y += row_height
+        if row in layout.get("rulesAfter", range(len(rows) - 1)):
+            parts.append(f'<path d="M{x0} {y}h{grid_width}"/>')
+    parts.append("</g>")
+    y = y0
+    for row, (values, row_height) in enumerate(zip(rows, row_heights)):
+        x = x0
+        for column, (value, column_width) in enumerate(zip(values, table["widths"])):
+            if row:
+                parts.append(f'<g data-row="{row - 1}" data-column="{column}">')
+            bold = (row == 0 and layout.get("boldHeader")) or (column == 0 and row in layout.get("boldLabels", ()))
+            italic = row == 0 and layout.get("italicHeader")
+            weight = ' font-weight="700"' if bold else ""
+            style = ' font-style="italic"' if italic else ""
+            left = column == 0 and layout.get("firstColumnLeft")
+            anchor = "start" if left else "middle"
+            cell_x = x + 7 if left else x + column_width / 2
+            parts.append(f'<text class="cell" x="{cell_x:g}" y="{y + row_height / 2 + round(cell_size * .36):g}" '
+                         f'text-anchor="{anchor}"{weight}{style}>{escape(value)}</text>')
+            if row:
+                parts.append("</g>")
+            x += column_width
+        y += row_height
+    note = table["notes"][0]
+    note_lines = [note]
+    if "noteLines" in layout:
+        note_lines = layout["noteLines"]
+    elif "noteBreakBefore" in layout:
+        first, marker, rest = note.partition(" " + layout["noteBreakBefore"])
+        assert marker
+        note_lines = [first, marker.lstrip() + rest]
+    note_x, note_y = layout["notePosition"]
+    for index, line in enumerate(note_lines):
+        emphasis = layout.get("noteEmphasis", ())
+        fragment = escape(line)
+        for phrase in emphasis:
+            if phrase in line:
+                fragment = fragment.replace(
+                    escape(phrase), f'<tspan font-style="italic">{escape(phrase)}</tspan>')
+        parts.append(f'<text class="note" x="{note_x}" y="{note_y + index * (note_size + 4)}">{fragment}</text>')
+    parts.append("</svg>")
+    return "\n".join(parts) + "\n", width, height
+
+
 def main():
     path = ROOT / "data/documentos.json"
     corpus = json.loads(path.read_text())
@@ -220,7 +335,8 @@ def main():
         original_hash = hashlib.sha256((ROOT / original).read_bytes()).hexdigest()
         appearance = record["appearances"][0]
         provenance = {
-            "method": "Redibujo manual, no extracción vectorial certificada del PDF.",
+            "method": ("Tabla vectorial con diseño basado en el examen." if table.get("examLayout")
+                       else "Redibujo manual, no extracción vectorial certificada del PDF."),
             "original": original, "originalSha256": original_hash,
             "pdf": appearance["pdfUrl"], "pdfSha256": appearance["sourceSha256"],
             "file": appearance["officialFile"], "page": appearance["officialPage"],
@@ -232,13 +348,17 @@ def main():
             **image, "src": source, "width": width, "height": height, "kind": "table",
             "originalSrc": original, "originalSha256": original_hash,
             "alt": f'{table["caption"]}. Tabla vectorial; los datos también están disponibles en texto.',
-            "reproductionNote": provenance["method"],
         }
+        if table.get("examLayout"):
+            record["image"].pop("reproductionNote", None)
+            presentation = "Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen."
+        else:
+            record["image"]["reproductionNote"] = provenance["method"]
+            presentation = "Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente."
         record["table"] = {key: value for key, value in table.items()
                            if key in ("caption", "headers", "rows", "notes", "underlinedCells")}
         record["quality"] = record["quality"].split(" La reproducción procede de este PDF;")[0].split(" Redibujo vectorial")[0] + (
-            " Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente. "
-            "Se conserva la reproducción original para comparar y una tabla de datos accesible.")
+            f" {presentation} Se conserva la reproducción original para comparar y una tabla de datos accesible.")
         print(f"{identity}: {width} × {height}, {len(table['rows'])} filas")
     path.write_text(json.dumps(corpus, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

@@ -622,8 +622,8 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=79"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=64"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=90"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=69"]').count() == 1
         context.close()
 
 def check_image_credits(browser):
@@ -1947,7 +1947,7 @@ def run():
         assert "trabajadores de toda clase, que se organiza" in paragraphs[0]
         assert paragraphs[1] == "Los poderes de todos sus órganos emanan del pueblo."
         assert paragraphs[4] == "Artículo 2. Todos los españoles son iguales ante la ley."
-        assert paragraphs[-1].endswith("legítima del Estado […].")
+        assert paragraphs[-1].endswith("legítima del Estado [...].")
         assert len(paragraphs) == 9
         page.locator(".document-close").click()
         page.select_option("#document-block", "12")

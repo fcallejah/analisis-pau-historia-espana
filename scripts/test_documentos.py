@@ -33,7 +33,8 @@ class DocumentCorpusTests(unittest.TestCase):
         original = []
         imported = []
         for record in data["documents"]:
-            previous = [a for a in record["appearances"] if a["year"] >= 2008]
+            previous = [a for a in record["appearances"] if a["year"] >= 2008
+                        and a.get("sourceReviewStatus") != "orientation-model"]
             if previous:
                 original.append({key: previous if key == "appearances" else value
                                  for key, value in record.items() if key not in ("primaryTextId", "memberIds")
@@ -42,17 +43,20 @@ class DocumentCorpusTests(unittest.TestCase):
                                  and not (record["id"] in ("mural-constitucion-1812-cadiz", "prim-busca-regimen-caricatura",
                                                           "directorio-civil-alfonso-xiii-1925", "reparto-armas-madrid-1936")
                                           and key in ("image", "quality"))
-                                 and not (record["id"] == "constitucion-1812-articulos-2008"
+                                 and not (record["id"] in ("constitucion-1812-articulos-2008",
+                                                          "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
+                                                          "manifiesto-de-sandhurst-llamamiento-a-la-restauracion",
+                                                          "constitucion-1978-articulos-suplente-a")
                                           and key == "studyCompilation")})
             imported.extend(a for a in record["appearances"] if a["year"] <= 2007)
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "e446ce67f34c39d3bd863705095735a7d1d9ceaa9a20cb47905f1aee1bd04a1e")
+        self.assertEqual(digest, "250ac2bcfc28a2e82d198b1c6d89bbc9b5bece60ed6dc226c26ed6c9cde9c0de")
         self.assertEqual(len(imported), 134)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
-        self.assertEqual(data["coverage"]["sourceHeadingCount"], 95)
-        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 394)
+        self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 418)
         pending = data["coverage"]["pdfImport"]["pendingMaterials"]
         keys = {a["sourceKey"] for a in imported}
         self.assertEqual(len(pending), 10)
@@ -87,7 +91,11 @@ class DocumentCorpusTests(unittest.TestCase):
         for group in data["textGroups"]:
             if any(a["year"] == 2006 for identity in group for a in records[identity]["appearances"]):
                 primary = records[records[group[0]]["primaryTextId"]]
-                self.assertTrue(all(a["year"] != 2006 for a in primary["appearances"]))
+                if group[0] == "manifiesto-persas-1814":
+                    self.assertEqual(primary["id"], "manifiesto-persas-1814-pdf-2006-5-1")
+                    self.assertIn("no original", primary["readingNote"])
+                else:
+                    self.assertTrue(all(a["year"] != 2006 for a in primary["appearances"]))
         songs = records["canciones-guerra-civil"]["text"]
         self.assertIn("¿Para qué tantos humos", songs[0])
         self.assertNotIn("Cuando se enteró", songs[0])
@@ -96,6 +104,35 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIn("Canción falangista", songs[1])
         cavalry = records["huelga-1917-caballeria"]
         self.assertNotEqual(cavalry["image"]["src"], records["huelga-general-1917-fotografia"]["image"]["src"])
+
+    def test_document_omissions_use_square_brackets_and_three_dots(self):
+        data = (ROOT / "data/documentos.json").read_text()
+        self.assertIn("[...]", data)
+        self.assertNotRegex(data, r"\(\s*(?:\.{3}|\u2026)\s*\)|\[\s*\u2026\s*\]")
+
+    def test_junta_democratica_2002_principles_have_separate_paragraphs(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "junta-democratica-1974")
+        self.assertEqual(record["text"][0], "“La Junta Democrática propugna:")
+        self.assertEqual([paragraph.split(".", 1)[0] for paragraph in record["text"][1:-1]],
+                         ["1", "2", "3", "4", "5", "6", "7", "9", "10"])
+        self.assertEqual(record["attributionParagraphs"], 1)
+        self.assertEqual(record["text"][-1], "Resoluciones de la Junta Democrática. (Julio de 1974).")
+        self.assertEqual(hashlib.sha256(" ".join(record["text"]).encode()).hexdigest(),
+                         "f3f239b273f8de308d063119ff3ea8398583a23cece8e37f66dc58e1af93c174")
+
+    def test_war_songs_preserve_pdf_verses_and_words_in_separate_columns(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "canciones-guerra-civil")
+        self.assertEqual(record["textLayout"], "verse-pair")
+        self.assertEqual(len(record["text"]), 2)
+        for song, label in zip(record["text"], ("Canción republicana", "Canción falangista.")):
+            self.assertEqual(len(song.splitlines()), 17)
+            self.assertTrue(song.endswith("\n\n" + label))
+        self.assertTrue(record["text"][0].startswith("¿Para qué tantos humos,\ntantos faroles,"))
+        self.assertTrue(record["text"][1].startswith("Cuando se enteró mi madre\nde que yo era de las JONS"))
+        self.assertEqual(hashlib.sha256(" ".join(" ".join(record["text"]).split()).encode()).hexdigest(),
+                         "31ad7ebf9c1f7a714878d319736aa2dbb6accf8f8f5192bb7b2bdd0e2300ba78")
 
     def test_curriculum_units_cover_grouped_documents_without_reclassifying_the_archive(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -158,8 +195,8 @@ class DocumentCorpusTests(unittest.TestCase):
         original = {
             "critica-del-sistema-electoral-de-la-restauracion": "3c8d44344a08216bbc920848b9fabffb1972cf3d4334427207cfd6cbbcd3b646",
             "la-segunda-republica-y-la-cuestion-agraria": "a5ea5441ee76b9e2e62d9b549f3bf23f7e5c4ea1f836e4bab2ea498732b30b73",
-            "la-jefatura-del-estado-en-la-ley-organica-de-1967": "359d60d04ecc3c031ef4c221deac00757d2c5d8f4f6a9b78d3683b0d29949069",
-            "investidura-de-jose-maria-aznar": "e8e302b1ed57a98dc86ea9b8e3151153159bde2f56ed09dfdb709b15d5b1f5a3",
+            "la-jefatura-del-estado-en-la-ley-organica-de-1967": "1efcb01a4b887b2b2a0d17dfbc0950d3bfe94c6f68e85cd31f41252b90abb640",
+            "investidura-de-jose-maria-aznar": "54bdcfd555029f9268470862069bec50259330dd4fb41fff19547296a493ac88",
         }
         for identifier, expected in original.items():
             record = records[identifier]
@@ -200,6 +237,21 @@ class DocumentCorpusTests(unittest.TestCase):
         sandhurst = records["manifiesto-de-sandhurst-llamamiento-a-la-restauracion"]["text"]
         self.assertTrue(any("Por mi parte, debo al infortunio" in paragraph for paragraph in sandhurst))
         self.assertTrue(sandhurst[-1].endswith("1874."))
+
+    def test_sandhurst_2025_recovers_the_exam_excerpt_under_the_full_reference_text(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        exam = records["manifiesto-de-sandhurst"]
+        self.assertIn("Cuantos me han escrito", exam["text"][1])
+        self.assertIn("las cosas de la España moderna", exam["text"][-1])
+        self.assertTrue(exam["text"][-1].endswith("verdaderamente liberal”."))
+        self.assertNotIn("Deseo que con todos", " ".join(exam["text"]))
+        self.assertEqual([(a["exam"], a["route"], a["document"]) for a in exam["appearances"]],
+                         [("2025 Titular extraordinaria", "Itinerario A", 2)])
+        group = next(group for group in data["textGroups"] if exam["id"] in group)
+        compilation = records[group[0]]["studyCompilation"]
+        self.assertIn("las cosas de la Europa moderna", " ".join(compilation["text"]))
+        self.assertEqual(sum(len(records[identity]["appearances"]) for identity in group), 5)
 
     def test_franco_2025_continuation_is_recovered_from_its_own_pdf(self):
         records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
@@ -244,6 +296,44 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(records["militantes-pce-acto-multitudinario"]["blocks"], [12])
         for name in ("general-valeriano-weyler", "isabel-ii-jura-constitucion-1837", "azana-homenaje-coruna-franco"):
             self.assertTrue(records[name]["image"]["crop"])
+
+    def test_apertura_cortes_uses_the_three_user_supplied_identifications(self):
+        records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        image = records["apertura-cortes-1979"]["image"]
+        self.assertEqual(image["src"], "assets/documentos/pdf-2003-4-4.png")
+        annotations = image["annotations"]
+        self.assertIn("indicados por el usuario", annotations["note"])
+        people = annotations["people"]
+        self.assertEqual([person["name"] for person in people],
+                         ["Juan Carlos I", "Sofía de Grecia", "Felipe de Borbón"])
+        self.assertIn("actual Felipe VI", people[2]["role"])
+        self.assertTrue(people[0]["x"] < people[1]["x"] < people[2]["x"])
+        self.assertTrue(people[0]["y"] < people[1]["y"])
+        note = people[0]["context"]
+        self.assertIn("1969 sucesor en la jefatura del Estado a título de rey", note["text"])
+        self.assertIn("abdicó en junio de 2014", note["text"])
+        self.assertIn("agosto de 2020, seis años después", note["text"])
+        self.assertIn("marzo de 2022", note["text"])
+        self.assertIn("archivó las diligencias", note["text"])
+        self.assertNotIn("exilio", note["text"])
+        self.assertEqual(urlparse(note["url"]).netloc, "www.rtve.es")
+
+    def test_republican_ministry_highlights_the_four_successive_presidents(self):
+        records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        image = records["primer-gobierno-republica-1873"]["image"]
+        annotations = image["annotations"]
+        self.assertIn("ministros", annotations["context"])
+        people = annotations["people"]
+        self.assertEqual([person["name"] for person in people],
+                         ["Estanislao Figueras", "Francisco Pi y Margall", "Nicolás Salmerón", "Emilio Castelar"])
+        for person in people:
+            self.assertTrue(person["context"]["text"])
+            self.assertEqual(urlparse(person["context"]["url"]).scheme, "https")
+        self.assertIn("no está acreditada", people[0]["context"]["text"])
+        self.assertIn("cuestionan esa explicación", people[2]["context"]["text"])
+        self.assertIn("3 de enero de 1874", people[3]["context"]["text"])
+        self.assertIn("Francisco Serrano", people[3]["context"]["text"])
+        self.assertIn("etapa parlamentaria", people[3]["context"]["text"])
 
     def test_alhucemas_people_have_separate_callouts_on_the_official_exam_crop(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -327,7 +417,7 @@ class DocumentCorpusTests(unittest.TestCase):
             self.assertEqual(" ".join(paragraphs), " ".join(record["text"]))
         directorio = records["constitucion-directorio-militar-1923"]
         self.assertEqual(hashlib.sha256(" ".join(directorio["text"]).encode()).hexdigest(),
-                         "dcebd9af07774a88d7ce4a151cfdffca601dfcfff12fac992bcf0141863f4e25")
+                         "51bafe0aead39ac6865e217bae30b5c2126647eba525314f18128be598a2cc87")
         constitution = records["constitucion-cadiz-articulos-1812"]
         paragraphs = [" ".join(constitution["text"][start:end]) for start, end in zip(
             constitution["paragraphStarts"], constitution["paragraphStarts"][1:] + [len(constitution["text"])])]
@@ -568,9 +658,12 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         for record in data["documents"]:
             sources = []
+            if "titleEmphasis" in record:
+                sources.append((record["title"], record["titleEmphasis"]))
             if "attributionEmphasis" in record:
                 self.assertTrue(record.get("attributionParagraphs"))
-                sources.append((record["text"][-1], record["attributionEmphasis"]))
+                sources.append((" ".join(record["text"][-record["attributionParagraphs"]:]),
+                                record["attributionEmphasis"]))
             for index, phrases in record.get("headingEmphasis", {}).items():
                 self.assertIn(int(index), record["headingParagraphs"])
                 sources.append((record["text"][int(index)], phrases))
@@ -709,7 +802,7 @@ class DocumentCorpusTests(unittest.TestCase):
             "Primero.",
         ])
         self.assertEqual(hashlib.sha256(" ".join(document["text"]).encode()).hexdigest(),
-                         "86cefc60bf3b3d5a18e6725dfc28c36801c2b2663df1ff5d9cd1551a498db978")
+                         "52e3ce539c6e7b5bd708245afa2cbbe222fd6ac427d66f85a380672ca9605462")
         self.assertIn("esta misma aparición", document["quality"])
         self.assertIn("pendiente de cotejo con el PDF oficial", document["quality"])
 
@@ -854,7 +947,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertTrue(compilation["centerHeadings"])
         self.assertEqual([(paragraphs[i - 1].split(".")[1].strip(),
                            paragraphs[i + 1].split(".")[1].strip())
-                          for i, p in enumerate(paragraphs) if p == "[…]"],
+                          for i, p in enumerate(paragraphs) if p == "[...]"],
                          [("4", "14"), ("17", "287"), ("287", "371")])
         introduction = records["constitucion-1812-articulos-2008-pdf-2003-1-1"]["text"]
         self.assertEqual(paragraphs[0], introduction[0].removeprefix(
@@ -868,10 +961,61 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(articles[9], record["text"][5].replace("tiene libertad", "tienen libertad"))
         group = next(group for group in data["textGroups"] if group[0] == record["id"])
         appearances = [a for identity in group for a in records[identity]["appearances"]]
-        self.assertEqual(sorted(a["year"] for a in appearances), [2003, 2004, 2006, 2007, 2008, 2012, 2015, 2016])
+        self.assertEqual(sorted(a["year"] for a in appearances),
+                         [2003, 2004, 2006, 2007, 2008, 2010, 2012, 2012, 2015, 2016])
+        model = records["constitucion-1812-articulos-1-4-modelo"]
+        self.assertEqual({a["year"] for a in model["appearances"]}, {2010, 2012})
+        self.assertEqual([p.split(". ")[1] for p in model["text"][1:]], ["1", "2", "3", "4"])
         self.assertNotIn("appearances", compilation)
         self.assertIn("No es el texto íntegro", compilation["readingNote"])
         self.assertIn("tiene libertad", record["text"][5])
+
+    def test_1978_compilation_combines_introduction_and_requested_articles(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        record = records["constitucion-1978-articulos-suplente-a"]
+        compilation = record["studyCompilation"]
+        paragraphs = compilation["text"]
+        self.assertEqual(paragraphs[0], record["text"][0])
+        self.assertEqual([paragraphs[index] for index in compilation["headingParagraphs"]],
+                         ["Artículo 1", "Artículo 2", "Artículo 3", "Artículo 6", "Artículo 7"])
+        self.assertEqual([re.match(r"\d\.\d", paragraph)[0] for paragraph in paragraphs
+                          if re.match(r"\d\.\d", paragraph)], ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3"])
+        self.assertEqual([index for index, paragraph in enumerate(paragraphs) if paragraph == "[...]"],
+                         [1, 12])
+        selection_2005 = records[f"{record['id']}-pdf-2005-4-3"]["text"]
+        self.assertEqual(paragraphs[9:12], [selection_2005[5].removeprefix("Art. "), *selection_2005[6:8]])
+        selection_2004 = records[f"{record['id']}-pdf-2004-6-3"]["text"]
+        self.assertEqual(paragraphs[14], selection_2004[3].removeprefix("Artículo 6. "))
+        self.assertEqual(paragraphs[16], selection_2004[4].removeprefix("Artículo 7. "))
+        self.assertIn("Derecho,", paragraphs[3])
+        self.assertIn("pueblo español,", paragraphs[4])
+        self.assertIn("de derechos,", selection_2004[0])
+        self.assertFalse(selection_2004[0].startswith("Don Juan Carlos"))
+        self.assertEqual(compilation["attributionParagraphs"], 1)
+        self.assertIn("No es el texto íntegro", compilation["readingNote"])
+        self.assertNotIn("appearances", compilation)
+        group = next(group for group in data["textGroups"] if group[0] == record["id"])
+        self.assertEqual(sorted(a["year"] for identity in group for a in records[identity]["appearances"]),
+                         [2004, 2005, 2025])
+
+    def test_fuero_compilation_covers_corpus_articles_without_replacing_exam_variants(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        identity = "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos"
+        compilation = records[identity]["studyCompilation"]
+        group = next(group for group in data["textGroups"] if group[0] == identity)
+        examined = {
+            int(number) for member in group for paragraph in records[member]["text"]
+            for number in re.findall(r"\b(?:Art\.|Artículo)\s+(\d+)", paragraph)
+        }
+        selected = [int(p.split()[1].rstrip(".")) for p in compilation["text"] if p.startswith("Art. ")]
+        self.assertEqual(selected, sorted(examined))
+        self.assertIn("No se permitirán otras ceremonias", " ".join(compilation["text"]))
+        exam = records[f"{identity}-pdf-2002-3-3"]
+        self.assertEqual([a["exam"] for a in exam["appearances"]], ["2002 Examen 3"])
+        self.assertIn("protección de la libertad religiosa", " ".join(exam["text"]))
+        self.assertNotIn("appearances", compilation)
 
     def test_2004_reproductions_keep_originals_and_wikimedia_colors(self):
         records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
@@ -1014,6 +1158,81 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertTrue(record["text"][1].startswith("“LA NACIÓN ESPAÑOLA y en su nombre las Cortes"))
         self.assertTrue(record["text"][2].startswith("Art.17."))
 
+    def test_cortazar_prefers_complete_2003_selection_with_heading_and_book_emphasis(self):
+        records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        canonical = records["garcia-cortazar-transicion-democracia"]
+        record = records[canonical["primaryTextId"]]
+        self.assertEqual(record["id"], "garcia-cortazar-transicion-democracia-pdf-2003-4-3")
+        self.assertEqual(record["headingParagraphs"], [0])
+        self.assertTrue(record["centerHeadings"])
+        self.assertEqual(record["text"][0].strip("“”"), "Cuando España dio ejemplo")
+        self.assertTrue(record["text"][1].startswith("Algunos fueron"))
+        for version in (canonical, record):
+            self.assertEqual(version["attributionEmphasis"], ["Álbum de la Historia de España"])
+        self.assertTrue(canonical["text"][0].startswith("[...] Franco"))
+
+    def test_artwork_and_book_titles_have_partial_italics_without_italicizing_authors(self):
+        records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        for identity, title in (
+            ("goya-carga-mamelucos", "La carga de los mamelucos"),
+            ("goya-tres-de-mayo", "Los fusilamientos del 3 de mayo"),
+            ("rendicion-bailen-casado-alisal", "La rendición de Bailén"),
+            ("guernica-picasso", "Guernica"),
+            ("clarin-regenta-turno", "La Regenta"),
+            ("hemingway-guerra-civil", "Por quien doblan las campanas"),
+        ):
+            with self.subTest(document=identity):
+                self.assertEqual(records[identity]["titleEmphasis"], [title])
+        caption = records["goya-carga-mamelucos"]["examCaption"]
+        self.assertEqual(caption["emphasis"], ["La carga de los Mamelucos"])
+        self.assertTrue(caption["text"].startswith("Francisco de Goya (1814):"))
+        self.assertNotIn("GOYA", caption["text"])
+        for identity, title in (
+            ("caricatura-turno-partidos", "L'Esquella de la Torratxa"),
+            ("sagasta-embudo-electoral", "La Carcajada"),
+            ("maximo-febrero-1976", "El País"),
+        ):
+            self.assertEqual(records[identity]["examCaption"]["emphasis"], [title])
+
+    def test_azana_religious_speech_has_two_body_paragraphs_in_every_selection(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = [r for r in data["documents"] if r["id"].startswith("azana-espana-ha-dejado-de-ser-catolica")]
+        self.assertTrue(records)
+        for record in records:
+            with self.subTest(document=record["id"]):
+                starts = record.get("paragraphStarts", list(range(len(record["text"]))))
+                body_end = len(record["text"]) - record["attributionParagraphs"]
+                body_starts = [start for start in starts if start < body_end]
+                self.assertEqual(len(body_starts), 2)
+                self.assertTrue(record["text"][body_starts[1]].startswith("Yo no puedo admitir"))
+                self.assertTrue(record["text"][-1].startswith("Discurso de"))
+
+    def test_blanco_white_heading_is_centered_and_italic_in_both_selections(self):
+        records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        for identity in ("blanco-white-1808", "blanco-white-1808-pdf-2006-1-1"):
+            record = records[identity]
+            with self.subTest(document=identity):
+                self.assertEqual(record["headingParagraphs"], [0])
+                self.assertTrue(record["centerHeadings"])
+                self.assertEqual(record["headingEmphasis"]["0"], [record["text"][0]])
+                self.assertTrue(record["text"][1].startswith("“Los diferentes hechos"))
+
+    def test_book_titles_in_multiple_attribution_paragraphs_are_emphasized(self):
+        records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        galdos = records["perez-galdos-sobre-las-elecciones-de-la-restauracion-pdf-2003-4-1"]
+        self.assertEqual(galdos["attributionParagraphs"], 2)
+        self.assertIn("antología de artículos", galdos["attributionEmphasis"])
+        self.assertIn("Partidos y programas", galdos["attributionEmphasis"])
+        for identity, title in (
+            ("serrano-suner-estado", "Entre Hendaya y Gibraltar"),
+            ("herr-estatuto-real", "Ensayo histórico de la España contemporánea"),
+            ("clarin-regenta-turno", "La Regenta"),
+            ("tunon-lara-republica-1931", "Tres claves de la Segunda República"),
+            ("hemingway-guerra-civil", "Por quien doblan las campanas"),
+        ):
+            with self.subTest(document=identity):
+                self.assertIn(title, records[identity]["attributionEmphasis"])
+
     def test_vectors_keep_source_provenance(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         documents = {document["id"]: document for document in data["documents"]}
@@ -1099,6 +1318,18 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(restoration["underlinedCells"], [[0, 1], [1, 2], [3, 2], [4, 1], [5, 2]])
         self.assertEqual(tables["elecciones-1977-votos-escanos"]["table"]["rows"][5][-1], "3,1")
 
+    def test_montecristi_footers_spell_out_the_date(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = [r for r in data["documents"] if r["title"] == "Manifiesto de Montecristi"]
+        self.assertEqual(len(records), 4)
+        for record in records:
+            with self.subTest(document=record["id"]):
+                body = " ".join(record["text"][:-record["attributionParagraphs"]])
+                footer = " ".join(record["text"][-record["attributionParagraphs"]:])
+                self.assertIn("Montecristi, Santo Domingo, 25 de marzo de 1895", footer)
+                self.assertIn("Firmado por José Martí y Máximo Gómez", footer)
+                self.assertNotIn("Montecristi, Santo Domingo", body)
+
     def test_new_source_footers_use_existing_attribution_metadata(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         records = {d["id"]: d for d in data["documents"]}
@@ -1111,6 +1342,15 @@ class DocumentCorpusTests(unittest.TestCase):
         persas = records["manifiesto-persas-1814-pdf-2006-5-1"]
         self.assertEqual(persas["attributionParagraphs"], 1)
         self.assertEqual(persas["text"][-1], "Manifiesto de los Persas. Madrid, 12 de abril de 1814")
+        self.assertEqual(persas["text"][0], "“SEÑOR")
+        self.assertEqual(persas["headingParagraphs"], [0])
+        self.assertFalse(persas["centerHeadings"])
+        self.assertEqual(persas["attributionEmphasis"], ["Manifiesto de los Persas"])
+        self.assertTrue(persas["appearances"][0]["textReviewedByUser"])
+        self.assertIn("confirmado como correcto por el usuario", persas["readingNote"])
+        self.assertNotIn("pendiente", persas["readingNote"])
+        self.assertEqual([paragraph.split(".", 1)[0] for paragraph in persas["text"][1:-1]],
+                         ["1", "7", "8", "134", "143"])
 
     def test_requested_art_and_coin_reproductions_do_not_add_occurrences(self):
         records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
@@ -1194,6 +1434,21 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(record["appearances"][0]["id"], "fuente-pdf-2003-4-2")
         self.assertEqual(record["examCaption"]["appearanceId"], record["appearances"][0]["id"])
 
+    def test_mapa_guerra_independencia_reproduction_preserves_exam_source(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "mapa-guerra-independencia-1808-1814")
+        image = record["image"]
+        self.assertEqual(image_dimensions(ROOT / image["src"]), (910, 762))
+        self.assertEqual((image["width"], image["height"]), (910, 762))
+        self.assertEqual(image["src"], "assets/documentos/pdf-2003-1-2.png")
+        self.assertEqual(image["sourceUrl"],
+                         "https://drive.google.com/file/d/1XDODoBqLulonuiXw0Z598p2YYRrF1DRd/view")
+        self.assertEqual(record["examCaption"]["text"],
+                         "España durante la guerra de la Independencia (1808-1814)")
+        self.assertEqual(len(record["appearances"]), 1)
+        self.assertEqual(record["appearances"][0]["id"], "fuente-pdf-2003-1-2")
+        self.assertEqual(record["examCaption"]["appearanceId"], record["appearances"][0]["id"])
+
     def test_baler_reproduction_keeps_the_exam_description(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(d for d in data["documents"] if d["id"] == "baler-ultimos-filipinas")
@@ -1238,6 +1493,34 @@ class DocumentCorpusTests(unittest.TestCase):
                       if source["key"] == imported["sourceKey"])
         self.assertEqual(source["assignedTo"], record["id"])
         self.assertEqual(source["images"], imported["sourceImages"])
+
+    def test_pib_chart_has_interactive_approximate_year_points(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"] if item["id"] == "pib-habitante-1931-1973")
+        self.assertIn("1939–1973*", record["title"])
+        self.assertTrue(record["image"]["selectable"])
+        svg = ET.parse(ROOT / record["image"]["src"]).getroot()
+        namespace = {"svg": "http://www.w3.org/2000/svg"}
+        points = svg.findall(".//svg:g[@class='point']", namespace)
+        self.assertEqual(len(points), 35)
+        self.assertIn("pointerdown", svg.find("svg:script", namespace).text)
+        self.assertIn("pointerup", svg.find("svg:script", namespace).text)
+        self.assertIn("1931", "".join(svg.itertext()))
+        self.assertIn("1939", "".join(svg.itertext()))
+
+    def test_divisas_table_matches_exam_layout_and_italicizes_book_title(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"] if item["id"] == "divisas-emigrantes-1961-1975")
+        self.assertEqual((record["image"]["width"], record["image"]["height"]), (299, 512))
+        self.assertNotIn("reproductionNote", record["image"])
+        self.assertEqual(record["image"]["originalSrc"], "assets/documentos/pdf-2003-6-4.png")
+        self.assertEqual(len(record["table"]["rows"]), 15)
+        svg = ET.parse(ROOT / record["image"]["src"]).getroot()
+        namespace = {"svg": "http://www.w3.org/2000/svg"}
+        title = svg.find(".//svg:tspan", namespace)
+        self.assertIsNotNone(title)
+        self.assertEqual(title.get("font-style"), "italic")
+        self.assertEqual(title.text, "La emigración española")
 
     def test_new_corpus_tables_match_their_accessible_data_and_occurrences(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1297,13 +1580,14 @@ class DocumentCorpusTests(unittest.TestCase):
 
     def test_2010_through_2012_corpus_coverage_and_source_images(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
-        manifest = data["coverage"]["sourceManifest"]
+        manifest = [item for item in data["coverage"]["sourceManifest"]
+                    if not item["key"].startswith("modelo-orientaciones-")]
         years = [item for item in manifest if item["year"] in (2010, 2011, 2012)]
         self.assertEqual(len(years), 72)
         self.assertEqual(len({item["heading"] for item in years}), 18)
         self.assertEqual(sum(len(item["images"]) for item in years), 20)
         self.assertEqual(len([item for item in manifest if item["year"] >= 2008]), 260)
-        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 163)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 171)
         image_ids = [image_id for item in manifest if item["year"] >= 2008 for image_id in item["images"]]
         self.assertEqual(sorted(image_ids), list(range(1, 103)))
         self.assertEqual(len(image_ids), len(set(image_ids)))
@@ -1384,8 +1668,20 @@ class DocumentCorpusTests(unittest.TestCase):
         appearances = [(record, appearance) for record in data["documents"]
                        for appearance in record["appearances"]
                        if appearance["exam"].endswith("Modelo orientaciones PAU")]
-        self.assertEqual(len(appearances), 12)
+        self.assertEqual(len(appearances), 36)
         manifest = {entry["key"]: entry for entry in data["coverage"]["sourceManifest"]}
+        for year, first_page in ((2010, 4), (2012, 3), (2013, 2), (2014, 2), (2015, 2), (2016, 2)):
+            selected = [(r, a) for r, a in appearances if a["year"] == year]
+            self.assertEqual(len(selected), 4)
+            self.assertEqual({(a["route"], a["document"], a["officialPage"]) for _, a in selected}, {
+                ("Opción A", 1, first_page), ("Opción A", 2, first_page),
+                ("Opción B", 1, first_page + 1), ("Opción B", 2, first_page + 1),
+            })
+            self.assertEqual(len({a["pdfUrl"] for _, a in selected}), 1)
+            for record, appearance in selected:
+                self.assertEqual(appearance["sourceUrl"], appearance["pdfUrl"])
+                self.assertEqual(manifest[appearance["sourceKey"]]["assignedTo"], record["id"])
+                self.assertEqual(bool(appearance["sourceImages"]), record["type"] != "texto")
         for year, heading, pdf in (
             (2025, "h.rehqimt904hq", "1xnyJ3ZVFoIbyiME-PoWajjj7-eN64n8j"),
             (2026, "h.u5qgselcamwj", "1YP4IJzY79cz01vqPXlET3D4oBWIU8oP0"),

@@ -11,10 +11,10 @@
   <link rel="stylesheet" href="apuntes.css?v=26">
   <link rel="stylesheet" href="practice.css?v=6">
   <link rel="stylesheet" href="site-header.css?v=5">
-  <link rel="stylesheet" href="documentos.css?v=64">
+  <link rel="stylesheet" href="documentos.css?v=69">
   <script src="mark-feedback.js?v=1" defer></script>
   <script src="site-header.js?v=2" defer></script>
-  <script src="documentos.js?v=79" defer></script>
+  <script src="documentos.js?v=90" defer></script>
 <link rel="stylesheet" href="site-footer.css?v=2">
 </head>
 <body>
@@ -71,12 +71,6 @@
       <details class="document-more-filters">
         <summary>Más filtros</summary>
         <div class="document-more-filter-content">
-      <div class="document-saved-filters" role="group" aria-label="Marcas del banco de documentos">
-        <button type="button" data-document-saved="all" aria-pressed="true">Todos los documentos</button>
-        <button type="button" data-document-saved="favorite" aria-pressed="false">Favoritos</button>
-        <button type="button" data-document-saved="review" aria-pressed="false">Pendientes de repaso</button>
-      </div>
-      <hr class="document-filter-divider">
       <div class="document-topic-heading">
         <p class="document-topic-label" id="document-topic-label">Explora por temática</p>
         <label class="document-topic-search" for="document-topic-search">
@@ -97,16 +91,23 @@
       <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
         </div>
       </details>
-      <div class="document-results-bar">
+      <div class="document-results-bar document-bank-results-bar">
         <p id="document-count" role="status">Cargando documentos…</p>
-        <button id="document-frequency-sort" class="document-frequency-sort" type="button" aria-pressed="false">↓ Más frecuentes primero</button>
-        <button id="document-reset" class="document-reset-top" type="button" title="Limpiar todos los filtros">
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-            <path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/>
-            <g transform="rotate(-42 12 10)"><rect x="8" y="3" width="8" height="14" rx="1.5" stroke-width="1.8"/><path stroke-width="1.5" d="M8.5 12h7"/></g>
-          </svg>
-          Limpiar filtros
-        </button>
+        <div class="document-saved-filters" role="group" aria-label="Marcas del banco de documentos">
+          <button type="button" data-document-saved="all" aria-label="Todos los documentos" aria-pressed="true">Todos</button>
+          <button type="button" data-document-saved="favorite" aria-pressed="false">Favoritos</button>
+          <button type="button" data-document-saved="review" aria-label="Pendientes de repaso" aria-pressed="false">Repaso</button>
+        </div>
+        <div class="document-results-actions">
+          <button id="document-frequency-sort" class="document-frequency-sort" type="button" aria-pressed="false">↓ Más frecuentes primero</button>
+          <button id="document-reset" class="document-reset-top" type="button" title="Limpiar todos los filtros">
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/>
+              <g transform="rotate(-42 12 10)"><rect x="8" y="3" width="8" height="14" rx="1.5" stroke-width="1.8"/><path stroke-width="1.5" d="M8.5 12h7"/></g>
+            </svg>
+            Limpiar filtros
+          </button>
+        </div>
       </div>
       <ul class="document-active-filters" id="document-active-filters" aria-label="Filtros activos" hidden></ul>
     </section>
@@ -118,9 +119,10 @@
     <div id="document-grid"></div>
     <section id="practica-documentos-modelo" class="document-coverage" aria-labelledby="practica-documentos-title">
       <h2 id="practica-documentos-title">Batería de documentos · modelos de orientaciones</h2>
-      <p>Ocho documentos históricos de práctica, agrupados cuando se repite el material. Abre el PDF del curso para leer el fragmento exacto o ver la imagen. Las preguntas de práctica son adaptaciones; los PDF conservan los enunciados y criterios originales. Esta batería complementaria no se suma al recuento del banco.</p>
+      <p>Para ver los documentos de un modelo en el banco, elige el año y después «Modelo orientaciones PAU» en el desplegable de examen. Los modelos de 2010, 2012–2016 y 2025–2027 aportan cuatro apariciones cada uno y cuentan en las frecuencias. Los modelos disponibles de 2017–2024 no incluyen comentario de documentos.</p>
+      <p>Las preguntas de práctica de abajo son adaptaciones. Los PDF conservan los documentos, enunciados y criterios originales.</p>
       <details>
-        <summary>2010 y 2012 · Constitución de 1812 y dictadura de Primo de Rivera</summary>
+        <summary>2009–10 y 2011–12 · Constitución de 1812 y dictadura de Primo de Rivera</summary>
         <h3>Opción A · Guerra de la Independencia y Cortes de Cádiz</h3>
         <ol>
           <li><strong>Constitución de Cádiz (texto).</strong> ¿Cómo define la nación y la soberanía? Relaciona el fragmento con la revolución liberal.</li>
@@ -148,7 +150,6 @@
         </ol>
         <p>Opción A en la p. 2 y opción B en la p. 3: <a href="https://drive.google.com/file/d/1Z6ZIeIGvrsWrY9mXM66j7imgoEs9rrpk/view" target="_blank" rel="noopener noreferrer">2013 (PDF)</a> · <a href="https://drive.google.com/file/d/1IdgVOp2DlZ4e884GVPmewqM7nZALse9b/view" target="_blank" rel="noopener noreferrer">2014 (PDF)</a> · <a href="https://drive.google.com/file/d/1kF7q6BHT8QqnXXR-MbKq8-OMH8ZOVJt4/view" target="_blank" rel="noopener noreferrer">2015 (PDF)</a> · <a href="https://drive.google.com/file/d/1J-at0XTLGa50gc-jHqiNdCdebOkl08rE/view" target="_blank" rel="noopener noreferrer">2016 (PDF)</a>.</p>
       </details>
-      <p><strong>2025–2027:</strong> los cuatro documentos de cada modelo ya están incorporados al banco y cuentan en sus frecuencias. Para verlos, selecciona el año y después «Modelo orientaciones PAU» en el desplegable de examen.</p>
     </section>
     <section id="cobertura" class="document-coverage" aria-labelledby="coverage-title">
       <h2 id="coverage-title">Un banco en construcción</h2>
@@ -158,7 +159,7 @@
       <p>Este banco reúne documentos de los bloques 5–12, correspondientes a las Agrupaciones II y III, y conserva los documentos antiguos del bloque 4 como archivo histórico. En el modelo 2026–27 los bloques 1–4 se trabajan en las preguntas cortas, no en el comentario de documento. La cobertura de la recopilación aportada se detalla a continuación: incorporar una aparición no equivale a certificar toda su transcripción o reproducción. Las fichas y apariciones están enlazadas a su fuente; el cotejo íntegro con los PDF oficiales sigue en revisión. Los apuntes del bloque 5 siguen en redacción.</p>
       <p><strong>PDF de cada examen:</strong> las píldoras moradas abren su PDF concreto en Drive, en otra pestaña, tanto en las tarjetas como dentro de las fichas y sus variantes. «Ver en la recopilación» lleva a Google Docs; los materiales importados directamente desde PDF muestran «Ver PDF de origen», o «Ver copia PDF de origen» en los textos de 2006. Los PDF externos requieren conexión.</p>
       <p><strong>2002–2007:</strong> se incorporan 134 materiales de 36 PDF individuales aportados: los 120 materiales de 2002–2005 y 2007, más 14 textos de 2006. De este último año solo se dispone de copias no originales que omitieron las reproducciones; los textos quedan pendientes de cotejo y sus diez imágenes o gráficos no se cuentan. La compilación de 2005 reúne los mismos seis exámenes y no se suma de nuevo. La numeración procede de los archivos y no certifica una convocatoria ordinaria o extraordinaria.</p>
-      <p><strong>Lectura de los textos:</strong> las frases cortadas por el cambio de renglón se unen, manteniendo separados los párrafos, artículos y apartados por su sentido. No se inventan continuaciones: los signos […] conservados indican omisiones de la selección, no saltos de línea. La tarjeta es una vista previa; la ficha permite leer el fragmento completo incorporado.</p>
+      <p><strong>Lectura de los textos:</strong> las frases cortadas por el cambio de renglón se unen, manteniendo separados los párrafos, artículos y apartados por su sentido. Las marcas de omisión se unifican como [...], aunque el PDF use paréntesis o un carácter de puntos suspensivos. Es una normalización tipográfica: no se inventan continuaciones ni se indican saltos de línea. La tarjeta es una vista previa; la ficha permite leer el fragmento completo incorporado.</p>
       <p><strong>Corte por formato:</strong> están incorporados los seis exámenes de cada año entre 2008 y 2013, los cinco PDF de examen disponibles de 2014, los seis de 2015, los cinco disponibles de 2016, los seis de 2025 y los cuatro disponibles de 2026. La identificación de estas apariciones no certifica el cotejo íntegro de todas las transcripciones e imágenes. En 2017–2024 se conserva el modelo de cuestiones cortas y tema, sin ejercicio de comentario de documento; esos años no son documentos pendientes de este banco. La cobertura del banco no representa una frecuencia de todos los exámenes ni una predicción.</p>
       <p><strong>Modelo 2026–27:</strong> las fichas históricas se adaptan a las dos preguntas nuevas: a) análisis del hecho histórico, de 0 a 2 puntos; b) contexto y consecuencias, de 0 a 2 puntos. Total: 4 puntos. En imágenes y gráficos se propone un a) más breve y descriptivo y un b) más desarrollado; en textos pueden estar más equilibrados. Ambos apartados puntúan lo mismo. Su presencia histórica no garantiza su inclusión en el nuevo modelo. Las claves son orientaciones didácticas propias, no soluciones oficiales.</p>
       <p><strong>Modelos de orientaciones PAU (Drive):</strong> <a href="https://drive.google.com/file/d/1xnyJ3ZVFoIbyiME-PoWajjj7-eN64n8j/view" target="_blank" rel="noopener noreferrer">PAU 2025</a> · <a href="https://drive.google.com/file/d/1YP4IJzY79cz01vqPXlET3D4oBWIU8oP0/view" target="_blank" rel="noopener noreferrer">PAU 2026</a> · <a href="https://drive.google.com/file/d/1namjFwbxIfKvrgxFEKi5VWmSuj5wOFxa/view" target="_blank" rel="noopener noreferrer">PAU 2027</a>. Sus documentos están incorporados y cuentan en las frecuencias.</p>

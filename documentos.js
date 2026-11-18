@@ -241,8 +241,8 @@
     node.insertAdjacentHTML("beforeend", '<svg class="document-link-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M7 7h10v10"/></svg>');
     return node;
   };
-  const sourceParagraph = (text, emphasis = [], className) => {
-    const node = element("p", undefined, className);
+  const sourceText = (tag, text, emphasis = [], className) => {
+    const node = element(tag, undefined, className);
     let position = 0;
     for (const phrase of emphasis) {
       const start = text.indexOf(phrase, position);
@@ -253,6 +253,7 @@
     node.append(text.slice(position));
     return node;
   };
+  const sourceParagraph = (text, emphasis, className) => sourceText("p", text, emphasis, className);
   const examName = (appearance) => appearance.exam.replace(new RegExp(`^${appearance.year}\\s+`), "");
   function displayExamName(name, year) {
     const numbered = year === 2011 && name.match(/^(Ordinaria|Extraordinaria) examen (\d+)$/i);
@@ -274,7 +275,8 @@
       pendingRoute ? "" : route, documentLabel,
     ].filter((part) => part !== "").join(" · ");
     const pill = element("span", label, "exam-pill");
-    pill.title = [appearance.year, exam, route, documentLabel].filter(Boolean).join(" · ");
+    const modelPage = appearance.sourceReviewStatus === "orientation-model" ? `p. ${appearance.officialPage}` : "";
+    pill.title = [appearance.year, exam, route, documentLabel, modelPage].filter(Boolean).join(" · ");
     return pill;
   }
   function appearanceBadges(record, appearances = record.appearances) {
@@ -286,7 +288,7 @@
       const anchor = link("", appearance.pdfUrl);
       anchor.target = "_blank";
       anchor.rel = "noopener noreferrer";
-      anchor.setAttribute("aria-label", `Abrir PDF del examen en Drive (otra pestaña): ${pill.textContent}`);
+      anchor.setAttribute("aria-label", `Abrir PDF del examen en Drive (otra pestaña): ${pill.title}`);
       anchor.title = "Abrir el PDF de este examen en Drive (otra pestaña)";
       anchor.append(pill);
       item.append(anchor);
@@ -325,7 +327,13 @@
       : options.size ? "Todos los exámenes" : "Sin exámenes incorporados");
     placeholder.value = "";
     exam.replaceChildren(placeholder);
-    [...options].sort((a, b) => examPriority(a[0]) - examPriority(b[0])
+    const numberedOrder = ["examen 1", "examen 2", "modelo orientaciones pau"];
+    const hasNumberedModel = numberedOrder.every((key) => options.has(key));
+    const priority = (key) => {
+      const position = hasNumberedModel ? numberedOrder.indexOf(key) : -1;
+      return position < 0 ? examPriority(key) : position - numberedOrder.length;
+    };
+    [...options].sort((a, b) => priority(a[0]) - priority(b[0])
       || a[1].localeCompare(b[1], "es", { numeric: true })).forEach(([key, label]) => {
       const option = element("option", label);
       option.value = key;
@@ -385,7 +393,7 @@
     data.svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
     const caption = data.figure.querySelector(".document-exam-caption").getBoundingClientRect();
     const callouts = data.callouts.getBoundingClientRect();
-    const routes = data.items.map((item) => {
+    const routes = data.items.filter(item => !item.bubble.hidden).map((item) => {
       const box = item.bubble.getBoundingClientRect();
       const x = item.person.x * width;
       const y = item.person.y * height;
@@ -468,18 +476,51 @@
     details.hidden = true;
     const names = element("ul", undefined, "document-person-names");
     names.setAttribute("aria-label", symbols ? "Símbolos identificados" : "Personajes identificados");
-    const items = (symbols ? data.symbols : data.people).map((person) => {
+    const subjects = symbols ? data.symbols : data.people;
+    const byRow = !symbols && subjects.some(person => person.row);
+    const staged = !symbols && subjects.some(person => person.primary);
+    const rows = new Map();
+    const items = subjects.map((person) => {
       const dot = window.document.createElementNS("http://www.w3.org/2000/svg", "circle");
       const leader = window.document.createElementNS("http://www.w3.org/2000/svg", "path");
       dot.setAttribute("r", "5");
       svg.append(leader, dot);
       const bubble = element("span", undefined, "document-person-bubble");
-      bubble.append(element("span", person.name, "document-person-label"),
+      const nameTag = person.region || person.emphasis === "strong" ? "strong"
+        : person.emphasis === "em" ? "em" : "span";
+      const label = (className) => {
+        if (nameTag === "span") return element("span", person.name, className);
+        const node = element("span", undefined, className);
+        node.append(element(nameTag, person.name));
+        if (byRow && nameTag === "strong") node.append("*");
+        if (person.region) node.append(` (${person.region})`);
+        return node;
+      };
+      bubble.append(label("document-person-label"),
         element("span", person.role, "document-person-role"));
       bubble.dataset.side = person.side;
       const item = element("li");
-      item.append(element("span", person.name, "document-person-name"));
-      names.append(item);
+      item.append(label("document-person-name"));
+      if (person.context) {
+        const note = element("p", person.context.text);
+        const citation = link("Fuente", person.context.url);
+        citation.setAttribute("aria-label", `Fuente sobre ${person.name}`);
+        note.append(" ", citation);
+        if (person.context.biographyUrl) note.append(" · ", link("Biografía", person.context.biographyUrl));
+        item.append(note);
+      }
+      if (!byRow) {
+        names.append(item);
+      } else {
+        if (!rows.has(person.row)) {
+          const row = element("li");
+          const list = element("ul");
+          row.append(element("strong", `Fila ${person.row}`), list);
+          names.append(row);
+          rows.set(person.row, list);
+        }
+        rows.get(person.row).append(item);
+      }
       return { person, bubble, leader, dot };
     });
     const sorted = [...items].sort((a, b) => a.person.x - b.person.x);
@@ -497,20 +538,79 @@
     overlay.prepend(svg);
     stage.append(overlay);
     figure.querySelector(".document-exam-caption").after(callouts);
+    const context = !byRow && data.context ? element("div", undefined, "document-person-context-panel") : null;
+    if (context) {
+      context.id = `${overlay.id}-context`;
+      context.hidden = true;
+      context.append(element("h3", "Qué muestra la fotografía"),
+        element("p", data.context, "document-person-context"));
+      if (data.sources?.length) {
+        const sources = element("ul");
+        data.sources.forEach(({ title, url }) => {
+          const item = element("li");
+          item.append(link(title, url));
+          sources.append(item);
+        });
+        context.append(sources);
+      }
+      callouts.after(context);
+    }
+    if (byRow) {
+      const legend = element("p");
+      legend.append("De izquierda a derecha: ",
+        element("strong", "Directorio Militar"), " (* junto al nombre y, cuando corresponde, la región entre paréntesis) y ",
+        element("em", "Cuadrilátero"), ".");
+      details.append(legend);
+      if (data.context) details.append(element("p", data.context, "document-person-context"));
+      callouts.after(details);
+    }
     details.append(names);
     const toggle = element("button", showLabel, "document-person-toggle");
     toggle.type = "button";
-    toggle.setAttribute("aria-expanded", "false");
-    toggle.setAttribute("aria-controls", `${overlay.id} ${callouts.id} ${details.id}`);
-    toggle.addEventListener("click", () => {
-      const reveal = toggle.getAttribute("aria-expanded") !== "true";
-      overlay.hidden = callouts.hidden = details.hidden = !reveal;
-      toggle.setAttribute("aria-expanded", String(reveal));
-      toggle.textContent = reveal ? hideLabel : showLabel;
+    toggle.setAttribute("aria-controls", [overlay.id, callouts.id, details.id, context?.id].filter(Boolean).join(" "));
+    const more = staged ? element("button", undefined, "document-person-more") : null;
+    if (more) {
+      more.type = "button";
+      more.setAttribute("aria-controls", toggle.getAttribute("aria-controls"));
+    }
+    let revealed = false;
+    let expanded = false;
+    function updateReveal() {
+      overlay.hidden = callouts.hidden = !revealed;
+      details.hidden = !revealed || (staged && !expanded);
+      if (context) context.hidden = details.hidden;
+      if (byRow) {
+        details.classList.toggle("document-person-details-by-row", expanded);
+      }
+      toggle.setAttribute("aria-expanded", String(revealed));
+      toggle.textContent = revealed ? hideLabel : showLabel;
+      if (more) {
+        more.hidden = !revealed;
+        more.setAttribute("aria-expanded", String(expanded));
+        more.textContent = expanded ? "Ocultar personajes adicionales" : "Revelar más personajes";
+        items.forEach(({ person, bubble, leader, dot }) => {
+          bubble.hidden = !person.primary && !expanded;
+          leader.style.display = dot.style.display = bubble.hidden ? "none" : "";
+        });
+      }
       positionPeople(stage);
+    }
+    toggle.addEventListener("click", () => {
+      revealed = !revealed;
+      expanded = false;
+      updateReveal();
     });
-    figure.prepend(toggle, details);
+    if (!byRow) figure.prepend(details);
+    figure.prepend(toggle);
+    if (more) {
+      toggle.after(more);
+      more.addEventListener("click", () => {
+        expanded = !expanded;
+        updateReveal();
+      });
+    }
     peopleStages.set(stage, { svg, items, overlay, figure, callouts });
+    updateReveal();
     activePeopleStages.add(stage);
     peopleObserver.observe(stage);
     peopleObserver.observe(figure);
@@ -703,6 +803,7 @@
   }
   function textQuote(record, preview = false) {
     const quote = element("blockquote");
+    if (record.textLayout === "verse-pair") quote.classList.add("document-verse-pair");
     const numbered = /^\s*[«“"']*\d+[ºª]?\)\s/u;
     const starts = [...new Set([
       ...(record.paragraphStarts || record.text.map((_, index) => index)),
@@ -716,7 +817,8 @@
       return parts.map((text, part) => ({
         text,
         emphasis: record.headingParagraphs?.includes(start) ? record.headingEmphasis?.[start]
-          : end === record.text.length && part === parts.length - 1 ? record.attributionEmphasis : undefined,
+          : start >= attributionStart
+            ? record.attributionEmphasis?.filter((phrase) => text.includes(phrase)) : undefined,
         className: start >= attributionStart ? "document-attribution"
           : record.headingParagraphs?.includes(start)
             ? `document-source-heading${record.centerHeadings !== false ? " is-centered" : ""}` : undefined,
@@ -895,6 +997,8 @@
         document.table.notes?.forEach((note) => details.append(element("p", note, "document-image-caption")));
         box.append(details);
       }
+    } else if (document.type === "imagen" && !document.image) {
+      box.append(element("p", "La fotografía se puede ver en el PDF del modelo, en la página indicada.", "document-reading-note"));
     } else if (!document.image && !document.table) {
       const selections = textSelections(document);
       const primary = document.studyCompilation || selections[0];
@@ -909,7 +1013,7 @@
       }
       box.append(textQuote(primary, preview));
       if (!preview && document.studyCompilation) {
-        box.append(sourceLink("Consultar el texto constitucional de referencia", primary.sourceUrl));
+        box.append(sourceLink("Consultar el texto original de referencia", primary.sourceUrl));
       }
       if (!preview && document.textVersions) {
         const details = element("details", undefined, "document-text-versions");
@@ -945,7 +1049,7 @@
     resetPeopleStages();
     content.replaceChildren();
     content.append(element("p", `${typeNames[document.type]} · Bloque ${document.blocks.join(" · ")}`, "document-kind"));
-    const title = element("h2", document.title);
+    const title = sourceText("h2", document.title, document.titleEmphasis);
     title.id = "document-dialog-title";
     content.append(title);
     attachMarks(content, document);
@@ -956,7 +1060,7 @@
     if (filtered !== total) meta.append(` · ${filtered} con los filtros actuales`);
     content.append(meta, appearanceBadges(document), source(document));
     if (document.textVersions && matchingAppearances(document).some((appearance) =>
-      appearance.sourceReviewStatus === "transcription-copy")) {
+      appearance.sourceReviewStatus === "transcription-copy" && !appearance.textReviewedByUser)) {
       content.append(element("p",
         "La selección de 2006 procede de una copia no original y está pendiente de cotejo. Sus imágenes y gráficos no están incorporados.",
         "document-reading-note"));
@@ -965,6 +1069,9 @@
     guide.append(element("summary", "Claves para responder a) y b)"));
     guide.append(element("p", "Orientación didáctica propia; no es una solución oficial.", "document-meta"));
     document.commentary.forEach((section) => guide.append(element("h3", section.title), element("p", section.text)));
+    const selectedAppearances = matchingAppearances(document);
+    const historicalModel = exam.value === "modelo orientaciones pau"
+      && selectedAppearances.some((appearance) => appearance.sourceReviewStatus === "orientation-model");
     const historicalOnly = document.blocks.every((number) => number < 5);
     const task = element("section", undefined, "document-task");
     task.setAttribute("aria-label", "Enunciado de PAU · 4 puntos");
@@ -977,15 +1084,18 @@
       ? "En textos, a) permite desarrollar naturaleza, ideas principales y secundarias y contexto inmediato; b) explica el proceso general, sus causas y consecuencias. La extensión puede estar más equilibrada."
       : "En imágenes y gráficos, a) es más breve y descriptivo: identifica los elementos y sitúalos en su contexto inmediato. Dedica mayor desarrollo a b): evolución general del momento, causas y consecuencias relacionadas con el documento.";
     task.append(element("p", `${guidance} Pauta docente: a) no debería superar media carilla. No es un límite oficial añadido al examen ni cambia la puntuación: ambos apartados valen lo mismo.`, "document-meta"));
-    if (historicalOnly) {
+    if (historicalModel) {
+      content.append(element("p", "En este modelo histórico se pedía analizar el documento y justificar su relación con el tema (hasta 1,5 puntos por documento).", "document-meta"), guide);
+    } else if (historicalOnly) {
       content.append(element("p", "Documento de un formato histórico. El bloque 4 corresponde a las cuestiones cortas y queda fuera del comentario de documento del modelo 2026–27.", "document-meta"), guide);
     } else {
       content.append(task, guide);
     }
-    const sourceAppearance = document.examCaption
+    const sourceAppearance = historicalModel ? selectedAppearances[0] : document.examCaption
       ? document.appearances.find((appearance) => appearance.id === document.examCaption.appearanceId)
       : matchingAppearances(document)[0] || document.appearances[0];
-    const sourceLabel = sourceAppearance.sourceType === "pdf"
+    const sourceLabel = sourceAppearance.sourceReviewStatus === "orientation-model"
+      ? `Ver PDF del modelo · p. ${sourceAppearance.officialPage}` : sourceAppearance.sourceType === "pdf"
       ? sourceAppearance.sourceReviewStatus === "transcription-copy" ? "Ver copia PDF de origen" : "Ver PDF de origen"
       : "Ver en la recopilación";
     const collectionLink = sourceLink(sourceLabel, sourceAppearance.sourceUrl);
@@ -1392,7 +1502,8 @@
         card.append(source(document, true));
         const body = element("div", undefined, "document-card-body");
         const kind = document.type === "texto" ? "Texto · vista previa" : typeNames[document.type];
-        body.append(element("p", kind + (frequencyOrder ? ` · Bloque ${document.blocks.join(" · ")}` : ""), "document-kind"), element("h3", document.title));
+        body.append(element("p", kind + (frequencyOrder ? ` · Bloque ${document.blocks.join(" · ")}` : ""), "document-kind"),
+          sourceText("h3", document.title, document.titleEmphasis));
         const occurrences = document.appearances.length;
         body.append(element("p", `${document.date} · ${occurrences} ${occurrences === 1 ? "aparición incorporada" : "apariciones incorporadas"}`, "document-meta"));
         body.append(appearanceBadges(document));

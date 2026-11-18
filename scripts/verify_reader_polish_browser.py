@@ -28,8 +28,9 @@ def check_compact_bank_header(browser, options):
         page.goto(f"{BASE}/{path}")
         ready(page)
         if path == "documentos.html":
+            exams_count = len({appearance["pdfUrl"] for record in DATA["documents"] for appearance in record["appearances"]})
             assert page.locator("#document-scope").inner_text() == (
-                "394 documentos recopilados · 101 exámenes · Desde 2001-02 hasta 2026-27, ambos inclusive.")
+                f"{DATA['coverage']['sourceDocumentOccurrences']} documentos recopilados · {exams_count} exámenes · Desde 2001-02 hasta 2026-27, ambos inclusive.")
             assert page.locator(".documents-lead, .document-saving-hint, .document-topic-hint").count() == 0
             assert page.locator("#document-topic-label").text_content() == "Explora por temática"
             assert "no implica que todos sus exámenes estén incorporados" in page.locator("#cobertura").inner_text()
@@ -124,11 +125,16 @@ def check_local_pdf_import(browser, options):
     page.locator(".document-text-versions > summary").click()
     copied = page.locator('[data-version-id="el-fuero-de-los-espanoles-y-los-limites-de-los-derechos-pdf-2006-1-4"]')
     assert copied.is_visible()
-    assert " ".join(copied.locator("blockquote").inner_text().split()) == " ".join(page.locator(
-        ".document-full-source > blockquote").inner_text().split())
-    assert "2007" in page.locator(".document-text-versions > .document-variant-sources").inner_text()
+    records = {record["id"]: record for record in
+               page.request.get(f"{BASE}/data/documentos.json").json()["documents"]}
+    copied_record = records[copied.get_attribute("data-version-id")]
+    assert " ".join(copied.locator("blockquote").inner_text().split()) == " ".join(
+        " ".join(copied_record["text"]).split())
+    compilation = records["el-fuero-de-los-espanoles-y-los-limites-de-los-derechos"]["studyCompilation"]
+    assert page.locator(".document-full-source > blockquote > p").all_text_contents() == compilation["text"]
+    assert "2007" in " ".join(page.locator(".document-text-versions .document-variant-sources").all_text_contents())
     assert "copia no original" in copied.locator(".document-reading-note").inner_text()
-    assert page.locator(".document-full-source > .document-reading-note").count() == 0
+    assert page.locator(".document-full-source > .document-reading-note").inner_text() == compilation["readingNote"]
     assert not errors, errors
     context.close()
 
@@ -168,6 +174,7 @@ def check_pdf_source_polish(browser, options):
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
         assert page.locator("#document-dialog").evaluate("dialog=>dialog.scrollWidth<=dialog.clientWidth+1")
         vector_page.goto(f'{BASE}/{record["image"]["src"]}')
+        vector_page.evaluate("document.fonts.ready")
         overflow = vector_page.evaluate("""() => {
             const svg=document.querySelector('svg'), view=svg.viewBox.baseVal;
             return [...svg.querySelectorAll('text')].filter(node=>{
@@ -176,13 +183,25 @@ def check_pdf_source_polish(browser, options):
             }).map(node=>node.textContent);
         }""")
         assert not overflow, (identity, overflow)
-        clipped = vector_page.evaluate("""() => [...document.querySelectorAll('g[data-row]')].filter(group=>{
-            const cell=group.querySelector('rect').getBBox();
-            return [...group.querySelectorAll('text')].some(node=>{
-                const b=node.getBBox();
-                return b.x<cell.x || b.x+b.width>cell.x+cell.width || b.y<cell.y || b.y+b.height>cell.y+cell.height;
-            });
-        }).map(group=>group.textContent)""")
+        clipped = vector_page.evaluate("""() => {
+            return [...document.querySelectorAll('g[data-row]')].filter(group=>{
+                const cell=group.querySelector('rect')?.getBBox();
+                return [...group.querySelectorAll('text')].some(node=>{
+                    const b=node.getBBox();
+                    if (cell) return b.x<cell.x || b.x+b.width>cell.x+cell.width
+                        || b.y<cell.y || b.y+b.height>cell.y+cell.height;
+                    const grid=document.querySelector('g[fill="none"]');
+                    const outer=grid.querySelector('rect').getBBox();
+                    const lines=[...grid.querySelectorAll('path')].map(n=>n.getBBox());
+                    const xs=[outer.x,outer.x+outer.width,...lines.filter(r=>r.width===0).map(r=>r.x)];
+                    const ys=[outer.y,outer.y+outer.height,...lines.filter(r=>r.height===0).map(r=>r.y)];
+                    const x=b.x+b.width/2, y=b.y+b.height/2;
+                    const left=Math.max(...xs.filter(v=>v<=x)), right=Math.min(...xs.filter(v=>v>=x));
+                    const top=Math.max(...ys.filter(v=>v<=y)), bottom=Math.min(...ys.filter(v=>v>=y));
+                    return b.x<left || b.x+b.width>right || b.y<top || b.y+b.height>bottom;
+                });
+            }).map(group=>group.textContent);
+        }""")
         assert not clipped, (identity, clipped)
         page.locator(".document-close").click()
     for identity, path in (("guernica-picasso", "guernica-reina-sofia.jpg"),
@@ -218,11 +237,6 @@ def check_curriculum_frequencies(browser, options):
     more.click()
     for theme in ("light", "dark"):
         page.evaluate("theme=>document.documentElement.dataset.theme=theme", theme)
-        assert page.locator(".document-filter-divider").count() == 1
-        assert page.locator(".document-filter-divider").evaluate_all("""nodes=>nodes.every(node=>{
-            const s=getComputedStyle(node);
-            return s.height==='1px' && s.borderTopWidth==='0px' && s.backgroundImage.includes('linear-gradient');
-        })""")
         for property in ("height", "padding", "borderRadius", "backgroundColor", "color", "font"):
             assert unit_select.evaluate("(node,property)=>getComputedStyle(node)[property]", property) == page.locator(
                 "#document-year").evaluate("(node,property)=>getComputedStyle(node)[property]", property)
@@ -292,6 +306,117 @@ def check_curriculum_frequencies(browser, options):
     context.close()
 
 
+def check_antoniutti_people(browser, options):
+    with browser.new_context(service_workers="block", reduced_motion="reduce", **options) as context:
+        page = context.new_page()
+        page.goto(f"{BASE}/documentos.html")
+        ready(page)
+        open_card(page, "nuncio-antoniutti-1956")
+        figure = page.locator("#document-dialog .document-person-figure")
+        notes = figure.locator(".document-person-context-panel")
+        labels = figure.locator(".document-person-label:visible")
+        markers = figure.locator(".document-person-lines circle[cx][cy]:visible")
+        reveal = figure.get_by_role("button", name="Revelar personajes", exact=True)
+        assert not notes.is_visible() and labels.count() == markers.count() == 0
+        reveal.press("Enter")
+        hide = figure.get_by_role("button", name="Ocultar personajes", exact=True)
+        assert hide.get_attribute("aria-expanded") == "true"
+        assert set(labels.all_text_contents()) == {"Ildebrando Antoniutti", "Coronel Arciniega"}
+        assert markers.count() == 2
+        assert notes.is_visible()
+        assert "Vitoria, abril de 1956" in notes.inner_text()
+        assert "nacionalcatolicismo" in notes.inner_text()
+        assert notes.get_by_role("link", name="Concordato de 1953", exact=False).is_visible()
+        assert notes.get_by_role("link", name="Crédito de la fotografía", exact=False).is_visible()
+        assert "saludado por el coronel Arciniega, 1956." in figure.locator(".document-exam-caption").inner_text()
+        hide.click()
+        assert not notes.is_visible() and labels.count() == markers.count() == 0
+
+
+def check_directorio_people(browser, options):
+    with browser.new_context(service_workers="block", reduced_motion="reduce", **options) as context:
+        page = context.new_page()
+        page.goto(f"{BASE}/documentos.html")
+        ready(page)
+        expected = [
+            ["Miguel Primo de Rivera", "Alfonso XIII", "José Cavalcanti de Alburquerque"],
+            ["Antonio Mayandía Gómez (5.ª)", "Federico Berenguer Fusté", "Leopoldo Saro Marín"],
+            ["Antonio Dabán Vallejo", "Francisco Ruiz del Portal (7.ª)", "Luis Navarro y Alonso de Celada (3.ª)"],
+            ["Luis Hermosa y Kith (2.ª)", "Dalmiro Rodríguez Pedré (4.ª)", "Adolfo Vallespinosa Vior (1.ª)",
+             "Francisco Gómez-Jordana Sousa (6.ª)", "Mario Muslera y Planes (8.ª)"],
+        ]
+        def marked(name):
+            if " (" in name:
+                return name.replace(" (", "* (", 1)
+            return f"{name}*" if name == expected[0][0] else name
+
+        for year in ("2010", "2012"):
+            page.select_option("#document-year", year)
+            page.select_option("#document-exam", "modelo orientaciones pau")
+            open_card(page, "alfonso-xiii-directorio-militar-modelo")
+            figure = page.locator("#document-dialog .document-person-figure")
+            details = figure.locator(".document-person-details")
+            toggle = figure.locator(".document-person-toggle")
+            more = figure.locator(".document-person-more")
+            labels = figure.locator(".document-person-bubble:visible .document-person-label")
+            markers = figure.locator(".document-person-lines circle[cx][cy]:visible")
+            primary = sorted(map(marked, expected[0][:2]))
+            assert not details.is_visible()
+            assert not more.is_visible()
+            assert labels.count() == markers.count() == 0
+            toggle.click()
+            assert sorted(labels.all_text_contents()) == primary
+            assert markers.count() == 2
+            assert not details.is_visible()
+            assert more.inner_text() == "Revelar más personajes"
+            assert more.get_attribute("aria-expanded") == "false"
+            more.click()
+            assert more.get_attribute("aria-expanded") == "true"
+            assert details.is_visible()
+            assert details.evaluate("node => getComputedStyle(node).clipPath") == "none"
+            assert "ayudó a preparar el golpe" in details.locator(".document-person-context").inner_text()
+            for name, fact in (
+                (expected[0][2], "su casa de Madrid"),
+                (expected[1][1], "hermano de Dámaso Berenguer"),
+                (expected[1][2], "desembarco de Alhucemas"),
+                (expected[2][0], "organizó los somatenes"),
+            ):
+                source = details.get_by_role("link", name=f"Fuente sobre {name}", exact=True)
+                assert fact in source.locator("..").inner_text()
+                assert source.get_attribute("href").startswith("https://")
+            cavalcanti = details.get_by_role("link", name=f"Fuente sobre {expected[0][2]}", exact=True)
+            note = cavalcanti.locator("..").inner_text()
+            assert "En 1931 propuso a Alfonso XIII usar la fuerza" in note
+            assert "Sanjurjada (agosto de 1932)" in note and "golpe de julio de 1936" in note
+            assert cavalcanti.locator("..").get_by_role("link", name="Biografía").is_visible()
+            rows = details.locator(".document-person-names > li")
+            assert [row.locator(".document-person-name").all_text_contents() for row in rows.all()] == [
+                list(map(marked, row)) for row in expected
+            ]
+            names = [name for row in expected for name in row]
+            assert details.locator(".document-person-name strong").all_text_contents() == [
+                name.split(" (")[0] for name in names if " (" in name or name == names[0]
+            ]
+            assert details.locator(".document-person-name em").all_text_contents() == [
+                expected[0][2], expected[1][1], expected[1][2], expected[2][0],
+            ]
+            assert sorted(labels.all_text_contents()) == sorted(map(marked, names))
+            assert markers.count() == 14
+            more.click()
+            assert sorted(labels.all_text_contents()) == primary
+            assert markers.count() == 2
+            assert not details.is_visible()
+            more.click()
+            toggle.click()
+            assert not details.is_visible()
+            assert not more.is_visible()
+            assert labels.count() == markers.count() == 0
+            toggle.click()
+            assert sorted(labels.all_text_contents()) == primary
+            assert markers.count() == 2
+            page.locator(".document-close").click()
+
+
 def check_orientation_models(browser, options):
     context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
     page = context.new_page()
@@ -338,7 +463,8 @@ def check_orientation_models(browser, options):
                 assert "1 con los filtros actuales" in meta
             page.locator(".document-close").click()
     open_card(page, "franco-ante-las-cortes-sobre-democracia-y-partidos")
-    assert "5 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
+    total = len(records["franco-ante-las-cortes-sobre-democracia-y-partidos"]["appearances"])
+    assert f"{total} apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
     page.wait_for_function(
         "JSON.parse(sessionStorage.getItem('pau-he.documents.view.v1')).year==='2027'")
     page.reload()
@@ -346,8 +472,8 @@ def check_orientation_models(browser, options):
     assert page.locator("#document-year").input_value() == "2027"
     assert page.locator("#document-exam").input_value() == "modelo orientaciones pau"
     assert page.locator("#document-dialog").is_visible()
-    assert page.locator("#document-dialog-content > .document-exams a").count() == 5
-    assert "5 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
+    assert page.locator("#document-dialog-content > .document-exams a").count() == total
+    assert f"{total} apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
     assert page.locator(".document-card:visible").count() == 4
     assert not page.locator("#document-storage-status").is_visible()
     assert not errors, errors
@@ -603,7 +729,8 @@ def check_1812_compilation_and_2004_reproductions(browser, options):
     page = context.new_page()
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
-    records = {r["id"]: r for r in page.request.get(f"{BASE}/data/documentos.json").json()["documents"]}
+    documents_data = page.request.get(f"{BASE}/data/documentos.json").json()
+    records = {r["id"]: r for r in documents_data["documents"]}
     page.goto(f"{BASE}/documentos.html")
     ready(page)
     identity = "constitucion-1812-articulos-2008"
@@ -624,12 +751,14 @@ def check_1812_compilation_and_2004_reproductions(browser, options):
         const style = getComputedStyle(node);
         return style.textAlign === 'center' && Number(style.fontWeight) >= 700;
     })""")
-    assert quote.locator("p").all_text_contents().count("[…]") == 3
+    assert quote.locator("p").all_text_contents().count("[...]") == 3
     assert "No es el texto íntegro" in page.locator(".document-full-source > .document-reading-note").inner_text()
-    assert "8 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
+    group = next(group for group in documents_data["textGroups"] if group[0] == identity)
+    total = sum(len(records[member]["appearances"]) for member in group)
+    assert f"{total} apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
     versions = page.locator(".document-text-versions")
     versions.locator("summary").click()
-    assert versions.locator(".document-text-version").count() == 8
+    assert versions.locator(".document-text-version").count() == len(group)
     assert versions.locator(":scope > .document-variant-sources").count() == 0
     page.reload()
     ready(page)
@@ -732,7 +861,9 @@ def check_pablo_iglesias_marker(browser, options):
     page.keyboard.press("Enter")
     assert toggle.get_attribute("aria-expanded") == "true"
     assert page.locator(".document-person-label").all_text_contents() == ["Pablo Iglesias"]
-    assert page.locator(".document-person-role").all_text_contents() == ["Fundador del PSOE"]
+    record = next(record for record in DATA["documents"] if record["id"] == identity)
+    assert page.locator(".document-person-role").all_text_contents() == [
+        person["role"] for person in record["image"]["annotations"]["people"]]
     page.wait_for_function("""() => {
         const stage=document.querySelector('.document-person-stage'),r=stage.getBoundingClientRect();
         const dot=stage.querySelector('circle');
@@ -928,10 +1059,10 @@ def check(browser, options):
                     "no faltan comentarios de documentos porque no cayó ninguno."
                 )
                 assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
-            for year, count in ((2025, 7), (2026, 5), (2014, 5), (2016, 5)):
+            for year, count in ((2025, 7), (2026, 5), (2014, 6), (2016, 6)):
                 page.select_option("#document-year", str(year))
                 assert page.locator("#document-exam option:not(:disabled)").count() == count + 1
-                assert page.locator("#document-exam option").count() == (8 if year >= 2025 else 7)
+                assert page.locator("#document-exam option").count() == 8
                 if year in (2014, 2016):
                     label = "Reserva ? - No existe" if year == 2014 else "Suplente ? - No existe"
                     assert page.locator("#document-exam option:disabled").all_text_contents() == [label]
@@ -961,19 +1092,317 @@ def check(browser, options):
     context.close()
 
 
+def check_cortazar_italics_and_cortes_people(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    search = page.locator("#document-search")
+    search.fill("Cuando España dio ejemplo")
+    open_card(page, "garcia-cortazar-transicion-democracia")
+    quote = page.locator(".document-full-source > blockquote")
+    heading = quote.locator(".document-source-heading")
+    assert heading.inner_text().strip("“”") == "Cuando España dio ejemplo"
+    assert heading.evaluate("node => getComputedStyle(node).textAlign") == "center"
+    assert "Algunos fueron a ver el féretro" in quote.inner_text()
+    assert quote.locator(".document-attribution em").inner_text() == "Álbum de la Historia de España"
+    versions = page.locator(".document-text-versions")
+    versions.locator(":scope > summary").click()
+    assert "2003" in versions.locator(":scope > .document-variant-sources").inner_text()
+    alternative = versions.locator('[data-version-id="garcia-cortazar-transicion-democracia"]')
+    assert "2009" in alternative.inner_text()
+    assert alternative.locator("blockquote > p").first.inner_text().startswith("[...] Franco")
+    assert alternative.locator(".document-attribution em").inner_text() == "Álbum de la Historia de España"
+    page.locator(".document-close").click()
+    search.fill("Galdós")
+    open_card(page, "perez-galdos-sobre-las-elecciones-de-la-restauracion")
+    versions = page.locator(".document-text-versions")
+    versions.locator(":scope > summary").click()
+    alternative = versions.locator(
+        '[data-version-id="perez-galdos-sobre-las-elecciones-de-la-restauracion-pdf-2003-4-1"]')
+    assert alternative.locator(".document-attribution em").all_text_contents() == [
+        "antología de artículos", "Partidos y programas",
+    ]
+    page.locator(".document-close").click()
+    search.fill("Manifiesto de los Persas")
+    open_card(page, "manifiesto-persas-1814")
+    quote = page.locator(".document-full-source > blockquote")
+    assert quote.locator(".document-source-heading").inner_text() == "“SEÑOR"
+    assert quote.locator("p").nth(1).inner_text().startswith("1. Era costumbre")
+    assert quote.locator("p").nth(2).inner_text().startswith("7.")
+    footer = quote.locator(".document-attribution")
+    assert footer.inner_text() == "Manifiesto de los Persas. Madrid, 12 de abril de 1814"
+    assert footer.locator("em").inner_text() == "Manifiesto de los Persas"
+    assert footer.evaluate("node => getComputedStyle(node).textAlign") == "right"
+    assert "no original" in page.locator(".document-full-source > .document-reading-note").inner_text()
+    assert "confirmado como correcto por el usuario" in page.locator(
+        ".document-full-source > .document-reading-note").inner_text()
+    assert "pendiente de cotejo" not in page.locator("#document-dialog-content").inner_text()
+    versions = page.locator(".document-text-versions")
+    versions.locator(":scope > summary").click()
+    assert "2006" in versions.locator(":scope > .document-variant-sources").inner_text()
+    assert "2004" in versions.locator('[data-version-id="manifiesto-persas-1814"]').inner_text()
+    page.locator(".document-close").click()
+    search.fill("Blanco White")
+    open_card(page, "blanco-white-1808")
+    versions = page.locator(".document-text-versions")
+    versions.locator(":scope > summary").click()
+    headings = page.locator(".document-full-source .document-source-heading")
+    assert headings.count() == 2
+    for heading in headings.all():
+        assert heading.locator("em").inner_text() == heading.inner_text()
+        assert heading.evaluate("node => getComputedStyle(node).textAlign") == "center"
+        assert heading.locator("em").evaluate("node => getComputedStyle(node).fontStyle") == "italic"
+    assert page.locator(".document-full-source > blockquote > p").nth(1).inner_text().startswith(
+        "“Los diferentes hechos")
+    page.locator(".document-close").click()
+    search.fill("Juan Carlos I en la apertura")
+    open_card(page, "apertura-cortes-1979")
+    figure = page.locator(".document-full-source .document-person-figure")
+    overlay = figure.locator(".document-person-overlay")
+    assert overlay.is_hidden()
+    toggle = figure.locator(".document-person-toggle")
+    assert toggle.inner_text() == "Revelar personajes"
+    toggle.click()
+    assert overlay.is_visible()
+    assert toggle.get_attribute("aria-expanded") == "true"
+    assert figure.locator(".document-person-bubble:visible .document-person-label").all_text_contents() == [
+        "Juan Carlos I", "Felipe de Borbón", "Sofía de Grecia",
+    ]
+    assert "actual Felipe VI" in figure.locator(".document-person-callouts").inner_text()
+    assert figure.locator(".document-person-lines circle").count() == 3
+    for circle in figure.locator(".document-person-lines circle").all():
+        assert float(circle.get_attribute("cx")) > 0
+        assert float(circle.get_attribute("cy")) > 0
+    assert figure.locator(".document-person-context-panel a").first.get_attribute("href") == (
+        "https://www.congreso.es/cem/ileg-apertura")
+    note = figure.locator(".document-person-details")
+    assert note.is_visible()
+    assert "abdicó en junio de 2014" in note.inner_text()
+    assert "agosto de 2020, seis años después" in note.inner_text()
+    assert "archivó las diligencias" in note.inner_text()
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    toggle.click()
+    assert overlay.is_hidden()
+    assert figure.locator(".document-person-callouts").is_hidden()
+    assert note.is_hidden()
+    assert toggle.get_attribute("aria-expanded") == "false"
+    assert not errors, errors
+    context.close()
+
+
+def check_artwork_title_italics(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    records = {record["id"]: record for record in DATA["documents"]}
+    for identity in ("goya-carga-mamelucos", "goya-tres-de-mayo", "rendicion-bailen-casado-alisal",
+                     "guernica-picasso", "clarin-regenta-turno", "hemingway-guerra-civil"):
+        record = records[identity]
+        page.locator("#document-search").fill(record["title"])
+        card_title = page.locator(f'.document-card[data-id="{identity}"] .document-card-body > h3')
+        assert card_title.inner_text() == record["title"]
+        assert card_title.locator("em").all_text_contents() == record["titleEmphasis"]
+        open_card(page, identity)
+        title = page.locator("#document-dialog-title")
+        assert title.inner_text() == record["title"]
+        assert title.locator("em").all_text_contents() == record["titleEmphasis"]
+        assert title.locator("em").evaluate("node => getComputedStyle(node).fontStyle") == "italic"
+        assert title.evaluate("node => getComputedStyle(node).fontStyle") == "normal"
+        if record.get("attributionEmphasis"):
+            footer = page.locator(".document-full-source .document-attribution")
+            assert footer.locator("em").all_text_contents() == record["attributionEmphasis"]
+            assert footer.locator("em").evaluate("node => getComputedStyle(node).fontStyle") == "italic"
+            assert footer.evaluate("node => getComputedStyle(node).fontStyle") == "normal"
+        if record.get("examCaption", {}).get("emphasis"):
+            caption = page.locator(".document-full-source .document-exam-caption")
+            assert caption.locator("em").all_text_contents() == record["examCaption"]["emphasis"]
+            if identity == "goya-carga-mamelucos":
+                assert caption.inner_text() == record["examCaption"]["text"]
+                assert "Francisco de Goya" in caption.inner_text()
+                assert caption.locator("p").evaluate("node => getComputedStyle(node).fontStyle") == "normal"
+        page.locator(".document-close").click()
+    assert not errors, errors
+    context.close()
+
+
+def check_first_republic_presidents(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    page.locator("#document-search").fill("Primer gobierno de la Primera República")
+    open_card(page, "primer-gobierno-republica-1873")
+    figure = page.locator(".document-full-source .document-person-figure")
+    toggle = figure.locator(".document-person-toggle")
+    notes = figure.locator(".document-person-details")
+    callouts = figure.locator(".document-person-callouts")
+    panel = figure.locator(".document-person-context-panel")
+    assert toggle.inner_text() == "Revelar personajes"
+    assert notes.is_hidden()
+    assert callouts.is_hidden()
+    toggle.click()
+    assert toggle.get_attribute("aria-expanded") == "true"
+    assert notes.is_visible()
+    assert notes.locator(".document-person-names > li").count() == 4
+    assert notes.locator(".document-person-name").all_text_contents() == [
+        "Estanislao Figueras", "Francisco Pi y Margall", "Nicolás Salmerón", "Emilio Castelar",
+    ]
+    assert "no está acreditada" in notes.inner_text()
+    assert "cuestionan esa explicación" in notes.inner_text()
+    assert "3 de enero de 1874" in notes.inner_text()
+    assert "Francisco Serrano" in notes.inner_text()
+    assert callouts.locator(".document-person-bubble:visible").count() == 4
+    assert figure.locator(".document-person-lines circle").count() == 4
+    for circle in figure.locator(".document-person-lines circle").all():
+        assert float(circle.get_attribute("cx")) > 0
+        assert float(circle.get_attribute("cy")) > 0
+    assert "no cuatro presidentes simultáneos" in panel.inner_text()
+    assert panel.locator("a").count() == 5
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    toggle.click()
+    assert toggle.get_attribute("aria-expanded") == "false"
+    assert notes.is_hidden()
+    assert callouts.is_hidden()
+    assert panel.is_hidden()
+    assert not errors, errors
+    context.close()
+
+
+def check_1978_compilation(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    records = {record["id"]: record for record in
+               page.request.get(f"{BASE}/data/documentos.json").json()["documents"]}
+    identity = "constitucion-1978-articulos-suplente-a"
+    expected = records[identity]["studyCompilation"]
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    page.select_option("#document-year", "2004")
+    page.select_option("#document-exam", "examen 6")
+    open_card(page, identity)
+    quote = page.locator(".document-full-source > blockquote")
+    assert quote.locator(":scope > p").all_text_contents() == expected["text"]
+    assert quote.locator(".document-source-heading").all_text_contents() == [
+        "Artículo 1", "Artículo 2", "Artículo 3", "Artículo 6", "Artículo 7"]
+    assert quote.locator(".document-source-heading").evaluate_all("""nodes=>nodes.every(n=>{
+        const style=getComputedStyle(n);
+        return style.textAlign==='center' && Number(style.fontWeight)>=700;
+    })""")
+    assert "3 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
+    assert page.get_by_role("link", name="Consultar el texto original de referencia").get_attribute(
+        "href") == expected["sourceUrl"]
+    versions = page.locator(".document-text-versions")
+    versions.locator("summary").click()
+    assert versions.locator(".document-text-version").count() == 3
+    for member in (identity, f"{identity}-pdf-2004-6-3", f"{identity}-pdf-2005-4-3"):
+        version = versions.locator(f'[data-version-id="{member}"]')
+        assert version.locator("blockquote > p").all_text_contents() == records[member]["text"]
+        assert version.locator(".document-exams a").count() == 1
+    assert page.locator("#document-dialog").evaluate("n=>n.scrollWidth<=n.clientWidth+1")
+    page.locator('#document-dialog [data-document-mark="favorite"]').click()
+    page.keyboard.press("Escape")
+    page.goto(f"{BASE}/mis-documentos.html")
+    ready(page)
+    open_card(page, identity)
+    assert quote.locator(":scope > p").all_text_contents() == expected["text"]
+    assert not errors, errors
+    context.close()
+
+
+def check_song_verses_layout(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    errors = []
+    page.on("pageerror", lambda error: errors.append(str(error)))
+    record = next(record for record in DATA["documents"] if record["id"] == "canciones-guerra-civil")
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    page.locator("#document-search").fill("canción republicana")
+    open_card(page, record["id"])
+    page.evaluate("document.fonts.ready")
+    quote = page.locator(".document-full-source > blockquote.document-verse-pair")
+    songs = quote.locator(":scope > p")
+    assert songs.count() == 2
+    assert songs.all_text_contents() == record["text"]
+    for width in (1000, 375, 320, 810):
+        page.set_viewport_size({"width": width, "height": 1000})
+        page.wait_for_function("""twoColumns => {
+            const [a,b] = [...document.querySelectorAll(
+                '.document-full-source > .document-verse-pair > p')].map(n=>n.getBoundingClientRect());
+            return twoColumns ? Math.abs(a.top-b.top)<1 && b.left>a.right
+                : Math.abs(a.left-b.left)<1 && b.top>=a.bottom;
+        }""", arg=width >= 810)
+        for song in songs.all():
+            assert song.evaluate("""n=>{
+                const s=getComputedStyle(n);
+                return s.textAlign==='center' && s.textAlignLast==='center' && s.whiteSpace==='pre-line'
+                    && n.scrollWidth<=n.clientWidth+1;
+            }""")
+        assert page.locator("#document-dialog").evaluate("n=>n.scrollWidth<=n.clientWidth+1")
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    page.locator('#document-dialog [data-document-mark="favorite"]').click()
+    page.keyboard.press("Escape")
+    page.goto(f"{BASE}/mis-documentos.html")
+    ready(page)
+    open_card(page, record["id"])
+    assert quote.locator(":scope > p").all_text_contents() == record["text"]
+    assert not errors, errors
+    context.close()
+
+
+def check_orientation_link_arrows(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    page.goto(f"{BASE}/index.html#archivo-orientaciones")
+    links = page.locator(".orientation-current, .orientation-courses a")
+    assert links.count() == 16
+    for link in links.all():
+        assert link.locator('svg.ext-icon[aria-hidden="true"]').count() == 1
+        assert "↗" not in link.text_content()
+        assert link.get_attribute("target") == "_blank"
+        assert link.evaluate("node=>node.scrollWidth<=node.clientWidth+1")
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    context.close()
+
+
+def check_falange_source_arrow(browser, options):
+    context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
+    page = context.new_page()
+    page.goto(f"{BASE}/documentos.html")
+    ready(page)
+    page.locator("#document-search").fill("Cartel de Falange")
+    open_card(page, "cartel-falange")
+    original = page.get_by_role("link", name="Ver reproducción original de la recopilación", exact=True)
+    assert original.get_attribute("href") == "assets/documentos/cartel-falange.png"
+    assert original.locator("svg.document-link-icon").count() == 1
+    assert original.locator("svg").get_attribute("aria-hidden") == "true"
+    assert "↗" not in original.text_content()
+    context.close()
+
+
 def check_exam_order(browser, options):
     context = browser.new_context(service_workers="block", **options)
     page = context.new_page()
     titulars = ["Titular ordinaria", "Titular extraordinaria"]
     expected = {
         "2003": [f"Examen {i}" for i in range(1, 7)],
-        "2010": titulars + ["Reserva A ordinaria", "Reserva B ordinaria",
+        "2010": titulars + ["Modelo orientaciones PAU", "Reserva A ordinaria", "Reserva B ordinaria",
                             "Reserva A extraordinaria", "Reserva B extraordinaria"],
         "2011": [f"Examen {i} {session}" for session in ("ordinaria", "extraordinaria") for i in range(1, 4)],
-        "2013": titulars + ["Reserva A ordinaria", "Reserva B ordinaria",
+        "2013": titulars + ["Modelo orientaciones PAU", "Reserva A ordinaria", "Reserva B ordinaria",
                             "Reserva A extraordinaria", "Reserva B extraordinaria"],
-        "2014": titulars + ["Reserva A", "Reserva B", "Examen ?"],
-        "2016": titulars + ["Reserva A 2", "Reserva B 3", "Suplente extraordinaria"],
+        "2014": titulars + ["Modelo orientaciones PAU", "Reserva A", "Reserva B", "Examen ?"],
+        "2016": titulars + ["Modelo orientaciones PAU", "Reserva A 2", "Reserva B 3", "Suplente extraordinaria"],
         "2025": titulars + ["Modelo orientaciones PAU", "Suplente 1 A", "Suplente 1 B", "Suplente 2 A", "Suplente 2 B"],
         "2026": titulars + ["Modelo orientaciones PAU", "Suplente ordinaria", "Suplente extraordinaria"],
     }
@@ -1020,8 +1449,17 @@ if __name__ == "__main__":
             check_pdf_source_polish(browser, options)
             check_curriculum_frequencies(browser, options)
             check_orientation_models(browser, options)
+            check_directorio_people(browser, options)
+            check_antoniutti_people(browser, options)
             check_docs_reproductions(browser, options)
             check_text_selection_presentation(browser, options)
+            check_cortazar_italics_and_cortes_people(browser, options)
+            check_artwork_title_italics(browser, options)
+            check_first_republic_presidents(browser, options)
+            check_song_verses_layout(browser, options)
+            check_1978_compilation(browser, options)
+            check_falange_source_arrow(browser, options)
+            check_orientation_link_arrows(browser, options)
             check_1812_compilation_and_2004_reproductions(browser, options)
             check_pablo_iglesias_marker(browser, options)
             check_exam_pdf_links(browser, options)
