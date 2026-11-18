@@ -100,12 +100,98 @@ function questionKey(text) {
   return normalizeText(text).replace(/[^\p{L}\p{N}]/gu, "");
 }
 
+const shortExamDriveIds = new Map([
+  ["2017 · Reserva A", "1zyJdoxXnrYKXQ5UODTXldrAS4hxC5Hn2"],
+  ["2017 · Reserva B", "1PM9YInVhmhA5eLQ0l_f4bLOJmDOZgr00"],
+  ["2017 · Suplente extraordinaria", "1eV8kQbAKPR5a_YwbSHYemZF2MBpaBYCR"],
+  ["2017 · Suplente ordinaria", "1gdHwnLgvi0rOQzv6KXkiM-I_3Czt5vcd"],
+  ["2017 · Titular extraordinaria", "1OkBeOTj5HNq8oUpOzms-3ScLk-XDmJgy"],
+  ["2017 · Titular ordinaria", "1usVe5WmZlaNUaib85wQX2ZArmKRDMeyV"],
+  ["2018 · Reserva A", "1v81kBvcux618-5q1_26tuLRM1gxYU0Qo"],
+  ["2018 · Reserva B", "1QYtRzXkdRYW2dgWw5INjuUn799NMNeL5"],
+  ["2018 · Suplente extraordinaria", "1oi0JeYCAJgHNFdid_P5zDAsZTtIBCpsz"],
+  ["2018 · Titular extraordinaria", "1rd2D1cFlViCFcchTCIGorgkCufzRIg6R"],
+  ["2018 · Titular ordinaria", "1JYqRSI60OaylAc6rVfJv1LGdg9H6EF_l"],
+  ["2019 · Reserva A", "1VdHkolfFGcbfHM51Of_-acc3PeNAyBzE"],
+  ["2019 · Reserva B", "1zWJJkRQF87i0yZV7e-TiYJyJveUZ_5y4"],
+  ["2019 · Suplente extraordinaria", "1f40EBVY_2LvbHxLqu_gFkOI5ZKzHFDMJ"],
+  ["2019 · Suplente ordinaria", "1LZO-suCJPrjKpn48N05qn-OHNVC0lvNp"],
+  ["2019 · Titular extraordinaria", "1uCzH2M0CU_qDksEy2Hqm4Xj974CQJXwH"],
+  ["2019 · Titular ordinaria", "1z_vwu9l70WSNH5FV1OHRAb3RNklIennR"],
+  ["2020 · Prueba 1", "1-GbxAQSFz_rzMQhWEnUeghZJ3l-B-SdN"],
+  ["2020 · Prueba 2", "1nGkbqJND7tlxBqGAcnBOLAsIZZvaL5SB"],
+  ["2020 · Prueba 3", "1XwseUexqWOxwrpKe8KclJfCeEL-hjHk6"],
+  ["2020 · Prueba 4", "1widfmrfB2EV_-KqfKClQEczf4LKmQb0Q"],
+  ["2020 · Prueba 5", "1iFA_hjdDSmgXpLXpLAeZBbIpkjqjf1Mg"],
+  ["2020 · Prueba 6", "18ZHTWeB5giY4XtWVNpYrr1zFYTOTlf_q"],
+  ["2021 · Reserva extraordinaria", "1hvJKvHObdpMqNN3DAm_WqWVyVGy3tT_C"],
+  ["2021 · Reserva ordinaria", "1V7LdWC92dqoKrzJku6BOGf22YIg83zWV"],
+  ["2021 · Suplente extraordinaria", "1eM5fx0qBwLtYRRz94qNluUmI5nljaAl5"],
+  ["2021 · Suplente ordinaria", "1ADXN6DSnPxri547KYjwQy7tDzSsTrIXm"],
+  ["2021 · Titular extraordinaria", "19yOBUiulgYZ2EqVyMFKD4LnjHaMsmnGh"],
+  ["2021 · Titular ordinaria", "1rkW7uB-q_tMOOJKT6rDbQDSwy9Y-phGr"],
+  ["2022 · Reserva extraordinaria", "1EWDETdKdcj1lYn7LfEeEdZEM4x1Mfq_q"],
+  ["2022 · Reserva ordinaria", "1UpPtvFSluuFK2HtkEl7DOLckcGDXOkc2"],
+  ["2022 · Suplente extraordinaria", "109tl1G2FmBXRbJ29Pk8U7okyt2MhQc5G"],
+  ["2022 · Suplente ordinaria", "1N_Vb8KHsRuEtLswkdqkrh0PvsnbQzetQ"],
+  ["2022 · Titular extraordinaria", "1fLl9Ru13-XMtygaQYLf4YrBinb5e8HQL"],
+  ["2022 · Titular ordinaria", "1g3N7Tn8j6Wgwlx7wAIIJTKnmMRCBmIjw"],
+  ["2023 · Reserva A", "1Ha7FQRLftvEigdynlfERJqiQPpQwXa0n"],
+  ["2023 · Reserva B", "1TI7hzfBnWMAUmtw6t0hpiidR4FEJPIXd"],
+  ["2023 · Suplente A", "17Vv8Pem_gaysm3SYhEYkctXVWMJfLiFZ"],
+  ["2023 · Suplente B", "1nVuDrppVAW7kcgqYGOAUHIN8qZ-fG_98"],
+  ["2023 · Titular extraordinaria", "1gmi6DjRfwYDEXMZed5PE4Q5LiT1_9wTE"],
+  ["2023 · Titular ordinaria", "1emBjuXtL8uXoZHTqavkocyRR31yuPyI0"],
+  ["2025 · Suplente 1 A", "1fES0P1sntR-fPBHW1xuzjl5aMN_kCvyD"],
+  ["2025 · Suplente 1 B", "1CJFlJpA0RbpdDK6pAWYyRfVABCEGOyU2"],
+  ["2025 · Suplente 2 A", "19Ls3qdqeF8IRwGMAmov5uZ-PWPmAWuqi"],
+  ["2025 · Suplente 2 B", "1Qijo6zDs1l_wZqK0SZAv5uz9c-hgaIuh"],
+  ["2025 · Titular extraordinaria", "1VqQ8w_N1cNJZou_SKYTguuzW_jMgaO2s"],
+  ["2025 · Titular ordinaria", "1cjcRTH4-HA_NThCbtw6AhZrGnJWPx1J0"],
+  ["2026 · Suplente extraordinaria", "19f79BXOvf7NWu10koZ2433VxFV7yCGz7"],
+  ["2026 · Suplente ordinaria", "10xPRq97SfIsVIdf7qL2n_vFoepJ2fguM"],
+  ["2026 · Titular extraordinaria", "1PTknKrLHZHE-8IQU8X78saQTd8DKnXWg"],
+  ["2026 · Titular ordinaria", "1mR7950vI_Ib9R7n7XPl4dWMBp8UDZhe1"],
+  ["2017 · Modelo PAU", "1hdAP3MNOE9hEgM7Nbqz1DSTbB_uXD68q"],
+  ["2018 · Modelo PAU", "11MdL7COXvyrnbiyHsK1gv68jIa0yVLCF"],
+  ["2020 · Modelo PAU", "1P7DrZtxUlCSU5qbTvj-jh-YoE6aDHw69"],
+  ["2021 · Modelo PAU", "1dMCrP3dFaHF0CZVee0yp4QApMrOhLwEt"],
+  ["2022 · Modelo PAU", "1h6AuKJaEg1xkgidp1MTXy_zgm4Bt00Zf"],
+  ["2023 · Modelo PAU", "1NT86FuIwjEo0Ee_r7IYYzyQzLeXYf8ok"],
+  ["2024 · Modelo PAU", "1JWGrsFbZaeU17DeD15IyWjdwPHv8oMCR"],
+  ["2025 · Modelo PAU", "1kg67iCqtgqOv3k17-EhpU1G2L1w5Ff1y"],
+  ["2026 · Modelo PAU", "1M-BNUMbjnui3A0cBYZESd09pCG6uTmn9"],
+]);
+
+const shortExamArchive2024 = "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2024_historia_espana.zip";
+const shortExamArchiveFiles2024 = new Map([
+  ["2024 · Titular ordinaria", "Examen-Titular-A_HISTORIA DE ESPAÑA.pdf"],
+  ["2024 · Titular extraordinaria", "Examen_Titular-B_HISTORIA DE ESPAÑA.pdf"],
+  ["2024 · Reserva A", "Examen_Reserva-A_HISTORIA DE ESPAÑA.pdf"],
+  ["2024 · Reserva B", "Examen_Reserva-B_HISTORIA DE ESPAÑA.pdf"],
+  ["2024 · Suplente A", "Examen_Suplente-A_HISTORIA DE ESPAÑA.pdf"],
+  ["2024 · Suplente B", "Examen_Suplente-B_HISTORIA DE ESPAÑA.pdf"],
+]);
+
 function examPill(reference, index) {
-  const pill = document.createElement("span");
+  const driveId = shortExamDriveIds.get(reference);
+  const archiveFile = shortExamArchiveFiles2024.get(reference);
+  const pill = document.createElement(driveId || archiveFile ? "a" : "span");
   pill.className = "exam-pill";
   pill.dataset.frequency = String(Math.min(index, 4));
-  pill.title = `Aparición ${index + 1} registrada en el corpus; no indica probabilidad futura`;
-  pill.textContent = reference;
+  if (driveId) {
+    pill.href = `https://drive.google.com/file/d/${driveId}/view`;
+    pill.target = "_blank";
+    pill.rel = "noopener noreferrer";
+    pill.title = `Abrir el PDF ${reference.endsWith("· Modelo PAU") ? "del modelo" : "del examen"} en Drive (otra pestaña)`;
+  } else if (archiveFile) {
+    pill.href = shortExamArchive2024;
+    pill.title = `Descargar ZIP oficial de la Junta. Dentro: ${archiveFile}`;
+    pill.setAttribute("aria-label", `${reference}. ${pill.title}`);
+  } else {
+    pill.title = "No se ha localizado el PDF de este examen en Drive";
+  }
+  pill.textContent = archiveFile ? `${reference} (ZIP)` : reference;
   return pill;
 }
 

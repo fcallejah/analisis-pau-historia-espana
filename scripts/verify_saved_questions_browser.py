@@ -4,9 +4,70 @@ from playwright.sync_api import sync_playwright
 BASE = "http://localhost:8765"
 
 
+def check_exam_pills(browser):
+    with browser.new_context(service_workers="block") as context:
+        page = context.new_page()
+        page.add_init_script("Math.random = () => 0.5")
+        page.goto(BASE, wait_until="domcontentloaded")
+        page.locator(".block").first.locator("summary").first.click()
+        linked = page.locator(".question-list a.exam-pill")
+        sources = dict(linked.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href])"))
+        assert sources["2017 · Titular extraordinaria"].startswith("https://drive.google.com/file/d/")
+        assert page.locator(".question-list span.exam-pill").count() == 0
+        zip_sources = {label: href for label, href in sources.items() if label.endswith(" (ZIP)")}
+        assert len(zip_sources) == 6
+        assert all(href.endswith("/sel_2024_historia_espana.zip") for href in zip_sources.values())
+        agriculture = page.locator(".question-list li").filter(has_text="impulsó reformas en la agricultura")
+        reserva = agriculture.locator('a.exam-pill').filter(has_text="2024 · Reserva A (ZIP)")
+        assert "Examen_Reserva-A_HISTORIA DE ESPAÑA.pdf" in reserva.get_attribute("title")
+        page.locator('[data-gen="1"]').click()
+        generated = page.locator('#gen-output a.exam-pill:not([title*="del modelo"])')
+        assert generated.count() > 0
+        assert all(sources[label] == href and target == ("" if label in zip_sources else "_blank")
+                   for label, href, target in
+                   generated.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href, n.target])"))
+
+
+def check_model_questions(browser):
+    with browser.new_context(service_workers="block") as context:
+        page = context.new_page()
+        page.add_init_script("""let seed = 42;
+            Math.random = () => ((seed = (1664525 * seed + 1013904223) >>> 0) / 4294967296);
+        """)
+        page.goto(BASE, wait_until="domcontentloaded")
+        observed = page.evaluate("""() => {
+            const result = {};
+            for (const block of [1, 2, 3, 4]) {
+                const button = document.querySelector(`[data-gen="${block}"]`);
+                for (let attempt = 0; attempt < 30; attempt++) {
+                    button.click();
+                    document.querySelectorAll('#gen-output a[title*="del modelo"]').forEach(link => {
+                        const prompt = link.closest('.gen-q').querySelector('.gen-text').textContent.replace(/^\\d+\\. /, '');
+                        result[`${block}:${prompt}:${link.textContent}`] = link.href;
+                    });
+                    const dialog = document.querySelector('#gen-dialog');
+                    dialog.returnValue = 'delete';
+                    dialog.dispatchEvent(new Event('close'));
+                }
+            }
+            return result;
+        }""")
+        assert {key.split(":")[-1][:4] for key in observed} == {
+            "2017", "2018", "2020", "2021", "2022", "2023", "2024", "2025", "2026",
+        }
+        assert len({key.rsplit(":", 1)[0] for key in observed}) == 11
+        assert all(href.startswith("https://drive.google.com/file/d/") for href in observed.values())
+        page.locator('[data-gen="random"]').click()
+        assert [text.split()[1] for text in page.locator("#gen-output .gen-q small").all_text_contents()] == [
+            "1", "2", "3", "4",
+        ]
+
+
 def run():
     with sync_playwright() as p:
         browser = p.chromium.launch()
+        check_exam_pills(browser)
+        check_model_questions(browser)
         context = browser.new_context(service_workers="block")
         page = context.new_page()
         errors = []

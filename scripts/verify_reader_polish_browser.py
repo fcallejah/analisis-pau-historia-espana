@@ -31,18 +31,38 @@ def check_compact_bank_header(browser, options):
             assert page.locator("#document-scope").inner_text() == (
                 "394 documentos recopilados · 101 exámenes · Desde 2001-02 hasta 2026-27, ambos inclusive.")
             assert page.locator(".documents-lead, .document-saving-hint, .document-topic-hint").count() == 0
-            assert page.locator("#document-topic-label").inner_text() == "Explora por temática"
+            assert page.locator("#document-topic-label").text_content() == "Explora por temática"
             assert "no implica que todos sus exámenes estén incorporados" in page.locator("#cobertura").inner_text()
         assert page.locator("#document-exam-hint").is_hidden()
         assert page.locator("#document-exam-hint").inner_text() == ""
+        reset = page.get_by_role("button", name="Limpiar filtros", exact=True)
+        assert reset.locator('svg[aria-hidden="true"] rect').is_visible()
         for name in ("Año de examen", "Examen", "Bloque"):
             select = page.get_by_role("combobox", name=name, exact=True)
             assert select.is_visible()
             label = page.locator(f'label[for="{select.get_attribute("id")}"]')
             assert abs(label.bounding_box()["height"] - select.bounding_box()["height"]) < 1
+        exams = page.get_by_role("group", name="Por examen")
+        label = exams.locator("#document-exam-label")
+        year_box = exams.locator("#document-year").bounding_box()
+        label_box = label.bounding_box()
+        assert label_box["x"] + label_box["width"] < year_box["x"]
+        assert abs(label_box["y"] + label_box["height"] / 2 - year_box["y"] - year_box["height"] / 2) <= 1
+        assert int(label.evaluate("node => getComputedStyle(node).fontWeight")) >= 700
+        if page.evaluate("window.innerWidth >= 1200"):
+            types = page.get_by_role("group", name="Tipo de documento").bounding_box()
+            exam_box = exams.bounding_box()
+            toolbar = page.locator(".document-filter-toolbar").bounding_box()
+            assert types["x"] + types["width"] < exam_box["x"]
+            assert abs(types["y"] + types["height"] / 2 - exam_box["y"] - exam_box["height"] / 2) <= 1
+            assert abs(exam_box["x"] + exam_box["width"] - toolbar["x"] - toolbar["width"]) <= 1
         page.select_option("#document-year", "2027")
         page.select_option("#document-exam", "modelo orientaciones pau")
         assert page.locator("#document-exam-hint").is_visible()
+        page.select_option("#document-year", "2014")
+        assert page.locator("#document-exam-hint").is_hidden()
+        assert page.locator("#document-exam-hint").inner_text() == ""
+        assert page.locator('#document-exam option:disabled').all_text_contents() == ["Reserva ? - No existe"]
         page.select_option("#document-year", "2017")
         assert "no faltan comentarios de documentos porque no cayó ninguno" in page.locator(
             "#document-exam-hint").inner_text()
@@ -194,9 +214,11 @@ def check_curriculum_frequencies(browser, options):
     sort = page.locator("#document-frequency-sort")
     assert unit_select.locator("optgroup").count() == 8
     assert unit_select.locator("option").count() == 26
+    more = page.locator(".document-more-filters summary")
+    more.click()
     for theme in ("light", "dark"):
         page.evaluate("theme=>document.documentElement.dataset.theme=theme", theme)
-        assert page.locator(".document-filter-divider").count() == 2
+        assert page.locator(".document-filter-divider").count() == 1
         assert page.locator(".document-filter-divider").evaluate_all("""nodes=>nodes.every(node=>{
             const s=getComputedStyle(node);
             return s.height==='1px' && s.borderTopWidth==='0px' && s.backgroundImage.includes('linear-gradient');
@@ -204,11 +226,9 @@ def check_curriculum_frequencies(browser, options):
         for property in ("height", "padding", "borderRadius", "backgroundColor", "color", "font"):
             assert unit_select.evaluate("(node,property)=>getComputedStyle(node)[property]", property) == page.locator(
                 "#document-year").evaluate("(node,property)=>getComputedStyle(node)[property]", property)
-        center = page.locator(".document-frequency-controls").bounding_box()
-        boxes = [unit_select.bounding_box(), sort.bounding_box()]
-        left, right = min(box["x"] for box in boxes), max(box["x"] + box["width"] for box in boxes)
-        assert abs((left + right) / 2 - center["x"] - center["width"] / 2) < 1
+        assert page.locator(".document-results-bar #document-frequency-sort").count() == 1
         assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    more.click()
     sort.click()
     assert sort.get_attribute("aria-pressed") == "true"
     ranked = page.locator(".document-card:visible").evaluate_all("cards=>cards.map(card=>card.dataset.id)")
@@ -238,13 +258,13 @@ def check_curriculum_frequencies(browser, options):
         "JSON.parse(sessionStorage.getItem('pau-he.documents.view.v1')).unit==='ii-10'")
     page.reload()
     ready(page)
-    assert unit_select.input_value() == "ii-10" and sort.get_attribute("aria-pressed") == "true"
+    assert page.input_value("#document-unit") == "ii-10" and sort.get_attribute("aria-pressed") == "true"
     assert page.locator("#document-year").input_value() == "2025"
     assert page.locator("#document-dialog").is_visible()
     assert page.locator("#document-dialog-content > .document-exams a").count() == counts[treaty]
     page.locator(".document-close").click()
     page.locator("#document-reset").click()
-    assert unit_select.input_value() == "" and sort.get_attribute("aria-pressed") == "false"
+    assert page.input_value("#document-unit") == "" and sort.get_attribute("aria-pressed") == "false"
     assert page.locator(".document-card").evaluate_all("cards=>cards.map(card=>card.dataset.id)") == baseline
     page.add_init_script("""if (location.pathname.endsWith('/documentos.html')) {
         const key='pau-he.documents.view.v1', view=JSON.parse(sessionStorage.getItem(key));
@@ -256,7 +276,7 @@ def check_curriculum_frequencies(browser, options):
     }""")
     page.reload()
     ready(page)
-    assert unit_select.input_value() == "" and sort.get_attribute("aria-pressed") == "false"
+    assert page.input_value("#document-unit") == "" and sort.get_attribute("aria-pressed") == "false"
     assert not page.locator("#document-storage-status").is_visible()
     page.goto(f"{BASE}/mis-documentos.html")
     ready(page)
@@ -267,7 +287,7 @@ def check_curriculum_frequencies(browser, options):
     assert page.locator(".document-card .exam-pill").count() == counts[treaty]
     page.reload()
     ready(page)
-    assert unit_select.input_value() == "ii-10" and sort.get_attribute("aria-pressed") == "true"
+    assert page.input_value("#document-unit") == "ii-10" and sort.get_attribute("aria-pressed") == "true"
     assert not errors, errors
     context.close()
 
@@ -941,6 +961,52 @@ def check(browser, options):
     context.close()
 
 
+def check_exam_order(browser, options):
+    context = browser.new_context(service_workers="block", **options)
+    page = context.new_page()
+    titulars = ["Titular ordinaria", "Titular extraordinaria"]
+    expected = {
+        "2003": [f"Examen {i}" for i in range(1, 7)],
+        "2010": titulars + ["Reserva A ordinaria", "Reserva B ordinaria",
+                            "Reserva A extraordinaria", "Reserva B extraordinaria"],
+        "2011": [f"Examen {i} {session}" for session in ("ordinaria", "extraordinaria") for i in range(1, 4)],
+        "2013": titulars + ["Reserva A ordinaria", "Reserva B ordinaria",
+                            "Reserva A extraordinaria", "Reserva B extraordinaria"],
+        "2014": titulars + ["Reserva A", "Reserva B", "Examen ?"],
+        "2016": titulars + ["Reserva A 2", "Reserva B 3", "Suplente extraordinaria"],
+        "2025": titulars + ["Modelo orientaciones PAU", "Suplente 1 A", "Suplente 1 B", "Suplente 2 A", "Suplente 2 B"],
+        "2026": titulars + ["Modelo orientaciones PAU", "Suplente ordinaria", "Suplente extraordinaria"],
+    }
+    for path in ("documentos.html", "mis-documentos.html"):
+        page.goto(f"{BASE}/{path}")
+        ready(page)
+        for year, labels in expected.items():
+            page.select_option("#document-year", year)
+            assert page.locator("#document-exam option:enabled").all_text_contents() == [
+                "Todos los exámenes", *labels,
+            ], (path, year)
+        page.select_option("#document-year", "2010")
+        page.select_option("#document-exam", "extraordinaria reserva a")
+        page.reload()
+        ready(page)
+        assert page.locator("#document-exam").input_value() == "extraordinaria reserva a"
+        assert page.locator("#document-exam option:checked").inner_text() == "Reserva A extraordinaria"
+        if path == "documentos.html":
+            cards = page.locator(".document-card:visible")
+            assert cards.count() > 0
+            for card in cards.all():
+                labels = card.locator(".exam-pill").all_text_contents()
+                assert any(label.startswith("2010 · Reserva A extraordinaria") for label in labels)
+                assert all("Extraordinaria reserva A" not in label for label in labels)
+            page.select_option("#document-year", "2011")
+            page.select_option("#document-exam", "ordinaria examen 2")
+            assert page.locator("#document-exam option:checked").inner_text() == "Examen 2 ordinaria"
+            pills = cards.locator(".exam-pill").all_text_contents()
+            assert any(label.startswith("2011 · Examen 2 ordinaria") for label in pills)
+            assert all("Ordinaria examen 2" not in label for label in pills)
+    context.close()
+
+
 if __name__ == "__main__":
     with sync_playwright() as playwright:
         for engine, options in (
@@ -960,6 +1026,7 @@ if __name__ == "__main__":
             check_pablo_iglesias_marker(browser, options)
             check_exam_pdf_links(browser, options)
             check_historical_archive(browser, options)
+            check_exam_order(browser, options)
             check(browser, options)
             browser.close()
     print("PASS: legacy recovery without visible jumps, centered reproductions, reader controls, reading cue, roles and personal-list headings")

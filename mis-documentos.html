@@ -11,11 +11,11 @@
   <link rel="stylesheet" href="apuntes.css?v=26">
   <link rel="stylesheet" href="practice.css?v=6">
   <link rel="stylesheet" href="site-header.css?v=5">
-  <link rel="stylesheet" href="documentos.css?v=61">
+  <link rel="stylesheet" href="documentos.css?v=64">
   <script src="mark-feedback.js?v=1" defer></script>
   <link rel="stylesheet" href="site-footer.css?v=2">
   <script src="site-header.js?v=2" defer></script>
-  <script src="documentos.js?v=73" defer></script>
+  <script src="documentos.js?v=79" defer></script>
 </head>
 <body data-document-library="saved">
   <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -46,16 +46,8 @@
         <button type="button" data-document-saved="favorite" aria-pressed="false">Favoritos (<span data-document-saved-count>0</span>)</button>
         <button type="button" data-document-saved="review" aria-pressed="false">Pendientes de repaso (<span data-document-saved-count>0</span>)</button>
       </div>
-      <div class="document-types" role="group" aria-label="Tipo de documento">
-        <button type="button" data-type="all" aria-pressed="true">Todos los tipos</button>
-        <button type="button" data-type="texto" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h16M4 20h16"/></svg>Textos</button>
-        <button type="button" data-type="imagen" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg>Imágenes</button>
-        <button type="button" data-type="grafico" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 15l4-4 3 2 6-7M15 6h5v5"/></svg>Gráficos y tablas</button>
-      </div>
-      <div class="document-search-row">
+      <div class="document-search-row document-study-row">
         <label class="document-search" for="document-search"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input id="document-search" type="search" aria-label="Buscar en tus documentos, textos, comentarios, pies, personajes y símbolos" placeholder="Busca entre tus documentos…" autocomplete="off"></label>
-        <label class="document-block-label document-year-label" for="document-year"><select id="document-year" aria-label="Año de examen" aria-describedby="document-exam-hint"><option value="">Todos los años</option></select></label>
-        <label class="document-block-label document-exam-label" for="document-exam"><select id="document-exam" aria-label="Examen" aria-describedby="document-exam-hint" disabled><option value="">Elige un año</option></select></label>
         <label class="document-block-label" for="document-block"><select id="document-block" aria-label="Bloque">
           <option value="">Todos los bloques (4–12)</option>
           <option value="4">4 · Reformismo de los Borbones (solo archivo histórico)</option>
@@ -68,9 +60,25 @@
           <option value="11">11 · La dictadura franquista (1939–1975)</option>
           <option value="12">12 · La transición y la democracia (desde 1975)</option>
         </select></label>
+        <select id="document-unit" class="document-unit-select" aria-label="Subbloque de las orientaciones 2026–27"><option value="">Todos los subbloques</option></select>
+      </div>
+      <div class="document-filter-toolbar">
+      <div class="document-types" role="group" aria-label="Tipo de documento">
+        <button type="button" data-type="all" aria-pressed="true">Todos los tipos</button>
+        <button type="button" data-type="texto" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 5h16M4 10h16M4 15h16M4 20h16"/></svg>Textos</button>
+        <button type="button" data-type="imagen" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m3 17 5-5 4 4 3-3 6 6"/></svg>Imágenes</button>
+        <button type="button" data-type="grafico" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16M7 15l4-4 3 2 6-7M15 6h5v5"/></svg>Gráficos y tablas</button>
+      </div>
+      <div class="document-exam-filters" role="group" aria-labelledby="document-exam-label">
+        <strong id="document-exam-label" class="document-exam-label">Por examen</strong>
+        <label class="document-block-label" for="document-year"><select id="document-year" aria-label="Año de examen" aria-describedby="document-exam-hint"><option value="">Todos los años</option></select></label>
+        <label class="document-block-label" for="document-exam"><select id="document-exam" aria-label="Examen" aria-describedby="document-exam-hint" disabled><option value="">Elige un año</option></select></label>
+      </div>
       </div>
       <p id="document-exam-hint" class="document-exam-hint" role="status" hidden></p>
-      <hr class="document-filter-divider">
+      <details class="document-more-filters">
+        <summary>Más filtros</summary>
+        <div class="document-more-filter-content">
       <div class="document-topic-heading">
         <p class="document-topic-label" id="document-topic-label">Explora tus temáticas</p>
         <label class="document-topic-search" for="document-topic-search">
@@ -84,6 +92,17 @@
             <option value="chronology">Más antiguas primero</option>
           </select>
         </label>
+      </div>
+      <div id="document-topics" role="group" aria-labelledby="document-topic-label">
+        <button id="document-topic-toggle" class="document-topic-toggle" type="button" aria-controls="document-topics" aria-expanded="false" hidden>Ver más ↓</button>
+      </div>
+      <p class="document-topic-hint">Las burbujas cuentan apariciones del corpus entre tus documentos filtrados; no son una predicción del examen.</p>
+      <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
+        </div>
+      </details>
+      <div class="document-results-bar">
+        <p id="document-count" role="status">Cargando tus documentos…</p>
+        <button id="document-frequency-sort" class="document-frequency-sort" type="button" aria-pressed="false">↓ Más frecuentes primero</button>
         <button id="document-reset" class="document-reset-top" type="button" title="Limpiar todos los filtros">
           <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
             <path class="gen-reset-line" stroke-width="1.8" d="M4 20h16"/>
@@ -92,18 +111,7 @@
           Limpiar filtros
         </button>
       </div>
-      <div id="document-topics" role="group" aria-labelledby="document-topic-label">
-        <button id="document-topic-toggle" class="document-topic-toggle" type="button" aria-controls="document-topics" aria-expanded="false" hidden>Ver más ↓</button>
-      </div>
-      <p class="document-topic-hint">Las burbujas cuentan apariciones del corpus entre tus documentos filtrados; no son una predicción del examen.</p>
-      <p id="document-topic-empty" class="document-topic-empty" hidden>No hay temáticas con esa búsqueda.</p>
-      <hr class="document-filter-divider">
-      <div class="document-frequency-controls" role="group" aria-labelledby="document-frequency-label">
-        <p class="document-topic-label" id="document-frequency-label">Frecuencias por subbloque · 26–27</p>
-        <select id="document-unit" class="document-unit-select" aria-label="Subbloque de las orientaciones 2026–27"><option value="">Todos los subbloques</option></select>
-        <button id="document-frequency-sort" class="document-frequency-sort" type="button" aria-pressed="false">↓ Más frecuentes primero</button>
-      </div>
-      <div class="document-results-bar"><p id="document-count" role="status">Cargando tus documentos…</p></div>
+      <ul class="document-active-filters" id="document-active-filters" aria-label="Filtros activos" hidden></ul>
     </section>
     <p id="document-storage-status" class="document-storage-status" role="status" hidden></p>
     <p id="document-error" role="alert" hidden></p>

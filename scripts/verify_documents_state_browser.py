@@ -266,6 +266,69 @@ def check_saved_library(browser):
     offline.close()
 
 
+def check_filter_panel(browser, options=None):
+    with browser.new_context(service_workers="block", **(options or {})) as context:
+        page = context.new_page()
+        for path in ("documentos.html", "mis-documentos.html"):
+            page.goto(f"{BASE}/{path}")
+            ready(page)
+            more = page.locator(".document-more-filters summary")
+            chips = page.locator("#document-active-filters")
+            unit = page.locator("#document-unit")
+            assert unit.is_visible()
+            assert not page.locator("#document-topics").is_visible()
+            block_box = page.locator("#document-block").bounding_box()
+            unit_box = unit.bounding_box()
+            if page.evaluate("matchMedia('(max-width: 520px)').matches"):
+                assert unit_box["y"] >= block_box["y"] + block_box["height"]
+                assert abs(unit_box["x"] - block_box["x"]) <= 1
+            else:
+                assert unit_box["x"] >= block_box["x"] + block_box["width"]
+                assert abs(unit_box["y"] - block_box["y"]) <= 1
+            assert not chips.is_visible()
+            page.select_option("#document-year", "2010")
+            page.select_option("#document-exam", "extraordinaria reserva a")
+            unit.select_option("ii-10")
+            more.click()
+            assert page.locator("#document-topics").is_visible()
+            more.click()
+            page.locator("#document-search").fill("sin resultados " + "x" * 100)
+            assert page.locator("#document-empty").is_visible()
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+            names = ["Búsqueda", "Año", "Examen", "Subbloque"]
+            assert chips.locator("button").evaluate_all("nodes => nodes.map(n => n.dataset.filter)") == names
+            exam_chip = chips.get_by_role("button", name="Quitar filtro: Examen: Reserva A extraordinaria", exact=True)
+            assert exam_chip.is_visible()
+            page.locator("#document-frequency-sort").click()
+            assert chips.locator("button").count() == len(names)
+            reload(page)
+            assert exam_chip.is_visible()
+            exam_chip.press("Enter")
+            assert page.input_value("#document-year") == "2010"
+            assert page.input_value("#document-exam") == ""
+            assert chips.locator('[data-filter="Subbloque"]').evaluate("n => n === document.activeElement")
+            page.select_option("#document-exam", "extraordinaria reserva a")
+            chips.locator('[data-filter="Año"]').click()
+            assert page.locator("#document-exam").is_disabled()
+            assert not exam_chip.count()
+            assert page.input_value("#document-unit") == "ii-10"
+            chips.locator('[data-filter="Subbloque"]').click()
+            chips.locator('[data-filter="Búsqueda"]').click()
+            assert not chips.is_visible()
+            assert page.locator("#document-reset").evaluate("n => n === document.activeElement")
+            assert page.locator("#document-frequency-sort").get_attribute("aria-pressed") == "true"
+            if path == "documentos.html":
+                more.click()
+                page.locator(".document-topic-bubble:visible").first.click()
+                page.locator('[data-document-saved="favorite"]').click()
+                more.click()
+                assert page.locator("#document-empty").is_visible()
+                assert chips.locator('[data-filter="Temática"]').is_visible()
+                chips.locator('[data-filter="Marca"]').click()
+                assert not page.locator("#document-empty").is_visible()
+                assert chips.locator('[data-filter="Temática"]').is_visible()
+
+
 def check_exam_filter_reload(browser, options=None):
     context = browser.new_context(service_workers="block", **(options or {}))
     context.add_init_script(f"""localStorage.setItem({json.dumps(MARKS)},
@@ -274,8 +337,6 @@ def check_exam_filter_reload(browser, options=None):
     for path in ("documentos.html", "mis-documentos.html"):
         page.goto(f"{BASE}/{path}")
         ready(page)
-        if page.locator("#document-topic-toggle").is_visible():
-            page.locator("#document-topic-toggle").click()
         page.select_option("#document-year", "2003")
         reload(page)
         assert page.input_value("#document-year") == "2003"
@@ -288,6 +349,7 @@ def check_exam_filter_reload(browser, options=None):
         assert page.locator(".document-card").evaluate_all("(nodes)=>nodes.map(n=>n.dataset.id)") == before
         page.locator('[data-type="imagen"]').click()
         page.select_option("#document-block", "7")
+        page.locator(".document-more-filters summary").click()
         page.select_option("#document-unit", "ii-10")
         page.locator("#document-frequency-sort").click()
         page.locator("#document-search").fill("Filipinas")
@@ -371,6 +433,7 @@ def check_persistent_filter_safety(browser):
 def run():
     with sync_playwright() as p:
         browser = p.chromium.launch()
+        check_filter_panel(browser)
         check_exam_filter_reload(browser)
         check_persistent_filter_safety(browser)
         context = browser.new_context(service_workers="block", viewport={"width": 1280, "height": 720})
@@ -382,6 +445,7 @@ def run():
         page.locator('[data-type="texto"]').click()
         page.locator("#document-block").select_option("5")
         page.locator("#document-search").fill("constitucion")
+        page.locator(".document-more-filters summary").click()
         page.locator("#document-topic-sort").select_option("frequency")
         page.locator("#document-topic-search").fill("constit")
         page.locator(".document-topic-bubble").first.click()
@@ -402,6 +466,7 @@ def run():
         assert page.locator(".document-card").count() == 0
 
         page.locator("#document-reset").click()
+        page.locator(".document-more-filters summary").click()
         page.locator("#document-topic-toggle").click()
         reload(page)
         assert page.locator("#document-topic-toggle").get_attribute("aria-expanded") == "true"
@@ -477,11 +542,13 @@ def run():
         reload(page)
         assert mark(page, "review", in_dialog=True).get_attribute("aria-pressed") == "true"
         close_dialog(page)
+        page.locator(".document-more-filters summary").click()
         page.locator('[data-document-saved="favorite"]').click()
         assert page.locator(".document-card").count() == 1
         assert card(page).is_visible()
         reload(page)
         assert page.locator('[data-document-saved="favorite"]').get_attribute("aria-pressed") == "true"
+        page.locator(".document-more-filters summary").click()
         page.locator('[data-document-saved="review"]').click()
         assert page.locator(".document-card").count() == 1
         assert page.locator('[data-document-saved="review"]').evaluate(

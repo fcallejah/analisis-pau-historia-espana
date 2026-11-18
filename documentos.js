@@ -11,6 +11,9 @@
   const topicEmpty = document.querySelector("#document-topic-empty");
   const unitSelect = document.querySelector("#document-unit");
   const frequencySort = document.querySelector("#document-frequency-sort");
+  const moreFilters = document.querySelector(".document-more-filters");
+  const activeFilters = document.querySelector("#document-active-filters");
+  const reset = document.querySelector("#document-reset");
   const grid = document.querySelector("#document-grid");
   const count = document.querySelector("#document-count");
   const error = document.querySelector("#document-error");
@@ -250,11 +253,20 @@
     node.append(text.slice(position));
     return node;
   };
+  const examName = (appearance) => appearance.exam.replace(new RegExp(`^${appearance.year}\\s+`), "");
+  function displayExamName(name, year) {
+    const numbered = year === 2011 && name.match(/^(Ordinaria|Extraordinaria) examen (\d+)$/i);
+    if (numbered) return `Examen ${numbered[2]} ${normalize(numbered[1])}`;
+    const reserve = year === 2010 && name.match(/^(Titular|Extraordinaria) reserva ([AB])$/i);
+    if (!reserve) return name;
+    return `Reserva ${reserve[2].toUpperCase()} ${normalize(reserve[1]) === "titular" ? "ordinaria" : "extraordinaria"}`;
+  }
   function appearancePill(appearance, compact = false) {
-    const exam = appearance.exam.replace(new RegExp(`^${appearance.year}\\s+`), "");
+    const exam = displayExamName(examName(appearance), appearance.year);
     const shortExam = exam.replace(/\s*\([^)]*\)\s*$/, "");
     const words = (value) => normalize(value).match(/[\p{L}\p{N}]+/gu)?.join(" ") || "";
-    const route = ` ${words(shortExam)} `.includes(` ${words(appearance.route)} `) ? "" : appearance.route;
+    const displayRoute = displayExamName(appearance.route, appearance.year);
+    const route = ` ${words(shortExam)} `.includes(` ${words(displayRoute)} `) ? "" : displayRoute;
     const pendingRoute = appearance.route.endsWith("sin cotejar");
     const documentLabel = appearance.document === null ? "" : `Documento ${appearance.document}`;
     const label = [
@@ -282,9 +294,19 @@
     });
     return list;
   }
-  const examLabel = (appearance) => appearance.exam
-    .replace(new RegExp(`^${appearance.year}\\s+`), "").replace(/\s*\([^)]*\)\s*$/, "").trim();
+  const examLabel = (appearance) => examName(appearance).replace(/\s*\([^)]*\)\s*$/, "").trim();
   const examKey = (appearance) => normalize(examLabel(appearance)).replace(/\s+/g, " ");
+  function examPriority(key) {
+    if (key === "titular ordinaria") return 0;
+    if (key === "titular extraordinaria") return 1;
+    if (key === "modelo orientaciones pau") return 2;
+    // En 2010, «Titular reserva A» equivale a «Reserva A ordinaria» en el orden.
+    const reserve = key.match(/^(?:(titular|extraordinaria) )?reserva ([ab])(?: (ordinaria|extraordinaria))?$/);
+    if (reserve) return (reserve[1] === "extraordinaria" || reserve[3] === "extraordinaria" ? 5 : 3)
+      + (reserve[2] === "b" ? 1 : 0);
+    if (key.startsWith("ordinaria examen ") || key === "suplente ordinaria") return 7;
+    return 8;
+  }
   const matchesExam = (appearance) => (!examYear.value || appearance.year === Number(examYear.value))
     && (!exam.value || examKey(appearance) === exam.value);
   const matchingAppearances = (record) => record.appearances.filter(matchesExam);
@@ -295,7 +317,7 @@
     if (examYear.value) {
       documents.flatMap((record) => record.appearances).filter((appearance) =>
         appearance.year === Number(examYear.value)).forEach((appearance) => {
-        options.set(examKey(appearance), examLabel(appearance));
+        options.set(examKey(appearance), displayExamName(examLabel(appearance), appearance.year));
       });
     }
     const placeholder = element("option", !examYear.value ? "Elige un año"
@@ -303,9 +325,7 @@
       : options.size ? "Todos los exámenes" : "Sin exámenes incorporados");
     placeholder.value = "";
     exam.replaceChildren(placeholder);
-    const priority = (key) => key === "titular ordinaria" ? 0 : key === "titular extraordinaria" ? 1
-      : key === "modelo orientaciones pau" ? 2 : 3;
-    [...options].sort((a, b) => priority(a[0]) - priority(b[0])
+    [...options].sort((a, b) => examPriority(a[0]) - examPriority(b[0])
       || a[1].localeCompare(b[1], "es", { numeric: true })).forEach(([key, label]) => {
       const option = element("option", label);
       option.value = key;
@@ -324,12 +344,10 @@
     examHint.classList.toggle("is-format-warning", withoutDocumentExercise);
     if (withoutDocumentExercise) exam.title = placeholder.textContent;
     else exam.removeAttribute("title");
-    examHint.hidden = !examYear.value;
-    examHint.textContent = !examYear.value ? ""
-      : withoutDocumentExercise ? "Entre 2017-2024, ambos inclusive, el formato PAU era solo de cuestiones cortas y tema; no faltan comentarios de documentos porque no cayó ninguno."
-      : availability ? `${options.size} exámenes con documentos incorporados de ${examYear.value}. ${availability.note}${availability.unavailableExams?.length ? " Las opciones desactivadas señalan huecos del archivo; no se cuentan como exámenes." : ""}`
-      : options.size ? `${options.size} ${options.size === 1 ? "examen con documentos incorporados" : "exámenes con documentos incorporados"} de ${examYear.value}. Se conservan las etiquetas de la recopilación; el cotejo íntegro de textos e imágenes sigue pendiente.`
-      : "Todavía no hay documentos de este año incorporados al banco; la recopilación completa aún está pendiente de importar.";
+    examHint.textContent = withoutDocumentExercise
+      ? "Entre 2017-2024, ambos inclusive, el formato PAU era solo de cuestiones cortas y tema; no faltan comentarios de documentos porque no cayó ninguno."
+      : availability?.year === 2006 || availability?.year === 2027 ? availability.note : "";
+    examHint.hidden = !examHint.textContent;
   }
   const star = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9Z"/></svg>';
   const cap = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m2 8 10-5 10 5-10 5Z M5 10v6q7 5 14 0v-6 M22 8v8"/><path d="M10 15a2 2 0 0 1 4 0c0 1-2 1-2 2 M12 19h.01"/></svg>';
@@ -572,6 +590,10 @@
     if (loaded && (savedOnly || savedFilter !== "all")) render();
     refreshMarks();
   }
+  function filterFocusTarget() {
+    const button = savedButtons.find((button) => button.dataset.documentSaved === savedFilter);
+    return button?.closest("details:not([open])") ? moreFilters.querySelector("summary") : button;
+  }
   savedButtons.forEach((button) => button.addEventListener("click", () => {
     savedFilter = button.dataset.documentSaved;
     render();
@@ -665,7 +687,9 @@
       ...(record.text || []),
       ...(record.studyCompilation?.text || []),
       ...record.commentary.flatMap((section) => [section.title, section.text]),
-      ...record.appearances.flatMap((appearance) => [appearance.year, appearance.exam, appearance.route]),
+      ...record.appearances.flatMap((appearance) => [
+        appearance.year, appearance.exam, appearance.route, displayExamName(examLabel(appearance), appearance.year),
+      ]),
       ...images.flatMap((image) => [
         image.alt, image.reproductionNote, image.examCaption?.text, image.attribution?.text,
         image.annotations?.note,
@@ -1019,6 +1043,42 @@
     return event.clientX < bounds.left || event.clientX > bounds.right
       || event.clientY < bounds.top || event.clientY > bounds.bottom;
   };
+  let swipeStart = null;
+  const isPageZoomed = () => (window.visualViewport?.scale || 1) > 1.01;
+  dialog.addEventListener("touchstart", (event) => {
+    swipeStart = null;
+    if (!dialog.open || event.touches.length !== 1 || isPageZoomed()
+      || event.target.isContentEditable
+      || event.target.closest("a, button, summary, input, textarea, select, object, iframe")) return;
+    const touch = event.touches[0];
+    if (outsideDialog(touch)) return;
+    for (let node = event.target; node !== dialog; node = node.parentElement) {
+      if (node.scrollWidth > node.clientWidth + 1 && /^(auto|scroll)$/.test(getComputedStyle(node).overflowX)) return;
+    }
+    swipeStart = { id: touch.identifier, x: touch.clientX, y: touch.clientY, documentId: selectedId };
+  }, { passive: true });
+  dialog.addEventListener("touchmove", (event) => {
+    if (!swipeStart) return;
+    const touch = event.touches[0];
+    if (event.touches.length !== 1 || isPageZoomed()) {
+      swipeStart = null;
+      return;
+    }
+    const dy = Math.abs(touch.clientY - swipeStart.y);
+    if (dy > 16 && dy >= Math.abs(touch.clientX - swipeStart.x)) swipeStart = null;
+  }, { passive: true });
+  dialog.addEventListener("touchcancel", () => { swipeStart = null; }, { passive: true });
+  dialog.addEventListener("touchend", (event) => {
+    const start = swipeStart;
+    swipeStart = null;
+    if (!start || !dialog.open || selectedId !== start.documentId || event.touches.length
+      || isPageZoomed() || window.getSelection()?.isCollapsed === false) return;
+    const touch = Array.from(event.changedTouches).find((point) => point.identifier === start.id);
+    if (!touch) return;
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) >= 64 && Math.abs(dx) >= 1.5 * Math.abs(dy)) navigateDocument(dx < 0 ? 1 : -1);
+  }, { passive: true });
   const trackBackdropPress = (event) => {
     backdropPressed = event.target === dialog && outsideDialog(event);
   };
@@ -1033,10 +1093,10 @@
   });
   dialog.addEventListener("close", () => {
     backdropPressed = null;
+    swipeStart = null;
     resetPeopleStages();
     updateReaderCue();
-    (opener?.isConnected ? opener : savedButtons.find((button) =>
-      button.dataset.documentSaved === savedFilter))?.focus({ preventScroll: true });
+    (opener?.isConnected ? opener : filterFocusTarget())?.focus({ preventScroll: true });
     if (pagePosition) {
       scrollPage(pagePosition);
       pagePosition = null;
@@ -1054,6 +1114,7 @@
       && normalize(search.value).trim().split(/\s+/).every((word) => haystack.includes(word));
   };
   function fitTopics() {
+    if (!moreFilters.open) return;
     const bubbles = [...topics.querySelectorAll(".document-topic-bubble")];
     const showAll = topicsExpanded || normalize(topicSearch.value).trim();
     bubbles.forEach((button, index) => {
@@ -1100,9 +1161,14 @@
     requestAnimationFrame(fitTopics);
   }).observe(topics);
   document.fonts.ready.then(fitTopics);
+  moreFilters.addEventListener("toggle", fitTopics);
   function renderTopics() {
     const available = documents.filter(baseMatches);
     const tags = [...new Set(available.flatMap((document) => document.tags))];
+    if (topic && !tags.includes(topic)) {
+      if (documents.some((document) => document.tags.includes(topic))) tags.push(topic);
+      else topic = "";
+    }
     const statistics = new Map(tags.map((tag) => {
       const tagged = available.filter((document) => document.tags.includes(tag));
       const firstYear = Math.min(...tagged.map((document) => {
@@ -1128,7 +1194,6 @@
       }
       return first.localeCompare(second, "es");
     });
-    if (topic && !tags.includes(topic)) topic = "";
     const query = normalize(topicSearch.value).trim();
     const matchingTags = tags.filter((tag) => normalize(tag).includes(query));
     topics.replaceChildren();
@@ -1193,6 +1258,44 @@
     unitSelect.title = thematicUnits.find((unit) => unit.id === selectedUnit)?.title || "Todas las unidades temáticas de las orientaciones 2026–27";
     frequencySort.setAttribute("aria-pressed", String(frequencyOrder));
   }
+  function renderActiveFilters(unit) {
+    const optionLabel = (select) => select.value && select.selectedOptions[0]?.textContent;
+    const filters = [
+      ["Búsqueda", search.value.trim(), () => { search.value = ""; }],
+      ["Bloque", optionLabel(block), () => { block.value = ""; }],
+      ["Tipo", type !== "all" && typeNames[type], () => setType("all")],
+      ["Año", optionLabel(examYear), () => { examYear.value = ""; updateExamOptions(); }],
+      ["Examen", optionLabel(exam), () => { exam.value = ""; }],
+      ["Temática", topic, () => { topic = ""; }],
+      ["Subbloque", unit && `${unit.number}. ${unit.title}`, () => { selectedUnit = ""; }],
+      ["Marca", { favorite: "Favoritos", review: "Pendientes de repaso" }[savedFilter],
+        () => { savedFilter = "all"; }],
+    ].filter(([, value]) => value);
+    activeFilters.replaceChildren();
+    activeFilters.hidden = filters.length === 0;
+    for (const [label, value, clear] of filters) {
+      const item = element("li");
+      const text = `${label}: ${value}`;
+      const button = element("button");
+      button.type = "button";
+      button.dataset.filter = label;
+      button.setAttribute("aria-label", `Quitar filtro: ${text}`);
+      const cross = element("span", "×");
+      cross.setAttribute("aria-hidden", "true");
+      button.append(element("span", text), cross);
+      button.addEventListener("click", () => {
+        const index = filters.findIndex(([key]) => key === label);
+        const preferred = [...filters.slice(index + 1), ...filters.slice(0, index).reverse()];
+        clear();
+        render();
+        const remaining = [...activeFilters.querySelectorAll("button")];
+        const next = preferred.map(([key]) => remaining.find((node) => node.dataset.filter === key)).find(Boolean);
+        (next || reset).focus();
+      });
+      item.append(button);
+      activeFilters.append(item);
+    }
+  }
   function render() {
     const focused = document.activeElement;
     const oldCard = focused.closest(".document-card");
@@ -1202,6 +1305,7 @@
     const available = documents.filter((document) => baseMatches(document) && (!topic || document.tags.includes(topic)));
     renderUnits(available);
     const unit = thematicUnits.find((unit) => unit.id === selectedUnit);
+    renderActiveFilters(unit);
     const matches = available.filter((record) => !unit || unit.documentIds.includes(record.id));
     const appearances = matches.reduce((total, document) => total + document.appearances.length, 0);
     const scope = examYear.value ? "en total" : appearances === 1 ? "incorporada" : "incorporadas";
@@ -1316,8 +1420,7 @@
       const selector = focused.dataset.documentMark
         ? `[data-document-mark="${focused.dataset.documentMark}"]`
         : focused.matches(".document-preview-zoom") ? ".document-preview-zoom" : ".document-open";
-      (card?.querySelector(selector) || savedButtons.find((button) =>
-        button.dataset.documentSaved === savedFilter))?.focus({ preventScroll: true });
+      (card?.querySelector(selector) || filterFocusTarget())?.focus({ preventScroll: true });
     }
     saveView();
   }
@@ -1347,7 +1450,7 @@
   block.addEventListener("change", render);
   examYear.addEventListener("change", () => { updateExamOptions(); render(); });
   exam.addEventListener("change", render);
-  document.querySelector("#document-reset").addEventListener("click", () => {
+  reset.addEventListener("click", () => {
     search.value = "";
     block.value = "";
     examYear.value = "";

@@ -886,6 +886,20 @@ window.pauPractice = (() => {
   return { normalize, find, render };
 })();
 
+const MODELOS_CORTAS = [
+  [1, [2017, 2018, 2020], "¿Qué monarquía reinaba en la península en el 711? Describa las causas de la invasión musulmana."],
+  [3, [2020], "Cita uno de los validos del reinado de Felipe IV Explique en qué consiste la figura del valido y la importancia que tuvieron en el siglo XVII."],
+  [4, [2017, 2018], "¿A qué reinado corresponde el motín de Esquilache? Defina el concepto de despotismo ilustrado."],
+  [4, [2017, 2018, 2020], "¿Qué rey firmó los Decretos de Nueva Planta? Explique brevemente en qué consistieron dichos decretos."],
+  [2, [2021, 2022, 2023, 2024], "¿Qué personaje histórico adoptó el título de califa en Córdoba durante el siglo X? Describa el legado cultural y económico de al-Ándalus."],
+  [3, [2021, 2022, 2023, 2024], '¿Durante qué reinado se produjo el final de la "Reconquista"? Explique brevemente la política exterior de dicho reinado.'],
+  [4, [2021, 2022, 2023, 2024], "¿Qué dinastía reinaba en España durante el denominado siglo de las Luces? Explique el porqué de esta denominación y las características del movimiento ideológico y cultural al que hace referencia."],
+  [2, [2025, 2026], "Establezca las diferencias entre un mozárabe y un mudéjar."],
+  [3, [2025, 2026], "Señale los dos monarcas de más amplio reinado en el siglo XVI y las diferencias en su política exterior."],
+  [1, [2026], "Define el concepto de romanización y describe los instrumentos para llevarla a cabo."],
+  [4, [2026], "Explique brevemente por qué se hicieron y en qué consistieron los decretos que abolieron los fueros en la antigua Corona de Aragón a comienzos del siglo XVIII."],
+];
+
 (() => {
   const root = document.getElementById("generador");
   if (!root) return;
@@ -907,7 +921,26 @@ window.pauPractice = (() => {
       all.push({ b: 4, f: [question, points, label] });
     });
   });
-  const total = (mode) => (mode === "random" ? all.length : all.filter((x) => x.b === Number(mode)).length);
+  const modelSources = new Map(MODELOS_CORTAS.map(([block, years, prompt]) => [
+    `${block}:${window.pauPractice.normalize(prompt)}`,
+    years.map((year) => `${year} · Modelo PAU`),
+  ]));
+  const modelEntries = new Set();
+  const bank = all.filter((item) => {
+    const key = `${item.b}:${window.pauPractice.normalize(item.f[0])}`;
+    if (!modelSources.has(key)) return true;
+    if (modelEntries.has(key)) return false;
+    modelEntries.add(key);
+    item.models = modelSources.get(key);
+    return true;
+  });
+  for (const [b, , prompt] of MODELOS_CORTAS) {
+    const key = `${b}:${window.pauPractice.normalize(prompt)}`;
+    if (!modelEntries.has(key)) {
+      bank.push({ b, f: [prompt, window.pauPractice.find(prompt, "", b), ""], models: modelSources.get(key) });
+    }
+  }
+  const total = (mode) => (mode === "random" ? bank.length : bank.filter((x) => x.b === Number(mode)).length);
   const seen = new Set();
   const pick = (pool, n) => {
     let fresh = pool.filter((x) => !seen.has(x.f[0]));
@@ -928,8 +961,8 @@ window.pauPractice = (() => {
       h.append(num);
       const meta = document.createElement("small");
       meta.textContent = it.f[2] ? `Bloque ${it.b} · ${it.f[2]}` : `Bloque ${it.b}`;
-      const exams = questionExamMap.get(questionKey(it.f[0]));
-      if (exams) {
+      const exams = [...(questionExamMap.get(questionKey(it.f[0])) || []), ...(it.models || [])];
+      if (exams.length) {
         meta.className = "gen-exams";
         meta.replaceChildren(document.createTextNode(`Bloque ${it.b} `), ...exams.map(examPill));
       }
@@ -940,7 +973,7 @@ window.pauPractice = (() => {
       out.append(art);
       window.pauSavedQuestions.attach(art, {
         prompt: it.f[0], block: it.b, answer: it.f[1] || null,
-        source: exams ? exams.join("; ") : (it.f[2] || ""),
+        source: exams.length ? exams.join("; ") : (it.f[2] || ""),
       });
     });
     status.textContent = `${label}: ${items.length} cuestiones generadas.`;
@@ -959,10 +992,10 @@ window.pauPractice = (() => {
     }
     if (mode === "random") {
       // Modelo oficial 2026-27: cuatro cuestiones de bloques distintos, en orden 1-4.
-      const perBlock = [1, 2, 3, 4].flatMap((b) => pick(all.filter((x) => x.b === b), 1));
+      const perBlock = [1, 2, 3, 4].flatMap((b) => pick(bank.filter((x) => x.b === b), 1));
       render(perBlock, "Aleatorio");
     } else {
-      render(pick(all.filter((x) => x.b === Number(mode)), 4), `Bloque ${mode}`);
+      render(pick(bank.filter((x) => x.b === Number(mode)), 4), `Bloque ${mode}`);
     }
   };
   buttons.forEach((b) => b.addEventListener("click", () => generate(b.dataset.gen)));

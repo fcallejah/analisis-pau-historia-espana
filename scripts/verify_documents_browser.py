@@ -569,11 +569,22 @@ def check_collection_link(page, record):
 def appearance_label(appearance):
     exam = re.sub(rf"^{appearance['year']}\s+", "", appearance["exam"])
     exam = re.sub(r"\s*\([^)]*\)\s*$", "", exam)
+    if appearance["year"] == 2011:
+        exam = re.sub(r"^(Ordinaria|Extraordinaria) examen (\d+)$",
+                      lambda match: f"Examen {match[2]} {match[1].lower()}", exam)
+    if appearance["year"] == 2010:
+        for letter in "AB":
+            if exam == f"Titular reserva {letter}":
+                exam = f"Reserva {letter} ordinaria"
+            elif exam == f"Extraordinaria reserva {letter}":
+                exam = f"Reserva {letter} extraordinaria"
+    original_exam = re.sub(rf"^{appearance['year']}\s+", "", appearance["exam"])
     exam_words = " ".join(re.findall(r"\w+", normalize(exam)))
     route_words = " ".join(re.findall(r"\w+", normalize(appearance["route"])))
     return " · ".join(str(part) for part in (
         appearance["year"], exam,
-        "" if appearance["route"].endswith("sin cotejar") or f" {route_words} " in f" {exam_words} " else appearance["route"],
+        "" if (appearance["route"].endswith("sin cotejar") or appearance["route"] == original_exam
+               or f" {route_words} " in f" {exam_words} ") else appearance["route"],
         "" if appearance["document"] is None else f"Documento {appearance['document']}",
     ) if part != "")
 
@@ -611,8 +622,8 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=73"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=61"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=79"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=64"]').count() == 1
         context.close()
 
 def check_image_credits(browser):
@@ -1443,6 +1454,50 @@ def check_anchored_feedback(browser, mobile_device):
     context.close()
 
 
+def check_reader_swipe(browser, device, *, chromium=False):
+    context = browser.new_context(**device, service_workers="block")
+    page = context.new_page()
+    page.goto(f"{BASE}/documentos.html")
+    page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
+    page.select_option("#document-year", "2008")
+    page.select_option("#document-exam", "examen 1")
+    page.locator(".document-open").first.click()
+    status = page.locator(".document-reader-status")
+    client = context.new_cdp_session(page) if chromium else None
+
+    def swipe(dx, dy):
+        bounds = page.locator("#document-dialog-title").bounding_box()
+        x = round(bounds["x"] + bounds["width"] / 2 - dx / 2)
+        y = round(bounds["y"] + bounds["height"] / 2)
+        if client:
+            for step in range(9):
+                client.send("Input.dispatchTouchEvent", {
+                    "type": "touchMove" if step else "touchStart",
+                    "touchPoints": [{"x": round(x + dx * step / 8), "y": round(y + dy * step / 8)}],
+                })
+            client.send("Input.dispatchTouchEvent", {"type": "touchEnd", "touchPoints": []})
+        else:
+            page.evaluate("""({x, y, dx, dy}) => {
+                const target = document.elementFromPoint(x, y);
+                for (const [type, step] of [['touchstart', 0], ['touchmove', .5], ['touchend', 1]]) {
+                    const touch = {identifier: 0, clientX: x + step * dx, clientY: y + step * dy};
+                    const event = new Event(type, {bubbles: true});
+                    Object.defineProperties(event, {
+                        touches: {value: type === 'touchend' ? [] : [touch]},
+                        changedTouches: {value: [touch]},
+                    });
+                    target.dispatchEvent(event);
+                }
+            }""", dict(x=x, y=y, dx=dx, dy=dy))
+
+    for dx, dy, expected in ((120, 0, 1), (-35, 0, 1), (10, 110, 1),
+                             (-120, 5, 2), (-120, 0, 3), (-120, 0, 4),
+                             (-120, 0, 4), (120, 0, 3)):
+        swipe(dx, dy)
+        assert status.inner_text().startswith(f"Documento {expected} de 4:"), (dx, dy, status.inner_text())
+    context.close()
+
+
 def run():
     with sync_playwright() as p:
         browser = p.chromium.launch()
@@ -1482,6 +1537,7 @@ def run():
         ]
         check_dialog_scroll(page)
         check_reader_navigation(browser)
+        check_reader_swipe(browser, p.devices["Pixel 7"], chromium=True)
         page.locator('.document-card[data-id="mapa-desamortizacion-madoz"] .document-open').click()
         map_record = next(d for d in DATA["documents"] if d["id"] == "mapa-desamortizacion-madoz")
         assert page.locator("#document-dialog .document-exams .exam-pill").all_text_contents() == [
@@ -1556,6 +1612,7 @@ def run():
                 " && Math.abs(button.top+button.height/2-title.top-title.height/2)<2;}"
             )
         page.set_viewport_size(original_viewport)
+        page.locator(".document-more-filters summary").click()
         compact_counts = []
         for width in (1280, 1920, 2560, 320, 1280):
             page.set_viewport_size({"width": width, "height": 900})
@@ -1832,13 +1889,11 @@ def run():
         assert topic_toggle.inner_text() == "Ver más ↓"
         reset_button = page.locator("#document-reset")
         assert reset_button.inner_text() == "Limpiar filtros"
-        assert reset_button.locator("svg").get_attribute("aria-hidden") == "true"
         page.mouse.move(1, 1)
         assert reset_button.evaluate("(button) => getComputedStyle(button).backgroundColor") == "rgb(251, 228, 225)"
         reset_button.hover()
         assert reset_button.evaluate("(button) => getComputedStyle(button).backgroundColor") == "rgb(217, 83, 74)"
-        assert page.locator(".document-topic-heading #document-reset").count() == 1
-        assert page.locator(".document-results-bar #document-reset").count() == 0
+        assert page.locator(".document-results-bar #document-reset").count() == 1
         assert topic_toggle.evaluate("(button) => button.parentElement.id === 'document-topics'")
         assert topic_toggle.evaluate("(button) => button === button.parentElement.lastElementChild")
         assert page.locator("#document-topics button.document-topic-bubble:visible").count() >= 8

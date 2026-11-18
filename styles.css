@@ -170,6 +170,21 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .source-grid span{color:#77796f;font-size:8px}
 .source-grid strong{max-width:250px;font:600 18px/1.25 var(--serif)}
 .source-grid b{position:absolute;right:17px;bottom:21px;color:var(--olive)}
+.orientation-archive{margin-top:24px;padding:clamp(14px,3vw,24px);border:1px solid var(--line);border-radius:12px;scroll-margin-top:100px}
+.orientation-archive p{margin:8px 0;color:var(--muted);font-size:13px}
+.orientation-archive-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}
+.orientation-archive-heading .annex-sources-title{margin:0}
+.orientation-current{display:grid;gap:4px;justify-self:end;padding:10px 14px;border:1px solid #789326;border-radius:8px;background:#d6ee7a;color:#26320c;text-decoration:none}
+.orientation-current>span{font-size:10px;font-weight:700}
+.orientation-current strong{font-size:20px;line-height:1.2}
+.orientation-current:hover,.orientation-current:focus-visible{text-decoration:underline}
+@media(max-width:520px){.orientation-archive-heading{grid-template-columns:minmax(0,1fr)}}
+.orientation-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(126px,100%),1fr));gap:8px;margin:14px 0;padding:0;list-style:none}
+.orientation-courses a,.orientation-unavailable{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none}
+.orientation-courses a{border-color:#789326;background:#e8f4bd;color:#26320c}
+.orientation-courses a:hover,.orientation-courses a:focus-visible{border-color:currentColor;text-decoration:underline}
+.orientation-unavailable{color:var(--muted);background:var(--surface);border-style:dashed}
+.orientation-unavailable small{font:400 10px/1.3 var(--sans)}
 .caveat{max-width:750px;margin:16px 0 0;color:var(--muted);font-size:11px}
 .github-button{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #111;border-radius:6px;background:#111;color:#fff;font-size:11px;font-weight:700;text-decoration:none;transition:background-color .15s ease,color .15s ease}
 .github-button svg{width:15px;height:15px}
