@@ -2112,7 +2112,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(caption["emphasis"], ["El País"])
         self.assertEqual(
             caption["note"],
-            "* El País no existía aún en febrero de 1976: su primer número se publicó el 4 de mayo de ese año. "
+            "* El periódico El País no existía aún en febrero de 1976: su primer número se publicó el 4 de mayo de ese año. "
             "Durante ese mes sí circulaban otros periódicos de tirada nacional, como ABC y La Vanguardia.",
         )
         self.assertEqual(caption["noteEmphasis"], ["El País", "ABC", "La Vanguardia"])
