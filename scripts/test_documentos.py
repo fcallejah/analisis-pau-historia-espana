@@ -3,6 +3,7 @@ import json
 import hashlib
 import importlib.util
 import math
+from decimal import Decimal
 from pathlib import Path
 import re
 import unicodedata
@@ -1879,13 +1880,17 @@ class DocumentCorpusTests(unittest.TestCase):
             ".//{http://www.w3.org/2000/svg}path[@data-party='UCD']")
         self.assertEqual((ucd_sector.get("data-seats"), ucd_sector.get("data-seat-percent")),
                          ("165", "47.143"))
+        self.assertEqual(ucd_sector.get("fill"), "#26736f")
         self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])
         self.assertEqual(record["table"]["rows"][0][3:], [165, "47,1"])
+        vote_percentages = [Decimal(row[2].replace(",", ".")) for row in record["table"]["rows"]]
+        self.assertEqual(sum(vote_percentages), Decimal("100.0"))
+        self.assertEqual(record["table"]["rows"][0][2], "34,4")
         notes = " ".join(record["table"]["notes"])
-        self.assertIn("13,41 %", notes)
-        self.assertNotIn("13.41 %", notes)
+        self.assertIn("14,4 %", notes)
         self.assertIn("99,14 %", notes)
         self.assertIn("EC-FED (1)", notes)
+        self.assertNotIn("Cifras: tabla aportada por el usuario", svg)
         self.assertIn("PSP-US 6 · DCC 2 · EC-FED 1", svg)
 
     def test_new_corpus_tables_match_their_accessible_data_and_occurrences(self):

@@ -20449,7 +20449,7 @@
       ],
       "date": "15 de junio de 1977",
       "sourceCaption": "Material de 2007, Examen 4, Bloque II · Opción B. Cifras actualizadas con la tabla de resultados aportada por el usuario.",
-      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños, no a los votos. Los colores son editoriales, inspirados en asociaciones cromáticas de los partidos y no atribuidos al gráfico original. Las cifras se transcriben de la tabla aportada por el usuario; la tabla accesible detalla las candidaturas agrupadas en «Otros*» y calcula el porcentaje de escaños.",
+      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños, no a los votos. Los colores son editoriales, inspirados en asociaciones cromáticas de los partidos y no atribuidos al gráfico original. Los votos y escaños se transcriben de la tabla aportada por el usuario; la tabla accesible detalla las candidaturas agrupadas en «Otros*» y explica el cálculo de porcentajes.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -20489,7 +20489,7 @@
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2007-4-4.png",
         "originalSha256": "3f9152866cf8c0f4c5f413ebc8defa5fe0ffe3937a131888a7a63157acbf58c0",
-        "reproductionNote": "Sectores proporcionales a escaños; el reparto de votos y las cifras proceden de la tabla aportada por el usuario. Colores editoriales, no reproducidos del examen."
+        "reproductionNote": "Sectores proporcionales a escaños; los votos y las cifras proceden de la tabla aportada por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados. Colores editoriales, no reproducidos del examen."
       },
       "table": {
         "caption": "Elecciones generales de 1977: votos y distribución de escaños",
@@ -20504,141 +20504,141 @@
           [
             "UCD — Unión de Centro Democrático",
             "6 310 391",
-            "34,44",
+            "34,4",
             165,
             "47,1"
           ],
           [
             "PSOE — Partido Socialista Obrero Español",
             "5 371 866",
-            "29,32",
+            "29,3",
             118,
             "33,7"
           ],
           [
             "PCE — Partido Comunista de España",
             "1 709 890",
-            "9,33",
+            "9,3",
             20,
             "5,7"
           ],
           [
             "AP — Federación de Partidos de Alianza Popular",
             "1 504 771",
-            "8,21",
+            "8,2",
             16,
             "4,6"
           ],
           [
             "PSP-US — Partido Socialista Popular-Unidad Socialista",
             "816 582",
-            "4,46",
+            "4,5",
             6,
             "1,7"
           ],
           [
             "PDPC — Pacte Democràtic per Catalunya",
             "514 647",
-            "2,81",
+            "2,8",
             11,
             "3,1"
           ],
           [
             "PNV — Partido Nacionalista Vasco",
             "296 193",
-            "1,62",
+            "1,6",
             8,
             "2,3"
           ],
           [
             "FDC-EDC — Equipo de la Democracia Cristiana",
             "215 841",
-            "1,18",
+            "1,2",
             0,
             "0,0"
           ],
           [
             "DCC — Unió del Centre i la Democràcia Cristiana de Catalunya",
             "172 791",
-            "0,94",
+            "0,9",
             2,
             "0,6"
           ],
           [
             "EC-FED — Esquerra de Catalunya",
             "143 954",
-            "0,79",
+            "0,8",
             1,
             "0,3"
           ],
           [
             "FDI — Frente Democrático de Izquierdas",
             "122 608",
-            "0,67",
+            "0,7",
             0,
             "0,0"
           ],
           [
             "ASDCI — Alianza Socialista Democrática",
             "101 916",
-            "0,56",
+            "0,6",
             0,
             "0,0"
           ],
           [
             "AET — Agrupación Electoral de Trabajadores",
             "77 575",
-            "0,42",
+            "0,4",
             0,
             "0,0"
           ],
           [
             "AN18 — Alianza Nacional 18 de Julio",
             "67 336",
-            "0,37",
+            "0,4",
             0,
             "0,0"
           ],
           [
             "RSE — Reforma Social Española",
             "64 241",
-            "0,35",
+            "0,3",
             0,
             "0,0"
           ],
           [
             "EE — Euskadiko Ezkerra",
             "61 417",
-            "0,34",
+            "0,3",
             1,
             "0,3"
           ],
           [
             "CAI — Candidatura Aragonesa Independiente de Centro",
             "37 183",
-            "0,20",
+            "0,2",
             1,
             "0,3"
           ],
           [
             "INDEP — Candidatura Independiente de Centro",
             "29 834",
-            "0,16",
+            "0,2",
             1,
             "0,3"
           ],
           [
             "Otros partidos",
             "723 290",
-            "2,97",
+            "3,9",
             0,
             "0,0"
           ]
         ],
         "notes": [
-          "Votos, porcentajes de voto y escaños se transcriben de la tabla de resultados aportada por el usuario. El porcentaje de escaños se calcula a partir de los 350 escaños y se redondea a una décima.",
-          "Otros* agrupa 13 candidaturas: PSP-US (6), FDC-EDC (0), DCC (2), EC-FED (1), FDI (0), ASDCI (0), AET (0), AN18 (0), RSE (0), EE (1), CAI (1), INDEP (1), Otros partidos (0). En conjunto suman 2.634.568 votos, 13,41 % y 12 escaños.",
-          "Los porcentajes de votos aportados suman 99,14 % y se conservan sin cambios. Las cuñas representan los escaños, no los votos.",
+          "Los votos y escaños se transcriben de la tabla de resultados aportada por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados y se redondean a una décima mediante el método de mayores restos para sumar 100,0 %; los porcentajes de escaños se calculan sobre 350 y se redondean a una décima.",
+          "Otros* agrupa 13 candidaturas: PSP-US (6), FDC-EDC (0), DCC (2), EC-FED (1), FDI (0), ASDCI (0), AET (0), AN18 (0), RSE (0), EE (1), CAI (1), INDEP (1), Otros partidos (0). En conjunto suman 2.634.568 votos, 14,4 % y 12 escaños.",
+          "La columna de porcentajes de la tabla aportada suma 99,14 %; no coincide con los votos listados. Las cuñas representan los escaños, no los votos.",
           "Referencia de datos compartida por el usuario: https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977"
         ]
       },

@@ -1,5 +1,5 @@
 """Rebuild the 2007 election diagram as an accessible semicircular SVG."""
-from decimal import Decimal
+from decimal import Decimal, ROUND_FLOOR
 from html import escape
 import hashlib
 import json
@@ -37,7 +37,7 @@ ROWS = [
 ]
 
 MAIN_PARTIES = (
-    ("UCD", "#5e8fb6"),
+    ("UCD", "#26736f"),
     ("PSOE", "#c6464f"),
     ("PCE", "#8b1e3f"),
     ("AP", "#2d4d73"),
@@ -57,6 +57,24 @@ def decimal(value):
 
 def format_percent(value, places=1):
     return f"{value:.{places}f}".replace(".", ",")
+
+
+def rounded_vote_shares(rows):
+    total_votes = sum(number(row[1]) for row in rows)
+    exact_tenths = [Decimal(number(row[1])) * 1000 / Decimal(total_votes) for row in rows]
+    shares = [int(value.to_integral_value(rounding=ROUND_FLOOR)) for value in exact_tenths]
+    remaining = 1000 - sum(shares)
+    order = sorted(
+        range(len(rows)),
+        key=lambda index: (exact_tenths[index] - shares[index], -index),
+        reverse=True,
+    )
+    for index in order[:remaining]:
+        shares[index] += 1
+    return {
+        row[0].split(" — ", 1)[0].split(" ")[0]: share
+        for row, share in zip(rows, shares)
+    }
 
 
 def svg_point(cx, cy, radius, angle_degrees):
@@ -79,10 +97,14 @@ def build_svg(record):
     rows_by_code = {row[0].split(" — ", 1)[0].split(" ")[0]: row for row in ROWS}
     main_codes = {item[0] for item in MAIN_PARTIES}
     other_rows = [row for row in ROWS if row[0].split(" — ", 1)[0].split(" ")[0] not in main_codes]
+    vote_shares = rounded_vote_shares(ROWS)
     other_votes = sum(number(row[1]) for row in other_rows)
-    other_vote_percent = sum((decimal(row[2]) for row in other_rows), Decimal(0))
+    other_vote_percent = Decimal(sum(
+        vote_shares[row[0].split(" — ", 1)[0].split(" ")[0]] for row in other_rows
+    )) / 10
     other_seats = sum(int(row[3]) for row in other_rows)
-    total_vote_percent = sum((decimal(row[2]) for row in ROWS), Decimal(0))
+    total_vote_percent = Decimal(sum(vote_shares.values())) / 10
+    source_vote_percent_total = sum((decimal(row[2]) for row in ROWS), Decimal(0))
     total_seats = sum(int(row[3]) for row in ROWS)
     if total_seats != 350:
         raise ValueError(f"Expected 350 reported seats, found {total_seats}")
@@ -91,7 +113,7 @@ def build_svg(record):
             "code": code,
             "row": rows_by_code[code],
             "votes": rows_by_code[code][1],
-            "vote_percent": rows_by_code[code][2],
+            "vote_percent": format_percent(Decimal(vote_shares[code]) / 10),
             "seats": int(rows_by_code[code][3]),
             "seat_percent": Decimal(rows_by_code[code][3]) * 100 / Decimal(total_seats),
             "color": color,
@@ -100,9 +122,9 @@ def build_svg(record):
     ]
     segments.append({
         "code": "Otros*",
-        "row": ("Otros*", f"{other_votes:,}".replace(",", " "), str(other_vote_percent).replace(".", ","), str(other_seats)),
+        "row": ("Otros*", f"{other_votes:,}".replace(",", " "), format_percent(other_vote_percent), str(other_seats)),
         "votes": f"{other_votes:,}".replace(",", " "),
-        "vote_percent": str(other_vote_percent).replace(".", ","),
+        "vote_percent": format_percent(other_vote_percent),
         "seats": other_seats,
         "seat_percent": Decimal(other_seats) * 100 / Decimal(total_seats),
         "color": OTHER_COLOR,
@@ -115,7 +137,7 @@ def build_svg(record):
         '<title id="title">Elecciones de 1977: distribución proporcional de escaños</title>',
         '<desc id="desc">Diagrama semicircular de las elecciones del 15 de junio de 1977. Los sectores son proporcionales a los escaños obtenidos sobre un total de 350. La leyenda muestra los escaños, su porcentaje, los votos y el porcentaje de votos. Las candidaturas menores se agrupan como Otros.</desc>',
         f'<metadata>{escape(json.dumps({"method": "Redibujo vectorial semicircular con sectores proporcionales a escaños; paleta editorial, no presente en el original.", "original": record["image"]["src"], "originalSha256": hashlib.sha256((ROOT / record["image"]["src"]).read_bytes()).hexdigest(), "pdf": record["appearances"][0]["pdfUrl"], "pdfSha256": record["appearances"][0]["sourceSha256"], "dataSource": DATA_SOURCE, "page": record["appearances"][0]["officialPage"]}, ensure_ascii=False))}</metadata>',
-        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px;fill:#53666e}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.year{font-size:22px;font-weight:700;fill:#53666e}.center-seat{font-size:11px;fill:#53666e}.footnote{font-size:12px}.source{font-size:11px;fill:#59666b}.sector{stroke:#fff;stroke-width:2}</style>',
+        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px;fill:#53666e}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.year{font-size:22px;font-weight:700;fill:#53666e}.center-seat{font-size:11px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
         '<text class="title" x="380" y="32" text-anchor="middle">Elecciones generales de 1977 (15 de junio)</text>',
         '<text class="subtitle" x="380" y="55" text-anchor="middle">Sectores proporcionales a escaños; el voto también se indica.</text>',
@@ -152,13 +174,12 @@ def build_svg(record):
         f'<text class="center-seat" x="{cx}" y="{cy - 5}" text-anchor="middle">{total_seats} escaños</text>',
         f'<text class="footnote" x="380" y="520" text-anchor="middle">* Otros agrupa candidaturas menores; sus {other_seats} escaños: {escape(other_seat_details)}.</text>',
         '<text class="footnote" x="380" y="542" text-anchor="middle">Escaños (%) = escaños / 350; colores editoriales, no reproducidos del examen.</text>',
-        f'<text class="footnote" x="380" y="564" text-anchor="middle">Los porcentajes de votos se conservan como en la tabla (suman {format_percent(total_vote_percent, 2)} %).</text>',
-        f'<text class="source" x="380" y="606" text-anchor="middle">Cifras: tabla aportada por el usuario · Material: {escape(record["appearances"][0]["exam"])}, {escape(record["appearances"][0]["route"])}</text>',
+        f'<text class="footnote" x="380" y="564" text-anchor="middle">Porcentajes de voto recalculados a una décima: {format_percent(total_vote_percent)} % (tabla aportada: {format_percent(source_vote_percent_total, 2)} %).</text>',
         "</svg>",
     ])
     return (
         "\n".join(output) + "\n", segments, other_rows, other_votes, other_vote_percent,
-        other_seats, total_vote_percent, total_seats,
+        other_seats, total_vote_percent, source_vote_percent_total, total_seats,
     )
 
 
@@ -168,7 +189,7 @@ def main():
     record = next(item for item in corpus["documents"] if item["id"] == "elecciones-1977-diagrama")
     (
         svg, segments, other_rows, other_votes, other_vote_percent,
-        other_seats, total_vote_percent, total_seats,
+        other_seats, total_vote_percent, source_vote_percent_total, total_seats,
     ) = build_svg(record)
     (ROOT / OUTPUT).write_text(svg, encoding="utf-8")
     record["sourceCaption"] = (
@@ -179,8 +200,8 @@ def main():
         "Diagrama semicircular redibujado a partir del material del examen. "
         "Los sectores son proporcionales a los 350 escaños, no a los votos. Los colores son editoriales, "
         "inspirados en asociaciones cromáticas de los partidos y no atribuidos al gráfico original. "
-        "Las cifras se transcriben de la tabla aportada por el usuario; la tabla accesible detalla "
-        "las candidaturas agrupadas en «Otros*» y calcula el porcentaje de escaños."
+        "Los votos y escaños se transcriben de la tabla aportada por el usuario; la tabla accesible "
+        "detalla las candidaturas agrupadas en «Otros*» y explica el cálculo de porcentajes."
     )
     record["image"] = {
         **record["image"],
@@ -197,29 +218,35 @@ def main():
             "la UCD obtuvo 165, el 47,1 %. La leyenda muestra votos y escaños por candidatura."
         ),
         "reproductionNote": (
-            "Sectores proporcionales a escaños; el reparto de votos y las cifras proceden de la "
-            "tabla aportada por el usuario. Colores editoriales, no reproducidos del examen."
+            "Sectores proporcionales a escaños; los votos y las cifras proceden de la tabla aportada "
+            "por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados. "
+            "Colores editoriales, no reproducidos del examen."
         ),
     }
+    vote_shares = rounded_vote_shares(ROWS)
     rows = [
         [
-            party, votes, percent, int(seats),
+            party, votes,
+            format_percent(Decimal(vote_shares[party.split(" — ", 1)[0].split(" ")[0]]) / 10),
+            int(seats),
             format_percent(Decimal(seats) * 100 / Decimal(total_seats)),
         ]
-        for party, votes, percent, seats in ROWS
+        for party, votes, _source_percent, seats in ROWS
     ]
     breakdown = ", ".join(
         f'{row[0].split(" — ", 1)[0]} ({row[3]})' for row in other_rows
     )
     other_votes_formatted = f"{other_votes:,}".replace(",", ".")
-    other_percent_formatted = format_percent(other_vote_percent, 2)
+    other_percent_formatted = format_percent(other_vote_percent)
     notes = [
-        "Votos, porcentajes de voto y escaños se transcriben de la tabla de resultados aportada por el usuario. "
-        "El porcentaje de escaños se calcula a partir de los 350 escaños y se redondea a una décima.",
+        "Los votos y escaños se transcriben de la tabla de resultados aportada por el usuario. "
+        "Los porcentajes de voto se recalculan a partir de los votos listados y se redondean a una décima "
+        "mediante el método de mayores restos para sumar 100,0 %; los porcentajes de escaños se calculan "
+        "sobre 350 y se redondean a una décima.",
         f"Otros* agrupa {len(other_rows)} candidaturas: {breakdown}. "
         f"En conjunto suman {other_votes_formatted} votos, {other_percent_formatted} % y {other_seats} escaños.",
-        f"Los porcentajes de votos aportados suman {format_percent(total_vote_percent, 2)} % y se conservan sin cambios. "
-        "Las cuñas representan los escaños, no los votos.",
+        f"La columna de porcentajes de la tabla aportada suma {format_percent(source_vote_percent_total, 2)} %; "
+        "no coincide con los votos listados. Las cuñas representan los escaños, no los votos.",
         f"Referencia de datos compartida por el usuario: {DATA_SOURCE}",
     ]
     record["table"] = {
