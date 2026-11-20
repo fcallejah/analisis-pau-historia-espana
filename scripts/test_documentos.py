@@ -1870,14 +1870,21 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "elecciones-1977-diagrama")
         image = record["image"]
-        self.assertEqual((image["width"], image["height"]), (1080, 760))
+        self.assertEqual((image["width"], image["height"]), (760, 640))
         self.assertEqual(len(record["table"]["rows"]), 19)
         svg = (ROOT / image["src"]).read_text()
         self.assertEqual(svg.count('<path class="sector"'), 7)
         self.assertIn('data-party="Otros*"', svg)
+        ucd_sector = ET.fromstring(svg).find(
+            ".//{http://www.w3.org/2000/svg}path[@data-party='UCD']")
+        self.assertEqual((ucd_sector.get("data-seats"), ucd_sector.get("data-seat-percent")),
+                         ("165", "47.143"))
+        self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])
+        self.assertEqual(record["table"]["rows"][0][3:], [165, "47,1"])
         notes = " ".join(record["table"]["notes"])
         self.assertIn("13,41 %", notes)
         self.assertNotIn("13.41 %", notes)
+        self.assertIn("99,14 %", notes)
         self.assertIn("EC-FED (1)", notes)
         self.assertIn("PSP-US 6 · DCC 2 · EC-FED 1", svg)
 

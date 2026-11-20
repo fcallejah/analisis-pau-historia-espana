@@ -1,50 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="760" viewBox="0 0 1080 760" role="img" aria-labelledby="title desc">
-<title id="title">Resultados electorales de 1977: votos y escaños</title>
-<desc id="desc">Diagrama semicircular de las elecciones del 15 de junio de 1977. Los segmentos representan porcentajes de votos; las etiquetas indican votos y escaños. Las candidaturas menores se reúnen en Otros.</desc>
-<metadata>{&quot;method&quot;: &quot;Redibujo vectorial semicircular; cifras numéricas actualizadas a partir de la tabla aportada por el usuario.&quot;, &quot;original&quot;: &quot;assets/documentos/elecciones-1977-diagrama-semicircular.svg&quot;, &quot;originalSha256&quot;: &quot;24a4e84049a7f10ec9ee4654f14665906453f9f8a63b6bcb912cb7dd1342d088&quot;, &quot;pdf&quot;: &quot;https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view&quot;, &quot;pdfSha256&quot;: &quot;cc4163bac15705bd10fc8e6ca7e50ad952dd19224a1c5700a6dfdf87bc9adfcc&quot;, &quot;dataSource&quot;: &quot;https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977&quot;, &quot;page&quot;: 2}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:26px;font-weight:700;fill:#223e4b}.subtitle{font-size:16px;fill:#53666e}.party{font-size:20px;font-weight:700}.metric{font-size:15px}.seat{font-size:15px;font-weight:600}.year{font-size:23px;font-weight:700;fill:#53666e}.footnote{font-size:15px}.source{font-size:13px;fill:#59666b}.sector{stroke:#fff;stroke-width:2}.leader{fill:none;stroke:#59666b;stroke-width:1.5}</style>
-<rect width="1080" height="760" fill="#fff"/>
-<text class="title" x="540" y="40" text-anchor="middle">Resultado de las elecciones de 1977 (15 de junio)</text>
-<text class="subtitle" x="540" y="69" text-anchor="middle">Los sectores representan votos; cada rótulo indica también los escaños obtenidos.</text>
-<path class="sector" data-party="UCD" data-vote-percent="34.44" fill="#26736f" d="M252.00,425.00 A248,248 0 0 1 385.60,204.96 L451.56,331.84 A105,105 0 0 0 395.00,425.00 Z"/>
-<path class="leader" d="M284.6,294.2 L238,278"/>
-<text class="party" x="55" y="190" text-anchor="start">UCD</text>
-<text class="metric" x="55" y="212" text-anchor="start">34,44% · 6 310 391 votos</text>
-<text class="seat" x="55" y="232" text-anchor="start">165 escaños</text>
-<path class="sector" data-party="PSOE" data-vote-percent="29.32" fill="#4f74a4" d="M385.60,204.96 A248,248 0 0 1 607.80,201.65 L545.64,330.44 A105,105 0 0 0 451.56,331.84 Z"/>
-<path class="leader" d="M496.2,173.0 L455,145"/>
-<text class="party" x="455" y="106" text-anchor="middle">PSOE</text>
-<text class="metric" x="455" y="128" text-anchor="middle">29,32% · 5 371 866 votos</text>
-<text class="seat" x="455" y="148" text-anchor="middle">118 escaños</text>
-<path class="sector" data-party="PCE" data-vote-percent="9.33" fill="#c56a53" d="M607.80,201.65 A248,248 0 0 1 668.19,242.75 L571.21,347.84 A105,105 0 0 0 545.64,330.44 Z"/>
-<path class="leader" d="M641.8,216.7 L650,116"/>
-<text class="party" x="650" y="78" text-anchor="middle">PCE</text>
-<text class="metric" x="650" y="100" text-anchor="middle">9,33% · 1 709 890 votos</text>
-<text class="seat" x="650" y="120" text-anchor="middle">20 escaños</text>
-<path class="sector" data-party="AP" data-vote-percent="8.21" fill="#c39437" d="M668.19,242.75 A248,248 0 0 1 709.42,292.15 L588.66,368.75 A105,105 0 0 0 571.21,347.84 Z"/>
-<path class="leader" d="M693.5,263.5 L805,180"/>
-<text class="party" x="815" y="150" text-anchor="start">AP</text>
-<text class="metric" x="815" y="172" text-anchor="start">8,21% · 1 504 771 votos</text>
-<text class="seat" x="815" y="192" text-anchor="start">16 escaños</text>
-<path class="sector" data-party="PDC" data-vote-percent="2.81" fill="#8b78a8" d="M709.42,292.15 A248,248 0 0 1 720.40,311.30 L593.31,376.86 A105,105 0 0 0 588.66,368.75 Z"/>
-<path class="leader" d="M718.6,299.6 L810,263"/>
-<text class="party" x="825" y="244" text-anchor="start">PDC</text>
-<text class="metric" x="825" y="266" text-anchor="start">2,81% · 514 647 votos</text>
-<text class="seat" x="825" y="286" text-anchor="start">11 escaños</text>
-<path class="sector" data-party="PNV" data-vote-percent="1.62" fill="#73986c" d="M720.40,311.30 A248,248 0 0 1 725.94,322.76 L595.66,381.71 A105,105 0 0 0 593.31,376.86 Z"/>
-<path class="leader" d="M726.8,315.3 L810,357"/>
-<text class="party" x="825" y="338" text-anchor="start">PNV</text>
-<text class="metric" x="825" y="360" text-anchor="start">1,62% · 296 193 votos</text>
-<text class="seat" x="825" y="380" text-anchor="start">8 escaños</text>
-<path class="sector" data-party="Otros*" data-vote-percent="13.41" fill="#bb718c" d="M725.94,322.76 A248,248 0 0 1 748.00,425.00 L605.00,425.00 A105,105 0 0 0 595.66,381.71 Z"/>
-<path class="leader" d="M746.3,371.9 L810,449"/>
-<text class="party" x="825" y="430" text-anchor="start">Otros*</text>
-<text class="metric" x="825" y="452" text-anchor="start">13,41% · 2 634 568 votos</text>
-<text class="seat" x="825" y="472" text-anchor="start">12 escaños</text>
-<circle cx="500" cy="425" r="104" fill="#fff"/>
-<text class="year" x="500" y="432" text-anchor="middle">1977</text>
-<text class="footnote" x="540" y="598" text-anchor="middle">* Otros escaños: PSP-US 6 · DCC 2 · EC-FED 1 · EE 1 · CAI 1 · Candidatura Independiente 1.</text>
-<text class="footnote" x="540" y="625" text-anchor="middle">Las candidaturas menores se agrupan en Otros*; el detalle completo queda en la tabla accesible.</text>
-<text class="footnote" x="540" y="652" text-anchor="middle">Los porcentajes facilitados suman 99,14 %; los sectores se normalizan proporcionalmente para cerrar el semicírculo.</text>
-<text class="source" x="540" y="710" text-anchor="middle">Cifras: tabla aportada por el usuario · Material: 2007 Examen 4, Bloque II · Opción B</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="640" viewBox="0 0 760 640" role="img" aria-labelledby="title desc">
+<title id="title">Elecciones de 1977: distribución proporcional de escaños</title>
+<desc id="desc">Diagrama semicircular de las elecciones del 15 de junio de 1977. Los sectores son proporcionales a los escaños obtenidos sobre un total de 350. La leyenda muestra los escaños, su porcentaje, los votos y el porcentaje de votos. Las candidaturas menores se agrupan como Otros.</desc>
+<metadata>{&quot;method&quot;: &quot;Redibujo vectorial semicircular con sectores proporcionales a escaños; paleta editorial, no presente en el original.&quot;, &quot;original&quot;: &quot;assets/documentos/elecciones-1977-diagrama-semicircular.svg&quot;, &quot;originalSha256&quot;: &quot;99c3e82b4396670feea47d60191e77f9727d44b28ea8d3977122920ebb634086&quot;, &quot;pdf&quot;: &quot;https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view&quot;, &quot;pdfSha256&quot;: &quot;cc4163bac15705bd10fc8e6ca7e50ad952dd19224a1c5700a6dfdf87bc9adfcc&quot;, &quot;dataSource&quot;: &quot;https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977&quot;, &quot;page&quot;: 2}</metadata>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px;fill:#53666e}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.year{font-size:22px;font-weight:700;fill:#53666e}.center-seat{font-size:11px;fill:#53666e}.footnote{font-size:12px}.source{font-size:11px;fill:#59666b}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="640" fill="#fff"/>
+<text class="title" x="380" y="32" text-anchor="middle">Elecciones generales de 1977 (15 de junio)</text>
+<text class="subtitle" x="380" y="55" text-anchor="middle">Sectores proporcionales a escaños; el voto también se indica.</text>
+<path class="sector" data-party="UCD" data-seats="165" data-seat-percent="47.143" fill="#5e8fb6" d="M45.00,370.00 A185,185 0 0 1 213.42,185.74 L223.01,292.31 A78,78 0 0 0 152.00,370.00 Z"/>
+<rect x="430" y="100" width="14" height="14" rx="2" fill="#5e8fb6"/>
+<text class="party" x="454" y="112">UCD</text>
+<text class="share" x="744" y="112" text-anchor="end">165 escaños · 47,1 %</text>
+<text class="metric" x="454" y="130">34,44 % de votos · 6 310 391 votos</text>
+<path class="sector" data-party="PSOE" data-seats="118" data-seat-percent="33.714" fill="#c6464f" d="M213.42,185.74 A185,185 0 0 1 382.54,265.33 L294.31,325.87 A78,78 0 0 0 223.01,292.31 Z"/>
+<rect x="430" y="152" width="14" height="14" rx="2" fill="#c6464f"/>
+<text class="party" x="454" y="164">PSOE</text>
+<text class="share" x="744" y="164" text-anchor="end">118 escaños · 33,7 %</text>
+<text class="metric" x="454" y="182">29,32 % de votos · 5 371 866 votos</text>
+<path class="sector" data-party="PCE" data-seats="20" data-seat-percent="5.714" fill="#8b1e3f" d="M382.54,265.33 A185,185 0 0 1 398.78,294.25 L301.16,338.06 A78,78 0 0 0 294.31,325.87 Z"/>
+<rect x="430" y="204" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="216">PCE</text>
+<text class="share" x="744" y="216" text-anchor="end">20 escaños · 5,7 %</text>
+<text class="metric" x="454" y="234">9,33 % de votos · 1 709 890 votos</text>
+<path class="sector" data-party="AP" data-seats="16" data-seat-percent="4.571" fill="#2d4d73" d="M398.78,294.25 A185,185 0 0 1 407.88,319.18 L305.00,348.58 A78,78 0 0 0 301.16,338.06 Z"/>
+<rect x="430" y="256" width="14" height="14" rx="2" fill="#2d4d73"/>
+<text class="party" x="454" y="268">AP</text>
+<text class="share" x="744" y="268" text-anchor="end">16 escaños · 4,6 %</text>
+<text class="metric" x="454" y="286">8,21 % de votos · 1 504 771 votos</text>
+<path class="sector" data-party="PDPC" data-seats="11" data-seat-percent="3.143" fill="#d1a243" d="M407.88,319.18 A185,185 0 0 1 412.03,336.97 L306.75,356.07 A78,78 0 0 0 305.00,348.58 Z"/>
+<rect x="430" y="308" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="320">PDPC</text>
+<text class="share" x="744" y="320" text-anchor="end">11 escaños · 3,1 %</text>
+<text class="metric" x="454" y="338">2,81 % de votos · 514 647 votos</text>
+<path class="sector" data-party="PNV" data-seats="8" data-seat-percent="2.286" fill="#4f805a" d="M412.03,336.97 A185,185 0 0 1 413.93,350.11 L307.55,361.61 A78,78 0 0 0 306.75,356.07 Z"/>
+<rect x="430" y="360" width="14" height="14" rx="2" fill="#4f805a"/>
+<text class="party" x="454" y="372">PNV</text>
+<text class="share" x="744" y="372" text-anchor="end">8 escaños · 2,3 %</text>
+<text class="metric" x="454" y="390">1,62 % de votos · 296 193 votos</text>
+<path class="sector" data-party="Otros*" data-seats="12" data-seat-percent="3.429" fill="#92979f" d="M413.93,350.11 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.55,361.61 Z"/>
+<rect x="430" y="412" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="424">Otros*</text>
+<text class="share" x="744" y="424" text-anchor="end">12 escaños · 3,4 %</text>
+<text class="metric" x="454" y="442">13,41 % de votos · 2 634 568 votos</text>
+<circle cx="230" cy="370" r="77" fill="#fff"/>
+<text class="year" x="230" y="348" text-anchor="middle">1977</text>
+<text class="center-seat" x="230" y="365" text-anchor="middle">350 escaños</text>
+<text class="footnote" x="380" y="520" text-anchor="middle">* Otros agrupa candidaturas menores; sus 12 escaños: PSP-US 6 · DCC 2 · EC-FED 1 · EE 1 · CAI 1 · INDEP 1.</text>
+<text class="footnote" x="380" y="542" text-anchor="middle">Escaños (%) = escaños / 350; colores editoriales, no reproducidos del examen.</text>
+<text class="footnote" x="380" y="564" text-anchor="middle">Los porcentajes de votos se conservan como en la tabla (suman 99,14 %).</text>
+<text class="source" x="380" y="606" text-anchor="middle">Cifras: tabla aportada por el usuario · Material: 2007 Examen 4, Bloque II · Opción B</text>
 </svg>
