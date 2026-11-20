@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="545" viewBox="0 0 760 545" role="img" aria-labelledby="title desc">
-<title id="title">Elecciones generales de 1996: escaños en el Congreso</title>
+<title id="title">Resultado elecciones 1996 (3 de marzo)</title>
 <desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1996}</metadata>
 <style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="545" fill="#fff"/>
-<text class="title" x="380" y="32" text-anchor="middle">Congreso · 1996</text>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1996 (3 de marzo)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="Partido Popular (PP) y coaliciones" data-seats="156" data-seat-percent="44.571" fill="#2d4d73" d="M45.00,370.00 A185,185 0 0 1 198.60,187.68 L216.76,293.13 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="PSOE + PSC" data-seats="141" data-seat-percent="40.286" fill="#c6464f" d="M198.60,187.68 A185,185 0 0 1 394.46,285.27 L299.34,334.28 A78,78 0 0 0 216.76,293.13 Z"/>

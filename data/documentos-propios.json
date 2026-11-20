@@ -656,8 +656,8 @@
           "chart": {
             "svg": "elecciones-generales-1979-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1979",
-            "title": "Elecciones generales de 1979: escaños en el Congreso",
+            "heading": "Resultado elecciones 1979 (1 de marzo)",
+            "title": "Resultado elecciones 1979 (1 de marzo)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -822,8 +822,8 @@
           "chart": {
             "svg": "elecciones-generales-1982-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1982",
-            "title": "Elecciones generales de 1982: escaños en el Congreso",
+            "heading": "Resultado elecciones 1982 (28 de octubre)",
+            "title": "Resultado elecciones 1982 (28 de octubre)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -897,8 +897,8 @@
             "svg": "elecciones-andaluzas-1982-semicirculo.svg",
             "seats": 109,
             "majority": 55,
-            "heading": "Andalucía · 1982",
-            "title": "Elecciones al Parlamento de Andalucía de 1982",
+            "heading": "Resultado elecciones andaluzas 1982 (23 de mayo)",
+            "title": "Resultado elecciones andaluzas 1982 (23 de mayo)",
             "center": "109 escaños"
           },
           "headers": [
@@ -1117,8 +1117,8 @@
           "chart": {
             "svg": "elecciones-generales-1986-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1986",
-            "title": "Elecciones generales de 1986: escaños en el Congreso",
+            "heading": "Resultado elecciones 1986 (22 de junio)",
+            "title": "Resultado elecciones 1986 (22 de junio)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -1319,8 +1319,8 @@
           "chart": {
             "svg": "elecciones-generales-1989-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1989",
-            "title": "Elecciones generales de 1989: escaños en el Congreso",
+            "heading": "Resultado elecciones 1989 (29 de octubre)",
+            "title": "Resultado elecciones 1989 (29 de octubre)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -1512,8 +1512,8 @@
           "chart": {
             "svg": "elecciones-generales-1993-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1993",
-            "title": "Elecciones generales de 1993: escaños en el Congreso",
+            "heading": "Resultado elecciones 1993 (6 de junio)",
+            "title": "Resultado elecciones 1993 (6 de junio)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -1711,8 +1711,8 @@
           "chart": {
             "svg": "elecciones-generales-1996-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 1996",
-            "title": "Elecciones generales de 1996: escaños en el Congreso",
+            "heading": "Resultado elecciones 1996 (3 de marzo)",
+            "title": "Resultado elecciones 1996 (3 de marzo)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -1894,8 +1894,8 @@
           "chart": {
             "svg": "elecciones-generales-2000-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 2000",
-            "title": "Elecciones generales de 2000: escaños en el Congreso",
+            "heading": "Resultado elecciones 2000 (12 de marzo)",
+            "title": "Resultado elecciones 2000 (12 de marzo)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -2071,8 +2071,8 @@
           "chart": {
             "svg": "elecciones-generales-2004-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 2004",
-            "title": "Elecciones generales de 2004: escaños en el Congreso",
+            "heading": "Resultado elecciones 2004 (14 de marzo)",
+            "title": "Resultado elecciones 2004 (14 de marzo)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -2244,8 +2244,8 @@
           "chart": {
             "svg": "elecciones-generales-2008-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 2008",
-            "title": "Elecciones generales de 2008: escaños en el Congreso",
+            "heading": "Resultado elecciones 2008 (9 de marzo)",
+            "title": "Resultado elecciones 2008 (9 de marzo)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -2453,8 +2453,8 @@
           "chart": {
             "svg": "elecciones-generales-2011-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 2011",
-            "title": "Elecciones generales de 2011: escaños en el Congreso",
+            "heading": "Resultado elecciones 2011 (20 de noviembre)",
+            "title": "Resultado elecciones 2011 (20 de noviembre)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
@@ -2540,8 +2540,8 @@
             "svg": "elecciones-europeas-2014-semicirculo.svg",
             "seats": 54,
             "majority": null,
-            "heading": "Europeas · España · 2014",
-            "title": "Elecciones europeas de 2014: escaños asignados a España",
+            "heading": "Resultado elecciones europeas 2014 (25 de mayo)",
+            "title": "Resultado elecciones europeas 2014 (25 de mayo)",
             "center": "54 escaños"
           },
           "headers": [
@@ -2873,8 +2873,8 @@
           "chart": {
             "svg": "elecciones-generales-2015-semicirculo.svg",
             "seats": 350,
-            "heading": "Congreso · 2015",
-            "title": "Elecciones generales de 2015: escaños en el Congreso",
+            "heading": "Resultado elecciones 2015 (20 de diciembre)",
+            "title": "Resultado elecciones 2015 (20 de diciembre)",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",

@@ -82,6 +82,21 @@ class DocumentCorpusTests(unittest.TestCase):
     def test_electoral_semicircles_match_all_jec_study_tables(self):
         own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
         namespace = {"svg": "http://www.w3.org/2000/svg"}
+        expected_titles = {
+            "elecciones-generales-1979-semicirculo.svg": "Resultado elecciones 1979 (1 de marzo)",
+            "elecciones-generales-1982-semicirculo.svg": "Resultado elecciones 1982 (28 de octubre)",
+            "elecciones-andaluzas-1982-semicirculo.svg": "Resultado elecciones andaluzas 1982 (23 de mayo)",
+            "elecciones-generales-1986-semicirculo.svg": "Resultado elecciones 1986 (22 de junio)",
+            "elecciones-generales-1989-semicirculo.svg": "Resultado elecciones 1989 (29 de octubre)",
+            "elecciones-generales-1993-semicirculo.svg": "Resultado elecciones 1993 (6 de junio)",
+            "elecciones-generales-1996-semicirculo.svg": "Resultado elecciones 1996 (3 de marzo)",
+            "elecciones-generales-2000-semicirculo.svg": "Resultado elecciones 2000 (12 de marzo)",
+            "elecciones-generales-2004-semicirculo.svg": "Resultado elecciones 2004 (14 de marzo)",
+            "elecciones-generales-2008-semicirculo.svg": "Resultado elecciones 2008 (9 de marzo)",
+            "elecciones-generales-2011-semicirculo.svg": "Resultado elecciones 2011 (20 de noviembre)",
+            "elecciones-europeas-2014-semicirculo.svg": "Resultado elecciones europeas 2014 (25 de mayo)",
+            "elecciones-generales-2015-semicirculo.svg": "Resultado elecciones 2015 (20 de diciembre)",
+        }
         years = set()
         for record in own:
             if record["visualization"] != "elections":
@@ -93,6 +108,12 @@ class DocumentCorpusTests(unittest.TestCase):
                 path = "assets/documentos/" + chart.get("svg", f"elecciones-generales-{year}-semicirculo.svg")
                 svg = ET.parse(ROOT / path).getroot()
                 self.assertEqual(svg.get("width"), "760")
+                if chart.get("svg") in expected_titles:
+                    expected_title = expected_titles[chart["svg"]]
+                    self.assertEqual(svg.find("svg:title", namespace).text, expected_title)
+                    self.assertEqual(
+                        svg.find("svg:text[@class='title']", namespace).text, expected_title
+                    )
                 sectors = svg.findall("svg:path[@class='sector']", namespace)
                 visible_party_labels = " ".join(
                     node.text or "" for node in svg.findall(".//svg:text[@class='party']", namespace)
@@ -2200,6 +2221,10 @@ class DocumentCorpusTests(unittest.TestCase):
             svg_root.find("{http://www.w3.org/2000/svg}title").text,
             "Resultado elecciones 1977 (15 de junio)",
         )
+        self.assertEqual(
+            svg_root.find(".//{http://www.w3.org/2000/svg}text[@class='title']").text,
+            "Resultado elecciones 1977 (15 de junio)",
+        )
         self.assertIsNone(svg_root.find(".//{http://www.w3.org/2000/svg}text[@class='subtitle']"))
         visible_party_labels = " ".join(
             node.text or "" for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
@@ -2216,14 +2241,15 @@ class DocumentCorpusTests(unittest.TestCase):
             "Partido Nacionalista Vasco (PNV)",
         ):
             self.assertIn(label, visible_party_labels)
+        self.assertIn("Otros*", visible_party_labels)
         footnotes = [
             node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
             if node.get("class") == "footnote"
         ]
-        self.assertEqual(footnotes, [
-            "Agrupación del examen: Unión de Centro Democrático (UCD), 166 escaños; Otros*, 11.",
-            "Votos de Unión de Centro Democrático (UCD): Ministerio del Interior; demás votos: JEC.",
-        ])
+        self.assertEqual(footnotes, [])
+        description = svg_root.find("{http://www.w3.org/2000/svg}desc").text
+        self.assertNotIn("Ministerio del Interior", description)
+        self.assertNotIn("JEC", description)
         self.assertNotIn("Escaños (%) = escaños", svg)
         self.assertNotIn("Porcentajes de voto recalculados a una décima", svg)
         self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])

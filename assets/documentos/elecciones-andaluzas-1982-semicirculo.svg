@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="545" viewBox="0 0 760 545" role="img" aria-labelledby="title desc">
-<title id="title">Elecciones al Parlamento de Andalucía de 1982</title>
+<title id="title">Resultado elecciones andaluzas 1982 (23 de mayo)</title>
 <desc id="desc">Diagrama semicircular proporcional a los 109 escaños, con las candidaturas y sus porcentajes de representación a la derecha. La línea discontinua marca la mitad; la mayoría absoluta requiere 55 escaños.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/ANDALUCIA_1982_Resultados.pdf&quot;, &quot;year&quot;: 1982}</metadata>
 <style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="545" fill="#fff"/>
-<text class="title" x="380" y="32" text-anchor="middle">Andalucía · 1982</text>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones andaluzas 1982 (23 de mayo)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por candidatura</text>
 <path class="sector" data-party="Partido Socialista Obrero Español de Andalucía (PSOE-A)" data-seats="66" data-seat-percent="60.550" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 290.20,195.07 L255.38,296.25 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Alianza Popular (AP)" data-seats="17" data-seat-percent="15.596" fill="#2d4d73" d="M290.20,195.07 A185,185 0 0 1 365.44,243.98 L287.11,316.87 A78,78 0 0 0 255.38,296.25 Z"/>

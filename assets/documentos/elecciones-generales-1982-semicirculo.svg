@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="592" viewBox="0 0 760 592" role="img" aria-labelledby="title desc">
-<title id="title">Elecciones generales de 1982: escaños en el Congreso</title>
+<title id="title">Resultado elecciones 1982 (28 de octubre)</title>
 <desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1982}</metadata>
 <style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="592" fill="#fff"/>
-<text class="title" x="380" y="32" text-anchor="middle">Congreso · 1982</text>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1982 (28 de octubre)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="PSOE + PSC" data-seats="202" data-seat-percent="57.714" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 274.40,190.41 L248.72,294.28 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Alianza Popular ( AP)**" data-seats="107" data-seat-percent="30.571" fill="#2d4d73" d="M274.40,190.41 A185,185 0 0 1 402.61,303.44 L302.78,341.94 A78,78 0 0 0 248.72,294.28 Z"/>
