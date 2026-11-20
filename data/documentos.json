@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "scope": "Banco del corpus aportado y de PDF identificados: 418 apariciones documentales y 171 apariciones visuales. Los modelos de orientaciones de 2010, 2012–2016 y 2025–2027 se identifican como modelos y cuentan en las frecuencias del banco. Entre 2017 y 2024 el formato no incluía comentario de documentos. Estos recuentos no predicen futuros exámenes.",
+  "scope": "Banco del corpus aportado y de PDF identificados: 419 apariciones documentales y 171 apariciones visuales. Los modelos de orientaciones de 2010, 2012–2016 y 2025–2027 se identifican como modelos y cuentan en las frecuencias del banco. Entre 2017 y 2024 el formato no incluía comentario de documentos. Estos recuentos no predicen futuros exámenes.",
   "source": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit",
   "curriculum": {
     "academicYear": "2026-27",
@@ -1166,14 +1166,16 @@
       ],
       "date": "Cortes de Cádiz, 1810–1813",
       "sourceCaption": "“Miembros de las Cortes de Cádiz”. SVG extraído del PDF oficial de 2008, Examen 2, opción A, documento 2. La tabla accesible reproduce sus categorías y cifras.",
-      "quality": "Extracción vectorial del PDF oficial: conserva los trazados, glifos y datos originales, sin reconstrucción ni reescalado de la imagen de Google Docs. La fuente no indica aquí la metodología del recuento: no debe confundirse con un censo completo revisado.",
+      "quality": "Se conserva intacto el SVG extraído del PDF oficial y se ofrece una variante con color editorial para facilitar la lectura. Los trazados, glifos y datos originales no cambian. La fuente no indica aquí la metodología del recuento: no debe confundirse con un censo completo revisado.",
       "image": {
-        "src": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
+        "src": "assets/documentos/miembros-cortes-cadiz-color-2008.svg",
         "alt": "Miembros de las Cortes de Cádiz por ocupación: destacan 90 eclesiásticos, 56 abogados y 49 funcionarios. La ficha incluye una transcripción completa en tabla.",
         "width": 1252,
         "height": 776,
-        "caption": "SVG extraído del PDF oficial de 2008, Examen 2, opción A, documento 2.",
-        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
+        "caption": "SVG derivado del original oficial de 2008, Examen 2, opción A, documento 2; color editorial.",
+        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
+        "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
+        "reproductionNote": "Color verde petróleo añadido a los trazados originales; no se modifican categorías ni cifras."
       },
       "table": {
         "caption": "Transcripción de los datos del gráfico",
@@ -6111,11 +6113,13 @@
         ]
       },
       "tableImage": {
-        "src": "assets/documentos/resultados-elecciones-generales-1982-oficial-2008.svg",
+        "src": "assets/documentos/resultados-elecciones-generales-1982-sombreado-editorial.svg",
         "alt": "Tabla original de resultados de las elecciones generales de 1982, con votos, porcentajes, escaños, totales y notas al pie.",
         "width": 1744,
         "height": 1056,
-        "caption": "SVG extraído del PDF oficial de 2008, Examen 3, opción B, documento 1, idéntico al PDF aportado.",
+        "caption": "SVG extraído del PDF oficial de 2008; tabla con las columnas de votos y escaños sombreadas como distinción editorial.",
+        "originalSrc": "assets/documentos/resultados-elecciones-generales-1982-oficial-2008.svg",
+        "reproductionNote": "Los sombreados de votos y escaños son editoriales; el SVG extraído original se conserva sin alterar.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
       },
       "text": [
@@ -7490,7 +7494,7 @@
       ],
       "date": "1834–1856",
       "sourceCaption": "2010 Titular reserva B, opción A, documento 2.",
-      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "quality": "Tabla vectorial con una diferenciación cromática editorial entre partidos y escaños. Se conservan las categorías y cifras transcritas; el color no representa una clasificación política.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -7734,7 +7738,8 @@
         "alt": "Tabla de escaños de republicanos, liberales, conservadores y otros grupos en cinco elecciones entre 1876 y 1886.",
         "width": 943,
         "height": 324,
-        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+        "caption": "Tabla vectorial con sombreado editorial de las columnas de partidos y escaños.",
+        "reproductionNote": "Los tonos morado y ocre distinguen columnas y son editoriales; no representan una clasificación política."
       },
       "table": {
         "caption": "Escaños por grupos políticos en el Congreso de los Diputados",
@@ -7938,7 +7943,7 @@
       ],
       "date": "Junio de 1977",
       "sourceCaption": "2012 Examen 1, opción B, documento 2.",
-      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las denominaciones y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "quality": "Tabla vectorial cotejada con el PDF del examen. Se conservan las denominaciones y cifras; la tipografía condensada y el sombreado azul verdoso y ocre son editoriales.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -7988,13 +7993,14 @@
         "alt": "Tabla de diputados por partidos y coaliciones tras las elecciones de 1977.",
         "width": 1108,
         "height": 540,
-        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+        "caption": "Tabla cotejada con el examen de 2012; sombreado editorial.",
+        "reproductionNote": "Tipografía Arial Narrow y colores suaves añadidos para aproximar la jerarquía del examen; sin cambiar datos."
       },
       "table": {
         "caption": "Composición del Congreso de los Diputados tras las elecciones de 1977",
         "headers": [
           "Partidos políticos",
-          "N.º de diputados"
+          "Nº de diputados"
         ],
         "rows": [
           [
@@ -11195,7 +11201,7 @@
       ],
       "date": "Junio de 1931",
       "sourceCaption": "Resultados de las elecciones a Cortes de junio de 1931",
-      "quality": "Tabla vectorial reconstruida con las categorías, partidos, cifras y fuente del PDF oficial de 2016. La maquetación es nueva; no es una extracción de sus trazados.",
+      "quality": "Tabla vectorial cotejada con el PDF oficial de 2016. Se ajustan la tipografía condensada, la jerarquía de tamaños, la alineación y la referencia bibliográfica; las categorías, partidos y cifras se conservan.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -11260,9 +11266,11 @@
       "image": {
         "src": "assets/documentos/elecciones-cortes-1931.svg",
         "kind": "table",
-        "width": 1200,
-        "height": 650,
-        "alt": "Tabla de resultados de las elecciones constituyentes de 1931 por agrupaciones ideológicas."
+        "width": 900,
+        "height": 490,
+        "alt": "Resultados de las Elecciones a Cortes (Junio de 1931), con las agrupaciones de izquierda, centro y derecha y sus cifras de diputados y votos.",
+        "caption": "Maquetación vectorial con tipografía y jerarquía aproximadas al PDF original.",
+        "reproductionNote": "Redibujo vectorial cotejado con el PDF oficial; no es una extracción de trazados."
       },
       "examCaption": {
         "text": "Resultados de las Elecciones a Cortes (Junio de 1931)",
@@ -14824,7 +14832,7 @@
       ],
       "date": "Hacia 1860",
       "sourceCaption": "Material de 2002. Examen 4.pdf, Opción A.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. La reproducción procede de este PDF; se respeta su orientación y solo se recortan los márgenes vacíos, sin reconstrucción.",
+      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con colores editoriales; categorías y porcentajes conservados sin cambios.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -14857,11 +14865,43 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/pdf-2002-4-2.png",
+        "src": "assets/documentos/grafico-sociedad-espanola-1860.svg",
         "width": 593,
         "height": 447,
-        "alt": "Composición de la sociedad española hacia 1860. Reproducción del material del examen.",
-        "sourceUrl": "https://drive.google.com/file/d/1XwtZwV9f_HwTMEX_XyrKVFc3Yt6_Wm1L/view"
+        "alt": "Gráfico circular de la composición social hacia 1860, redibujado en vector con colores editoriales para distinguir sus cuatro grupos.",
+        "sourceUrl": "https://drive.google.com/file/d/1XwtZwV9f_HwTMEX_XyrKVFc3Yt6_Wm1L/view",
+        "kind": "chart",
+        "originalSrc": "assets/documentos/pdf-2002-4-2.png",
+        "originalSha256": "80a46dd91dd0f891e0ce779913dd4336690ac57fd463e60e5e65570740c71c13",
+        "reproductionNote": "Los colores se añaden para distinguir los grupos; no aparecen en el original. Se conservan las categorías y porcentajes."
+      },
+      "table": {
+        "caption": "Composición de la sociedad española hacia 1860 (porcentajes)",
+        "headers": [
+          "Grupo social",
+          "Porcentaje"
+        ],
+        "rows": [
+          [
+            "Nobleza y clero",
+            "16"
+          ],
+          [
+            "Burguesía alta",
+            "3"
+          ],
+          [
+            "Clases medias",
+            "10"
+          ],
+          [
+            "Clases bajas",
+            "71"
+          ]
+        ],
+        "notes": [
+          "Los colores distinguen los grupos en el redibujo; no forman parte del original."
+        ]
       }
     },
     {
@@ -15235,7 +15275,7 @@
       ],
       "date": "1860–1869",
       "sourceCaption": "Material de 2002. Examen 6.pdf, Opción A.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -15269,14 +15309,13 @@
       ],
       "image": {
         "src": "assets/documentos/tabla-produccion-hierro-1860-1869.svg",
-        "width": 1108,
-        "height": 309,
+        "width": 768,
+        "height": 255,
         "alt": "Producción de hierro colado (media anual en miles de toneladas). Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/1iIwcjcprJrKXt-Sg-snpXer0uVnmxiLu/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2002-6-2.png",
-        "originalSha256": "1a54b9afd13b83e006f4800cc74e09dc460fb4259587ed954236bdd7094dfb11",
-        "reproductionNote": "Redibujo manual, no extracción vectorial certificada del PDF."
+        "originalSha256": "1a54b9afd13b83e006f4800cc74e09dc460fb4259587ed954236bdd7094dfb11"
       },
       "table": {
         "caption": "Producción de hierro colado (media anual en miles de toneladas)",
@@ -15884,13 +15923,13 @@
     },
     {
       "id": "pib-habitante-1931-1973",
-      "title": "PIB por habitante en España, 1939–1973*",
+      "title": "PIB por habitante en España, 1939–1973",
       "type": "grafico",
       "blocks": [
         11
       ],
       "tags": [
-        "PIB por habitante en España, 1939–1973*",
+        "PIB por habitante en España, 1939–1973",
         "El Estado franquista: del desarrollismo a la crisis final (1959–1975)"
       ],
       "date": "1939–1973, en pesetas constantes de 1980",
@@ -15931,7 +15970,7 @@
         "src": "assets/documentos/grafica-pib-habitante-1939-1973.svg",
         "width": 760,
         "height": 444,
-        "alt": "PIB por habitante en España, 1939–1973. La gráfica comienza en 1939 aunque el examen indica 1931; los valores son aproximados.",
+        "alt": "PIB por habitante en España, 1939*–1973. La serie comienza en 1939 aunque el examen indica 1931; los valores son aproximados.",
         "sourceUrl": "https://drive.google.com/file/d/1NW_bI6OpSyTOt4w0Ho9WkmeGqq-_m9MZ/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2003-2-4.png",
@@ -16767,8 +16806,8 @@
         "El Estado franquista: del desarrollismo a la crisis final (1959–1975)"
       ],
       "date": "1961–1975",
-      "sourceCaption": "Material de 2003. Examen 6.pdf, Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "sourceCaption": "Materiales de 2003, Examen 6, Opción B, y 2006, Examen 6, Bloque II · Opción B.",
+      "quality": "Tabla vectorial agrupada para las apariciones de 2003 y 2006, cuyas cifras coinciden. La selección de 2006 procede de una copia no original y queda pendiente de cotejo con el PDF original. Redibujo vectorial con tipografía condensada y un sombreado verde editorial en la columna de divisas; cifras y fuente transcritas sin cambios. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -16798,20 +16837,39 @@
           "sourceImages": [
             126
           ]
+        },
+        {
+          "id": "fuente-pdf-2006-6-4",
+          "sourceKey": "pdf-2006-6:4",
+          "sourceOrdinal": 4,
+          "year": 2006,
+          "exam": "2006 Examen 6",
+          "route": "Bloque II · Opción B",
+          "document": null,
+          "sourceType": "pdf",
+          "sourceUrl": "https://drive.google.com/file/d/1IqgVH8P31v2cH3kS_6ddHH_r2rrDJGZd/view",
+          "pdfUrl": "https://drive.google.com/file/d/1IqgVH8P31v2cH3kS_6ddHH_r2rrDJGZd/view",
+          "officialFile": "sel_2006_historia_espana/2006. Examen 6.pdf",
+          "officialPage": 2,
+          "sourceSha256": "6f2bb14f6fccca9a536a600b43d341d7363cb0c14f848ec6ce72f418d93d09b1",
+          "printedLabel": "2. Tabla",
+          "sourceImages": [],
+          "sourceReviewStatus": "transcription-copy"
         }
       ],
       "image": {
         "src": "assets/documentos/tabla-divisas-emigrantes-1961-1975.svg",
-        "width": 299,
-        "height": 512,
-        "alt": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES. 1961-1975. Tabla vectorial; los datos también están disponibles en texto.",
+        "width": 480,
+        "height": 540,
+        "alt": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975). Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/1Mhqqituw-0g8pMah2DJN2wgo-epmzV0q/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2003-6-4.png",
-        "originalSha256": "7db96a5de90fabd6dd9a06024e3b043ec5470050564ff21e084d96718e197ec5"
+        "originalSha256": "7db96a5de90fabd6dd9a06024e3b043ec5470050564ff21e084d96718e197ec5",
+        "reproductionNote": "Redibujo vectorial con tipografía condensada y un sombreado verde editorial en la columna de divisas; cifras y fuente transcritas sin cambios."
       },
       "table": {
-        "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES. 1961-1975",
+        "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975)",
         "headers": [
           "Años",
           "Millones de dólares"
@@ -16879,7 +16937,7 @@
           ]
         ],
         "notes": [
-          "Fuente: Barrutieta, A.: La emigración española"
+          "Fuente: Barrutieta, A.: La emigración española."
         ]
       }
     },
@@ -18053,7 +18111,7 @@
       ],
       "date": "15 de junio de 1977",
       "sourceCaption": "Material de 2004. Examen 6.pdf, Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con tipografía Arial Narrow y paleta editorial ocre; se conservan el orden, los encabezados y las cifras originales. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -18087,14 +18145,14 @@
       ],
       "image": {
         "src": "assets/documentos/tabla-elecciones-1977-votos-escanos.svg",
-        "width": 1248,
-        "height": 659,
+        "width": 760,
+        "height": 401,
         "alt": "Doc. 11. Resultados electorales del 15 de junio de 1977. Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/1RGuNkNesx5JF48ex7zBYVVBUjAaGQrph/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2004-6-4.jpeg",
         "originalSha256": "3c7bc8250f6486f2bfcd6f70abeeeb110c3902ad42ea6ed240aec0960e4ce556",
-        "reproductionNote": "Redibujo manual, no extracción vectorial certificada del PDF."
+        "reproductionNote": "Tipografía y tonos ocre editoriales. Datos, orden y encabezados transcritos de la reproducción del examen, sin recalcular porcentajes."
       },
       "table": {
         "caption": "Doc. 11. Resultados electorales del 15 de junio de 1977",
@@ -20390,8 +20448,8 @@
         "El proceso de transición a la democracia actual (1975–1978)"
       ],
       "date": "15 de junio de 1977",
-      "sourceCaption": "Material de 2007. Examen 4.pdf, Bloque II · Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. La reproducción procede de este PDF; se respeta su orientación y solo se recortan los márgenes vacíos, sin reconstrucción.",
+      "sourceCaption": "Material de 2007, Examen 4, Bloque II · Opción B. Cifras actualizadas con la tabla de resultados aportada por el usuario.",
+      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los colores y la geometría son editoriales; se utilizan las cifras aportadas por el usuario en lugar de las cifras redondeadas impresas en el gráfico original. La tabla accesible conserva el detalle por candidatura y explica la agrupación «Otros*».",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -20423,12 +20481,148 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/pdf-2007-4-4.png",
-        "width": 335,
-        "height": 303,
-        "alt": "Elecciones de 1977: diagrama de votos y escaños. Reproducción del material del examen.",
-        "sourceUrl": "https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view"
-      }
+        "src": "assets/documentos/elecciones-1977-diagrama-semicircular.svg",
+        "width": 1080,
+        "height": 760,
+        "alt": "Diagrama semicircular de los resultados de 1977; las etiquetas comparan votos y escaños de seis candidaturas y de Otros. Colores editoriales.",
+        "sourceUrl": "https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view",
+        "kind": "chart",
+        "originalSrc": "assets/documentos/pdf-2007-4-4.png",
+        "originalSha256": "3f9152866cf8c0f4c5f413ebc8defa5fe0ffe3937a131888a7a63157acbf58c0",
+        "reproductionNote": "Vectorización editorial con cifras aportadas por el usuario; la imagen original del examen se conserva para comparar las cifras redondeadas."
+      },
+      "table": {
+        "caption": "Elecciones generales de 1977: votos, porcentajes y escaños",
+        "headers": [
+          "Partido o candidatura",
+          "Votos",
+          "Votos (%)",
+          "Escaños"
+        ],
+        "rows": [
+          [
+            "UCD — Unión de Centro Democrático",
+            "6 310 391",
+            "34,44",
+            165
+          ],
+          [
+            "PSOE — Partido Socialista Obrero Español",
+            "5 371 866",
+            "29,32",
+            118
+          ],
+          [
+            "PCE — Partido Comunista de España",
+            "1 709 890",
+            "9,33",
+            20
+          ],
+          [
+            "AP — Federación de Partidos de Alianza Popular",
+            "1 504 771",
+            "8,21",
+            16
+          ],
+          [
+            "PSP-US — Partido Socialista Popular-Unidad Socialista",
+            "816 582",
+            "4,46",
+            6
+          ],
+          [
+            "PDPC — Pacte Democràtic per Catalunya",
+            "514 647",
+            "2,81",
+            11
+          ],
+          [
+            "PNV — Partido Nacionalista Vasco",
+            "296 193",
+            "1,62",
+            8
+          ],
+          [
+            "FDC-EDC — Equipo de la Democracia Cristiana",
+            "215 841",
+            "1,18",
+            0
+          ],
+          [
+            "DCC — Unió del Centre i la Democràcia Cristiana de Catalunya",
+            "172 791",
+            "0,94",
+            2
+          ],
+          [
+            "EC-FED — Esquerra de Catalunya",
+            "143 954",
+            "0,79",
+            1
+          ],
+          [
+            "FDI — Frente Democrático de Izquierdas",
+            "122 608",
+            "0,67",
+            0
+          ],
+          [
+            "ASDCI — Alianza Socialista Democrática",
+            "101 916",
+            "0,56",
+            0
+          ],
+          [
+            "AET — Agrupación Electoral de Trabajadores",
+            "77 575",
+            "0,42",
+            0
+          ],
+          [
+            "AN18 — Alianza Nacional 18 de Julio",
+            "67 336",
+            "0,37",
+            0
+          ],
+          [
+            "RSE — Reforma Social Española",
+            "64 241",
+            "0,35",
+            0
+          ],
+          [
+            "EE — Euskadiko Ezkerra",
+            "61 417",
+            "0,34",
+            1
+          ],
+          [
+            "CAI — Candidatura Aragonesa Independiente de Centro",
+            "37 183",
+            "0,20",
+            1
+          ],
+          [
+            "INDEP — Candidatura Independiente de Centro",
+            "29 834",
+            "0,16",
+            1
+          ],
+          [
+            "Otros partidos",
+            "723 290",
+            "2,97",
+            0
+          ]
+        ],
+        "notes": [
+          "Cifras numéricas transcritas de la tabla de resultados aportada por el usuario. Se omiten nombres de candidatos y observaciones de coalición, que no aparecen en el gráfico del examen.",
+          "Otros* agrupa 13 candidaturas: PSP-US (6), FDC-EDC (0), DCC (2), EC-FED (1), FDI (0), ASDCI (0), AET (0), AN18 (0), RSE (0), EE (1), CAI (1), INDEP (1), Otros partidos (0). En conjunto suman 2.634.568 votos, 13,41 % y 12 escaños.",
+          "Los porcentajes de todas las filas suman 99,14 %. Las cuñas del semicírculo se normalizan proporcionalmente para cerrar el trazado; las etiquetas conservan los porcentajes aportados.",
+          "Referencia de datos compartida por el usuario: https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977"
+        ]
+      },
+      "dataSourceUrl": "https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977"
     },
     {
       "title": "La Constitución de 1812: soberanía y derechos",
@@ -21090,8 +21284,8 @@
   ],
   "coverage": {
     "sourceSha256": "40abdd0f45253c3fd364bad6d351c02c3271c0bfaf6c1e1102d6b0c4f6abe300",
-    "supplementNote": "La huella sourceSha256 corresponde a la importación base. Se añaden puntualmente Esquilache (2013 Reserva B extraordinaria, reproducción de Commons aportada por el usuario), el abrazo de Vergara (2014 Reserva B, imagen extraída del PDF oficial) y dos apariciones de «¡No pasarán!» (2014, examen sin numerar identificado como reserva C en el corpus, y 2015 Examen 6, cotejadas con sus PDF oficiales). El resto de la ampliación del corpus 2008–2026 aún no está íntegramente importado. textGroups agrupa selecciones afines en la vista sin eliminar sus registros ni sus apariciones; paragraphStarts recompone renglones sin cambiar las palabras. Ampliación revisada de 2013–2016: se completan los seis exámenes de 2013, los cinco PDF de examen disponibles de 2014, los seis de 2015 y los cinco PDF disponibles de 2016. Las apariciones nuevas enlazan a su encabezado del corpus y conservan el archivo, PDF y página oficiales. En 2025 se distinguen Suplente 1 A, 1 B, 2 A y 2 B sin duplicar sus documentos. Se han abierto también los PDF de la carpeta aportada: los de 2013–2016 y 2025 son idénticos a los de los ZIP oficiales, incluidos sus criterios; la carpeta de 2026 contiene cuatro exámenes. La vista conserva 178 selecciones en 115 fichas agrupadas. Se incorporan los cuatro documentos de cada Modelo orientaciones PAU de 2025, 2026 y 2027, con sus PDF de Drive y sus itinerarios. Sus doce apariciones y seis imágenes cuentan en las frecuencias igual que las de titulares, reservas y suplentes. El modelo etiquetado como 2025 sigue el año de la carpeta y del encabezado aportados; su PDF conserva un pie que dice 2023-24. Se incorporan además 134 materiales de 36 PDF individuales locales de 2002–2007: 120 de 2002–2005 y 2007, más catorce textos de copias no originales de 2006, pendientes de cotejo. Los diez materiales gráficos de 2006 quedan pendientes y no se cuentan. La compilación de 2005 no se duplica. sourceHeadingCount sigue refiriéndose exclusivamente a los encabezados de Google Docs.",
-    "sourceDocumentOccurrences": 418,
+    "supplementNote": "La huella sourceSha256 corresponde a la importación base. Se añaden puntualmente Esquilache (2013 Reserva B extraordinaria, reproducción de Commons aportada por el usuario), el abrazo de Vergara (2014 Reserva B, imagen extraída del PDF oficial) y dos apariciones de «¡No pasarán!» (2014, examen sin numerar identificado como reserva C en el corpus, y 2015 Examen 6, cotejadas con sus PDF oficiales). El resto de la ampliación del corpus 2008–2026 aún no está íntegramente importado. textGroups agrupa selecciones afines en la vista sin eliminar sus registros ni sus apariciones; paragraphStarts recompone renglones sin cambiar las palabras. Ampliación revisada de 2013–2016: se completan los seis exámenes de 2013, los cinco PDF de examen disponibles de 2014, los seis de 2015 y los cinco PDF disponibles de 2016. Las apariciones nuevas enlazan a su encabezado del corpus y conservan el archivo, PDF y página oficiales. En 2025 se distinguen Suplente 1 A, 1 B, 2 A y 2 B sin duplicar sus documentos. Se han abierto también los PDF de la carpeta aportada: los de 2013–2016 y 2025 son idénticos a los de los ZIP oficiales, incluidos sus criterios; la carpeta de 2026 contiene cuatro exámenes. La vista conserva 179 selecciones en 115 fichas agrupadas. Se incorporan los cuatro documentos de cada Modelo orientaciones PAU de 2025, 2026 y 2027, con sus PDF de Drive y sus itinerarios. Sus doce apariciones y seis imágenes cuentan en las frecuencias igual que las de titulares, reservas y suplentes. El modelo etiquetado como 2025 sigue el año de la carpeta y del encabezado aportados; su PDF conserva un pie que dice 2023-24. Se incorporan además 135 materiales de 36 PDF individuales locales de 2002–2007: 120 de 2002–2005 y 2007, catorce textos de copias no originales de 2006 y una tabla de divisas del Examen 6, agrupada con su aparición idéntica de 2003. La copia de 2006 queda pendiente de cotejo con el PDF original. Nueve materiales gráficos de 2006 quedan pendientes y no se cuentan. La compilación de 2005 no se duplica. sourceHeadingCount sigue refiriéndose exclusivamente a los encabezados de Google Docs.",
+    "sourceDocumentOccurrences": 419,
     "sourceImageOccurrences": 171,
     "sourceHeadingCount": 101,
     "sourceYearsWithDocumentComment": [
@@ -24493,6 +24687,15 @@
         "images": []
       },
       {
+        "key": "pdf-2006-6:4",
+        "sourceId": "pdf-2006-6",
+        "sourceType": "pdf",
+        "year": 2006,
+        "document": null,
+        "assignedTo": "divisas-emigrantes-1961-1975",
+        "images": []
+      },
+      {
         "key": "pdf-2007-1:1",
         "sourceId": "pdf-2007-1",
         "sourceType": "pdf",
@@ -25036,7 +25239,7 @@
           "sel_2006_historia_espana/2006. Examen 6.pdf"
         ],
         "sourceUrl": "https://drive.google.com/file/d/1RDtlez_tMdVFim3QSGMhY9NV5QpGoONp/view",
-        "note": "Se incorporan solo los textos de seis copias no originales; diez materiales gráficos quedan pendientes. No se sustituyen por imágenes de otros exámenes."
+        "note": "Se incorporan catorce textos y la tabla de divisas, desde copias no originales; nueve materiales gráficos quedan pendientes. No se sustituyen por imágenes de otros exámenes y la tabla queda pendiente de cotejo con el PDF original."
       },
       {
         "year": 2007,
@@ -25145,14 +25348,14 @@
         2007
       ],
       "exams": 36,
-      "documents": 134,
-      "method": "PDF individuales aportados, con capa de texto; no se usa Google Docs para estas fuentes. Se conserva cada selección y se agrupan solo las identidades revisadas. De 2006 se incorporan únicamente catorce textos de copias no originales, pendientes de cotejo.",
+      "documents": 135,
+      "method": "PDF individuales aportados, con capa de texto; no se usa Google Docs para estas fuentes. Se conserva cada selección y se agrupan solo las identidades revisadas. De 2006 se incorporan catorce textos y una tabla de copias no originales, pendientes de cotejo.",
       "compilationExcluded": {
         "file": "sel_2005_historia_espana/Modelos exámenes PAU 2005. Composición texto histórico.pdf",
         "reason": "Reúne los mismos seis exámenes individuales de 2005; no cuenta como un séptimo examen."
       },
       "pendingYear": 2006,
-      "pendingReason": "De 2006 faltan diez imágenes o gráficos: las copias aportadas no son los exámenes originales y omiten sus reproducciones. Se incorporan los textos a petición del usuario, pendientes de cotejo; los materiales gráficos no cuentan en las frecuencias.",
+      "pendingReason": "De 2006 faltan nueve imágenes o gráficos: las copias aportadas no son los exámenes originales y omiten sus reproducciones. Se incorporan los textos y la tabla de divisas a petición del usuario, pendientes de cotejo; los otros materiales gráficos no cuentan en las frecuencias.",
       "pendingMaterials": [
         {
           "key": "pdf-2006-1:2",
@@ -25225,14 +25428,6 @@
           "page": 1,
           "pdfUrl": "https://drive.google.com/file/d/1IqgVH8P31v2cH3kS_6ddHH_r2rrDJGZd/view",
           "caption": "MIEMBROS DE LAS CORTES DE CÁDIZ Eclesiásticos 90 Abogados 56 Funcionarios 49 Militares 30 Sin profesión determinada 20 Catedráticos de universidad 15 Nobles 14 Marinos 9 Comerciantes 8 Escritores 2 Arquitectos 1 Bachiller 1 Médicos 1"
-        },
-        {
-          "key": "pdf-2006-6:4",
-          "file": "sel_2006_historia_espana/2006. Examen 6.pdf",
-          "route": "Bloque II · Opción B",
-          "page": 2,
-          "pdfUrl": "https://drive.google.com/file/d/1IqgVH8P31v2cH3kS_6ddHH_r2rrDJGZd/view",
-          "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975) Años Millones de dólares 1961 115 1962 148 1963 201 1964 240 1965 301 1966 346 1967 325 1968 324 1969 402 1970 469 1971 539 1972 570 1973 749 1974 654 1975 599 Fuente: Barrutieta, A.: La emigración española."
         }
       ],
       "files": [

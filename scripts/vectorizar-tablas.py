@@ -75,7 +75,19 @@ TABLES = {
     "produccion-hierro-1860-1869": {
         "caption": "Producción de hierro colado (media anual en miles de toneladas)",
         "headers": ["", "ESPAÑA", "FRANCIA", "GRAN BRETAÑA"],
-        "widths": [240, 240, 240, 340],
+        "widths": [188, 174, 170, 220],
+        "examLayout": {
+            "size": (768, 255), "origin": (8, 51),
+            "rowHeights": [48, 48, 48],
+            "fontSizes": (20, 20, 18), "titleBaselines": (23, 45),
+            "titleLines": [
+                "Producción de hierro colado",
+                "(media anual en miles de toneladas)",
+            ],
+            "notePosition": (384, 238), "noteAnchor": "middle",
+            "firstColumnLeft": True, "strokeColor": "#555",
+            "noteEmphasis": ("El fracaso de la Revolución Industrial en España",),
+        },
         "rows": [
             ["1860-1864", "45", "1.065", "4.152"],
             ["1865-1869", "42", "1.262", "4.904"],
@@ -97,30 +109,53 @@ TABLES = {
         "visibleNotes": 0,
     },
     "divisas-emigrantes-1961-1975": {
-        "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES. 1961-1975",
-        "headers": ["Años", "Millones de dólares"],
-        "widths": [80, 196],
-        "examLayout": {
-            "size": (299, 512), "origin": (8, 70),
-            "rowHeights": [24] + [23] * 15,
-            "fontSizes": (17, 18, 12), "titleWeight": 400,
-            "titleLines": ["DIVISAS APORTADAS POR LOS", "EMIGRANTES ESPAÑOLES. 1961-", "1975"],
-            "titleBaselines": (17, 40, 63), "notePosition": (11, 493),
-            "rulesAfter": (0,), "verticalRules": False,
-            "italicHeader": True, "firstColumnLeft": True,
-            "noteEmphasis": ("La emigración española",),
-        },
-        "rows": [[str(year), value] for year, value in zip(
-            range(1961, 1976),
-            ["115", "148", "201", "240", "301", "346", "325", "324", "402", "469",
-             "539", "570", "749", "654", "599"])],
-        "notes": ["Fuente: Barrutieta, A.: La emigración española"],
+             "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975)",
+             "headers": ["Años", "Millones de dólares"],
+             "widths": [90, 160],
+             "examLayout": {
+                 "size": (480, 540), "origin": (110, 122),
+                 "rowHeights": [28] + [22] * 15,
+                 "fontSizes": (16, 16, 13), "headerFontSize": 16,
+                 "titleLines": ["DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975)"],
+                 "titleBaselines": (42,), "notePosition": (80, 505),
+                 "drawTableGrid": False, "firstColumnLeft": True,
+                 "columnFills": ["#fff", "#e7f0ec"],
+                 "columnTextColors": ["#29312e", "#38685e"],
+                 "titleColor": "#38685e", "textColor": "#29312e",
+                 "noteEmphasis": ("La emigración española",),
+                 "editorialNote": (
+                     "Redibujo vectorial con tipografía condensada y un sombreado verde editorial "
+                     "en la columna de divisas; cifras y fuente transcritas sin cambios."
+                 ),
+             },
+             "rows": [[str(year), value] for year, value in zip(
+                 range(1961, 1976),
+                 ["115", "148", "201", "240", "301", "346", "325", "324", "402", "469",
+                  "539", "570", "749", "654", "599"])],
+             "notes": ["Fuente: Barrutieta, A.: La emigración española."],
     },
     "elecciones-1977-votos-escanos": {
         "caption": "Doc. 11. Resultados electorales del 15 de junio de 1977",
         "introduction": "Las primeras elecciones legislativas con garantías democráticas desde la Segunda República arrojaron en porcentajes los siguientes resultados para el Congreso:",
         "headers": ["Partido", "Votos", "Votos (en %)", "Escaños", "Escaños (en %)"],
         "widths": [210, 270, 240, 210, 270],
+             "fontFamily": '"Arial Narrow", Arial, sans-serif',
+             "renderScale": 0.609,
+             "palette": {
+                 "text": "#493d2d",
+                 "stroke": "#b18b4b",
+                 "headerFill": "#ead9ad",
+                 "rowA": "#fffaf0",
+                 "rowB": "#f5ecd8",
+             },
+             "presentationNote": (
+                 "Redibujo vectorial con tipografía Arial Narrow y paleta editorial ocre; "
+                 "se conservan el orden, los encabezados y las cifras originales."
+             ),
+             "reproductionNote": (
+                 "Tipografía y tonos ocre editoriales. Datos, orden y encabezados transcritos "
+                 "de la reproducción del examen, sin recalcular porcentajes."
+             ),
         "rows": [
             ["UCD", "6 309 517", "34,8", "165", "47,1"],
             ["PSOE", "5 240 464", "29,4", "118", "33,7"],
@@ -170,6 +205,8 @@ def render(table, provenance):
         return render_exam_table(table, provenance)
     widths = table["widths"]
     width = sum(widths) + 48
+    scale = table.get("renderScale", 1)
+    display_width = round(width * scale)
     title = lines(table["caption"], width - 48, 28)
     intro = lines(table["introduction"], width - 48, 21) if table.get("introduction") else []
     headers = [lines(label, column, 23) for label, column in zip(table["headers"], widths)]
@@ -183,12 +220,17 @@ def render(table, provenance):
              for note in visible_notes[:table.get("visibleNotes", len(visible_notes))]]
     top = 28 + len(title) * 34 + len(intro) * 28 + (18 if intro else 0) + 18
     height = top + group_height + header_height + sum(heights) + sum(len(note) * 24 + 12 for note in notes) + 30
+    display_height = round(height * scale)
+    palette = table.get("palette", {})
+    text_color = palette.get("text", "#17324e")
+    stroke_color = palette.get("stroke", "#7695b3")
+    font_family = table.get("fontFamily", "Arial, sans-serif")
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{display_width}" height="{display_height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(table["caption"])}</title>',
         f'<desc id="desc">{escape("Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. " + " ".join(table.get("notes", [])))}</desc>',
         f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
-        '<style>text{font-family:Arial,sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>',
+        f'<style>text{{font-family:{font_family};fill:{text_color}}}.title{{font-size:28px;font-weight:700}}.head{{font-size:23px;font-weight:700}}.cell{{font-size:23px}}.note{{font-size:18px}}.intro{{font-size:21px}}.on-dark{{fill:#fff}}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
     ]
 
@@ -197,7 +239,12 @@ def render(table, provenance):
         parts.append(f'<text class="{css}" x="{x}" y="{y}" text-anchor="{anchor}"{decoration}>{escape(content)}</text>')
 
     def cell(x, y, w, h, content, fill, css, centered=False, underlined=False, inset=0):
-        parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{fill}" stroke="#7695b3" stroke-width="1"/>')
+        cell_fill = palette.get({
+            "#c8dded": "headerFill",
+            "#f5f9fc": "rowA",
+            "#e2edf6": "rowB",
+        }.get(fill, ""), fill)
+        parts.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{cell_fill}" stroke="{stroke_color}" stroke-width="1"/>')
         baseline = y + (h - len(content) * 29) / 2 + 23
         for index, line in enumerate(content):
             text(line, x + w / 2 if centered else x + 16 + inset,
@@ -238,7 +285,7 @@ def render(table, provenance):
             y += 24
         y -= 12
     parts.append("</svg>")
-    return "\n".join(parts) + "\n", width, height
+    return "\n".join(parts) + "\n", display_width, display_height
 
 
 def render_exam_table(table, provenance):
@@ -247,6 +294,8 @@ def render_exam_table(table, provenance):
     title_size, cell_size, note_size = layout["fontSizes"]
     baselines = layout["titleBaselines"]
     title_weight = layout.get("titleWeight", 700)
+    title_color = layout.get("titleColor", "#000")
+    text_color = layout.get("textColor", "#000")
     if "titleLines" in layout:
         title_lines = layout["titleLines"]
         unit = None
@@ -264,8 +313,14 @@ def render_exam_table(table, provenance):
         f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
         '<style>@font-face{font-family:PAUCondensed;src:local("Arial Narrow"),local("ArialNarrow"),'
         f'url(data:font/ttf;base64,{font}) format("truetype")}}'
-        'text{font-family:PAUCondensed,"Arial Narrow",sans-serif;fill:#000}'
-        f'.title{{font-size:{title_size}px;font-weight:{title_weight}}}.cell{{font-size:{cell_size}px}}.note{{font-size:{note_size}px}}</style>',
+        f'text{{font-family:PAUCondensed,"Arial Narrow",sans-serif;fill:{text_color}}}'
+        f'.title{{font-size:{title_size}px;font-weight:{title_weight};fill:{title_color}}}'
+        f'.cell{{font-size:{cell_size}px}}.note{{font-size:{note_size}px}}'
+        + "".join(
+            f'.cell[data-column="{column}"]{{fill:{color}}}'
+            for column, color in enumerate(layout.get("columnTextColors", ()))
+        )
+        + '</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
     ]
     for index, line in enumerate(title_lines):
@@ -279,26 +334,34 @@ def render_exam_table(table, provenance):
     grid_height = sum(row_heights)
     rows = [table["headers"], *table["rows"]]
     assert len(rows) == len(row_heights)
+    for column, fill in enumerate(layout.get("columnFills", ())):
+        if fill:
+            x = x0 + sum(table["widths"][:column])
+            parts.append(
+                f'<rect x="{x}" y="{y0}" width="{table["widths"][column]}" '
+                f'height="{grid_height}" fill="{fill}"/>'
+            )
     title_row_height = layout.get("titleRowHeight", 0)
     stroke = layout.get("strokeColor", "#333")
     outer_y = y0 - title_row_height
-    parts.append(
-        f'<g fill="none" stroke="{stroke}"><rect x="{x0}" y="{outer_y}" '
-        f'width="{grid_width}" height="{grid_height + title_row_height}"/>'
-    )
-    if title_row_height:
-        parts.append(f'<path d="M{x0} {y0}h{grid_width}"/>')
-    x = x0
-    if layout.get("verticalRules", True):
-        for column_width in table["widths"][:-1]:
-            x += column_width
-            parts.append(f'<path d="M{x} {y0}v{grid_height}"/>')
-    y = y0
-    for row, row_height in enumerate(row_heights[:-1]):
-        y += row_height
-        if row in layout.get("rulesAfter", range(len(rows) - 1)):
-            parts.append(f'<path d="M{x0} {y}h{grid_width}"/>')
-    parts.append("</g>")
+    if layout.get("drawTableGrid", True):
+        parts.append(
+            f'<g fill="none" stroke="{stroke}"><rect x="{x0}" y="{outer_y}" '
+            f'width="{grid_width}" height="{grid_height + title_row_height}"/>'
+        )
+        if title_row_height:
+            parts.append(f'<path d="M{x0} {y0}h{grid_width}"/>')
+        x = x0
+        if layout.get("verticalRules", True):
+            for column_width in table["widths"][:-1]:
+                x += column_width
+                parts.append(f'<path d="M{x} {y0}v{grid_height}"/>')
+        y = y0
+        for row, row_height in enumerate(row_heights[:-1]):
+            y += row_height
+            if row in layout.get("rulesAfter", range(len(rows) - 1)):
+                parts.append(f'<path d="M{x0} {y}h{grid_width}"/>')
+        parts.append("</g>")
     y = y0
     for row, (values, row_height) in enumerate(zip(rows, row_heights)):
         x = x0
@@ -313,13 +376,17 @@ def render_exam_table(table, provenance):
             left = column == 0 and layout.get("firstColumnLeft")
             anchor = "start" if left else "middle"
             cell_x = x + 7 if left else x + column_width / 2
+            data_column = (
+                f' data-column="{column}"'
+                if layout.get("columnTextColors") else ""
+            )
             font_size_attribute = (
                 f' font-size="{cell_font_size}px"'
                 if row == 0 and "headerFontSize" in layout else ""
             )
             parts.append(f'<text class="cell" x="{cell_x:g}" '
                          f'y="{y + row_height / 2 + round(cell_font_size * .36):g}" '
-                         f'text-anchor="{anchor}"{font_size_attribute}{weight}{style}>'
+                         f'text-anchor="{anchor}"{data_column}{font_size_attribute}{weight}{style}>'
                          f'{escape(value)}</text>')
             if row:
                 parts.append("</g>")
@@ -341,7 +408,10 @@ def render_exam_table(table, provenance):
             if phrase in line:
                 fragment = fragment.replace(
                     escape(phrase), f'<tspan font-style="italic">{escape(phrase)}</tspan>')
-        parts.append(f'<text class="note" x="{note_x}" y="{note_y + index * (note_size + 4)}">{fragment}</text>')
+        anchor = (f' text-anchor="{layout["noteAnchor"]}"'
+                  if "noteAnchor" in layout else "")
+        parts.append(f'<text class="note" x="{note_x}" y="{note_y + index * (note_size + 4)}"'
+                     f'{anchor}>{fragment}</text>')
     parts.append("</svg>")
     return "\n".join(parts) + "\n", width, height
 
@@ -357,33 +427,50 @@ def main():
         assert all(len(row) == len(table["headers"]) for row in table["rows"])
         image = record["image"]
         original = image.get("originalSrc", image["src"])
-        original_hash = hashlib.sha256((ROOT / original).read_bytes()).hexdigest()
+        if not (ROOT / original).is_file():
+            original = None
+        original_hash = hashlib.sha256((ROOT / original).read_bytes()).hexdigest() if original else None
         appearance = record["appearances"][0]
         provenance = {
             "method": ("Tabla vectorial con diseño basado en el examen." if table.get("examLayout")
                        else "Redibujo manual, no extracción vectorial certificada del PDF."),
-            "original": original, "originalSha256": original_hash,
             "pdf": appearance["pdfUrl"], "pdfSha256": appearance["sourceSha256"],
             "file": appearance["officialFile"], "page": appearance["officialPage"],
         }
+        if original:
+            provenance.update({"original": original, "originalSha256": original_hash})
         svg, width, height = render(table, provenance)
         source = f"assets/documentos/tabla-{identity}.svg"
         (ROOT / source).write_text(svg, encoding="utf-8")
         record["image"] = {
             **image, "src": source, "width": width, "height": height, "kind": "table",
-            "originalSrc": original, "originalSha256": original_hash,
             "alt": f'{table["caption"]}. Tabla vectorial; los datos también están disponibles en texto.',
         }
+        if original:
+            record["image"].update({"originalSrc": original, "originalSha256": original_hash})
+        else:
+            record["image"].pop("originalSrc", None)
+            record["image"].pop("originalSha256", None)
         if table.get("examLayout"):
             record["image"].pop("reproductionNote", None)
-            presentation = "Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen."
+            presentation = table["examLayout"].get(
+                "editorialNote",
+                "Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen.",
+            )
+            if "editorialNote" in table["examLayout"]:
+                record["image"]["reproductionNote"] = presentation
         else:
-            record["image"]["reproductionNote"] = provenance["method"]
-            presentation = "Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente."
+            record["image"]["reproductionNote"] = table.get("reproductionNote", provenance["method"])
+            presentation = table.get(
+                "presentationNote",
+                "Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente.",
+            )
         record["table"] = {key: value for key, value in table.items()
                            if key in ("caption", "headers", "rows", "notes", "underlinedCells")}
-        record["quality"] = record["quality"].split(" La reproducción procede de este PDF;")[0].split(" Redibujo vectorial")[0] + (
-            f" {presentation} Se conserva la reproducción original para comparar y una tabla de datos accesible.")
+        quality = record["quality"].split(" La reproducción procede de este PDF;")[0].split(" Redibujo vectorial")[0]
+        comparison = ("Se conserva la reproducción original para comparar y una tabla de datos accesible."
+                      if original else "Los datos también se ofrecen en una tabla accesible.")
+        record["quality"] = f"{quality} {presentation} {comparison}"
         print(f"{identity}: {width} × {height}, {len(table['rows'])} filas")
     path.write_text(json.dumps(corpus, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 

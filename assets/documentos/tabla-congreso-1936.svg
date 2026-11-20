@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="908" height="792" viewBox="0 0 908 792" role="img" aria-labelledby="title desc">
 <title id="title">Composición del Congreso tras las elecciones de febrero de 1936</title>
-<desc id="desc">Tabla vectorial reproducida a partir de la recopilación aportada.</desc>
-<style>text{font-family:Arial,sans-serif;fill:#181818}.title{font-size:22px;font-weight:700}.cell{font-size:17px}.head{font-size:17px;font-weight:700}.grid{fill:#fff;stroke:#444;stroke-width:1}</style>
+<desc id="desc">Tabla vectorial con una diferenciación cromática editorial entre partidos y escaños; las cifras y categorías permanecen sin cambios.</desc>
+<style>text{font-family:Arial,sans-serif;fill:#382f3e}.title{font-size:22px;font-weight:700;fill:#655170}.cell{font-size:17px}.head{font-size:17px;font-weight:700;fill:#594665}.grid{fill:#fff;stroke:#9c8da4;stroke-width:1}.grid[x="24"]{fill:#f1edf3}.grid[x="704"]{fill:#f7efdf}.grid[y="78"]{fill:#e2d9e7}.cell[x="794.0"]{fill:#795c3f;font-weight:700}</style>
 <text class="title" x="24" y="38">Composición del Congreso tras las elecciones de febrero de 1936</text>
 <rect class="grid" x="24" y="78" width="680" height="42"/>
 <text class="head" x="36" y="105" text-anchor="start">Partidos</text>

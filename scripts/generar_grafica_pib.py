@@ -27,7 +27,7 @@ svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" hei
       .subtitle {{ font-size: 13px; font-weight: 400; fill: #1e3a8a; text-anchor: middle; }}
       .axis-label {{ font-size: 12px; fill: #374151; }}
       .year-label {{ font-size: 11px; fill: #374151; }}
-      .source {{ font-size: 11px; font-style: italic; fill: #4b5563; }}
+      .source {{ font-size: 11px; fill: #4b5563; }}
       .point {{ cursor: crosshair; outline: none; }}
       .hit {{ fill: transparent; stroke: transparent; }}
       .tooltip {{ visibility: hidden; pointer-events: none; }}
@@ -40,7 +40,7 @@ svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" hei
   <rect width="{width}" height="{height}" fill="#fff" />
 
   <!-- Título -->
-  <text x="{width/2}" y="28" class="title">PIB POR HABITANTE, 1939–1973*</text>
+  <text x="{width/2}" y="28" class="title">PIB POR HABITANTE, 1939–1973</text>
   <text x="{width/2}" y="46" class="subtitle">(en ptas. de 1980)</text>
 
   <!-- Fondo área gráfico con color similar al examen -->
@@ -67,7 +67,8 @@ for i, (yr, val) in enumerate(data):
     # Marcas eje X cada 2 años como el examen (1939, 1941, ..., 1973)
     if (yr - data[0][0]) % 6 == 0 or yr == data[-1][0]:
         svg_parts.append(f'''  <line x1="{x:.1f}" y1="{pad_top + plot_h}" x2="{x:.1f}" y2="{pad_top + plot_h + 5}" stroke="#ca8a04" stroke-width="1" />''')
-        svg_parts.append(f'''  <text x="{x:.1f}" y="{pad_top + plot_h + 18}" class="year-label" text-anchor="end" transform="rotate(-45, {x:.1f}, {pad_top + plot_h + 18})">{yr}</text>''')
+        year_label = f"{yr}*" if yr == data[0][0] else str(yr)
+        svg_parts.append(f'''  <text x="{x:.1f}" y="{pad_top + plot_h + 18}" class="year-label" text-anchor="end" transform="rotate(-45, {x:.1f}, {pad_top + plot_h + 18})">{year_label}</text>''')
 
 # Curva roja
 points_str = " ".join(points)
@@ -80,13 +81,14 @@ for i, (yr, val) in enumerate(data):
     label = f"{val:,.0f}".replace(",", ".")
     tooltip_x = min(max(pad_left, x - 65), width - 150)
     tooltip_y = max(pad_top + 4, y - 42)
-    svg_parts.append(f'''  <g class="point" tabindex="0" role="graphics-symbol" aria-label="{yr}: aproximadamente {label} pesetas constantes de 1980">
-    <title>{yr}: aproximadamente {label} pesetas constantes de 1980</title>
+    display_year = f"{yr}*" if yr == data[0][0] else str(yr)
+    svg_parts.append(f'''  <g class="point" tabindex="0" role="graphics-symbol" aria-label="{display_year}: aproximadamente {label} pesetas constantes de 1980">
+    <title>{display_year}: aproximadamente {label} pesetas constantes de 1980</title>
       <circle class="hit" cx="{x:.1f}" cy="{y:.1f}" r="8" />
     <circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate({tooltip_x:.1f} {tooltip_y:.1f})">
       <rect width="142" height="32" />
-      <text x="8" y="21">{yr} · ~{label} ptas.</text>
+      <text x="8" y="21">{display_year} · ~{label} ptas.</text>
     </g>
   </g>''')
 
@@ -109,7 +111,7 @@ svg_parts.append('''  <script><![CDATA[
   ]]></script>''')
 
 # Fuente abajo
-svg_parts.append(f'''  <text x="{pad_left}" y="{height - 27}" class="source">Fuente: Prados de la Escosura, Spain\'s Gross Domestic Product (1995).</text>''')
+svg_parts.append(f'''  <text x="{pad_left}" y="{height - 27}" class="source" font-style="normal">Fuente: Prados de la Escosura, <tspan font-style="italic">Spain\'s Gross Domestic Product</tspan> (1995).</text>''')
 svg_parts.append(f'''  <text x="{pad_left}" y="{height - 8}" class="source">* El examen original indica 1931; la serie de la gráfica comienza en 1939.</text>''')
 svg_parts.append("</svg>")
 

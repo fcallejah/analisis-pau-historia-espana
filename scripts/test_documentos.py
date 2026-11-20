@@ -57,18 +57,18 @@ class DocumentCorpusTests(unittest.TestCase):
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "e96bdc6481a1a603cee97997867880efcd5c636ee8e26eeb90509b8a9015c7ff")
-        self.assertEqual(len(imported), 134)
+        self.assertEqual(digest, "702a635ee544b886403c823190c31af0f3343708626a4cb6538989f02b579fef")
+        self.assertEqual(len(imported), 135)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
-        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 418)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 419)
         pending = data["coverage"]["pdfImport"]["pendingMaterials"]
         keys = {a["sourceKey"] for a in imported}
-        self.assertEqual(len(pending), 10)
+        self.assertEqual(len(pending), 9)
         self.assertFalse(keys.intersection(a["key"] for a in pending))
         for year in range(2002, 2008):
             selected = [a for a in imported if a["year"] == year]
-            self.assertEqual(len(selected), 14 if year == 2006 else 24)
+            self.assertEqual(len(selected), 15 if year == 2006 else 24)
             self.assertEqual(len({a["pdfUrl"] for a in selected}), 6)
             for appearance in selected:
                 self.assertEqual(appearance["sourceType"], "pdf")
@@ -85,7 +85,7 @@ class DocumentCorpusTests(unittest.TestCase):
         records = {record["id"]: record for record in data["documents"]}
         for record in records.values():
             copied = [a for a in record["appearances"] if a["year"] == 2006]
-            if not copied:
+            if not copied or record["type"] != "texto":
                 continue
             with self.subTest(document=record["id"]):
                 self.assertEqual(record["type"], "texto")
@@ -109,6 +109,19 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIn("Canción falangista", songs[1])
         cavalry = records["huelga-1917-caballeria"]
         self.assertNotEqual(cavalry["image"]["src"], records["huelga-general-1917-fotografia"]["image"]["src"])
+
+    def test_2006_divisas_table_appearance_is_counted_without_claiming_an_original_copy(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"] if d["id"] == "divisas-emigrantes-1961-1975")
+        appearance = next(a for a in record["appearances"] if a["year"] == 2006)
+        self.assertEqual((appearance["exam"], appearance["route"], appearance["document"]),
+                         ("2006 Examen 6", "Bloque II · Opción B", None))
+        self.assertEqual(appearance["sourceReviewStatus"], "transcription-copy")
+        self.assertEqual(len(record["appearances"]), 2)
+        self.assertEqual(record["image"]["src"],
+                         "assets/documentos/tabla-divisas-emigrantes-1961-1975.svg")
+        self.assertTrue((ROOT / record["image"]["originalSrc"]).is_file())
+        self.assertEqual(record["table"]["rows"][-1], ["1975", "599"])
 
     def test_document_omissions_use_square_brackets_and_three_dots(self):
         data = (ROOT / "data/documentos.json").read_text()
@@ -1550,7 +1563,8 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         namespace = "{http://www.w3.org/2000/svg}"
         tables = {d["id"]: d for d in data["documents"]
-                  if d.get("table") and all(a.get("sourceType") == "pdf" for a in d["appearances"])}
+                  if d.get("table") and d.get("image", {}).get("kind") == "table"
+                  and all(a.get("sourceType") == "pdf" for a in d["appearances"])}
         self.assertEqual(len(tables), 8)
         for identity, document in tables.items():
             with self.subTest(document=identity):
@@ -1574,6 +1588,78 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(restoration["rows"][1], ["1893", "15,2", "70,2", "85,5", "14,5"])
         self.assertEqual(restoration["underlinedCells"], [[0, 1], [1, 2], [3, 2], [4, 1], [5, 2]])
         self.assertEqual(tables["elecciones-1977-votos-escanos"]["table"]["rows"][5][-1], "3,1")
+
+    def test_2002_iron_production_table_matches_the_exam_layout(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        document = next(item for item in data["documents"]
+                        if item["id"] == "produccion-hierro-1860-1869")
+        namespace = "{http://www.w3.org/2000/svg}"
+        root = ET.parse(ROOT / document["image"]["src"]).getroot()
+        self.assertEqual((root.get("width"), root.get("height")), ("768", "255"))
+        title = root.findall(f"{namespace}text[@class='title']")
+        self.assertEqual([node.text for node in title], [
+            "Producción de hierro colado",
+            "(media anual en miles de toneladas)",
+        ])
+        self.assertTrue(all(node.get("x") == "384" and node.get("text-anchor") == "middle"
+                            for node in title))
+        grid = root.find(f"{namespace}g[@fill='none']")
+        border = grid.find(f"{namespace}rect")
+        self.assertEqual(
+            (border.get("x"), border.get("y"), border.get("width"), border.get("height")),
+            ("8", "51", "752", "144"),
+        )
+        self.assertEqual(grid.get("stroke"), "#555")
+        self.assertEqual(
+            [node.get("d") for node in grid.findall(f"{namespace}path")],
+            ["M196 51v144", "M370 51v144", "M540 51v144",
+             "M8 99h752", "M8 147h752"],
+        )
+        note = root.find(f"{namespace}text[@class='note']")
+        self.assertEqual(
+            (note.get("x"), note.get("y"), note.get("text-anchor")),
+            ("384", "238", "middle"),
+        )
+        emphasis = note.find(f"{namespace}tspan")
+        self.assertEqual(emphasis.text, "El fracaso de la Revolución Industrial en España")
+        self.assertEqual(emphasis.get("font-style"), "italic")
+        for row_index, row in enumerate(document["table"]["rows"]):
+            for column_index, value in enumerate(row):
+                cell = root.find(f".//*[@data-row='{row_index}'][@data-column='{column_index}']")
+                self.assertIsNotNone(cell)
+                self.assertEqual(" ".join(" ".join(cell.itertext()).split()), value)
+
+    def test_2002_social_composition_chart_is_vectorized_with_editorial_colors(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        document = next(item for item in data["documents"]
+                        if item["id"] == "sociedad-espanola-1860")
+        image = document["image"]
+        namespace = "{http://www.w3.org/2000/svg}"
+        root = ET.parse(ROOT / image["src"]).getroot()
+        self.assertEqual((image["kind"], image["width"], image["height"]),
+                         ("chart", 593, 447))
+        self.assertEqual((root.get("width"), root.get("height")), ("593", "447"))
+        title = root.find(f"{namespace}text[@class='title']")
+        self.assertEqual(title.text, "Composición de la sociedad española hacia 1860")
+        self.assertEqual((title.get("x"), title.get("text-anchor")), ("296.5", "middle"))
+        style = root.find(f"{namespace}style").text
+        self.assertIn(".title{font-family:Arial,sans-serif;font-size:22px;font-weight:700}", style)
+        reference = ET.parse(ROOT / "assets/documentos/tabla-congreso-1936.svg").getroot()
+        self.assertIn("font-family:Arial,sans-serif;fill:#382f3e",
+                      reference.find(f"{namespace}style").text)
+        sectors = root.findall(f"{namespace}path[@class='sector']")
+        self.assertEqual(
+            [(node.get("data-category"), node.get("data-percentage")) for node in sectors],
+            [("Nobleza y clero", "16"), ("Burguesía alta", "3"),
+             ("Clases medias", "10"), ("Clases bajas", "71")],
+        )
+        self.assertEqual(len({node.get("fill") for node in sectors}), 4)
+        self.assertEqual(
+            document["table"]["rows"],
+            [["Nobleza y clero", "16"], ["Burguesía alta", "3"],
+             ["Clases medias", "10"], ["Clases bajas", "71"]],
+        )
+        self.assertIn("no aparecen", image["reproductionNote"])
 
     def test_montecristi_footers_spell_out_the_date(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1754,7 +1840,8 @@ class DocumentCorpusTests(unittest.TestCase):
     def test_pib_chart_has_interactive_approximate_year_points(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "pib-habitante-1931-1973")
-        self.assertIn("1939–1973*", record["title"])
+        self.assertNotIn("1939–1973*", record["title"])
+        self.assertIn("1939*–1973", record["image"]["alt"])
         self.assertTrue(record["image"]["selectable"])
         svg = ET.parse(ROOT / record["image"]["src"]).getroot()
         namespace = {"svg": "http://www.w3.org/2000/svg"}
@@ -1768,8 +1855,8 @@ class DocumentCorpusTests(unittest.TestCase):
     def test_divisas_table_matches_exam_layout_and_italicizes_book_title(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "divisas-emigrantes-1961-1975")
-        self.assertEqual((record["image"]["width"], record["image"]["height"]), (299, 512))
-        self.assertNotIn("reproductionNote", record["image"])
+        self.assertEqual((record["image"]["width"], record["image"]["height"]), (480, 540))
+        self.assertIn("sombreado verde editorial", record["image"]["reproductionNote"])
         self.assertEqual(record["image"]["originalSrc"], "assets/documentos/pdf-2003-6-4.png")
         self.assertEqual(len(record["table"]["rows"]), 15)
         svg = ET.parse(ROOT / record["image"]["src"]).getroot()
@@ -1778,6 +1865,21 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIsNotNone(title)
         self.assertEqual(title.get("font-style"), "italic")
         self.assertEqual(title.text, "La emigración española")
+
+    def test_2007_election_diagram_uses_a_semicircle_and_keeps_all_candidates_accessible(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"] if item["id"] == "elecciones-1977-diagrama")
+        image = record["image"]
+        self.assertEqual((image["width"], image["height"]), (1080, 760))
+        self.assertEqual(len(record["table"]["rows"]), 19)
+        svg = (ROOT / image["src"]).read_text()
+        self.assertEqual(svg.count('<path class="sector"'), 7)
+        self.assertIn('data-party="Otros*"', svg)
+        notes = " ".join(record["table"]["notes"])
+        self.assertIn("13,41 %", notes)
+        self.assertNotIn("13.41 %", notes)
+        self.assertIn("EC-FED (1)", notes)
+        self.assertIn("PSP-US 6 · DCC 2 · EC-FED 1", svg)
 
     def test_new_corpus_tables_match_their_accessible_data_and_occurrences(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())

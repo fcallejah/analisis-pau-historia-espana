@@ -1,180 +1,180 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1248" height="659" viewBox="0 0 1248 659" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="401" viewBox="0 0 1248 659" role="img" aria-labelledby="title desc">
 <title id="title">Doc. 11. Resultados electorales del 15 de junio de 1977</title>
 <desc id="desc">Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. Se conserva el 3,1 de escaños de CIU y el resto de cifras de la reproducción original, sin recalcular porcentajes. «Doc. 11» es el rótulo interno de la imagen, no la posición del material en el examen.</desc>
-<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "original": "assets/documentos/pdf-2004-6-4.jpeg", "originalSha256": "3c7bc8250f6486f2bfcd6f70abeeeb110c3902ad42ea6ed240aec0960e4ce556", "pdf": "https://drive.google.com/file/d/1RGuNkNesx5JF48ex7zBYVVBUjAaGQrph/view", "pdfSha256": "e1de4bdc61f7b604f3d83496d1150f6ea7d2a5a0f8730e758c171118b3adfd67", "file": "sel_2004_historia_espana/2004. Examen 6.pdf", "page": 2}</metadata>
-<style>text{font-family:Arial,sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
+<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "pdf": "https://drive.google.com/file/d/1RGuNkNesx5JF48ex7zBYVVBUjAaGQrph/view", "pdfSha256": "e1de4bdc61f7b604f3d83496d1150f6ea7d2a5a0f8730e758c171118b3adfd67", "file": "sel_2004_historia_espana/2004. Examen 6.pdf", "page": 2, "original": "assets/documentos/pdf-2004-6-4.jpeg", "originalSha256": "3c7bc8250f6486f2bfcd6f70abeeeb110c3902ad42ea6ed240aec0960e4ce556"}</metadata>
+<style>text{font-family:"Arial Narrow", Arial, sans-serif;fill:#493d2d}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
 <rect width="1248" height="659" fill="#fff"/>
 <text class="title" x="24" y="44" text-anchor="start">Doc. 11. Resultados electorales del 15 de junio de 1977</text>
 <text class="intro" x="24" y="86" text-anchor="start">Las primeras elecciones legislativas con garantías democráticas desde la Segunda República</text>
 <text class="intro" x="24" y="114" text-anchor="start">arrojaron en porcentajes los siguientes resultados para el Congreso:</text>
-<rect x="24" y="154" width="210" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="154" width="210" height="59" fill="#ead9ad" stroke="#b18b4b" stroke-width="1"/>
 <text class="head" x="129.0" y="192.0" text-anchor="middle">Partido</text>
-<rect x="234" y="154" width="270" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="154" width="270" height="59" fill="#ead9ad" stroke="#b18b4b" stroke-width="1"/>
 <text class="head" x="369.0" y="192.0" text-anchor="middle">Votos</text>
-<rect x="504" y="154" width="240" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="154" width="240" height="59" fill="#ead9ad" stroke="#b18b4b" stroke-width="1"/>
 <text class="head" x="624.0" y="192.0" text-anchor="middle">Votos (en %)</text>
-<rect x="744" y="154" width="210" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="154" width="210" height="59" fill="#ead9ad" stroke="#b18b4b" stroke-width="1"/>
 <text class="head" x="849.0" y="192.0" text-anchor="middle">Escaños</text>
-<rect x="954" y="154" width="270" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="154" width="270" height="59" fill="#ead9ad" stroke="#b18b4b" stroke-width="1"/>
 <text class="head" x="1089.0" y="192.0" text-anchor="middle">Escaños (en %)</text>
 <g data-row="0" data-column="0">
-<rect x="24" y="213" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="213" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="247.5" text-anchor="start">UCD</text>
 </g>
 <g data-row="0" data-column="1">
-<rect x="234" y="213" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="213" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="247.5" text-anchor="middle">6 309 517</text>
 </g>
 <g data-row="0" data-column="2">
-<rect x="504" y="213" width="240" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="213" width="240" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="247.5" text-anchor="middle">34,8</text>
 </g>
 <g data-row="0" data-column="3">
-<rect x="744" y="213" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="213" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="247.5" text-anchor="middle">165</text>
 </g>
 <g data-row="0" data-column="4">
-<rect x="954" y="213" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="213" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="247.5" text-anchor="middle">47,1</text>
 </g>
 <g data-row="1" data-column="0">
-<rect x="24" y="265" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="265" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="299.5" text-anchor="start">PSOE</text>
 </g>
 <g data-row="1" data-column="1">
-<rect x="234" y="265" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="265" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="299.5" text-anchor="middle">5 240 464</text>
 </g>
 <g data-row="1" data-column="2">
-<rect x="504" y="265" width="240" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="265" width="240" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="299.5" text-anchor="middle">29,4</text>
 </g>
 <g data-row="1" data-column="3">
-<rect x="744" y="265" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="265" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="299.5" text-anchor="middle">118</text>
 </g>
 <g data-row="1" data-column="4">
-<rect x="954" y="265" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="265" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="299.5" text-anchor="middle">33,7</text>
 </g>
 <g data-row="2" data-column="0">
-<rect x="24" y="317" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="317" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="351.5" text-anchor="start">PCE</text>
 </g>
 <g data-row="2" data-column="1">
-<rect x="234" y="317" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="317" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="351.5" text-anchor="middle">1 655 744</text>
 </g>
 <g data-row="2" data-column="2">
-<rect x="504" y="317" width="240" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="317" width="240" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="351.5" text-anchor="middle">9,3</text>
 </g>
 <g data-row="2" data-column="3">
-<rect x="744" y="317" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="317" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="351.5" text-anchor="middle">20</text>
 </g>
 <g data-row="2" data-column="4">
-<rect x="954" y="317" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="317" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="351.5" text-anchor="middle">5,7</text>
 </g>
 <g data-row="3" data-column="0">
-<rect x="24" y="369" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="369" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="403.5" text-anchor="start">AP</text>
 </g>
 <g data-row="3" data-column="1">
-<rect x="234" y="369" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="369" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="403.5" text-anchor="middle">1 503 376</text>
 </g>
 <g data-row="3" data-column="2">
-<rect x="504" y="369" width="240" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="369" width="240" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="403.5" text-anchor="middle">8,4</text>
 </g>
 <g data-row="3" data-column="3">
-<rect x="744" y="369" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="369" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="403.5" text-anchor="middle">16</text>
 </g>
 <g data-row="3" data-column="4">
-<rect x="954" y="369" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="369" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="403.5" text-anchor="middle">4,6</text>
 </g>
 <g data-row="4" data-column="0">
-<rect x="24" y="421" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="421" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="455.5" text-anchor="start">PSP</text>
 </g>
 <g data-row="4" data-column="1">
-<rect x="234" y="421" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="421" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="455.5" text-anchor="middle">804 382</text>
 </g>
 <g data-row="4" data-column="2">
-<rect x="504" y="421" width="240" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="421" width="240" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="455.5" text-anchor="middle">4,5</text>
 </g>
 <g data-row="4" data-column="3">
-<rect x="744" y="421" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="421" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="455.5" text-anchor="middle">6</text>
 </g>
 <g data-row="4" data-column="4">
-<rect x="954" y="421" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="421" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="455.5" text-anchor="middle">1,7</text>
 </g>
 <g data-row="5" data-column="0">
-<rect x="24" y="473" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="473" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="507.5" text-anchor="start">CIU</text>
 </g>
 <g data-row="5" data-column="1">
-<rect x="234" y="473" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="473" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="507.5" text-anchor="middle">666 398</text>
 </g>
 <g data-row="5" data-column="2">
-<rect x="504" y="473" width="240" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="473" width="240" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="507.5" text-anchor="middle">3,7</text>
 </g>
 <g data-row="5" data-column="3">
-<rect x="744" y="473" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="473" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="507.5" text-anchor="middle">13</text>
 </g>
 <g data-row="5" data-column="4">
-<rect x="954" y="473" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="473" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="507.5" text-anchor="middle">3,1</text>
 </g>
 <g data-row="6" data-column="0">
-<rect x="24" y="525" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="525" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="559.5" text-anchor="start">PNV</text>
 </g>
 <g data-row="6" data-column="1">
-<rect x="234" y="525" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="525" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="559.5" text-anchor="middle">304 244</text>
 </g>
 <g data-row="6" data-column="2">
-<rect x="504" y="525" width="240" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="525" width="240" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="559.5" text-anchor="middle">1,7</text>
 </g>
 <g data-row="6" data-column="3">
-<rect x="744" y="525" width="210" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="525" width="210" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="559.5" text-anchor="middle">8</text>
 </g>
 <g data-row="6" data-column="4">
-<rect x="954" y="525" width="270" height="52" fill="#f5f9fc" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="525" width="270" height="52" fill="#fffaf0" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="559.5" text-anchor="middle">2,3</text>
 </g>
 <g data-row="7" data-column="0">
-<rect x="24" y="577" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="24" y="577" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="40" y="611.5" text-anchor="start">Otros</text>
 </g>
 <g data-row="7" data-column="1">
-<rect x="234" y="577" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="234" y="577" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="369.0" y="611.5" text-anchor="middle">1 783 117</text>
 </g>
 <g data-row="7" data-column="2">
-<rect x="504" y="577" width="240" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="504" y="577" width="240" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="624.0" y="611.5" text-anchor="middle">8,2</text>
 </g>
 <g data-row="7" data-column="3">
-<rect x="744" y="577" width="210" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="744" y="577" width="210" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="849.0" y="611.5" text-anchor="middle">4</text>
 </g>
 <g data-row="7" data-column="4">
-<rect x="954" y="577" width="270" height="52" fill="#e2edf6" stroke="#7695b3" stroke-width="1"/>
+<rect x="954" y="577" width="270" height="52" fill="#f5ecd8" stroke="#b18b4b" stroke-width="1"/>
 <text class="cell" x="1089.0" y="611.5" text-anchor="middle">1,1</text>
 </g>
 </svg>

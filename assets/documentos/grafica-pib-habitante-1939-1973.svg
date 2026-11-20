@@ -6,7 +6,7 @@
       .subtitle { font-size: 13px; font-weight: 400; fill: #1e3a8a; text-anchor: middle; }
       .axis-label { font-size: 12px; fill: #374151; }
       .year-label { font-size: 11px; fill: #374151; }
-      .source { font-size: 11px; font-style: italic; fill: #4b5563; }
+      .source { font-size: 11px; fill: #4b5563; }
       .point { cursor: crosshair; outline: none; }
       .hit { fill: transparent; stroke: transparent; }
       .tooltip { visibility: hidden; pointer-events: none; }
@@ -19,7 +19,7 @@
   <rect width="760" height="444" fill="#fff" />
 
   <!-- Título -->
-  <text x="380.0" y="28" class="title">PIB POR HABITANTE, 1939–1973*</text>
+  <text x="380.0" y="28" class="title">PIB POR HABITANTE, 1939–1973</text>
   <text x="380.0" y="46" class="subtitle">(en ptas. de 1980)</text>
 
   <!-- Fondo área gráfico con color similar al examen -->
@@ -49,7 +49,7 @@
   <text x="72" y="64.0" class="axis-label" text-anchor="end">350.000</text>
   <line x1="76" y1="60.0" x2="80" y2="60.0" stroke="#ca8a04" stroke-width="1" />
   <line x1="80.0" y1="379" x2="80.0" y2="384" stroke="#ca8a04" stroke-width="1" />
-  <text x="80.0" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 80.0, 397)">1939</text>
+  <text x="80.0" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 80.0, 397)">1939*</text>
   <line x1="195.6" y1="379" x2="195.6" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="195.6" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 195.6, 397)">1945</text>
   <line x1="311.2" y1="379" x2="311.2" y2="384" stroke="#ca8a04" stroke-width="1" />
@@ -63,13 +63,13 @@
   <line x1="735.0" y1="379" x2="735.0" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="735.0" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 735.0, 397)">1973</text>
   <polyline fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="80.0,297.0 99.3,293.3 118.5,293.8 137.8,289.7 157.1,286.5 176.3,283.3 195.6,291.0 214.9,287.9 234.1,286.9 253.4,288.3 272.6,288.8 291.9,284.7 311.2,276.9 330.4,270.1 349.7,269.2 369.0,263.2 388.2,257.3 407.5,249.6 426.8,245.0 446.0,240.0 465.3,243.2 484.6,240.9 503.8,225.9 523.1,212.2 542.4,197.6 561.6,187.1 580.9,176.7 600.1,163.4 619.4,155.7 638.7,142.9 657.9,123.8 677.2,114.2 696.5,104.2 715.7,84.6 735.0,64.6" />
-  <g class="point" tabindex="0" role="graphics-symbol" aria-label="1939: aproximadamente 90.000 pesetas constantes de 1980">
-    <title>1939: aproximadamente 90.000 pesetas constantes de 1980</title>
+  <g class="point" tabindex="0" role="graphics-symbol" aria-label="1939*: aproximadamente 90.000 pesetas constantes de 1980">
+    <title>1939*: aproximadamente 90.000 pesetas constantes de 1980</title>
       <circle class="hit" cx="80.0" cy="297.0" r="8" />
     <circle cx="80.0" cy="297.0" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 255.0)">
       <rect width="142" height="32" />
-      <text x="8" y="21">1939 · ~90.000 ptas.</text>
+      <text x="8" y="21">1939* · ~90.000 ptas.</text>
     </g>
   </g>
   <g class="point" tabindex="0" role="graphics-symbol" aria-label="1940: aproximadamente 94.000 pesetas constantes de 1980">
@@ -393,6 +393,6 @@
     chart.addEventListener("pointerup", releasePoint);
     chart.addEventListener("pointercancel", releasePoint);
   ]]></script>
-  <text x="80" y="417" class="source">Fuente: Prados de la Escosura, Spain's Gross Domestic Product (1995).</text>
+  <text x="80" y="417" class="source" font-style="normal">Fuente: Prados de la Escosura, <tspan font-style="italic">Spain's Gross Domestic Product</tspan> (1995).</text>
   <text x="80" y="436" class="source">* El examen original indica 1931; la serie de la gráfica comienza en 1939.</text>
 </svg>

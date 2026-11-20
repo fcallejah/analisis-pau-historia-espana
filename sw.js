@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v420";
+const CACHE = "pau-he-v421";
 const CORE = [
   "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./site-footer.css",
@@ -31,6 +31,7 @@ const CORE = [
   "./assets/documentos/alegoria-victoria-franco-1939.png",
   "./assets/documentos/golpe-estado-23f-tejero-1981.png",
   "./assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
+  "./assets/documentos/miembros-cortes-cadiz-color-2008.svg",
   "./assets/documentos/amadeo-i-ante-cadaver-prim.png",
   "./assets/documentos/cartel-falange-reina-sofia.png",
   "./assets/documentos/grafico-desamortizaciones-siglo-xix.png",
@@ -39,6 +40,7 @@ const CORE = [
   "./assets/documentos/resultados-electorales-restauracion-1881-1898-oficial-2008.svg",
   "./assets/documentos/bajas-espanolas-en-cuba-y-filipinas-oficial-2008.svg",
   "./assets/documentos/resultados-elecciones-generales-1982-oficial-2008.svg",
+  "./assets/documentos/resultados-elecciones-generales-1982-sombreado-editorial.svg",
   "./assets/documentos/elecciones-generales-1982-congreso-senado-vector.svg",
   "./assets/documentos/tabla-elecciones-restauracion-1881-1898.png",
   "./assets/documentos/tabla-bajas-cuba-filipinas.png",
@@ -94,6 +96,7 @@ const CORE = [
   "./assets/documentos/tabla-resultados-restauracion-1876-1886.svg",
   "./assets/documentos/tabla-congreso-1936.svg",
   "./assets/documentos/tabla-congreso-1977.svg",
+  "./assets/documentos/elecciones-1977-diagrama-semicircular.svg",
   "./assets/documentos/reunion-expresidentes-gobierno.png",
   "./assets/documentos/general-valeriano-weyler.jpg",
   "./assets/documentos/no-pasaran-sitio-madrid.png",
@@ -170,6 +173,7 @@ const CORE = [
   "./assets/documentos/tabla-produccion-hierro-1860-1869.svg",
   "./assets/documentos/tabla-escanos-constituyentes-1931-porcentajes.svg",
   "./assets/documentos/tabla-divisas-emigrantes-1961-1975.svg",
+  "./assets/documentos/grafico-sociedad-espanola-1860.svg",
   "./assets/documentos/tabla-elecciones-1977-votos-escanos.svg",
   "./assets/documentos/tabla-ayuda-economica-americana-1953-1957.svg",
   "./nueva-planta.css", "./nueva-planta.js", "./assets/apuntes/nueva-planta.svg",

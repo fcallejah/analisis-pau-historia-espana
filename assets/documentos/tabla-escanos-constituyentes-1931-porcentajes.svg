@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1128" height="637" viewBox="0 0 1128 637" role="img" aria-labelledby="title desc">
 <title id="title">Distribución de escaños en las constituyentes de Junio de 1931</title>
 <desc id="desc">Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. Se conserva el rótulo de Derechas sin cerrar el paréntesis, tal como aparece en la fuente.</desc>
-<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "original": "assets/documentos/pdf-2002-6-4.png", "originalSha256": "a6802874ff934d0ca9162adb1fd7aed53225ac5eaee44f005ce6d49570898472", "pdf": "https://drive.google.com/file/d/1iIwcjcprJrKXt-Sg-snpXer0uVnmxiLu/view", "pdfSha256": "d48666f622b7475a02d460d34c31e4189014421c554cf951b94e1b5666d07079", "file": "sel_2002_historia_espana/2002. Examen 6.pdf", "page": 2}</metadata>
-<style>text{font-family:Arial,sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
+<metadata>{"method": "Redibujo manual, no extracción vectorial certificada del PDF.", "pdf": "https://drive.google.com/file/d/1iIwcjcprJrKXt-Sg-snpXer0uVnmxiLu/view", "pdfSha256": "d48666f622b7475a02d460d34c31e4189014421c554cf951b94e1b5666d07079", "file": "sel_2002_historia_espana/2002. Examen 6.pdf", "page": 2, "original": "assets/documentos/pdf-2002-6-4.png", "originalSha256": "a6802874ff934d0ca9162adb1fd7aed53225ac5eaee44f005ce6d49570898472"}</metadata>
+<style>text{font-family:Arial, sans-serif;fill:#17324e}.title{font-size:28px;font-weight:700}.head{font-size:23px;font-weight:700}.cell{font-size:23px}.note{font-size:18px}.intro{font-size:21px}.on-dark{fill:#fff}</style>
 <rect width="1128" height="637" fill="#fff"/>
 <text class="title" x="24" y="44" text-anchor="start">Distribución de escaños en las constituyentes de Junio de 1931</text>
 <rect x="24" y="80" width="750" height="59" fill="#c8dded" stroke="#7695b3" stroke-width="1"/>

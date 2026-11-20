@@ -1,35 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
-<title id="title">Resultados de las elecciones a Cortes de junio de 1931</title>
-<desc id="desc">Tabla transcrita del examen de 2016: izquierda, 279 diputados y 2.881.056 votos; centro, 119 y 1.165.692; derecha, 41 y 657.872.</desc>
-<rect width="1200" height="650" fill="white"/><g fill="#202020" font-family="Arial,sans-serif" font-size="21">
-<text x="600" y="38" text-anchor="middle" font-weight="bold">Resultados de las Elecciones a Cortes (Junio de 1931)</text>
-<text x="25" y="87" font-size="18" font-weight="bold">Ideologías</text>
-<text x="200" y="87" font-size="18" font-weight="bold">Partidos</text>
-<text x="800" y="87" font-size="18" font-weight="bold">Número de diputados</text>
-<text x="1010" y="87" font-size="18" font-weight="bold">Número de votos</text>
-<text x="25" y="145">IZQUIERDA</text>
-<text x="200" y="145">Partido Socialista Obrero Español</text>
-<text x="200" y="176">Radical-socialistas</text>
-<text x="200" y="207">Esquerra Republicana</text>
-<text x="200" y="238">Acción Republicana</text>
-<text x="200" y="269">ORGA y otros</text>
-<text x="840" y="145">279</text>
-<text x="1010" y="145">2.881.056</text>
-<text x="25" y="355">CENTRO</text>
-<text x="200" y="355">Radicales</text>
-<text x="200" y="386">Lliga Regionalista</text>
-<text x="200" y="417">PNV y otros</text>
-<text x="840" y="355">119</text>
-<text x="1010" y="355">1.165.692</text>
-<text x="25" y="485">DERECHA</text>
-<text x="200" y="485">Agrarios</text>
-<text x="200" y="516">Monárquicos</text>
-<text x="200" y="547">Nacionalistas</text>
-<text x="840" y="485">41</text>
-<text x="1010" y="485">657.872</text>
-<text x="600" y="625" text-anchor="middle">FUENTE: INE. Anuarios Estadísticos, 1931-1940</text></g>
-<path d="M15 105H1185" fill="none" stroke="#444"/>
-<path d="M15 320H1185" fill="none" stroke="#444"/>
-<path d="M15 450H1185" fill="none" stroke="#444"/>
-<path d="M15 585H1185" fill="none" stroke="#444"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="490" viewBox="0 0 900 490" role="img" aria-labelledby="title desc">
+<title id="title">Resultados de las Elecciones a Cortes (Junio de 1931)</title>
+<desc id="desc">Tabla del examen de 2016 con la tipografía condensada y la jerarquía de tamaños del original. Se conservan las agrupaciones, partidos, cifras y referencia del INE.</desc>
+<style>
+text{font-family:"Arial Narrow",Arial,sans-serif;fill:#151515}
+.title{font-size:19px;font-weight:700}
+.head{font-size:17px}
+.category{font-size:18px;font-weight:700}
+.party{font-size:16px}
+.deputies{font-size:27px}
+.votes{font-size:20px}
+.source{font-size:16px}
+.rule{stroke:#888;stroke-width:1}
+</style>
+<rect width="900" height="490" fill="#fff"/>
+<text class="title" x="450" y="31" text-anchor="middle">Resultados de las Elecciones a Cortes (Junio de 1931)</text>
+<text class="head" x="35" y="78">Ideologías</text>
+<text class="head" x="178" y="78">Partidos</text>
+<text class="head" x="650" y="78" text-anchor="middle">Número de diputados</text>
+<text class="head" x="790" y="78" text-anchor="middle">Número de votos</text>
+<path class="rule" d="M25 92H875"/>
+<text class="category" x="35" y="171">IZQUIERDA</text>
+<text class="party" x="178" y="125">Partido Socialista Obrero Español</text>
+<text class="party" x="178" y="149">Radical-socialistas</text>
+<text class="party" x="178" y="173">Esquerra Republicana</text>
+<text class="party" x="178" y="197">Acción Republicana</text>
+<text class="party" x="178" y="221">ORGA y otros</text>
+<text class="deputies" x="650" y="177" text-anchor="middle">279</text>
+<text class="votes" x="790" y="175" text-anchor="middle">2.881.056</text>
+<path class="rule" d="M25 247H875"/>
+<text class="category" x="35" y="304">CENTRO</text>
+<text class="party" x="178" y="282">Radicales</text>
+<text class="party" x="178" y="306">Lliga Regionalista</text>
+<text class="party" x="178" y="330">PNV y otros</text>
+<text class="deputies" x="650" y="310" text-anchor="middle">119</text>
+<text class="votes" x="790" y="308" text-anchor="middle">1.165.692</text>
+<path class="rule" d="M25 350H875"/>
+<text class="category" x="35" y="407">DERECHA</text>
+<text class="party" x="178" y="385">Agrarios</text>
+<text class="party" x="178" y="409">Monárquicos</text>
+<text class="party" x="178" y="433">Nacionalistas</text>
+<text class="deputies" x="650" y="413" text-anchor="middle">41</text>
+<text class="votes" x="790" y="411" text-anchor="middle">657.872</text>
+<path class="rule" d="M25 452H875"/>
+<text class="source" x="35" y="478">FUENTE: INE. <tspan font-style="italic">Anuarios Estadísticos, 1931-1940</tspan></text>
 </svg>
