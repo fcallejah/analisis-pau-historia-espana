@@ -71,6 +71,10 @@ def run():
             assert dialog.get_by_text("Fuente de los datos", exact=True).count() == 1
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
+            page.locator('[data-id="propio-elecciones-generales-1979"] .document-open').click()
+            election_option = dialog.locator(".study-chart-selector option").first
+            assert election_option.inner_text() == "Resultado elecciones 1979 (1 de marzo)"
+            page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1931"] .document-open').click()
             image = dialog.locator(".study-election-chart")
             assert image.get_attribute("src").endswith("elecciones-republica-1931-semicirculo.svg")

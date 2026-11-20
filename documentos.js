@@ -921,7 +921,7 @@
         const label = element("label", "Elección: ", "study-chart-selector");
         const select = element("select");
         record.tables.forEach((table, index) => {
-          const option = element("option", table.caption);
+          const option = element("option", table.chart?.heading || table.caption);
           option.value = String(index);
           select.append(option);
         });
