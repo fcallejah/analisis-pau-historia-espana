@@ -1,8 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1744" height="1056" viewBox="0 0 436 264" role="img" aria-labelledby="title description">
 <rect width="436.0" height="264.0" fill="#fff" />
-<rect x="190" y="9" width="125" height="184" rx="2" fill="#a6c4d2" fill-opacity="0.34" aria-hidden="true" />
-<rect x="316" y="9" width="117" height="184" rx="2" fill="#e3c18b" fill-opacity="0.34" aria-hidden="true" /><defs>
+<g id="election-table-row-stripes" aria-hidden="true"><rect class="row-stripe" data-stripe-row="0" x="0" y="28.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="2" x="0" y="52.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="4" x="0" y="76.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="6" x="0" y="100.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="8" x="0" y="124.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="10" x="0" y="148.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="12" x="0" y="172.48" width="436" height="12" fill="#dce8e2" /><rect class="row-stripe" data-stripe-row="14" x="0" y="196.48" width="436" height="12" fill="#dce8e2" /></g><defs>
 <clipPath id="clip_1">
 <path transform="matrix(1,0,0,-1,-78,540)" d="M78 276H514V540H78Z" />
 </clipPath>
@@ -3622,4 +3621,4 @@
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.02,0,0,-10.02,428.7986,457.0584)" />
 </g>
 </g>
-<title id="title">Elecciones Generales de 28 de octubre de 1982: distribución de votos y escaños en el Congreso</title><desc id="description">Extracción vectorial del PDF oficial de 2008, Examen 3, Opción B, documento 1. Se conservan los trazados, glifos y datos originales; no es una reconstrucción.</desc><metadata>Fuente: https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip; archivo: sel_2008_historia_espana.zip/Texto Histórico 3 - Examen y criterios de corrección.pdf; página: 2; recorte PDF: (78, 302, 514, 566); SHA-256 del PDF: 6e6068f8a4e1fc1542c580c10a0e6676df164d4df70a5637812a6876c2f7c0b5</metadata></svg>
+<title id="title">Elecciones Generales de 28 de octubre de 1982: distribución de votos y escaños en el Congreso</title><desc id="description">Tabla extraída del PDF oficial de 2008, Examen 3, Opción B, documento 1. Se añaden bandas horizontales alternas de tono gris verdoso; se conservan las cifras y el trazado original.</desc><metadata>Fuente: https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip; archivo: sel_2008_historia_espana.zip/Texto Histórico 3 - Examen y criterios de corrección.pdf; página: 2; recorte PDF: (78, 302, 514, 566); SHA-256 del PDF: 6e6068f8a4e1fc1542c580c10a0e6676df164d4df70a5637812a6876c2f7c0b5</metadata></svg>

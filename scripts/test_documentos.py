@@ -34,6 +34,168 @@ def image_dimensions(path):
 
 
 class DocumentCorpusTests(unittest.TestCase):
+    def test_electoral_study_materials_do_not_enter_exam_corpus(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
+        records = {record["id"]: record for record in own}
+        self.assertEqual(len(records), 21)
+        self.assertFalse(set(records) & {record["id"] for record in data["documents"]})
+        self.assertTrue(all("appearances" not in record for record in own))
+        general_years = {1931, 1933, 1936, 1979, 1982, 1986, 1989, 1993,
+                         1996, 2000, 2004, 2008, 2011, 2015}
+        general = [record for record in own if record["id"].startswith("propio-elecciones-generales-")]
+        self.assertEqual({int(record["date"]) for record in general}, general_years)
+        self.assertTrue(all(len(record["tables"]) == 1 for record in general))
+        for record in general:
+            year = int(record["date"])
+            table = record["tables"][0]
+            self.assertEqual(int(table["caption"][-4:]), year)
+            total = next(row for row in table["rows"] if row[0].strip() == "Total")
+            seats = sum(int(row[3]) for row in table["rows"] if row[3] != "—" and row is not total)
+            self.assertEqual((total[3], seats), (str(table["chart"]["seats"]), table["chart"]["seats"]))
+        self.assertEqual(records["propio-elecciones-generales-1931"]["unitIds"], ["iii-4"])
+        self.assertEqual(records["propio-elecciones-generales-1933"]["unitIds"], ["iii-5"])
+        self.assertEqual(records["propio-elecciones-generales-1936"]["unitIds"], ["iii-5"])
+        self.assertEqual(records["propio-elecciones-generales-1982"]["unitIds"], ["iii-11"])
+        self.assertEqual(records["propio-elecciones-generales-1986"]["unitIds"], ["iii-12"])
+        self.assertEqual(records["propio-elecciones-generales-1996"]["unitIds"], ["iii-13"])
+        municipal = records["propio-elecciones-municipales-1931"]
+        self.assertEqual(municipal["visualization"], "municipal-turnout")
+        self.assertEqual(municipal["tables"][0]["rows"][0][1:], ["1.104.159", "715.911", "64,84"])
+        self.assertIn("no aporta aquí un resultado nacional", municipal["tables"][0]["notes"][0])
+        self.assertEqual(municipal["dataSourceUrl"], "https://ine.es/inebaseweb/pdfDispacher.do?td=96303")
+        self.assertNotIn("propio-elecciones-1979-1982", records)
+        self.assertNotIn("propio-elecciones-segunda-republica", records)
+        refs = records["propio-referendums-1976-2005"]["tables"][0]["rows"]
+        self.assertEqual(refs[0][0], "15-12-1976 · Reforma Política")
+        self.assertEqual(refs[-1][1:], ["41,77", "76,30", "16,93", "5,91", "0,86"])
+        andalusia = records["propio-referendum-andalucia-1980"]["tables"][0]
+        self.assertEqual(andalusia["rows"][0][1:], ["64,19", "86,94", "5,36", "7,04", "0,67"])
+        self.assertIn("rechazada", " ".join(andalusia["notes"]))
+        self.assertIn("fuentes secundarias", records["propio-referendums-franquismo"]["sourceCaption"])
+        europe = records["propio-referendum-europa-2005"]
+        self.assertEqual(europe["unitIds"], ["iii-13"])
+        self.assertEqual(europe["tables"][0]["rows"][0][1:], ["41,77", "76,30", "16,93", "5,91", "0,86"])
+        self.assertIn("81,84 %", europe["tables"][0]["notes"][0])
+        self.assertIn("Fraga", " ".join(section["text"] for section in records["propio-referendums-1976-2005"]["commentary"]))
+
+    def test_electoral_semicircles_match_all_jec_study_tables(self):
+        own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
+        namespace = {"svg": "http://www.w3.org/2000/svg"}
+        years = set()
+        for record in own:
+            if record["visualization"] != "elections":
+                continue
+            for table in record["tables"]:
+                year = int(table["caption"][-4:])
+                years.add(year)
+                chart = table.get("chart", {})
+                path = "assets/documentos/" + chart.get("svg", f"elecciones-generales-{year}-semicirculo.svg")
+                svg = ET.parse(ROOT / path).getroot()
+                self.assertEqual(svg.get("width"), "760")
+                sectors = svg.findall("svg:path[@class='sector']", namespace)
+                visible_party_labels = " ".join(
+                    node.text or "" for node in svg.findall(".//svg:text[@class='party']", namespace)
+                )
+                expected = {row[0]: int(row[3]) for row in table["rows"]
+                            if row[0].strip() != "Total" and row[3].isdigit() and int(row[3]) > 0}
+                for group in table.get("chartGroups", []):
+                    expected[group["label"]] = sum(expected.pop(name) for name in group["members"])
+                    if group["label"] in ("PSOE + PSC", "PSOE, PSC y PSOE-Nueva Canarias"):
+                        self.assertTrue(group.get("diagramLabel"))
+                    if group.get("diagramLabel"):
+                        self.assertIn(group["diagramLabel"], visible_party_labels)
+                coalition_totals = {
+                    1982: {"PSOE + PSC": 202},
+                    1986: {"PSOE + PSC": 184},
+                    1989: {"PSOE + PSC": 175, "Partido Popular (PP) y coaliciones": 107},
+                    1993: {"PSOE + PSC": 159, "Partido Popular (PP) y coaliciones": 141},
+                    1996: {"PSOE + PSC": 141, "Partido Popular (PP) y coaliciones": 156},
+                    2004: {"Partido Popular (PP) y coaliciones": 148},
+                    2008: {"PSOE + PSC": 169, "Partido Popular (PP) y coaliciones": 154},
+                    2011: {"PSOE + PSC": 110, "Partido Popular (PP) y coaliciones": 186},
+                    2015: {"Partido Popular (PP) y coaliciones": 123},
+                }
+                if record["id"].startswith("propio-elecciones-generales-"):
+                    for label, seats in coalition_totals.get(year, {}).items():
+                        self.assertEqual(expected[label], seats)
+                        sector = next(sector for sector in sectors if sector.get("data-party") == label)
+                        expected_color = "#c6464f" if label == "PSOE + PSC" else "#2d4d73"
+                        self.assertEqual(sector.get("fill"), expected_color)
+                if year == 2015:
+                    self.assertEqual(expected["PSOE, PSC y PSOE-Nueva Canarias"], 90)
+                    self.assertEqual(expected["Podemos y confluencias"], 69)
+                self.assertEqual({sector.get("data-party"): int(sector.get("data-seats"))
+                                  for sector in sectors}, expected)
+                self.assertEqual(sum(expected.values()), chart.get("seats", 350))
+                self.assertEqual(len(sectors), len(expected))
+                self.assertEqual(len({sector.get("fill") for sector in sectors}), len(sectors))
+                self.assertTrue(all(float(sector.get("data-seat-percent")) > 0 for sector in sectors))
+                if "Otros*" in expected:
+                    other = next(sector for sector in sectors if sector.get("data-party") == "Otros*")
+                    self.assertEqual(other.get("fill"), "#92979f")
+                if year == 1936:
+                    self.assertEqual(
+                        {sector.get("data-party"): sector.get("fill") for sector in sectors},
+                        {
+                            "Frente Popular": "#ff0000",
+                            "Frente Nacional Contrarrevolucionario": "#0000ff",
+                            "Centro y nacionalistas": "#3cb371",
+                        },
+                    )
+                self.assertEqual(json.loads(svg.find("svg:metadata", namespace).text)["source"],
+                                 record["dataSourceUrl"])
+                self.assertIn(f'"./{path}"', (ROOT / "sw.js").read_text())
+                text = " ".join(svg.itertext())
+                for name, count in expected.items():
+                    self.assertIn(f"{count} {'escaño' if count == 1 else 'escaños'}", text)
+                if year == 2015:
+                    self.assertIn("5.212.711 votos", text)
+                    self.assertIn("5.545.315 votos", text)
+                if chart.get("majority") is None and chart:
+                    self.assertNotIn("mayoría absoluta", text)
+                    self.assertIn("Asignados a España", text)
+                elif chart:
+                    self.assertIn(f"{chart['majority']} para la mayoría absoluta", text)
+        self.assertEqual(years, {1931, 1933, 1936, 1979, 1982, 1986, 1989, 1993, 1996, 2000, 2004, 2008, 2011, 2014, 2015})
+        self.assertIn(".study-chart-fill.is-turnout{background:#59636d}", (ROOT / "documentos.css").read_text())
+
+    def test_requested_2002_and_2003_source_captions(self):
+        records = {record["id"]: record for record in
+                   json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        self.assertEqual(records["produccion-hierro-1860-1869"]["examCaption"]["text"],
+                         "Producción de hierro colado\n(media anual en miles de toneladas)")
+        assembly = records["la-asamblea-de-parlamentarios-de-barcelona-pdf-2003-1-3"]
+        self.assertEqual(assembly["text"][-1], "Barcelona, 19 de julio de 1917")
+        self.assertEqual(assembly["attributionParagraphs"], 2)
+        self.assertNotIn("reproductionNote", records["afiliacion-obrera-1917"]["image"])
+        self.assertEqual(records["prim-busca-regimen-caricatura"]["image"]["filter"], "brightness(1.15)")
+
+    def test_1936_map_caption_preserves_2004_exam(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(record for record in data["documents"] if record["id"] == "mapa-espana-julio-1936")
+        self.assertEqual(record["image"]["examCaption"]["text"],
+                         "División de España tras el fallido golpe de Estado de 17-19 julio de 1936")
+        self.assertTrue(any(appearance["id"] == "fuente-pdf-2004-3-4" for appearance in record["appearances"]))
+
+    def test_2014_juan_carlos_caption_uses_correct_capitalization(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"]
+                      if d["id"] == "presidentes-monarquia-juan-carlos-2014")
+        self.assertEqual(
+            record["examCaption"]["text"],
+            "Cuatro de los seis presidentes del Gobierno en la monarquía de Juan Carlos I",
+        )
+
+    def test_2003_cortes_caption_uses_correct_treatment_and_institution_case(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"]
+                      if any(a["id"] == "fuente-pdf-2003-4-4" for a in d["appearances"]))
+        self.assertEqual(
+            record["examCaption"]["text"],
+            "Apertura por su majestad Juan Carlos I de las Cortes legislativas. Mayo de 1979",
+        )
+
     def test_pdf_import_preserves_the_original_corpus_and_counts_only_available_materials(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         original = []
@@ -49,7 +211,8 @@ class DocumentCorpusTests(unittest.TestCase):
                                  and not (record["id"] in ("mural-constitucion-1812-cadiz", "prim-busca-regimen-caricatura",
                                                           "directorio-civil-alfonso-xiii-1925", "reparto-armas-madrid-1936",
                                                           "miembros-cortes-cadiz", "mapa-desamortizacion-madoz",
-                                                          "composicion-congreso-elecciones-febrero-1936")
+                                                          "composicion-congreso-elecciones-febrero-1936",
+                                                          "composicion-congreso-elecciones-1977")
                                           and key in ("image", "quality"))
                                  and not (record["id"] in ("constitucion-1812-articulos-2008",
                                                           "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos",
@@ -57,12 +220,14 @@ class DocumentCorpusTests(unittest.TestCase):
                                                           "constitucion-1978-articulos-suplente-a")
                                           and key == "studyCompilation")
                                  and not (record["id"] == "elecciones-cortes-1931"
-                                          and key in ("date", "image", "quality", "table", "examCaption"))})
+                                          and key in ("date", "image", "quality", "table", "examCaption"))
+                                 and not (record["id"] == "resultados-de-las-elecciones-generales-de-1982"
+                                          and key in ("quality", "tableImage"))})
             imported.extend(a for a in record["appearances"] if a["year"] <= 2007)
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "ea5c363de28bff7c6f32f0adbfce7e26f2b4f2479137deb7d293d39d3e98c19c")
+        self.assertEqual(digest, "ecc1ebb3f230949be089602824bd75d6d96ae8be2f323633a87fdf604940433f")
         self.assertEqual(len(imported), 135)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
@@ -301,8 +466,9 @@ class DocumentCorpusTests(unittest.TestCase):
             with self.subTest(document=record["id"]):
                 self.assertIn(annotations["layout"], ("margins", "numbered"))
                 self.assertTrue(annotations["note"])
-                self.assertTrue(annotations["sources"])
-                for source in annotations["sources"]:
+                if record["id"] != "apertura-cortes-1979":
+                    self.assertTrue(annotations["sources"])
+                for source in annotations.get("sources", []):
                     self.assertTrue(source["title"])
                     self.assertEqual(urlparse(source["url"]).scheme, "https")
                 items = annotations.get("symbols", annotations.get("people"))
@@ -326,6 +492,8 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(image["src"], "assets/documentos/pdf-2003-4-4.png")
         annotations = image["annotations"]
         self.assertIn("indicados por el usuario", annotations["note"])
+        self.assertNotIn("Las posiciones señaladas", annotations["context"])
+        self.assertNotIn("sources", annotations)
         people = annotations["people"]
         self.assertEqual([person["name"] for person in people],
                          ["Juan Carlos I", "Sofía de Grecia", "Felipe de Borbón"])
@@ -1002,28 +1170,80 @@ class DocumentCorpusTests(unittest.TestCase):
         record = records["constitucion-1978-articulos-suplente-a"]
         compilation = record["studyCompilation"]
         paragraphs = compilation["text"]
-        self.assertEqual(paragraphs[0], record["text"][0])
+        self.assertEqual(compilation["title"], "Constitución de 1978")
+        self.assertEqual(paragraphs[0], compilation["title"])
+        self.assertEqual(paragraphs[1], record["text"][0])
         self.assertEqual([paragraphs[index] for index in compilation["headingParagraphs"]],
-                         ["Artículo 1", "Artículo 2", "Artículo 3", "Artículo 6", "Artículo 7"])
+                         ["Constitución de 1978", "Artículo 1", "Artículo 2", "Artículo 3",
+                          "Artículo 6", "Artículo 7"])
         self.assertEqual([re.match(r"\d\.\d", paragraph)[0] for paragraph in paragraphs
                           if re.match(r"\d\.\d", paragraph)], ["1.1", "1.2", "1.3", "3.1", "3.2", "3.3"])
         self.assertEqual([index for index, paragraph in enumerate(paragraphs) if paragraph == "[...]"],
-                         [1, 12])
+                         [2, 13])
         selection_2005 = records[f"{record['id']}-pdf-2005-4-3"]["text"]
-        self.assertEqual(paragraphs[9:12], [selection_2005[5].removeprefix("Art. "), *selection_2005[6:8]])
+        self.assertEqual(paragraphs[10:13], [selection_2005[5].removeprefix("Art. "), *selection_2005[6:8]])
         selection_2004 = records[f"{record['id']}-pdf-2004-6-3"]["text"]
-        self.assertEqual(paragraphs[14], selection_2004[3].removeprefix("Artículo 6. "))
-        self.assertEqual(paragraphs[16], selection_2004[4].removeprefix("Artículo 7. "))
-        self.assertIn("Derecho,", paragraphs[3])
-        self.assertIn("pueblo español,", paragraphs[4])
+        self.assertEqual(paragraphs[15], selection_2004[3].removeprefix("Artículo 6. "))
+        self.assertEqual(paragraphs[17], selection_2004[4].removeprefix("Artículo 7. "))
+        self.assertIn("Derecho,", paragraphs[4])
+        self.assertIn("pueblo español,", paragraphs[5])
         self.assertIn("de derechos,", selection_2004[0])
         self.assertFalse(selection_2004[0].startswith("Don Juan Carlos"))
         self.assertEqual(compilation["attributionParagraphs"], 1)
-        self.assertIn("No es el texto íntegro", compilation["readingNote"])
+        self.assertNotIn("readingNote", compilation)
         self.assertNotIn("appearances", compilation)
         group = next(group for group in data["textGroups"] if group[0] == record["id"])
         self.assertEqual(sorted(a["year"] for identity in group for a in records[identity]["appearances"]),
                          [2004, 2005, 2025])
+
+    def test_four_digit_numbers_use_no_thousands_point(self):
+        grouped_four_digits = re.compile(r"(?<![0-9.])[1-9]\.[0-9]{3}(?![0-9.])")
+
+        def strings(value, path):
+            if isinstance(value, dict):
+                for key, child in value.items():
+                    yield from strings(child, f"{path}.{key}")
+            elif isinstance(value, list):
+                for index, child in enumerate(value):
+                    yield from strings(child, f"{path}[{index}]")
+            elif isinstance(value, str):
+                yield path, value
+
+        for path in sorted((ROOT / "data").glob("*.json")):
+            data = json.loads(path.read_text())
+            for location, value in strings(data, str(path)):
+                self.assertIsNone(grouped_four_digits.search(value), f"{location}: {value}")
+
+        for path in sorted((ROOT / "assets/documentos").glob("*.svg")):
+            root = ET.parse(path).getroot()
+            for node in root.iter():
+                if node.tag.rsplit("}", 1)[-1] in ("text", "title", "desc", "tspan"):
+                    value = "".join(node.itertext())
+                    self.assertIsNone(grouped_four_digits.search(value), f"{path}: {value}")
+                for attribute in ("aria-label", "alt", "title"):
+                    value = node.get(attribute, "")
+                    self.assertIsNone(grouped_four_digits.search(value), f"{path}: {value}")
+
+        records = {record["id"]: record for record in
+                   json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
+        constitution = records["constitucion-1978-gobierno-97-98-101"]
+        self.assertEqual(constitution["text"][0], "CONSTITUCIÓN ESPAÑOLA DE 1978")
+        self.assertIn("Se normaliza la escritura del año", constitution["quality"])
+
+    def test_suarez_context_is_added_to_2011_pactos_moncloa_image(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"]
+                      if item["id"] == "firmantes-pactos-moncloa-1977")
+        self.assertIn("primer presidente democrático tras la dictadura (1976–1981)",
+                      record["commentary"][0]["text"])
+
+    def test_tejero_annotation_identifies_the_failed_23f_coup(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"]
+                      if item["id"] == "fotografia-tejero-golpe-23f-1981")
+        role = record["image"]["annotations"]["people"][0]["role"]
+        self.assertIn("lideró el fallido golpe de Estado", role)
+        self.assertIn("23 de febrero de 1981 (23F)", role)
 
     def test_fuero_compilation_covers_corpus_articles_without_replacing_exam_variants(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1261,6 +1481,14 @@ class DocumentCorpusTests(unittest.TestCase):
             with self.subTest(document=identity):
                 self.assertIn(title, records[identity]["attributionEmphasis"])
 
+    def test_suarez_source_uses_the_corpus_bibliographic_format(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(d for d in data["documents"]
+                      if d["id"] == "suarez-ley-reforma-politica-1976")
+        self.assertEqual(record["text"][-1],
+                         "Prego, V.: Así se hizo la transición. Barcelona, Plaza & Janés, 1995.")
+        self.assertEqual(record["attributionEmphasis"], ["Así se hizo la transición"])
+
     def test_vectors_keep_source_provenance(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         documents = {document["id"]: document for document in data["documents"]}
@@ -1275,12 +1503,25 @@ class DocumentCorpusTests(unittest.TestCase):
                 self.assertTrue(capture["src"].endswith(".svg"))
                 self.assertIn("sel_historia_espana.zip", capture["sourceUrl"])
 
+        election_table = documents["resultados-de-las-elecciones-generales-de-1982"]["tableImage"]
+        styled = ET.parse(ROOT / election_table["src"]).getroot()
+        stripes = styled.findall(".//{http://www.w3.org/2000/svg}rect[@class='row-stripe']")
+        self.assertEqual([stripe.get("data-stripe-row") for stripe in stripes],
+                         ["0", "2", "4", "6", "8", "10", "12", "14"])
+        self.assertTrue(all(
+            stripe.get("fill") == "#dce8e2" and stripe.get("x") == "0"
+            and stripe.get("width") == "436" for stripe in stripes
+        ))
+        self.assertNotIn('id="election-table-row-stripes"',
+                         (ROOT / documents["resultados-de-las-elecciones-generales-de-1982"]
+                          ["tableImage"]["originalSrc"]).read_text())
+
         official = documents["elecciones-generales-1982-congreso-senado"]
         self.assertIn("-vector.svg", official["image"]["src"])
         self.assertIn("Redibujado vectorial", official["quality"])
         self.assertTrue((ROOT / official["image"]["originalSrc"]).is_file())
         self.assertIn("PDF oficial", official["quality"])
-        self.assertEqual((official["image"]["width"], official["image"]["height"]), (2084, 1418))
+        self.assertEqual((official["image"]["width"], official["image"]["height"]), (2084, 1460))
 
         desamortizaciones = documents["grafico-desamortizaciones-siglo-xix"]
         self.assertIn("PDF oficial de 2008", desamortizaciones["sourceCaption"])
@@ -1299,8 +1540,7 @@ class DocumentCorpusTests(unittest.TestCase):
             "Fuente: Artola, M. (dir.): Enciclopedia de Historia de España: vol. VI.",
         )
         self.assertEqual(image["examCaption"]["emphasis"], ["Enciclopedia de Historia de España: vol. VI"])
-        self.assertIn("no representan cifras absolutas", image["reproductionNote"])
-        self.assertIn("Soria", image["reproductionNote"])
+        self.assertNotIn("reproductionNote", image)
         self.assertIn(f'"./{image["src"]}"', (ROOT / "sw.js").read_text())
         self.assertTrue(image["selectable"])
         self.assertTrue((ROOT / image["originalSrc"]).is_file())
@@ -1629,7 +1869,7 @@ class DocumentCorpusTests(unittest.TestCase):
             ("384", "238", "middle"),
         )
         emphasis = note.find(f"{namespace}tspan")
-        self.assertEqual(emphasis.text, "El fracaso de la Revolución Industrial en España")
+        self.assertEqual(emphasis.text, "El fracaso de la Revolución Industrial en España, 1814-1913")
         self.assertEqual(emphasis.get("font-style"), "italic")
         for row_index, row in enumerate(document["table"]["rows"]):
             for column_index, value in enumerate(row):
@@ -1645,13 +1885,11 @@ class DocumentCorpusTests(unittest.TestCase):
         namespace = "{http://www.w3.org/2000/svg}"
         root = ET.parse(ROOT / image["src"]).getroot()
         self.assertEqual((image["kind"], image["width"], image["height"]),
-                         ("chart", 593, 447))
-        self.assertEqual((root.get("width"), root.get("height")), ("593", "447"))
+                         ("chart", 593, 419))
+        self.assertEqual((root.get("width"), root.get("height")), ("593", "419"))
         title = root.find(f"{namespace}text[@class='title']")
-        self.assertEqual(title.text, "Composición de la sociedad española hacia 1860")
-        self.assertEqual((title.get("x"), title.get("text-anchor")), ("296.5", "middle"))
-        style = root.find(f"{namespace}style").text
-        self.assertIn(".title{font-family:Arial,sans-serif;font-size:22px;font-weight:700}", style)
+        self.assertIsNone(title)
+        self.assertEqual(document["examCaption"]["text"], "Composición de la sociedad española hacia 1860")
         reference = ET.parse(ROOT / "assets/documentos/tabla-congreso-1936.svg").getroot()
         self.assertIn("font-family:Arial,sans-serif;fill:#382f3e",
                       reference.find(f"{namespace}style").text)
@@ -1667,7 +1905,7 @@ class DocumentCorpusTests(unittest.TestCase):
             [["Nobleza y clero", "16"], ["Burguesía alta", "3"],
              ["Clases medias", "10"], ["Clases bajas", "71"]],
         )
-        self.assertIn("no aparecen", image["reproductionNote"])
+        self.assertNotIn("reproductionNote", image)
 
     def test_montecristi_footers_spell_out_the_date(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1845,6 +2083,20 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(source["assignedTo"], record["id"])
         self.assertEqual(source["images"], imported["sourceImages"])
 
+    def test_maximo_caption_marks_el_pais_and_explains_the_date_anachronism(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"] if item["id"] == "maximo-febrero-1976")
+        caption = record["examCaption"]
+        self.assertEqual(caption["text"], "Chiste de Máximo aparecido en El País*, febrero de 1976")
+        self.assertEqual(caption["emphasis"], ["El País"])
+        self.assertEqual(
+            caption["note"],
+            "* El País no existía aún en febrero de 1976: su primer número se publicó el 4 de mayo de ese año. "
+            "Durante ese mes sí circulaban otros periódicos de tirada nacional, como ABC y La Vanguardia.",
+        )
+        self.assertEqual(caption["noteEmphasis"], ["El País", "ABC", "La Vanguardia"])
+        self.assertEqual(record["appearances"][0]["id"], "fuente-pdf-2005-4-4")
+
     def test_pib_chart_tooltips_show_original_values_and_2026_equivalents(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "pib-habitante-1931-1973")
@@ -1853,8 +2105,16 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIn("pesetas constantes de 1980", record["quality"])
         self.assertIn("equivalentes en euros y pesetas de 2026", record["image"]["alt"])
         self.assertTrue(record["image"]["selectable"])
+        self.assertEqual(record["image"]["examCaption"], {
+            "text": "Fuente: Prados de la Escosura, Spain's Gross Domestic Product (1995)",
+            "emphasis": ["Spain's Gross Domestic Product"],
+        })
         svg = ET.parse(ROOT / record["image"]["src"]).getroot()
         namespace = {"svg": "http://www.w3.org/2000/svg"}
+        self.assertEqual(
+            [label.text for label in svg.findall(".//svg:text[@class='year-label']", namespace)],
+            ["1939*"] + [str(year) for year in range(1941, 1974, 2)],
+        )
         points = svg.findall(".//svg:g[@class='point']", namespace)
         self.assertEqual(len(points), 35)
         first = points[0]
@@ -1866,12 +2126,13 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(
             [node.text for node in first.findall(".//svg:g[@class='tooltip']/svg:text", namespace)],
             ["1939*", "Serie original: 90.000 ptas.",
-             "Euros de 2026: 3.509 €", "Pesetas de 2026: 583.800"],
+             "Euros de 2026: 3509 €", "Pesetas de 2026: 583.800"],
         )
         tooltip_text = "".join(first.find(".//svg:g[@class='tooltip']", namespace).itertext())
         self.assertNotIn("base 1980", tooltip_text)
         year_1940 = next(point for point in points if point.get("data-year") == "1940")
         self.assertIn("96.200", year_1940.get("aria-label"))
+        self.assertIn("3750 euros de 2026", year_1940.get("aria-label"))
         year_1970 = next(point for point in points if point.get("data-year") == "1970")
         self.assertEqual(year_1970.get("data-original-pesetas-1980"), "291200")
         self.assertIn("13.449 euros de 2026", points[-1].get("aria-label"))
@@ -1879,46 +2140,144 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIn("pointerup", svg.find("svg:script", namespace).text)
         self.assertIn("1931", "".join(svg.itertext()))
         self.assertIn("1939", "".join(svg.itertext()))
+        self.assertIn("*Errata: el examen original indica en el título 1931, pero los datos comienzan en 1939",
+                      "".join(svg.itertext()))
+        self.assertNotIn("Prados de la Escosura", "".join(svg.itertext()))
 
     def test_divisas_table_matches_exam_layout_and_italicizes_book_title(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "divisas-emigrantes-1961-1975")
-        self.assertEqual((record["image"]["width"], record["image"]["height"]), (480, 540))
+        self.assertEqual((record["image"]["width"], record["image"]["height"]), (480, 492))
         self.assertIn("sombreado verde editorial", record["image"]["reproductionNote"])
         self.assertEqual(record["image"]["originalSrc"], "assets/documentos/pdf-2003-6-4.png")
         self.assertEqual(len(record["table"]["rows"]), 15)
         svg = ET.parse(ROOT / record["image"]["src"]).getroot()
         namespace = {"svg": "http://www.w3.org/2000/svg"}
+        stripes = svg.findall(".//svg:rect[@class='row-stripe']", namespace)
+        self.assertEqual(len(stripes), 30)
+        self.assertEqual([stripe.get("fill") for stripe in stripes[:4]],
+                         ["#f5f7f5", "#dce8e2", "#fff", "#e7f0ec"])
+        self.assertEqual([(stripe.get("data-stripe-row"), stripe.get("data-stripe-column"))
+                          for stripe in stripes[:2]], [("0", "0"), ("0", "1")])
+        title_line = svg.find(".//svg:text[@class='title']", namespace)
+        self.assertIsNotNone(title_line)
+        self.assertEqual((title_line.get("x"), title_line.get("text-anchor")), ("235", "middle"))
         title = svg.find(".//svg:tspan", namespace)
         self.assertIsNotNone(title)
         self.assertEqual(title.get("font-style"), "italic")
         self.assertEqual(title.text, "La emigración española")
 
-    def test_2007_election_diagram_uses_a_semicircle_and_keeps_all_candidates_accessible(self):
+    def test_2007_election_diagram_uses_exam_grouping_and_ministry_ucd_votes(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         record = next(item for item in data["documents"] if item["id"] == "elecciones-1977-diagrama")
         image = record["image"]
-        self.assertEqual((image["width"], image["height"]), (760, 640))
-        self.assertEqual(len(record["table"]["rows"]), 19)
+        self.assertEqual(image["width"], 760)
+        self.assertNotIn("reproductionNote", image)
+        self.assertEqual(len(record["table"]["rows"]), 7)
         svg = (ROOT / image["src"]).read_text()
         self.assertEqual(svg.count('<path class="sector"'), 7)
         self.assertIn('data-party="Otros*"', svg)
-        ucd_sector = ET.fromstring(svg).find(
+        svg_root = ET.fromstring(svg)
+        self.assertEqual(image["height"], int(svg_root.get("height")))
+        ucd_sector = svg_root.find(
             ".//{http://www.w3.org/2000/svg}path[@data-party='UCD']")
         self.assertEqual((ucd_sector.get("data-seats"), ucd_sector.get("data-seat-percent")),
-                         ("165", "47.143"))
-        self.assertEqual(ucd_sector.get("fill"), "#26736f")
+                         ("166", "47.429"))
+        self.assertEqual(ucd_sector.get("fill"), "#315a29")
+        divider = svg_root.find(".//{http://www.w3.org/2000/svg}line[@class='majority-divider']")
+        self.assertIsNotNone(divider)
+        self.assertEqual(
+            (divider.get("x1"), divider.get("y1"), divider.get("x2"), divider.get("y2")),
+            ("230", "185", "230", "292"),
+        )
+        self.assertTrue(divider.get("stroke-dasharray"))
+        center = [
+            node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
+            if node.get("class") in ("center-seat", "center-majority")
+        ]
+        self.assertEqual(center, ["350", "escaños", "176 para la mayoría"])
+        self.assertEqual(
+            svg_root.find("{http://www.w3.org/2000/svg}title").text,
+            "Resultado elecciones 1977 (15 de junio)",
+        )
+        self.assertIsNone(svg_root.find(".//{http://www.w3.org/2000/svg}text[@class='subtitle']"))
+        visible_party_labels = " ".join(
+            node.text or "" for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
+            if node.get("class") == "party"
+        )
+        for label in (
+            "Unión de Centro Democrático (UCD)",
+            "Partido Socialista Obrero Español (PSOE)",
+            "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+            "Partido Comunista de España (PCE)",
+            "Partit Socialista Unificat de Catalunya (PSUC)",
+            "Alianza Popular (AP)",
+            "Pacte Democràtic per Catalunya (PDC)",
+            "Partido Nacionalista Vasco (PNV)",
+        ):
+            self.assertIn(label, visible_party_labels)
+        footnotes = [
+            node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
+            if node.get("class") == "footnote"
+        ]
+        self.assertEqual(footnotes, [
+            "Agrupación del examen: Unión de Centro Democrático (UCD), 166 escaños; Otros*, 11.",
+            "Votos de Unión de Centro Democrático (UCD): Ministerio del Interior; demás votos: JEC.",
+        ])
+        self.assertNotIn("Escaños (%) = escaños", svg)
+        self.assertNotIn("Porcentajes de voto recalculados a una décima", svg)
         self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])
-        self.assertEqual(record["table"]["rows"][0][3:], [165, "47,1"])
-        vote_percentages = [Decimal(row[2].replace(",", ".")) for row in record["table"]["rows"]]
-        self.assertEqual(sum(vote_percentages), Decimal("100.0"))
-        self.assertEqual(record["table"]["rows"][0][2], "34,4")
+        self.assertEqual(record["table"]["rows"][0][1:], ["6 310 391", 166, "47,4"])
+        self.assertEqual(record["table"]["caption"], "Resultado elecciones 1977 (15 de junio)")
+        self.assertEqual(sum(row[2] for row in record["table"]["rows"]), 350)
+        self.assertEqual(sum(int(row[1].replace(" ", "")) for row in record["table"]["rows"]),
+                         16904704)
+        self.assertIn("6 310 391 votos", svg)
+        metadata = json.loads(svg_root.find("{http://www.w3.org/2000/svg}metadata").text)
+        self.assertIn("infoelectoral.interior.gob.es", metadata["ministrySource"])
         notes = " ".join(record["table"]["notes"])
-        self.assertIn("14,4 %", notes)
-        self.assertIn("99,14 %", notes)
-        self.assertIn("EC-FED (1)", notes)
-        self.assertNotIn("Cifras: tabla aportada por el usuario", svg)
-        self.assertIn("PSP-US 6 · DCC 2 · EC-FED 1", svg)
+        self.assertIn("Ministerio del Interior", notes)
+        self.assertIn("6 310 391", notes)
+        self.assertIn("no es un grupo parlamentario", notes)
+        self.assertIn("1 261 933 votos", svg)
+        self.assertNotIn("Votos (%)", record["table"]["headers"])
+
+    def test_1977_tables_use_the_declared_sources_and_exam_grouping(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        record = records["elecciones-1977-votos-escanos"]
+        caption = "Resultado elecciones 1977 (15 de junio)"
+        self.assertEqual(record["image"]["examCaption"]["text"], caption)
+        self.assertNotIn("tipografía", record["quality"])
+        svg = ET.parse(ROOT / record["image"]["src"]).getroot()
+        self.assertEqual(
+            svg.find("{http://www.w3.org/2000/svg}text[@class='title']").text,
+            "Resultado elecciones 1977 (15 de junio)",
+        )
+        self.assertNotIn("Doc. 11", "".join(svg.itertext()))
+        table = record["table"]
+        self.assertEqual(table["caption"], caption)
+        rows = {row[0]: row for row in table["rows"]}
+        self.assertEqual(rows["UCD"], ["UCD", "6 310 391", "166", "47,4"])
+        self.assertEqual(rows["PSOE + PSC"], ["PSOE + PSC", "5 338 107", "118", "33,7"])
+        self.assertEqual(rows["PCE + PSUC"], ["PCE + PSUC", "1 711 906", "20", "5,7"])
+        self.assertEqual(rows["Otros"], ["Otros", "445 179", "5", "1,4"])
+        self.assertEqual(sum(int(row[2]) for row in table["rows"]), 350)
+        self.assertEqual(sum(int(row[1].replace(" ", "")) for row in table["rows"]), 16904704)
+        original_table = records["composicion-congreso-elecciones-1977"]["table"]
+        self.assertEqual(sum(row[1] for row in original_table["rows"]), 350)
+        table_record = records["composicion-congreso-elecciones-1977"]
+        table_svg = ET.parse(ROOT / table_record["image"]["src"]).getroot()
+        namespace = "{http://www.w3.org/2000/svg}"
+        stripes = table_svg.findall(f".//{namespace}rect[@class='grid row-stripe']")
+        self.assertEqual([stripe.get("data-stripe-row") for stripe in stripes],
+                         ["0", "0", "2", "2", "4", "4", "6", "6", "8", "8", "10", "10"])
+        self.assertIn(".grid.row-stripe{fill:#dce8e2}",
+                      table_svg.find(f"{namespace}style").text)
+        self.assertIn("Ministerio del Interior", " ".join(table["notes"]))
+        for identity in ("elecciones-1977-votos-escanos", "elecciones-1977-diagrama",
+                         "composicion-congreso-elecciones-1977"):
+            self.assertIn("juntaelectoralcentral.es", records[identity]["dataSourceUrl"])
 
     def test_new_corpus_tables_match_their_accessible_data_and_occurrences(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -2165,9 +2524,15 @@ class DocumentCorpusTests(unittest.TestCase):
         document = next(item for item in data["documents"]
                         if item["id"] == "elecciones-generales-1982-congreso-senado")
         root = ET.parse(ROOT / document["image"]["src"]).getroot()
+        namespace = "{http://www.w3.org/2000/svg}"
+        stripes = root.findall(f".//{namespace}rect[@data-stripe-row]")
+        self.assertEqual([stripe.get("data-stripe-row") for stripe in stripes],
+                         ["0", "2", "4", "6", "8"])
+        self.assertEqual([stripe.get("y") for stripe in stripes],
+                         ["140", "236", "332", "428", "524"])
         cells = {
             (int(node.get("x")), int(node.get("y"))): node.text
-            for node in root.iter("{http://www.w3.org/2000/svg}text")
+            for node in root.iter(f"{namespace}text")
         }
         for index, row in enumerate(document["table"]["rows"]):
             y = 618 if index == 9 else 180 + 48 * index

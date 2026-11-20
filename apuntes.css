@@ -69,6 +69,7 @@ a:focus-visible,button:focus-visible{outline:3px solid #bc6e3f;outline-offset:4p
 .print-help{margin:0;color:var(--muted);font:12px/1.5 "DM Sans",Arial,sans-serif}
 .reading-content,.pending{margin-top:32px;padding:clamp(20px,5vw,56px);background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:inset 0 -100px 100px -100px color-mix(in srgb,var(--accent) 25%,transparent),0 12px 32px #0000000a;overflow-wrap:anywhere}
 .reading-content{max-width:780px;margin-left:auto;margin-right:auto;font-family:Georgia,"Times New Roman",serif;font-size:calc(18px * var(--reading-scale,1));line-height:1.65;text-align:left}
+.reading-content .example-origin{margin-left:.55em;padding:2px 8px;font-family:"DM Sans",Arial,sans-serif;font-size:calc(12px * var(--reading-scale,1));line-height:1.4;vertical-align:.12em;white-space:nowrap}
 .reading-preamble{font-size:calc(18px * var(--reading-scale,1))}
 :root[data-reading-font="sans"] .reading-content,:root[data-reading-font="sans"] .reading-preamble{font-family:"DM Sans",Arial,sans-serif}
 :root[data-reading-font="arial"] .reading-content,:root[data-reading-font="arial"] .reading-preamble{font-family:Arial,Helvetica,sans-serif}

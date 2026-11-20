@@ -50,364 +50,386 @@
   <line x1="76" y1="60.0" x2="80" y2="60.0" stroke="#ca8a04" stroke-width="1" />
   <line x1="80.0" y1="379" x2="80.0" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="80.0" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 80.0, 397)">1939*</text>
+  <line x1="118.5" y1="379" x2="118.5" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="118.5" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 118.5, 397)">1941</text>
+  <line x1="157.1" y1="379" x2="157.1" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="157.1" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 157.1, 397)">1943</text>
   <line x1="195.6" y1="379" x2="195.6" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="195.6" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 195.6, 397)">1945</text>
+  <line x1="234.1" y1="379" x2="234.1" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="234.1" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 234.1, 397)">1947</text>
+  <line x1="272.6" y1="379" x2="272.6" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="272.6" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 272.6, 397)">1949</text>
   <line x1="311.2" y1="379" x2="311.2" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="311.2" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 311.2, 397)">1951</text>
+  <line x1="349.7" y1="379" x2="349.7" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="349.7" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 349.7, 397)">1953</text>
+  <line x1="388.2" y1="379" x2="388.2" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="388.2" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 388.2, 397)">1955</text>
   <line x1="426.8" y1="379" x2="426.8" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="426.8" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 426.8, 397)">1957</text>
+  <line x1="465.3" y1="379" x2="465.3" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="465.3" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 465.3, 397)">1959</text>
+  <line x1="503.8" y1="379" x2="503.8" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="503.8" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 503.8, 397)">1961</text>
   <line x1="542.4" y1="379" x2="542.4" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="542.4" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 542.4, 397)">1963</text>
+  <line x1="580.9" y1="379" x2="580.9" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="580.9" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 580.9, 397)">1965</text>
+  <line x1="619.4" y1="379" x2="619.4" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="619.4" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 619.4, 397)">1967</text>
   <line x1="657.9" y1="379" x2="657.9" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="657.9" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 657.9, 397)">1969</text>
+  <line x1="696.5" y1="379" x2="696.5" y2="384" stroke="#ca8a04" stroke-width="1" />
+  <text x="696.5" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 696.5, 397)">1971</text>
   <line x1="735.0" y1="379" x2="735.0" y2="384" stroke="#ca8a04" stroke-width="1" />
   <text x="735.0" y="397" class="year-label" text-anchor="end" transform="rotate(-45, 735.0, 397)">1973</text>
   <polyline fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="80.0,297.0 99.3,291.3 118.5,292.0 137.8,287.6 157.1,285.6 176.3,282.1 195.6,289.5 214.9,282.8 234.1,282.5 253.4,283.9 272.6,284.3 291.9,281.1 311.2,271.4 330.4,264.2 349.7,264.5 369.0,256.0 388.2,250.9 407.5,242.8 426.8,238.0 446.0,232.7 465.3,236.5 484.6,234.5 503.8,219.1 523.1,205.9 542.4,192.7 561.6,183.2 580.9,173.3 600.1,160.7 619.4,153.4 638.7,140.8 657.9,121.9 677.2,113.6 696.5,104.1 715.7,84.7 735.0,64.6" />
-  <g class="point" data-year="1939" data-original-pesetas-1980="90000" data-euros-2026="3509" data-pesetas-2026="583800" tabindex="0" role="graphics-symbol" aria-label="1939*: serie original, 90.000 pesetas constantes de 1980; 3.509 euros de 2026; 583.800 pesetas de 2026">
-    <title>1939*: serie original, 90.000 pesetas constantes de 1980; 3.509 euros de 2026; 583.800 pesetas de 2026</title>
+  <g class="point" data-year="1939" data-original-pesetas-1980="90000" data-euros-2026="3509" data-pesetas-2026="583800" tabindex="0" role="graphics-symbol" aria-label="1939*: serie original, 90.000 pesetas constantes de 1980; 3509 euros de 2026; 583.800 pesetas de 2026">
+    <title>1939*: serie original, 90.000 pesetas constantes de 1980; 3509 euros de 2026; 583.800 pesetas de 2026</title>
       <circle class="hit" cx="80.0" cy="297.0" r="8" />
     <circle cx="80.0" cy="297.0" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 213.0)">
       <rect width="260" height="76" />
       <text x="8" y="17">1939*</text>
       <text x="8" y="34">Serie original: 90.000 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.509 €</text>
+      <text x="8" y="51">Euros de 2026: 3509 €</text>
       <text x="8" y="68">Pesetas de 2026: 583.800</text>
     </g>
   </g>
-  <g class="point" data-year="1940" data-original-pesetas-1980="96200" data-euros-2026="3750" data-pesetas-2026="624000" tabindex="0" role="graphics-symbol" aria-label="1940: serie original, 96.200 pesetas constantes de 1980; 3.750 euros de 2026; 624.000 pesetas de 2026">
-    <title>1940: serie original, 96.200 pesetas constantes de 1980; 3.750 euros de 2026; 624.000 pesetas de 2026</title>
+  <g class="point" data-year="1940" data-original-pesetas-1980="96200" data-euros-2026="3750" data-pesetas-2026="624000" tabindex="0" role="graphics-symbol" aria-label="1940: serie original, 96.200 pesetas constantes de 1980; 3750 euros de 2026; 624.000 pesetas de 2026">
+    <title>1940: serie original, 96.200 pesetas constantes de 1980; 3750 euros de 2026; 624.000 pesetas de 2026</title>
       <circle class="hit" cx="99.3" cy="291.3" r="8" />
     <circle cx="99.3" cy="291.3" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 207.3)">
       <rect width="260" height="76" />
       <text x="8" y="17">1940</text>
       <text x="8" y="34">Serie original: 96.200 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.750 €</text>
+      <text x="8" y="51">Euros de 2026: 3750 €</text>
       <text x="8" y="68">Pesetas de 2026: 624.000</text>
     </g>
   </g>
-  <g class="point" data-year="1941" data-original-pesetas-1980="95500" data-euros-2026="3723" data-pesetas-2026="619400" tabindex="0" role="graphics-symbol" aria-label="1941: serie original, 95.500 pesetas constantes de 1980; 3.723 euros de 2026; 619.400 pesetas de 2026">
-    <title>1941: serie original, 95.500 pesetas constantes de 1980; 3.723 euros de 2026; 619.400 pesetas de 2026</title>
+  <g class="point" data-year="1941" data-original-pesetas-1980="95500" data-euros-2026="3723" data-pesetas-2026="619400" tabindex="0" role="graphics-symbol" aria-label="1941: serie original, 95.500 pesetas constantes de 1980; 3723 euros de 2026; 619.400 pesetas de 2026">
+    <title>1941: serie original, 95.500 pesetas constantes de 1980; 3723 euros de 2026; 619.400 pesetas de 2026</title>
       <circle class="hit" cx="118.5" cy="292.0" r="8" />
     <circle cx="118.5" cy="292.0" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 208.0)">
       <rect width="260" height="76" />
       <text x="8" y="17">1941</text>
       <text x="8" y="34">Serie original: 95.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.723 €</text>
+      <text x="8" y="51">Euros de 2026: 3723 €</text>
       <text x="8" y="68">Pesetas de 2026: 619.400</text>
     </g>
   </g>
-  <g class="point" data-year="1942" data-original-pesetas-1980="100300" data-euros-2026="3910" data-pesetas-2026="650600" tabindex="0" role="graphics-symbol" aria-label="1942: serie original, 100.300 pesetas constantes de 1980; 3.910 euros de 2026; 650.600 pesetas de 2026">
-    <title>1942: serie original, 100.300 pesetas constantes de 1980; 3.910 euros de 2026; 650.600 pesetas de 2026</title>
+  <g class="point" data-year="1942" data-original-pesetas-1980="100300" data-euros-2026="3910" data-pesetas-2026="650600" tabindex="0" role="graphics-symbol" aria-label="1942: serie original, 100.300 pesetas constantes de 1980; 3910 euros de 2026; 650.600 pesetas de 2026">
+    <title>1942: serie original, 100.300 pesetas constantes de 1980; 3910 euros de 2026; 650.600 pesetas de 2026</title>
       <circle class="hit" cx="137.8" cy="287.6" r="8" />
     <circle cx="137.8" cy="287.6" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 203.6)">
       <rect width="260" height="76" />
       <text x="8" y="17">1942</text>
       <text x="8" y="34">Serie original: 100.300 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.910 €</text>
+      <text x="8" y="51">Euros de 2026: 3910 €</text>
       <text x="8" y="68">Pesetas de 2026: 650.600</text>
     </g>
   </g>
-  <g class="point" data-year="1943" data-original-pesetas-1980="102500" data-euros-2026="3996" data-pesetas-2026="664800" tabindex="0" role="graphics-symbol" aria-label="1943: serie original, 102.500 pesetas constantes de 1980; 3.996 euros de 2026; 664.800 pesetas de 2026">
-    <title>1943: serie original, 102.500 pesetas constantes de 1980; 3.996 euros de 2026; 664.800 pesetas de 2026</title>
+  <g class="point" data-year="1943" data-original-pesetas-1980="102500" data-euros-2026="3996" data-pesetas-2026="664800" tabindex="0" role="graphics-symbol" aria-label="1943: serie original, 102.500 pesetas constantes de 1980; 3996 euros de 2026; 664.800 pesetas de 2026">
+    <title>1943: serie original, 102.500 pesetas constantes de 1980; 3996 euros de 2026; 664.800 pesetas de 2026</title>
       <circle class="hit" cx="157.1" cy="285.6" r="8" />
     <circle cx="157.1" cy="285.6" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 201.6)">
       <rect width="260" height="76" />
       <text x="8" y="17">1943</text>
       <text x="8" y="34">Serie original: 102.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.996 €</text>
+      <text x="8" y="51">Euros de 2026: 3996 €</text>
       <text x="8" y="68">Pesetas de 2026: 664.800</text>
     </g>
   </g>
-  <g class="point" data-year="1944" data-original-pesetas-1980="106300" data-euros-2026="4144" data-pesetas-2026="689500" tabindex="0" role="graphics-symbol" aria-label="1944: serie original, 106.300 pesetas constantes de 1980; 4.144 euros de 2026; 689.500 pesetas de 2026">
-    <title>1944: serie original, 106.300 pesetas constantes de 1980; 4.144 euros de 2026; 689.500 pesetas de 2026</title>
+  <g class="point" data-year="1944" data-original-pesetas-1980="106300" data-euros-2026="4144" data-pesetas-2026="689500" tabindex="0" role="graphics-symbol" aria-label="1944: serie original, 106.300 pesetas constantes de 1980; 4144 euros de 2026; 689.500 pesetas de 2026">
+    <title>1944: serie original, 106.300 pesetas constantes de 1980; 4144 euros de 2026; 689.500 pesetas de 2026</title>
       <circle class="hit" cx="176.3" cy="282.1" r="8" />
     <circle cx="176.3" cy="282.1" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 198.1)">
       <rect width="260" height="76" />
       <text x="8" y="17">1944</text>
       <text x="8" y="34">Serie original: 106.300 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.144 €</text>
+      <text x="8" y="51">Euros de 2026: 4144 €</text>
       <text x="8" y="68">Pesetas de 2026: 689.500</text>
     </g>
   </g>
-  <g class="point" data-year="1945" data-original-pesetas-1980="98200" data-euros-2026="3828" data-pesetas-2026="637000" tabindex="0" role="graphics-symbol" aria-label="1945: serie original, 98.200 pesetas constantes de 1980; 3.828 euros de 2026; 637.000 pesetas de 2026">
-    <title>1945: serie original, 98.200 pesetas constantes de 1980; 3.828 euros de 2026; 637.000 pesetas de 2026</title>
+  <g class="point" data-year="1945" data-original-pesetas-1980="98200" data-euros-2026="3828" data-pesetas-2026="637000" tabindex="0" role="graphics-symbol" aria-label="1945: serie original, 98.200 pesetas constantes de 1980; 3828 euros de 2026; 637.000 pesetas de 2026">
+    <title>1945: serie original, 98.200 pesetas constantes de 1980; 3828 euros de 2026; 637.000 pesetas de 2026</title>
       <circle class="hit" cx="195.6" cy="289.5" r="8" />
     <circle cx="195.6" cy="289.5" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(80.0 205.5)">
       <rect width="260" height="76" />
       <text x="8" y="17">1945</text>
       <text x="8" y="34">Serie original: 98.200 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 3.828 €</text>
+      <text x="8" y="51">Euros de 2026: 3828 €</text>
       <text x="8" y="68">Pesetas de 2026: 637.000</text>
     </g>
   </g>
-  <g class="point" data-year="1946" data-original-pesetas-1980="105500" data-euros-2026="4113" data-pesetas-2026="684300" tabindex="0" role="graphics-symbol" aria-label="1946: serie original, 105.500 pesetas constantes de 1980; 4.113 euros de 2026; 684.300 pesetas de 2026">
-    <title>1946: serie original, 105.500 pesetas constantes de 1980; 4.113 euros de 2026; 684.300 pesetas de 2026</title>
+  <g class="point" data-year="1946" data-original-pesetas-1980="105500" data-euros-2026="4113" data-pesetas-2026="684300" tabindex="0" role="graphics-symbol" aria-label="1946: serie original, 105.500 pesetas constantes de 1980; 4113 euros de 2026; 684.300 pesetas de 2026">
+    <title>1946: serie original, 105.500 pesetas constantes de 1980; 4113 euros de 2026; 684.300 pesetas de 2026</title>
       <circle class="hit" cx="214.9" cy="282.8" r="8" />
     <circle cx="214.9" cy="282.8" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(84.9 198.8)">
       <rect width="260" height="76" />
       <text x="8" y="17">1946</text>
       <text x="8" y="34">Serie original: 105.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.113 €</text>
+      <text x="8" y="51">Euros de 2026: 4113 €</text>
       <text x="8" y="68">Pesetas de 2026: 684.300</text>
     </g>
   </g>
-  <g class="point" data-year="1947" data-original-pesetas-1980="105900" data-euros-2026="4128" data-pesetas-2026="686900" tabindex="0" role="graphics-symbol" aria-label="1947: serie original, 105.900 pesetas constantes de 1980; 4.128 euros de 2026; 686.900 pesetas de 2026">
-    <title>1947: serie original, 105.900 pesetas constantes de 1980; 4.128 euros de 2026; 686.900 pesetas de 2026</title>
+  <g class="point" data-year="1947" data-original-pesetas-1980="105900" data-euros-2026="4128" data-pesetas-2026="686900" tabindex="0" role="graphics-symbol" aria-label="1947: serie original, 105.900 pesetas constantes de 1980; 4128 euros de 2026; 686.900 pesetas de 2026">
+    <title>1947: serie original, 105.900 pesetas constantes de 1980; 4128 euros de 2026; 686.900 pesetas de 2026</title>
       <circle class="hit" cx="234.1" cy="282.5" r="8" />
     <circle cx="234.1" cy="282.5" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(104.1 198.5)">
       <rect width="260" height="76" />
       <text x="8" y="17">1947</text>
       <text x="8" y="34">Serie original: 105.900 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.128 €</text>
+      <text x="8" y="51">Euros de 2026: 4128 €</text>
       <text x="8" y="68">Pesetas de 2026: 686.900</text>
     </g>
   </g>
-  <g class="point" data-year="1948" data-original-pesetas-1980="104300" data-euros-2026="4066" data-pesetas-2026="676500" tabindex="0" role="graphics-symbol" aria-label="1948: serie original, 104.300 pesetas constantes de 1980; 4.066 euros de 2026; 676.500 pesetas de 2026">
-    <title>1948: serie original, 104.300 pesetas constantes de 1980; 4.066 euros de 2026; 676.500 pesetas de 2026</title>
+  <g class="point" data-year="1948" data-original-pesetas-1980="104300" data-euros-2026="4066" data-pesetas-2026="676500" tabindex="0" role="graphics-symbol" aria-label="1948: serie original, 104.300 pesetas constantes de 1980; 4066 euros de 2026; 676.500 pesetas de 2026">
+    <title>1948: serie original, 104.300 pesetas constantes de 1980; 4066 euros de 2026; 676.500 pesetas de 2026</title>
       <circle class="hit" cx="253.4" cy="283.9" r="8" />
     <circle cx="253.4" cy="283.9" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(123.4 199.9)">
       <rect width="260" height="76" />
       <text x="8" y="17">1948</text>
       <text x="8" y="34">Serie original: 104.300 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.066 €</text>
+      <text x="8" y="51">Euros de 2026: 4066 €</text>
       <text x="8" y="68">Pesetas de 2026: 676.500</text>
     </g>
   </g>
-  <g class="point" data-year="1949" data-original-pesetas-1980="103900" data-euros-2026="4050" data-pesetas-2026="673900" tabindex="0" role="graphics-symbol" aria-label="1949: serie original, 103.900 pesetas constantes de 1980; 4.050 euros de 2026; 673.900 pesetas de 2026">
-    <title>1949: serie original, 103.900 pesetas constantes de 1980; 4.050 euros de 2026; 673.900 pesetas de 2026</title>
+  <g class="point" data-year="1949" data-original-pesetas-1980="103900" data-euros-2026="4050" data-pesetas-2026="673900" tabindex="0" role="graphics-symbol" aria-label="1949: serie original, 103.900 pesetas constantes de 1980; 4050 euros de 2026; 673.900 pesetas de 2026">
+    <title>1949: serie original, 103.900 pesetas constantes de 1980; 4050 euros de 2026; 673.900 pesetas de 2026</title>
       <circle class="hit" cx="272.6" cy="284.3" r="8" />
     <circle cx="272.6" cy="284.3" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(142.6 200.3)">
       <rect width="260" height="76" />
       <text x="8" y="17">1949</text>
       <text x="8" y="34">Serie original: 103.900 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.050 €</text>
+      <text x="8" y="51">Euros de 2026: 4050 €</text>
       <text x="8" y="68">Pesetas de 2026: 673.900</text>
     </g>
   </g>
-  <g class="point" data-year="1950" data-original-pesetas-1980="107400" data-euros-2026="4187" data-pesetas-2026="696600" tabindex="0" role="graphics-symbol" aria-label="1950: serie original, 107.400 pesetas constantes de 1980; 4.187 euros de 2026; 696.600 pesetas de 2026">
-    <title>1950: serie original, 107.400 pesetas constantes de 1980; 4.187 euros de 2026; 696.600 pesetas de 2026</title>
+  <g class="point" data-year="1950" data-original-pesetas-1980="107400" data-euros-2026="4187" data-pesetas-2026="696600" tabindex="0" role="graphics-symbol" aria-label="1950: serie original, 107.400 pesetas constantes de 1980; 4187 euros de 2026; 696.600 pesetas de 2026">
+    <title>1950: serie original, 107.400 pesetas constantes de 1980; 4187 euros de 2026; 696.600 pesetas de 2026</title>
       <circle class="hit" cx="291.9" cy="281.1" r="8" />
     <circle cx="291.9" cy="281.1" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(161.9 197.1)">
       <rect width="260" height="76" />
       <text x="8" y="17">1950</text>
       <text x="8" y="34">Serie original: 107.400 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.187 €</text>
+      <text x="8" y="51">Euros de 2026: 4187 €</text>
       <text x="8" y="68">Pesetas de 2026: 696.600</text>
     </g>
   </g>
-  <g class="point" data-year="1951" data-original-pesetas-1980="118100" data-euros-2026="4604" data-pesetas-2026="766000" tabindex="0" role="graphics-symbol" aria-label="1951: serie original, 118.100 pesetas constantes de 1980; 4.604 euros de 2026; 766.000 pesetas de 2026">
-    <title>1951: serie original, 118.100 pesetas constantes de 1980; 4.604 euros de 2026; 766.000 pesetas de 2026</title>
+  <g class="point" data-year="1951" data-original-pesetas-1980="118100" data-euros-2026="4604" data-pesetas-2026="766000" tabindex="0" role="graphics-symbol" aria-label="1951: serie original, 118.100 pesetas constantes de 1980; 4604 euros de 2026; 766.000 pesetas de 2026">
+    <title>1951: serie original, 118.100 pesetas constantes de 1980; 4604 euros de 2026; 766.000 pesetas de 2026</title>
       <circle class="hit" cx="311.2" cy="271.4" r="8" />
     <circle cx="311.2" cy="271.4" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(181.2 187.4)">
       <rect width="260" height="76" />
       <text x="8" y="17">1951</text>
       <text x="8" y="34">Serie original: 118.100 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.604 €</text>
+      <text x="8" y="51">Euros de 2026: 4604 €</text>
       <text x="8" y="68">Pesetas de 2026: 766.000</text>
     </g>
   </g>
-  <g class="point" data-year="1952" data-original-pesetas-1980="126000" data-euros-2026="4912" data-pesetas-2026="817300" tabindex="0" role="graphics-symbol" aria-label="1952: serie original, 126.000 pesetas constantes de 1980; 4.912 euros de 2026; 817.300 pesetas de 2026">
-    <title>1952: serie original, 126.000 pesetas constantes de 1980; 4.912 euros de 2026; 817.300 pesetas de 2026</title>
+  <g class="point" data-year="1952" data-original-pesetas-1980="126000" data-euros-2026="4912" data-pesetas-2026="817300" tabindex="0" role="graphics-symbol" aria-label="1952: serie original, 126.000 pesetas constantes de 1980; 4912 euros de 2026; 817.300 pesetas de 2026">
+    <title>1952: serie original, 126.000 pesetas constantes de 1980; 4912 euros de 2026; 817.300 pesetas de 2026</title>
       <circle class="hit" cx="330.4" cy="264.2" r="8" />
     <circle cx="330.4" cy="264.2" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(200.4 180.2)">
       <rect width="260" height="76" />
       <text x="8" y="17">1952</text>
       <text x="8" y="34">Serie original: 126.000 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.912 €</text>
+      <text x="8" y="51">Euros de 2026: 4912 €</text>
       <text x="8" y="68">Pesetas de 2026: 817.300</text>
     </g>
   </g>
-  <g class="point" data-year="1953" data-original-pesetas-1980="125600" data-euros-2026="4896" data-pesetas-2026="814700" tabindex="0" role="graphics-symbol" aria-label="1953: serie original, 125.600 pesetas constantes de 1980; 4.896 euros de 2026; 814.700 pesetas de 2026">
-    <title>1953: serie original, 125.600 pesetas constantes de 1980; 4.896 euros de 2026; 814.700 pesetas de 2026</title>
+  <g class="point" data-year="1953" data-original-pesetas-1980="125600" data-euros-2026="4896" data-pesetas-2026="814700" tabindex="0" role="graphics-symbol" aria-label="1953: serie original, 125.600 pesetas constantes de 1980; 4896 euros de 2026; 814.700 pesetas de 2026">
+    <title>1953: serie original, 125.600 pesetas constantes de 1980; 4896 euros de 2026; 814.700 pesetas de 2026</title>
       <circle class="hit" cx="349.7" cy="264.5" r="8" />
     <circle cx="349.7" cy="264.5" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(219.7 180.5)">
       <rect width="260" height="76" />
       <text x="8" y="17">1953</text>
       <text x="8" y="34">Serie original: 125.600 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 4.896 €</text>
+      <text x="8" y="51">Euros de 2026: 4896 €</text>
       <text x="8" y="68">Pesetas de 2026: 814.700</text>
     </g>
   </g>
-  <g class="point" data-year="1954" data-original-pesetas-1980="134900" data-euros-2026="5259" data-pesetas-2026="875000" tabindex="0" role="graphics-symbol" aria-label="1954: serie original, 134.900 pesetas constantes de 1980; 5.259 euros de 2026; 875.000 pesetas de 2026">
-    <title>1954: serie original, 134.900 pesetas constantes de 1980; 5.259 euros de 2026; 875.000 pesetas de 2026</title>
+  <g class="point" data-year="1954" data-original-pesetas-1980="134900" data-euros-2026="5259" data-pesetas-2026="875000" tabindex="0" role="graphics-symbol" aria-label="1954: serie original, 134.900 pesetas constantes de 1980; 5259 euros de 2026; 875.000 pesetas de 2026">
+    <title>1954: serie original, 134.900 pesetas constantes de 1980; 5259 euros de 2026; 875.000 pesetas de 2026</title>
       <circle class="hit" cx="369.0" cy="256.0" r="8" />
     <circle cx="369.0" cy="256.0" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(239.0 172.0)">
       <rect width="260" height="76" />
       <text x="8" y="17">1954</text>
       <text x="8" y="34">Serie original: 134.900 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 5.259 €</text>
+      <text x="8" y="51">Euros de 2026: 5259 €</text>
       <text x="8" y="68">Pesetas de 2026: 875.000</text>
     </g>
   </g>
-  <g class="point" data-year="1955" data-original-pesetas-1980="140500" data-euros-2026="5477" data-pesetas-2026="911300" tabindex="0" role="graphics-symbol" aria-label="1955: serie original, 140.500 pesetas constantes de 1980; 5.477 euros de 2026; 911.300 pesetas de 2026">
-    <title>1955: serie original, 140.500 pesetas constantes de 1980; 5.477 euros de 2026; 911.300 pesetas de 2026</title>
+  <g class="point" data-year="1955" data-original-pesetas-1980="140500" data-euros-2026="5477" data-pesetas-2026="911300" tabindex="0" role="graphics-symbol" aria-label="1955: serie original, 140.500 pesetas constantes de 1980; 5477 euros de 2026; 911.300 pesetas de 2026">
+    <title>1955: serie original, 140.500 pesetas constantes de 1980; 5477 euros de 2026; 911.300 pesetas de 2026</title>
       <circle class="hit" cx="388.2" cy="250.9" r="8" />
     <circle cx="388.2" cy="250.9" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(258.2 166.9)">
       <rect width="260" height="76" />
       <text x="8" y="17">1955</text>
       <text x="8" y="34">Serie original: 140.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 5.477 €</text>
+      <text x="8" y="51">Euros de 2026: 5477 €</text>
       <text x="8" y="68">Pesetas de 2026: 911.300</text>
     </g>
   </g>
-  <g class="point" data-year="1956" data-original-pesetas-1980="149400" data-euros-2026="5824" data-pesetas-2026="969100" tabindex="0" role="graphics-symbol" aria-label="1956: serie original, 149.400 pesetas constantes de 1980; 5.824 euros de 2026; 969.100 pesetas de 2026">
-    <title>1956: serie original, 149.400 pesetas constantes de 1980; 5.824 euros de 2026; 969.100 pesetas de 2026</title>
+  <g class="point" data-year="1956" data-original-pesetas-1980="149400" data-euros-2026="5824" data-pesetas-2026="969100" tabindex="0" role="graphics-symbol" aria-label="1956: serie original, 149.400 pesetas constantes de 1980; 5824 euros de 2026; 969.100 pesetas de 2026">
+    <title>1956: serie original, 149.400 pesetas constantes de 1980; 5824 euros de 2026; 969.100 pesetas de 2026</title>
       <circle class="hit" cx="407.5" cy="242.8" r="8" />
     <circle cx="407.5" cy="242.8" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(277.5 158.8)">
       <rect width="260" height="76" />
       <text x="8" y="17">1956</text>
       <text x="8" y="34">Serie original: 149.400 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 5.824 €</text>
+      <text x="8" y="51">Euros de 2026: 5824 €</text>
       <text x="8" y="68">Pesetas de 2026: 969.100</text>
     </g>
   </g>
-  <g class="point" data-year="1957" data-original-pesetas-1980="154700" data-euros-2026="6031" data-pesetas-2026="1003400" tabindex="0" role="graphics-symbol" aria-label="1957: serie original, 154.700 pesetas constantes de 1980; 6.031 euros de 2026; 1.003.400 pesetas de 2026">
-    <title>1957: serie original, 154.700 pesetas constantes de 1980; 6.031 euros de 2026; 1.003.400 pesetas de 2026</title>
+  <g class="point" data-year="1957" data-original-pesetas-1980="154700" data-euros-2026="6031" data-pesetas-2026="1003400" tabindex="0" role="graphics-symbol" aria-label="1957: serie original, 154.700 pesetas constantes de 1980; 6031 euros de 2026; 1.003.400 pesetas de 2026">
+    <title>1957: serie original, 154.700 pesetas constantes de 1980; 6031 euros de 2026; 1.003.400 pesetas de 2026</title>
       <circle class="hit" cx="426.8" cy="238.0" r="8" />
     <circle cx="426.8" cy="238.0" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(296.8 154.0)">
       <rect width="260" height="76" />
       <text x="8" y="17">1957</text>
       <text x="8" y="34">Serie original: 154.700 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 6.031 €</text>
+      <text x="8" y="51">Euros de 2026: 6031 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.003.400</text>
     </g>
   </g>
-  <g class="point" data-year="1958" data-original-pesetas-1980="160500" data-euros-2026="6257" data-pesetas-2026="1041100" tabindex="0" role="graphics-symbol" aria-label="1958: serie original, 160.500 pesetas constantes de 1980; 6.257 euros de 2026; 1.041.100 pesetas de 2026">
-    <title>1958: serie original, 160.500 pesetas constantes de 1980; 6.257 euros de 2026; 1.041.100 pesetas de 2026</title>
+  <g class="point" data-year="1958" data-original-pesetas-1980="160500" data-euros-2026="6257" data-pesetas-2026="1041100" tabindex="0" role="graphics-symbol" aria-label="1958: serie original, 160.500 pesetas constantes de 1980; 6257 euros de 2026; 1.041.100 pesetas de 2026">
+    <title>1958: serie original, 160.500 pesetas constantes de 1980; 6257 euros de 2026; 1.041.100 pesetas de 2026</title>
       <circle class="hit" cx="446.0" cy="232.7" r="8" />
     <circle cx="446.0" cy="232.7" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(316.0 148.7)">
       <rect width="260" height="76" />
       <text x="8" y="17">1958</text>
       <text x="8" y="34">Serie original: 160.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 6.257 €</text>
+      <text x="8" y="51">Euros de 2026: 6257 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.041.100</text>
     </g>
   </g>
-  <g class="point" data-year="1959" data-original-pesetas-1980="156400" data-euros-2026="6097" data-pesetas-2026="1014500" tabindex="0" role="graphics-symbol" aria-label="1959: serie original, 156.400 pesetas constantes de 1980; 6.097 euros de 2026; 1.014.500 pesetas de 2026">
-    <title>1959: serie original, 156.400 pesetas constantes de 1980; 6.097 euros de 2026; 1.014.500 pesetas de 2026</title>
+  <g class="point" data-year="1959" data-original-pesetas-1980="156400" data-euros-2026="6097" data-pesetas-2026="1014500" tabindex="0" role="graphics-symbol" aria-label="1959: serie original, 156.400 pesetas constantes de 1980; 6097 euros de 2026; 1.014.500 pesetas de 2026">
+    <title>1959: serie original, 156.400 pesetas constantes de 1980; 6097 euros de 2026; 1.014.500 pesetas de 2026</title>
       <circle class="hit" cx="465.3" cy="236.5" r="8" />
     <circle cx="465.3" cy="236.5" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(335.3 152.5)">
       <rect width="260" height="76" />
       <text x="8" y="17">1959</text>
       <text x="8" y="34">Serie original: 156.400 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 6.097 €</text>
+      <text x="8" y="51">Euros de 2026: 6097 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.014.500</text>
     </g>
   </g>
-  <g class="point" data-year="1960" data-original-pesetas-1980="158500" data-euros-2026="6179" data-pesetas-2026="1028100" tabindex="0" role="graphics-symbol" aria-label="1960: serie original, 158.500 pesetas constantes de 1980; 6.179 euros de 2026; 1.028.100 pesetas de 2026">
-    <title>1960: serie original, 158.500 pesetas constantes de 1980; 6.179 euros de 2026; 1.028.100 pesetas de 2026</title>
+  <g class="point" data-year="1960" data-original-pesetas-1980="158500" data-euros-2026="6179" data-pesetas-2026="1028100" tabindex="0" role="graphics-symbol" aria-label="1960: serie original, 158.500 pesetas constantes de 1980; 6179 euros de 2026; 1.028.100 pesetas de 2026">
+    <title>1960: serie original, 158.500 pesetas constantes de 1980; 6179 euros de 2026; 1.028.100 pesetas de 2026</title>
       <circle class="hit" cx="484.6" cy="234.5" r="8" />
     <circle cx="484.6" cy="234.5" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(354.6 150.5)">
       <rect width="260" height="76" />
       <text x="8" y="17">1960</text>
       <text x="8" y="34">Serie original: 158.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 6.179 €</text>
+      <text x="8" y="51">Euros de 2026: 6179 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.028.100</text>
     </g>
   </g>
-  <g class="point" data-year="1961" data-original-pesetas-1980="175400" data-euros-2026="6838" data-pesetas-2026="1137700" tabindex="0" role="graphics-symbol" aria-label="1961: serie original, 175.400 pesetas constantes de 1980; 6.838 euros de 2026; 1.137.700 pesetas de 2026">
-    <title>1961: serie original, 175.400 pesetas constantes de 1980; 6.838 euros de 2026; 1.137.700 pesetas de 2026</title>
+  <g class="point" data-year="1961" data-original-pesetas-1980="175400" data-euros-2026="6838" data-pesetas-2026="1137700" tabindex="0" role="graphics-symbol" aria-label="1961: serie original, 175.400 pesetas constantes de 1980; 6838 euros de 2026; 1.137.700 pesetas de 2026">
+    <title>1961: serie original, 175.400 pesetas constantes de 1980; 6838 euros de 2026; 1.137.700 pesetas de 2026</title>
       <circle class="hit" cx="503.8" cy="219.1" r="8" />
     <circle cx="503.8" cy="219.1" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(373.8 135.1)">
       <rect width="260" height="76" />
       <text x="8" y="17">1961</text>
       <text x="8" y="34">Serie original: 175.400 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 6.838 €</text>
+      <text x="8" y="51">Euros de 2026: 6838 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.137.700</text>
     </g>
   </g>
-  <g class="point" data-year="1962" data-original-pesetas-1980="189900" data-euros-2026="7403" data-pesetas-2026="1231700" tabindex="0" role="graphics-symbol" aria-label="1962: serie original, 189.900 pesetas constantes de 1980; 7.403 euros de 2026; 1.231.700 pesetas de 2026">
-    <title>1962: serie original, 189.900 pesetas constantes de 1980; 7.403 euros de 2026; 1.231.700 pesetas de 2026</title>
+  <g class="point" data-year="1962" data-original-pesetas-1980="189900" data-euros-2026="7403" data-pesetas-2026="1231700" tabindex="0" role="graphics-symbol" aria-label="1962: serie original, 189.900 pesetas constantes de 1980; 7403 euros de 2026; 1.231.700 pesetas de 2026">
+    <title>1962: serie original, 189.900 pesetas constantes de 1980; 7403 euros de 2026; 1.231.700 pesetas de 2026</title>
       <circle class="hit" cx="523.1" cy="205.9" r="8" />
     <circle cx="523.1" cy="205.9" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(393.1 121.9)">
       <rect width="260" height="76" />
       <text x="8" y="17">1962</text>
       <text x="8" y="34">Serie original: 189.900 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 7.403 €</text>
+      <text x="8" y="51">Euros de 2026: 7403 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.231.700</text>
     </g>
   </g>
-  <g class="point" data-year="1963" data-original-pesetas-1980="204400" data-euros-2026="7968" data-pesetas-2026="1325800" tabindex="0" role="graphics-symbol" aria-label="1963: serie original, 204.400 pesetas constantes de 1980; 7.968 euros de 2026; 1.325.800 pesetas de 2026">
-    <title>1963: serie original, 204.400 pesetas constantes de 1980; 7.968 euros de 2026; 1.325.800 pesetas de 2026</title>
+  <g class="point" data-year="1963" data-original-pesetas-1980="204400" data-euros-2026="7968" data-pesetas-2026="1325800" tabindex="0" role="graphics-symbol" aria-label="1963: serie original, 204.400 pesetas constantes de 1980; 7968 euros de 2026; 1.325.800 pesetas de 2026">
+    <title>1963: serie original, 204.400 pesetas constantes de 1980; 7968 euros de 2026; 1.325.800 pesetas de 2026</title>
       <circle class="hit" cx="542.4" cy="192.7" r="8" />
     <circle cx="542.4" cy="192.7" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(412.4 108.7)">
       <rect width="260" height="76" />
       <text x="8" y="17">1963</text>
       <text x="8" y="34">Serie original: 204.400 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 7.968 €</text>
+      <text x="8" y="51">Euros de 2026: 7968 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.325.800</text>
     </g>
   </g>
-  <g class="point" data-year="1964" data-original-pesetas-1980="214800" data-euros-2026="8374" data-pesetas-2026="1393300" tabindex="0" role="graphics-symbol" aria-label="1964: serie original, 214.800 pesetas constantes de 1980; 8.374 euros de 2026; 1.393.300 pesetas de 2026">
-    <title>1964: serie original, 214.800 pesetas constantes de 1980; 8.374 euros de 2026; 1.393.300 pesetas de 2026</title>
+  <g class="point" data-year="1964" data-original-pesetas-1980="214800" data-euros-2026="8374" data-pesetas-2026="1393300" tabindex="0" role="graphics-symbol" aria-label="1964: serie original, 214.800 pesetas constantes de 1980; 8374 euros de 2026; 1.393.300 pesetas de 2026">
+    <title>1964: serie original, 214.800 pesetas constantes de 1980; 8374 euros de 2026; 1.393.300 pesetas de 2026</title>
       <circle class="hit" cx="561.6" cy="183.2" r="8" />
     <circle cx="561.6" cy="183.2" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(431.6 99.2)">
       <rect width="260" height="76" />
       <text x="8" y="17">1964</text>
       <text x="8" y="34">Serie original: 214.800 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 8.374 €</text>
+      <text x="8" y="51">Euros de 2026: 8374 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.393.300</text>
     </g>
   </g>
-  <g class="point" data-year="1965" data-original-pesetas-1980="225700" data-euros-2026="8799" data-pesetas-2026="1464000" tabindex="0" role="graphics-symbol" aria-label="1965: serie original, 225.700 pesetas constantes de 1980; 8.799 euros de 2026; 1.464.000 pesetas de 2026">
-    <title>1965: serie original, 225.700 pesetas constantes de 1980; 8.799 euros de 2026; 1.464.000 pesetas de 2026</title>
+  <g class="point" data-year="1965" data-original-pesetas-1980="225700" data-euros-2026="8799" data-pesetas-2026="1464000" tabindex="0" role="graphics-symbol" aria-label="1965: serie original, 225.700 pesetas constantes de 1980; 8799 euros de 2026; 1.464.000 pesetas de 2026">
+    <title>1965: serie original, 225.700 pesetas constantes de 1980; 8799 euros de 2026; 1.464.000 pesetas de 2026</title>
       <circle class="hit" cx="580.9" cy="173.3" r="8" />
     <circle cx="580.9" cy="173.3" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(450.9 89.3)">
       <rect width="260" height="76" />
       <text x="8" y="17">1965</text>
       <text x="8" y="34">Serie original: 225.700 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 8.799 €</text>
+      <text x="8" y="51">Euros de 2026: 8799 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.464.000</text>
     </g>
   </g>
-  <g class="point" data-year="1966" data-original-pesetas-1980="239500" data-euros-2026="9337" data-pesetas-2026="1553500" tabindex="0" role="graphics-symbol" aria-label="1966: serie original, 239.500 pesetas constantes de 1980; 9.337 euros de 2026; 1.553.500 pesetas de 2026">
-    <title>1966: serie original, 239.500 pesetas constantes de 1980; 9.337 euros de 2026; 1.553.500 pesetas de 2026</title>
+  <g class="point" data-year="1966" data-original-pesetas-1980="239500" data-euros-2026="9337" data-pesetas-2026="1553500" tabindex="0" role="graphics-symbol" aria-label="1966: serie original, 239.500 pesetas constantes de 1980; 9337 euros de 2026; 1.553.500 pesetas de 2026">
+    <title>1966: serie original, 239.500 pesetas constantes de 1980; 9337 euros de 2026; 1.553.500 pesetas de 2026</title>
       <circle class="hit" cx="600.1" cy="160.7" r="8" />
     <circle cx="600.1" cy="160.7" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(470.1 76.7)">
       <rect width="260" height="76" />
       <text x="8" y="17">1966</text>
       <text x="8" y="34">Serie original: 239.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 9.337 €</text>
+      <text x="8" y="51">Euros de 2026: 9337 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.553.500</text>
     </g>
   </g>
-  <g class="point" data-year="1967" data-original-pesetas-1980="247500" data-euros-2026="9648" data-pesetas-2026="1605400" tabindex="0" role="graphics-symbol" aria-label="1967: serie original, 247.500 pesetas constantes de 1980; 9.648 euros de 2026; 1.605.400 pesetas de 2026">
-    <title>1967: serie original, 247.500 pesetas constantes de 1980; 9.648 euros de 2026; 1.605.400 pesetas de 2026</title>
+  <g class="point" data-year="1967" data-original-pesetas-1980="247500" data-euros-2026="9648" data-pesetas-2026="1605400" tabindex="0" role="graphics-symbol" aria-label="1967: serie original, 247.500 pesetas constantes de 1980; 9648 euros de 2026; 1.605.400 pesetas de 2026">
+    <title>1967: serie original, 247.500 pesetas constantes de 1980; 9648 euros de 2026; 1.605.400 pesetas de 2026</title>
       <circle class="hit" cx="619.4" cy="153.4" r="8" />
     <circle cx="619.4" cy="153.4" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate(475.0 69.4)">
       <rect width="260" height="76" />
       <text x="8" y="17">1967</text>
       <text x="8" y="34">Serie original: 247.500 ptas.</text>
-      <text x="8" y="51">Euros de 2026: 9.648 €</text>
+      <text x="8" y="51">Euros de 2026: 9648 €</text>
       <text x="8" y="68">Pesetas de 2026: 1.605.400</text>
     </g>
   </g>
@@ -498,6 +520,5 @@
     chart.addEventListener("pointerup", releasePoint);
     chart.addEventListener("pointercancel", releasePoint);
   ]]></script>
-  <text x="80" y="417" class="source" font-style="normal">Fuente: Prados de la Escosura, <tspan font-style="italic">Spain's Gross Domestic Product</tspan> (1995).</text>
-  <text x="80" y="436" class="source">* El examen original indica 1931; la serie de la gráfica comienza en 1939.</text>
+  <text x="80" y="436" class="source">*Errata: el examen original indica en el título 1931, pero los datos comienzan en 1939</text>
 </svg>

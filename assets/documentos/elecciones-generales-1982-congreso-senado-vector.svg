@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2084" height="1418" viewBox="0 0 1042 709" role="img" aria-labelledby="title description">
+<svg xmlns="http://www.w3.org/2000/svg" width="2084" height="1460" viewBox="0 0 1042 730" role="img" aria-labelledby="title description">
   <title id="title">Resultados de las Elecciones Generales de octubre de 1982</title>
   <desc id="description">Redibujado vectorial de la tabla raster del PDF oficial de 2026, suplente 2, página 2, itinerario B, documento 2. Se conservan las candidaturas, cifras, totales y disposición en dos columnas; la tipografía no es una extracción del original.</desc>
   <metadata>Referencia: sel_2026_historia_espana.zip, examen suplente 2, página 2. Recorte original conservado en elecciones-generales-1982-congreso-senado-oficial-2026.png. Redibujado manual, no extracción vectorial.</metadata>
-  <rect width="1042" height="709" fill="#fff"/>
+  <rect width="1042" height="730" fill="#fff"/>
+  <g class="row-stripes" fill="#f1f3f2">
+    <rect data-stripe-row="0" x="25" y="140" width="955" height="48"/>
+    <rect data-stripe-row="2" x="25" y="236" width="955" height="48"/>
+    <rect data-stripe-row="4" x="25" y="332" width="955" height="48"/>
+    <rect data-stripe-row="6" x="25" y="428" width="955" height="48"/>
+    <rect data-stripe-row="8" x="25" y="524" width="955" height="54"/>
+  </g>
   <g fill="none" stroke="#000" stroke-width="3">
     <path d="M25 40H980V625H25Z M510 40V625 M25 140H980 M25 578H980"/>
   </g>

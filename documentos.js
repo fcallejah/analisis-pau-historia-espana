@@ -13,6 +13,15 @@
   const frequencySort = document.querySelector("#document-frequency-sort");
   const moreFilters = document.querySelector(".document-more-filters");
   const activeFilters = document.querySelector("#document-active-filters");
+  const searchOutside = document.createElement("p");
+  const searchOutsideText = document.createElement("span");
+  const searchOutsideButton = document.createElement("button");
+  searchOutside.className = "document-search-outside";
+  searchOutside.hidden = true;
+  searchOutsideButton.type = "button";
+  searchOutsideButton.textContent = "Buscar en todo el banco";
+  searchOutside.append(searchOutsideText, " ", searchOutsideButton);
+  activeFilters.after(searchOutside);
   const reset = document.querySelector("#document-reset");
   const grid = document.querySelector("#document-grid");
   const count = document.querySelector("#document-count");
@@ -71,6 +80,7 @@
     // Earlier v1 snapshots predate saved filters and opener tracking.
     return {
       ...value,
+      type: value.type === "propio" ? "grafico" : value.type,
       year: value.year === undefined ? "" : value.year,
       exam: value.exam === undefined ? "" : value.exam,
       savedFilter: value.savedFilter === undefined ? "all" : value.savedFilter,
@@ -112,7 +122,9 @@
       if (sameViewUrl(value.url)) restoredView = value;
     }
     const savedType = sessionStorage.getItem(typeStorageKey);
-    if (["all", "texto", "imagen", "grafico"].includes(savedType)) type = savedType;
+    if (["all", "texto", "imagen", "grafico", "propio"].includes(savedType)) {
+      type = savedType === "propio" ? "grafico" : savedType;
+    }
   } catch (error) {
     viewWritable = false;
     console.warn("No se pudo recuperar la posición de lectura guardada:", error);
@@ -224,6 +236,19 @@
   document.addEventListener("visibilitychange", () => { if (document.hidden) saveView(); });
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   const normalize = (value) => String(value).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
+  // Search ignores accents, case and inner punctuation: 28-F = 28F, U.C.D. = UCD, 2.ª = 2a, 52.77 = 52,77.
+  const compact = (value) => String(value).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es")
+    .replace(/(\p{N})[.,](?=\p{N})/gu, "$1")
+    .replace(/([\p{L}\p{N}])[-\u2010-\u2015.·'’/](?=[\p{L}\p{N}])/gu, "$1");
+  const searchAliases = [["28 de febrero", "28f"], ["23 de febrero", "23f"]];
+  const hasTerm = (text, term) => new RegExp(`(?:^|[^\\p{L}\\p{N}])${term}(?![\\p{L}\\p{N}])`, "u").test(text);
+  const indexText = (value) => {
+    const text = compact(value);
+    const aliases = searchAliases.filter((pair) => pair.some((term) => hasTerm(text, term))).flat();
+    return `${normalize(value)} ${text} ${aliases.join(" ")}`;
+  };
+  const searchTerms = (value) => compact(value).split(/\s+/)
+    .map((term) => term.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "")).filter(Boolean);
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -281,7 +306,13 @@
   }
   function appearanceBadges(record, appearances = record.appearances) {
     const list = element("ul", undefined, "document-exams");
-    list.setAttribute("aria-label", "Apariciones en exámenes");
+    list.setAttribute("aria-label", record.origin === "propio" ? "Procedencia" : "Apariciones en exámenes");
+    if (record.origin === "propio") {
+      const item = element("li");
+      item.append(element("span", "Elaboración propia · puede caer", "exam-pill"));
+      list.append(item);
+      return list;
+    }
     appearances.forEach((appearance) => {
       const item = element("li");
       const pill = appearancePill(appearance, true);
@@ -784,6 +815,9 @@
     const images = [record.image, ...(record.image?.additionalImages || []), record.tableImage].filter(Boolean);
     return [
       record.title, record.date, record.sourceCaption, record.quality, record.readingNote, ...record.tags,
+      ...(record.origin === "propio" ? ["material propio", "resultados"] : []),
+      ...(record.origin === "propio" && ["elections", "municipal-turnout"].includes(record.visualization)
+        ? ["electorales"] : []),
       ...(record.text || []),
       ...(record.studyCompilation?.text || []),
       ...record.commentary.flatMap((section) => [section.title, section.text]),
@@ -791,13 +825,15 @@
         appearance.year, appearance.exam, appearance.route, displayExamName(examLabel(appearance), appearance.year),
       ]),
       ...images.flatMap((image) => [
-        image.alt, image.reproductionNote, image.examCaption?.text, image.attribution?.text,
+        image.alt, image.reproductionNote, image.examCaption?.text, image.examCaption?.note, image.attribution?.text,
         image.annotations?.note,
         ...(image.annotations?.people || []).flatMap((person) => [person.name, person.role, person.position]),
         ...(image.annotations?.symbols || []).flatMap((symbol) => [symbol.name, symbol.role, symbol.position]),
       ]),
-      record.examCaption?.text, record.table?.caption,
+      record.examCaption?.text, record.examCaption?.note, record.table?.caption,
       ...(record.table?.headers || []), ...(record.table?.rows.flat() || []), ...(record.table?.notes || []),
+      ...(record.tables || []).flatMap((table) => [table.caption, ...table.headers, ...table.rows.flat(), ...(table.notes || [])]),
+      ...(record.questions || []),
       ...(record.textVersions || []).map(searchableText),
     ].join(" ");
   }
@@ -850,8 +886,89 @@
     }
     return [...selections.values()];
   }
+  function studyBar(label, value, maximum, variant = "") {
+    const row = element("div", undefined, "study-chart-row");
+    const name = element("span", label, "study-chart-label");
+    const track = element("span", undefined, "study-chart-track");
+    track.setAttribute("aria-hidden", "true");
+    const fill = element("span", undefined, `study-chart-fill ${variant}`);
+    fill.style.width = `${Math.max(0, Math.min(100, value / maximum * 100))}%`;
+    track.append(fill);
+    row.append(name, track, element("strong", String(value).replace(".", ","), "study-chart-value"));
+    return row;
+  }
+  function studyChart(record, preview) {
+    const section = element("section", undefined, "study-chart");
+    const chart = element("div");
+    if (record.visualization === "elections") {
+      if (!preview) chart.setAttribute("aria-live", "polite");
+      const renderYear = (table) => {
+        const year = table.caption.match(/ · (\d{4})$/)[1];
+        const image = element("img", undefined, "study-election-chart");
+        image.src = `assets/documentos/${table.chart?.svg || `elecciones-generales-${year}-semicirculo.svg`}`;
+        image.alt = `Semicírculo de escaños${table.chart?.showVotes === false ? " por candidatura o bloque" : ` y votos por candidatura${table.chartGroups ? " y agrupación editorial" : ""}`} en las elecciones de ${year}. Datos completos en las tablas.`;
+        if (preview) image.loading = "lazy";
+        chart.replaceChildren(image);
+          if (!preview && table.chartGroups) {
+            const descriptions = table.chartGroups.map((group) => group.label === "Otros*"
+              ? `«Otros*» agrupa ${group.members.length} candidaturas con escaño.`
+              : `«${group.label}» reúne las candidaturas detalladas en la tabla.`);
+            chart.append(element("p", `Agrupaciones del gráfico: ${descriptions.join(" ")} Consulta el desglose completo en la tabla.`, "study-chart-note"));
+        }
+        if (!preview) chart.append(sourceLink("Abrir gráfico SVG", image.src));
+      };
+      if (!preview) {
+        const label = element("label", "Elección: ", "study-chart-selector");
+        const select = element("select");
+        record.tables.forEach((table, index) => {
+          const option = element("option", table.caption);
+          option.value = String(index);
+          select.append(option);
+        });
+        select.addEventListener("change", () => renderYear(record.tables[Number(select.value)]));
+        label.append(select);
+        section.append(label);
+      }
+      renderYear(record.tables[0]);
+    } else if (record.visualization === "municipal-turnout") {
+      const table = record.tables[0];
+      const row = table.rows[0];
+      const group = element("section", undefined, "study-chart-referendum");
+      group.append(element("h3", row[0], "study-chart-title"));
+      const number = Number(row[3].replace(",", "."));
+      const bar = studyBar("Participación · sobre electores", number, 100, "is-turnout");
+      bar.querySelector(".study-chart-value").textContent = `${row[3]} %`;
+      group.append(bar);
+      chart.append(group);
+    } else {
+      const table = record.tables[0];
+      (preview ? table.rows.slice(0, 1) : table.rows).forEach((row) => {
+        const group = element("section", undefined, "study-chart-referendum");
+        group.append(element("h3", row[0], "study-chart-title"));
+        const names = ["Participación · sobre censo", "Sí · sobre votantes", "No · sobre votantes"];
+        names.forEach((name, index) => {
+          const number = Number(row[index + 1].replace(",", "."));
+          const bar = studyBar(name, number, 100, index === 2 ? "is-no" : index === 0 ? "is-turnout" : "is-yes");
+          bar.querySelector(".study-chart-value").textContent = `${row[index + 1]} %`;
+          group.append(bar);
+        });
+        if (!preview) {
+          group.append(element("p", table.headers.slice(4).map((header, index) =>
+            `${header.replace(" (%)", "")}: ${row[index + 4]} %`).join(" · ") + " · sobre votantes", "study-chart-note"));
+        }
+        chart.append(group);
+      });
+    }
+    section.append(chart);
+    return section;
+  }
   function source(document, preview = false) {
     const box = element("div", undefined, preview ? "document-preview" : "document-full-source");
+    if (!preview && document.origin === "propio") {
+      box.append(element("p", document.quality, "document-reading-note"));
+      if (document.readingNote) box.append(element("p", document.readingNote, "document-reading-note"));
+    }
+    if (document.origin === "propio") box.append(studyChart(document, preview));
     const cardImage = document.image || document.tableImage;
     if (preview && (document.tableImage || cardImage?.kind === "table")) {
       box.classList.add("document-preview-table");
@@ -911,6 +1028,9 @@
         const caption = imageData.examCaption || document.examCaption;
         const foot = element("figcaption", undefined, "document-exam-caption");
         foot.append(sourceParagraph(caption?.text || "(Sin descripción)", caption?.emphasis));
+        if (caption?.note) {
+          foot.append(sourceParagraph(caption.note, caption.noteEmphasis, "document-exam-footnote"));
+        }
         figure.append(foot);
       }
       if (!preview && imageData.annotations) {
@@ -929,6 +1049,11 @@
         const attribution = sourceLink("Fuente de esta reproducción", imageData.sourceUrl);
         attribution.className = "document-image-caption";
         figure.append(attribution);
+      }
+      if (!preview && imageIndex === 0 && document.dataSourceUrl) {
+        const dataSource = sourceLink("Fuente de los datos", document.dataSourceUrl);
+        dataSource.className = "document-image-caption";
+        figure.append(dataSource);
       }
       if (!preview && imageData.originalSrc) {
         const original = sourceLink("Ver recorte del PDF original", imageData.originalSrc);
@@ -965,46 +1090,66 @@
       zoom.addEventListener("click", () => open(document, zoom));
       box.append(zoom);
     }
-    if (document.table && (!preview || !cardImage)) {
-      const table = element("table", undefined, "document-table");
-      table.append(element("caption", document.table.caption));
-      const head = element("tr");
-      document.table.headers.forEach((value) => {
-        const cell = element("th", value);
-        cell.scope = "col";
-        head.append(cell);
-      });
-      const thead = element("thead");
-      thead.append(head);
-      table.append(thead);
-      const body = element("tbody");
-      document.table.rows.forEach((values) => {
-        const row = element("tr");
-        values.forEach((value, i) => {
-          const cell = element(i === 0 ? "th" : "td", String(value));
-          if (i === 0) cell.scope = "row";
-          row.append(cell);
+    const tables = document.tables || (document.table ? [document.table] : []);
+    if (tables.length && (!preview || !cardImage) && !(preview && document.origin === "propio")) {
+      const ownDetails = document.origin === "propio" ? element("details", undefined, "document-table-details") : null;
+      if (ownDetails) ownDetails.append(element("summary", "Ver tablas y notas de los datos"));
+      for (const data of preview ? tables.slice(0, 1) : tables) {
+        const table = element("table", undefined, "document-table");
+        table.append(element("caption", data.caption));
+        const head = element("tr");
+        data.headers.forEach((value) => {
+          const cell = element("th", value);
+          cell.scope = "col";
+          head.append(cell);
         });
-        body.append(row);
-      });
-      table.append(body);
-      if (preview) {
-        box.append(table);
-      } else {
-        const details = element("details", undefined, "document-table-details");
-        details.append(element("summary", "Leer la tabla en texto"));
-        details.append(table);
-        document.table.notes?.forEach((note) => details.append(element("p", note, "document-image-caption")));
-        box.append(details);
+        const thead = element("thead");
+        thead.append(head);
+        table.append(thead);
+        const body = element("tbody");
+        data.rows.forEach((values) => {
+          const row = element("tr");
+          values.forEach((value, i) => {
+            const cell = element(i === 0 ? "th" : "td", String(value));
+            if (i === 0) cell.scope = "row";
+            row.append(cell);
+          });
+          body.append(row);
+        });
+        table.append(body);
+        if (ownDetails) {
+          ownDetails.append(table);
+          data.notes?.forEach((note) => ownDetails.append(element("p", note, "document-image-caption")));
+        } else if (preview) {
+          box.append(table);
+        } else {
+          const details = element("details", undefined, "document-table-details");
+          details.append(element("summary", "Leer la tabla en texto"));
+          details.append(table);
+          data.notes?.forEach((note) => details.append(element("p", note, "document-image-caption")));
+          box.append(details);
+        }
+      }
+      if (ownDetails) box.append(ownDetails);
+      if (!preview && document.origin === "propio") {
+        document.questions?.forEach((question) => box.append(element("p", question, "document-image-caption")));
+        box.append(sourceLink("Fuente de los datos", document.dataSourceUrl));
+        document.additionalSources?.forEach((item) => {
+          const source = element("p", undefined, "document-image-caption");
+          source.append(sourceLink(item.label, item.url));
+          box.append(source);
+        });
       }
     } else if (document.type === "imagen" && !document.image) {
       box.append(element("p", "La fotografía se puede ver en el PDF del modelo, en la página indicada.", "document-reading-note"));
-    } else if (!document.image && !document.table) {
+    } else if (!document.image && !tables.length) {
       const selections = textSelections(document);
       const primary = document.studyCompilation || selections[0];
       const alternatives = document.studyCompilation ? selections : selections.slice(1);
+      const titleIsSourceHeading = document.studyCompilation
+        && primary.headingParagraphs?.includes(0) && primary.text[0] === primary.title;
       if (!preview && document.studyCompilation) {
-        box.append(element("h3", primary.title));
+        if (!titleIsSourceHeading) box.append(element("h3", primary.title));
       } else if (!preview && document.textVersions) {
         box.append(element("p", "La selección principal para estudiar; variantes y procedencia por examen en el desplegable. El total ya reúne todas sus apariciones.", "document-group-note"));
       }
@@ -1056,7 +1201,8 @@
     const meta = element("p", document.date, "document-meta");
     const total = document.appearances.length;
     const filtered = matchingAppearances(document).length;
-    meta.append(" · ", element("strong", `${total} ${total === 1 ? "aparición" : "apariciones"} en total`));
+    if (document.origin === "propio") meta.append(" · Material de estudio · sin apariciones en la PAU todavía");
+    else meta.append(" · ", element("strong", `${total} ${total === 1 ? "aparición" : "apariciones"} en total`));
     if (filtered !== total) meta.append(` · ${filtered} con los filtros actuales`);
     content.append(meta, appearanceBadges(document), source(document));
     if (document.textVersions && matchingAppearances(document).some((appearance) =>
@@ -1074,8 +1220,8 @@
       && selectedAppearances.some((appearance) => appearance.sourceReviewStatus === "orientation-model");
     const historicalOnly = document.blocks.every((number) => number < 5);
     const task = element("section", undefined, "document-task");
-    task.setAttribute("aria-label", "Enunciado de PAU · 4 puntos");
-    task.append(element("h3", "Enunciado de PAU · 4 puntos"));
+    task.setAttribute("aria-label", document.origin === "propio" ? "Práctica orientativa" : "Enunciado de PAU · 4 puntos");
+    task.append(element("h3", document.origin === "propio" ? "Práctica orientativa · formato PAU" : "Enunciado de PAU · 4 puntos"));
     task.append(element("p", "a) Analice el hecho histórico a que hace referencia el documento elegido."));
     task.append(element("p", "De 0 a 2 puntos.", "document-meta"));
     task.append(element("p", "b) Explique el contexto histórico y las consecuencias de este acontecimiento."));
@@ -1094,6 +1240,7 @@
     const sourceAppearance = historicalModel ? selectedAppearances[0] : document.examCaption
       ? document.appearances.find((appearance) => appearance.id === document.examCaption.appearanceId)
       : matchingAppearances(document)[0] || document.appearances[0];
+    if (sourceAppearance) {
     const sourceLabel = sourceAppearance.sourceReviewStatus === "orientation-model"
       ? `Ver PDF del modelo · p. ${sourceAppearance.officialPage}` : sourceAppearance.sourceType === "pdf"
       ? sourceAppearance.sourceReviewStatus === "transcription-copy" ? "Ver copia PDF de origen" : "Ver PDF de origen"
@@ -1103,6 +1250,7 @@
     const footer = element("p");
     footer.append(collectionLink);
     content.append(footer);
+    }
     document.blocks.forEach((number) => content.append(link(`Ir a los apuntes del bloque ${number} →`, `apuntes/bloque-${number}.html`)));
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
@@ -1214,15 +1362,20 @@
     selectedId = null;
     saveView();
   });
-  const baseMatches = (document) => {
-    const haystack = searchIndex.get(document.id);
-    return (type === "all" || document.type === type)
-      && (!savedOnly || isMarked(document))
-      && (savedFilter === "all" || hasMark(document, savedFilter))
-      && document.appearances.some(matchesExam)
-      && (!block.value || document.blocks.includes(Number(block.value)))
-      && normalize(search.value).trim().split(/\s+/).every((word) => haystack.includes(word));
+  let cachedSearch = [null, []];
+  const currentTerms = () => {
+    if (cachedSearch[0] !== search.value) cachedSearch = [search.value, searchTerms(search.value)];
+    return cachedSearch[1];
   };
+  const matchesSearch = (document) => {
+    const haystack = searchIndex.get(document.id);
+    return (!savedOnly || isMarked(document)) && currentTerms().every((term) => haystack.includes(term));
+  };
+  const baseMatches = (document) => (type === "all" || document.type === type)
+      && (savedFilter === "all" || hasMark(document, savedFilter))
+      && (document.origin === "propio" ? !examYear.value && !exam.value : document.appearances.some(matchesExam))
+      && (!block.value || document.blocks.includes(Number(block.value)))
+      && matchesSearch(document);
   function fitTopics() {
     if (!moreFilters.open) return;
     const bubbles = [...topics.querySelectorAll(".document-topic-bubble")];
@@ -1286,7 +1439,8 @@
         return year ? Number(year[0]) : Number.MAX_SAFE_INTEGER;
       }));
       return [tag, {
-        documents: tagged.length,
+        documents: tagged.filter((record) => record.origin !== "propio").length,
+        own: tagged.filter((record) => record.origin === "propio").length,
         appearances: tagged.reduce((total, document) => total + document.appearances.length, 0),
         firstYear,
       }];
@@ -1304,11 +1458,14 @@
       }
       return first.localeCompare(second, "es");
     });
-    const query = normalize(topicSearch.value).trim();
-    const matchingTags = tags.filter((tag) => normalize(tag).includes(query));
+    const query = searchTerms(topicSearch.value);
+    const matchingTags = tags.filter((tag) => {
+      const text = indexText(tag);
+      return query.every((term) => text.includes(term));
+    });
     topics.replaceChildren();
-    topicEmpty.hidden = !query || matchingTags.length > 0;
-    topicToggle.hidden = Boolean(query) || matchingTags.length <= 8;
+    topicEmpty.hidden = !query.length || matchingTags.length > 0;
+    topicToggle.hidden = Boolean(query.length) || matchingTags.length <= 8;
     topicToggle.textContent = topicsExpanded ? "Ver menos ↑" : "Ver más ↓";
     topicToggle.setAttribute("aria-expanded", String(topicsExpanded));
     const allButton = element("button", `Todas las temáticas (${available.length})`);
@@ -1333,7 +1490,8 @@
       button.style.setProperty("--topic-font-size", `${12 * scale}px`);
       button.style.setProperty("--topic-padding-y", `${6 * scale}px`);
       button.style.setProperty("--topic-padding-x", `${11 * scale}px`);
-      button.title = `${stats.appearances} ${stats.appearances === 1 ? "aparición" : "apariciones"} en ${stats.documents} ${stats.documents === 1 ? "ficha" : "fichas"} del corpus`;
+      button.title = `${stats.appearances} ${stats.appearances === 1 ? "aparición" : "apariciones"} en ${stats.documents} ${stats.documents === 1 ? "ficha" : "fichas"} del corpus`
+        + (stats.own ? ` · ${stats.own} ${stats.own === 1 ? "material propio" : "materiales propios"}` : "");
       button.setAttribute("aria-label", `${tag}: ${button.title}`);
       button.type = "button";
       button.setAttribute("aria-pressed", String(topic === tag));
@@ -1419,7 +1577,15 @@
     const matches = available.filter((record) => !unit || unit.documentIds.includes(record.id));
     const appearances = matches.reduce((total, document) => total + document.appearances.length, 0);
     const scope = examYear.value ? "en total" : appearances === 1 ? "incorporada" : "incorporadas";
-    count.textContent = `${matches.length} ${matches.length === 1 ? "documento" : "documentos"} · ${appearances} ${appearances === 1 ? "aparición" : "apariciones"} ${scope}`;
+    const ownCount = matches.filter((record) => record.origin === "propio").length;
+    const examCount = matches.length - ownCount;
+    count.textContent = `${examCount} ${examCount === 1 ? "documento" : "documentos"} · ${appearances} ${appearances === 1 ? "aparición" : "apariciones"} ${scope}`
+      + (ownCount ? ` · ${ownCount} ${ownCount === 1 ? "material propio" : "materiales propios"}` : "");
+    const outside = currentTerms().length ? documents.filter(matchesSearch).length - matches.length : 0;
+    searchOutside.hidden = outside <= 0;
+    if (outside > 0) {
+      searchOutsideText.textContent = `${outside} ${outside === 1 ? "coincidencia más" : "coincidencias más"} con esta búsqueda ${outside === 1 ? "queda" : "quedan"} fuera de los filtros activos.`;
+    }
     grid.replaceChildren();
     document.querySelector("#document-empty").hidden = matches.length > 0;
     const numbers = block.value ? [Number(block.value)]
@@ -1505,7 +1671,8 @@
         body.append(element("p", kind + (frequencyOrder ? ` · Bloque ${document.blocks.join(" · ")}` : ""), "document-kind"),
           sourceText("h3", document.title, document.titleEmphasis));
         const occurrences = document.appearances.length;
-        body.append(element("p", `${document.date} · ${occurrences} ${occurrences === 1 ? "aparición incorporada" : "apariciones incorporadas"}`, "document-meta"));
+        body.append(element("p", document.origin === "propio" ? `${document.date} · Sin apariciones todavía`
+          : `${document.date} · ${occurrences} ${occurrences === 1 ? "aparición incorporada" : "apariciones incorporadas"}`, "document-meta"));
         body.append(appearanceBadges(document));
         body.append(element("p", document.tags.join(" · "), "document-card-topics"));
         const button = element("button", document.type === "texto" ? "Leer texto completo y practicar →" : "Ver documento y practicar →", "document-open");
@@ -1561,21 +1728,30 @@
   block.addEventListener("change", render);
   examYear.addEventListener("change", () => { updateExamOptions(); render(); });
   exam.addEventListener("change", render);
-  reset.addEventListener("click", () => {
-    search.value = "";
+  function clearFilters(keepSearch) {
+    if (!keepSearch) search.value = "";
     block.value = "";
     examYear.value = "";
     updateExamOptions();
     setType("all");
     topic = "";
     topicSearch.value = "";
-    topicsExpanded = false;
     savedFilter = "all";
+    selectedUnit = "";
+    if (keepSearch) return;
+    topicsExpanded = false;
     historicalVisible = false;
     topicSort.value = "alphabetical";
-    selectedUnit = "";
     frequencyOrder = false;
+  }
+  reset.addEventListener("click", () => {
+    clearFilters(false);
     render();
+  });
+  searchOutsideButton.addEventListener("click", () => {
+    clearFilters(true);
+    render();
+    search.focus({ preventScroll: true });
   });
   const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
   async function restoreView() {
@@ -1661,6 +1837,9 @@
       const response = await fetch("data/documentos.json");
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const data = await response.json();
+      const ownResponse = await fetch("data/documentos-propios.json");
+      if (!ownResponse.ok) throw new Error(`Material propio: HTTP ${ownResponse.status}`);
+      const ownData = await ownResponse.json();
       if (!Array.isArray(data.documents) || !data.documents.length) throw new Error("El banco no contiene documentos");
       if (data.documents.some((record) => !Array.isArray(record.appearances)
         || record.appearances.some((appearance) =>
@@ -1687,8 +1866,11 @@
       }
       if (data.documents.some((record) => record.studyCompilation !== undefined && (
         record.type !== "texto" || !record.studyCompilation
-        || !["title", "readingNote", "sourceUrl"].every((key) =>
+        || !["title", "sourceUrl"].every((key) =>
           typeof record.studyCompilation[key] === "string" && record.studyCompilation[key].trim())
+        || record.studyCompilation.readingNote !== undefined
+          && (typeof record.studyCompilation.readingNote !== "string"
+            || !record.studyCompilation.readingNote.trim())
         || !Array.isArray(record.studyCompilation.text) || !record.studyCompilation.text.length
         || record.studyCompilation.text.some((line) => typeof line !== "string" || !line.trim())
         || !Number.isInteger(record.studyCompilation.attributionParagraphs)
@@ -1716,9 +1898,45 @@
       }
       documents = groupTexts(data.documents, data.textGroups);
       thematicUnits = readThematicUnits(data.curriculum, documents);
+      if (!Array.isArray(ownData.documents) || ownData.documents.some((record) =>
+        !record.id || documents.some((item) => item.id === record.id)
+        || !record.title || !record.date || !record.sourceCaption || !record.dataSourceUrl
+        || !Array.isArray(record.blocks) || !record.blocks.length
+        || !Array.isArray(record.tags) || !Array.isArray(record.commentary)
+        || !Array.isArray(record.unitIds) || !record.unitIds.length
+        || record.unitIds.some((id) => !thematicUnits.some((unit) => unit.id === id && record.blocks.includes(unit.block)))
+        || !["elections", "referendums", "municipal-turnout"].includes(record.visualization)
+        || !Array.isArray(record.tables) || !record.tables.length
+        || record.tables.some((table) => !table.caption || !Array.isArray(table.headers)
+          || !table.headers.length || !Array.isArray(table.rows) || !table.rows.length
+          || (record.visualization === "elections" && (
+            !/ · \d{4}$/.test(table.caption)
+            || (!table.chart && !/^Congreso de los Diputados · \d{4}$/.test(table.caption))
+            || (table.chart && (!/^elecciones-[a-z]+-\d{4}-semicirculo\.svg$/.test(table.chart.svg)
+              || !Number.isInteger(table.chart.seats) || table.chart.seats < 1 || table.chart.seats > 600))))
+          || (record.visualization === "municipal-turnout" && (table.headers.length !== 4
+            || table.rows.some((row) => row.length !== 4 || !/^\d+(?:,\d+)?$/.test(row[3])
+              || Number(row[3].replace(",", ".")) > 100)))
+          || table.rows.some((row) => !Array.isArray(row) || row.length !== table.headers.length
+            || (record.visualization === "elections"
+              ? table.headers.length !== 4 || !(row[3] === "—" || /^\d+$/.test(row[3]) && Number(row[3]) <= 600)
+              : record.visualization === "municipal-turnout"
+                ? table.headers.length !== 4 || row.slice(1).some((value) =>
+                  typeof value !== "string" || !/^(?:\d{1,3}(?:\.\d{3})+|\d+)(?:,\d+)?$/.test(value))
+                : ![5, 6].includes(table.headers.length) || row.slice(1).some((value) =>
+                typeof value !== "string" || !/^\d+(?:,\d+)?$/.test(value) || Number(value.replace(",", ".")) > 100)))))) {
+        throw new Error("Los materiales propios no son válidos");
+      }
+      if (new Set(ownData.documents.map((record) => record.id)).size !== ownData.documents.length) {
+        throw new Error("Hay materiales propios duplicados");
+      }
+      for (const record of ownData.documents) {
+        documents.push({ ...record, origin: "propio", type: "grafico", appearances: [] });
+        for (const id of record.unitIds) thematicUnits.find((unit) => unit.id === id).documentIds.push(record.id);
+      }
       officialExams = new Map((coverage.officialExamAvailability || []).map((entry) => [entry.year, entry]));
       searchIndex.clear();
-      documents.forEach((record) => searchIndex.set(record.id, normalize(searchableText(record))));
+      documents.forEach((record) => searchIndex.set(record.id, indexText(searchableText(record))));
       examYear.replaceChildren(element("option", "Todos los años"));
       examYear.firstElementChild.value = "";
       for (let year = 2002; year <= 2027; year++) {

@@ -141,7 +141,15 @@
       const article = document.createElement("article");
       article.className = "saved-question";
       const meta = document.createElement("small");
-      meta.textContent = `Bloque ${item.block}${item.source ? ` · ${item.source}` : ""}`;
+      if (item.source === "Elaboración propia · puede caer") {
+        const pill = document.createElement("span");
+        pill.className = "exam-pill";
+        pill.textContent = item.source;
+        meta.className = "saved-question-meta";
+        meta.append(`Bloque ${item.block} `, pill);
+      } else {
+        meta.textContent = `Bloque ${item.block}${item.source ? ` · ${item.source}` : ""}`;
+      }
       const prompt = document.createElement("p");
       prompt.textContent = spelling(item.prompt);
       const answer = answerFor(item);

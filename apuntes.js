@@ -60,6 +60,18 @@ function normalizeText(text) {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
 }
 
+// Search ignores accents, case and inner punctuation: 28-F = 28F, U.C.D. = UCD, 2.ª = 2a.
+function compactText(text) {
+  return String(text).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es")
+    .replace(/(\p{N})[.,](?=\p{N})/gu, "$1")
+    .replace(/([\p{L}\p{N}])[-\u2010-\u2015.·'’/](?=[\p{L}\p{N}])/gu, "$1");
+}
+
+function searchTerms(text) {
+  return compactText(text).split(/\s+/)
+    .map((term) => term.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "")).filter(Boolean);
+}
+
 function setupSearch() {
   const content = document.querySelector(".reading-content");
   const form = document.querySelector("#notes-search");
@@ -75,16 +87,17 @@ function setupSearch() {
   const selector = "p,h2,h3,h4,h5,li,td,th";
   let serial = 0;
   const showResults = () => {
-    const term = normalizeText(input.value.trim());
+    const terms = searchTerms(input.value);
     results.replaceChildren();
-    if (!term) {
+    if (!terms.length) {
       status.textContent = "";
       return;
     }
     const matches = [...content.querySelectorAll(selector)].filter((element) => {
       if (element.closest(".gen-sol,.practice-status,.related-practice")) return false;
       if ([...element.querySelectorAll(selector)].length) return false;
-      return normalizeText(element.textContent).includes(term);
+      const text = `${normalizeText(element.textContent)} ${compactText(element.textContent)}`;
+      return terms.every((term) => text.includes(term));
     });
     const shown = matches.slice(0, 80);
     shown.forEach((element) => {
@@ -381,10 +394,59 @@ function attachQuestionMarks(parent, question) {
   }
 }
 
+const OWN_EXAMPLE_LABEL = "Elaboración propia · puede caer";
+let shortQuestionsRequest;
+
+function loadShortQuestions() {
+  shortQuestionsRequest ||= fetch("../data/preguntas-cortas.json").then((response) => {
+    if (!response.ok) throw new Error("Banco de preguntas no disponible");
+    return response.json();
+  });
+  return shortQuestionsRequest;
+}
+
+// Word stems (first five letters) absorb small rewordings between the notes and the exam corpus.
+function questionStems(text) {
+  return (normalizeText(String(text)).match(/[a-z0-9]+/g) || []).map((word) => word.slice(0, 5));
+}
+
+function stemSimilarity(left, right) {
+  if (!left.length || !right.length) return 0;
+  const counts = new Map();
+  left.forEach((stem) => counts.set(stem, (counts.get(stem) || 0) + 1));
+  let shared = 0;
+  right.forEach((stem) => {
+    const count = counts.get(stem);
+    if (count) {
+      shared += 1;
+      counts.set(stem, count - 1);
+    }
+  });
+  return (2 * shared) / (left.length + right.length);
+}
+
+function markOwnExamples(examples) {
+  if (!examples.length) return;
+  loadShortQuestions().then((questions) => {
+    const corpus = questions.map((item) => questionStems(`${item.pregunta} ${item.subpregunta || ""}`));
+    examples.forEach(({ prompt, question, record }) => {
+      const stems = questionStems(question);
+      if (corpus.some((exam) => stemSimilarity(stems, exam) >= 0.85)) return;
+      const pill = document.createElement("span");
+      pill.className = "exam-pill example-origin";
+      pill.title = "Pregunta redactada para practicar: todavía no ha aparecido en los exámenes recopilados.";
+      pill.textContent = OWN_EXAMPLE_LABEL;
+      prompt.append(pill);
+      record.source = OWN_EXAMPLE_LABEL;
+    });
+  }).catch(() => {});
+}
+
 function setupExampleSolutions() {
   const content = document.querySelector(".reading-content");
   const block = Number(document.querySelector(".reading-number")?.textContent.trim());
   if (!content || !practiceAvailable(content)) return;
+  const unpublished = [];
   const headings = [...content.querySelectorAll("h2,h3,h4,h5")].filter((heading) => !heading.closest(".np-map,.ob-chart"));
   headings.filter((heading) => /ejemplos de preguntas cortas del bloque/i.test(heading.textContent))
     .forEach((heading) => {
@@ -423,10 +485,12 @@ function setupExampleSolutions() {
           const marks = document.createElement("div");
           marks.className = "practice-marks";
           details.after(marks);
-          attachQuestionMarks(marks, {
+          const record = {
             prompt: question, block, answer: answer || (sourceHint ? details.querySelector("p").textContent.replace(/^Debe incluir(?:\s*\/\s*Pistas)?\s*:\s*/i, "") : null),
             source: "Ejemplo de los apuntes",
-          });
+          };
+          attachQuestionMarks(marks, record);
+          if (!/\(PAU\s+\d{4}/i.test(text)) unpublished.push({ prompt, question, record });
         });
       }
       heading.dataset.solutionsReady = "true";
@@ -443,6 +507,7 @@ function setupExampleSolutions() {
         node = next;
       }
     });
+  markOwnExamples(unpublished);
 }
 
 function setupRelatedPractice() {
@@ -455,11 +520,7 @@ function setupRelatedPractice() {
   const headings = [...content.querySelectorAll("h2,h3,h4,h5")].filter((heading) => !heading.closest(".np-map,.ob-chart"));
   const articleTitle = headings.find((heading) => heading.tagName === "H2");
 
-  fetch("../data/preguntas-cortas.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Banco de preguntas no disponible");
-      return response.json();
-    })
+  loadShortQuestions()
     .then((questions) => {
       headings.forEach((heading) => {
         const label = heading.textContent.trim();

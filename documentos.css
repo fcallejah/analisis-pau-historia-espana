@@ -17,6 +17,7 @@
 @media(max-width:620px){.personal-library-back{margin-left:auto}}
 .saved-questions-main .saved-tabs button[aria-pressed=true],.document-saved-filters button[data-document-saved=review][aria-pressed=true]{border-color:#789326;background:#d6ee7a;color:#26320c}
 .saved-questions-main #saved-questions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:20px;margin-top:32px}
+.saved-questions-main .saved-question-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
 .saved-questions-main .saved-question{min-width:0;margin:0;border-radius:16px;overflow-wrap:anywhere}
 .saved-questions-main .document-search-row{margin-top:20px}
 .documents-lead{max-width:720px;color:var(--muted);font-size:16px}
@@ -109,6 +110,11 @@ html[data-theme="dark"] #document-exam.is-format-warning{color:#ffaaa0;-webkit-t
 .document-active-filters{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:10px 0 0}
 .document-active-filters[hidden]{display:none}
 .document-active-filters li{min-width:0;max-width:100%}
+.document-search-outside{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:10px 0 0;color:var(--muted);font:13px/1.4 "DM Sans",Arial,sans-serif}
+.document-search-outside[hidden]{display:none}
+.document-search-outside button{min-height:44px;padding:8px 14px;border:1px solid var(--accent);border-radius:999px;background:var(--surface);color:var(--accent);font:600 13px/1.2 "DM Sans",Arial,sans-serif;cursor:pointer}
+.document-search-outside button:hover{background:var(--accent);color:var(--paper)}
+.document-search-outside button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .document-active-filters button{display:flex;align-items:center;gap:8px;max-width:100%;min-height:36px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--accent);font:600 12px "DM Sans",Arial,sans-serif;text-align:left;overflow-wrap:anywhere;cursor:pointer}
 .document-active-filters button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .document-active-filters span:first-child{min-width:0}
@@ -231,6 +237,8 @@ html[data-page-zoomed] #document-dialog,html[data-page-zoomed] .document-full-so
 .document-image-credits>summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .document-exam-caption{max-width:65ch;margin:14px auto 0;color:var(--ink);text-align:center;user-select:text;-webkit-user-select:text}
 .document-exam-caption p{margin:0;font:400 clamp(18px,2vw,21px)/1.4 "PAU Caption","Arial Narrow",Arial,sans-serif;white-space:pre-line}
+.document-exam-caption .document-exam-footnote{margin:8px 0 0;color:#b23a30;text-align:left;font:400 13px/1.5 "PAU Caption","Arial Narrow",Arial,sans-serif}
+html[data-theme="dark"] .document-exam-caption .document-exam-footnote{color:#ffaaa0}
 .document-reproduction-note{margin:10px 0;color:var(--muted);text-align:center;font-size:12px}
 .document-collection-link{display:inline-flex;align-items:center;gap:5px;font-size:13px}
 .document-collection-link svg{width:1.1em;height:1.1em;flex:none}
@@ -259,6 +267,29 @@ html[data-page-zoomed] #document-dialog,html[data-page-zoomed] .document-full-so
 .document-table th,.document-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}
 .document-table th:first-child,.document-table td:first-child{text-align:left}
 .document-table caption{font-weight:600;text-align:left;margin-bottom:8px}
+.study-chart{margin:12px 0 24px;min-width:0}
+.study-chart-title{margin:18px 0 8px;font:700 17px/1.3 "PAU Caption","Arial Narrow",Arial,sans-serif}
+.study-chart-note{margin:6px 0 12px;color:var(--muted);font-size:12px;line-height:1.5}
+.study-chart-selector{display:block;margin-bottom:16px;font-size:14px;font-weight:600}
+.study-chart-selector select{max-width:100%;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+.study-election-chart{display:block;width:100%;max-width:480px;height:auto;margin:0 auto 12px}
+.study-chart-row{display:grid;grid-template-columns:minmax(0,40%) minmax(60px,1fr) max-content;gap:8px;align-items:center;margin:8px 0;font:14px/1.3 "PAU Caption","Arial Narrow",Arial,sans-serif}
+.study-chart-label{min-width:0;overflow-wrap:anywhere}
+.study-chart-track{height:12px;overflow:hidden;border-radius:4px;background:var(--line)}
+.study-chart-fill{display:block;height:100%;background:#60877c;border-radius:4px}
+.study-chart-fill.is-turnout{background:#59636d}
+html[data-theme="dark"] .study-chart-fill.is-turnout{background:#a9b0b8}
+.study-chart-fill.is-yes{background:#318258}
+.study-chart-fill.is-no{background:#b55950}
+.study-chart-value{min-width:3ch;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
+.study-chart-referendum+.study-chart-referendum{margin-top:24px;padding-top:4px;border-top:1px solid var(--line)}
+.document-full-source .study-chart{box-sizing:border-box;width:clamp(min(100%,420px),72%,640px);margin-inline:auto}
+.document-preview .study-chart{margin:0}
+.document-preview .study-chart-title{margin:0 0 8px;font-size:14px}
+.document-preview .study-chart-row{font-size:11px;gap:4px}
+.document-preview .study-chart-value{font-size:11px}
+.document-table-details .document-table+.document-image-caption{margin-top:8px}
+.document-table-details .document-table{margin-top:20px}
 .document-source-caption{font-size:13px;color:var(--muted)}
 .document-guide{padding:16px;border:1px solid var(--line);border-radius:12px;margin:20px 0}
 .document-guide summary{cursor:pointer;font-weight:700;color:var(--accent)}

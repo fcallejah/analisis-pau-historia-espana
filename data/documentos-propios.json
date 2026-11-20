@@ -1,0 +1,3195 @@
+{
+  "documents": [
+        {
+      "id": "propio-elecciones-municipales-1931",
+      "visualization": "municipal-turnout",
+      "title": "Elecciones municipales del 12 de abril de 1931",
+      "date": "12 de abril de 1931",
+      "blocks": [
+        10
+      ],
+      "unitIds": [
+        "iii-4"
+      ],
+      "tags": [
+        "Elecciones municipales",
+        "Municipales de 1931",
+        "12 de abril de 1931",
+        "Segunda República",
+        "Andalucía",
+        "participación"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de las cifras publicadas por el Instituto Nacional de Estadística.",
+      "dataSourceUrl": "https://ine.es/inebaseweb/pdfDispacher.do?td=96303",
+      "quality": "La fuente del INE ofrece este resumen para capitales de provincia y plazas del norte de África: 1.104.159 electores y 715.911 votantes. El 64,84 % se calcula a partir de esas cifras. No es un resultado nacional agregado por candidaturas ni permite representar escaños.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Calcula la participación a partir del censo y los votantes. La cifra se refiere únicamente al ámbito que recoge la tabla del INE."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona las elecciones municipales del 12 de abril de 1931 con la proclamación de la Segunda República, sin confundir los resultados de las capitales con un recuento nacional."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Capitales de provincia y plazas del norte de África · 1931",
+          "headers": [
+            "Ámbito",
+            "Electores",
+            "Votantes",
+            "Participación (%)"
+          ],
+          "rows": [
+            [
+              "Capitales de provincia y plazas del norte de África",
+              "1.104.159",
+              "715.911",
+              "64,84"
+            ]
+          ],
+          "notes": [
+            "Participación calculada: 715.911 ÷ 1.104.159 × 100 = 64,84 %. El INE publica el porcentaje redondeado al 65 %. La fuente no aporta aquí un resultado nacional agregado por candidaturas."
+          ]
+        }
+      ]
+    },
+            {
+      "id": "propio-elecciones-generales-1931",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1931: Cortes Constituyentes",
+      "date": "1931",
+      "blocks": [
+        10
+      ],
+      "unitIds": [
+        "iii-4"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Segunda República",
+        "II República",
+        "Cortes",
+        "1931"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
+      "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
+      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
+      "additionalSources": [],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara la composición de las Cortes en las elecciones generales de 1931. Los colores son editoriales y no representan grupos parlamentarios."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la representación política con la etapa correspondiente de la Segunda República."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Cortes Constituyentes · 1931",
+          "chart": {
+            "svg": "elecciones-republica-1931-semicirculo.svg",
+            "seats": 470,
+            "majority": 236,
+            "heading": "Cortes Constituyentes · 1931",
+            "title": "Elecciones generales de 1931: escaños en las Cortes",
+            "center": "470 escaños",
+            "showVotes": false,
+            "subtitle": "Escaños por candidatura y grupo"
+          },
+          "headers": [
+            "Candidatura o grupo",
+            "Votos",
+            "%",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "PSOE",
+              "—",
+              "—",
+              "115"
+            ],
+            [
+              "Al Servicio de la República",
+              "—",
+              "—",
+              "13"
+            ],
+            [
+              "Radical-socialistas",
+              "—",
+              "—",
+              "59"
+            ],
+            [
+              "Acción Republicana",
+              "—",
+              "—",
+              "26"
+            ],
+            [
+              "Federales",
+              "—",
+              "—",
+              "20"
+            ],
+            [
+              "Otros de izquierda",
+              "—",
+              "—",
+              "52"
+            ],
+            [
+              "Republicanos independientes de izquierda",
+              "—",
+              "—",
+              "6"
+            ],
+            [
+              "Partido Republicano Radical",
+              "—",
+              "—",
+              "90"
+            ],
+            [
+              "Derecha Liberal Republicana",
+              "—",
+              "—",
+              "25"
+            ],
+            [
+              "Partido Republicano Liberal Demócrata",
+              "—",
+              "—",
+              "4"
+            ],
+            [
+              "Otros de centro-derecha",
+              "—",
+              "—",
+              "17"
+            ],
+            [
+              "Independientes de centro-derecha",
+              "—",
+              "—",
+              "13"
+            ],
+            [
+              "Agrarios",
+              "—",
+              "—",
+              "15"
+            ],
+            [
+              "Acción Nacional",
+              "—",
+              "—",
+              "5"
+            ],
+            [
+              "Tradicionalistas",
+              "—",
+              "—",
+              "8"
+            ],
+            [
+              "Monárquicos",
+              "—",
+              "—",
+              "2"
+            ],
+            [
+              "Total",
+              "—",
+              "—",
+              "470"
+            ]
+          ],
+          "notes": [
+            "No se muestran votos ni porcentajes porque no forman parte de los datos utilizados para este gráfico.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chartGroups": [
+            {
+              "label": "Otros*",
+              "members": [
+                "Al Servicio de la República",
+                "Federales",
+                "Republicanos independientes de izquierda",
+                "Partido Republicano Liberal Demócrata",
+                "Otros de centro-derecha",
+                "Independientes de centro-derecha",
+                "Agrarios",
+                "Acción Nacional",
+                "Tradicionalistas",
+                "Monárquicos"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "id": "propio-elecciones-generales-1933",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1933: Segunda República",
+      "date": "1933",
+      "blocks": [
+        10
+      ],
+      "unitIds": [
+        "iii-5"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Segunda República",
+        "II República",
+        "Cortes",
+        "1933"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
+      "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
+      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
+      "additionalSources": [],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara la composición de las Cortes en las elecciones generales de 1933. Los colores son editoriales y no representan grupos parlamentarios."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la representación política con la etapa correspondiente de la Segunda República."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Cortes de 1933 · 1933",
+          "chart": {
+            "svg": "elecciones-republica-1933-semicirculo.svg",
+            "seats": 473,
+            "majority": 237,
+            "heading": "Cortes · 1933",
+            "title": "Elecciones generales de 1933: escaños en las Cortes",
+            "center": "473 escaños",
+            "showVotes": false,
+            "subtitle": "Escaños por candidatura y grupo"
+          },
+          "headers": [
+            "Candidatura o grupo",
+            "Votos",
+            "%",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Comunista de España",
+              "—",
+              "—",
+              "1"
+            ],
+            [
+              "PSOE",
+              "—",
+              "—",
+              "59"
+            ],
+            [
+              "Radical-socialistas y PRRSI",
+              "—",
+              "—",
+              "4"
+            ],
+            [
+              "Acción Republicana",
+              "—",
+              "—",
+              "5"
+            ],
+            [
+              "Republicanos federales",
+              "—",
+              "—",
+              "4"
+            ],
+            [
+              "Otros de izquierda",
+              "—",
+              "—",
+              "27"
+            ],
+            [
+              "Republicanos independientes",
+              "—",
+              "—",
+              "5"
+            ],
+            [
+              "Partido Republicano Radical",
+              "—",
+              "—",
+              "102"
+            ],
+            [
+              "Partido Republicano Conservador",
+              "—",
+              "—",
+              "17"
+            ],
+            [
+              "Partido Republicano Liberal Demócrata",
+              "—",
+              "—",
+              "9"
+            ],
+            [
+              "Otros de centro-derecha",
+              "—",
+              "—",
+              "42"
+            ],
+            [
+              "Independientes de derecha",
+              "—",
+              "—",
+              "13"
+            ],
+            [
+              "Agrarios",
+              "—",
+              "—",
+              "30"
+            ],
+            [
+              "CEDA",
+              "—",
+              "—",
+              "115"
+            ],
+            [
+              "Comunión Tradicionalista",
+              "—",
+              "—",
+              "20"
+            ],
+            [
+              "Monárquicos y Falange",
+              "—",
+              "—",
+              "20"
+            ],
+            [
+              "Total",
+              "—",
+              "—",
+              "473"
+            ]
+          ],
+          "notes": [
+            "No se muestran votos ni porcentajes porque no forman parte de los datos utilizados para este gráfico.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chartGroups": [
+            {
+              "label": "Otros*",
+              "members": [
+                "Partido Comunista de España",
+                "Radical-socialistas y PRRSI",
+                "Acción Republicana",
+                "Republicanos federales",
+                "Republicanos independientes",
+                "Partido Republicano Conservador",
+                "Partido Republicano Liberal Demócrata",
+                "Independientes de derecha",
+                "Comunión Tradicionalista",
+                "Monárquicos y Falange"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "id": "propio-elecciones-generales-1936",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1936: Segunda República",
+      "date": "1936",
+      "blocks": [
+        10
+      ],
+      "unitIds": [
+        "iii-5"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Segunda República",
+        "II República",
+        "Cortes",
+        "1936"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
+      "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
+      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
+      "additionalSources": [
+        {
+          "label": "Elecciones generales de 1936 · distribución por bloques",
+          "url": "https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1936"
+        }
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara la composición de las Cortes en las elecciones generales de 1936. Los colores son editoriales y no representan grupos parlamentarios."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la representación política con la etapa correspondiente de la Segunda República."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Cortes de 1936 · 1936",
+          "chart": {
+            "svg": "elecciones-republica-1936-semicirculo.svg",
+            "seats": 473,
+            "majority": 237,
+            "heading": "Cortes · 1936",
+            "title": "Elecciones generales de 1936: escaños por bloques",
+            "center": "473 escaños",
+            "showVotes": false,
+            "subtitle": "Escaños por bloques",
+            "centerNote": "Escaños asignados por bloques"
+          },
+          "headers": [
+            "Bloque electoral",
+            "Votos",
+            "%",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Frente Popular",
+              "—",
+              "—",
+              "286"
+            ],
+            [
+              "Frente Nacional Contrarrevolucionario",
+              "—",
+              "—",
+              "141"
+            ],
+            [
+              "Centro y nacionalistas",
+              "—",
+              "—",
+              "46"
+            ],
+            [
+              "Total",
+              "—",
+              "—",
+              "473"
+            ]
+          ],
+          "notes": [
+            "La distribución por bloques de 1936 sigue el gráfico aportado para esta elección. Los resultados definitivos se publicaron tras la revisión de las Cortes y la repetición electoral en Cuenca y Granada.",
+            "No se muestran votos ni porcentajes porque no forman parte de los datos utilizados para este gráfico."
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1979",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1979",
+      "date": "1979",
+      "unitIds": [
+        "iii-11"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Transición",
+        "UCD",
+        "PSOE",
+        "1979"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1979."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1979."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1979",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Unión de Centro Democrático (UCD)",
+              "6.291.341",
+              "35,08",
+              "168"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "5.476.969",
+              "30,54",
+              "121"
+            ],
+            [
+              "Partido Comunista de España (PCE)",
+              "1.939.733",
+              "10,82",
+              "23"
+            ],
+            [
+              "Coalición Democrática (CD)",
+              "1.070.637",
+              "5,97",
+              "9"
+            ],
+            [
+              "Convergencia i Unió (C i U)",
+              "483.353",
+              "2,70",
+              "8"
+            ],
+            [
+              "Unión Nacional (UN)",
+              "379.460",
+              "2,12",
+              "1"
+            ],
+            [
+              "Partido Socialista de Andalucía - Partido Andaluz (PSA-PA)",
+              "325.842",
+              "1,82",
+              "5"
+            ],
+            [
+              "Partido Nacionalista Vasco ( PNV)",
+              "275.292",
+              "1,54",
+              "7"
+            ],
+            [
+              "Herri Batasuna (HB)",
+              "172.110",
+              "0,96",
+              "3"
+            ],
+            [
+              "Esquerra Republica de Catalunya (ERC) ***",
+              "123.452",
+              "0,69",
+              "1"
+            ],
+            [
+              "Euskadiko Ezkerra (EE)",
+              "85.677",
+              "0,48",
+              "1"
+            ],
+            [
+              "Unión del Pueblo Canario (UPC)",
+              "58.953",
+              "0,33",
+              "1"
+            ],
+            [
+              "Partido Aragonés Regionalista (PAR)",
+              "38.042",
+              "0,21",
+              "1"
+            ],
+            [
+              "Unión del Pueblo Navarro (UPN)",
+              "28.248",
+              "0,16",
+              "1"
+            ],
+            [
+              "Total",
+              "16.749.109",
+              "93,39",
+              "350"
+            ],
+            [
+              "Otros**",
+              "1.184.539",
+              "6,61",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "17.933.648",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "*** Esquerra Republicana de Catalunya amb Font Nacional de Catalunya i Partit Social Demócrata de Catalunya (ERC)",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1979-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1979",
+            "title": "Elecciones generales de 1979: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "Otros*",
+              "members": [
+                "Unión Nacional (UN)",
+                "Partido Socialista de Andalucía - Partido Andaluz (PSA-PA)",
+                "Herri Batasuna (HB)",
+                "Esquerra Republica de Catalunya (ERC) ***",
+                "Euskadiko Ezkerra (EE)",
+                "Unión del Pueblo Canario (UPC)",
+                "Partido Aragonés Regionalista (PAR)",
+                "Unión del Pueblo Navarro (UPN)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1982",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1982",
+      "date": "1982",
+      "unitIds": [
+        "iii-11"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Transición",
+        "UCD",
+        "PSOE",
+        "1982"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1982."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1982."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1982",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "8.551.791",
+              "40,82",
+              "177"
+            ],
+            [
+              "Alianza Popular ( AP)**",
+              "5.543.107",
+              "26,46",
+              "107"
+            ],
+            [
+              "Partido Socialista de Catalunya (PSC)",
+              "1.575.601",
+              "7,52",
+              "25"
+            ],
+            [
+              "Unión de Centro Democrático (UCD)",
+              "1.354.858",
+              "6,47",
+              "11"
+            ],
+            [
+              "Partido Comunista de España (PCE)",
+              "686.423",
+              "3,28",
+              "3"
+            ],
+            [
+              "Convergencia i Unió (CiU)",
+              "772.726",
+              "3,69",
+              "12"
+            ],
+            [
+              "Centro Democrático y Social (CDS)",
+              "600.842",
+              "2,87",
+              "2"
+            ],
+            [
+              "Partido Nacionalista Vasco (PNV)",
+              "395.656",
+              "1,89",
+              "8"
+            ],
+            [
+              "Herri Batasuna (HB)",
+              "210.601",
+              "1,01",
+              "2"
+            ],
+            [
+              "Partit Socialista Unificat de Catalunya (PSUC)",
+              "158.553",
+              "0,76",
+              "1"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "138.116",
+              "0,66",
+              "1"
+            ],
+            [
+              "Euskadiko Ezkerra (EE)",
+              "100.326",
+              "0,48",
+              "1"
+            ],
+            [
+              "Total",
+              "20.088.600",
+              "95,88",
+              "350"
+            ],
+            [
+              "Otros***",
+              "863.000",
+              "4,12",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "20.951.600",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** En coalición con el PDP, UL, PAR, UPN, UV. Incluye además 139.148 votos y 2 escaños obtenidos en las provincias vascas en coalición con UCD.",
+            "*** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1982-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1982",
+            "title": "Elecciones generales de 1982: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partido Socialista de Catalunya (PSC)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partido Socialista de Catalunya (PSC)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Partido Comunista de España (PCE)",
+                "Centro Democrático y Social (CDS)",
+                "Herri Batasuna (HB)",
+                "Partit Socialista Unificat de Catalunya (PSUC)",
+                "Esquerra Republicana de Catalunya (ERC)",
+                "Euskadiko Ezkerra (EE)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+        {
+      "id": "propio-elecciones-andaluzas-1982",
+      "visualization": "elections",
+      "title": "Primeras elecciones al Parlamento de Andalucía (1982)",
+      "date": "23 de mayo de 1982",
+      "blocks": [
+        12
+      ],
+      "unitIds": [
+        "iii-11"
+      ],
+      "tags": [
+        "Elecciones andaluzas",
+        "Andalucía",
+        "Parlamento de Andalucía",
+        "Rafael Escuredo",
+        "resultados electorales 1982"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de los resultados de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/ANDALUCIA_1982_Resultados.pdf",
+      "additionalSources": [
+        {
+          "label": "Memoria electoral de 1982 · Parlamento de Andalucía",
+          "url": "https://www.parlamentodeandalucia.es/documents/20121/397869/1982.Memoria+de+resultados+electorales.+ELECCIONES+1982.pdf/c15bd8d3-5465-09de-5b9d-eb74bb905976"
+        }
+      ],
+      "quality": "Cifras del resumen de la JEC; la memoria del Parlamento y otras recopilaciones ofrecen totales de votos distintos. Los 109 escaños se distribuyen igualmente entre las cinco candidaturas representadas.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y los 109 escaños. La mayoría absoluta se alcanza con 55."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona las primeras elecciones autonómicas con la constitución del Parlamento de Andalucía y la presidencia de Rafael Escuredo."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Parlamento de Andalucía · 1982",
+          "chart": {
+            "svg": "elecciones-andaluzas-1982-semicirculo.svg",
+            "seats": 109,
+            "majority": 55,
+            "heading": "Andalucía · 1982",
+            "title": "Elecciones al Parlamento de Andalucía de 1982",
+            "center": "109 escaños"
+          },
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos válidos",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Socialista Obrero Español de Andalucía (PSOE-A)",
+              "1.492.830",
+              "52,54",
+              "66"
+            ],
+            [
+              "Alianza Popular (AP)",
+              "483.896",
+              "17,03",
+              "17"
+            ],
+            [
+              "Unión de Centro Democrático (UCD)",
+              "370.848",
+              "13,05",
+              "15"
+            ],
+            [
+              "Partido Comunista de Andalucía - Partido Comunista de España (PCA-PCE)",
+              "243.724",
+              "8,58",
+              "8"
+            ],
+            [
+              "Partido Socialista de Andalucía (PSA)",
+              "153.112",
+              "5,39",
+              "3"
+            ],
+            [
+              "Total",
+              "2.744.410",
+              "96,58",
+              "109"
+            ],
+            [
+              "Otras candidaturas sin escaño",
+              "87.845",
+              "3,09",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "2.832.255",
+              "99,67",
+              "—"
+            ]
+          ],
+          "notes": [
+            "Porcentajes calculados sobre 2.841.565 votos válidos: 2.832.255 a candidaturas y 9310 en blanco. La JEC registra 2.866.499 votantes y 24.934 votos nulos.",
+            "La memoria electoral del Parlamento presenta totales de votos diferentes; esta ficha utiliza de forma coherente el resumen de la JEC y no mezcla ambas series."
+          ],
+          "chartGroups": []
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1986",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1986",
+      "date": "1986",
+      "unitIds": [
+        "iii-12"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "PSOE",
+        "Gobiernos socialistas",
+        "1986"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1986."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1986."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1986",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "7.601.985",
+              "37,86",
+              "163"
+            ],
+            [
+              "Coalición Popular (CP)",
+              "5.247.677",
+              "26,13",
+              "105"
+            ],
+            [
+              "Centro Democrático y Social (CDS)",
+              "1.838.799",
+              "9,16",
+              "19"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "1.299.733",
+              "6,47",
+              "21"
+            ],
+            [
+              "Convergencia i Unió (CiU)",
+              "1.014.258",
+              "5,05",
+              "18"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "768.158",
+              "3,83",
+              "6"
+            ],
+            [
+              "Partido Nacionalista Vasco (PNV)",
+              "309.610",
+              "1,54",
+              "6"
+            ],
+            [
+              "Herri Batasuna (HB)**",
+              "215.282",
+              "1,07",
+              "5"
+            ],
+            [
+              "Unió de L`Esquerra Catalana (UEC)",
+              "123.912",
+              "0,62",
+              "1"
+            ],
+            [
+              "Euskadiko Ezquerra (EE)",
+              "107.053",
+              "0,53",
+              "2"
+            ],
+            [
+              "Coalición Galega (CG)",
+              "79.972",
+              "0,40",
+              "1"
+            ],
+            [
+              "Partido Aragonés Regionalista (PAR)",
+              "73.004",
+              "0,36",
+              "1"
+            ],
+            [
+              "Agrupaciones Independientes de Canarias (AIC)",
+              "65.664",
+              "0,33",
+              "1"
+            ],
+            [
+              "Unió Valenciana (UV)",
+              "64.403",
+              "0,32",
+              "1"
+            ],
+            [
+              "Total",
+              "18.809.510",
+              "93,66",
+              "350"
+            ],
+            [
+              "Otros***",
+              "1.272.223",
+              "6,34",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "20.081.733",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Suma de los votos obtenidos en Vizcaya, Guipuzcoa y Navarra.",
+            "*** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1986-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1986",
+            "title": "Elecciones generales de 1986: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Partido Nacionalista Vasco (PNV)",
+                "Herri Batasuna (HB)**",
+                "Unió de L`Esquerra Catalana (UEC)",
+                "Euskadiko Ezquerra (EE)",
+                "Coalición Galega (CG)",
+                "Partido Aragonés Regionalista (PAR)",
+                "Agrupaciones Independientes de Canarias (AIC)",
+                "Unió Valenciana (UV)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1989",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1989",
+      "date": "1989",
+      "unitIds": [
+        "iii-12"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "PSOE",
+        "Gobiernos socialistas",
+        "1989"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1989."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1989."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1989",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "6.991.593",
+              "34,35",
+              "155"
+            ],
+            [
+              "Partido Popular (PP)",
+              "5.117.049",
+              "25,14",
+              "101"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "1.627.136",
+              "8,00",
+              "14"
+            ],
+            [
+              "Centro Democrático y Social (CDS)",
+              "1.617.716",
+              "7,95",
+              "14"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "1.123.975",
+              "5,52",
+              "20"
+            ],
+            [
+              "Convergencia i Unió (CIU)",
+              "1.032.243",
+              "5,07",
+              "18"
+            ],
+            [
+              "Eusko Alderdi Jetzalea - Partido Nacionalista Vasco (EAJ-PNV)",
+              "252.119",
+              "1,24",
+              "5"
+            ],
+            [
+              "Iniciativa per Catalunya (IC)",
+              "231.452",
+              "1,14",
+              "3"
+            ],
+            [
+              "Herri Batasuna (HB)",
+              "217.278",
+              "1,07",
+              "4"
+            ],
+            [
+              "Partido Andalucista (PA)",
+              "212.687",
+              "1,05",
+              "2"
+            ],
+            [
+              "Unión Valenciana (UV)",
+              "144.924",
+              "0,71",
+              "2"
+            ],
+            [
+              "Eusko Alkartasuna (EA)",
+              "136.955",
+              "0,67",
+              "2"
+            ],
+            [
+              "Euskadiko Ezkerra (EE)",
+              "105.238",
+              "0,52",
+              "2"
+            ],
+            [
+              "Unión del Pueblo Navarro - Coalición PP (UPN-PP)",
+              "92.216",
+              "0,45",
+              "3"
+            ],
+            [
+              "PP- Coalición Centristas de Galicia (PP-CG)",
+              "76.707",
+              "0,38",
+              "3"
+            ],
+            [
+              "Partido Aragonés Regionalista (PAR)",
+              "71.733",
+              "0,35",
+              "1"
+            ],
+            [
+              "Agrupaciones Independientes de Canarias (AIC)",
+              "64.767",
+              "0,32",
+              "1"
+            ],
+            [
+              "Total",
+              "19.115.788",
+              "93,93",
+              "350"
+            ],
+            [
+              "Otros**",
+              "1.236.099",
+              "6,07",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "20.351.887",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1989-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1989",
+            "title": "Elecciones generales de 1989: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Unión del Pueblo Navarro - Coalición PP (UPN-PP)",
+                "PP- Coalición Centristas de Galicia (PP-CG)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Eusko Alderdi Jetzalea - Partido Nacionalista Vasco (EAJ-PNV)",
+                "Iniciativa per Catalunya (IC)",
+                "Herri Batasuna (HB)",
+                "Partido Andalucista (PA)",
+                "Unión Valenciana (UV)",
+                "Eusko Alkartasuna (EA)",
+                "Euskadiko Ezkerra (EE)",
+                "Partido Aragonés Regionalista (PAR)",
+                "Agrupaciones Independientes de Canarias (AIC)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1993",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1993",
+      "date": "1993",
+      "unitIds": [
+        "iii-12"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "PSOE",
+        "Gobiernos socialistas",
+        "1993"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1993."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1993."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1993",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "8.089.235",
+              "34,56",
+              "138"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "7.872.245",
+              "33,64",
+              "141"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "1.905.673",
+              "8,14",
+              "15"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "1.277.838",
+              "5,46",
+              "18"
+            ],
+            [
+              "Convergencia i Unió (CIU)",
+              "1.165.783",
+              "4,98",
+              "17"
+            ],
+            [
+              "Eusko Alderdi Jetzalea - Partido Nacionalista Vasco (EAJ-PNV)",
+              "291.448",
+              "1,25",
+              "5"
+            ],
+            [
+              "Iniciativa per Catalunya (IC)",
+              "273.444",
+              "1,17",
+              "3"
+            ],
+            [
+              "Coalición Canaria (CC)",
+              "207.077",
+              "0,88",
+              "4"
+            ],
+            [
+              "Herri Batasuna (HB)",
+              "206.876",
+              "0,88",
+              "2"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "189.632",
+              "0,81",
+              "1"
+            ],
+            [
+              "Partido Aragonés Regionalista (PAR)",
+              "144.544",
+              "0,62",
+              "1"
+            ],
+            [
+              "Coalición Eusko Alkartasuna - Euskal Ezkerra (EA-EUE)",
+              "129.293",
+              "0,55",
+              "1"
+            ],
+            [
+              "Unió Valenciana (UV)",
+              "112.341",
+              "0,48",
+              "1"
+            ],
+            [
+              "Unión del Pueblo Navarro - Partido Popular (UPN-PP)",
+              "112.228",
+              "0,48",
+              "3"
+            ],
+            [
+              "Total",
+              "21.977.657",
+              "93,91",
+              "350"
+            ],
+            [
+              "Otros**",
+              "1.425.528",
+              "6,09",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "23.403.185",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1993-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1993",
+            "title": "Elecciones generales de 1993: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Unión del Pueblo Navarro - Partido Popular (UPN-PP)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Iniciativa per Catalunya (IC)",
+                "Coalición Canaria (CC)",
+                "Herri Batasuna (HB)",
+                "Esquerra Republicana de Catalunya (ERC)",
+                "Partido Aragonés Regionalista (PAR)",
+                "Coalición Eusko Alkartasuna - Euskal Ezkerra (EA-EUE)",
+                "Unió Valenciana (UV)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-1996",
+      "visualization": "elections",
+      "title": "Elecciones generales de 1996",
+      "date": "1996",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "1996"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 1996."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 1996."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 1996",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "9.224.696",
+              "37,19",
+              "146"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "7.894.535",
+              "31,83",
+              "122"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "2.342.789",
+              "9,45",
+              "19"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "1.531.143",
+              "6,17",
+              "19"
+            ],
+            [
+              "Convergencia i Unió (CIU)",
+              "1.151.633",
+              "4,64",
+              "16"
+            ],
+            [
+              "Partido Popular - Partido Aragonés (PP-PAR)",
+              "370.975",
+              "1,50",
+              "8"
+            ],
+            [
+              "Eusko Alderdi Jetzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "318.951",
+              "1,29",
+              "5"
+            ],
+            [
+              "Iniciativa per Catalunya - Els Verds (IC-EV)",
+              "296.985",
+              "1,20",
+              "2"
+            ],
+            [
+              "Coalición Canaria (CC)",
+              "220.418",
+              "0,89",
+              "4"
+            ],
+            [
+              "Bloque Nacionalista Galego (BNG)",
+              "220.147",
+              "0,89",
+              "2"
+            ],
+            [
+              "Herri Batasuna (HB)",
+              "181.304",
+              "0,73",
+              "2"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "167.641",
+              "0,68",
+              "1"
+            ],
+            [
+              "Unión del Pueblo Navarro - Partido Popular (UPN-PP)",
+              "120.335",
+              "0,49",
+              "2"
+            ],
+            [
+              "Eusko Alkartasuna (EA)",
+              "115.861",
+              "0,47",
+              "1"
+            ],
+            [
+              "Unió Valenciana (UV)",
+              "91.575",
+              "0,37",
+              "1"
+            ],
+            [
+              "Total",
+              "24.248.988",
+              "97,77",
+              "350"
+            ],
+            [
+              "Otros**",
+              "553.943",
+              "2,23",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "24.802.931",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-1996-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 1996",
+            "title": "Elecciones generales de 1996: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Partido Popular - Partido Aragonés (PP-PAR)",
+                "Unión del Pueblo Navarro - Partido Popular (UPN-PP)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Eusko Alderdi Jetzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+                "Iniciativa per Catalunya - Els Verds (IC-EV)",
+                "Coalición Canaria (CC)",
+                "Bloque Nacionalista Galego (BNG)",
+                "Herri Batasuna (HB)",
+                "Esquerra Republicana de Catalunya (ERC)",
+                "Eusko Alkartasuna (EA)",
+                "Unió Valenciana (UV)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-2000",
+      "visualization": "elections",
+      "title": "Elecciones generales de 2000",
+      "date": "2000",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "2000"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 2000."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 2000."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 2000",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "10.321.178",
+              "45,24",
+              "183"
+            ],
+            [
+              "Partido socialista Obrero Español - Progresistas (PSOE)",
+              "7.918.752",
+              "34,71",
+              "125"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "1.263.043",
+              "5,54",
+              "8"
+            ],
+            [
+              "Convergència i Unió (CiU)",
+              "970.421",
+              "4,25",
+              "15"
+            ],
+            [
+              "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "353.953",
+              "1,55",
+              "7"
+            ],
+            [
+              "Bloque Nacionalista Galego (BNG)",
+              "306.268",
+              "1,34",
+              "3"
+            ],
+            [
+              "Coalición Canaria (CC)",
+              "248.261",
+              "1,09",
+              "4"
+            ],
+            [
+              "Partido Andalucista (PA)",
+              "206.255",
+              "0,90",
+              "1"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "194.715",
+              "0,85",
+              "1"
+            ],
+            [
+              "Iniciativa per Catalunya-Verds (IC-V)",
+              "119.290",
+              "0,52",
+              "1"
+            ],
+            [
+              "Eusko Alkartasuna (EA)",
+              "100.742",
+              "0,44",
+              "1"
+            ],
+            [
+              "Chunta Aragonesista (CHA)",
+              "75.356",
+              "0,33",
+              "1"
+            ],
+            [
+              "Total",
+              "22.078.234",
+              "96,77",
+              "350"
+            ],
+            [
+              "Otros**",
+              "736.233",
+              "3,23",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "22.814.467",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-2000-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 2000",
+            "title": "Elecciones generales de 2000: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "Otros*",
+              "members": [
+                "Bloque Nacionalista Galego (BNG)",
+                "Partido Andalucista (PA)",
+                "Esquerra Republicana de Catalunya (ERC)",
+                "Iniciativa per Catalunya-Verds (IC-V)",
+                "Eusko Alkartasuna (EA)",
+                "Chunta Aragonesista (CHA)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-2004",
+      "visualization": "elections",
+      "title": "Elecciones generales de 2004",
+      "date": "2004",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "2004"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 2004."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 2004."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 2004",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "11.026.163",
+              "43,27",
+              "164"
+            ],
+            [
+              "Partido Popular (PP)",
+              "9.635.491",
+              "37,81",
+              "146"
+            ],
+            [
+              "Convergencia i Unió (CiU)",
+              "835.471",
+              "3,28",
+              "10"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "652.196",
+              "2,56",
+              "8"
+            ],
+            [
+              "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "420.980",
+              "1,65",
+              "7"
+            ],
+            [
+              "Coalición Canaria (CC)",
+              "235.221",
+              "0,92",
+              "3"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "801.821",
+              "3,15",
+              "2"
+            ],
+            [
+              "Iniciativa Per Cataluya Verds- Esquerra Unida I Alternativa (ICV-EUIA)",
+              "234.790",
+              "0,92",
+              "2"
+            ],
+            [
+              "Bloque Nacionalista Galego (BNG)",
+              "208.688",
+              "0,82",
+              "2"
+            ],
+            [
+              "Unión del Pueblo Navarro-Partido Popular (UPN-PP)",
+              "127.653",
+              "0,50",
+              "2"
+            ],
+            [
+              "Coalición Esquerra Unida Pais Valencia-Izquierda Republicana (ENTESA)",
+              "123.611",
+              "0,49",
+              "1"
+            ],
+            [
+              "Chunta Aragonesista (CHA)",
+              "94.252",
+              "0,37",
+              "1"
+            ],
+            [
+              "Eusko Alcartasuna (EA)",
+              "80.905",
+              "0,32",
+              "1"
+            ],
+            [
+              "Coalición Nafarroa Bai (NA-BAI)",
+              "61.045",
+              "0,24",
+              "1"
+            ],
+            [
+              "Total",
+              "24.538.287",
+              "96,29",
+              "350"
+            ],
+            [
+              "Otros**",
+              "945.217",
+              "3,71",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "25.483.504",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-2004-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 2004",
+            "title": "Elecciones generales de 2004: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Unión del Pueblo Navarro-Partido Popular (UPN-PP)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Izquierda Unida (IU)",
+                "Iniciativa Per Cataluya Verds- Esquerra Unida I Alternativa (ICV-EUIA)",
+                "Bloque Nacionalista Galego (BNG)",
+                "Coalición Esquerra Unida Pais Valencia-Izquierda Republicana (ENTESA)",
+                "Chunta Aragonesista (CHA)",
+                "Eusko Alcartasuna (EA)",
+                "Coalición Nafarroa Bai (NA-BAI)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-2008",
+      "visualization": "elections",
+      "title": "Elecciones generales de 2008",
+      "date": "2008",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "2008"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 2008."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 2008."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 2008",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "10.144.951",
+              "39,86",
+              "152"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "9.599.424",
+              "37,72",
+              "144"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "1.689.911",
+              "6,64",
+              "25"
+            ],
+            [
+              "Convergencia i Unió (CiU)",
+              "779.425",
+              "3,06",
+              "10"
+            ],
+            [
+              "Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "306.128",
+              "1,20",
+              "6"
+            ],
+            [
+              "Esquerra Republicana de Catalunya (ERC)",
+              "291.532",
+              "1,15",
+              "3"
+            ],
+            [
+              "Izquierda Unida (IU)",
+              "969.946",
+              "3,81",
+              "2"
+            ],
+            [
+              "Bloque Nacionalista Galego (BNG)",
+              "212.543",
+              "0,84",
+              "2"
+            ],
+            [
+              "Coalición Canaria - Partido Nacionalista Canario (CC-PNC)",
+              "174.629",
+              "0,69",
+              "2"
+            ],
+            [
+              "Unión del Pueblo Navarro-Partido Popular (UPN-PP)",
+              "133.059",
+              "0,52",
+              "2"
+            ],
+            [
+              "Unión, Progreso y Democracia (UPyD)",
+              "306.079",
+              "1,20",
+              "1"
+            ],
+            [
+              "Coalición Nafarroa Bai (NA-BAI)",
+              "62.398",
+              "0,25",
+              "1"
+            ],
+            [
+              "Total",
+              "24.670.025",
+              "96,94",
+              "350"
+            ],
+            [
+              "Otros**",
+              "778.659",
+              "3,06",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "25.448.684",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-2008-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 2008",
+            "title": "Elecciones generales de 2008: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Unión del Pueblo Navarro-Partido Popular (UPN-PP)"
+              ]
+            },
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Izquierda Unida (IU)",
+                "Bloque Nacionalista Galego (BNG)",
+                "Coalición Canaria - Partido Nacionalista Canario (CC-PNC)",
+                "Unión, Progreso y Democracia (UPyD)",
+                "Coalición Nafarroa Bai (NA-BAI)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. No es un documento de examen.",
+      "id": "propio-elecciones-generales-2011",
+      "visualization": "elections",
+      "title": "Elecciones generales de 2011",
+      "date": "2011",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "2011"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 2011."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 2011."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 2011",
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "10.061.311",
+              "41,89",
+              "170"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "6.080.964",
+              "25,32",
+              "96"
+            ],
+            [
+              "Convergéncia i Unió",
+              "1.015.691",
+              "4,22",
+              "16"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "922.547",
+              "3,84",
+              "14"
+            ],
+            [
+              "Coalición \" La Izquierda Plural\"",
+              "1.685.991",
+              "7,02",
+              "11"
+            ],
+            [
+              "Coalición \"Partido Popular en coalición con el Partido Aragonés\" (PP-PAR)",
+              "339.502",
+              "1,41",
+              "8"
+            ],
+            [
+              "Coalición AMAIUR",
+              "334.498",
+              "1,39",
+              "7"
+            ],
+            [
+              "Coalición \"Partido Popular-Extremadura Unida\" (PP-EU)",
+              "339.237",
+              "1,41",
+              "6"
+            ],
+            [
+              "Unión Progreso y Democracia (UPyD)",
+              "1.143.225",
+              "4,76",
+              "5"
+            ],
+            [
+              "Eusko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "324.317",
+              "1,35",
+              "5"
+            ],
+            [
+              "Coalición \"Esquerra Republicana de Catalunya\" (ERC/ESQUERRA)",
+              "244.854",
+              "1,01",
+              "3"
+            ],
+            [
+              "Bloque Nacionalista Galego (BNG)",
+              "184.037",
+              "0,76",
+              "2"
+            ],
+            [
+              "Coalición \"Coalición Canaria-Nueva Canarias\" (CC-NC-PNC)",
+              "143.881",
+              "0,59",
+              "2"
+            ],
+            [
+              "Coalición \"Unión del Pueblo Navarro en coalición con el Partido Popular\" (UPN-PP)",
+              "126.516",
+              "0,52",
+              "2"
+            ],
+            [
+              "Coalición \"Bloc-Iniciativa-Verds-Equo-Coalició Compromís\" (Compromís-Q)",
+              "125.306",
+              "0,52",
+              "1"
+            ],
+            [
+              "Foro de Ciudadanos (FAC)",
+              "99.473",
+              "0,41",
+              "1"
+            ],
+            [
+              "Geroa Bai (GBAI)",
+              "42.415",
+              "0,17",
+              "1"
+            ],
+            [
+              "Total",
+              "23.213.765",
+              "96,66",
+              "350"
+            ],
+            [
+              "Otros**",
+              "801.611",
+              "3,34",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "24.015.376",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-2011-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 2011",
+            "title": "Elecciones generales de 2011: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          },
+          "chartGroups": [
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Coalición \"Partido Popular en coalición con el Partido Aragonés\" (PP-PAR)",
+                "Coalición \"Partido Popular-Extremadura Unida\" (PP-EU)",
+                "Coalición \"Unión del Pueblo Navarro en coalición con el Partido Popular\" (UPN-PP)"
+              ]
+            },
+            {
+              "label": "PSOE + PSC",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Coalición AMAIUR",
+                "Unión Progreso y Democracia (UPyD)",
+                "Eusko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+                "Coalición \"Esquerra Republicana de Catalunya\" (ERC/ESQUERRA)",
+                "Bloque Nacionalista Galego (BNG)",
+                "Coalición \"Coalición Canaria-Nueva Canarias\" (CC-NC-PNC)",
+                "Coalición \"Bloc-Iniciativa-Verds-Equo-Coalició Compromís\" (Compromís-Q)",
+                "Foro de Ciudadanos (FAC)",
+                "Geroa Bai (GBAI)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+        {
+      "id": "propio-elecciones-europeas-2014",
+      "visualization": "elections",
+      "title": "Elecciones europeas de 2014 en España",
+      "date": "25 de mayo de 2014",
+      "blocks": [
+        12
+      ],
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones europeas",
+        "Unión Europea",
+        "Podemos",
+        "Ciudadanos",
+        "resultados electorales 2014"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de los resultados publicados por la Junta Electoral Central en el BOE.",
+      "dataSourceUrl": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-6233",
+      "additionalSources": [
+        {
+          "label": "Participación en elecciones europeas · Parlamento Europeo",
+          "url": "https://results.elections.europa.eu/en/turnout/"
+        }
+      ],
+      "quality": "Ampliación posterior al corte de 2012. El semicírculo representa los 54 escaños asignados a España, no la totalidad del Parlamento Europeo.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara las candidaturas españolas con representación y sus 54 escaños. La participación fue del 43,81 % del censo."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la baja participación y la irrupción de Podemos y Ciudadanos con la transformación del panorama político. En España, fue la participación más baja en unas europeas hasta 2024 inclusive."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Parlamento Europeo: España · 2014",
+          "chart": {
+            "svg": "elecciones-europeas-2014-semicirculo.svg",
+            "seats": 54,
+            "majority": null,
+            "heading": "Europeas · España · 2014",
+            "title": "Elecciones europeas de 2014: escaños asignados a España",
+            "center": "54 escaños"
+          },
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos válidos",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "4.098.339",
+              "26,09",
+              "16"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "3.614.232",
+              "23,01",
+              "14"
+            ],
+            [
+              "La Izquierda Plural",
+              "1.575.308",
+              "10,03",
+              "6"
+            ],
+            [
+              "Podemos",
+              "1.253.837",
+              "7,98",
+              "5"
+            ],
+            [
+              "Unión Progreso y Democracia (UPyD)",
+              "1.022.232",
+              "6,51",
+              "4"
+            ],
+            [
+              "Coalición por Europa (CEU)",
+              "851.971",
+              "5,42",
+              "3"
+            ],
+            [
+              "L'Esquerra pel Dret a Decidir (EPDD)",
+              "630.072",
+              "4,01",
+              "2"
+            ],
+            [
+              "Ciudadanos-Partido de la Ciudadanía (C's)",
+              "497.146",
+              "3,16",
+              "2"
+            ],
+            [
+              "Los Pueblos Deciden (LPD)",
+              "326.464",
+              "2,08",
+              "1"
+            ],
+            [
+              "Primavera Europea",
+              "302.266",
+              "1,92",
+              "1"
+            ],
+            [
+              "Total",
+              "14.171.867",
+              "90,21",
+              "54"
+            ],
+            [
+              "Otras candidaturas sin escaño",
+              "1.176.782",
+              "7,49",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "15.348.649",
+              "97,70",
+              "—"
+            ]
+          ],
+          "notes": [
+            "Porcentajes calculados sobre 15.710.216 votos válidos, incluidos 361.567 votos en blanco. Censo: 36.514.084; votantes: 15.998.141; nulos: 287.925.",
+            "Los 54 escaños corresponden a España; no se indica una mayoría absoluta para el conjunto del Parlamento Europeo.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chartGroups": [
+            {
+              "label": "Otros*",
+              "members": [
+                "L'Esquerra pel Dret a Decidir (EPDD)",
+                "Ciudadanos-Partido de la Ciudadanía (C's)",
+                "Los Pueblos Deciden (LPD)",
+                "Primavera Europea"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+            {
+      "blocks": [
+        12
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del resumen de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls",
+      "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. 2015 se añade como ampliación: queda fuera del corte de 2012 de este subbloque. No es un documento de examen.",
+      "id": "propio-elecciones-generales-2015",
+      "visualization": "elections",
+      "title": "Elecciones generales de 2015",
+      "date": "2015",
+      "unitIds": [
+        "iii-13"
+      ],
+      "tags": [
+        "Elecciones generales",
+        "Alternancia",
+        "PP",
+        "PSOE",
+        "Podemos",
+        "Ciudadanos",
+        "2015"
+      ],
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos y escaños de las candidaturas con representación en las elecciones generales de 2015."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los resultados con la evolución política de España en 2015."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Congreso de los Diputados · 2015",
+          "chartGroups": [
+            {
+              "label": "PSOE, PSC y PSOE-Nueva Canarias",
+              "diagramLabel": "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE) + Coalición Partido Socialista Obrero Español-Nueva Canarias (PSOE-NCa)",
+              "members": [
+                "Partido Socialista Obrero Español (PSOE)",
+                "Partit dels Socialistes de Catalunya (PSC-PSOE) (PSC)",
+                "Coalición \"Partido Socialista Obrero Español-Nueva Canarias\" (PSOE-NCa)"
+              ]
+            },
+            {
+              "label": "Podemos y confluencias",
+              "members": [
+                "Podemos",
+                "Coalición \"En Comú Podem\" (EN COMÚ)",
+                "Coalición \"Compromís-Podemos-És el Moment\" (PODEMOS-COMPROMÍS)",
+                "Coalición \"En Marea\" (PODEMOS-En Marea-ANOVA-EU)",
+                "Coalición \"Podemos-Ahora Alto Aragón en Común\""
+              ]
+            },
+            {
+              "label": "Partido Popular (PP) y coaliciones",
+              "members": [
+                "Partido Popular (PP)",
+                "Coalición \"Partido Popular en coalición con el Partido Aragonés\" (PP-PAR)",
+                "Coalición \"Partido Popular-Foro\" (PP-FORO)",
+                "Coalición \"Unión del Pueblo Navarro-Partido Popular\" (UPN-PP)"
+              ]
+            },
+            {
+              "label": "Otros*",
+              "members": [
+                "Coalición \"Unidad Popular\"",
+                "Euzko Alderdi Jetzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+                "Euskal Herria Bildu (EH Bildu)",
+                "Coalición Canaria-Partido Nacionalista Canario (CCa-PNC)"
+              ]
+            }
+          ],
+          "headers": [
+            "Candidatura",
+            "Votos",
+            "% de votos a candidaturas",
+            "Escaños"
+          ],
+          "rows": [
+            [
+              "Partido Popular (PP)",
+              "6.717.462",
+              "26,84",
+              "112"
+            ],
+            [
+              "Partido Socialista Obrero Español (PSOE)",
+              "4.736.628",
+              "18,93",
+              "78"
+            ],
+            [
+              "Ciudadanos-Partido de la Ciudadanía (C's)",
+              "3.514.528",
+              "14,05",
+              "40"
+            ],
+            [
+              "Podemos",
+              "3.176.641",
+              "12,69",
+              "41"
+            ],
+            [
+              "Coalición \"En Comú Podem\" (EN COMÚ)",
+              "929.880",
+              "3,72",
+              "12"
+            ],
+            [
+              "Coalición \"Unidad Popular\"",
+              "926.783",
+              "3,70",
+              "2"
+            ],
+            [
+              "Coalición \"Compromís-Podemos-És el Moment\" (PODEMOS-COMPROMÍS)",
+              "673.549",
+              "2,69",
+              "9"
+            ],
+            [
+              "Coalición \"Esquerra Republicana de Catalunya-Catalunya Sí\" (ERC-CATSI)",
+              "601.782",
+              "2,40",
+              "9"
+            ],
+            [
+              "Partit dels Socialistes de Catalunya (PSC-PSOE) (PSC)",
+              "590.274",
+              "2,36",
+              "8"
+            ],
+            [
+              "Coalición \"Democràcia i Llibertat. Convergéncia. Demòcrates. Reagrupament\" (DL)",
+              "567.253",
+              "2,27",
+              "8"
+            ],
+            [
+              "Coalición \"En Marea\" (PODEMOS-En Marea-ANOVA-EU)",
+              "410.698",
+              "1,64",
+              "6"
+            ],
+            [
+              "Euzko Alderdi Jetzalea-Partido Nacionalista Vasco (EAJ-PNV)",
+              "302.316",
+              "1,21",
+              "6"
+            ],
+            [
+              "Coalición \"Partido Popular en coalición con el Partido Aragonés\" (PP-PAR)",
+              "229.691",
+              "0,92",
+              "6"
+            ],
+            [
+              "Euskal Herria Bildu (EH Bildu)",
+              "219.125",
+              "0,88",
+              "2"
+            ],
+            [
+              "Coalición \"Partido Socialista Obrero Español-Nueva Canarias\" (PSOE-NCa)",
+              "218.413",
+              "0,87",
+              "4"
+            ],
+            [
+              "Coalición \"Partido Popular-Foro\" (PP-FORO)",
+              "187.568",
+              "0,75",
+              "3"
+            ],
+            [
+              "Coalición \"Unión del Pueblo Navarro-Partido Popular\" (UPN-PP)",
+              "102.244",
+              "0,41",
+              "2"
+            ],
+            [
+              "Coalición Canaria-Partido Nacionalista Canario (CCa-PNC)",
+              "81.917",
+              "0,33",
+              "1"
+            ],
+            [
+              "Coalición \"Podemos-Ahora Alto Aragón en Común\"",
+              "21.943",
+              "0,09",
+              "1"
+            ],
+            [
+              "Total",
+              "24.208.695",
+              "96,75",
+              "350"
+            ],
+            [
+              "Otros**",
+              "814.486",
+              "3,25",
+              "—"
+            ],
+            [
+              "Total votos a candidaturas",
+              "25.023.181",
+              "100,00",
+              "—"
+            ]
+          ],
+          "notes": [
+            "* Calculado en relación a los votos obtenidos por todas las candidaturas.",
+            "** Candidaturas restantes que han obtenido votos pero no escaños.",
+            "En el gráfico de 2015 se agrupan PSOE, PSC y PSOE-Nueva Canarias (90 escaños), y Podemos y sus confluencias (69). La tabla conserva los resultados de cada candidatura; las agrupaciones no equivalen necesariamente a grupos parlamentarios.",
+            "El gráfico agrupa las candidaturas restantes con escaño en «Otros*»; el desglose completo se conserva en esta tabla."
+          ],
+          "chart": {
+            "svg": "elecciones-generales-2015-semicirculo.svg",
+            "seats": 350,
+            "heading": "Congreso · 2015",
+            "title": "Elecciones generales de 2015: escaños en el Congreso",
+            "center": "350 escaños",
+            "showVotes": true,
+            "subtitle": "Candidaturas y alianzas",
+            "majority": 176
+          }
+        }
+      ]
+    },
+    {
+      "id": "propio-referendums-1976-2005",
+      "visualization": "referendums",
+      "title": "Referéndums en España: de la reforma política a Europa",
+      "date": "1976–2005",
+      "blocks": [
+        12
+      ],
+      "unitIds": [
+        "iii-10",
+        "iii-11",
+        "iii-12",
+        "iii-13"
+      ],
+      "tags": [
+        "Referéndum",
+        "Transición",
+        "Constitución de 1978",
+        "OTAN",
+        "Unión Europea"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de resultados publicados por la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/Referendum_1976_Resultados.pdf",
+      "additionalSources": [
+        {
+          "label": "Resultados de 1978 · JEC",
+          "url": "https://www.juntaelectoralcentral.es/cs/jec/doctrina/buscadorresult?idacuerdoinstruccion=25378"
+        },
+        {
+          "label": "Resultados de 1986 · BOE",
+          "url": "https://www.boe.es/boe/dias/1986/04/02/pdfs/A11631-11632.pdf"
+        },
+        {
+          "label": "Resultados de 2005 · BOE",
+          "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2005-5738"
+        },
+        {
+          "label": "Convocatoria de la consulta sobre la OTAN",
+          "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-1986-3251"
+        },
+        {
+          "label": "Posturas ante la Constitución de 1978 · Wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Refer%C3%A9ndum_para_la_ratificaci%C3%B3n_de_la_Constituci%C3%B3n_espa%C3%B1ola"
+        },
+        {
+          "label": "La posición de Alianza Popular · Newtral",
+          "url": "https://www.newtral.es/jose-luis-abalos-la-derecha-tuvo-la-oportunidad-de-votarla-la-constitucion-e-hicieron-la-campana-por-la-abstencion/20181031/"
+        }
+      ],
+      "quality": "Porcentajes calculados a partir de los datos publicados por la JEC. Material propio, no de examen.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara la participación y los resultados de las cuatro consultas."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa cada consulta en su contexto: reforma política, proceso constituyente, integración internacional y Unión Europea."
+        },
+        {
+          "title": "1978 · Organizaciones favorables al sí",
+          "text": "Entre las organizaciones que apoyaron el sí estuvieron UCD, PSOE, PCE, PDPC, UDC-DCC, PSUC, PC, ORT, PTE, ID, ACL, PL, PSA (Partido Socialista de Andalucía), UGT, CCOO, USO, SU y CSUT. Manuel Fraga, de AP, también pidió el sí."
+        },
+        {
+          "title": "1978 · Organizaciones favorables al no",
+          "text": "Entre las organizaciones que pidieron el no figuraron ERC, EE, HB, OCI, PORE, LCR, POUM, PSAN, BNPG, FE-JONS, FN, AFN, UC, PCE (m-l), UNE, ADE, UPG, CT y EC."
+        },
+        {
+          "title": "1978 · Organizaciones favorables a la abstención",
+          "text": "Entre las organizaciones que promovieron la abstención figuraron PNV, PSA (Partido Socialista de Aragón), PCOE, AC, MC, OIC, OCE (BR), UCE, PUCC, PSC (Partido Socialista Canario), PCU, ARDE, FA, PCT, MUM, ESEI y CNT. AP estaba dividida: no debe atribuirse una postura de abstención a toda la formación; su presidente, Fraga, pidió el sí."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Referéndums estatales · porcentajes",
+          "headers": [
+            "Fecha y consulta",
+            "Participación (%)",
+            "Sí (%)",
+            "No (%)",
+            "Blanco (%)",
+            "Nulo (%)"
+          ],
+          "rows": [
+            [
+              "15-12-1976 · Reforma Política",
+              "77,72",
+              "94,17",
+              "2,56",
+              "2,97",
+              "0,30"
+            ],
+            [
+              "06-12-1978 · Constitución",
+              "67,11",
+              "87,87",
+              "7,84",
+              "3,54",
+              "0,75"
+            ],
+            [
+              "12-03-1986 · OTAN",
+              "59,42",
+              "52,50",
+              "39,85",
+              "6,54",
+              "1,11"
+            ],
+            [
+              "20-02-2005 · Tratado constitucional europeo",
+              "41,77",
+              "76,30",
+              "16,93",
+              "5,91",
+              "0,86"
+            ]
+          ],
+          "notes": [
+            "Participación sobre el censo; sí, no, blanco y nulo sobre votantes. Porcentajes calculados y redondeados a dos decimales.",
+            "En los resúmenes oficiales de 1978 y 1986 las categorías publicadas no suman exactamente el total de votantes: difieren en 30 y 298 votos, respectivamente; aquí se conservan las cifras publicadas.",
+            "Las consultas de 1986 y 2005 fueron consultivas. El referéndum de 1976 se celebró el 15 de diciembre, no el día 5."
+          ]
+        }
+      ],
+      "questions": [
+        "1976: «¿Aprueba el Proyecto de Ley para la Reforma Política?»",
+        "1978: «¿Aprueba el Proyecto de Constitución?»",
+        "1986: «¿Considera conveniente para España permanecer en la Alianza Atlántica en los términos acordados por el Gobierno de la Nación?» El texto sometido a consulta incluía tres condiciones; véase la convocatoria.",
+        "2005: «¿Aprueba usted el Tratado por el que se establece una Constitución para Europa?»"
+      ]
+    },
+    {
+      "id": "propio-referendums-franquismo",
+      "visualization": "referendums",
+      "title": "Los referéndums durante el franquismo",
+      "date": "1947 y 1966",
+      "blocks": [
+        11
+      ],
+      "unitIds": [
+        "iii-8",
+        "iii-9"
+      ],
+      "tags": [
+        "Referéndum",
+        "Franquismo",
+        "Leyes Fundamentales"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia. Cifras históricas citadas en fuentes secundarias; pendientes de cotejo con las actas originales.",
+      "dataSourceUrl": "https://es.wikipedia.org/wiki/Refer%C3%A9ndum_sobre_la_Ley_de_Sucesi%C3%B3n_en_la_Jefatura_del_Estado",
+      "additionalSources": [
+        {
+          "label": "Consulta de 1966 · fuente secundaria",
+          "url": "https://es.wikipedia.org/wiki/Refer%C3%A9ndum_sobre_la_Ley_Org%C3%A1nica_del_Estado"
+        }
+      ],
+      "quality": "Cifras históricas no contrastadas aquí con el escrutinio original. Las consultas se celebraron bajo una dictadura sin pluralismo político.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica las leyes sometidas a consulta y distingue los datos anunciados del contexto en que se produjeron."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Explica el carácter autoritario del franquismo y el uso de los referéndums para legitimar su institucionalización."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Referéndums del franquismo · porcentajes",
+          "headers": [
+            "Fecha y consulta",
+            "Participación (%)",
+            "Sí (%)",
+            "No (%)",
+            "Blancos y/o nulos (%)"
+          ],
+          "rows": [
+            [
+              "06-07-1947 · Ley de Sucesión",
+              "88,59",
+              "92,94",
+              "4,75",
+              "2,31"
+            ],
+            [
+              "14-12-1966 · Ley Orgánica del Estado",
+              "88,79",
+              "95,86",
+              "1,81",
+              "2,33"
+            ]
+          ],
+          "notes": [
+            "Participación sobre el censo; el resto sobre votantes. Las fuentes secundarias consultadas no permiten separar con seguridad los votos blancos y nulos; no se supone que los nulos fueran cero.",
+            "Las cifras son los resultados anunciados bajo la dictadura, sin garantías de pluralismo político; no equivalen a una elección democrática."
+          ]
+        }
+      ],
+      "questions": [
+        "1947: «¿Aprueba el Proyecto de Ley de Sucesión en la Jefatura del Estado?»",
+        "1966: «¿Aprueba el Proyecto de Ley Orgánica del Estado?»"
+      ]
+    },
+    {
+      "id": "propio-referendum-europa-2005",
+      "visualization": "referendums",
+      "title": "Referéndum sobre la Constitución Europea (2005)",
+      "date": "20 de febrero de 2005",
+      "blocks": [12],
+      "unitIds": ["iii-13"],
+      "tags": ["Referéndum", "Constitución Europea", "Unión Europea", "participación", "Europa 2005"],
+      "sourceCaption": "Material de estudio de elaboración propia a partir de los resultados oficiales publicados por la Junta Electoral Central en el BOE.",
+      "dataSourceUrl": "https://www.boe.es/buscar/doc.php?id=BOE-A-2005-5738",
+      "quality": "Consulta de carácter consultivo: participó el 41,77 % del censo.",
+      "readingNote": "Censo: 34.692.491; votantes: 14.491.752; sí: 11.057.563; no: 2.453.002; votos en blanco: 856.664; votos nulos: 124.523. Si se consideran solo los votos de sí o no, el sí supone el 81,84 % y el no el 18,16 %.",
+      "commentary": [
+        {"title": "a) Análisis del documento", "text": "Distingue la participación sobre el censo de los resultados sobre votantes y valora la elevada abstención."},
+        {"title": "b) Contexto y consecuencias", "text": "Sitúa la consulta sobre el tratado constitucional europeo en el proceso de integración europea."}
+      ],
+      "tables": [
+        {
+          "caption": "Constitución Europea · porcentajes",
+          "headers": ["Fecha y consulta", "Participación (%)", "Sí (%)", "No (%)", "Blanco (%)", "Nulo (%)"],
+          "rows": [["20-02-2005 · Tratado constitucional europeo", "41,77", "76,30", "16,93", "5,91", "0,86"]],
+          "notes": [
+            "Participación sobre el censo; sí, no, blanco y nulo sobre votantes. Sobre los 13.510.565 votos de sí o no, el sí representa el 81,84 % y el no el 18,16 %. Esta última base excluye los votos en blanco."
+          ]
+        }
+      ],
+      "questions": ["«¿Aprueba usted el Tratado por el que se establece una Constitución para Europa?»"]
+    },
+    {
+      "id": "propio-referendum-andalucia-1980",
+      "visualization": "referendums",
+      "readingNote": "La JEC declaró rechazada la ratificación porque el sí no alcanzó la mayoría absoluta del censo en Almería (42,31 %). Una solución legislativa posterior permitió incorporar la provincia al proceso autonómico.",
+      "title": "28 de febrero de 1980: iniciativa autonómica de Andalucía",
+      "date": "28 de febrero de 1980",
+      "blocks": [
+        12
+      ],
+      "unitIds": [
+        "iii-11"
+      ],
+      "tags": [
+        "Referéndum",
+        "Andalucía",
+        "Autonomía",
+        "28F"
+      ],
+      "sourceCaption": "Material de estudio de elaboración propia a partir del acuerdo de resultados de la Junta Electoral Central.",
+      "dataSourceUrl": "https://www.juntadeandalucia.es/boja/1980/9/1",
+      "additionalSources": [
+        {
+          "label": "Acuerdo de la JEC · BOE",
+          "url": "https://www.boe.es/boe/dias/1980/05/13/pdfs/A10346-10346.pdf"
+        },
+        {
+          "label": "Convocatoria del referéndum · BOE",
+          "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-1980-2029"
+        },
+        {
+          "label": "Ley Orgánica 13/1980: iniciativa de Almería",
+          "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-1980-27703"
+        }
+      ],
+      "quality": "Cifras totales calculadas a partir de las provincias publicadas por la JEC; la ratificación requería mayoría absoluta del censo en cada provincia.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Distingue votos, votantes y censo; compara el conjunto andaluz con Almería."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Explica la vía del artículo 151, el resultado provincial de Almería y la solución legislativa posterior."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Iniciativa autonómica andaluza · porcentajes",
+          "headers": [
+            "Fecha y consulta",
+            "Participación (%)",
+            "Sí (%)",
+            "No (%)",
+            "Blanco (%)",
+            "Nulo (%)"
+          ],
+          "rows": [
+            [
+              "28-02-1980 · Andalucía",
+              "64,19",
+              "86,94",
+              "5,36",
+              "7,04",
+              "0,67"
+            ]
+          ],
+          "notes": [
+            "Participación sobre el censo; sí, no, blanco y nulo sobre votantes. Totales sumados a partir de la transcripción provincial del BOJA; las categorías no suman exactamente los votantes transcritos (difieren en 152), por lo que las cifras se presentan con esa reserva.",
+            "En Almería el sí alcanzó el 42,31 % del censo, por debajo de la mayoría absoluta exigida. La JEC declaró rechazada la ratificación de la iniciativa; una solución legislativa posterior permitió incorporar Almería al proceso autonómico."
+          ]
+        }
+      ],
+      "questions": [
+        "«¿Da usted su acuerdo a la ratificación de la iniciativa prevista en el artículo ciento cincuenta y uno de la Constitución a efectos de su tramitación por el procedimiento establecido en dicho artículo?»"
+      ]
+    }
+  ]
+}

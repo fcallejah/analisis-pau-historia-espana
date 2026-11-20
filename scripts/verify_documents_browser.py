@@ -723,8 +723,18 @@ def check_fitted_media_and_people(browser):
             assert feet.count() == len(visible_images)
             for foot, image_data in zip(feet.all(), visible_images):
                 caption = image_data.get("examCaption", record.get("examCaption"))
-                assert foot.locator("p").inner_text() == (caption["text"] if caption else "(Sin descripción)")
-                assert foot.locator("em").all_text_contents() == (caption.get("emphasis", []) if caption else [])
+                caption_text = foot.locator("p").first
+                assert caption_text.inner_text() == (caption["text"] if caption else "(Sin descripción)")
+                assert caption_text.locator("em").all_text_contents() == (
+                    caption.get("emphasis", []) if caption else [])
+                note = caption.get("note") if caption else None
+                footnote = foot.locator(".document-exam-footnote")
+                assert footnote.count() == int(bool(note))
+                if note:
+                    assert footnote.inner_text() == note
+                    assert footnote.locator("em").all_text_contents() == caption.get("noteEmphasis", [])
+                    assert footnote.evaluate("node => getComputedStyle(node).color") in (
+                        "rgb(178, 58, 48)", "rgb(255, 170, 160)")
                 assert foot.locator("small").count() == 0
                 assert foot.evaluate("""node => {
                     const p = node.querySelector('p');
@@ -1838,7 +1848,7 @@ def run():
         official = next(item for item in DATA["documents"] if item["id"] == official_id)
         page.locator(f'.document-card[data-id="{official_id}"] .document-open').click()
         official_image = page.locator(".document-full-source img")
-        assert official_image.evaluate("(node) => [node.naturalWidth, node.naturalHeight]") == [2084, 1418]
+        assert official_image.evaluate("(node) => [node.naturalWidth, node.naturalHeight]") == [2084, 1460]
         check_collection_link(page, official)
         assert page.locator(".document-reproduction-note").inner_text() == official["image"]["reproductionNote"]
         assert page.get_by_role("link", name="Ver recorte del PDF original", exact=True).get_attribute("href") == official["image"]["originalSrc"]

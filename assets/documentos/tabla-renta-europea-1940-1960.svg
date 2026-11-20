@@ -23,13 +23,13 @@
 <text class="cell" x="222" y="165" text-anchor="middle">Alemania</text>
 </g>
 <g data-row="0" data-column="1">
-<text class="cell" x="362" y="165" text-anchor="middle">1.230</text>
+<text class="cell" x="362" y="165" text-anchor="middle">1230</text>
 </g>
 <g data-row="0" data-column="2">
-<text class="cell" x="505.5" y="165" text-anchor="middle">1.363</text>
+<text class="cell" x="505.5" y="165" text-anchor="middle">1363</text>
 </g>
 <g data-row="0" data-column="3">
-<text class="cell" x="638.5" y="165" text-anchor="middle">1.610</text>
+<text class="cell" x="638.5" y="165" text-anchor="middle">1610</text>
 </g>
 <g data-row="1" data-column="0">
 <text class="cell" x="222" y="215" text-anchor="middle">España</text>
@@ -41,31 +41,31 @@
 <text class="cell" x="505.5" y="215" text-anchor="middle">694</text>
 </g>
 <g data-row="1" data-column="3">
-<text class="cell" x="638.5" y="215" text-anchor="middle">1.042</text>
+<text class="cell" x="638.5" y="215" text-anchor="middle">1042</text>
 </g>
 <g data-row="2" data-column="0">
 <text class="cell" x="222" y="265" text-anchor="middle">Francia</text>
 </g>
 <g data-row="2" data-column="1">
-<text class="cell" x="362" y="265" text-anchor="middle">1.456</text>
+<text class="cell" x="362" y="265" text-anchor="middle">1456</text>
 </g>
 <g data-row="2" data-column="2">
-<text class="cell" x="505.5" y="265" text-anchor="middle">1.575</text>
+<text class="cell" x="505.5" y="265" text-anchor="middle">1575</text>
 </g>
 <g data-row="2" data-column="3">
-<text class="cell" x="638.5" y="265" text-anchor="middle">2.234</text>
+<text class="cell" x="638.5" y="265" text-anchor="middle">2234</text>
 </g>
 <g data-row="3" data-column="0">
 <text class="cell" x="222" y="315" text-anchor="middle">Reino Unido</text>
 </g>
 <g data-row="3" data-column="1">
-<text class="cell" x="362" y="315" text-anchor="middle">1.715</text>
+<text class="cell" x="362" y="315" text-anchor="middle">1715</text>
 </g>
 <g data-row="3" data-column="2">
-<text class="cell" x="505.5" y="315" text-anchor="middle">1.964</text>
+<text class="cell" x="505.5" y="315" text-anchor="middle">1964</text>
 </g>
 <g data-row="3" data-column="3">
-<text class="cell" x="638.5" y="315" text-anchor="middle">2.442</text>
+<text class="cell" x="638.5" y="315" text-anchor="middle">2442</text>
 </g>
 <text class="note" x="8" y="376">Fuente: José Luis GARCÍA DELGADO y Juan Carlos JIMÉNEZ, “La economía”, en VV.AA., La época de Franco</text>
 <text class="note" x="8" y="399">(1939-1975), vol XLI de la Historia de España, Espasa-Calpe, Madrid. 1996, p.450.</text>

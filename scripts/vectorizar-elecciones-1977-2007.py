@@ -1,80 +1,35 @@
 """Rebuild the 2007 election diagram as an accessible semicircular SVG."""
-from decimal import Decimal, ROUND_FLOOR
-from html import escape
 import hashlib
 import json
 import math
+import textwrap
+from decimal import Decimal
+from html import escape
 from pathlib import Path
 
+from elecciones_1977 import (
+    EXAM_OTHER_SEATS,
+    EXAM_UCD_SEATS,
+    MINISTRY_SOURCE,
+    MINISTRY_UCD_VOTES,
+    RESULTS,
+    SOURCE,
+    seats_percent,
+    votes_text,
+)
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = "assets/documentos/elecciones-1977-diagrama-semicircular.svg"
-DATA_SOURCE = (
-    "https://es.wikipedia.org/wiki/"
-    "Elecciones_generales_de_Espa%C3%B1a_de_1977"
-)
-
-ROWS = [
-    ("UCD — Unión de Centro Democrático", "6 310 391", "34,44", "165"),
-    ("PSOE — Partido Socialista Obrero Español", "5 371 866", "29,32", "118"),
-    ("PCE — Partido Comunista de España", "1 709 890", "9,33", "20"),
-    ("AP — Federación de Partidos de Alianza Popular", "1 504 771", "8,21", "16"),
-    ("PSP-US — Partido Socialista Popular-Unidad Socialista", "816 582", "4,46", "6"),
-    ("PDPC — Pacte Democràtic per Catalunya", "514 647", "2,81", "11"),
-    ("PNV — Partido Nacionalista Vasco", "296 193", "1,62", "8"),
-    ("FDC-EDC — Equipo de la Democracia Cristiana", "215 841", "1,18", "0"),
-    ("DCC — Unió del Centre i la Democràcia Cristiana de Catalunya", "172 791", "0,94", "2"),
-    ("EC-FED — Esquerra de Catalunya", "143 954", "0,79", "1"),
-    ("FDI — Frente Democrático de Izquierdas", "122 608", "0,67", "0"),
-    ("ASDCI — Alianza Socialista Democrática", "101 916", "0,56", "0"),
-    ("AET — Agrupación Electoral de Trabajadores", "77 575", "0,42", "0"),
-    ("AN18 — Alianza Nacional 18 de Julio", "67 336", "0,37", "0"),
-    ("RSE — Reforma Social Española", "64 241", "0,35", "0"),
-    ("EE — Euskadiko Ezkerra", "61 417", "0,34", "1"),
-    ("CAI — Candidatura Aragonesa Independiente de Centro", "37 183", "0,20", "1"),
-    ("INDEP — Candidatura Independiente de Centro", "29 834", "0,16", "1"),
-    ("Otros partidos", "723 290", "2,97", "0"),
-]
 
 MAIN_PARTIES = (
-    ("UCD", "#26736f"),
-    ("PSOE", "#c6464f"),
-    ("PCE", "#8b1e3f"),
-    ("AP", "#2d4d73"),
-    ("PDPC", "#d1a243"),
-    ("PNV", "#4f805a"),
+    ("UCD", "Unión de Centro Democrático (UCD)", "#315a29"),
+    ("PSOE", "Partido Socialista Obrero Español (PSOE) + Partit dels Socialistes de Catalunya (PSC-PSOE)", "#c6464f"),
+    ("PCE", "Partido Comunista de España (PCE) + Partit Socialista Unificat de Catalunya (PSUC)", "#8b1e3f"),
+    ("AP", "Alianza Popular (AP)", "#2d4d73"),
+    ("PDC", "Pacte Democràtic per Catalunya (PDC)", "#d1a243"),
+    ("PNV", "Partido Nacionalista Vasco (PNV)", "#4f805a"),
 )
 OTHER_COLOR = "#92979f"
-
-
-def number(value):
-    return int(value.replace(" ", ""))
-
-
-def decimal(value):
-    return Decimal(value.replace(",", "."))
-
-
-def format_percent(value, places=1):
-    return f"{value:.{places}f}".replace(".", ",")
-
-
-def rounded_vote_shares(rows):
-    total_votes = sum(number(row[1]) for row in rows)
-    exact_tenths = [Decimal(number(row[1])) * 1000 / Decimal(total_votes) for row in rows]
-    shares = [int(value.to_integral_value(rounding=ROUND_FLOOR)) for value in exact_tenths]
-    remaining = 1000 - sum(shares)
-    order = sorted(
-        range(len(rows)),
-        key=lambda index: (exact_tenths[index] - shares[index], -index),
-        reverse=True,
-    )
-    for index in order[:remaining]:
-        shares[index] += 1
-    return {
-        row[0].split(" — ", 1)[0].split(" ")[0]: share
-        for row, share in zip(rows, shares)
-    }
 
 
 def svg_point(cx, cy, radius, angle_degrees):
@@ -94,57 +49,70 @@ def annular_sector(cx, cy, outer, inner, start, end):
 
 
 def build_svg(record):
-    rows_by_code = {row[0].split(" — ", 1)[0].split(" ")[0]: row for row in ROWS}
+    rows_by_code = {row[0]: row for row in RESULTS}
+    original_src = record["image"].get("originalSrc", record["image"]["src"])
+    original_path = ROOT / original_src
     main_codes = {item[0] for item in MAIN_PARTIES}
-    other_rows = [row for row in ROWS if row[0].split(" — ", 1)[0].split(" ")[0] not in main_codes]
-    vote_shares = rounded_vote_shares(ROWS)
-    other_votes = sum(number(row[1]) for row in other_rows)
-    other_vote_percent = Decimal(sum(
-        vote_shares[row[0].split(" — ", 1)[0].split(" ")[0]] for row in other_rows
-    )) / 10
-    other_seats = sum(int(row[3]) for row in other_rows)
-    total_vote_percent = Decimal(sum(vote_shares.values())) / 10
-    source_vote_percent_total = sum((decimal(row[2]) for row in ROWS), Decimal(0))
-    total_seats = sum(int(row[3]) for row in ROWS)
+    other_rows = [row for row in RESULTS if row[0] not in main_codes]
+    other_votes = sum(row[2] for row in other_rows)
+    other_seats = EXAM_OTHER_SEATS
+    total_seats = sum(row[3] for row in RESULTS)
     if total_seats != 350:
-        raise ValueError(f"Expected 350 reported seats, found {total_seats}")
+        raise ValueError(f"Expected 350 source seats, found {total_seats}")
     segments = [
         {
             "code": code,
             "row": rows_by_code[code],
-            "votes": rows_by_code[code][1],
-            "vote_percent": format_percent(Decimal(vote_shares[code]) / 10),
-            "seats": int(rows_by_code[code][3]),
-            "seat_percent": Decimal(rows_by_code[code][3]) * 100 / Decimal(total_seats),
+            "votes": votes_text(
+                MINISTRY_UCD_VOTES if code == "UCD" else rows_by_code[code][2]
+            ),
+            "seats": EXAM_UCD_SEATS if code == "UCD" else rows_by_code[code][3],
+            "seat_percent": Decimal(
+                EXAM_UCD_SEATS if code == "UCD" else rows_by_code[code][3]
+            ) * 100 / Decimal(total_seats),
+            "label": label,
             "color": color,
         }
-        for code, color in MAIN_PARTIES
+        for code, label, color in MAIN_PARTIES
     ]
     segments.append({
         "code": "Otros*",
-        "row": ("Otros*", f"{other_votes:,}".replace(",", " "), format_percent(other_vote_percent), str(other_seats)),
-        "votes": f"{other_votes:,}".replace(",", " "),
-        "vote_percent": format_percent(other_vote_percent),
+        "label": "Otros*",
+        "votes": votes_text(other_votes),
         "seats": other_seats,
         "seat_percent": Decimal(other_seats) * 100 / Decimal(total_seats),
         "color": OTHER_COLOR,
     })
+    if sum(segment["seats"] for segment in segments) != total_seats:
+        raise ValueError("The exam's grouped seat totals must sum to 350")
 
-    width, height = 760, 640
+    width = 760
     cx, cy, outer, inner = 230, 370, 185, 78
+    labels = []
+    for segment in segments:
+        lines = textwrap.wrap(segment["label"], width=30, break_long_words=False, break_on_hyphens=False)
+        suffix = f'· {segment["seats"]} {"escaño" if segment["seats"] == 1 else "escaños"}'
+        if len(lines[-1]) + 1 + len(suffix) <= 30:
+            lines[-1] += " " + suffix
+        else:
+            lines.append(suffix)
+        labels.append(lines)
+    row_heights = [max(52, len(lines) * 18 + 34) for lines in labels]
+    footer_y = max(515, 112 + sum(row_heights) + 12)
+    height = footer_y + 30
     output = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
-        '<title id="title">Elecciones de 1977: distribución proporcional de escaños</title>',
-        '<desc id="desc">Diagrama semicircular de las elecciones del 15 de junio de 1977. Los sectores son proporcionales a los escaños obtenidos sobre un total de 350. La leyenda muestra los escaños, su porcentaje, los votos y el porcentaje de votos. Las candidaturas menores se agrupan como Otros.</desc>',
-        f'<metadata>{escape(json.dumps({"method": "Redibujo vectorial semicircular con sectores proporcionales a escaños; paleta editorial, no presente en el original.", "original": record["image"]["src"], "originalSha256": hashlib.sha256((ROOT / record["image"]["src"]).read_bytes()).hexdigest(), "pdf": record["appearances"][0]["pdfUrl"], "pdfSha256": record["appearances"][0]["sourceSha256"], "dataSource": DATA_SOURCE, "page": record["appearances"][0]["officialPage"]}, ensure_ascii=False))}</metadata>',
-        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px;fill:#53666e}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.year{font-size:22px;font-weight:700;fill:#53666e}.center-seat{font-size:11px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
+        '<title id="title">Resultado elecciones 1977 (15 de junio)</title>',
+        '<desc id="desc">Diagrama semicircular de votos y escaños. La Unión de Centro Democrático (UCD) se presenta con 166 escaños y «Otros*» con 11, según la agrupación del material del examen; los votos de UCD corresponden a la cifra consolidada del Ministerio del Interior y las demás candidaturas al resumen de la JEC. «Otros*» no es un grupo parlamentario.</desc>',
+        f'<metadata>{escape(json.dumps({"method": "Redibujo vectorial proporcional a escaños, con la agrupación del material del examen; votos de UCD según el Ministerio del Interior y resto según la JEC.", "original": original_src, "originalSha256": hashlib.sha256(original_path.read_bytes()).hexdigest(), "pdf": record["appearances"][0]["pdfUrl"], "pdfSha256": record["appearances"][0]["sourceSha256"], "dataSource": SOURCE, "ministrySource": MINISTRY_SOURCE, "page": record["appearances"][0]["officialPage"]}, ensure_ascii=False))}</metadata>',
+        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.party{font-size:14px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-majority{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
-        '<text class="title" x="380" y="32" text-anchor="middle">Elecciones generales de 1977 (15 de junio)</text>',
-        '<text class="subtitle" x="380" y="55" text-anchor="middle">Sectores proporcionales a escaños; el voto también se indica.</text>',
+        '<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1977 (15 de junio)</text>',
     ]
 
     angle = 180.0
-    for index, segment in enumerate(segments):
+    y = 112
+    for segment, lines, row_height in zip(segments, labels, row_heights):
         fraction = segment["seats"] / total_seats
         end = angle - 180 * fraction
         path = annular_sector(cx, cy, outer, inner, angle, end)
@@ -153,113 +121,94 @@ def build_svg(record):
             f'data-seats="{segment["seats"]}" data-seat-percent="{segment["seat_percent"]:.3f}" '
             f'fill="{segment["color"]}" d="{path}"/>'
         )
-        row_y = 112 + index * 52
-        vote_percent = segment["vote_percent"]
-        output.extend([
-            f'<rect x="430" y="{row_y - 12}" width="14" height="14" rx="2" fill="{segment["color"]}"/>',
-            f'<text class="party" x="454" y="{row_y}">{escape(segment["code"])}</text>',
-            f'<text class="share" x="744" y="{row_y}" text-anchor="end">'
-            f'{segment["seats"]} escaños · {format_percent(segment["seat_percent"])} %</text>',
-            f'<text class="metric" x="454" y="{row_y + 18}">'
-            f'{escape(vote_percent)} % de votos · {escape(segment["votes"])} votos</text>',
-        ])
+        output.append(
+            f'<rect x="430" y="{y - 12}" width="14" height="14" rx="2" fill="{segment["color"]}"/>'
+        )
+        for line_index, line in enumerate(lines):
+            line_y = y + line_index * 18
+            output.append(f'<text class="party" x="454" y="{line_y}">{escape(line)}</text>')
+            if line_index == 0:
+                output.append(
+                    f'<text class="share" x="744" y="{line_y}" text-anchor="end">'
+                    f'{seats_percent(segment["seats"])} %</text>'
+                )
+        output.append(
+            f'<text class="metric" x="454" y="{y + len(lines) * 18}">'
+            f'{escape(segment["votes"])} votos</text>'
+        )
+        y += row_height
         angle = end
 
-    other_seat_details = " · ".join(
-        f'{row[0].split(" — ", 1)[0]} {row[3]}' for row in other_rows if int(row[3])
-    )
     output.extend([
+        f'<line class="majority-divider" x1="{cx}" y1="{cy - outer}" x2="{cx}" y2="{cy - inner}" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>',
         f'<circle cx="{cx}" cy="{cy}" r="{inner - 1}" fill="#fff"/>',
-        f'<text class="year" x="{cx}" y="{cy - 22}" text-anchor="middle">1977</text>',
-        f'<text class="center-seat" x="{cx}" y="{cy - 5}" text-anchor="middle">{total_seats} escaños</text>',
-        f'<text class="footnote" x="380" y="520" text-anchor="middle">* Otros agrupa candidaturas menores; sus {other_seats} escaños: {escape(other_seat_details)}.</text>',
-        '<text class="footnote" x="380" y="542" text-anchor="middle">Escaños (%) = escaños / 350; colores editoriales, no reproducidos del examen.</text>',
-        f'<text class="footnote" x="380" y="564" text-anchor="middle">Porcentajes de voto recalculados a una décima: {format_percent(total_vote_percent)} % (tabla aportada: {format_percent(source_vote_percent_total, 2)} %).</text>',
+        f'<text class="center-seat" x="{cx}" y="{cy - 37}" text-anchor="middle">{total_seats}</text>',
+        f'<text class="center-majority" x="{cx}" y="{cy - 21}" text-anchor="middle">escaños</text>',
+        f'<text class="center-majority" x="{cx}" y="{cy - 5}" text-anchor="middle">176 para la mayoría</text>',
+        f'<text class="footnote" x="380" y="{footer_y}" text-anchor="middle">Agrupación del examen: Unión de Centro Democrático (UCD), 166 escaños; Otros*, 11.</text>',
+        f'<text class="footnote" x="380" y="{footer_y + 20}" text-anchor="middle">Votos de Unión de Centro Democrático (UCD): Ministerio del Interior; demás votos: JEC.</text>',
         "</svg>",
     ])
-    return (
-        "\n".join(output) + "\n", segments, other_rows, other_votes, other_vote_percent,
-        other_seats, total_vote_percent, source_vote_percent_total, total_seats,
-    )
+    return "\n".join(output) + "\n", segments, other_rows, other_votes, other_seats, total_seats, height
 
 
 def main():
     path = ROOT / "data/documentos.json"
     corpus = json.loads(path.read_text(encoding="utf-8"))
     record = next(item for item in corpus["documents"] if item["id"] == "elecciones-1977-diagrama")
-    (
-        svg, segments, other_rows, other_votes, other_vote_percent,
-        other_seats, total_vote_percent, source_vote_percent_total, total_seats,
-    ) = build_svg(record)
+    svg, segments, other_rows, other_votes, other_seats, total_seats, image_height = build_svg(record)
     (ROOT / OUTPUT).write_text(svg, encoding="utf-8")
     record["sourceCaption"] = (
         "Material de 2007, Examen 4, Bloque II · Opción B. "
-        "Cifras actualizadas con la tabla de resultados aportada por el usuario."
+        "Votos de UCD según el Ministerio del Interior; demás candidaturas contrastadas con la JEC."
     )
     record["quality"] = (
         "Diagrama semicircular redibujado a partir del material del examen. "
-        "Los sectores son proporcionales a los 350 escaños, no a los votos. Los colores son editoriales, "
-        "inspirados en asociaciones cromáticas de los partidos y no atribuidos al gráfico original. "
-        "Los votos y escaños se transcriben de la tabla aportada por el usuario; la tabla accesible "
-        "detalla las candidaturas agrupadas en «Otros*» y explica el cálculo de porcentajes."
+        "Los sectores son proporcionales a los 350 escaños. La agrupación electoral del material del examen "
+        "presenta UCD con 166 escaños y Otros* con 11. La cifra consolidada de votos de UCD es 6 310 391, "
+        "publicada por el Ministerio del Interior; las demás cifras de votos proceden del resumen de la JEC. "
+        "«Otros*» agrupa candidaturas electorales y no es un grupo parlamentario."
     )
+    image = dict(record["image"])
+    image.pop("reproductionNote", None)
     record["image"] = {
-        **record["image"],
+        **image,
         "src": OUTPUT,
         "width": 760,
-        "height": 640,
+        "height": image_height,
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2007-4-4.png",
         "originalSha256": hashlib.sha256(
             (ROOT / "assets/documentos/pdf-2007-4-4.png").read_bytes()
         ).hexdigest(),
         "alt": (
-            "Diagrama semicircular de los resultados de 1977, proporcional a los 350 escaños: "
-            "la UCD obtuvo 165, el 47,1 %. La leyenda muestra votos y escaños por candidatura."
-        ),
-        "reproductionNote": (
-            "Sectores proporcionales a escaños; los votos y las cifras proceden de la tabla aportada "
-            "por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados. "
-            "Colores editoriales, no reproducidos del examen."
+            "Resultado elecciones 1977 (15 de junio): diagrama de votos y escaños; "
+            "Unión de Centro Democrático (UCD) figura con 166 escaños según el agrupamiento del examen."
         ),
     }
-    vote_shares = rounded_vote_shares(ROWS)
     rows = [
-        [
-            party, votes,
-            format_percent(Decimal(vote_shares[party.split(" — ", 1)[0].split(" ")[0]]) / 10),
-            int(seats),
-            format_percent(Decimal(seats) * 100 / Decimal(total_seats)),
-        ]
-        for party, votes, _source_percent, seats in ROWS
+        [segment["code"], segment["votes"], segment["seats"], seats_percent(segment["seats"])]
+        for segment in segments
     ]
-    breakdown = ", ".join(
-        f'{row[0].split(" — ", 1)[0]} ({row[3]})' for row in other_rows
-    )
-    other_votes_formatted = f"{other_votes:,}".replace(",", ".")
-    other_percent_formatted = format_percent(other_vote_percent)
     notes = [
-        "Los votos y escaños se transcriben de la tabla de resultados aportada por el usuario. "
-        "Los porcentajes de voto se recalculan a partir de los votos listados y se redondean a una décima "
-        "mediante el método de mayores restos para sumar 100,0 %; los porcentajes de escaños se calculan "
-        "sobre 350 y se redondean a una décima.",
-        f"Otros* agrupa {len(other_rows)} candidaturas: {breakdown}. "
-        f"En conjunto suman {other_votes_formatted} votos, {other_percent_formatted} % y {other_seats} escaños.",
-        f"La columna de porcentajes de la tabla aportada suma {format_percent(source_vote_percent_total, 2)} %; "
-        "no coincide con los votos listados. Las cuñas representan los escaños, no los votos.",
-        f"Referencia de datos compartida por el usuario: {DATA_SOURCE}",
+        "La cifra de votos de UCD se actualiza a 6 310 391 según el Ministerio del Interior; los demás votos se mantienen según el resumen de la JEC.",
+        "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. Otros* agrupa candidaturas electorales; no es un grupo parlamentario.",
+        "PSOE incluye PSC-PSOE; PCE incluye PSUC. El resumen de resultados de la JEC enlazado permite consultar el desglose original por candidatura.",
+        f"Fuente: Junta Electoral Central, resumen de resultados, página 5: {SOURCE}",
+        f"Fuente del voto de UCD: Ministerio del Interior, Infoelectoral: {MINISTRY_SOURCE}",
     ]
     record["table"] = {
-        "caption": "Elecciones generales de 1977: votos y distribución de escaños",
-        "headers": ["Partido o candidatura", "Votos", "Votos (%)", "Escaños", "Escaños (%)"],
+        "caption": "Resultado elecciones 1977 (15 de junio)",
+        "headers": ["Partido o candidatura con escaño", "Votos", "Escaños", "Escaños (%)"],
         "rows": rows,
         "notes": notes,
     }
-    record["dataSourceUrl"] = DATA_SOURCE
+    record["dataSourceUrl"] = SOURCE
     path.write_text(json.dumps(corpus, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
         f"{OUTPUT}: {len(segments)} semicircle sectors, "
-        f"{len(rows)} accessible rows, UCD=165/{total_seats} seats, Others*={other_seats} seats"
+        f"{len(rows)} accessible rows, UCD={EXAM_UCD_SEATS}/{total_seats} seats, "
+        f"Others*={other_seats} seats"
     )
 
 

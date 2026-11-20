@@ -29,6 +29,10 @@ plot_h = height - pad_top - pad_bottom
 
 y_max = 350000
 
+
+def format_number(value):
+    return str(value) if 1000 <= abs(value) <= 9999 else f"{value:,.0f}".replace(",", ".")
+
 svg_parts = []
 svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="PIB por habitante en España, 1939–1973. Serie original en pesetas constantes de 1980; equivalentes de 2026 en los tooltips.">
   <defs>
@@ -62,7 +66,7 @@ for val in range(0, y_max + 1, 50000):
     y = pad_top + plot_h - (val / y_max) * plot_h
     svg_parts.append(f'''  <line x1="{pad_left}" y1="{y:.1f}" x2="{pad_left + plot_w}" y2="{y:.1f}" stroke="#ffffff" stroke-width="1.5" />''')
     # Etiqueta eje Y
-    label = f"{val:,.0f}".replace(",", ".")
+    label = format_number(val)
     svg_parts.append(f'''  <text x="{pad_left - 8}" y="{y + 4:.1f}" class="axis-label" text-anchor="end">{label}</text>''')
     # Marca eje Y
     svg_parts.append(f'''  <line x1="{pad_left - 4}" y1="{y:.1f}" x2="{pad_left}" y2="{y:.1f}" stroke="#ca8a04" stroke-width="1" />''')
@@ -76,7 +80,7 @@ for i, (yr, val, euros_2026, pesetas_2026) in enumerate(data):
     points.append(f"{x:.1f},{y:.1f}")
 
     # Marcas eje X cada 2 años como el examen (1939, 1941, ..., 1973)
-    if (yr - data[0][0]) % 6 == 0 or yr == data[-1][0]:
+    if (yr - data[0][0]) % 2 == 0:
         svg_parts.append(f'''  <line x1="{x:.1f}" y1="{pad_top + plot_h}" x2="{x:.1f}" y2="{pad_top + plot_h + 5}" stroke="#ca8a04" stroke-width="1" />''')
         year_label = f"{yr}*" if yr == data[0][0] else str(yr)
         svg_parts.append(f'''  <text x="{x:.1f}" y="{pad_top + plot_h + 18}" class="year-label" text-anchor="end" transform="rotate(-45, {x:.1f}, {pad_top + plot_h + 18})">{year_label}</text>''')
@@ -89,9 +93,9 @@ svg_parts.append(f'''  <polyline fill="none" stroke="#dc2626" stroke-width="3" s
 for i, (yr, val, euros_2026, pesetas_2026) in enumerate(data):
     x = pad_left + (i / (num_years - 1)) * plot_w
     y = pad_top + plot_h - (val / y_max) * plot_h
-    label = f"{val:,.0f}".replace(",", ".")
-    euro_label = f"{euros_2026:,.0f}".replace(",", ".")
-    peseta_label = f"{pesetas_2026:,.0f}".replace(",", ".")
+    label = format_number(val)
+    euro_label = format_number(euros_2026)
+    peseta_label = format_number(pesetas_2026)
     display_year = f"{yr}*" if yr == data[0][0] else str(yr)
     tooltip_width, tooltip_height = 260, 76
     tooltip_x = min(max(pad_left, x - tooltip_width / 2), width - pad_right - tooltip_width)
@@ -133,9 +137,7 @@ svg_parts.append('''  <script><![CDATA[
     chart.addEventListener("pointercancel", releasePoint);
   ]]></script>''')
 
-# Fuente abajo
-svg_parts.append(f'''  <text x="{pad_left}" y="{height - 27}" class="source" font-style="normal">Fuente: Prados de la Escosura, <tspan font-style="italic">Spain\'s Gross Domestic Product</tspan> (1995).</text>''')
-svg_parts.append(f'''  <text x="{pad_left}" y="{height - 8}" class="source">* El examen original indica 1931; la serie de la gráfica comienza en 1939.</text>''')
+svg_parts.append(f'''  <text x="{pad_left}" y="{height - 8}" class="source">*Errata: el examen original indica en el título 1931, pero los datos comienzan en 1939</text>''')
 svg_parts.append("</svg>")
 
 svg_content = "\n".join(svg_parts) + "\n"

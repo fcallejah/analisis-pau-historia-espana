@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="592" viewBox="0 0 760 592" role="img" aria-labelledby="title desc">
+<title id="title">Elecciones generales de 1989: escaños en el Congreso</title>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1989}</metadata>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="592" fill="#fff"/>
+<text class="title" x="380" y="32" text-anchor="middle">Congreso · 1989</text>
+<text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
+<path class="sector" data-party="PSOE + PSC" data-seats="175" data-seat-percent="50.000" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 230.00,185.00 L230.00,292.00 A78,78 0 0 0 152.00,370.00 Z"/>
+<path class="sector" data-party="Partido Popular (PP) y coaliciones" data-seats="107" data-seat-percent="30.571" fill="#2d4d73" d="M230.00,185.00 A185,185 0 0 1 381.60,263.96 L293.92,325.29 A78,78 0 0 0 230.00,292.00 Z"/>
+<path class="sector" data-party="Otros*" data-seats="22" data-seat-percent="6.286" fill="#92979f" d="M381.60,263.96 A185,185 0 0 1 399.45,295.77 L301.45,338.70 A78,78 0 0 0 293.92,325.29 Z"/>
+<path class="sector" data-party="Convergencia i Unió (CIU)" data-seats="18" data-seat-percent="5.143" fill="#d1a243" d="M399.45,295.77 A185,185 0 0 1 409.19,323.99 L305.55,350.60 A78,78 0 0 0 301.45,338.70 Z"/>
+<path class="sector" data-party="Izquierda Unida (IU)" data-seats="14" data-seat-percent="4.000" fill="#315a29" d="M409.19,323.99 A185,185 0 0 1 413.54,346.81 L307.38,360.22 A78,78 0 0 0 305.55,350.60 Z"/>
+<path class="sector" data-party="Centro Democrático y Social (CDS)" data-seats="14" data-seat-percent="4.000" fill="#8b1e3f" d="M413.54,346.81 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.38,360.22 Z"/>
+<line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="230" cy="370" r="77" fill="#fff"/>
+<text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
+<text class="center-note" x="230" y="349" text-anchor="middle">escaños</text>
+<text class="center-note" x="230" y="365" text-anchor="middle">176 para la mayoría absoluta</text>
+<rect x="430" y="100" width="14" height="14" rx="2" fill="#c6464f"/>
+<text class="party" x="454" y="112">Partido Socialista Obrero</text>
+<text class="share" x="744" y="112" text-anchor="end">50,0 %</text>
+<text class="party" x="454" y="130">Español (PSOE) + Partit dels</text>
+<text class="party" x="454" y="148">Socialistes de Catalunya</text>
+<text class="party" x="454" y="166">(PSC-PSOE) · 175 escaños</text>
+<text class="metric" x="454" y="184">8.115.568 votos</text>
+<rect x="430" y="206" width="14" height="14" rx="2" fill="#2d4d73"/>
+<text class="party" x="454" y="218">Partido Popular (PP) y</text>
+<text class="share" x="744" y="218" text-anchor="end">30,6 %</text>
+<text class="party" x="454" y="236">coaliciones · 107 escaños</text>
+<text class="metric" x="454" y="254">5.285.972 votos</text>
+<rect x="430" y="276" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="288">Otros* · 22 escaños</text>
+<text class="share" x="744" y="288" text-anchor="end">6,3 %</text>
+<text class="metric" x="454" y="306">1.437.153 votos</text>
+<rect x="430" y="328" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="340">Convergencia i Unió (CIU)</text>
+<text class="share" x="744" y="340" text-anchor="end">5,1 %</text>
+<text class="party" x="454" y="358">· 18 escaños</text>
+<text class="metric" x="454" y="376">1.032.243 votos</text>
+<rect x="430" y="398" width="14" height="14" rx="2" fill="#315a29"/>
+<text class="party" x="454" y="410">Izquierda Unida (IU)</text>
+<text class="share" x="744" y="410" text-anchor="end">4,0 %</text>
+<text class="party" x="454" y="428">· 14 escaños</text>
+<text class="metric" x="454" y="446">1.627.136 votos</text>
+<rect x="430" y="468" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="480">Centro Democrático y Social</text>
+<text class="share" x="744" y="480" text-anchor="end">4,0 %</text>
+<text class="party" x="454" y="498">(CDS) · 14 escaños</text>
+<text class="metric" x="454" y="516">1.617.716 votos</text>
+<text class="footnote" x="380" y="562" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+</svg>

@@ -6,8 +6,21 @@ from pathlib import Path
 import textwrap
 from xml.sax.saxutils import escape
 
+from elecciones_1977 import (
+    EXAM_OTHER_SEATS,
+    EXAM_UCD_SEATS,
+    MINISTRY_SOURCE,
+    MINISTRY_UCD_VOTES,
+    RESULTS,
+    SOURCE,
+    seats_percent,
+    votes_text,
+)
+
 
 ROOT = Path(__file__).resolve().parent.parent
+RESULTS_1977 = {row[0]: row for row in RESULTS}
+OTHERS_1977 = [row for row in RESULTS if row[0] in ("UDC-CD", "EC-FED", "EE", "CIC")]
 TABLES = {
     "porcentajes-restauracion": {
         "caption": "Resultados de la Restauración: porcentaje de escaños",
@@ -65,10 +78,10 @@ TABLES = {
             "notePosition": (8, 376), "noteBreakBefore": "(1939-1975)",
         },
         "rows": [
-            ["Alemania", "1.230", "1.363", "1.610"],
-            ["España", "746", "694", "1.042"],
-            ["Francia", "1.456", "1.575", "2.234"],
-            ["Reino Unido", "1.715", "1.964", "2.442"],
+            ["Alemania", "1230", "1363", "1610"],
+            ["España", "746", "694", "1042"],
+            ["Francia", "1456", "1575", "2234"],
+            ["Reino Unido", "1715", "1964", "2442"],
         ],
         "notes": ["Fuente: José Luis GARCÍA DELGADO y Juan Carlos JIMÉNEZ, “La economía”, en VV.AA., La época de Franco (1939-1975), vol XLI de la Historia de España, Espasa-Calpe, Madrid. 1996, p.450."],
     },
@@ -86,11 +99,11 @@ TABLES = {
             ],
             "notePosition": (384, 238), "noteAnchor": "middle",
             "firstColumnLeft": True, "strokeColor": "#555",
-            "noteEmphasis": ("El fracaso de la Revolución Industrial en España",),
+            "noteEmphasis": ("El fracaso de la Revolución Industrial en España, 1814-1913",),
         },
         "rows": [
-            ["1860-1864", "45", "1.065", "4.152"],
-            ["1865-1869", "42", "1.262", "4.904"],
+            ["1860-1864", "45", "1065", "4152"],
+            ["1865-1869", "42", "1262", "4904"],
         ],
         "notes": ["Fuente: NADAL, J.: El fracaso de la Revolución Industrial en España, 1814-1913, 1975."],
     },
@@ -128,21 +141,29 @@ TABLES = {
              "headers": ["Años", "Millones de dólares"],
              "widths": [90, 160],
              "examLayout": {
-                 "size": (480, 540), "origin": (110, 122),
+                 "size": (480, 492), "origin": (110, 78),
                  "rowHeights": [28] + [22] * 15,
                  "fontSizes": (16, 16, 13), "headerFontSize": 16,
                  "titleLines": ["DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975)"],
-                 "titleBaselines": (42,), "notePosition": (80, 505),
+                 "titleBaselines": (42,), "titleCenterX": 235, "notePosition": (80, 461),
                  "drawTableGrid": False, "firstColumnLeft": True,
                  "columnFills": ["#fff", "#e7f0ec"],
+                 "alternatingRowFills": [
+                     ["#f5f7f5", "#dce8e2"],
+                     ["#fff", "#e7f0ec"],
+                 ],
                  "columnTextColors": ["#29312e", "#38685e"],
                  "titleColor": "#38685e", "textColor": "#29312e",
                  "noteEmphasis": ("La emigración española",),
                  "editorialNote": (
-                     "Redibujo vectorial con tipografía condensada y un sombreado verde editorial "
-                     "en la columna de divisas; cifras y fuente transcritas sin cambios."
+                     "Tipografía condensada, sombreado verde editorial en la columna de divisas "
+                     "y filas alternas; cifras y fuente transcritas sin cambios."
                  ),
              },
+             "qualityText": (
+                 "Tabla vectorial agrupada para las apariciones de 2003 y 2006, cuyas cifras coinciden. "
+                 "La selección de 2006 procede de una copia no original y queda pendiente de cotejo con el PDF original."
+             ),
              "rows": [[str(year), value] for year, value in zip(
                  range(1961, 1976),
                  ["115", "148", "201", "240", "301", "346", "325", "324", "402", "469",
@@ -150,10 +171,10 @@ TABLES = {
              "notes": ["Fuente: Barrutieta, A.: La emigración española."],
     },
     "elecciones-1977-votos-escanos": {
-        "caption": "Doc. 11. Resultados electorales del 15 de junio de 1977",
+        "caption": "Resultado elecciones 1977 (15 de junio)",
         "introduction": "Las primeras elecciones legislativas con garantías democráticas desde la Segunda República arrojaron en porcentajes los siguientes resultados para el Congreso:",
-        "headers": ["Partido", "Votos", "Votos (en %)", "Escaños", "Escaños (en %)"],
-        "widths": [210, 270, 240, 210, 270],
+        "headers": ["Candidatura", "Votos", "Escaños", "Escaños (%)"],
+        "widths": [300, 300, 220, 260],
              "fontFamily": '"Arial Narrow", Arial, sans-serif',
              "renderScale": 0.609,
              "palette": {
@@ -164,25 +185,35 @@ TABLES = {
                  "rowB": "#f5ecd8",
              },
              "presentationNote": (
-                 "Redibujo vectorial con tipografía Arial Narrow y paleta editorial ocre; "
-                 "se conservan el orden, los encabezados y las cifras originales."
+                 "Voto de UCD actualizado con la cifra consolidada del Ministerio del Interior; los demás votos se mantienen según la JEC."
              ),
              "reproductionNote": (
-                 "Tipografía y tonos ocre editoriales. Datos, orden y encabezados transcritos "
-                 "de la reproducción del examen, sin recalcular porcentajes."
+                 "UCD y Otros siguen la agrupación de escaños del material del examen; las filas mantienen el desglose de candidaturas."
              ),
         "rows": [
-            ["UCD", "6 309 517", "34,8", "165", "47,1"],
-            ["PSOE", "5 240 464", "29,4", "118", "33,7"],
-            ["PCE", "1 655 744", "9,3", "20", "5,7"],
-            ["AP", "1 503 376", "8,4", "16", "4,6"],
-            ["PSP", "804 382", "4,5", "6", "1,7"],
-            ["CIU", "666 398", "3,7", "13", "3,1"],
-            ["PNV", "304 244", "1,7", "8", "2,3"],
-            ["Otros", "1 783 117", "8,2", "4", "1,1"],
+            ["UCD", votes_text(MINISTRY_UCD_VOTES), str(EXAM_UCD_SEATS),
+             seats_percent(EXAM_UCD_SEATS)],
+            *[
+                [label, votes_text(RESULTS_1977[code][2]), str(RESULTS_1977[code][3]),
+                 seats_percent(RESULTS_1977[code][3])]
+                for label, code in (
+                    ("PSOE + PSC", "PSOE"), ("PCE + PSUC", "PCE"),
+                    ("AP", "AP"), ("PSP-US", "PSP-US"), ("PDC", "PDC"), ("PNV", "PNV"),
+                )
+            ],
+            ["Otros", votes_text(sum(row[2] for row in OTHERS_1977)),
+             str(EXAM_OTHER_SEATS - RESULTS_1977["PSP-US"][3]),
+             seats_percent(EXAM_OTHER_SEATS - RESULTS_1977["PSP-US"][3])],
         ],
-        "notes": ["Se conserva el 3,1 de escaños de CIU y el resto de cifras de la reproducción original, sin recalcular porcentajes. «Doc. 11» es el rótulo interno de la imagen, no la posición del material en el examen."],
-        "visibleNotes": 0,
+        "notes": [
+            "Voto de UCD: 6 310 391 según la cifra consolidada del Ministerio del Interior. Las restantes cifras de votos se mantienen según el resumen de la JEC.",
+            "PSOE incluye PSC-PSOE; PCE incluye PSUC. Otros reúne UDC-CD, EC-FED, EE y dos candidaturas independientes de centro; no es un grupo parlamentario.",
+            "La distribución de escaños sigue la agrupación del material del examen: UCD 166; Otros 5 en esta tabla (11 junto con PSP-US en el diagrama). Porcentajes calculados sobre 350.",
+            f"Fuente: Junta Electoral Central, resumen de resultados, página 5: {SOURCE}",
+            f"Voto de UCD: Ministerio del Interior, Infoelectoral: {MINISTRY_SOURCE}",
+        ],
+        "visibleNotes": 1,
+        "qualityText": "Tabla basada en el examen de 2004. UCD usa el dato consolidado de votos del Ministerio del Interior; el resto de los votos procede de la JEC y los escaños siguen el agrupamiento electoral del examen.",
     },
     "ayuda-economica-americana-1953-1957": {
         "caption": "AYUDA ECONÓMICA AMERICANA (en dólares)",
@@ -222,7 +253,7 @@ def render(table, provenance):
     width = sum(widths) + 48
     scale = table.get("renderScale", 1)
     display_width = round(width * scale)
-    title = lines(table["caption"], width - 48, 28)
+    title = lines(table["caption"], width - 48, 28) if table.get("showTitle", True) else []
     intro = lines(table["introduction"], width - 48, 21) if table.get("introduction") else []
     headers = [lines(label, column, 23) for label, column in zip(table["headers"], widths)]
     header_height = max(map(len, headers)) * 29 + 30
@@ -308,6 +339,7 @@ def render_exam_table(table, provenance):
     width, height = layout["size"]
     title_size, cell_size, note_size = layout["fontSizes"]
     baselines = layout["titleBaselines"]
+    title_center = layout.get("titleCenterX", width / 2)
     title_weight = layout.get("titleWeight", 700)
     title_color = layout.get("titleColor", "#000")
     text_color = layout.get("textColor", "#000")
@@ -340,9 +372,9 @@ def render_exam_table(table, provenance):
     ]
     for index, line in enumerate(title_lines):
         baseline = baselines[index] if index < len(baselines) else baselines[-1] + 24 * (index - len(baselines) + 1)
-        parts.append(f'<text class="title" x="{width / 2:g}" y="{baseline}" text-anchor="middle">{escape(line)}</text>')
+        parts.append(f'<text class="title" x="{title_center:g}" y="{baseline}" text-anchor="middle">{escape(line)}</text>')
     if unit is not None:
-        parts.append(f'<text class="title" x="{width / 2:g}" y="{baselines[1]}" text-anchor="middle">({escape(unit)}</text>')
+        parts.append(f'<text class="title" x="{title_center:g}" y="{baselines[1]}" text-anchor="middle">({escape(unit)}</text>')
     x0, y0 = layout["origin"]
     grid_width = sum(table["widths"])
     row_heights = layout["rowHeights"]
@@ -356,6 +388,21 @@ def render_exam_table(table, provenance):
                 f'<rect x="{x}" y="{y0}" width="{table["widths"][column]}" '
                 f'height="{grid_height}" fill="{fill}"/>'
             )
+    alternating_row_fills = layout.get("alternatingRowFills", ())
+    if alternating_row_fills:
+        y = y0 + row_heights[0]
+        for data_row, row_height in enumerate(row_heights[1:]):
+            fills = alternating_row_fills[data_row % len(alternating_row_fills)]
+            assert len(fills) == len(table["widths"])
+            x = x0
+            for column, (column_width, fill) in enumerate(zip(table["widths"], fills)):
+                if fill:
+                    parts.append(
+                        f'<rect class="row-stripe" data-stripe-row="{data_row}" data-stripe-column="{column}" '
+                        f'x="{x}" y="{y}" width="{column_width}" height="{row_height}" fill="{fill}"/>'
+                    )
+                x += column_width
+            y += row_height
     title_row_height = layout.get("titleRowHeight", 0)
     stroke = layout.get("strokeColor", "#333")
     outer_y = y0 - title_row_height
@@ -456,6 +503,10 @@ def main():
             "pdf": appearance["pdfUrl"], "pdfSha256": appearance["sourceSha256"],
             "file": appearance["officialFile"], "page": appearance["officialPage"],
         }
+        if identity == "elecciones-1977-votos-escanos":
+            provenance["dataSource"] = SOURCE
+            provenance["ministrySource"] = MINISTRY_SOURCE
+            record["dataSourceUrl"] = SOURCE
         if original:
             provenance.update({"original": original, "originalSha256": original_hash})
         svg, width, height = render(table, provenance)

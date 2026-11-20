@@ -3137,7 +3137,7 @@
             "En guerra",
             "1",
             "60",
-            "1.314"
+            "1314"
           ],
           [
             "Por heridas",
@@ -3184,7 +3184,7 @@
         "En guerra",
         "1 general",
         "60 oficiales",
-        "1.314 soldados",
+        "1314 soldados",
         "Por heridas",
         "1 general",
         "81 oficiales",
@@ -4431,7 +4431,7 @@
         }
       ],
       "text": [
-        "“[...] El problema de los latifundios en España [es] una cuestión grave de enorme trascendencia económica y social para nuestra patria. No se trata solo del hecho de que unos 7.000 propietarios posean más de 6 millones de hectáreas en las regiones manchega, extremeña y andaluza, sino también de que disfrutan la mayor parte de la riqueza que en ellas reproduce, dejado al resto de sus habitantes en situación precaria, y, sobre todo, impidiendo que se intensifique la producción y puedan progresar esas provincias [...].",
+        "“[...] El problema de los latifundios en España [es] una cuestión grave de enorme trascendencia económica y social para nuestra patria. No se trata solo del hecho de que unos 7000 propietarios posean más de 6 millones de hectáreas en las regiones manchega, extremeña y andaluza, sino también de que disfrutan la mayor parte de la riqueza que en ellas reproduce, dejado al resto de sus habitantes en situación precaria, y, sobre todo, impidiendo que se intensifique la producción y puedan progresar esas provincias [...].",
         "Consecuencia de ellos son: la despoblación de los campos, el deficiente cultivo, los jornales bajos, los arrendamientos caros, la escasa y raquítica ganadería, y, en general, la situación precaria en que se encuentra la tercera parte del territorio nacional [...]. Ante estos hechos, es suicida y criminal cerrar los ojos para no verlos y dejar que pasen los años y aun siglos, como hasta ahora ha ocurrido, sin ponerles remedio. Hay, pues, que afrontar su solución con serenidad pero con energía [...]”.",
         "Pascual Carrión, Los latifundios en España, Gráficas Reunidas, 1932."
       ]
@@ -5397,7 +5397,7 @@
         "kind": "table",
         "alt": "Redibujado vectorial de la tabla de resultados de octubre de 1982: 350 escaños del Congreso y 208 del Senado.",
         "width": 2084,
-        "height": 1418,
+        "height": 1460,
         "caption": "Redibujado vectorial cotejado con el PDF oficial de 2026, suplente 2, itinerario B, documento 2; no es una extracción de trazados originales.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2026_historia_espana.zip",
         "originalSrc": "assets/documentos/elecciones-generales-1982-congreso-senado-oficial-2026.png"
@@ -5869,19 +5869,20 @@
     {
       "id": "constitucion-1978-articulos-suplente-a",
       "studyCompilation": {
-        "title": "Constitución de 1978 · Recopilación de fragmentos para estudiar",
-        "readingNote": "Se combinan la fórmula inicial y los artículos 1, 2, 3, 6 y 7 de las selecciones de 2004, 2005 y 2025, con referencia al BOE. Los apartados se separan y se numeran por artículo; [...] señala la omisión del preámbulo y de los artículos 4 y 5. Los artículos 6 y 7 conservan los cortes del examen de 2004. No es el texto íntegro ni la transcripción de un único examen: las tres selecciones originales se conservan debajo con sus PDF.",
+        "title": "Constitución de 1978",
         "sourceUrl": "https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229",
         "headingParagraphs": [
-          2,
-          6,
-          8,
-          13,
-          15
+          0,
+          3,
+          7,
+          9,
+          14,
+          16
         ],
         "centerHeadings": true,
         "attributionParagraphs": 1,
         "text": [
+          "Constitución de 1978",
           "Don Juan Carlos I, rey de España. A todos los que la presente vieren y entendieren. Sabed: Que las Cortes han aprobado y el Pueblo Español ratificado la siguiente Constitución:",
           "[...]",
           "Artículo 1",
@@ -5965,7 +5966,7 @@
       ],
       "date": "28 de octubre de 1982",
       "sourceCaption": "Elecciones Generales de 28 de octubre de 1982: distribución de votos y escaños en el Congreso. SVG extraído del PDF oficial de 2008, Examen 3, opción B, documento 1; cotejado también con el PDF aportado.",
-      "quality": "Extracción vectorial del PDF oficial, idéntico al PDF aportado: conserva la tabla completa, notas y fuente, sin reconstrucción. El original sitúa “350” en la fila “Otros***” de la columna “Escaños”; se conserva esa disposición sin corregirla ni interpretarla como escaños obtenidos por esas candidaturas. La tabla accesible mantiene las mismas celdas.",
+      "quality": "El SVG oficial se conserva íntegro como original. La copia de presentación aplica bandas horizontales alternas de gris verdoso; cifras, categorías, notas y fuente permanecen sin cambios. El original sitúa “350” en la fila “Otros***” de la columna “Escaños”; se conserva esa disposición sin corregirla ni interpretarla como escaños obtenidos por esas candidaturas. La tabla accesible mantiene las mismas celdas.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -6114,12 +6115,12 @@
       },
       "tableImage": {
         "src": "assets/documentos/resultados-elecciones-generales-1982-sombreado-editorial.svg",
-        "alt": "Tabla original de resultados de las elecciones generales de 1982, con votos, porcentajes, escaños, totales y notas al pie.",
+        "alt": "Tabla de resultados de las elecciones generales de 1982 con bandas alternas gris verdosas; conserva votos, porcentajes, escaños, totales y notas al pie.",
         "width": 1744,
         "height": 1056,
-        "caption": "SVG extraído del PDF oficial de 2008; tabla con las columnas de votos y escaños sombreadas como distinción editorial.",
+        "caption": "SVG extraído del PDF oficial de 2008; copia de presentación con bandas horizontales alternas.",
         "originalSrc": "assets/documentos/resultados-elecciones-generales-1982-oficial-2008.svg",
-        "reproductionNote": "Los sombreados de votos y escaños son editoriales; el SVG extraído original se conserva sin alterar.",
+        "reproductionNote": "Las bandas alternas son editoriales; el SVG extraído original se conserva sin alterar.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
       },
       "text": [
@@ -6749,7 +6750,7 @@
       "date": "1978",
       "type": "texto",
       "sourceCaption": "2009 Examen 4, opción B, documento 2.",
-      "quality": "Transcripción cotejada con el PDF escaneado de 2009. El artículo 101 del examen imprime “por disminución o fallecimiento”, que se conserva sin presentarlo como redacción legal corregida. Se elimina una “U” suelta al final que solo aparece en el OCR de la recopilación.",
+      "quality": "Transcripción cotejada con el PDF escaneado de 2009. Se normaliza la escritura del año en el encabezado según la ortografía académica. El artículo 101 del examen imprime “por disminución o fallecimiento”, que se conserva sin presentarlo como redacción legal corregida. Se elimina una “U” suelta al final que solo aparece en el OCR de la recopilación.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -6777,7 +6778,7 @@
         }
       ],
       "text": [
-        "CONSTITUCIÓN ESPAÑOLA DE 1.978",
+        "CONSTITUCIÓN ESPAÑOLA DE 1978",
         "Artículo 97:",
         "El Gobierno dirige la política interior y exterior, la Administración civil y militar y la defensa del Estado. Ejerce la función ejecutiva y la potestad reglamentaria de acuerdo con la Constitución y las leyes.",
         "Artículo 98:",
@@ -7617,25 +7618,25 @@
           [
             "Eclesiástica",
             "1845–1854",
-            "3.731",
-            "1.329"
+            "3731",
+            "1329"
           ],
           [
             "Eclesiástica",
             "1854–1856",
             "24.845",
-            "5.205"
+            "5205"
           ],
           [
             "Civil",
             "Corporaciones",
             "16.859",
-            "3.327"
+            "3327"
           ],
           [
             "Civil",
             "Estado",
-            "5.074",
+            "5074",
             "661"
           ]
         ],
@@ -7943,7 +7944,8 @@
       ],
       "date": "Junio de 1977",
       "sourceCaption": "2012 Examen 1, opción B, documento 2.",
-      "quality": "Tabla vectorial cotejada con el PDF del examen. Se conservan las denominaciones y cifras; la tipografía condensada y el sombreado azul verdoso y ocre son editoriales.",
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf",
+      "quality": "Tabla vectorial cotejada con el PDF del examen y contrastada con el resumen de la Junta Electoral Central. Las cifras de escaños coinciden agrupando PSOE con PSC-PSOE y PCE con PSUC; las bandas alternas y la tipografía son editoriales.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -7990,11 +7992,11 @@
       "image": {
         "src": "assets/documentos/tabla-congreso-1977.svg",
         "kind": "table",
-        "alt": "Tabla de diputados por partidos y coaliciones tras las elecciones de 1977.",
+        "alt": "Tabla de diputados por partidos y coaliciones tras las elecciones de 1977, con filas verdes alternas.",
         "width": 1108,
         "height": 540,
-        "caption": "Tabla cotejada con el examen de 2012; sombreado editorial.",
-        "reproductionNote": "Tipografía Arial Narrow y colores suaves añadidos para aproximar la jerarquía del examen; sin cambiar datos."
+        "caption": "Tabla cotejada con el examen de 2012; filas alternadas en verde grisáceo.",
+        "reproductionNote": "Escaños contrastados con la JEC: PSOE incluye PSC-PSOE y PCE incluye PSUC. Las filas alternan sombreado verde grisáceo y blanco; se conservan las denominaciones del examen."
       },
       "table": {
         "caption": "Composición del Congreso de los Diputados tras las elecciones de 1977",
@@ -8049,7 +8051,9 @@
           ]
         ],
         "notes": [
-          "La tabla de la recopilación no incluye una fila de total; no se añade una cifra calculada."
+          "Las cifras suman 350 escaños. Según la JEC, PSOE agrupa 103 del PSOE y 15 de PSC-PSOE; PCE agrupa 12 del PCE y 8 del PSUC.",
+          "Las dos candidaturas independientes de centro reúnen 2 escaños. Las candidaturas electorales no equivalen necesariamente a grupos parlamentarios.",
+          "Fuente: Junta Electoral Central, resumen de resultados, página 5: https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf"
         ]
       }
     },
@@ -9313,7 +9317,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "La imagen muestra la reunión de los firmantes de los Pactos de la Moncloa. Adolfo Suárez, presidente del Gobierno en 1977, preside la mesa desde el centro al fondo. Relaciona la escena con la búsqueda de acuerdos durante la Transición."
+          "text": "La imagen muestra la reunión de los firmantes de los Pactos de la Moncloa. Adolfo Suárez, primer presidente democrático tras la dictadura (1976–1981), presidía el Gobierno en 1977 y preside la mesa desde el centro al fondo. Relaciona la escena con la búsqueda de acuerdos durante la Transición."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -10054,7 +10058,7 @@
           "people": [
             {
               "name": "Antonio Tejero",
-              "role": "Teniente coronel de la Guardia Civil que encabezó el asalto al Congreso el 23 de febrero de 1981, durante la votación de investidura de Leopoldo Calvo-Sotelo, tras la dimisión de Adolfo Suárez.",
+              "role": "Teniente coronel de la Guardia Civil que lideró el fallido golpe de Estado en el Congreso el 23 de febrero de 1981 (23F), durante la votación de investidura de Leopoldo Calvo-Sotelo, tras la dimisión de Adolfo Suárez.",
               "position": "De pie, en primer plano, con el brazo derecho levantado.",
               "x": 0.42,
               "y": 0.31,
@@ -10522,7 +10526,7 @@
       "text": [
         "Comunicado del Presidente del Gobierno Adolfo Suárez sobre el proyecto de Ley para la Reforma Política (10 de septiembre de 1976):",
         "“Buenas noches. Me presento ante todos ustedes para darles cuenta del Proyecto de la Ley para la Reforma Política, para decirles sencillamente cómo propone el gobierno que sea nuestro futuro y para convocar a todo el pueblo español a una tarea de protagonismo y solidaridad. Reconocido en la declaración programática del gobierno el principio de que la soberanía nacional reside en el pueblo, hay que conseguir que el pueblo hable cuanto antes. Esto es lo que el Consejo de Ministros acaba de aprobar: el Proyecto de la Ley para la Reforma Política. Es un proyecto sencillo y realista que trata de servir de cauce formal para que el pueblo pueda desempeñar el protagonismo que le corresponde y dar paso a la legitimidad real de los grupos y partidos por medio del voto”.",
-        "En Victoria Prego: Así se hizo la transición. Barcelona, Plaza & Janés, 1995."
+        "Prego, V.: Así se hizo la transición. Barcelona, Plaza & Janés, 1995."
       ],
       "headingParagraphs": [
         0
@@ -10707,6 +10711,8 @@
         "width": 1300,
         "height": 1094,
         "alt": "Caricatura en color: Prim, con los ojos vendados, participa en un corro de personajes políticos y una alegoría femenina.",
+        "filter": "brightness(1.15)",
+        "reproductionNote": "Brillo ajustado para facilitar la lectura; se conserva el recorte original del examen.",
         "originalSrc": "assets/documentos/prim-busca-regimen.jpg",
         "crop": {
           "width": 1270,
@@ -10940,7 +10946,7 @@
         "alt": "De izquierda a derecha: Leopoldo Calvo-Sotelo, José María Aznar, Adolfo Suárez y Felipe González, de pie."
       },
       "examCaption": {
-        "text": "Presidentes del gobierno en la Monarquía de Juan Carlos I",
+        "text": "Cuatro de los seis presidentes del Gobierno en la monarquía de Juan Carlos I",
         "appearanceId": "fuente-h-x5utn9rerhqx-4"
       }
     },
@@ -13328,7 +13334,7 @@
         }
       ],
       "text": [
-        "“[...] El problema de los latifundios en España [es] una cuestión grave de enorme trascendencia económica y social para nuestra patria. No se trata solo del hecho de que unos 7.000 propietarios posean más de 6 millones de hectáreas en las regiones manchega, extremeña y andaluza, sino también de que disfrutan la mayor parte de la riqueza que en ellas reproduce, dejado al resto de sus habitantes en situación precaria, y, sobre todo, impidiendo que se intensifique la producción y puedan progresar esas provincias [...]. Consecuencia de ellos son: la despoblación de los campos, el deficiente cultivo, los jornales bajos, los arrendamientos caros, la escasa y raquítica ganadería, y, en general, la situación precaria en que se encuentra la tercera parte del territorio nacional [...]. Ante estos hechos, es suicida y criminal cerrar los ojos para no verlos y dejar que pasen los años y aun siglos, como hasta ahora ha ocurrido, sin ponerles remedio. Hay, pues, que afrontar su solución con serenidad pero con energía [...]”.",
+        "“[...] El problema de los latifundios en España [es] una cuestión grave de enorme trascendencia económica y social para nuestra patria. No se trata solo del hecho de que unos 7000 propietarios posean más de 6 millones de hectáreas en las regiones manchega, extremeña y andaluza, sino también de que disfrutan la mayor parte de la riqueza que en ellas reproduce, dejado al resto de sus habitantes en situación precaria, y, sobre todo, impidiendo que se intensifique la producción y puedan progresar esas provincias [...]. Consecuencia de ellos son: la despoblación de los campos, el deficiente cultivo, los jornales bajos, los arrendamientos caros, la escasa y raquítica ganadería, y, en general, la situación precaria en que se encuentra la tercera parte del territorio nacional [...]. Ante estos hechos, es suicida y criminal cerrar los ojos para no verlos y dejar que pasen los años y aun siglos, como hasta ahora ha ocurrido, sin ponerles remedio. Hay, pues, que afrontar su solución con serenidad pero con energía [...]”.",
         "Pascual Carrión, Los latifundios en España, Gráficas Reunidas, 1932"
       ],
       "attributionParagraphs": 1,
@@ -14866,13 +14872,12 @@
       "image": {
         "src": "assets/documentos/grafico-sociedad-espanola-1860.svg",
         "width": 593,
-        "height": 447,
+        "height": 419,
         "alt": "Gráfico circular de la composición social hacia 1860, redibujado en vector con colores editoriales para distinguir sus cuatro grupos.",
         "sourceUrl": "https://drive.google.com/file/d/1XwtZwV9f_HwTMEX_XyrKVFc3Yt6_Wm1L/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2002-4-2.png",
-        "originalSha256": "80a46dd91dd0f891e0ce779913dd4336690ac57fd463e60e5e65570740c71c13",
-        "reproductionNote": "Los colores se añaden para distinguir los grupos; no aparecen en el original. Se conservan las categorías y porcentajes."
+        "originalSha256": "80a46dd91dd0f891e0ce779913dd4336690ac57fd463e60e5e65570740c71c13"
       },
       "table": {
         "caption": "Composición de la sociedad española hacia 1860 (porcentajes)",
@@ -14898,9 +14903,11 @@
             "71"
           ]
         ],
-        "notes": [
-          "Los colores distinguen los grupos en el redibujo; no forman parte del original."
-        ]
+        "notes": []
+      },
+      "examCaption": {
+        "text": "Composición de la sociedad española hacia 1860",
+        "appearanceId": "fuente-pdf-2002-4-2"
       }
     },
     {
@@ -15019,27 +15026,27 @@
         "rows": [
           [
             "Alemania",
-            "1.230",
-            "1.363",
-            "1.610"
+            "1230",
+            "1363",
+            "1610"
           ],
           [
             "España",
             "746",
             "694",
-            "1.042"
+            "1042"
           ],
           [
             "Francia",
-            "1.456",
-            "1.575",
-            "2.234"
+            "1456",
+            "1575",
+            "2234"
           ],
           [
             "Reino Unido",
-            "1.715",
-            "1.964",
-            "2.442"
+            "1715",
+            "1964",
+            "2442"
           ]
         ],
         "notes": [
@@ -15264,6 +15271,10 @@
     {
       "id": "produccion-hierro-1860-1869",
       "title": "Producción de hierro colado en España, Francia y Gran Bretaña",
+      "examCaption": {
+        "text": "Producción de hierro colado\n(media anual en miles de toneladas)",
+        "appearanceId": "fuente-pdf-2002-6-2"
+      },
       "type": "grafico",
       "blocks": [
         8
@@ -15328,14 +15339,14 @@
           [
             "1860-1864",
             "45",
-            "1.065",
-            "4.152"
+            "1065",
+            "4152"
           ],
           [
             "1865-1869",
             "42",
-            "1.262",
-            "4.904"
+            "1262",
+            "4904"
           ]
         ],
         "notes": [
@@ -15643,10 +15654,11 @@
         "b) Que habiendo declarado el Gobierno y los partidos que tienen mayoría en las actuales Cortes, que éstas no pueden actuar en funciones de Constituyentes, y considerando la Asamblea que urge deliberar y resolver sobre la organización del Estado, la autonomía de los municipios y los demás problemas que las circunstancias plantean con apremio inaplazable para la vida del país, entiende que es indispensable la convocatoria de nuevas Cortes con funciones de Constituyentes [...]",
         "c) Que para que el país pueda manifestar libremente su opinión, y el pueblo no vea cerrada toda esperanza de que su voluntad sea conocida y respetada, las Cortes Constituyentes no puedan ser convocadas por un gobierno de partido, que fatalmente seguiría los habituales procedimientos de adulteración del sufragio, sino por un Gobierno que encarne y represente la voluntad soberana del país.",
         "d) Que es indispensable que el acto realizado por el Ejército el día 1º de Junio vaya seguido de una profunda renovación de la vida pública española, emprendida y realizada por los elementos políticos; [...]",
-        "El acto de Barcelona descrito por los parlamentarios. Narración expuesta en hoja clandestina por los asambleístas. (19 de julio de 1917)"
+        "El acto de Barcelona descrito por los parlamentarios. Narración expuesta en hoja clandestina por los asambleístas.",
+        "Barcelona, 19 de julio de 1917"
       ],
       "sourceCaption": "Selección íntegra del PDF 2003. Examen 1.pdf, Opción B.",
-      "quality": "Transcripción directa de esta selección del PDF aportado. Se normalizan los saltos de línea, no se completa con otros exámenes.",
+      "quality": "Transcripción de esta selección del PDF aportado. Se normalizan los saltos de línea y se separa la fecha al final con la indicación de Barcelona.",
       "appearances": [
         {
           "id": "fuente-pdf-2003-1-3",
@@ -15665,7 +15677,7 @@
           "printedLabel": "1.Texto"
         }
       ],
-      "attributionParagraphs": 1,
+      "attributionParagraphs": 2,
       "headingParagraphs": [
         0
       ]
@@ -15726,7 +15738,6 @@
             "Enciclopedia de Historia de España: vol. VI"
           ]
         },
-        "reproductionNote": "Redibujo aproximado desde el escaneo original; el círculo de Soria se amplía ligeramente para facilitar la lectura. Los sectores no representan cifras absolutas.",
         "sourceUrl": "https://drive.google.com/file/d/1XDODoBqLulonuiXw0Z598p2YYRrF1DRd/view",
         "selectable": true,
         "originalSrc": "assets/documentos/pdf-2003-1-4.png",
@@ -15969,6 +15980,12 @@
         "width": 760,
         "height": 444,
         "alt": "PIB por habitante en España, 1939*–1973. Serie original en pesetas constantes de 1980; cada punto muestra sus equivalentes en euros y pesetas de 2026.",
+        "examCaption": {
+          "text": "Fuente: Prados de la Escosura, Spain's Gross Domestic Product (1995)",
+          "emphasis": [
+            "Spain's Gross Domestic Product"
+          ]
+        },
         "sourceUrl": "https://drive.google.com/file/d/1NW_bI6OpSyTOt4w0Ho9WkmeGqq-_m9MZ/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2003-2-4.png",
@@ -16172,6 +16189,9 @@
         "width": 795,
         "height": 708,
         "alt": "División de España tras el alzamiento militar de julio de 1936. Reproducción clara del material del examen.",
+        "examCaption": {
+          "text": "División de España tras el fallido golpe de Estado de 17-19 julio de 1936"
+        },
         "sourceUrl": "https://drive.google.com/file/d/1BfHUgPaIjH-oC6OZq-WmtiukUw92FUkr/view"
       }
     },
@@ -16401,29 +16421,7 @@
         "annotations": {
           "layout": "numbered",
           "note": "Los tres personajes y sus posiciones han sido indicados por el usuario. El archivo del Congreso documenta su presencia en la apertura de la I Legislatura, el 9 de mayo de 1979. No se identifican las demás autoridades.",
-          "context": "Juan Carlos I interviene en la apertura de la I Legislatura, el 9 de mayo de 1979, acompañado por Sofía y el entonces príncipe Felipe. Las posiciones señaladas son las indicadas por el usuario; no se identifican las demás autoridades.",
-          "sources": [
-            {
-              "title": "Congreso de los Diputados: apertura de la I Legislatura",
-              "url": "https://www.congreso.es/cem/ileg-apertura"
-            },
-            {
-              "title": "BOE: designación como sucesor en 1969",
-              "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-1969-915"
-            },
-            {
-              "title": "BOE: abdicación en 2014",
-              "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2014-6476"
-            },
-            {
-              "title": "Casa del Rey: traslado de residencia fuera de España en agosto de 2020",
-              "url": "https://www.casareal.es/CA/AreaPrensa/Paginas/area_prensa_comunicados_interior.aspx?data=113"
-            },
-            {
-              "title": "RTVE: archivo de las investigaciones de la Fiscalía en marzo de 2022",
-              "url": "https://www.rtve.es/noticias/20220302/fiscalia-archiva-investigacion-rey-juan-carlos/2300821.shtml"
-            }
-          ],
+          "context": "Juan Carlos I interviene en la apertura de la I Legislatura, el 9 de mayo de 1979, acompañado por Sofía y el entonces príncipe Felipe.",
           "people": [
             {
               "name": "Juan Carlos I",
@@ -16457,7 +16455,7 @@
         }
       },
       "examCaption": {
-        "text": "Apertura por Su Majestad Juan Carlos I de las Cortes Legislativas. Mayo de 1979",
+        "text": "Apertura por su majestad Juan Carlos I de las Cortes legislativas. Mayo de 1979",
         "appearanceId": "fuente-pdf-2003-4-4"
       }
     },
@@ -16805,7 +16803,7 @@
       ],
       "date": "1961–1975",
       "sourceCaption": "Materiales de 2003, Examen 6, Opción B, y 2006, Examen 6, Bloque II · Opción B.",
-      "quality": "Tabla vectorial agrupada para las apariciones de 2003 y 2006, cuyas cifras coinciden. La selección de 2006 procede de una copia no original y queda pendiente de cotejo con el PDF original. Redibujo vectorial con tipografía condensada y un sombreado verde editorial en la columna de divisas; cifras y fuente transcritas sin cambios. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Tabla vectorial agrupada para las apariciones de 2003 y 2006, cuyas cifras coinciden. La selección de 2006 procede de una copia no original y queda pendiente de cotejo con el PDF original. Tipografía condensada, sombreado verde editorial en la columna de divisas y filas alternas; cifras y fuente transcritas sin cambios. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -16858,13 +16856,13 @@
       "image": {
         "src": "assets/documentos/tabla-divisas-emigrantes-1961-1975.svg",
         "width": 480,
-        "height": 540,
+        "height": 492,
         "alt": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975). Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/1Mhqqituw-0g8pMah2DJN2wgo-epmzV0q/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2003-6-4.png",
         "originalSha256": "7db96a5de90fabd6dd9a06024e3b043ec5470050564ff21e084d96718e197ec5",
-        "reproductionNote": "Redibujo vectorial con tipografía condensada y un sombreado verde editorial en la columna de divisas; cifras y fuente transcritas sin cambios."
+        "reproductionNote": "Tipografía condensada, sombreado verde editorial en la columna de divisas y filas alternas; cifras y fuente transcritas sin cambios."
       },
       "table": {
         "caption": "DIVISAS APORTADAS POR LOS EMIGRANTES ESPAÑOLES (1961-1975)",
@@ -18109,7 +18107,7 @@
       ],
       "date": "15 de junio de 1977",
       "sourceCaption": "Material de 2004. Examen 6.pdf, Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con tipografía Arial Narrow y paleta editorial ocre; se conservan el orden, los encabezados y las cifras originales. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Tabla basada en el examen de 2004. UCD usa el dato consolidado de votos del Ministerio del Interior; el resto de los votos procede de la JEC y los escaños siguen el agrupamiento electoral del examen. Voto de UCD actualizado con la cifra consolidada del Ministerio del Interior; los demás votos se mantienen según la JEC. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -18143,86 +18141,85 @@
       ],
       "image": {
         "src": "assets/documentos/tabla-elecciones-1977-votos-escanos.svg",
-        "width": 760,
-        "height": 401,
-        "alt": "Doc. 11. Resultados electorales del 15 de junio de 1977. Tabla vectorial; los datos también están disponibles en texto.",
+        "width": 687,
+        "height": 438,
+        "alt": "Resultado elecciones 1977 (15 de junio). Tabla vectorial; los datos también están disponibles en texto.",
+        "examCaption": {
+          "text": "Resultado elecciones 1977 (15 de junio)"
+        },
         "sourceUrl": "https://drive.google.com/file/d/1RGuNkNesx5JF48ex7zBYVVBUjAaGQrph/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2004-6-4.jpeg",
         "originalSha256": "3c7bc8250f6486f2bfcd6f70abeeeb110c3902ad42ea6ed240aec0960e4ce556",
-        "reproductionNote": "Tipografía y tonos ocre editoriales. Datos, orden y encabezados transcritos de la reproducción del examen, sin recalcular porcentajes."
+        "reproductionNote": "UCD y Otros siguen la agrupación de escaños del material del examen; las filas mantienen el desglose de candidaturas."
       },
       "table": {
-        "caption": "Doc. 11. Resultados electorales del 15 de junio de 1977",
+        "caption": "Resultado elecciones 1977 (15 de junio)",
         "headers": [
-          "Partido",
+          "Candidatura",
           "Votos",
-          "Votos (en %)",
           "Escaños",
-          "Escaños (en %)"
+          "Escaños (%)"
         ],
         "rows": [
           [
             "UCD",
-            "6 309 517",
-            "34,8",
-            "165",
-            "47,1"
+            "6 310 391",
+            "166",
+            "47,4"
           ],
           [
-            "PSOE",
-            "5 240 464",
-            "29,4",
+            "PSOE + PSC",
+            "5 338 107",
             "118",
             "33,7"
           ],
           [
-            "PCE",
-            "1 655 744",
-            "9,3",
+            "PCE + PSUC",
+            "1 711 906",
             "20",
             "5,7"
           ],
           [
             "AP",
-            "1 503 376",
-            "8,4",
+            "1 471 527",
             "16",
             "4,6"
           ],
           [
-            "PSP",
-            "804 382",
-            "4,5",
+            "PSP-US",
+            "816 754",
             "6",
             "1,7"
           ],
           [
-            "CIU",
-            "666 398",
-            "3,7",
-            "13",
+            "PDC",
+            "514 647",
+            "11",
             "3,1"
           ],
           [
             "PNV",
-            "304 244",
-            "1,7",
+            "296 193",
             "8",
             "2,3"
           ],
           [
             "Otros",
-            "1 783 117",
-            "8,2",
-            "4",
-            "1,1"
+            "445 179",
+            "5",
+            "1,4"
           ]
         ],
         "notes": [
-          "Se conserva el 3,1 de escaños de CIU y el resto de cifras de la reproducción original, sin recalcular porcentajes. «Doc. 11» es el rótulo interno de la imagen, no la posición del material en el examen."
+          "Voto de UCD: 6 310 391 según la cifra consolidada del Ministerio del Interior. Las restantes cifras de votos se mantienen según el resumen de la JEC.",
+          "PSOE incluye PSC-PSOE; PCE incluye PSUC. Otros reúne UDC-CD, EC-FED, EE y dos candidaturas independientes de centro; no es un grupo parlamentario.",
+          "La distribución de escaños sigue la agrupación del material del examen: UCD 166; Otros 5 en esta tabla (11 junto con PSP-US en el diagrama). Porcentajes calculados sobre 350.",
+          "Fuente: Junta Electoral Central, resumen de resultados, página 5: https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf",
+          "Voto de UCD: Ministerio del Interior, Infoelectoral: https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/index.html"
         ]
-      }
+      },
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf"
     },
     {
       "title": "Exposición de Mendizábal sobre los objetivos de la desamortización",
@@ -18799,9 +18796,15 @@
         "sourceUrl": "https://drive.google.com/file/d/1YZ3TwLbZYGtVX1rgblNOGBhPg5ab2IV_/view"
       },
       "examCaption": {
-        "text": "Chiste de Máximo aparecido en El País, febrero de 1976",
+        "text": "Chiste de Máximo aparecido en El País*, febrero de 1976",
         "emphasis": [
           "El País"
+        ],
+        "note": "* El País no existía aún en febrero de 1976: su primer número se publicó el 4 de mayo de ese año. Durante ese mes sí circulaban otros periódicos de tirada nacional, como ABC y La Vanguardia.",
+        "noteEmphasis": [
+          "El País",
+          "ABC",
+          "La Vanguardia"
         ],
         "appearanceId": "fuente-pdf-2005-4-4"
       }
@@ -20446,8 +20449,8 @@
         "El proceso de transición a la democracia actual (1975–1978)"
       ],
       "date": "15 de junio de 1977",
-      "sourceCaption": "Material de 2007, Examen 4, Bloque II · Opción B. Cifras actualizadas con la tabla de resultados aportada por el usuario.",
-      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños, no a los votos. Los colores son editoriales, inspirados en asociaciones cromáticas de los partidos y no atribuidos al gráfico original. Los votos y escaños se transcriben de la tabla aportada por el usuario; la tabla accesible detalla las candidaturas agrupadas en «Otros*» y explica el cálculo de porcentajes.",
+      "sourceCaption": "Material de 2007, Examen 4, Bloque II · Opción B. Votos de UCD según el Ministerio del Interior; demás candidaturas contrastadas con la JEC.",
+      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños. La agrupación electoral del material del examen presenta UCD con 166 escaños y Otros* con 11. La cifra consolidada de votos de UCD es 6 310 391, publicada por el Ministerio del Interior; las demás cifras de votos proceden del resumen de la JEC. «Otros*» agrupa candidaturas electorales y no es un grupo parlamentario.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -20481,166 +20484,74 @@
       "image": {
         "src": "assets/documentos/elecciones-1977-diagrama-semicircular.svg",
         "width": 760,
-        "height": 640,
-        "alt": "Diagrama semicircular de los resultados de 1977, proporcional a los 350 escaños: la UCD obtuvo 165, el 47,1 %. La leyenda muestra votos y escaños por candidatura.",
+        "height": 698,
+        "alt": "Resultado elecciones 1977 (15 de junio): diagrama de votos y escaños; Unión de Centro Democrático (UCD) figura con 166 escaños según el agrupamiento del examen.",
         "sourceUrl": "https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2007-4-4.png",
-        "originalSha256": "3f9152866cf8c0f4c5f413ebc8defa5fe0ffe3937a131888a7a63157acbf58c0",
-        "reproductionNote": "Sectores proporcionales a escaños; los votos y las cifras proceden de la tabla aportada por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados. Colores editoriales, no reproducidos del examen."
+        "originalSha256": "3f9152866cf8c0f4c5f413ebc8defa5fe0ffe3937a131888a7a63157acbf58c0"
       },
       "table": {
-        "caption": "Elecciones generales de 1977: votos y distribución de escaños",
+        "caption": "Resultado elecciones 1977 (15 de junio)",
         "headers": [
-          "Partido o candidatura",
+          "Partido o candidatura con escaño",
           "Votos",
-          "Votos (%)",
           "Escaños",
           "Escaños (%)"
         ],
         "rows": [
           [
-            "UCD — Unión de Centro Democrático",
+            "UCD",
             "6 310 391",
-            "34,4",
-            165,
-            "47,1"
+            166,
+            "47,4"
           ],
           [
-            "PSOE — Partido Socialista Obrero Español",
-            "5 371 866",
-            "29,3",
+            "PSOE",
+            "5 338 107",
             118,
             "33,7"
           ],
           [
-            "PCE — Partido Comunista de España",
-            "1 709 890",
-            "9,3",
+            "PCE",
+            "1 711 906",
             20,
             "5,7"
           ],
           [
-            "AP — Federación de Partidos de Alianza Popular",
-            "1 504 771",
-            "8,2",
+            "AP",
+            "1 471 527",
             16,
             "4,6"
           ],
           [
-            "PSP-US — Partido Socialista Popular-Unidad Socialista",
-            "816 582",
-            "4,5",
-            6,
-            "1,7"
-          ],
-          [
-            "PDPC — Pacte Democràtic per Catalunya",
+            "PDC",
             "514 647",
-            "2,8",
             11,
             "3,1"
           ],
           [
-            "PNV — Partido Nacionalista Vasco",
+            "PNV",
             "296 193",
-            "1,6",
             8,
             "2,3"
           ],
           [
-            "FDC-EDC — Equipo de la Democracia Cristiana",
-            "215 841",
-            "1,2",
-            0,
-            "0,0"
-          ],
-          [
-            "DCC — Unió del Centre i la Democràcia Cristiana de Catalunya",
-            "172 791",
-            "0,9",
-            2,
-            "0,6"
-          ],
-          [
-            "EC-FED — Esquerra de Catalunya",
-            "143 954",
-            "0,8",
-            1,
-            "0,3"
-          ],
-          [
-            "FDI — Frente Democrático de Izquierdas",
-            "122 608",
-            "0,7",
-            0,
-            "0,0"
-          ],
-          [
-            "ASDCI — Alianza Socialista Democrática",
-            "101 916",
-            "0,6",
-            0,
-            "0,0"
-          ],
-          [
-            "AET — Agrupación Electoral de Trabajadores",
-            "77 575",
-            "0,4",
-            0,
-            "0,0"
-          ],
-          [
-            "AN18 — Alianza Nacional 18 de Julio",
-            "67 336",
-            "0,4",
-            0,
-            "0,0"
-          ],
-          [
-            "RSE — Reforma Social Española",
-            "64 241",
-            "0,3",
-            0,
-            "0,0"
-          ],
-          [
-            "EE — Euskadiko Ezkerra",
-            "61 417",
-            "0,3",
-            1,
-            "0,3"
-          ],
-          [
-            "CAI — Candidatura Aragonesa Independiente de Centro",
-            "37 183",
-            "0,2",
-            1,
-            "0,3"
-          ],
-          [
-            "INDEP — Candidatura Independiente de Centro",
-            "29 834",
-            "0,2",
-            1,
-            "0,3"
-          ],
-          [
-            "Otros partidos",
-            "723 290",
-            "3,9",
-            0,
-            "0,0"
+            "Otros*",
+            "1 261 933",
+            11,
+            "3,1"
           ]
         ],
         "notes": [
-          "Los votos y escaños se transcriben de la tabla de resultados aportada por el usuario. Los porcentajes de voto se recalculan a partir de los votos listados y se redondean a una décima mediante el método de mayores restos para sumar 100,0 %; los porcentajes de escaños se calculan sobre 350 y se redondean a una décima.",
-          "Otros* agrupa 13 candidaturas: PSP-US (6), FDC-EDC (0), DCC (2), EC-FED (1), FDI (0), ASDCI (0), AET (0), AN18 (0), RSE (0), EE (1), CAI (1), INDEP (1), Otros partidos (0). En conjunto suman 2.634.568 votos, 14,4 % y 12 escaños.",
-          "La columna de porcentajes de la tabla aportada suma 99,14 %; no coincide con los votos listados. Las cuñas representan los escaños, no los votos.",
-          "Referencia de datos compartida por el usuario: https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977"
+          "La cifra de votos de UCD se actualiza a 6 310 391 según el Ministerio del Interior; los demás votos se mantienen según el resumen de la JEC.",
+          "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. Otros* agrupa candidaturas electorales; no es un grupo parlamentario.",
+          "PSOE incluye PSC-PSOE; PCE incluye PSUC. El resumen de resultados de la JEC enlazado permite consultar el desglose original por candidatura.",
+          "Fuente: Junta Electoral Central, resumen de resultados, página 5: https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf",
+          "Fuente del voto de UCD: Ministerio del Interior, Infoelectoral: https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/index.html"
         ]
       },
-      "dataSourceUrl": "https://es.wikipedia.org/wiki/Elecciones_generales_de_Espa%C3%B1a_de_1977"
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf"
     },
     {
       "title": "La Constitución de 1812: soberanía y derechos",

@@ -48,7 +48,11 @@ def run():
             mapped = 0
             for index in range(total):
                 details = examples.nth(index)
-                prompt = details.evaluate("(n) => n.previousElementSibling.textContent")
+                prompt = details.evaluate("""(n) => {
+                    const copy = n.previousElementSibling.cloneNode(true);
+                    copy.querySelectorAll('.example-origin').forEach(pill => pill.remove());
+                    return copy.textContent;
+                }""")
                 prompt = re.sub(r"^\s*\d+\.\s*", "", prompt)
                 prompt = re.sub(r"\s*\(PAU\s+\d{4}(?:\s*(?:y|,|-)\s*\d{4})*\)\s*$", "", prompt)
                 answers = {points for question, points, number in bank
@@ -112,7 +116,7 @@ def run():
                 }
                 const copy = document.querySelector('.reading-content').cloneNode(true);
                 copy.querySelectorAll('.np-map,.ob-chart').forEach(n => n.remove());
-                copy.querySelectorAll('.gen-sol,.practice-status,.practice-marks,.related-practice').forEach(n => n.remove());
+                copy.querySelectorAll('.gen-sol,.practice-status,.practice-marks,.related-practice,.example-origin').forEach(n => n.remove());
                 return copy.textContent === source.querySelector('.reading-content').textContent;
             }""")
             assert page.locator("#generador").count() == 0

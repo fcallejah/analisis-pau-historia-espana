@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="545" viewBox="0 0 760 545" role="img" aria-labelledby="title desc">
+<title id="title">Elecciones al Parlamento de Andalucía de 1982</title>
+<desc id="desc">Diagrama semicircular proporcional a los 109 escaños, con las candidaturas y sus porcentajes de representación a la derecha. La línea discontinua marca la mitad; la mayoría absoluta requiere 55 escaños.</desc>
+<metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/ANDALUCIA_1982_Resultados.pdf&quot;, &quot;year&quot;: 1982}</metadata>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="545" fill="#fff"/>
+<text class="title" x="380" y="32" text-anchor="middle">Andalucía · 1982</text>
+<text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por candidatura</text>
+<path class="sector" data-party="Partido Socialista Obrero Español de Andalucía (PSOE-A)" data-seats="66" data-seat-percent="60.550" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 290.20,195.07 L255.38,296.25 A78,78 0 0 0 152.00,370.00 Z"/>
+<path class="sector" data-party="Alianza Popular (AP)" data-seats="17" data-seat-percent="15.596" fill="#2d4d73" d="M290.20,195.07 A185,185 0 0 1 365.44,243.98 L287.11,316.87 A78,78 0 0 0 255.38,296.25 Z"/>
+<path class="sector" data-party="Unión de Centro Democrático (UCD)" data-seats="15" data-seat-percent="13.761" fill="#315a29" d="M365.44,243.98 A185,185 0 0 1 405.78,312.32 L304.11,345.68 A78,78 0 0 0 287.11,316.87 Z"/>
+<path class="sector" data-party="Partido Comunista de Andalucía - Partido Comunista de España (PCA-PCE)" data-seats="8" data-seat-percent="7.339" fill="#d1a243" d="M405.78,312.32 A185,185 0 0 1 414.31,354.02 L307.71,363.26 A78,78 0 0 0 304.11,345.68 Z"/>
+<path class="sector" data-party="Partido Socialista de Andalucía (PSA)" data-seats="3" data-seat-percent="2.752" fill="#8b1e3f" d="M414.31,354.02 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.71,363.26 Z"/>
+<line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="230" cy="370" r="77" fill="#fff"/>
+<text class="center-seat" x="230" y="333" text-anchor="middle">109</text>
+<text class="center-note" x="230" y="349" text-anchor="middle">escaños</text>
+<text class="center-note" x="230" y="365" text-anchor="middle">55 para la mayoría absoluta</text>
+<rect x="430" y="100" width="14" height="14" rx="2" fill="#c6464f"/>
+<text class="party" x="454" y="112">Partido Socialista Obrero</text>
+<text class="share" x="744" y="112" text-anchor="end">60,6 %</text>
+<text class="party" x="454" y="130">Español de Andalucía (PSOE-A)</text>
+<text class="party" x="454" y="148">· 66 escaños</text>
+<text class="metric" x="454" y="166">1.492.830 votos</text>
+<rect x="430" y="188" width="14" height="14" rx="2" fill="#2d4d73"/>
+<text class="party" x="454" y="200">Alianza Popular (AP)</text>
+<text class="share" x="744" y="200" text-anchor="end">15,6 %</text>
+<text class="party" x="454" y="218">· 17 escaños</text>
+<text class="metric" x="454" y="236">483.896 votos</text>
+<rect x="430" y="258" width="14" height="14" rx="2" fill="#315a29"/>
+<text class="party" x="454" y="270">Unión de Centro Democrático</text>
+<text class="share" x="744" y="270" text-anchor="end">13,8 %</text>
+<text class="party" x="454" y="288">(UCD) · 15 escaños</text>
+<text class="metric" x="454" y="306">370.848 votos</text>
+<rect x="430" y="328" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="340">Partido Comunista de Andalucía</text>
+<text class="share" x="744" y="340" text-anchor="end">7,3 %</text>
+<text class="party" x="454" y="358">- Partido Comunista de España</text>
+<text class="party" x="454" y="376">(PCA-PCE) · 8 escaños</text>
+<text class="metric" x="454" y="394">243.724 votos</text>
+<rect x="430" y="416" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="428">Partido Socialista de</text>
+<text class="share" x="744" y="428" text-anchor="end">2,8 %</text>
+<text class="party" x="454" y="446">Andalucía (PSA) · 3 escaños</text>
+<text class="metric" x="454" y="464">153.112 votos</text>
+<text class="footnote" x="380" y="515" text-anchor="middle">Colores editoriales; no indican grupos parlamentarios.</text>
+</svg>

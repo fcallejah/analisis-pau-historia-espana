@@ -24,9 +24,9 @@
 <rect class="grid" x="204" y="156" width="230" height="36"/>
 <text class="cell" x="319.0" y="180" text-anchor="middle">1845–1854</text>
 <rect class="grid" x="434" y="156" width="220" height="36"/>
-<text class="cell" x="544.0" y="180" text-anchor="middle">3.731</text>
+<text class="cell" x="544.0" y="180" text-anchor="middle">3731</text>
 <rect class="grid" x="654" y="156" width="220" height="36"/>
-<text class="cell" x="764.0" y="180" text-anchor="middle">1.329</text>
+<text class="cell" x="764.0" y="180" text-anchor="middle">1329</text>
 <rect class="grid" x="24" y="192" width="180" height="36"/>
 <text class="cell" x="36" y="216" text-anchor="start">Eclesiástica</text>
 <rect class="grid" x="204" y="192" width="230" height="36"/>
@@ -34,7 +34,7 @@
 <rect class="grid" x="434" y="192" width="220" height="36"/>
 <text class="cell" x="544.0" y="216" text-anchor="middle">24.845</text>
 <rect class="grid" x="654" y="192" width="220" height="36"/>
-<text class="cell" x="764.0" y="216" text-anchor="middle">5.205</text>
+<text class="cell" x="764.0" y="216" text-anchor="middle">5205</text>
 <rect class="grid" x="24" y="228" width="180" height="36"/>
 <text class="cell" x="36" y="252" text-anchor="start">Civil</text>
 <rect class="grid" x="204" y="228" width="230" height="36"/>
@@ -42,13 +42,13 @@
 <rect class="grid" x="434" y="228" width="220" height="36"/>
 <text class="cell" x="544.0" y="252" text-anchor="middle">16.859</text>
 <rect class="grid" x="654" y="228" width="220" height="36"/>
-<text class="cell" x="764.0" y="252" text-anchor="middle">3.327</text>
+<text class="cell" x="764.0" y="252" text-anchor="middle">3327</text>
 <rect class="grid" x="24" y="264" width="180" height="36"/>
 <text class="cell" x="36" y="288" text-anchor="start">Civil</text>
 <rect class="grid" x="204" y="264" width="230" height="36"/>
 <text class="cell" x="319.0" y="288" text-anchor="middle">Estado</text>
 <rect class="grid" x="434" y="264" width="220" height="36"/>
-<text class="cell" x="544.0" y="288" text-anchor="middle">5.074</text>
+<text class="cell" x="544.0" y="288" text-anchor="middle">5074</text>
 <rect class="grid" x="654" y="264" width="220" height="36"/>
 <text class="cell" x="764.0" y="288" text-anchor="middle">661</text>
 </svg>

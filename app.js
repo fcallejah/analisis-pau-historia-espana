@@ -57,6 +57,22 @@ function normalizeText(text) {
   return text.toLocaleLowerCase("es").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 }
 
+// Search ignores accents, case and inner punctuation: 28-F = 28F, U.C.D. = UCD, 2.ª = 2a.
+function compactText(text) {
+  return String(text).normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es")
+    .replace(/(\p{N})[.,](?=\p{N})/gu, "$1")
+    .replace(/([\p{L}\p{N}])[-\u2010-\u2015.·'’/](?=[\p{L}\p{N}])/gu, "$1");
+}
+
+function searchIndex(text) {
+  return `${normalizeText(String(text))} ${compactText(text)}`;
+}
+
+function searchTerms(text) {
+  return compactText(text).split(/\s+/)
+    .map((term) => term.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu, "")).filter(Boolean);
+}
+
 function examReferences(question) {
   if (question.dataset.exams) return JSON.parse(question.dataset.exams);
   return question.querySelector("small").textContent.split(";").map((exam) => exam.trim());
@@ -281,13 +297,12 @@ document.querySelectorAll(".block").forEach((block, index) => {
 });
 
 function updateResults() {
-  const query = search.value.trim().toLocaleLowerCase("es");
+  const terms = searchTerms(search.value);
   let visible = 0;
 
   for (const card of cards) {
-    const textMatches = !query
-      || card.textContent.toLocaleLowerCase("es").includes(query)
-      || card.dataset.search.includes(query);
+    const haystack = searchIndex(`${card.textContent} ${card.dataset.search || ""}`);
+    const textMatches = terms.every((term) => haystack.includes(term));
     const formatMatches = formatFilter.value === "all" || card.dataset.format.split(" ").includes(formatFilter.value);
     const groups = card.dataset.groups.split(" ").filter(Boolean);
     const groupMatches = groupFilter.value === "all" || groups.includes(groupFilter.value);

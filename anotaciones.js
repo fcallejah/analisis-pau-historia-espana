@@ -5,7 +5,7 @@
   const block = document.querySelector(".reading-number").textContent.trim();
   const key = `pau-he.annotations.v1.${block}`;
   const colors = ["amarillo", "verde", "azul", "rosa", "violeta"];
-  const excluded = ".np-map,.ob-chart,.gen-sol,.practice-status,.practice-marks,.related-practice,.footnotes,.heading-alias,.reading-video";
+  const excluded = ".np-map,.ob-chart,.gen-sol,.practice-status,.practice-marks,.example-origin,.related-practice,.footnotes,.heading-alias,.reading-video";
   const bar = document.createElement("div");
   bar.className = "annotation-toolbar";
   bar.setAttribute("role", "group");
@@ -325,7 +325,9 @@
         && stored.text.length === sourceText.length
         && stored.text.toLocaleLowerCase("es") === sourceText.toLocaleLowerCase("es");
       if (stored.text !== sourceText && !caseOnlyChange) {
-        const archiveKey = `${key}.archive.${crypto.randomUUID()}`;
+        // randomUUID only exists in secure contexts; the LAN preview is served over plain http.
+        const archiveId = crypto.randomUUID?.() || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
+        const archiveKey = `${key}.archive.${archiveId}`;
         localStorage.setItem(archiveKey, raw);
         console.info("Anotaciones de la versión anterior archivadas en este navegador:", archiveKey);
       } else {

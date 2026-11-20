@@ -900,6 +900,8 @@ const MODELOS_CORTAS = [
   [4, [2026], "Explique brevemente por qué se hicieron y en qué consistieron los decretos que abolieron los fueros en la antigua Corona de Aragón a comienzos del siglo XVIII."],
 ];
 
+const OWN_SHORT_LABEL = "Elaboración propia · puede caer";
+
 (() => {
   const root = document.getElementById("generador");
   if (!root) return;
@@ -962,9 +964,17 @@ const MODELOS_CORTAS = [
       const meta = document.createElement("small");
       meta.textContent = it.f[2] ? `Bloque ${it.b} · ${it.f[2]}` : `Bloque ${it.b}`;
       const exams = [...(questionExamMap.get(questionKey(it.f[0])) || []), ...(it.models || [])];
+      const own = !exams.length && !/20\d{2}/.test(it.f[2] || "");
       if (exams.length) {
         meta.className = "gen-exams";
         meta.replaceChildren(document.createTextNode(`Bloque ${it.b} `), ...exams.map(examPill));
+      } else if (own) {
+        const pill = document.createElement("span");
+        pill.className = "exam-pill";
+        pill.textContent = OWN_SHORT_LABEL;
+        pill.title = `${it.f[2] || "Cuestión de los apuntes"}: aún no figura en los exámenes recopilados`;
+        meta.className = "gen-exams";
+        meta.replaceChildren(document.createTextNode(`Bloque ${it.b} `), pill);
       }
       const det = window.pauPractice.render(it.f[1]);
       art.append(h, meta, det);
@@ -973,7 +983,7 @@ const MODELOS_CORTAS = [
       out.append(art);
       window.pauSavedQuestions.attach(art, {
         prompt: it.f[0], block: it.b, answer: it.f[1] || null,
-        source: exams.length ? exams.join("; ") : (it.f[2] || ""),
+        source: exams.length ? exams.join("; ") : own ? OWN_SHORT_LABEL : it.f[2],
       });
     });
     status.textContent = `${label}: ${items.length} cuestiones generadas.`;

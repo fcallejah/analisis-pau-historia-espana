@@ -1176,8 +1176,8 @@ def check_cortazar_italics_and_cortes_people(browser, options):
     for circle in figure.locator(".document-person-lines circle").all():
         assert float(circle.get_attribute("cx")) > 0
         assert float(circle.get_attribute("cy")) > 0
-    assert figure.locator(".document-person-context-panel a").first.get_attribute("href") == (
-        "https://www.congreso.es/cem/ileg-apertura")
+    assert "Las posiciones señaladas" not in figure.locator(".document-person-context-panel").inner_text()
+    assert figure.locator(".document-person-context-panel a").count() == 0
     note = figure.locator(".document-person-details")
     assert note.is_visible()
     assert "abdicó en junio de 2014" in note.inner_text()
@@ -1329,11 +1329,16 @@ def check_1978_compilation(browser, options):
     quote = page.locator(".document-full-source > blockquote")
     assert quote.locator(":scope > p").all_text_contents() == expected["text"]
     assert quote.locator(".document-source-heading").all_text_contents() == [
-        "Artículo 1", "Artículo 2", "Artículo 3", "Artículo 6", "Artículo 7"]
+        "Constitución de 1978", "Artículo 1", "Artículo 2", "Artículo 3", "Artículo 6", "Artículo 7"]
     assert quote.locator(".document-source-heading").evaluate_all("""nodes=>nodes.every(n=>{
         const style=getComputedStyle(n);
         return style.textAlign==='center' && Number(style.fontWeight)>=700;
     })""")
+    assert quote.locator(".document-source-heading").first.evaluate("""node=>
+        getComputedStyle(node).fontFamily===getComputedStyle(node.parentElement).fontFamily""")
+    assert page.locator(".document-full-source > h3").count() == 0
+    assert "Se combinan la fórmula inicial" not in page.locator(".document-full-source").inner_text()
+    assert "fragmentos para estudiar" not in page.locator(".document-full-source").inner_text()
     assert "3 apariciones en total" in page.locator("#document-dialog-content > .document-meta").inner_text()
     assert page.get_by_role("link", name="Consultar el texto original de referencia").get_attribute(
         "href") == expected["sourceUrl"]

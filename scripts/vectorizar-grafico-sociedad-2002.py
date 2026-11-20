@@ -22,7 +22,7 @@ VALUES = [
     ("Clases medias", 10),
     ("Clases bajas", 71),
 ]
-WIDTH, HEIGHT = 593, 447
+WIDTH, HEIGHT = 593, 419
 CX, CY, RADIUS = 309, 231, 167
 
 
@@ -48,25 +48,21 @@ def build_svg(provenance):
     font = b64encode((ROOT / "assets/fonts/RobotoCondensed-Regular.ttf").read_bytes()).decode("ascii")
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{WIDTH}" height="{HEIGHT}" '
-        'viewBox="0 0 593 447" role="img" aria-labelledby="title description">',
+        'viewBox="0 28 593 419" role="img" aria-labelledby="title description">',
         '<title id="title">Composición de la sociedad española hacia 1860</title>',
         '<desc id="description">Gráfico circular con cuatro grupos sociales: nobleza y clero, '
-        '16 %; burguesía alta, 3 %; clases medias, 10 %; clases bajas, 71 %. '
-        'Los colores se añaden en este redibujo para distinguir los sectores.</desc>',
+        '16 %; burguesía alta, 3 %; clases medias, 10 %; clases bajas, 71 %.</desc>',
         f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
         '<style>@font-face{font-family:PAUCondensed;src:local("Arial Narrow"),'
         'local("ArialNarrow"),'
         f'url(data:font/ttf;base64,{font}) format("truetype")}}'
         'text{font-family:PAUCondensed,"Arial Narrow",sans-serif;fill:#202a33}'
-        '.title{font-family:Arial,sans-serif;font-size:22px;font-weight:700}'
         '.category{font-size:17px}'
         '.percentage{font-size:18px;font-weight:600}'
         '.sector{stroke:#fff;stroke-width:2;stroke-linejoin:round}'
         '</style>',
-        '<rect width="593" height="447" fill="#fff"/>',
+        '<rect x="0" y="28" width="593" height="419" fill="#fff"/>',
         '<rect x="8" y="28" width="576" height="411" fill="none" stroke="#b8b8b8"/>',
-        '<text class="title" x="296.5" y="18" text-anchor="middle">'
-        'Composición de la sociedad española hacia 1860</text>',
     ]
 
     angle = -90
@@ -143,8 +139,11 @@ def main():
         "kind": "chart",
         "originalSrc": SOURCE,
         "originalSha256": original_hash,
-        "reproductionNote": "Los colores se añaden para distinguir los grupos; no aparecen "
-                            "en el original. Se conservan las categorías y porcentajes.",
+    }
+    record["image"].pop("reproductionNote", None)
+    record["examCaption"] = {
+        "text": "Composición de la sociedad española hacia 1860",
+        "appearanceId": appearance["id"],
     }
     record["quality"] = (
         "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, "
@@ -155,7 +154,7 @@ def main():
         "caption": "Composición de la sociedad española hacia 1860 (porcentajes)",
         "headers": ["Grupo social", "Porcentaje"],
         "rows": [[label, str(percentage)] for label, percentage in VALUES],
-        "notes": ["Los colores distinguen los grupos en el redibujo; no forman parte del original."],
+        "notes": [],
     }
     corpus_path.write_text(json.dumps(corpus, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"{OUTPUT}: gráfico vectorial de {len(VALUES)} grupos sociales.")
