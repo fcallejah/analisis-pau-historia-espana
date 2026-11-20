@@ -1175,7 +1175,7 @@
         "caption": "SVG derivado del original oficial de 2008, Examen 2, opción A, documento 2; color editorial.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
         "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
-        "reproductionNote": "Color verde petróleo añadido a los trazados originales; no se modifican categorías ni cifras."
+        "reproductionNote": "Colores editoriales diferenciados y líneas de puntos que enlazan cada ocupación con su cifra; no se modifican categorías ni datos."
       },
       "table": {
         "caption": "Transcripción de los datos del gráfico",
@@ -7142,7 +7142,7 @@
       "date": "Desde 1855",
       "type": "grafico",
       "sourceCaption": "2009 Examen 6, opción A, documento 2.",
-      "quality": "Redibujado didáctico sobre la plantilla provincial de Wikimedia Commons, con colores sólidos y texto seleccionable. No es un facsímil ni una extracción de vectores nativos del examen. Las categorías de color se han cotejado con el PDF oficial escaneado de 2009, Examen 6, opción A, documento 2; se conserva el recorte original para comparar. Se utilizan límites y nombres de una base provincial moderna; Ceuta y Melilla no tienen categoría en la fuente. La imagen de la recopilación tiene una leyenda distinta (400, 300, 200, 100, 50, 10, 5 y 1 millones), frente a 70, 50, 40, 30, 10, 5 y 1 millones en el examen. No se mezclan las escalas ni se asignan valores exactos a cada provincia.",
+      "quality": "Redibujado didáctico sobre la plantilla provincial de Wikimedia Commons, con colores sólidos y texto seleccionable. No es un facsímil ni una extracción de vectores nativos del examen. Las categorías de color se han cotejado con el PDF oficial escaneado de 2009, Examen 6, opción A, documento 2; se conserva el recorte original para comparar. Se omite el separador discontinuo de Canarias. Se utilizan límites y nombres de una base provincial moderna; Ceuta y Melilla no tienen categoría en la fuente. La imagen de la recopilación tiene una leyenda distinta (400, 300, 200, 100, 50, 10, 5 y 1 millones), frente a 70, 50, 40, 30, 10, 5 y 1 millones en el examen. No se mezclan las escalas ni se asignan valores exactos a cada provincia.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -7813,7 +7813,7 @@
       ],
       "date": "Febrero de 1936",
       "sourceCaption": "2010 Extraordinaria reserva B, opción B, documento 2.",
-      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías y cifras; queda pendiente cotejarla con el PDF oficial.",
+      "quality": "Tabla vectorial reconstruida con los datos transcritos en la recopilación aportada. Se conservan las categorías y cifras; las franjas alternas lavanda y azul claro son editoriales, no proceden del documento. Queda pendiente cotejarla con el PDF oficial.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -7844,7 +7844,7 @@
         "alt": "Tabla con el número de escaños asignados a distintos partidos y grupos tras las elecciones de febrero de 1936.",
         "width": 908,
         "height": 792,
-        "caption": "Tabla vectorial reconstruida a partir de los datos de la recopilación."
+        "caption": "Tabla vectorial reconstruida; franjas alternas de color editorial, a partir de los datos de la recopilación."
       },
       "table": {
         "caption": "Composición del Congreso tras las elecciones de febrero de 1936",
@@ -11199,7 +11199,7 @@
         "Elecciones",
         "Cortes Constituyentes"
       ],
-      "date": "Junio de 1931",
+      "date": "junio de 1931",
       "sourceCaption": "Resultados de las elecciones a Cortes de junio de 1931",
       "quality": "Tabla vectorial cotejada con el PDF oficial de 2016. Se ajustan la tipografía condensada, la jerarquía de tamaños, la alineación y la referencia bibliográfica; las categorías, partidos y cifras se conservan.",
       "commentary": [
@@ -11232,7 +11232,7 @@
         }
       ],
       "table": {
-        "caption": "Resultados de las Elecciones a Cortes (Junio de 1931)",
+        "caption": "Resultados de las elecciones a Cortes (junio de 1931)",
         "headers": [
           "Ideologías",
           "Partidos",
@@ -11268,12 +11268,11 @@
         "kind": "table",
         "width": 900,
         "height": 490,
-        "alt": "Resultados de las Elecciones a Cortes (Junio de 1931), con las agrupaciones de izquierda, centro y derecha y sus cifras de diputados y votos.",
-        "caption": "Maquetación vectorial con tipografía y jerarquía aproximadas al PDF original.",
-        "reproductionNote": "Redibujo vectorial cotejado con el PDF oficial; no es una extracción de trazados."
+        "alt": "Resultados de las elecciones a Cortes (junio de 1931), con las agrupaciones de izquierda, centro y derecha y sus cifras de diputados y votos.",
+        "caption": "Sin descripción."
       },
       "examCaption": {
-        "text": "Resultados de las Elecciones a Cortes (Junio de 1931)",
+        "text": "Resultados de las elecciones a Cortes (junio de 1931)",
         "appearanceId": "fuente-h-niydn87d671m-3"
       }
     },
@@ -15411,9 +15410,9 @@
         "Porcentaje de escaños en las constituyentes de 1931",
         "La implantación de la Segunda República. La Constitución de 1931"
       ],
-      "date": "Junio de 1931",
+      "date": "junio de 1931",
       "sourceCaption": "Material de 2002. Examen 6.pdf, Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Material del examen de 2002. Tipografía y disposición ajustadas a la reproducción original; cifras confirmadas por el usuario. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -15447,17 +15446,16 @@
       ],
       "image": {
         "src": "assets/documentos/tabla-escanos-constituyentes-1931-porcentajes.svg",
-        "width": 1128,
-        "height": 637,
-        "alt": "Distribución de escaños en las constituyentes de Junio de 1931. Tabla vectorial; los datos también están disponibles en texto.",
+        "width": 882,
+        "height": 347,
+        "alt": "Distribución de escaños en las constituyentes de junio de 1931. Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/1iIwcjcprJrKXt-Sg-snpXer0uVnmxiLu/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2002-6-4.png",
-        "originalSha256": "a6802874ff934d0ca9162adb1fd7aed53225ac5eaee44f005ce6d49570898472",
-        "reproductionNote": "Redibujo manual, no extracción vectorial certificada del PDF."
+        "originalSha256": "a6802874ff934d0ca9162adb1fd7aed53225ac5eaee44f005ce6d49570898472"
       },
       "table": {
-        "caption": "Distribución de escaños en las constituyentes de Junio de 1931",
+        "caption": "Distribución de escaños en las constituyentes de junio de 1931",
         "headers": [
           "Partidos",
           "Porcentaje de escaños"
@@ -15934,7 +15932,7 @@
       ],
       "date": "1939–1973, en pesetas constantes de 1980",
       "sourceCaption": "Material de 2003. Examen 2.pdf, Opción B.",
-      "quality": "Serie vectorizada a partir de los datos aproximados facilitados por el usuario. El examen original rotula el período como 1931–1973, pero la gráfica empieza en 1939; se señala la errata con un asterisco. Se conserva el recorte original para comparar.",
+      "quality": "La serie original y sus equivalencias monetarias de 2026 se presentan con los valores aportados por el usuario. La serie original está expresada en pesetas constantes de 1980, no en pesetas corrientes ni reexpresada a 2026; los equivalentes de 2026 aparecen al posar el cursor. El examen original rotula el período como 1931–1973, pero la gráfica empieza en 1939; se señala la errata con un asterisco. Se conserva el recorte original para comparar.",
       "commentary": [
         {
           "title": "a) Lectura del material y claves de interpretación",
@@ -15970,7 +15968,7 @@
         "src": "assets/documentos/grafica-pib-habitante-1939-1973.svg",
         "width": 760,
         "height": 444,
-        "alt": "PIB por habitante en España, 1939*–1973. La serie comienza en 1939 aunque el examen indica 1931; los valores son aproximados.",
+        "alt": "PIB por habitante en España, 1939*–1973. Serie original en pesetas constantes de 1980; cada punto muestra sus equivalentes en euros y pesetas de 2026.",
         "sourceUrl": "https://drive.google.com/file/d/1NW_bI6OpSyTOt4w0Ho9WkmeGqq-_m9MZ/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2003-2-4.png",

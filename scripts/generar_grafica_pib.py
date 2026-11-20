@@ -1,13 +1,24 @@
 import json
 
 data = [
-    (1939, 90000), (1940, 94000), (1941, 93500), (1942, 98000), (1943, 101500),
-    (1944, 105000), (1945, 96500), (1946, 100000), (1947, 101000), (1948, 99500),
-    (1949, 99000), (1950, 103500), (1951, 112000), (1952, 119500), (1953, 120500),
-    (1954, 127000), (1955, 133500), (1956, 142000), (1957, 147000), (1958, 152500),
-    (1959, 149000), (1960, 151500), (1961, 168000), (1962, 183000), (1963, 199000),
-    (1964, 210500), (1965, 222000), (1966, 236500), (1967, 245000), (1968, 259000),
-    (1969, 280000), (1970, 290500), (1971, 301500), (1972, 323000), (1973, 345000)
+    (1939, 90000, 3509, 583800), (1940, 96200, 3750, 624000),
+    (1941, 95500, 3723, 619400), (1942, 100300, 3910, 650600),
+    (1943, 102500, 3996, 664800), (1944, 106300, 4144, 689500),
+    (1945, 98200, 3828, 637000), (1946, 105500, 4113, 684300),
+    (1947, 105900, 4128, 686900), (1948, 104300, 4066, 676500),
+    (1949, 103900, 4050, 673900), (1950, 107400, 4187, 696600),
+    (1951, 118100, 4604, 766000), (1952, 126000, 4912, 817300),
+    (1953, 125600, 4896, 814700), (1954, 134900, 5259, 875000),
+    (1955, 140500, 5477, 911300), (1956, 149400, 5824, 969100),
+    (1957, 154700, 6031, 1003400), (1958, 160500, 6257, 1041100),
+    (1959, 156400, 6097, 1014500), (1960, 158500, 6179, 1028100),
+    (1961, 175400, 6838, 1137700), (1962, 189900, 7403, 1231700),
+    (1963, 204400, 7968, 1325800), (1964, 214800, 8374, 1393300),
+    (1965, 225700, 8799, 1464000), (1966, 239500, 9337, 1553500),
+    (1967, 247500, 9648, 1605400), (1968, 261400, 10190, 1695500),
+    (1969, 282100, 10997, 1829800), (1970, 291200, 11352, 1888800),
+    (1971, 301600, 11757, 1956300), (1972, 322900, 12588, 2094400),
+    (1973, 345000, 13449, 2237800),
 ]
 
 width, height = 760, 444
@@ -19,7 +30,7 @@ plot_h = height - pad_top - pad_bottom
 y_max = 350000
 
 svg_parts = []
-svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="PIB por habitante en España, 1939–1973">
+svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="PIB por habitante en España, 1939–1973. Serie original en pesetas constantes de 1980; equivalentes de 2026 en los tooltips.">
   <defs>
     <style>
       text {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }}
@@ -34,14 +45,14 @@ svg_parts.append(f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" hei
       .point:focus .tooltip, .point.is-pressed .tooltip {{ visibility: visible; }}
       @media (hover: hover) {{ .point:hover .tooltip {{ visibility: visible; }} }}
       .tooltip rect {{ fill: #1f2937; stroke: #fff; stroke-width: 1; rx: 5; }}
-      .tooltip text {{ fill: #fff; font-size: 12px; font-weight: 600; }}
+      .tooltip text {{ fill: #fff; font-size: 11px; font-weight: 600; }}
     </style>
   </defs>
   <rect width="{width}" height="{height}" fill="#fff" />
 
   <!-- Título -->
   <text x="{width/2}" y="28" class="title">PIB POR HABITANTE, 1939–1973</text>
-  <text x="{width/2}" y="46" class="subtitle">(en ptas. de 1980)</text>
+  <text x="{width/2}" y="46" class="subtitle">Serie original en ptas. constantes de 1980 · equivalentes de 2026 al posar el cursor</text>
 
   <!-- Fondo área gráfico con color similar al examen -->
   <rect x="{pad_left}" y="{pad_top}" width="{plot_w}" height="{plot_h}" fill="#fef08a" fill-opacity="0.55" stroke="#facc15" stroke-width="1.5" />''')
@@ -59,7 +70,7 @@ for val in range(0, y_max + 1, 50000):
 # Puntos y eje X
 points = []
 num_years = len(data)
-for i, (yr, val) in enumerate(data):
+for i, (yr, val, euros_2026, pesetas_2026) in enumerate(data):
     x = pad_left + (i / (num_years - 1)) * plot_w
     y = pad_top + plot_h - (val / y_max) * plot_h
     points.append(f"{x:.1f},{y:.1f}")
@@ -75,20 +86,32 @@ points_str = " ".join(points)
 svg_parts.append(f'''  <polyline fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points="{points_str}" />''')
 
 # Interactive points include a larger invisible hit target for touch screens.
-for i, (yr, val) in enumerate(data):
+for i, (yr, val, euros_2026, pesetas_2026) in enumerate(data):
     x = pad_left + (i / (num_years - 1)) * plot_w
     y = pad_top + plot_h - (val / y_max) * plot_h
     label = f"{val:,.0f}".replace(",", ".")
-    tooltip_x = min(max(pad_left, x - 65), width - 150)
-    tooltip_y = max(pad_top + 4, y - 42)
+    euro_label = f"{euros_2026:,.0f}".replace(",", ".")
+    peseta_label = f"{pesetas_2026:,.0f}".replace(",", ".")
     display_year = f"{yr}*" if yr == data[0][0] else str(yr)
-    svg_parts.append(f'''  <g class="point" tabindex="0" role="graphics-symbol" aria-label="{display_year}: aproximadamente {label} pesetas constantes de 1980">
-    <title>{display_year}: aproximadamente {label} pesetas constantes de 1980</title>
+    tooltip_width, tooltip_height = 260, 76
+    tooltip_x = min(max(pad_left, x - tooltip_width / 2), width - pad_right - tooltip_width)
+    tooltip_y = y - tooltip_height - 8
+    if tooltip_y < pad_top + 4:
+        tooltip_y = min(y + 8, pad_top + plot_h - tooltip_height - 4)
+    aria_label = (
+        f"{display_year}: serie original, {label} pesetas constantes de 1980; "
+        f"{euro_label} euros de 2026; {peseta_label} pesetas de 2026"
+    )
+    svg_parts.append(f'''  <g class="point" data-year="{yr}" data-original-pesetas-1980="{val}" data-euros-2026="{euros_2026}" data-pesetas-2026="{pesetas_2026}" tabindex="0" role="graphics-symbol" aria-label="{aria_label}">
+    <title>{aria_label}</title>
       <circle class="hit" cx="{x:.1f}" cy="{y:.1f}" r="8" />
     <circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="#dc2626" stroke="#fff" stroke-width="1" />
     <g class="tooltip" transform="translate({tooltip_x:.1f} {tooltip_y:.1f})">
-      <rect width="142" height="32" />
-      <text x="8" y="21">{display_year} · ~{label} ptas.</text>
+      <rect width="{tooltip_width}" height="{tooltip_height}" />
+      <text x="8" y="17">{display_year}</text>
+      <text x="8" y="34">Serie original: {label} ptas.</text>
+      <text x="8" y="51">Euros de 2026: {euro_label} €</text>
+      <text x="8" y="68">Pesetas de 2026: {peseta_label}</text>
     </g>
   </g>''')
 

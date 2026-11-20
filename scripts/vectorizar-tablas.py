@@ -95,9 +95,24 @@ TABLES = {
         "notes": ["Fuente: NADAL, J.: El fracaso de la Revolución Industrial en España, 1814-1913, 1975."],
     },
     "escanos-constituyentes-1931-porcentajes": {
-        "caption": "Distribución de escaños en las constituyentes de Junio de 1931",
+        "caption": "Distribución de escaños en las constituyentes de junio de 1931",
         "headers": ["Partidos", "Porcentaje de escaños"],
-        "widths": [750, 330],
+        "widths": [433, 433],
+        "examLayout": {
+            "size": (882, 347), "origin": (8, 75),
+            "rowHeights": [27] + [26] * 9,
+            "fontSizes": (20, 20, 13), "titleBaselines": (20,),
+            "titleWeight": 400, "boldHeader": True, "firstColumnLeft": True,
+            "qualityNote": (
+                "Tipografía y disposición ajustadas a la reproducción original; cifras confirmadas por el usuario."
+            ),
+        },
+        "description": (
+            "Distribución porcentual de escaños en las Cortes constituyentes de 1931; "
+            "cifras confirmadas por el usuario."
+        ),
+        "provenanceMethod": "Tipografía y disposición basadas en la fuente; cifras confirmadas por el usuario.",
+        "qualityText": "Material del examen de 2002.",
         "rows": [
             ["Socialistas", "25,6 %"], ["Radicales de Lerroux", "19,8 %"],
             ["Radical Socialistas", "13,2 %"], ["Acción Republicana de M. Azaña", "6,6 %"],
@@ -228,7 +243,7 @@ def render(table, provenance):
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{display_width}" height="{display_height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(table["caption"])}</title>',
-        f'<desc id="desc">{escape("Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. " + " ".join(table.get("notes", [])))}</desc>',
+        f'<desc id="desc">{escape(table.get("description", "Redibujo vectorial de la tabla del PDF; cifras y subrayados conservados. " + " ".join(table.get("notes", []))))}</desc>',
         f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
         f'<style>text{{font-family:{font_family};fill:{text_color}}}.title{{font-size:28px;font-weight:700}}.head{{font-size:23px;font-weight:700}}.cell{{font-size:23px}}.note{{font-size:18px}}.intro{{font-size:21px}}.on-dark{{fill:#fff}}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
@@ -309,7 +324,7 @@ def render_exam_table(table, provenance):
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(table["caption"])}</title>',
-        f'<desc id="desc">{escape(table["notes"][0])}</desc>',
+        f'<desc id="desc">{escape(table.get("description", table["notes"][0]))}</desc>',
         f'<metadata>{escape(json.dumps(provenance, ensure_ascii=False))}</metadata>',
         '<style>@font-face{font-family:PAUCondensed;src:local("Arial Narrow"),local("ArialNarrow"),'
         f'url(data:font/ttf;base64,{font}) format("truetype")}}'
@@ -392,26 +407,27 @@ def render_exam_table(table, provenance):
                 parts.append("</g>")
             x += column_width
         y += row_height
-    note = table["notes"][0]
-    note_lines = [note]
-    if "noteLines" in layout:
-        note_lines = layout["noteLines"]
-    elif "noteBreakBefore" in layout:
-        first, marker, rest = note.partition(" " + layout["noteBreakBefore"])
-        assert marker
-        note_lines = [first, marker.lstrip() + rest]
-    note_x, note_y = layout["notePosition"]
-    for index, line in enumerate(note_lines):
-        emphasis = layout.get("noteEmphasis", ())
-        fragment = escape(line)
-        for phrase in emphasis:
-            if phrase in line:
-                fragment = fragment.replace(
-                    escape(phrase), f'<tspan font-style="italic">{escape(phrase)}</tspan>')
-        anchor = (f' text-anchor="{layout["noteAnchor"]}"'
-                  if "noteAnchor" in layout else "")
-        parts.append(f'<text class="note" x="{note_x}" y="{note_y + index * (note_size + 4)}"'
-                     f'{anchor}>{fragment}</text>')
+    if table.get("visibleNotes", len(table["notes"])):
+        note = table["notes"][0]
+        note_lines = [note]
+        if "noteLines" in layout:
+            note_lines = layout["noteLines"]
+        elif "noteBreakBefore" in layout:
+            first, marker, rest = note.partition(" " + layout["noteBreakBefore"])
+            assert marker
+            note_lines = [first, marker.lstrip() + rest]
+        note_x, note_y = layout["notePosition"]
+        for index, line in enumerate(note_lines):
+            emphasis = layout.get("noteEmphasis", ())
+            fragment = escape(line)
+            for phrase in emphasis:
+                if phrase in line:
+                    fragment = fragment.replace(
+                        escape(phrase), f'<tspan font-style="italic">{escape(phrase)}</tspan>')
+            anchor = (f' text-anchor="{layout["noteAnchor"]}"'
+                      if "noteAnchor" in layout else "")
+            parts.append(f'<text class="note" x="{note_x}" y="{note_y + index * (note_size + 4)}"'
+                         f'{anchor}>{fragment}</text>')
     parts.append("</svg>")
     return "\n".join(parts) + "\n", width, height
 
@@ -432,8 +448,11 @@ def main():
         original_hash = hashlib.sha256((ROOT / original).read_bytes()).hexdigest() if original else None
         appearance = record["appearances"][0]
         provenance = {
-            "method": ("Tabla vectorial con diseño basado en el examen." if table.get("examLayout")
-                       else "Redibujo manual, no extracción vectorial certificada del PDF."),
+            "method": table.get(
+                "provenanceMethod",
+                "Tabla vectorial con diseño basado en el examen." if table.get("examLayout")
+                else "Redibujo manual, no extracción vectorial certificada del PDF.",
+            ),
             "pdf": appearance["pdfUrl"], "pdfSha256": appearance["sourceSha256"],
             "file": appearance["officialFile"], "page": appearance["officialPage"],
         }
@@ -454,11 +473,14 @@ def main():
         if table.get("examLayout"):
             record["image"].pop("reproductionNote", None)
             presentation = table["examLayout"].get(
-                "editorialNote",
-                "Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen.",
+                "qualityNote",
+                table["examLayout"].get(
+                    "editorialNote",
+                    "Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen.",
+                ),
             )
             if "editorialNote" in table["examLayout"]:
-                record["image"]["reproductionNote"] = presentation
+                record["image"]["reproductionNote"] = table["examLayout"]["editorialNote"]
         else:
             record["image"]["reproductionNote"] = table.get("reproductionNote", provenance["method"])
             presentation = table.get(
@@ -467,7 +489,11 @@ def main():
             )
         record["table"] = {key: value for key, value in table.items()
                            if key in ("caption", "headers", "rows", "notes", "underlinedCells")}
-        quality = record["quality"].split(" La reproducción procede de este PDF;")[0].split(" Redibujo vectorial")[0]
+        quality = table.get(
+            "qualityText",
+            record["quality"].split(" La reproducción procede de este PDF;")[0]
+            .split(" Redibujo vectorial")[0],
+        )
         comparison = ("Se conserva la reproducción original para comparar y una tabla de datos accesible."
                       if original else "Los datos también se ofrecen en una tabla accesible.")
         record["quality"] = f"{quality} {presentation} {comparison}"

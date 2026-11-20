@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="490" viewBox="0 0 900 490" role="img" aria-labelledby="title desc">
-<title id="title">Resultados de las Elecciones a Cortes (Junio de 1931)</title>
+<title id="title">Resultados de las elecciones a Cortes (junio de 1931)</title>
 <desc id="desc">Tabla del examen de 2016 con la tipografía condensada y la jerarquía de tamaños del original. Se conservan las agrupaciones, partidos, cifras y referencia del INE.</desc>
 <style>
 text{font-family:"Arial Narrow",Arial,sans-serif;fill:#151515}
@@ -13,7 +13,7 @@ text{font-family:"Arial Narrow",Arial,sans-serif;fill:#151515}
 .rule{stroke:#888;stroke-width:1}
 </style>
 <rect width="900" height="490" fill="#fff"/>
-<text class="title" x="450" y="31" text-anchor="middle">Resultados de las Elecciones a Cortes (Junio de 1931)</text>
+<text class="title" x="450" y="31" text-anchor="middle">Resultados de las elecciones a Cortes (junio de 1931)</text>
 <text class="head" x="35" y="78">Ideologías</text>
 <text class="head" x="178" y="78">Partidos</text>
 <text class="head" x="650" y="78" text-anchor="middle">Número de diputados</text>
@@ -42,5 +42,5 @@ text{font-family:"Arial Narrow",Arial,sans-serif;fill:#151515}
 <text class="deputies" x="650" y="413" text-anchor="middle">41</text>
 <text class="votes" x="790" y="411" text-anchor="middle">657.872</text>
 <path class="rule" d="M25 452H875"/>
-<text class="source" x="35" y="478">FUENTE: INE. <tspan font-style="italic">Anuarios Estadísticos, 1931-1940</tspan></text>
+<text class="source" x="450" y="478" text-anchor="middle">FUENTE: INE. <tspan font-style="italic">Anuarios Estadísticos, 1931-1940</tspan></text>
 </svg>

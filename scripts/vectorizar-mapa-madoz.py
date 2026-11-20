@@ -80,6 +80,7 @@ PROVINCES = [
     ("Las Palmas", "1", "polygon786 polygon790 polygon794 polygon802 polygon814", 136, 432),
 ]
 NO_DATA = {"polygon776", "polygon782"}
+DASHED_CANARY_SEPARATOR = "path1259"
 
 
 def node(parent, tag, text=None, **attributes):
@@ -130,7 +131,8 @@ def export(archive, template, output):
          f"SHA-256 del PDF: {hashlib.sha256(pdf_bytes).hexdigest()}; "
          f"Cartografía: {TEMPLATE_URL}; SHA-256 de la plantilla: {hashlib.sha256(template_bytes).hexdigest()}; "
          "Emilio Gómez Fernández, Javi C. S., Darz Mol y Lojwe. "
-         "Adaptación: colores, eliminación de rótulos externos, texto seleccionable y leyenda. "
+         "Adaptación: colores, eliminación de rótulos externos y del separador discontinuo de Canarias, "
+         "texto seleccionable y leyenda. "
          "Licencia del mapa adaptado: CC BY-SA 3.0, https://creativecommons.org/licenses/by-sa/3.0/.")
     node(root, "style", "text{font-family:Arial,Helvetica,sans-serif;fill:#20272c;"
          "user-select:text;-webkit-user-select:text;cursor:text}"
@@ -147,6 +149,8 @@ def export(archive, template, output):
         identifier = shape.get("id")
         # These are white seam corrections between pieces, not province borders.
         if identifier in ("path122", "path170", "path228"):
+            continue
+        if identifier == DASHED_CANARY_SEPARATOR:
             continue
         attrs = {key: value for key, value in shape.attrib.items()
                  if key in ("id", "d", "points", "transform")}
