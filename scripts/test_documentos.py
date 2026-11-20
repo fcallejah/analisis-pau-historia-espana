@@ -2246,10 +2246,20 @@ class DocumentCorpusTests(unittest.TestCase):
             node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
             if node.get("class") == "footnote"
         ]
-        self.assertEqual(footnotes, [])
+        footnote_nodes = svg_root.findall(".//{http://www.w3.org/2000/svg}text[@class='footnote']")
+        self.assertTrue(all(node.get("x") == "744" and node.get("text-anchor") == "end"
+                            for node in footnote_nodes))
+        self.assertEqual(
+            " ".join(footnotes),
+            "«Otros*» agrupa los escaños de PSP-US (Partido Socialista Popular-Unidad Socialista), "
+            "UDC-CD (Unió del Centre i la Democràcia Cristiana de Catalunya), "
+            "EC-FED (Esquerra de Catalunya), EE (Euskadiko Ezkerra) y "
+            "CIC (candidaturas independientes de centro).",
+        )
         description = svg_root.find("{http://www.w3.org/2000/svg}desc").text
         self.assertNotIn("Ministerio del Interior", description)
         self.assertNotIn("JEC", description)
+        self.assertNotIn("Agrupación del examen", description)
         self.assertNotIn("Escaños (%) = escaños", svg)
         self.assertNotIn("Porcentajes de voto recalculados a una décima", svg)
         self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])

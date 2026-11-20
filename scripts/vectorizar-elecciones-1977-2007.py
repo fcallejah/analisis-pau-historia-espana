@@ -20,6 +20,12 @@ from elecciones_1977 import (
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = "assets/documentos/elecciones-1977-diagrama-semicircular.svg"
+OTHER_NOTE = (
+    "«Otros*» agrupa los escaños de PSP-US (Partido Socialista Popular-Unidad Socialista), "
+    "UDC-CD (Unió del Centre i la Democràcia Cristiana de Catalunya), "
+    "EC-FED (Esquerra de Catalunya), EE (Euskadiko Ezkerra) y "
+    "CIC (candidaturas independientes de centro)."
+)
 
 MAIN_PARTIES = (
     ("UCD", "Unión de Centro Democrático (UCD)", "#315a29"),
@@ -99,11 +105,16 @@ def build_svg(record):
         labels.append(lines)
     row_heights = [max(52, len(lines) * 18 + 34) for lines in labels]
     content_bottom = max(515, 112 + sum(row_heights) + 12)
-    height = content_bottom
+    note_lines = textwrap.wrap(OTHER_NOTE, width=70, break_long_words=False, break_on_hyphens=False)
+    height = content_bottom + len(note_lines) * 16 + 8
+    description = (
+        "Diagrama semicircular de votos y escaños de las elecciones generales del 15 de junio de 1977. "
+        f"{OTHER_NOTE}"
+    )
     output = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         '<title id="title">Resultado elecciones 1977 (15 de junio)</title>',
-        '<desc id="desc">Diagrama semicircular de votos y escaños de las elecciones generales del 15 de junio de 1977. La Unión de Centro Democrático (UCD) aparece con 166 escaños y «Otros*» con 11.</desc>',
+        f'<desc id="desc">{escape(description)}</desc>',
         f'<metadata>{escape(json.dumps({"method": "Redibujo vectorial proporcional a escaños, con la agrupación del material del examen; votos de UCD según el Ministerio del Interior y resto según la JEC.", "original": original_src, "originalSha256": hashlib.sha256(original_path.read_bytes()).hexdigest(), "pdf": record["appearances"][0]["pdfUrl"], "pdfSha256": record["appearances"][0]["sourceSha256"], "dataSource": SOURCE, "ministrySource": MINISTRY_SOURCE, "page": record["appearances"][0]["officialPage"]}, ensure_ascii=False))}</metadata>',
         '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.party{font-size:14px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-majority{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
@@ -145,8 +156,13 @@ def build_svg(record):
         f'<text class="center-seat" x="{cx}" y="{cy - 37}" text-anchor="middle">{total_seats}</text>',
         f'<text class="center-majority" x="{cx}" y="{cy - 21}" text-anchor="middle">escaños</text>',
         f'<text class="center-majority" x="{cx}" y="{cy - 5}" text-anchor="middle">176 para la mayoría</text>',
-        "</svg>",
     ])
+    for index, line in enumerate(note_lines):
+        output.append(
+            f'<text class="footnote" x="744" y="{content_bottom + 16 * (index + 1)}" '
+            f'text-anchor="end">{escape(line)}</text>'
+        )
+    output.append("</svg>")
     return "\n".join(output) + "\n", segments, other_rows, other_votes, other_seats, total_seats, height
 
 
@@ -181,7 +197,7 @@ def main():
         ).hexdigest(),
         "alt": (
             "Resultado elecciones 1977 (15 de junio): diagrama semicircular de votos y escaños. "
-            "Unión de Centro Democrático (UCD): 166 escaños; Otros*: 11."
+            "Otros* agrupa las candidaturas PSP-US, UDC-CD, EC-FED, EE y CIC."
         ),
     }
     rows = [
