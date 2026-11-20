@@ -2,6 +2,14 @@
 from playwright.sync_api import sync_playwright
 
 BASE = "http://localhost:8765"
+EXPECTED_2024_IDS = {
+    "2024 · Titular ordinaria": "18mTLnbc8_54jxt3tBhx3qi8OfQvR78OZ",
+    "2024 · Titular extraordinaria": "1_pavaxuUlaemiRcmp8N6RtJOxxQBUmOG",
+    "2024 · Reserva A": "1bm0e3-gYTY6Prw-XJItx9867-8VUwsAK",
+    "2024 · Reserva B": "1Kyo4fJ8ewWO01ZmlncX6AqA_73RdBExL",
+    "2024 · Suplente A": "1t-Q7SbXAi7J0FKVEoz2e_fw8vHI9qsXX",
+    "2024 · Suplente B": "1utMZik5uwV3rPSPppWNP6vNR_R5YjTqj",
+}
 
 
 def check_exam_pills(browser):
@@ -14,18 +22,31 @@ def check_exam_pills(browser):
         sources = dict(linked.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href])"))
         assert sources["2017 · Titular extraordinaria"].startswith("https://drive.google.com/file/d/")
         assert page.locator(".question-list span.exam-pill").count() == 0
-        zip_sources = {label: href for label, href in sources.items() if label.endswith(" (ZIP)")}
-        assert len(zip_sources) == 6
-        assert all(href.endswith("/sel_2024_historia_espana.zip") for href in zip_sources.values())
+        pdfs_2024 = {label: href for label, href in sources.items() if label.startswith("2024 ·")}
+        assert len(pdfs_2024) == 6
+        assert pdfs_2024 == {
+            label: f"https://drive.google.com/file/d/{drive_id}/view"
+            for label, drive_id in EXPECTED_2024_IDS.items()
+        }
         agriculture = page.locator(".question-list li").filter(has_text="impulsó reformas en la agricultura")
-        reserva = agriculture.locator('a.exam-pill').filter(has_text="2024 · Reserva A (ZIP)")
-        assert "Examen_Reserva-A_HISTORIA DE ESPAÑA.pdf" in reserva.get_attribute("title")
+        reserva = agriculture.locator('a.exam-pill').filter(has_text="2024 · Reserva A")
+        assert reserva.get_attribute("href") == (
+            "https://drive.google.com/file/d/1bm0e3-gYTY6Prw-XJItx9867-8VUwsAK/view"
+        )
+        assert reserva.get_attribute("target") == "_blank"
+        assert reserva.get_attribute("rel") == "noopener noreferrer"
+        assert "PDF del examen" in reserva.get_attribute("title")
         page.locator('[data-gen="1"]').click()
         generated = page.locator('#gen-output a.exam-pill:not([title*="del modelo"])')
         assert generated.count() > 0
-        assert all(sources[label] == href and target == ("" if label in zip_sources else "_blank")
+        assert all(sources[label] == href and target == "_blank"
                    for label, href, target in
                    generated.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href, n.target])"))
+        shortcut = page.locator("#generador").get_by_role("link", name="Mis preguntas cortas", exact=True)
+        assert shortcut.get_attribute("href") == "mis-preguntas.html"
+        page.goto(f"{BASE}/mis-preguntas.html")
+        back = page.get_by_role("link", name="Volver al generador", exact=True)
+        assert back.get_attribute("href") == "index.html#generador"
 
 
 def check_model_questions(browser):

@@ -30,7 +30,7 @@
   const viewStorageKey = savedOnly ? "pau-he.documents.saved-view.v1" : "pau-he.documents.view.v1";
   const filtersStorageKey = savedOnly ? "pau-he.documents.saved-filters.v1" : "pau-he.documents.filters.v1";
   const marksStorageKey = "pau-he.documents.marks.v1";
-  const typeNames = { texto: "Texto", imagen: "Imagen", grafico: "Gráfico o tabla" };
+  const typeNames = { texto: "Texto", imagen: "Imagen", grafico: "Mapas y gráficos" };
   function syncPageZoom() {
     document.documentElement.toggleAttribute("data-page-zoomed", (window.visualViewport?.scale || 1) > 1.01);
     schedulePeoplePosition();
@@ -1082,7 +1082,7 @@
     task.append(element("p", "De 0 a 2 puntos.", "document-meta"));
     const guidance = document.type === "texto"
       ? "En textos, a) permite desarrollar naturaleza, ideas principales y secundarias y contexto inmediato; b) explica el proceso general, sus causas y consecuencias. La extensión puede estar más equilibrada."
-      : "En imágenes y gráficos, a) es más breve y descriptivo: identifica los elementos y sitúalos en su contexto inmediato. Dedica mayor desarrollo a b): evolución general del momento, causas y consecuencias relacionadas con el documento.";
+      : "En mapas, gráficos y tablas, a) es más breve y descriptivo: identifica los elementos y sitúalos en su contexto inmediato. Dedica mayor desarrollo a b): evolución general del momento, causas y consecuencias relacionadas con el documento.";
     task.append(element("p", `${guidance} Pauta docente: a) no debería superar media carilla. No es un límite oficial añadido al examen ni cambia la puntuación: ambos apartados valen lo mismo.`, "document-meta"));
     if (historicalModel) {
       content.append(element("p", "En este modelo histórico se pedía analizar el documento y justificar su relación con el tema (hasta 1,5 puntos por documento).", "document-meta"), guide);

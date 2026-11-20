@@ -622,7 +622,7 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=90"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=92"]').count() == 1
         assert page.locator('link[href="documentos.css?v=69"]').count() == 1
         context.close()
 

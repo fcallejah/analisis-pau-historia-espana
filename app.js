@@ -142,6 +142,12 @@ const shortExamDriveIds = new Map([
   ["2023 · Suplente B", "1nVuDrppVAW7kcgqYGOAUHIN8qZ-fG_98"],
   ["2023 · Titular extraordinaria", "1gmi6DjRfwYDEXMZed5PE4Q5LiT1_9wTE"],
   ["2023 · Titular ordinaria", "1emBjuXtL8uXoZHTqavkocyRR31yuPyI0"],
+  ["2024 · Reserva A", "1bm0e3-gYTY6Prw-XJItx9867-8VUwsAK"],
+  ["2024 · Reserva B", "1Kyo4fJ8ewWO01ZmlncX6AqA_73RdBExL"],
+  ["2024 · Suplente A", "1t-Q7SbXAi7J0FKVEoz2e_fw8vHI9qsXX"],
+  ["2024 · Suplente B", "1utMZik5uwV3rPSPppWNP6vNR_R5YjTqj"],
+  ["2024 · Titular ordinaria", "18mTLnbc8_54jxt3tBhx3qi8OfQvR78OZ"],
+  ["2024 · Titular extraordinaria", "1_pavaxuUlaemiRcmp8N6RtJOxxQBUmOG"],
   ["2025 · Suplente 1 A", "1fES0P1sntR-fPBHW1xuzjl5aMN_kCvyD"],
   ["2025 · Suplente 1 B", "1CJFlJpA0RbpdDK6pAWYyRfVABCEGOyU2"],
   ["2025 · Suplente 2 A", "19Ls3qdqeF8IRwGMAmov5uZ-PWPmAWuqi"],
@@ -163,20 +169,9 @@ const shortExamDriveIds = new Map([
   ["2026 · Modelo PAU", "1M-BNUMbjnui3A0cBYZESd09pCG6uTmn9"],
 ]);
 
-const shortExamArchive2024 = "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_2024_historia_espana.zip";
-const shortExamArchiveFiles2024 = new Map([
-  ["2024 · Titular ordinaria", "Examen-Titular-A_HISTORIA DE ESPAÑA.pdf"],
-  ["2024 · Titular extraordinaria", "Examen_Titular-B_HISTORIA DE ESPAÑA.pdf"],
-  ["2024 · Reserva A", "Examen_Reserva-A_HISTORIA DE ESPAÑA.pdf"],
-  ["2024 · Reserva B", "Examen_Reserva-B_HISTORIA DE ESPAÑA.pdf"],
-  ["2024 · Suplente A", "Examen_Suplente-A_HISTORIA DE ESPAÑA.pdf"],
-  ["2024 · Suplente B", "Examen_Suplente-B_HISTORIA DE ESPAÑA.pdf"],
-]);
-
 function examPill(reference, index) {
   const driveId = shortExamDriveIds.get(reference);
-  const archiveFile = shortExamArchiveFiles2024.get(reference);
-  const pill = document.createElement(driveId || archiveFile ? "a" : "span");
+  const pill = document.createElement(driveId ? "a" : "span");
   pill.className = "exam-pill";
   pill.dataset.frequency = String(Math.min(index, 4));
   if (driveId) {
@@ -184,14 +179,10 @@ function examPill(reference, index) {
     pill.target = "_blank";
     pill.rel = "noopener noreferrer";
     pill.title = `Abrir el PDF ${reference.endsWith("· Modelo PAU") ? "del modelo" : "del examen"} en Drive (otra pestaña)`;
-  } else if (archiveFile) {
-    pill.href = shortExamArchive2024;
-    pill.title = `Descargar ZIP oficial de la Junta. Dentro: ${archiveFile}`;
-    pill.setAttribute("aria-label", `${reference}. ${pill.title}`);
   } else {
     pill.title = "No se ha localizado el PDF de este examen en Drive";
   }
-  pill.textContent = archiveFile ? `${reference} (ZIP)` : reference;
+  pill.textContent = reference;
   return pill;
 }
 

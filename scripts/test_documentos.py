@@ -15,6 +15,11 @@ ROOT = Path(__file__).resolve().parent.parent
 spec = importlib.util.spec_from_file_location("notes_image_tools", ROOT / "scripts/importar-apuntes.py")
 notes_image_tools = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(notes_image_tools)
+map_spec = importlib.util.spec_from_file_location(
+    "affiliation_map_tools", ROOT / "scripts/vectorizar-mapa-afiliacion-obrera.py"
+)
+map_tools = importlib.util.module_from_spec(map_spec)
+map_spec.loader.exec_module(map_tools)
 
 
 def image_dimensions(path):
@@ -52,7 +57,7 @@ class DocumentCorpusTests(unittest.TestCase):
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "250ac2bcfc28a2e82d198b1c6d89bbc9b5bece60ed6dc226c26ed6c9cde9c0de")
+        self.assertEqual(digest, "e96bdc6481a1a603cee97997867880efcd5c636ee8e26eeb90509b8a9015c7ff")
         self.assertEqual(len(imported), 134)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
@@ -1207,14 +1212,16 @@ class DocumentCorpusTests(unittest.TestCase):
                 self.assertTrue(record["text"][body_starts[1]].startswith("Yo no puedo admitir"))
                 self.assertTrue(record["text"][-1].startswith("Discurso de"))
 
-    def test_blanco_white_heading_is_centered_and_italic_in_both_selections(self):
+    def test_blanco_white_heading_italicizes_only_the_work_title(self):
         records = {r["id"]: r for r in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
         for identity in ("blanco-white-1808", "blanco-white-1808-pdf-2006-1-1"):
             record = records[identity]
             with self.subTest(document=identity):
                 self.assertEqual(record["headingParagraphs"], [0])
                 self.assertTrue(record["centerHeadings"])
-                self.assertEqual(record["headingEmphasis"]["0"], [record["text"][0]])
+                self.assertEqual(record["headingEmphasis"]["0"], ["Escritos"])
+                self.assertIn("José María Blanco White", record["text"][0])
+                self.assertIn("1808", record["text"][0])
                 self.assertTrue(record["text"][1].startswith("“Los diferentes hechos"))
 
     def test_book_titles_in_multiple_attribution_paragraphs_are_emphasized(self):
@@ -1259,6 +1266,256 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIn("Extracción vectorial", desamortizaciones["quality"])
         self.assertEqual((desamortizaciones["image"]["width"], desamortizaciones["image"]["height"]), (1492, 1088))
         self.assertEqual(desamortizaciones["appearances"][0]["route"], "Opción A")
+
+    def test_affiliation_map_uses_vector_cartography_and_keeps_original(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(item for item in data["documents"] if item["id"] == "afiliacion-obrera-1917")
+        image = record["image"]
+        self.assertEqual(image["src"], "assets/documentos/mapa-afiliacion-obrera-1917-vector.svg")
+        self.assertEqual(
+            image["examCaption"]["text"],
+            "Distribución de la afiliación obrera en España en 1917.\n"
+            "Fuente: Artola, M. (dir.): Enciclopedia de Historia de España: vol. VI.",
+        )
+        self.assertEqual(image["examCaption"]["emphasis"], ["Enciclopedia de Historia de España: vol. VI"])
+        self.assertIn("no representan cifras absolutas", image["reproductionNote"])
+        self.assertIn("Soria", image["reproductionNote"])
+        self.assertIn(f'"./{image["src"]}"', (ROOT / "sw.js").read_text())
+        self.assertTrue(image["selectable"])
+        self.assertTrue((ROOT / image["originalSrc"]).is_file())
+        self.assertEqual(image["attribution"]["license"], "CC BY-SA 3.0")
+        self.assertEqual(image["attribution"]["licenseUrl"], "https://creativecommons.org/licenses/by-sa/3.0/")
+        self.assertIn("Miguillen", image["attribution"]["text"])
+        self.assertIn("cifras absolutas", record["quality"])
+        root = ET.parse(ROOT / image["src"]).getroot()
+        namespace = "{http://www.w3.org/2000/svg}"
+        self.assertIsNotNone(root.find(f"{namespace}title"))
+        metadata = root.find(f"{namespace}metadata")
+        self.assertIsNotNone(metadata)
+        self.assertIn("https://creativecommons.org/licenses/by-sa/3.0/", metadata.text)
+        self.assertEqual(len(root.findall(f".//{namespace}g[@id='province-labels']/{namespace}text")), 49)
+        self.assertEqual(len(root.findall(f".//{namespace}g[@id='affiliation-outlines']/{namespace}circle")), 43)
+        self.assertEqual(len(root.findall(f".//{namespace}g[@id='overlapping-locations']/{namespace}circle")), 5)
+        canary_inset = root.find(f".//{namespace}g[@id='canary-inset']")
+        self.assertIsNotNone(canary_inset)
+        self.assertIsNone(canary_inset.find(f".//*[@id='path3796-canary']"))
+        source_map = ET.parse(ROOT / "assets/documentos/espana-loc.svg").getroot()
+        self.assertIsNotNone(source_map.find(f".//*[@id='path3796']"))
+        legend = root.find(f".//{namespace}g[@id='map-legend']")
+        self.assertEqual(len(legend.findall(f"{namespace}circle")), 1)
+        self.assertEqual(len(legend.findall(f"{namespace}path")), 1)
+        self.assertEqual(len(legend.findall(f"{namespace}line")), 2)
+        self.assertEqual(len(legend.findall(f"{namespace}rect")), 0)
+        self.assertEqual([node.text for node in legend.findall(f"{namespace}text")],
+                         ["afiliados", "a la UGT", "afiliados", "a la CNT"])
+        self.assertEqual(
+            {node.get("font-size") for node in legend.findall(f"{namespace}text")},
+            {"16"},
+        )
+        self.assertEqual(
+            legend.get("aria-label"),
+            "afiliados a la UGT en naranja; afiliados a la CNT en azul",
+        )
+        legend_circle = legend.find(f"{namespace}circle")
+        self.assertEqual((legend_circle.get("cx"), legend_circle.get("cy")), ("167", "364"))
+        self.assertEqual(legend_circle.get("fill"), "#4e679d")
+        legend_left_sector = legend.find(f"{namespace}path")
+        self.assertEqual(legend_left_sector.get("fill"), "#e87925")
+        legend_lines = legend.findall(f"{namespace}line")
+        self.assertEqual([node.get("stroke") for node in legend_lines], ["#e87925", "#4e679d"])
+        city_real = next(node for node in root.findall(f".//{namespace}g[@id='province-labels']/{namespace}text")
+                         if node.text == "Ciudad Real")
+        self.assertEqual(legend_circle.get("cy"), "364")
+        canary_chart = next(
+            node for node in root.findall(f".//{namespace}g[@id='affiliation-sectors']/{namespace}circle")
+            if node.get("cx") == "167" and node.get("cy") == "524"
+        )
+        self.assertEqual(legend_circle.get("cx"), canary_chart.get("cx"))
+        city_labels = root.findall(f".//{namespace}g[@id='province-labels']/{namespace}text")
+        self.assertTrue(all(
+            float(label.get("font-size")) >= 14
+            for label in city_labels if label.text != "Toledo"
+        ))
+        labels_by_name = {label.text: label for label in city_labels}
+        self.assertEqual(
+            (labels_by_name["Ourense"].get("x"), labels_by_name["Ourense"].get("y"),
+             labels_by_name["Ourense"].get("text-anchor")),
+            ("500", "155", "start"),
+        )
+        self.assertEqual(
+            (labels_by_name["Zamora"].get("x"), labels_by_name["Zamora"].get("y"),
+             labels_by_name["Zamora"].get("text-anchor")),
+            ("548", "180", "middle"),
+        )
+        expected_label_positions = {
+            "Oviedo": ("540", "25", "end"),
+            "Santander": ("650", "16", "middle"),
+            "Vizcaya": ("718", "16", "middle"),
+            "Guipúzcoa": ("756", "28", "start"),
+            "León": ("569", "90", "middle"),
+            "Palencia": ("628", "112", "middle"),
+            "Burgos": ("686", "108", "middle"),
+            "Navarra": ("805", "107", "start"),
+            "Soria": ("730", "190", "end"),
+            "Logroño": ("735", "162", "end"),
+            "Lérida": ("938", "52", "middle"),
+            "Gerona": ("1126", "36", "end"),
+            "Valladolid": ("619", "175", "middle"),
+            "Segovia": ("673", "209", "middle"),
+            "Salamanca": ("554", "270", "middle"),
+            "Ávila": ("628", "290", "middle"),
+            "Madrid": ("703", "282", "middle"),
+            "Cuenca": ("790", "320", "start"),
+            "Toledo": ("671", "309", "middle"),
+            "Ciudad Real": ("692", "353", "middle"),
+            "Albacete": ("737", "359", "middle"),
+            "Murcia": ("810", "490", "start"),
+            "Cádiz": ("500", "560", "end"),
+            "Málaga": ("610", "590", "middle"),
+            "Granada": ("689", "545", "middle"),
+            "Almería": ("760", "530", "middle"),
+            "Baleares": ("1048", "356", "middle"),
+            "Córdoba": ("623", "404", "middle"),
+            "Jaén": ("725", "405", "start"),
+        }
+        for name, position in expected_label_positions.items():
+            label = labels_by_name[name]
+            self.assertEqual(
+                (label.get("x"), label.get("y"), label.get("text-anchor")),
+                position,
+            )
+        toledo_label = labels_by_name["Toledo"]
+        self.assertEqual(toledo_label.get("font-size"), "12")
+        self.assertEqual(toledo_label.get("textLength"), "34")
+        self.assertEqual(toledo_label.get("lengthAdjust"), "spacingAndGlyphs")
+        provincial_map = root.find(f".//{namespace}g[@id='provincial-map']")
+        province_styles = [element.get("style", "") for element in provincial_map.iter()]
+        self.assertTrue(any(
+            "stroke-width:0.2" in style and "stroke-dasharray:4,3" in style
+            for style in province_styles
+        ))
+        self.assertTrue(any(
+            "stroke-width:2" in style and "stroke-dasharray:none" in style
+            for style in province_styles
+        ))
+        sectors = root.find(f".//{namespace}g[@id='affiliation-sectors']")
+        self.assertEqual(len(sectors.findall(f"{namespace}circle")), 43)
+        vizcaya_circle = next(
+            circle for circle in sectors.findall(f"{namespace}circle")
+            if circle.get("cx") == "718" and circle.get("cy") == "52"
+        )
+        self.assertEqual(vizcaya_circle.get("r"), "26")
+        self.assertGreater(len(sectors.findall(f"{namespace}path")), 20)
+        self.assertFalse(root.findall(f".//{namespace}g[@id='affiliation-sectors']/{namespace}polygon"))
+        self.assertFalse(root.findall(f".//{namespace}image"))
+        sector_paths = sectors.findall(f"{namespace}path")
+        for cx, cy, radius, start, span in (
+            (1024, 153, 89, 112, 338),
+            (869, 286, 13, 280, 340),
+            (789, 107, 10, 260, 20),
+            (555, 316, 24, 260, 20),
+        ):
+            expected_path = map_tools.pie_wedge_path(cx, cy, radius, start, span)
+            self.assertIn(expected_path, [path.get("d") for path in sector_paths])
+        soria_chart = next(
+            chart for chart in sectors.findall(f"{namespace}circle")
+            if chart.get("cx") == "743" and chart.get("cy") == "185"
+        )
+        self.assertEqual(soria_chart.get("r"), "10")
+        zamora_marker = root.find(
+            f".//{namespace}g[@id='province-markers']/{namespace}circle"
+        )
+        self.assertEqual(
+            (zamora_marker.get("data-province"), zamora_marker.get("cx"),
+             zamora_marker.get("cy"), zamora_marker.get("r")),
+            ("Zamora", "548", "198", "10"),
+        )
+        self.assertEqual(zamora_marker.get("r"), soria_chart.get("r"))
+        lleida_chart = next(
+            chart for chart in sectors.findall(f"{namespace}circle")
+            if chart.get("data-province") == "Lérida"
+        )
+        self.assertEqual((lleida_chart.get("cx"), lleida_chart.get("cy")), ("938", "74"))
+        rotated_tarragona = map_tools.correct_chart_sectors(
+            [(923, 230, 15, 20, 250)]
+        )
+        self.assertEqual(rotated_tarragona, [(923, 230, 15, 200, 250)])
+        overlapping_pies = root.find(f".//{namespace}g[@id='overlapping-location-sectors']")
+        gerona_pie = overlapping_pies.find(f"{namespace}circle")
+        self.assertEqual(
+            (gerona_pie.get("cx"), gerona_pie.get("cy"), gerona_pie.get("r"),
+             gerona_pie.get("fill"), gerona_pie.get("data-province")),
+            ("1104", "54", "9", "#e87925", "Gerona"),
+        )
+        self.assertEqual(
+            overlapping_pies.find(f"{namespace}path").get("d"),
+            map_tools.pie_wedge_path(1104, 54, 9, 305, 340),
+        )
+        script = root.find(f"{namespace}script")
+        self.assertIn("provinceReferenceOverrides", script.text)
+        self.assertIn('["Cádiz", [530, 545]]', script.text)
+        self.assertIn('["Málaga", [610, 545]]', script.text)
+        self.assertIn('["Navarra", [790, 110]]', script.text)
+        self.assertIn('["Logroño", [740, 150]]', script.text)
+        self.assertIn('["Cuenca", [785, 310]]', script.text)
+        self.assertIn('["Albacete", [775, 375]]', script.text)
+        self.assertIn('["Huesca", [850, 115]]', script.text)
+        self.assertIn('["Zaragoza", [870, 165]]', script.text)
+        self.assertIn('["Teruel", [830, 260]]', script.text)
+        self.assertIn('["Tarragona", [930, 215]]', script.text)
+        self.assertIn("event.clientX", script.text)
+        self.assertIn("root.getScreenCTM().inverse()", script.text)
+        self.assertIn("nearestProvince(point.x, point.y)", script.text)
+        self.assertIn("smallestChartAt(point.x, point.y)", script.text)
+        self.assertIn("pointer-events:all", root.find(f"{namespace}style").text)
+        self.assertNotIn("select(area.dataset.province)", script.text)
+        self.assertIn('area.closest("#canary-inset")', script.text)
+        self.assertIn('new Set(["path263-main"])', script.text)
+        self.assertIn('mark(path, "Canarias", "province-area", true)', script.text)
+        self.assertIn("Escape", script.text)
+        self.assertTrue(all(label.get("data-province") for label in city_labels))
+
+    def test_labor_conflicts_table_matches_the_exam_layout(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(
+            item for item in data["documents"]
+            if item["id"] == "conflictos-laborales-1963-1972"
+        )
+        image = record["image"]
+        self.assertEqual((image["width"], image["height"]), (882, 227))
+        root = ET.parse(ROOT / image["src"]).getroot()
+        namespace = "{http://www.w3.org/2000/svg}"
+        self.assertEqual((int(root.get("width")), int(root.get("height"))), (882, 227))
+        self.assertIn("PAUCondensed", root.find(f"{namespace}style").text)
+        self.assertEqual(
+            root.find(f"{namespace}rect").get("fill"),
+            "#fff",
+        )
+        border = root.find(f".//{namespace}g/{namespace}rect")
+        self.assertEqual(
+            (border.get("x"), border.get("y"), border.get("width")),
+            ("8", "8", "866"),
+        )
+        self.assertTrue(math.isclose(float(border.get("height")), 188, abs_tol=0.01))
+        title = root.find(f".//{namespace}text[@class='title']")
+        self.assertEqual((title.get("x"), title.get("y")), ("441", "27"))
+        rules = [path.get("d") for path in root.findall(f".//{namespace}g/{namespace}path")]
+        self.assertIn("M8 32h866", rules)
+        self.assertIn("M214 32v163.999998", rules)
+        note = root.find(f".//{namespace}text[@class='note']")
+        self.assertEqual(
+            note.find(f"{namespace}tspan").text,
+            "Estructura de clases en la España actual",
+        )
+        self.assertEqual(
+            record["table"]["rows"][0],
+            ["Político-Sociales", "16", "8", "9", "10", "10", "54", "132", "687", "115", "66"],
+        )
+
+    def test_graph_document_category_uses_the_current_label(self):
+        source = (ROOT / "documentos.js").read_text()
+        self.assertIn('grafico: "Mapas y gráficos"', source)
+        self.assertNotIn("Mapa, gráfico o tabla", source)
 
     def test_vector_charts_remain_self_contained(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())

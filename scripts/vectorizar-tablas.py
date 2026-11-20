@@ -34,7 +34,17 @@ TABLES = {
     "conflictos-laborales-1963-1972": {
         "caption": "CAUSAS DE LOS CONFLICTOS LABORALES (1963-1972).",
         "headers": [""] + [str(year) for year in range(1963, 1973)],
-        "widths": [340] + [104] * 10,
+        "widths": [206] + [66] * 10,
+        "examLayout": {
+            "size": (882, 227), "origin": (8, 32),
+            "titleRowHeight": 24, "rowHeights": [24] + [23.333333] * 6,
+            "fontSizes": (18, 17, 16), "headerFontSize": 18,
+            "titleLines": ["CAUSAS DE LOS CONFLICTOS LABORALES (1963-1972)."],
+            "titleBaselines": (27,), "notePosition": (8, 214),
+            "rulesAfter": (0,), "firstColumnLeft": True,
+            "boldHeader": True, "strokeColor": "#000",
+            "noteEmphasis": ("Estructura de clases en la España actual",),
+        },
         "rows": [
             ["Político-Sociales", "16", "8", "9", "10", "10", "54", "132", "687", "115", "66"],
             ["Convenio Colectivo", "202", "62", "32", "21", "21", "-", "39", "516", "63", "298"],
@@ -269,7 +279,15 @@ def render_exam_table(table, provenance):
     grid_height = sum(row_heights)
     rows = [table["headers"], *table["rows"]]
     assert len(rows) == len(row_heights)
-    parts.append(f'<g fill="none" stroke="#333"><rect x="{x0}" y="{y0}" width="{grid_width}" height="{grid_height}"/>')
+    title_row_height = layout.get("titleRowHeight", 0)
+    stroke = layout.get("strokeColor", "#333")
+    outer_y = y0 - title_row_height
+    parts.append(
+        f'<g fill="none" stroke="{stroke}"><rect x="{x0}" y="{outer_y}" '
+        f'width="{grid_width}" height="{grid_height + title_row_height}"/>'
+    )
+    if title_row_height:
+        parts.append(f'<path d="M{x0} {y0}h{grid_width}"/>')
     x = x0
     if layout.get("verticalRules", True):
         for column_width in table["widths"][:-1]:
@@ -291,11 +309,18 @@ def render_exam_table(table, provenance):
             italic = row == 0 and layout.get("italicHeader")
             weight = ' font-weight="700"' if bold else ""
             style = ' font-style="italic"' if italic else ""
+            cell_font_size = layout.get("headerFontSize", cell_size) if row == 0 else cell_size
             left = column == 0 and layout.get("firstColumnLeft")
             anchor = "start" if left else "middle"
             cell_x = x + 7 if left else x + column_width / 2
-            parts.append(f'<text class="cell" x="{cell_x:g}" y="{y + row_height / 2 + round(cell_size * .36):g}" '
-                         f'text-anchor="{anchor}"{weight}{style}>{escape(value)}</text>')
+            font_size_attribute = (
+                f' font-size="{cell_font_size}px"'
+                if row == 0 and "headerFontSize" in layout else ""
+            )
+            parts.append(f'<text class="cell" x="{cell_x:g}" '
+                         f'y="{y + row_height / 2 + round(cell_font_size * .36):g}" '
+                         f'text-anchor="{anchor}"{font_size_attribute}{weight}{style}>'
+                         f'{escape(value)}</text>')
             if row:
                 parts.append("</g>")
             x += column_width

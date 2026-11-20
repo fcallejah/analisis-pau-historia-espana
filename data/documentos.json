@@ -1077,7 +1077,9 @@
     },
     {
       "id": "goya-tres-de-mayo",
-      "titleEmphasis": ["Los fusilamientos del 3 de mayo"],
+      "titleEmphasis": [
+        "Los fusilamientos del 3 de mayo"
+      ],
       "title": "Los fusilamientos del 3 de mayo",
       "type": "imagen",
       "blocks": [
@@ -1093,7 +1095,9 @@
       "quality": "Reproducción del corpus a 1280 × 987 píxeles, conservada sin recrear detalles. No es un recorte cotejado del PDF del examen. Se distingue la fecha de la represión representada (1808) de la realización del cuadro (1814).",
       "examCaption": {
         "text": "Francisco de Goya, Los fusilamientos (Museo del Prado)",
-        "emphasis": ["Los fusilamientos"],
+        "emphasis": [
+          "Los fusilamientos"
+        ],
         "appearanceId": "fuente-h-lxhnexopmiob-1"
       },
       "image": {
@@ -1330,7 +1334,9 @@
     },
     {
       "id": "amadeo-i-ante-cadaver-prim",
-      "titleEmphasis": ["Amadeo I ante el cadáver del general Prim"],
+      "titleEmphasis": [
+        "Amadeo I ante el cadáver del general Prim"
+      ],
       "examCaption": {
         "emphasis": [
           "Amadeo I ante el cadáver de Prim"
@@ -1843,7 +1849,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica el tipo de gráfico o tabla, su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
+          "text": "Identifica el tipo de representación (mapa, gráfico o tabla), su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -2228,7 +2234,9 @@
     },
     {
       "id": "caricatura-se-colocan-reyes-1869",
-      "titleEmphasis": ["La Flaca"],
+      "titleEmphasis": [
+        "La Flaca"
+      ],
       "examCaption": {
         "text": "Subasta de reyes",
         "appearanceId": "fuente-h-9bxnjdlqrc89-1"
@@ -2529,7 +2537,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica el tipo de gráfico o tabla, su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
+          "text": "Identifica el tipo de representación (mapa, gráfico o tabla), su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -3035,7 +3043,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica el tipo de gráfico o tabla, su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
+          "text": "Identifica el tipo de representación (mapa, gráfico o tabla), su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -5328,7 +5336,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica el tipo de gráfico o tabla, su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
+          "text": "Identifica el tipo de representación (mapa, gráfico o tabla), su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -5959,7 +5967,7 @@
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
-          "text": "Identifica el tipo de gráfico o tabla, su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
+          "text": "Identifica el tipo de representación (mapa, gráfico o tabla), su título, las categorías y el período. Describe los valores y tendencias que realmente se observan; no atribuyas causas solo a partir de la representación ni conviertas una lectura aproximada en cifras exactas."
         },
         {
           "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
@@ -6569,7 +6577,9 @@
       "id": "isabel-ii-jura-constitucion-1837",
       "examCaption": {
         "text": "Jura de la Constitución de 1837",
-        "emphasis": ["Jura de la Constitución de 1837"],
+        "emphasis": [
+          "Jura de la Constitución de 1837"
+        ],
         "appearanceId": "fuente-h-6ddndgb4ypzx-2"
       },
       "title": "Isabel II jura la Constitución de 1837",
@@ -6826,7 +6836,9 @@
     },
     {
       "id": "rendicion-bailen-casado-alisal",
-      "titleEmphasis": ["La rendición de Bailén"],
+      "titleEmphasis": [
+        "La rendición de Bailén"
+      ],
       "examCaption": {
         "emphasis": [
           "La rendición de Bailén"
@@ -9139,7 +9151,9 @@
     },
     {
       "id": "juramento-cortes-constituyentes-isla-leon-1810",
-      "titleEmphasis": ["Juramento de las Cortes Constituyentes en la isla de León"],
+      "titleEmphasis": [
+        "Juramento de las Cortes Constituyentes en la isla de León"
+      ],
       "title": "Juramento de las Cortes Constituyentes en la isla de León",
       "type": "imagen",
       "blocks": [
@@ -9262,7 +9276,9 @@
       ],
       "examCaption": {
         "text": "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León, 24 de Septiembre de 1810. (Óleo sobre lienzo de Casado del Alisal, conservado en el Salón de Plenos del Congreso de los Diputados, Madrid).",
-        "emphasis": ["Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León"],
+        "emphasis": [
+          "Juramento de las Cortes Constituyentes en la Iglesia Mayor Parroquial de la Real Isla de León"
+        ],
         "appearanceId": "fuente-h.lnfwvqsmz1yq-2"
       },
       "image": {
@@ -9736,7 +9752,9 @@
     },
     {
       "id": "alegoria-victoria-franco-1939",
-      "titleEmphasis": ["Alegoría de la Victoria"],
+      "titleEmphasis": [
+        "Alegoría de la Victoria"
+      ],
       "title": "Alegoría de la Victoria: representación de Franco",
       "type": "imagen",
       "blocks": [
@@ -9796,7 +9814,9 @@
       ],
       "examCaption": {
         "text": "Francisco Franco, Generalísimo de los Ejércitos y Caudillo de España. Alegoría de la Victoria",
-        "emphasis": ["Alegoría de la Victoria"],
+        "emphasis": [
+          "Alegoría de la Victoria"
+        ],
         "appearanceId": "fuente-h.ddnqmfjydqh9-3"
       },
       "image": {
@@ -10259,7 +10279,9 @@
     },
     {
       "id": "cartilla-union-patriotica-1928",
-      "attributionEmphasis": ["Unión Patriótica"],
+      "attributionEmphasis": [
+        "Unión Patriótica"
+      ],
       "title": "Cartilla de la Unión Patriótica",
       "type": "texto",
       "blocks": [
@@ -10753,7 +10775,9 @@
     },
     {
       "id": "mural-constitucion-1812-cadiz",
-      "titleEmphasis": ["Constitución de 1812 en Cádiz"],
+      "titleEmphasis": [
+        "Constitución de 1812 en Cádiz"
+      ],
       "title": "Pintura mural: Constitución de 1812 en Cádiz",
       "type": "imagen",
       "blocks": [
@@ -10852,7 +10876,9 @@
       },
       "examCaption": {
         "text": "Pintura mural titulada “Constitución de 1812 en Cádiz”",
-        "emphasis": ["Constitución de 1812 en Cádiz"],
+        "emphasis": [
+          "Constitución de 1812 en Cádiz"
+        ],
         "appearanceId": "fuente-h-vnjmetc7hix8-2"
       }
     },
@@ -11692,7 +11718,9 @@
       ],
       "attributionParagraphs": 1,
       "id": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos-2013-6w2urkb44k1-3",
-      "attributionEmphasis": ["BOE"],
+      "attributionEmphasis": [
+        "BOE"
+      ],
       "appearances": [
         {
           "id": "fuente-h-6w2urkb44k1-3",
@@ -12256,7 +12284,9 @@
       ],
       "attributionParagraphs": 1,
       "id": "el-fuero-de-los-espanoles-y-los-limites-de-los-derechos-2015-purfh0dia234-4",
-      "attributionEmphasis": ["BOE"],
+      "attributionEmphasis": [
+        "BOE"
+      ],
       "appearances": [
         {
           "id": "fuente-h-purfh0dia234-4",
@@ -12590,7 +12620,9 @@
       "centerHeadings": true,
       "attributionParagraphs": 1,
       "id": "cartilla-union-patriotica-1928-2015-6q2fpngk2kwy-4",
-      "attributionEmphasis": ["Unión Patriótica"],
+      "attributionEmphasis": [
+        "Unión Patriótica"
+      ],
       "appearances": [
         {
           "id": "fuente-h-6q2fpngk2kwy-4",
@@ -14085,7 +14117,9 @@
     },
     {
       "id": "serrano-suner-estado",
-      "attributionEmphasis": ["Entre Hendaya y Gibraltar"],
+      "attributionEmphasis": [
+        "Entre Hendaya y Gibraltar"
+      ],
       "title": "Serrano Suñer y la construcción del Estado durante la guerra",
       "type": "texto",
       "blocks": [
@@ -14135,7 +14169,9 @@
     },
     {
       "id": "guernica-picasso",
-      "titleEmphasis": ["Guernica"],
+      "titleEmphasis": [
+        "Guernica"
+      ],
       "title": "El Guernica de Picasso",
       "type": "imagen",
       "blocks": [
@@ -14190,7 +14226,9 @@
       },
       "examCaption": {
         "text": "El Guernica de Picasso, pintado en 1937",
-        "emphasis": ["Guernica"],
+        "emphasis": [
+          "Guernica"
+        ],
         "appearanceId": "fuente-pdf-2002-1-4"
       }
     },
@@ -14369,7 +14407,7 @@
       ],
       "date": "1963–1972",
       "sourceCaption": "Material de 2002. Examen 2.pdf, Opción B.",
-      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial manual con paleta azul oscuro y azul claro, sin recalcular ni corregir las cifras de la fuente. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
+      "quality": "Fuente directa: PDF del examen aportado. Se conserva el material de esa selección, sin completarlo con otra versión ni atribuirlo a Google Docs. Redibujo vectorial con fondo blanco y tipografía condensada, siguiendo el diseño del examen. Se conserva la reproducción original para comparar y una tabla de datos accesible.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -14403,14 +14441,13 @@
       ],
       "image": {
         "src": "assets/documentos/tabla-conflictos-laborales-1963-1972.svg",
-        "width": 1428,
-        "height": 517,
+        "width": 882,
+        "height": 227,
         "alt": "CAUSAS DE LOS CONFLICTOS LABORALES (1963-1972).. Tabla vectorial; los datos también están disponibles en texto.",
         "sourceUrl": "https://drive.google.com/file/d/155Jx30N6VJP717z5e_5fyEhckcKSgk2r/view",
         "kind": "table",
         "originalSrc": "assets/documentos/pdf-2002-2-4.png",
-        "originalSha256": "c4ed9e5d17c1e2e44d8d51605b3fd41526c685b87bfe7588e24871a923052fef",
-        "reproductionNote": "Redibujo manual, no extracción vectorial certificada del PDF."
+        "originalSha256": "c4ed9e5d17c1e2e44d8d51605b3fd41526c685b87bfe7588e24871a923052fef"
       },
       "table": {
         "caption": "CAUSAS DE LOS CONFLICTOS LABORALES (1963-1972).",
@@ -14535,7 +14572,9 @@
         }
       ],
       "id": "decreto-de-desamortizacion-de-mendizabal-pdf-2002-3-1",
-      "attributionEmphasis": ["Gaceta de Madrid"],
+      "attributionEmphasis": [
+        "Gaceta de Madrid"
+      ],
       "text": [
         "Atendiendo a la necesidad y conveniencia de disminuir la deuda pública consolidada y de entregar al interés individual la masa de bienes raíces, que han venido a ser propiedad de la nación, a fin de que la agricultura y el comercio saquen de ellos las ventajas que no podrían conseguirse por entero en su actual estado, o que se demorarían con notable detrimento de la riqueza nacional, otro tanto tiempo como se tardara en proceder a su venta; teniendo presente la ley de 16 de enero último y conformándome con lo propuesto por el Consejo de Ministros, en nombre de mi excelsa hija la reina doña Isabel II, he venido en decretar lo siguiente:",
         "Artículo 1º: Queden declarados en venta desde ahora todos los bienes raíces de cualquier clase, que hubiesen pertenecido a las comunidades y corporaciones religiosas extinguidas y los demás que hayan sido adjudicados a la nación por cualquier título o motivo...",
@@ -14722,7 +14761,9 @@
     },
     {
       "id": "herr-estatuto-real",
-      "attributionEmphasis": ["Ensayo histórico de la España contemporánea"],
+      "attributionEmphasis": [
+        "Ensayo histórico de la España contemporánea"
+      ],
       "title": "Richard Herr sobre el Estatuto Real y el liberalismo",
       "type": "texto",
       "blocks": [
@@ -14969,7 +15010,9 @@
     },
     {
       "id": "federacion-trabajadores-1883",
-      "attributionEmphasis": ["Crónica de los Trabajadores de la Región Española"],
+      "attributionEmphasis": [
+        "Crónica de los Trabajadores de la Región Española"
+      ],
       "title": "La Federación de Trabajadores y la organización anarquista",
       "type": "texto",
       "blocks": [
@@ -15264,7 +15307,9 @@
     },
     {
       "id": "alfonso-xiii-despedida-1931",
-      "attributionEmphasis": ["ABC"],
+      "attributionEmphasis": [
+        "ABC"
+      ],
       "title": "Alfonso XIII se despide del país",
       "type": "texto",
       "blocks": [
@@ -15601,7 +15646,7 @@
       ],
       "date": "1917",
       "sourceCaption": "Material de 2003. Examen 1.pdf, Opción B.",
-      "quality": "Reproducción nítida del mapa de afiliación obrera a comienzos del siglo XX aportada por el usuario. Se conserva el enlace al PDF original del examen 1 de 2003 (Opción B); la sustitución no añade una aparición.",
+      "quality": "Redibujo vectorial aproximado del mapa del examen, con círculos y sectores reconstruidos desde la reproducción original y cartografía provincial de Miguillen (CC BY-SA 3.0). No asigna cifras absolutas; se conserva el recorte original para cotejar la lectura.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -15634,11 +15679,26 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/pdf-2003-1-4.png",
+        "src": "assets/documentos/mapa-afiliacion-obrera-1917-vector.svg",
         "width": 1142,
-        "height": 602,
-        "alt": "Distribución de la afiliación obrera en 1917. Reproducción clara del material del examen.",
-        "sourceUrl": "https://drive.google.com/file/d/1XDODoBqLulonuiXw0Z598p2YYRrF1DRd/view"
+        "height": 620,
+        "alt": "Redibujo vectorial aproximado del mapa de afiliación obrera en 1917, con gráficos circulares naranjas para la UGT y azules para la CNT.",
+        "examCaption": {
+          "text": "Distribución de la afiliación obrera en España en 1917.\nFuente: Artola, M. (dir.): Enciclopedia de Historia de España: vol. VI.",
+          "emphasis": [
+            "Enciclopedia de Historia de España: vol. VI"
+          ]
+        },
+        "reproductionNote": "Redibujo aproximado desde el escaneo original; el círculo de Soria se amplía ligeramente para facilitar la lectura. Los sectores no representan cifras absolutas.",
+        "sourceUrl": "https://drive.google.com/file/d/1XDODoBqLulonuiXw0Z598p2YYRrF1DRd/view",
+        "selectable": true,
+        "originalSrc": "assets/documentos/pdf-2003-1-4.png",
+        "attribution": {
+          "text": "Cartografía base: Miguillen, España-loc.svg (Wikimedia Commons)",
+          "url": "https://commons.wikimedia.org/wiki/File:Espa%C3%B1a-loc.svg",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        }
       }
     },
     {
@@ -15712,7 +15772,9 @@
     },
     {
       "id": "espartero-librecambismo-1842",
-      "titleEmphasis": ["El Republicano"],
+      "titleEmphasis": [
+        "El Republicano"
+      ],
       "title": "Espartero y el librecambismo: caricatura de El Republicano",
       "type": "imagen",
       "blocks": [
@@ -15766,7 +15828,9 @@
       },
       "examCaption": {
         "text": "Caricatura aparecida en \"El Republicano\" (1842). Espartero cobra de los ingleses por sus medidas librecambistas.",
-        "emphasis": ["El Republicano"],
+        "emphasis": [
+          "El Republicano"
+        ],
         "appearanceId": "fuente-pdf-2003-2-2"
       }
     },
@@ -16097,7 +16161,10 @@
         }
       ],
       "id": "perez-galdos-sobre-las-elecciones-de-la-restauracion-pdf-2003-4-1",
-      "attributionEmphasis": ["antología de artículos", "Partidos y programas"],
+      "attributionEmphasis": [
+        "antología de artículos",
+        "Partidos y programas"
+      ],
       "text": [
         "“Es muy triste como se han hecho las últimas elecciones, con el menor número posible de electores, con bastantes resurrecciones de muertos y no pocas violencias y atropellos. Ya es costumbre que sólo voten los que de una manera u otra sacan partido de las amistades y servicios políticos y la inmensa mayoría de la nación, mirando tan importante acto con desdén, se abstiene de tomar parte en él, segura de no alcanzar por procedimientos representativos el remedio de sus males. [...] Resultado de este fraude político, es que las elecciones las hace el ministro de la Gobernación y de aquella fábrica de votos salen también las minorías. No pudiendo marchar bien el sistema sin oposición, el gobierno la fabrica con el mismo celo que pone en la construcción de la mayoría. [...] El mismo Padre Eterno, que quisiera tener un puesto en el Congreso, no lo conseguiría sin el auxilio de ese Espíritu Santo político, a quien llamamos ministro de la Gobernación. Cuando más, hay un poco de animación, batalla en los preparativos electorales; el gobierno destituyendo ayuntamientos arbitrara y violentamente, las oposiciones organizando comités y pronunciando algún discurso moderno; pero en la elección propiamente dicha, ni hay lucha ni la puede haber”.",
         "GALDÓS, B. P.: Política española (antología de artículos, 1884)",
@@ -16179,7 +16246,9 @@
       },
       "examCaption": {
         "text": "Caricatura publicada en la revista \"L'Esquella de la Torratxa\".",
-        "emphasis": ["L'Esquella de la Torratxa"],
+        "emphasis": [
+          "L'Esquella de la Torratxa"
+        ],
         "appearanceId": "fuente-pdf-2003-4-2"
       }
     },
@@ -16206,9 +16275,13 @@
         }
       ],
       "id": "garcia-cortazar-transicion-democracia-pdf-2003-4-3",
-      "headingParagraphs": [0],
+      "headingParagraphs": [
+        0
+      ],
       "centerHeadings": true,
-      "attributionEmphasis": ["Álbum de la Historia de España"],
+      "attributionEmphasis": [
+        "Álbum de la Historia de España"
+      ],
       "text": [
         "“Cuando España dio ejemplo",
         "Algunos fueron a ver el féretro para comprobar si su inquilino estaba realmente muerto, pero los más se acercaron compungidos con animo de despedirle. El viejo general dormía en su interior mientras sus desobedientes hijos hacían por fin lo que les daba la gana. Hasta en los últimos años, su consumida figura y su hilo de voz habían sido un estorbo para la llegada de la ansiada democracia. A pesar de las manifestaciones ciudadanas, de la cada vez más nutrida oposición política, de los consejos al oído que hablaban de una jubilación tardía, Franco se murió en la cama, atesorando las arcas de poder que nadie se atrevió a quitarle en vida. Cuando las lagrimas de Arias Navarro salpicaron las pantallas de televisión de los hogares españoles, el champán fue la bebida más demandada por los que habrían deseado adelantar unos cuantos años el entierro.",
@@ -16633,7 +16706,9 @@
     },
     {
       "id": "temime-migraciones-urbanas",
-      "attributionEmphasis": ["Historia de la España contemporánea"],
+      "attributionEmphasis": [
+        "Historia de la España contemporánea"
+      ],
       "title": "Migraciones y crecimiento urbano en la España contemporánea",
       "type": "texto",
       "blocks": [
@@ -16945,10 +17020,14 @@
         }
       ],
       "id": "manifiesto-de-primo-de-rivera-pdf-2004-1-3",
-      "headingParagraphs": [0],
+      "headingParagraphs": [
+        0
+      ],
       "centerHeadings": true,
       "headingEmphasis": {
-        "0": ["ABC"]
+        "0": [
+          "ABC"
+        ]
       },
       "text": [
         "Manifiesto del General Primo de Rivera, publicado en ABC el 14 de septiembre de 1923",
@@ -16978,10 +17057,14 @@
     },
     {
       "id": "blanco-white-1808",
-      "headingParagraphs": [0],
+      "headingParagraphs": [
+        0
+      ],
       "centerHeadings": true,
       "headingEmphasis": {
-        "0": ["Escritos de José María Blanco White, 1808."]
+        "0": [
+          "Escritos"
+        ]
       },
       "title": "Blanco White ante la crisis de 1808",
       "type": "texto",
@@ -17031,7 +17114,9 @@
     },
     {
       "id": "goya-carga-mamelucos",
-      "titleEmphasis": ["La carga de los mamelucos"],
+      "titleEmphasis": [
+        "La carga de los mamelucos"
+      ],
       "title": "La carga de los mamelucos, de Goya",
       "type": "imagen",
       "blocks": [
@@ -17085,7 +17170,9 @@
       },
       "examCaption": {
         "text": "Francisco de Goya (1814): La carga de los Mamelucos, Madrid, Museo del Prado.",
-        "emphasis": ["La carga de los Mamelucos"],
+        "emphasis": [
+          "La carga de los Mamelucos"
+        ],
         "appearanceId": "fuente-pdf-2004-2-2"
       }
     },
@@ -17440,8 +17527,12 @@
     },
     {
       "id": "clarin-regenta-turno",
-      "titleEmphasis": ["La Regenta"],
-      "attributionEmphasis": ["La Regenta"],
+      "titleEmphasis": [
+        "La Regenta"
+      ],
+      "attributionEmphasis": [
+        "La Regenta"
+      ],
       "title": "Clarín: el turno pacífico en La Regenta",
       "type": "texto",
       "blocks": [
@@ -17543,7 +17634,9 @@
       },
       "examCaption": {
         "text": "Sagasta es paseado en triunfo sobre un embudo y va seguido de una procesión en la que desfilan todos los vicios electorales de la época. Caricatura de “La Carcajada”.",
-        "emphasis": ["La Carcajada"],
+        "emphasis": [
+          "La Carcajada"
+        ],
         "appearanceId": "fuente-pdf-2004-4-2"
       }
     },
@@ -17778,7 +17871,9 @@
         }
       ],
       "id": "federacion-trabajadores-1883-pdf-2004-6-1",
-      "attributionEmphasis": ["Crónica de los Trabajadores de la Región Española"],
+      "attributionEmphasis": [
+        "Crónica de los Trabajadores de la Región Española"
+      ],
       "text": [
         "[...] La Federación de Trabajadores anárquico-colectivistas [...] no espera ni quiere nada del Estado y sí de la organización de la clase trabajadora, organización distinta y opuesta a la de todos los partidos políticos; porque éstos aspiran a la conquista del gobierno y los anarquistas deseamos la abolición de todos los poderes autoritarios; y porque nos ofrecéis la mejora y nosotros queremos la completa emancipación del pueblo [...]. Si aceptaseis el Pacto y la Federación como los aceptan los anarquistas, sería fácil entendernos para trabajar sin tregua ni descanso en pro de la única Revolución posible, [...] la LIBRE FEDERACIÓN UNIVERSAL DE TODOS LOS MUNICIPIOS LIBRES.",
         "Crónica de los Trabajadores de la Región Española, 1883."
@@ -18146,7 +18241,9 @@
         }
       ],
       "id": "cartilla-union-patriotica-1928-pdf-2005-1-3",
-      "attributionEmphasis": ["Unión Patriótica"],
+      "attributionEmphasis": [
+        "Unión Patriótica"
+      ],
       "text": [
         "Cartilla de la Unión Patriótica",
         "Decidme: ¿Qué es la UNIÓN PATRIÓTICA? La UNIÓN PATRIÓTICA es una Agrupación de españoles que procuran distinguirse en el cumplimiento de sus deberes. [...] ¿Cuáles son los deberes patrióticos? El conocimiento y la divulgación de las glorias y del valor histórico de España./ La defensa de su unidad nacional./ El sacrificio personal para defender la Patria contra sus enemigos exteriores e interiores. [...] ¿Cuál es el origen de la UNIÓN PATRIÓTICA? La santa rebeldía del alzamiento militar que, bajo las órdenes del general Primo de Rivera, salvó a España de su inmediata ruina. ¿Es la UNIÓN PATRIÓTICA un partido político? No es un partido político; es una organización ciudadana...",
@@ -18647,7 +18744,9 @@
       },
       "examCaption": {
         "text": "Chiste de Máximo aparecido en El País, febrero de 1976",
-        "emphasis": ["El País"],
+        "emphasis": [
+          "El País"
+        ],
         "appearanceId": "fuente-pdf-2005-4-4"
       }
     },
@@ -18674,7 +18773,9 @@
         }
       ],
       "id": "perez-galdos-sobre-las-elecciones-de-la-restauracion-pdf-2005-5-1",
-      "attributionEmphasis": ["Antología de artículos"],
+      "attributionEmphasis": [
+        "Antología de artículos"
+      ],
       "text": [
         "El fraude electoral",
         "Es muy triste considerar cómo se han hecho las últimas elecciones, con el menor número posible de electores, con bastantes resurrecciones de muertos y no pocas violencias y atropellos. Ya es costumbre que sólo voten los que de una manera u otra sacan partido de las amistades y servicios políticos, y la inmensa mayoría de la nación, mirando tan importante acto con desdén, se abstiene de tomar parte en él, segura de no alcanzar por procedimientos representativos el remedio de sus males. Por esto vemos que no hay gobierno que no saque mayoría en el número y forma que más le cuadra y desde que un bando político, cualquiera que sea, se entroniza en el Ministerio de Gobernación, ya puede estar seguro de que el país le ha de graciar con unas cámaras a su gusto.",
@@ -18804,7 +18905,9 @@
     },
     {
       "id": "tunon-lara-republica-1931",
-      "attributionEmphasis": ["Tres claves de la Segunda República"],
+      "attributionEmphasis": [
+        "Tres claves de la Segunda República"
+      ],
       "title": "Tuñón de Lara sobre la llegada de la Segunda República",
       "type": "texto",
       "blocks": [
@@ -18931,10 +19034,14 @@
         }
       ],
       "id": "blanco-white-1808-pdf-2006-1-1",
-      "headingParagraphs": [0],
+      "headingParagraphs": [
+        0
+      ],
       "centerHeadings": true,
       "headingEmphasis": {
-        "0": ["Escritos de José María Blanco White, 1808"]
+        "0": [
+          "Escritos"
+        ]
       },
       "text": [
         "Escritos de José María Blanco White, 1808",
@@ -19075,8 +19182,12 @@
     },
     {
       "id": "hemingway-guerra-civil",
-      "titleEmphasis": ["Por quien doblan las campanas"],
-      "attributionEmphasis": ["Por quien doblan las campanas"],
+      "titleEmphasis": [
+        "Por quien doblan las campanas"
+      ],
+      "attributionEmphasis": [
+        "Por quien doblan las campanas"
+      ],
       "title": "Hemingway: Por quien doblan las campanas",
       "type": "texto",
       "blocks": [
@@ -19204,7 +19315,9 @@
         }
       ],
       "id": "cartilla-union-patriotica-1928-pdf-2006-3-3",
-      "attributionEmphasis": ["Unión Patriótica"],
+      "attributionEmphasis": [
+        "Unión Patriótica"
+      ],
       "text": [
         "Cartilla de la Unión Patriótica",
         "Decidme: ¿Qué es la UNIÓN PATRIÓTICA?",
@@ -19242,7 +19355,9 @@
     },
     {
       "id": "gutierrez-industria-1839",
-      "attributionEmphasis": ["Nuevas consideraciones sobre libertad absoluta de comercio"],
+      "attributionEmphasis": [
+        "Nuevas consideraciones sobre libertad absoluta de comercio"
+      ],
       "title": "Gutiérrez sobre la industria del hierro y la libertad de comercio",
       "type": "texto",
       "blocks": [
@@ -19468,9 +19583,13 @@
         }
       ],
       "id": "manifiesto-persas-1814-pdf-2006-5-1",
-      "headingParagraphs": [0],
+      "headingParagraphs": [
+        0
+      ],
       "centerHeadings": false,
-      "attributionEmphasis": ["Manifiesto de los Persas"],
+      "attributionEmphasis": [
+        "Manifiesto de los Persas"
+      ],
       "text": [
         "“SEÑOR",
         "1. Era costumbre de los antiguos persas pasar cinco días de anarquía después del fallecimiento de su rey, a fin de que la experiencia de los asesinatos, robos y otras desgracias les obligase a ser más fieles a su sucesor. Para serlo España a V. M. no necesitaba igual ensayo en los seis años de su cautividad. Del número de los españoles que se complacen al ver restituido a V. M. al trono de sus mayores, son los que firman esta reverente exposición con el carácter de representantes de España [...].",
@@ -19624,7 +19743,9 @@
         }
       ],
       "id": "alfonso-xiii-despedida-1931-pdf-2006-6-3",
-      "attributionEmphasis": ["ABC"],
+      "attributionEmphasis": [
+        "ABC"
+      ],
       "text": [
         "Alfonso XIII se despide del país “Las elecciones celebradas el domingo me revelan claramente que no tengo hoy el amor de mi pueblo. Mi conciencia me dice que ese desvío no será definitivo, porque procuré servir a España, puesto el único afán en el interés público hasta en las más críticas coyunturas. Un Rey puede equivocarse, y sin duda erré yo alguna vez, pero sé bien que nuestra patria se",
         "mostró en todo momento generosa ante las culpas sin malicia. Soy el Rey de todos los españoles, y también un español. Hallaría medios sobrados para mantener mis regias prerrogativas, en eficaz forcejeo con quienes las combaten. Pero, resueltamente, quiero apartarme de cuanto sea lanzar un compatriota contra otro en fratricida guerra civil. No renuncio a ninguno de mis derechos, porque más que míos son depósito acumulado de la Historia, de cuya custodia ha de pedirme algún día cuenta rigurosa. Espero conocer la auténtica y adecuada expresión de la conciencia colectiva, y mientras habla la nación suspendo deliberadamente el ejercicio del Poder Real y me aparto de España, reconociéndola así como única señora de sus destinos. También ahora creo cumplir con el deber que me dicta mi amor a la Patria. Pido a Dios que tan hondo como yo lo sientan y lo cumplan los demás españoles”.",
@@ -20208,7 +20329,9 @@
     },
     {
       "id": "sevilla-guzman-reforma-agraria",
-      "attributionEmphasis": ["Papers. Revista de Sociología"],
+      "attributionEmphasis": [
+        "Papers. Revista de Sociología"
+      ],
       "title": "Sevilla Guzmán sobre la reforma agraria republicana",
       "type": "texto",
       "blocks": [
@@ -20384,7 +20507,9 @@
         }
       ],
       "id": "decreto-suspension-garantias-1923-pdf-2007-5-3",
-      "attributionEmphasis": ["Gaceta de Madrid"],
+      "attributionEmphasis": [
+        "Gaceta de Madrid"
+      ],
       "text": [
         "“Excmo. Sr. En uso de las facultades que me confiere el Real Decreto de esta fecha. Vengo en disponer lo siguiente:",
         "Art. 1.° Se suspenden temporalmente en todas las provincias del Reino las garantías expresadas en los artículos 4.°, 5.°, 6.° y 9.° y párrafo primero, segundo y tercero del artículo 13 de la Constitución.",
@@ -20550,7 +20675,9 @@
         }
       ],
       "id": "castelar-libertades-restauracion-1881-pdf-2007-6-2",
-      "attributionEmphasis": ["Discursos parlamentarios"],
+      "attributionEmphasis": [
+        "Discursos parlamentarios"
+      ],
       "text": [
         "“Hemos entrado en un nuevo periodo político al que he consagrado mi obra desde 1874. El Ministerio presidido por Canovas había prestado relevantes servicios, terminado la guerra civil en España y en Cuba. Pero no había sabido controlar el orden alcanzado por los sacrificios de todos, con la libertad de todos. Y la nación a pesar de sus desgracias históricas, ama los principios liberales. Y debo decirle que el señor Sagasta los aplica con sinceridad y con deseo de no asustarse de los inconvenientes que trae consigo. Ha colgado la Ley de Imprenta en el Museo Arqueológico de las leyes inútiles; ha abierto la Universidad a todas las ideas y a todas las escuelas; ha dejado un amplio derecho de reunión que usa la democracia según le place y ha entrado en un periodo tal de libertades prácticas y tangibles que no podemos envidiar cosa alguna a los pueblos mas liberales de la tierra: Nosotros, si sabemos mantener la paz pública y el orden regular en las calles y en los campos [….].”",
         "CASTELAR, E: Discursos parlamentarios, 1881."

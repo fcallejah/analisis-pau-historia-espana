@@ -1231,6 +1231,42 @@ def check_artwork_title_italics(browser, options):
     context.close()
 
 
+def check_blanco_white_work_title_italics(browser, options):
+    with browser.new_context(service_workers="block", reduced_motion="reduce", **options) as context:
+        page = context.new_page()
+        errors = []
+        page.on("pageerror", lambda error: errors.append(str(error)))
+        page.goto(f"{BASE}/documentos.html")
+        ready(page)
+        records = {record["id"]: record for record in
+                   page.request.get(f"{BASE}/data/documentos.json").json()["documents"]}
+        group = next(group for group in
+                     page.request.get(f"{BASE}/data/documentos.json").json()["textGroups"]
+                     if group[0] == "blanco-white-1808")
+        page.locator("#document-search").fill("Blanco White")
+        open_card(page, "blanco-white-1808")
+        heading = page.locator(".document-full-source > blockquote > p").first
+        expected = records["blanco-white-1808"]["text"][0]
+
+        def verify_heading(node, expected_heading):
+            assert node.inner_text() == expected_heading
+            assert node.locator("em").all_text_contents() == ["Escritos"]
+            return node.evaluate("""node => [...node.childNodes].filter(n=>n.nodeType===3)
+                .map(n=>n.textContent).join('')""")
+
+        assert verify_heading(heading, expected) == " de José María Blanco White, 1808."
+        versions = page.locator(".document-text-versions")
+        versions.locator(":scope > summary").click()
+        assert versions.locator(".document-text-version").count() == len(group) - 1
+        for member in group:
+            if member == "blanco-white-1808":
+                continue
+            variant = versions.locator(f'[data-version-id="{member}"] blockquote > p').first
+            rest = verify_heading(variant, records[member]["text"][0])
+            assert rest.strip(" .") == "de José María Blanco White, 1808"
+        assert not errors, errors
+
+
 def check_first_republic_presidents(browser, options):
     context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
     page = context.new_page()
@@ -1371,6 +1407,13 @@ def check_orientation_link_arrows(browser, options):
         assert "↗" not in link.text_content()
         assert link.get_attribute("target") == "_blank"
         assert link.evaluate("node=>node.scrollWidth<=node.clientWidth+1")
+    for width in (320, 375, 520, 768, 1024, 1440):
+        page.set_viewport_size({"width": width, "height": 900})
+        sizes = page.locator(".orientation-courses > li > *").evaluate_all(
+            "nodes => nodes.map(node => [Math.round(node.getBoundingClientRect().width), "
+            "Math.round(node.getBoundingClientRect().height)])"
+        )
+        assert len(set(map(tuple, sizes))) == 1, (width, sizes)
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
     context.close()
 
@@ -1455,6 +1498,7 @@ if __name__ == "__main__":
             check_text_selection_presentation(browser, options)
             check_cortazar_italics_and_cortes_people(browser, options)
             check_artwork_title_italics(browser, options)
+            check_blanco_white_work_title_italics(browser, options)
             check_first_republic_presidents(browser, options)
             check_song_verses_layout(browser, options)
             check_1978_compilation(browser, options)

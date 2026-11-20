@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v406";
+const CACHE = "pau-he-v420";
 const CORE = [
   "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./site-footer.css",
@@ -116,6 +116,7 @@ const CORE = [
   "./assets/documentos/pdf-2002-6-4.png",
   "./assets/documentos/pdf-2003-1-2.png",
   "./assets/documentos/pdf-2003-1-4.png",
+  "./assets/documentos/mapa-afiliacion-obrera-1917-vector.svg",
   "./assets/documentos/pdf-2003-2-2.png",
   "./assets/documentos/pdf-2003-2-4.png",
   "./assets/documentos/grafica-pib-habitante-1939-1973.svg",

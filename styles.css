@@ -179,12 +179,16 @@ kbd{padding:1px 5px;border:1px solid #dfded7;color:#8a8b83;font:10px var(--mono)
 .orientation-current strong{font-size:20px;line-height:1.2}
 .orientation-current:hover,.orientation-current:focus-visible{text-decoration:underline}
 @media(max-width:520px){.orientation-archive-heading{grid-template-columns:minmax(0,1fr)}}
-.orientation-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(126px,100%),1fr));gap:8px;margin:14px 0;padding:0;list-style:none}
-.orientation-courses a,.orientation-unavailable{display:flex;flex-wrap:wrap;align-items:center;gap:6px;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none}
+.orientation-courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(126px,100%),1fr));grid-auto-rows:54px;gap:8px;margin:14px 0;padding:0;list-style:none}
+.orientation-courses>li{min-width:0}
+.orientation-courses a,.orientation-unavailable{box-sizing:border-box;display:flex;width:100%;height:54px;min-height:54px;flex-wrap:nowrap;align-items:center;justify-content:center;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none}
 .orientation-courses a{border-color:#789326;background:#e8f4bd;color:#26320c}
 .orientation-courses a:hover,.orientation-courses a:focus-visible{border-color:currentColor;text-decoration:underline}
-.orientation-unavailable{color:var(--muted);background:var(--surface);border-style:dashed}
+.orientation-unavailable{flex-direction:column;gap:2px;color:var(--muted);background:var(--surface);border-style:dashed}
 .orientation-unavailable small{font:400 10px/1.3 var(--sans)}
+.gen-library-shortcut{margin:0 0 18px}
+.gen-library-shortcut a{display:inline-flex;min-height:42px;align-items:center;padding:0 13px;border:1px solid #789326;border-radius:8px;background:#d6ee7a;color:#26320c;font:600 12px/1.3 var(--sans);text-decoration:none}
+.gen-library-shortcut a:hover,.gen-library-shortcut a:focus-visible{background:#c6e45e;text-decoration:underline}
 .caveat{max-width:750px;margin:16px 0 0;color:var(--muted);font-size:11px}
 .github-button{display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border:1px solid #111;border-radius:6px;background:#111;color:#fff;font-size:11px;font-weight:700;text-decoration:none;transition:background-color .15s ease,color .15s ease}
 .github-button svg{width:15px;height:15px}
