@@ -1164,6 +1164,8 @@ class DocumentCorpusTests(unittest.TestCase):
         record = records["constitucion-1812-articulos-2008"]
         compilation = record["studyCompilation"]
         paragraphs = compilation["text"]
+        self.assertFalse(compilation["showTitle"])
+        self.assertTrue(paragraphs[0].startswith("DON FERNANDO SÉPTIMO"))
         self.assertEqual(len(paragraphs), 20)
         articles = [p for p in paragraphs if p.startswith("Art. ")]
         self.assertEqual([int(re.match(r"Art\. (\d+)\.", p)[1]) for p in articles],
@@ -1196,7 +1198,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual({a["year"] for a in model["appearances"]}, {2010, 2012})
         self.assertEqual([p.split(". ")[1] for p in model["text"][1:]], ["1", "2", "3", "4"])
         self.assertNotIn("appearances", compilation)
-        self.assertIn("No es el texto íntegro", compilation["readingNote"])
+        self.assertNotIn("readingNote", compilation)
         self.assertIn("tiene libertad", record["text"][5])
 
     def test_1978_compilation_combines_introduction_and_requested_articles(self):

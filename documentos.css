@@ -259,9 +259,10 @@ html[data-theme="dark"] .document-exam-caption .document-exam-footnote{color:#ff
 .document-preview blockquote.document-verse-pair,.document-full-source blockquote.document-verse-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,30ch),1fr));gap:2rem;width:100%}
 .document-preview blockquote.document-verse-pair p,.document-full-source blockquote.document-verse-pair p{margin:0;text-align:center;text-align-last:center;white-space:pre-line;hyphens:none;-webkit-hyphens:none}
 .document-group-note,.document-variant-sources,.document-reading-note{font-size:13px;color:var(--muted)}
-.document-group-heading{display:flex;align-items:flex-start;flex-wrap:wrap;gap:7px;margin:0 0 14px;padding-inline-start:10px;border-inline-start:3px solid #a7cf32;font:400 13px/1.5 "DM Sans",Arial,sans-serif}
+.document-group-heading{display:flex;align-items:center;gap:7px;margin:0 0 14px;padding-inline-start:10px;border-inline-start:3px solid #a7cf32;font:400 13px/1.5 "DM Sans",Arial,sans-serif}
 .document-group-label{display:inline-flex;align-items:center;padding:1px 8px;border-radius:999px;background:#d6ee7a;color:#26320c;font-weight:700;white-space:nowrap}
 .document-group-description{min-width:0}
+@media(max-width:620px){.document-group-heading{flex-direction:column;padding-inline-end:13px;text-align:center}}
 .document-reading-note{border-inline-start:3px solid var(--accent);padding-inline-start:10px}
 .document-variant-sources>p{margin-bottom:6px}
 .document-text-version{margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}

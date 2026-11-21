@@ -1293,13 +1293,15 @@
         heading.append(element("span", "Recopilación", "document-group-label"));
         if (document.textVersions) {
           heading.append(element("span",
-            "Este texto ha aparecido con variaciones a lo largo de varios exámenes; se indican abajo.",
+            "Han caído variaciones de este mismo texto; todas están al final.",
             "document-group-description"));
         } else {
           heading.append(element("span", "Texto reunido para estudiar.", "document-group-description"));
         }
         box.append(heading);
-        if (document.studyCompilation && !titleIsSourceHeading) box.append(element("h3", primary.title));
+        if (document.studyCompilation && primary.showTitle !== false && !titleIsSourceHeading) {
+          box.append(element("h3", primary.title));
+        }
       }
       if (!preview && primary.readingNote) {
         box.append(element("p", primary.readingNote, "document-reading-note"));
@@ -2111,6 +2113,8 @@
         record.type !== "texto" || !record.studyCompilation
         || !["title", "sourceUrl"].every((key) =>
           typeof record.studyCompilation[key] === "string" && record.studyCompilation[key].trim())
+        || record.studyCompilation.showTitle !== undefined
+          && typeof record.studyCompilation.showTitle !== "boolean"
         || record.studyCompilation.readingNote !== undefined
           && (typeof record.studyCompilation.readingNote !== "string"
             || !record.studyCompilation.readingNote.trim())

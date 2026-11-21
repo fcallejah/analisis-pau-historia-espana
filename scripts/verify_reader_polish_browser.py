@@ -553,7 +553,16 @@ def check_text_selection_presentation(browser, options):
     assert page.locator("#document-dialog-content > .document-meta strong").inner_text() == f"{total} apariciones en total"
     group_note = page.locator(".document-group-heading")
     assert group_note.locator(".document-group-label").inner_text() == "Recopilación"
-    assert "variaciones a lo largo de varios exámenes" in group_note.inner_text()
+    assert group_note.locator(".document-group-description").inner_text() == "Han caído variaciones de este mismo texto; todas están al final."
+    assert group_note.evaluate("""node => {
+        const label = node.querySelector(".document-group-label").getBoundingClientRect();
+        const description = node.querySelector(".document-group-description").getBoundingClientRect();
+        const heading = node.getBoundingClientRect();
+        return innerWidth <= 620
+            ? Math.abs((label.left + label.right) / 2 - (heading.left + heading.right) / 2) < 2
+                && description.top >= label.bottom
+            : description.left >= label.right && description.top < label.bottom;
+    }""")
     assert group_note.evaluate(
         "node => getComputedStyle(node).borderInlineStartWidth === '3px' "
         "&& getComputedStyle(node).borderInlineStartStyle === 'solid' "
@@ -1154,7 +1163,7 @@ def check_cortazar_italics_and_cortes_people(browser, options):
     assert page.locator(".document-full-source > .document-reading-note").count() == 0
     collection = page.locator(".document-full-source > .document-group-heading")
     assert collection.locator(".document-group-label").inner_text() == "Recopilación"
-    assert "variaciones a lo largo de varios exámenes" in collection.inner_text()
+    assert collection.locator(".document-group-description").inner_text() == "Han caído variaciones de este mismo texto; todas están al final."
     assert "pendiente de cotejo" not in page.locator("#document-dialog-content").inner_text()
     versions = page.locator(".document-text-versions")
     versions.locator(":scope > summary").click()
