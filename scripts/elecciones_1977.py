@@ -19,7 +19,7 @@ RESULTS = (
     ("PSP-US", "PSP-US — Partido Socialista Popular-Unidad Socialista", 816754, 6),
     ("UDC-CD", "UDC-CD — Unió del Centre i la Democràcia Cristiana de Catalunya", 172791, 2),
     ("EC-FED", "EC-FED — Esquerra de Catalunya", 143954, 1),
-    ("EE", "EE — Euskadiko Ezquerra", 61417, 1),
+    ("EE", "EE — Euskadiko Ezkerra", 61417, 1),
     ("CIC", "Candidaturas independientes de centro", 67017, 2),
 )
 

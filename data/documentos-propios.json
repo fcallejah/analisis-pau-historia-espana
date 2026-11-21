@@ -2499,7 +2499,7 @@
         {
       "id": "propio-elecciones-europeas-2014",
       "visualization": "elections",
-      "title": "Elecciones europeas de 2014 en España",
+      "title": "Elecciones europeas de 2014 en España*",
       "date": "25 de mayo de 2014",
       "blocks": [
         12
@@ -2540,9 +2540,10 @@
             "svg": "elecciones-europeas-2014-semicirculo.svg",
             "seats": 54,
             "majority": null,
-            "heading": "Resultado elecciones europeas 2014 (25 de mayo)",
-            "title": "Resultado elecciones europeas 2014 (25 de mayo)",
-            "center": "54 escaños"
+            "heading": "Resultado elecciones europeas 2014 (25 de mayo)*",
+            "title": "Resultado elecciones europeas 2014 (25 de mayo)*",
+            "center": "54 escaños",
+            "postCutoffNote": "* Ampliación posterior al corte de 2012: las europeas de 2014 reflejan una mayor fragmentación del voto frente al predominio PP–PSOE, con Podemos y Ciudadanos entre las candidaturas con representación."
           },
           "headers": [
             "Candidatura",
@@ -2658,7 +2659,7 @@
       "quality": "Datos del Congreso: candidaturas con representación y votos de candidaturas sin escaño. 2015 se añade como ampliación: queda fuera del corte de 2012 de este subbloque. No es un documento de examen.",
       "id": "propio-elecciones-generales-2015",
       "visualization": "elections",
-      "title": "Elecciones generales de 2015",
+      "title": "Elecciones generales de 2015*",
       "date": "2015",
       "unitIds": [
         "iii-13"
@@ -2873,12 +2874,13 @@
           "chart": {
             "svg": "elecciones-generales-2015-semicirculo.svg",
             "seats": 350,
-            "heading": "Resultado elecciones 2015 (20 de diciembre)",
-            "title": "Resultado elecciones 2015 (20 de diciembre)",
+            "heading": "Resultado elecciones 2015 (20 de diciembre)*",
+            "title": "Resultado elecciones 2015 (20 de diciembre)*",
             "center": "350 escaños",
             "showVotes": true,
             "subtitle": "Candidaturas y alianzas",
-            "majority": 176
+            "majority": 176,
+            "postCutoffNote": "* Ampliación posterior al corte de 2012: las generales de 2015 reflejan el desgaste del tradicional turnismo PP–PSOE y la fragmentación del Congreso, con Podemos y Ciudadanos entre las nuevas fuerzas con representación."
           }
         }
       ]

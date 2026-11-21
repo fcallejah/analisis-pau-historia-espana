@@ -2,7 +2,7 @@
 <title id="title">Elecciones generales de 1936: escaños por bloques</title>
 <desc id="desc">Diagrama semicircular proporcional a los 473 escaños, con las candidaturas y sus porcentajes de representación a la derecha. La línea discontinua marca la mitad; la mayoría absoluta requiere 237 escaños.</desc>
 <metadata>{&quot;source&quot;: &quot;https://historiaelectoral.com/e1931r.html&quot;, &quot;year&quot;: 1936}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="545" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Cortes · 1936</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por bloques</text>
@@ -26,5 +26,4 @@
 <text class="party" x="454" y="218">Centro y nacionalistas</text>
 <text class="share" x="744" y="218" text-anchor="end">9,7 %</text>
 <text class="party" x="454" y="236">· 46 escaños</text>
-<text class="footnote" x="380" y="515" text-anchor="middle">Colores editoriales; no indican grupos parlamentarios.</text>
 </svg>

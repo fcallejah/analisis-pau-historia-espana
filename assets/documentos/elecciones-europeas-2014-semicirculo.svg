@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="608" viewBox="0 0 760 608" role="img" aria-labelledby="title desc">
-<title id="title">Resultado elecciones europeas 2014 (25 de mayo)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 54 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. Se representan únicamente los escaños asignados a España.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="630" viewBox="0 0 760 630" role="img" aria-labelledby="title desc">
+<title id="title">Resultado elecciones europeas 2014 (25 de mayo)*</title>
+<desc id="desc">Diagrama semicircular proporcional a los 54 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. Se representan únicamente los escaños asignados a España. *Otros escaños: L&#x27;Esquerra pel Dret a Decidir (EPDD): 2; Ciudadanos-Partido de la Ciudadanía (C&#x27;s): 2; Los Pueblos Deciden (LPD): 1; Primavera Europea: 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.boe.es/buscar/doc.php?id=BOE-A-2014-6233&quot;, &quot;year&quot;: 2014}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="608" fill="#fff"/>
-<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones europeas 2014 (25 de mayo)</text>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="630" fill="#fff"/>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones europeas 2014 (25 de mayo)*</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por candidatura</text>
 <path class="sector" data-party="Partido Popular (PP)" data-seats="16" data-seat-percent="29.630" fill="#2d4d73" d="M45.00,370.00 A185,185 0 0 1 119.53,221.61 L183.42,307.43 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Partido Socialista Obrero Español (PSOE)" data-seats="14" data-seat-percent="25.926" fill="#c6464f" d="M119.53,221.61 A185,185 0 0 1 262.12,187.81 L243.54,293.18 A78,78 0 0 0 183.42,307.43 Z"/>
 <path class="sector" data-party="La Izquierda Plural" data-seats="6" data-seat-percent="11.111" fill="#315a29" d="M262.12,187.81 A185,185 0 0 1 322.50,209.79 L269.00,302.45 A78,78 0 0 0 243.54,293.18 Z"/>
-<path class="sector" data-party="Otros*" data-seats="6" data-seat-percent="11.111" fill="#92979f" d="M322.50,209.79 A185,185 0 0 1 371.72,251.08 L289.75,319.86 A78,78 0 0 0 269.00,302.45 Z"/>
-<path class="sector" data-party="Podemos" data-seats="5" data-seat-percent="9.259" fill="#7d5da5" d="M371.72,251.08 A185,185 0 0 1 399.87,296.73 L301.62,339.11 A78,78 0 0 0 289.75,319.86 Z"/>
-<path class="sector" data-party="Unión Progreso y Democracia (UPyD)" data-seats="4" data-seat-percent="7.407" fill="#d1a243" d="M399.87,296.73 A185,185 0 0 1 412.19,337.88 L306.82,356.46 A78,78 0 0 0 301.62,339.11 Z"/>
-<path class="sector" data-party="Coalición por Europa (CEU)" data-seats="3" data-seat-percent="5.556" fill="#8b1e3f" d="M412.19,337.88 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 306.82,356.46 Z"/>
+<path class="sector" data-party="Podemos" data-seats="5" data-seat-percent="9.259" fill="#7d5da5" d="M322.50,209.79 A185,185 0 0 1 364.56,243.05 L286.74,316.47 A78,78 0 0 0 269.00,302.45 Z"/>
+<path class="sector" data-party="Unión Progreso y Democracia (UPyD)" data-seats="4" data-seat-percent="7.407" fill="#d1a243" d="M364.56,243.05 A185,185 0 0 1 390.21,277.50 L297.55,331.00 A78,78 0 0 0 286.74,316.47 Z"/>
+<path class="sector" data-party="Coalición por Europa (CEU)" data-seats="3" data-seat-percent="5.556" fill="#8b1e3f" d="M390.21,277.50 A185,185 0 0 1 403.84,306.73 L303.30,343.32 A78,78 0 0 0 297.55,331.00 Z"/>
+<path class="sector" data-party="Otros*" data-seats="6" data-seat-percent="11.111" fill="#92979f" d="M403.84,306.73 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 303.30,343.32 Z"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">54</text>
 <text class="center-note" x="230" y="349" text-anchor="middle">escaños</text>
@@ -32,23 +32,24 @@
 <text class="share" x="744" y="252" text-anchor="end">11,1 %</text>
 <text class="party" x="454" y="270">· 6 escaños</text>
 <text class="metric" x="454" y="288">1.575.308 votos</text>
-<rect x="430" y="310" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="322">Otros* · 6 escaños</text>
-<text class="share" x="744" y="322" text-anchor="end">11,1 %</text>
-<text class="metric" x="454" y="340">1.755.948 votos</text>
-<rect x="430" y="362" width="14" height="14" rx="2" fill="#7d5da5"/>
-<text class="party" x="454" y="374">Podemos · 5 escaños</text>
-<text class="share" x="744" y="374" text-anchor="end">9,3 %</text>
-<text class="metric" x="454" y="392">1.253.837 votos</text>
-<rect x="430" y="414" width="14" height="14" rx="2" fill="#d1a243"/>
-<text class="party" x="454" y="426">Unión Progreso y Democracia</text>
-<text class="share" x="744" y="426" text-anchor="end">7,4 %</text>
-<text class="party" x="454" y="444">(UPyD) · 4 escaños</text>
-<text class="metric" x="454" y="462">1.022.232 votos</text>
-<rect x="430" y="484" width="14" height="14" rx="2" fill="#8b1e3f"/>
-<text class="party" x="454" y="496">Coalición por Europa (CEU)</text>
-<text class="share" x="744" y="496" text-anchor="end">5,6 %</text>
-<text class="party" x="454" y="514">· 3 escaños</text>
-<text class="metric" x="454" y="532">851.971 votos</text>
-<text class="footnote" x="380" y="578" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="310" width="14" height="14" rx="2" fill="#7d5da5"/>
+<text class="party" x="454" y="322">Podemos · 5 escaños</text>
+<text class="share" x="744" y="322" text-anchor="end">9,3 %</text>
+<text class="metric" x="454" y="340">1.253.837 votos</text>
+<rect x="430" y="362" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="374">Unión Progreso y Democracia</text>
+<text class="share" x="744" y="374" text-anchor="end">7,4 %</text>
+<text class="party" x="454" y="392">(UPyD) · 4 escaños</text>
+<text class="metric" x="454" y="410">1.022.232 votos</text>
+<rect x="430" y="432" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="444">Coalición por Europa (CEU)</text>
+<text class="share" x="744" y="444" text-anchor="end">5,6 %</text>
+<text class="party" x="454" y="462">· 3 escaños</text>
+<text class="metric" x="454" y="480">851.971 votos</text>
+<rect x="430" y="502" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="514">Otros* · 6 escaños</text>
+<text class="share" x="744" y="514" text-anchor="end">11,1 %</text>
+<text class="metric" x="454" y="532">1.755.948 votos</text>
+<text class="other-seats-note" x="380" y="594" text-anchor="middle">*Otros escaños: L&#x27;Esquerra pel Dret a Decidir (EPDD): 2; Ciudadanos-Partido de la Ciudadanía</text>
+<text class="other-seats-note" x="380" y="610" text-anchor="middle">(C&#x27;s): 2; Los Pueblos Deciden (LPD): 1; Primavera Europea: 1.</text>
 </svg>

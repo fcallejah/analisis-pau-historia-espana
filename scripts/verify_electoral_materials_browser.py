@@ -55,6 +55,7 @@ def run():
             card.locator(".document-open").click()
             dialog = page.locator("#document-dialog")
             assert dialog.locator(".document-kind").inner_text() == "MAPAS Y GRÁFICOS · BLOQUE 12"
+            assert dialog.locator(".study-chart-selector").count() == 0
             assert dialog.locator(".exam-pill").inner_text() == "Elaboración propia · puede caer"
             rows = dialog.locator(".study-chart-row")
             assert rows.count() == 3
@@ -72,14 +73,118 @@ def run():
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1979"] .document-open').click()
-            election_option = dialog.locator(".study-chart-selector option").first
-            assert election_option.inner_text() == "Resultado elecciones 1979 (1 de marzo)"
+            election_select = dialog.locator(".study-chart-selector select")
+            election_labels = election_select.locator("option").all_text_contents()
+            election_files = [
+                "elecciones-1977-diagrama-semicircular.svg",
+                "elecciones-generales-1979-semicirculo.svg",
+                "elecciones-generales-1982-semicirculo.svg",
+                "elecciones-generales-1986-semicirculo.svg",
+                "elecciones-generales-1989-semicirculo.svg",
+                "elecciones-generales-1993-semicirculo.svg",
+                "elecciones-generales-1996-semicirculo.svg",
+                "elecciones-generales-2000-semicirculo.svg",
+                "elecciones-generales-2004-semicirculo.svg",
+                "elecciones-generales-2008-semicirculo.svg",
+                "elecciones-generales-2011-semicirculo.svg",
+                "elecciones-generales-2015-semicirculo.svg",
+            ]
+            assert len(election_labels) == len(election_files) == 12
+            assert election_labels[0] == "Resultado elecciones 1977 (15 de junio)"
+            assert election_labels[1] == "Resultado elecciones 1979 (1 de marzo)"
+            assert election_labels[-1] == "Resultado elecciones 2015 (20 de diciembre)*"
+            assert dialog.locator(".study-chart-note").count() == 0
+            assert not any(
+                word in label.lower()
+                for label in election_labels
+                for word in ("andaluzas", "europeas", "referéndum")
+            )
+            selector_label = dialog.locator(".study-chart-selector")
+            assert "Elección:" not in selector_label.inner_text()
+            assert election_select.get_attribute("aria-label") == "Desplegable electoral"
+            assert "Datos del Congreso: candidaturas con representación" not in dialog.inner_text()
+            previous = dialog.get_by_role("button", name="Anterior elección")
+            next_election = dialog.get_by_role("button", name="Próxima elección")
+            assert not previous.is_disabled()
+            assert not next_election.is_disabled()
+            label_box = selector_label.bounding_box()
+            select_box = election_select.bounding_box()
+            assert abs(
+                select_box["x"] + select_box["width"] / 2
+                - label_box["x"] - label_box["width"] / 2
+            ) < 2
+            next_election.click()
+            assert dialog.locator(".study-chart-selector select").input_value() == "2"
+            assert dialog.locator(".study-election-chart").get_attribute("src").endswith(
+                "elecciones-generales-1982-semicirculo.svg"
+            )
+            dialog.get_by_role("button", name="Anterior elección").click()
+            assert dialog.locator(".study-chart-selector select").input_value() == "1"
+            assert dialog.locator(".study-election-chart").get_attribute("src").endswith(
+                "elecciones-generales-1979-semicirculo.svg"
+            )
+            for index, filename in enumerate(election_files):
+                dialog.locator(".study-chart-selector select").select_option(str(index))
+                page.wait_for_function(
+                    """filename => {
+                      const image = document.querySelector('#document-dialog .study-election-chart');
+                      return image?.complete && image.naturalWidth > 0 && image.src.endsWith(filename);
+                    }""",
+                    arg=filename,
+                )
+                if index == 0:
+                    assert dialog.get_by_role("button", name="Anterior elección").is_disabled()
+                    error_note = dialog.locator(".document-error-note")
+                    assert "UCD figura con 166 escaños" in error_note.inner_text()
+                    assert error_note.evaluate(
+                        "node => getComputedStyle(node).color"
+                    ) == "rgb(180, 35, 24)"
+                    source_link = dialog.locator(".document-collection-link")
+                    assert source_link.inner_text() == "2007 · Examen 4 · Bloque II · Opción B"
+                    assert source_link.get_attribute("href") == (
+                        "https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view"
+                    )
+                if index == len(election_files) - 1:
+                    assert dialog.get_by_role("button", name="Próxima elección").is_disabled()
+            assert dialog.locator("h2").inner_text() == "Elecciones generales de 2015*"
+            assert any(
+                "turnismo PP–PSOE" in note
+                for note in dialog.locator(".study-chart-note").all_inner_texts()
+            )
+            assert dialog.locator(".document-table caption").text_content() == "Congreso de los Diputados · 2015"
+            assert dialog.locator(".document-reading-note").count() == 0
+            for _ in range(len(election_files) + 2):
+                if not dialog.evaluate("node => node.open"):
+                    break
+                current_route = page.evaluate("location.hash")
+                dialog.get_by_role("button", name="Cerrar documento").click()
+                page.wait_for_function(
+                    "route => location.hash !== route", arg=current_route
+                )
+            assert not dialog.evaluate("node => node.open")
+            page.locator('[data-id="propio-elecciones-andaluzas-1982"] .document-open').click()
+            assert dialog.locator(".study-chart-selector").count() == 0
+            assert dialog.locator(".study-election-chart").get_attribute("src").endswith(
+                "elecciones-andaluzas-1982-semicirculo.svg"
+            )
+            page.keyboard.press("Escape")
+            page.locator('[data-id="propio-elecciones-europeas-2014"] .document-open').click()
+            assert dialog.locator(".study-chart-selector").count() == 0
+            assert dialog.locator("h2").inner_text() == "Elecciones europeas de 2014 en España*"
+            assert any(
+                "fragmentación del voto" in note
+                for note in dialog.locator(".study-chart-note").all_inner_texts()
+            )
+            assert dialog.locator(".study-election-chart").get_attribute("src").endswith(
+                "elecciones-europeas-2014-semicirculo.svg"
+            )
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1931"] .document-open').click()
             image = dialog.locator(".study-election-chart")
             assert image.get_attribute("src").endswith("elecciones-republica-1931-semicirculo.svg")
             assert "1931" in image.get_attribute("alt")
-            assert "otros*" in dialog.inner_text().lower()
+            svg = page.request.get(image.evaluate("node => node.src")).text()
+            assert "Otros*" in svg
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1933"] .document-open').click()
             image = dialog.locator(".study-election-chart")
@@ -113,7 +218,7 @@ def run():
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1982"] .document-open').click()
-            assert "PSOE + PSC" in dialog.locator(".study-chart-note").inner_text()
+            assert dialog.locator(".study-chart-note").count() == 0
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-2015"] .document-open').click()
             image = dialog.locator(".study-election-chart")
@@ -126,9 +231,8 @@ def run():
             assert dialog.get_by_role("link", name="Abrir gráfico SVG").get_attribute("href").endswith(
                 "elecciones-generales-2015-semicirculo.svg"
             )
-            assert "PSOE, PSC y PSOE-Nueva Canarias" in dialog.inner_text()
-            assert "Podemos y confluencias" in dialog.inner_text()
-            assert "Partido Popular (PP) y coaliciones" in dialog.locator(
+            assert len(dialog.locator(".study-chart-note").all_inner_texts()) == 1
+            assert "Ampliación posterior al corte de 2012" in dialog.locator(
                 ".study-chart-note"
             ).inner_text()
             dialog.get_by_text("Ver tablas y notas de los datos").click()

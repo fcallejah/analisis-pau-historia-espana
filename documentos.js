@@ -31,6 +31,8 @@
   const content = document.querySelector("#document-dialog-content");
   const previousDocument = dialog.querySelector(".document-previous");
   const nextDocument = dialog.querySelector(".document-next");
+  const shareDocumentButton = dialog.querySelector(".document-share");
+  const shareStatus = dialog.querySelector(".document-share-status");
   const readerStatus = dialog.querySelector(".document-reader-status");
   const typeButtons = [...document.querySelectorAll("[data-type]")];
   const savedButtons = [...document.querySelectorAll("[data-document-saved]")];
@@ -60,6 +62,9 @@
   let loaded = false;
   let restoring = true;
   let selectedId = null;
+  let routePushedForDialog = false;
+  let routeChangeFromHistory = false;
+  let shareStatusTimer = 0;
   let restoredView = null;
   const notices = new Map();
   function reportStorage(area, message, failed = false) {
@@ -75,6 +80,28 @@
   const positionValid = (value) => value && [value.left, value.top]
     .every((number) => Number.isFinite(number) && number >= 0);
   const sameViewUrl = (url) => url.split("#")[0] === location.href.split("#")[0];
+  const documentRouteId = () => new URLSearchParams(location.hash.slice(1)).get("documento");
+  const shareableDocumentUrl = (id) => {
+    const url = new URL("documentos.html", location.href);
+    url.hash = `documento=${encodeURIComponent(id)}`;
+    return url.href;
+  };
+  function setDocumentRoute(id, mode) {
+    const url = new URL(location.href);
+    url.hash = `documento=${encodeURIComponent(id)}`;
+    if (mode === "push") {
+      history.pushState(history.state, "", url);
+      routePushedForDialog = true;
+    } else {
+      history.replaceState(history.state, "", url);
+    }
+  }
+  function clearDocumentRoute() {
+    if (!documentRouteId()) return;
+    const url = new URL(location.href);
+    url.hash = "";
+    history.replaceState(history.state, "", url);
+  }
   function compatibleView(value) {
     if (!value || value.version !== 1) return value;
     // Earlier v1 snapshots predate saved filters and opener tracking.
@@ -142,6 +169,8 @@
     filtersWritable = false;
     console.warn("No se pudieron recuperar los filtros guardados:", error);
   }
+  let initialDocumentId = documentRouteId();
+  if (initialDocumentId && restoredView?.dialog) restoredView = { ...restoredView, dialog: null };
   function setType(value) {
     type = value;
     typeButtons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.type === type)));
@@ -897,39 +926,116 @@
     row.append(name, track, element("strong", String(value).replace(".", ","), "study-chart-value"));
     return row;
   }
+  function nationalElectionYear(record) {
+    if (record.id === "elecciones-1977-diagrama") return 1977;
+    const match = /^propio-elecciones-generales-(\d{4})$/.exec(record.id);
+    const year = match ? Number(match[1]) : 0;
+    return year >= 1979 && year <= 2015 ? year : null;
+  }
+  function isNationalElectionRecord(record) {
+    return nationalElectionYear(record) !== null;
+  }
+  function nationalElectionCharts() {
+    return documents.flatMap((record) => {
+      const year = nationalElectionYear(record);
+      if (year === null) return [];
+      if (year === 1977) {
+        if (!record.table || !record.image?.src) {
+          throw new Error("Faltan los datos del gráfico electoral de 1977");
+        }
+        return [{
+          record,
+          table: record.table,
+          year,
+          label: record.table.chart?.heading || record.table.caption,
+          src: record.image.src,
+        }];
+      }
+      return (record.tables || []).map((table) => {
+        if (!table.chart?.svg) throw new Error(`Falta el gráfico electoral de ${year}`);
+        return {
+          record,
+          table,
+          year,
+          label: table.chart.heading || table.caption,
+          src: `assets/documentos/${table.chart.svg}`,
+        };
+      });
+    }).sort((a, b) => a.year - b.year);
+  }
+  function electionChartEntry(record, table) {
+    const year = Number(record.date.match(/\d{4}/)?.[0] || table.caption.match(/\d{4}/)?.[0]);
+    if (!table.chart?.svg || !year) {
+      throw new Error(`Faltan los datos del gráfico electoral: ${table.caption}`);
+    }
+    return {
+      record,
+      table,
+      year,
+      label: table.chart.heading || table.caption,
+      src: `assets/documentos/${table.chart.svg}`,
+    };
+  }
   function studyChart(record, preview) {
     const section = element("section", undefined, "study-chart");
     const chart = element("div");
-    if (record.visualization === "elections") {
+    if (record.visualization === "elections" || record.id === "elecciones-1977-diagrama") {
       if (!preview) chart.setAttribute("aria-live", "polite");
-      const renderYear = (table) => {
-        const year = table.caption.match(/ · (\d{4})$/)[1];
+      const nationalSeries = isNationalElectionRecord(record);
+      const options = nationalSeries
+        ? nationalElectionCharts()
+        : (record.tables || []).map((table) => electionChartEntry(record, table));
+      const selectedIndex = options.findIndex((option) => option.record.id === record.id);
+      if (selectedIndex < 0) throw new Error(`No hay gráfico electoral para ${record.id}`);
+      const renderElection = (option) => {
+        const { table, year } = option;
         const image = element("img", undefined, "study-election-chart");
-        image.src = `assets/documentos/${table.chart?.svg || `elecciones-generales-${year}-semicirculo.svg`}`;
+        image.src = option.src;
         image.alt = `Semicírculo de escaños${table.chart?.showVotes === false ? " por candidatura o bloque" : ` y votos por candidatura${table.chartGroups ? " y agrupación editorial" : ""}`} en las elecciones de ${year}. Datos completos en las tablas.`;
         if (preview) image.loading = "lazy";
         chart.replaceChildren(image);
-          if (!preview && table.chartGroups) {
-            const descriptions = table.chartGroups.map((group) => group.label === "Otros*"
-              ? `«Otros*» agrupa ${group.members.length} candidaturas con escaño.`
-              : `«${group.label}» reúne las candidaturas detalladas en la tabla.`);
-            chart.append(element("p", `Agrupaciones del gráfico: ${descriptions.join(" ")} Consulta el desglose completo en la tabla.`, "study-chart-note"));
+        if (!preview && table.chart?.postCutoffNote) {
+          chart.append(element("p", table.chart.postCutoffNote, "study-chart-note"));
+        }
+        if (!preview && option.record.errorNote) {
+          chart.append(element("p", option.record.errorNote, "document-error-note"));
         }
         if (!preview) chart.append(sourceLink("Abrir gráfico SVG", image.src));
       };
-      if (!preview) {
-        const label = element("label", "Elección: ", "study-chart-selector");
+      if (!preview && nationalSeries) {
+        const selector = element("div", undefined, "study-chart-selector");
         const select = element("select");
-        record.tables.forEach((table, index) => {
-          const option = element("option", table.chart?.heading || table.caption);
+        select.setAttribute("aria-label", "Desplegable electoral");
+        options.forEach((entry, index) => {
+          const option = element("option", entry.label);
           option.value = String(index);
           select.append(option);
         });
-        select.addEventListener("change", () => renderYear(record.tables[Number(select.value)]));
-        label.append(select);
-        section.append(label);
+        select.value = String(selectedIndex);
+        const previous = element("button", "←", "study-chart-nav");
+        previous.type = "button";
+        previous.setAttribute("aria-label", "Anterior elección");
+        previous.title = "Anterior elección";
+        previous.disabled = selectedIndex === 0;
+        const next = element("button", "→", "study-chart-nav");
+        next.type = "button";
+        next.setAttribute("aria-label", "Próxima elección");
+        next.title = "Próxima elección";
+        next.disabled = selectedIndex === options.length - 1;
+        const openElection = (index) => {
+          const selected = options[index];
+          if (!selected) throw new Error("La elección seleccionada no está disponible");
+          open(selected.record, select);
+          updateReaderNavigation();
+          dialog.querySelector(".study-chart-selector select")?.focus({ preventScroll: true });
+        };
+        select.addEventListener("change", () => openElection(Number(select.value)));
+        previous.addEventListener("click", () => openElection(Number(select.value) - 1));
+        next.addEventListener("click", () => openElection(Number(select.value) + 1));
+        selector.append(previous, select, next);
+        section.append(selector);
       }
-      renderYear(record.tables[0]);
+      renderElection(options[selectedIndex]);
     } else if (record.visualization === "municipal-turnout") {
       const table = record.tables[0];
       const row = table.rows[0];
@@ -965,17 +1071,22 @@
   function source(document, preview = false) {
     const box = element("div", undefined, preview ? "document-preview" : "document-full-source");
     if (!preview && document.origin === "propio") {
-      box.append(element("p", document.quality, "document-reading-note"));
+      if (!isNationalElectionRecord(document)) {
+        box.append(element("p", document.quality, "document-reading-note"));
+      }
       if (document.readingNote) box.append(element("p", document.readingNote, "document-reading-note"));
     }
-    if (document.origin === "propio") box.append(studyChart(document, preview));
+    const series1977 = document.id === "elecciones-1977-diagrama";
+    if (document.origin === "propio" || series1977) box.append(studyChart(document, preview));
     const cardImage = document.image || document.tableImage;
     if (preview && (document.tableImage || cardImage?.kind === "table")) {
       box.classList.add("document-preview-table");
     }
     const fullImages = [document.image, ...(document.image?.additionalImages || []), document.tableImage]
       .filter((image, index, images) => image && images.findIndex((candidate) => candidate?.src === image.src) === index);
-    const visibleImages = fullImages;
+    const visibleImages = series1977
+      ? fullImages.filter((image) => image.src !== document.image?.src)
+      : fullImages;
     const imageGroup = visibleImages.length > 1
       ? element("div", undefined, preview ? "document-preview-pair" : "document-image-pair") : null;
     visibleImages.forEach((imageData, imageIndex) => {
@@ -1187,10 +1298,17 @@
     }
     return box;
   }
-  function open(document, button) {
+  function open(document, button, routeMode = "push") {
     if (!dialog.open) pagePosition = { left: window.scrollX, top: window.scrollY };
     opener = button;
     selectedId = document.id;
+    if (routeMode !== "none" && documentRouteId() !== document.id) {
+      setDocumentRoute(document.id, routeMode);
+    } else if (routeMode === "none") {
+      routePushedForDialog = false;
+    }
+    shareDocumentButton.disabled = false;
+    setShareStatus("");
     resetPeopleStages();
     content.replaceChildren();
     content.append(element("p", `${typeNames[document.type]} · Bloque ${document.blocks.join(" · ")}`, "document-kind"));
@@ -1242,9 +1360,12 @@
       : matchingAppearances(document)[0] || document.appearances[0];
     if (sourceAppearance) {
     const sourceLabel = sourceAppearance.sourceReviewStatus === "orientation-model"
-      ? `Ver PDF del modelo · p. ${sourceAppearance.officialPage}` : sourceAppearance.sourceType === "pdf"
-      ? sourceAppearance.sourceReviewStatus === "transcription-copy" ? "Ver copia PDF de origen" : "Ver PDF de origen"
-      : "Ver en la recopilación";
+      ? `Ver PDF del modelo · p. ${sourceAppearance.officialPage}`
+      : document.id === "elecciones-1977-diagrama"
+        ? "2007 · Examen 4 · Bloque II · Opción B"
+        : sourceAppearance.sourceType === "pdf"
+          ? sourceAppearance.sourceReviewStatus === "transcription-copy" ? "Ver copia PDF de origen" : "Ver PDF de origen"
+          : "Ver en la recopilación";
     const collectionLink = sourceLink(sourceLabel, sourceAppearance.sourceUrl);
     collectionLink.className = "document-collection-link";
     const footer = element("p");
@@ -1273,7 +1394,7 @@
     const card = index >= 0 ? cards[index + direction] : null;
     if (!card) return;
     const record = documents.find((item) => item.id === card.dataset.id);
-    open(record, card.querySelector(".document-open"));
+    open(record, card.querySelector(".document-open"), "replace");
     const button = direction < 0 ? previousDocument : nextDocument;
     const opposite = direction < 0 ? nextDocument : previousDocument;
     (button.disabled ? opposite.disabled ? dialog.querySelector(".document-close") : opposite : button)
@@ -1350,8 +1471,19 @@
     if (closeFromBackdrop) dialog.close();
   });
   dialog.addEventListener("close", () => {
+    const closedFromHistory = routeChangeFromHistory;
+    routeChangeFromHistory = false;
+    if (!closedFromHistory && routePushedForDialog) {
+      routePushedForDialog = false;
+      history.back();
+    } else {
+      routePushedForDialog = false;
+      if (!closedFromHistory) clearDocumentRoute();
+    }
     backdropPressed = null;
     swipeStart = null;
+    shareDocumentButton.disabled = true;
+    setShareStatus("");
     resetPeopleStages();
     updateReaderCue();
     (opener?.isConnected ? opener : filterFocusTarget())?.focus({ preventScroll: true });
@@ -1362,6 +1494,68 @@
     selectedId = null;
     saveView();
   });
+  async function copyDocumentLink(url) {
+    let clipboardFailure = null;
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(url);
+        return;
+      }
+    } catch (failure) {
+      clipboardFailure = failure;
+    }
+    const field = element("textarea");
+    field.value = url;
+    field.readOnly = true;
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.append(field);
+    field.select();
+    const copied = document.execCommand("copy");
+    field.remove();
+    if (!copied) throw clipboardFailure || new Error("El navegador no permitió copiar el enlace.");
+  }
+  function setShareStatus(message, failed = false) {
+    window.clearTimeout(shareStatusTimer);
+    shareStatusTimer = 0;
+    shareStatus.textContent = message;
+    shareStatus.hidden = !message;
+    shareStatus.setAttribute("role", failed ? "alert" : "status");
+    if (message) {
+      shareStatusTimer = window.setTimeout(() => {
+        shareStatus.hidden = true;
+        shareStatusTimer = 0;
+      }, 5000);
+    }
+  }
+  async function shareSelectedDocument() {
+    const record = documents.find((item) => item.id === selectedId);
+    if (!record) {
+      setShareStatus("No se pudo identificar el documento para compartir.", true);
+      console.error("No se pudo compartir: falta el documento seleccionado.");
+      return;
+    }
+    const url = shareableDocumentUrl(record.id);
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: record.title, url });
+        setShareStatus("Enlace compartido.");
+      } else {
+        await copyDocumentLink(url);
+        setShareStatus("Enlace copiado al portapapeles.");
+      }
+    } catch (failure) {
+      if (failure?.name === "AbortError") return;
+      try {
+        await copyDocumentLink(url);
+        setShareStatus("No se pudo abrir la opción de compartir; enlace copiado al portapapeles.");
+      } catch (copyFailure) {
+        console.error("No se pudo compartir ni copiar el enlace del documento.", failure, copyFailure);
+        setShareStatus("No se pudo copiar el enlace. Puedes copiarlo desde la barra de direcciones.", true);
+      }
+    }
+  }
+  shareDocumentButton.addEventListener("click", shareSelectedDocument);
   let cachedSearch = [null, []];
   const currentTerms = () => {
     if (cachedSearch[0] !== search.value) cachedSearch = [search.value, searchTerms(search.value)];
@@ -1765,7 +1959,7 @@
     }
     if (record) {
       const card = [...grid.querySelectorAll(".document-card")].find((node) => node.dataset.id === record.id);
-      open(record, card?.querySelector(saved.dialog.opener === "zoom" ? ".document-preview-zoom" : ".document-open"));
+      open(record, card?.querySelector(saved.dialog.opener === "zoom" ? ".document-preview-zoom" : ".document-open"), "none");
       let details = saved.dialog.details;
       if (record.textVersions && !saved.dialog.selectionsGrouped) {
         details = [details.slice(0, -1).some(Boolean), details[details.length - 1] || false];
@@ -1979,6 +2173,7 @@
       loaded = true;
       render();
       await restoreView();
+      if (initialDocumentId) openDocumentFromRoute(initialDocumentId);
       grid.setAttribute("aria-busy", "false");
     } catch (failure) {
       grid.setAttribute("aria-busy", "false");
@@ -1994,6 +2189,39 @@
       }
     }
   }
+  function openDocumentFromRoute(id) {
+    const record = documents.find((item) => item.id === id);
+    if (!record) {
+      if (dialog.open) {
+        routePushedForDialog = false;
+        routeChangeFromHistory = true;
+        dialog.close();
+      }
+      error.textContent = "No se encontró el documento solicitado. Puede que la ficha haya cambiado.";
+      error.hidden = false;
+      clearDocumentRoute();
+      return;
+    }
+    if (dialog.open && selectedId === id) return;
+    const card = [...grid.querySelectorAll(".document-card")].find((item) => item.dataset.id === id);
+    open(record, card?.querySelector(".document-open") || null, "none");
+  }
+  window.addEventListener("popstate", () => {
+    const id = documentRouteId();
+    if (!loaded) {
+      initialDocumentId = id;
+      if (initialDocumentId && restoredView?.dialog) restoredView = { ...restoredView, dialog: null };
+      return;
+    }
+    if (id) {
+      openDocumentFromRoute(id);
+    } else if (dialog.open) {
+      routeChangeFromHistory = true;
+      dialog.close();
+    } else {
+      saveView();
+    }
+  });
   retry.addEventListener("click", load);
   load();
 })();

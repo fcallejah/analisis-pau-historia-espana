@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="644" viewBox="0 0 760 644" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="698" viewBox="0 0 760 698" role="img" aria-labelledby="title desc">
 <title id="title">Resultado elecciones 2004 (14 de marzo)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños. *Otros escaños: Izquierda Unida (IU): 2; Iniciativa Per Cataluya Verds- Esquerra Unida I Alternativa (ICV-EUIA): 2; Bloque Nacionalista Galego (BNG): 2; Coalición Esquerra Unida Pais Valencia-Izquierda Republicana (ENTESA): 1; Chunta Aragonesista (CHA): 1; Eusko Alcartasuna (EA): 1; Coalición Nafarroa Bai (NA-BAI): 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 2004}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="644" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="698" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 2004 (14 de marzo)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="Partido Socialista Obrero Español (PSOE)" data-seats="164" data-seat-percent="46.857" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 211.76,185.90 L222.31,292.38 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Partido Popular (PP) y coaliciones" data-seats="148" data-seat-percent="42.286" fill="#2d4d73" d="M211.76,185.90 A185,185 0 0 1 404.34,308.12 L303.51,343.91 A78,78 0 0 0 222.31,292.38 Z"/>
 <path class="sector" data-party="Convergencia i Unió (CiU)" data-seats="10" data-seat-percent="2.857" fill="#d1a243" d="M404.34,308.12 A185,185 0 0 1 409.19,323.99 L305.55,350.60 A78,78 0 0 0 303.51,343.91 Z"/>
-<path class="sector" data-party="Otros*" data-seats="10" data-seat-percent="2.857" fill="#92979f" d="M409.19,323.99 A185,185 0 0 1 412.59,340.24 L306.98,357.45 A78,78 0 0 0 305.55,350.60 Z"/>
-<path class="sector" data-party="Esquerra Republicana de Catalunya (ERC)" data-seats="8" data-seat-percent="2.286" fill="#315a29" d="M412.59,340.24 A185,185 0 0 1 414.26,353.42 L307.69,363.01 A78,78 0 0 0 306.98,357.45 Z"/>
-<path class="sector" data-party="Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)" data-seats="7" data-seat-percent="2.000" fill="#8b1e3f" d="M414.26,353.42 A185,185 0 0 1 414.93,365.02 L307.97,367.90 A78,78 0 0 0 307.69,363.01 Z"/>
-<path class="sector" data-party="Coalición Canaria (CC)" data-seats="3" data-seat-percent="0.857" fill="#4f805a" d="M414.93,365.02 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.97,367.90 Z"/>
+<path class="sector" data-party="Esquerra Republicana de Catalunya (ERC)" data-seats="8" data-seat-percent="2.286" fill="#315a29" d="M409.19,323.99 A185,185 0 0 1 412.03,336.97 L306.75,356.07 A78,78 0 0 0 305.55,350.60 Z"/>
+<path class="sector" data-party="Euzko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV)" data-seats="7" data-seat-percent="2.000" fill="#8b1e3f" d="M412.03,336.97 A185,185 0 0 1 413.74,348.46 L307.47,360.92 A78,78 0 0 0 306.75,356.07 Z"/>
+<path class="sector" data-party="Coalición Canaria (CC)" data-seats="3" data-seat-percent="0.857" fill="#4f805a" d="M413.74,348.46 A185,185 0 0 1 414.26,353.42 L307.69,363.01 A78,78 0 0 0 307.47,360.92 Z"/>
+<path class="sector" data-party="Otros*" data-seats="10" data-seat-percent="2.857" fill="#92979f" d="M414.26,353.42 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.69,363.01 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
@@ -33,25 +33,28 @@
 <text class="share" x="744" y="252" text-anchor="end">2,9 %</text>
 <text class="party" x="454" y="270">· 10 escaños</text>
 <text class="metric" x="454" y="288">835.471 votos</text>
-<rect x="430" y="310" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="322">Otros* · 10 escaños</text>
-<text class="share" x="744" y="322" text-anchor="end">2,9 %</text>
-<text class="metric" x="454" y="340">1.605.112 votos</text>
-<rect x="430" y="362" width="14" height="14" rx="2" fill="#315a29"/>
-<text class="party" x="454" y="374">Esquerra Republicana de</text>
-<text class="share" x="744" y="374" text-anchor="end">2,3 %</text>
-<text class="party" x="454" y="392">Catalunya (ERC) · 8 escaños</text>
-<text class="metric" x="454" y="410">652.196 votos</text>
-<rect x="430" y="432" width="14" height="14" rx="2" fill="#8b1e3f"/>
-<text class="party" x="454" y="444">Euzko Alderdi</text>
-<text class="share" x="744" y="444" text-anchor="end">2,0 %</text>
-<text class="party" x="454" y="462">Jeltzalea-Partido Nacionalista</text>
-<text class="party" x="454" y="480">Vasco (EAJ-PNV) · 7 escaños</text>
-<text class="metric" x="454" y="498">420.980 votos</text>
-<rect x="430" y="520" width="14" height="14" rx="2" fill="#4f805a"/>
-<text class="party" x="454" y="532">Coalición Canaria (CC)</text>
-<text class="share" x="744" y="532" text-anchor="end">0,9 %</text>
-<text class="party" x="454" y="550">· 3 escaños</text>
-<text class="metric" x="454" y="568">235.221 votos</text>
-<text class="footnote" x="380" y="614" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="310" width="14" height="14" rx="2" fill="#315a29"/>
+<text class="party" x="454" y="322">Esquerra Republicana de</text>
+<text class="share" x="744" y="322" text-anchor="end">2,3 %</text>
+<text class="party" x="454" y="340">Catalunya (ERC) · 8 escaños</text>
+<text class="metric" x="454" y="358">652.196 votos</text>
+<rect x="430" y="380" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="392">Euzko Alderdi</text>
+<text class="share" x="744" y="392" text-anchor="end">2,0 %</text>
+<text class="party" x="454" y="410">Jeltzalea-Partido Nacionalista</text>
+<text class="party" x="454" y="428">Vasco (EAJ-PNV) · 7 escaños</text>
+<text class="metric" x="454" y="446">420.980 votos</text>
+<rect x="430" y="468" width="14" height="14" rx="2" fill="#4f805a"/>
+<text class="party" x="454" y="480">Coalición Canaria (CC)</text>
+<text class="share" x="744" y="480" text-anchor="end">0,9 %</text>
+<text class="party" x="454" y="498">· 3 escaños</text>
+<text class="metric" x="454" y="516">235.221 votos</text>
+<rect x="430" y="538" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="550">Otros* · 10 escaños</text>
+<text class="share" x="744" y="550" text-anchor="end">2,9 %</text>
+<text class="metric" x="454" y="568">1.605.112 votos</text>
+<text class="other-seats-note" x="380" y="630" text-anchor="middle">*Otros escaños: Izquierda Unida (IU): 2; Iniciativa Per Cataluya Verds- Esquerra Unida I</text>
+<text class="other-seats-note" x="380" y="646" text-anchor="middle">Alternativa (ICV-EUIA): 2; Bloque Nacionalista Galego (BNG): 2; Coalición Esquerra Unida</text>
+<text class="other-seats-note" x="380" y="662" text-anchor="middle">Pais Valencia-Izquierda Republicana (ENTESA): 1; Chunta Aragonesista (CHA): 1; Eusko</text>
+<text class="other-seats-note" x="380" y="678" text-anchor="middle">Alcartasuna (EA): 1; Coalición Nafarroa Bai (NA-BAI): 1.</text>
 </svg>

@@ -1,16 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="545" viewBox="0 0 760 545" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="615" viewBox="0 0 760 615" role="img" aria-labelledby="title desc">
 <title id="title">Resultado elecciones 2011 (20 de noviembre)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños. *Otros escaños: Coalición AMAIUR: 7; Unión Progreso y Democracia (UPyD): 5; Eusko Alderdi Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV): 5; Coalición &quot;Esquerra Republicana de Catalunya&quot; (ERC/ESQUERRA): 3; Bloque Nacionalista Galego (BNG): 2; Coalición &quot;Coalición Canaria-Nueva Canarias&quot; (CC-NC-PNC): 2; Coalición &quot;Bloc-Iniciativa-Verds-Equo-Coalició Compromís&quot; (Compromís-Q): 1; Foro de Ciudadanos (FAC): 1; Geroa Bai (GBAI): 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 2011}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="545" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="615" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 2011 (20 de noviembre)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="Partido Popular (PP) y coaliciones" data-seats="186" data-seat-percent="53.143" fill="#2d4d73" d="M45.00,370.00 A185,185 0 0 1 248.24,185.90 L237.69,292.38 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="PSOE + PSC" data-seats="110" data-seat-percent="31.429" fill="#c6464f" d="M248.24,185.90 A185,185 0 0 1 393.69,283.80 L299.02,333.66 A78,78 0 0 0 237.69,292.38 Z"/>
-<path class="sector" data-party="Otros*" data-seats="27" data-seat-percent="7.714" fill="#92979f" d="M393.69,283.80 A185,185 0 0 1 409.59,325.60 L305.72,351.28 A78,78 0 0 0 299.02,333.66 Z"/>
-<path class="sector" data-party="Convergéncia i Unió" data-seats="16" data-seat-percent="4.571" fill="#315a29" d="M409.59,325.60 A185,185 0 0 1 414.10,351.76 L307.62,362.31 A78,78 0 0 0 305.72,351.28 Z"/>
-<path class="sector" data-party="Coalición &quot; La Izquierda Plural&quot;" data-seats="11" data-seat-percent="3.143" fill="#d1a243" d="M414.10,351.76 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.62,362.31 Z"/>
+<path class="sector" data-party="Convergéncia i Unió" data-seats="16" data-seat-percent="4.571" fill="#315a29" d="M393.69,283.80 A185,185 0 0 1 404.34,308.12 L303.51,343.91 A78,78 0 0 0 299.02,333.66 Z"/>
+<path class="sector" data-party="Coalición &quot; La Izquierda Plural&quot;" data-seats="11" data-seat-percent="3.143" fill="#d1a243" d="M404.34,308.12 A185,185 0 0 1 409.59,325.60 L305.72,351.28 A78,78 0 0 0 303.51,343.91 Z"/>
+<path class="sector" data-party="Otros*" data-seats="27" data-seat-percent="7.714" fill="#92979f" d="M409.59,325.60 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 305.72,351.28 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
@@ -28,19 +28,23 @@
 <text class="party" x="454" y="218">Socialistes de Catalunya</text>
 <text class="party" x="454" y="236">(PSC-PSOE) · 110 escaños</text>
 <text class="metric" x="454" y="254">7.003.511 votos</text>
-<rect x="430" y="276" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="288">Otros* · 27 escaños</text>
-<text class="share" x="744" y="288" text-anchor="end">7,7 %</text>
-<text class="metric" x="454" y="306">2.642.006 votos</text>
-<rect x="430" y="328" width="14" height="14" rx="2" fill="#315a29"/>
-<text class="party" x="454" y="340">Convergéncia i Unió</text>
-<text class="share" x="744" y="340" text-anchor="end">4,6 %</text>
-<text class="party" x="454" y="358">· 16 escaños</text>
-<text class="metric" x="454" y="376">1.015.691 votos</text>
-<rect x="430" y="398" width="14" height="14" rx="2" fill="#d1a243"/>
-<text class="party" x="454" y="410">Coalición &quot; La Izquierda</text>
-<text class="share" x="744" y="410" text-anchor="end">3,1 %</text>
-<text class="party" x="454" y="428">Plural&quot; · 11 escaños</text>
-<text class="metric" x="454" y="446">1.685.991 votos</text>
-<text class="footnote" x="380" y="515" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="276" width="14" height="14" rx="2" fill="#315a29"/>
+<text class="party" x="454" y="288">Convergéncia i Unió</text>
+<text class="share" x="744" y="288" text-anchor="end">4,6 %</text>
+<text class="party" x="454" y="306">· 16 escaños</text>
+<text class="metric" x="454" y="324">1.015.691 votos</text>
+<rect x="430" y="346" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="358">Coalición &quot; La Izquierda</text>
+<text class="share" x="744" y="358" text-anchor="end">3,1 %</text>
+<text class="party" x="454" y="376">Plural&quot; · 11 escaños</text>
+<text class="metric" x="454" y="394">1.685.991 votos</text>
+<rect x="430" y="416" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="428">Otros* · 27 escaños</text>
+<text class="share" x="744" y="428" text-anchor="end">7,7 %</text>
+<text class="metric" x="454" y="446">2.642.006 votos</text>
+<text class="other-seats-note" x="380" y="531" text-anchor="middle">*Otros escaños: Coalición AMAIUR: 7; Unión Progreso y Democracia (UPyD): 5; Eusko Alderdi</text>
+<text class="other-seats-note" x="380" y="547" text-anchor="middle">Jeltzalea-Partido Nacionalista Vasco (EAJ-PNV): 5; Coalición &quot;Esquerra Republicana de</text>
+<text class="other-seats-note" x="380" y="563" text-anchor="middle">Catalunya&quot; (ERC/ESQUERRA): 3; Bloque Nacionalista Galego (BNG): 2; Coalición &quot;Coalición</text>
+<text class="other-seats-note" x="380" y="579" text-anchor="middle">Canaria-Nueva Canarias&quot; (CC-NC-PNC): 2; Coalición &quot;Bloc-Iniciativa-Verds-Equo-Coalició</text>
+<text class="other-seats-note" x="380" y="595" text-anchor="middle">Compromís&quot; (Compromís-Q): 1; Foro de Ciudadanos (FAC): 1; Geroa Bai (GBAI): 1.</text>
 </svg>

@@ -20,12 +20,7 @@ from elecciones_1977 import (
 
 ROOT = Path(__file__).resolve().parent.parent
 OUTPUT = "assets/documentos/elecciones-1977-diagrama-semicircular.svg"
-OTHER_NOTE = (
-    "«Otros*» agrupa los escaños de PSP-US (Partido Socialista Popular-Unidad Socialista), "
-    "UDC-CD (Unió del Centre i la Democràcia Cristiana de Catalunya), "
-    "EC-FED (Esquerra de Catalunya), EE (Euskadiko Ezkerra) y "
-    "CIC (candidaturas independientes de centro)."
-)
+EXAM_SEAT_NOTE = "*Otros escaños: EE: 1; PSP-US: 6; CC/DCC: 2; CRIC: 1; CIC: 1."
 
 MAIN_PARTIES = (
     ("UCD", "Unión de Centro Democrático (UCD)", "#315a29"),
@@ -54,6 +49,31 @@ def annular_sector(cx, cy, outer, inner, start, end):
     )
 
 
+def other_note_text(other_rows, displayed_seats):
+    source_seats = sum(row[3] for row in other_rows)
+    members = []
+    for row in other_rows:
+        name = row[1] if row[1].startswith(row[0]) else f"{row[0]} — {row[1]}"
+        noun = "diputado" if row[3] == 1 else "diputados"
+        members.append(f"{name} ({row[3]} {noun})")
+    note = "«Otros*» agrupa: " + "; ".join(members) + "."
+    if source_seats != displayed_seats:
+        note += (
+            f" El desglose de esas candidaturas suma {source_seats} diputados; "
+            f"el gráfico del examen asigna {displayed_seats} a «Otros*»."
+        )
+    return note
+
+
+def discrepancy_note_text(official_ucd_seats, exam_ucd_seats, official_other_seats, exam_other_seats):
+    return (
+        f"* Posible error en el examen: UCD figura con {exam_ucd_seats} escaños "
+        f"({official_ucd_seats} según la JEC) y la nota de «Otros*» omite a Esquerra de "
+        f"Catalunya (1 escaño); el desglose oficial suma {official_other_seats} en «Otros*», "
+        f"no {exam_other_seats}. El total impreso sí es 350: la discrepancia está en el reparto."
+    )
+
+
 def build_svg(record):
     rows_by_code = {row[0]: row for row in RESULTS}
     original_src = record["image"].get("originalSrc", record["image"]["src"])
@@ -62,6 +82,10 @@ def build_svg(record):
     other_rows = [row for row in RESULTS if row[0] not in main_codes]
     other_votes = sum(row[2] for row in other_rows)
     other_seats = EXAM_OTHER_SEATS
+    other_note = other_note_text(other_rows, other_seats)
+    error_note = discrepancy_note_text(
+        rows_by_code["UCD"][3], EXAM_UCD_SEATS, sum(row[3] for row in other_rows), other_seats
+    )
     total_seats = sum(row[3] for row in RESULTS)
     if total_seats != 350:
         raise ValueError(f"Expected 350 source seats, found {total_seats}")
@@ -105,18 +129,17 @@ def build_svg(record):
         labels.append(lines)
     row_heights = [max(52, len(lines) * 18 + 34) for lines in labels]
     content_bottom = max(515, 112 + sum(row_heights) + 12)
-    note_lines = textwrap.wrap(OTHER_NOTE, width=70, break_long_words=False, break_on_hyphens=False)
-    height = content_bottom + len(note_lines) * 16 + 8
+    height = content_bottom + 32
     description = (
         "Diagrama semicircular de votos y escaños de las elecciones generales del 15 de junio de 1977. "
-        f"{OTHER_NOTE}"
+        f"{EXAM_SEAT_NOTE}"
     )
     output = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         '<title id="title">Resultado elecciones 1977 (15 de junio)</title>',
         f'<desc id="desc">{escape(description)}</desc>',
         f'<metadata>{escape(json.dumps({"method": "Redibujo vectorial proporcional a escaños, con la agrupación del material del examen; votos de UCD según el Ministerio del Interior y resto según la JEC.", "original": original_src, "originalSha256": hashlib.sha256(original_path.read_bytes()).hexdigest(), "pdf": record["appearances"][0]["pdfUrl"], "pdfSha256": record["appearances"][0]["sourceSha256"], "dataSource": SOURCE, "ministrySource": MINISTRY_SOURCE, "page": record["appearances"][0]["officialPage"]}, ensure_ascii=False))}</metadata>',
-        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.party{font-size:14px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-majority{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
+        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.party{font-size:14px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-majority{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
         '<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1977 (15 de junio)</text>',
     ]
@@ -156,21 +179,23 @@ def build_svg(record):
         f'<text class="center-seat" x="{cx}" y="{cy - 37}" text-anchor="middle">{total_seats}</text>',
         f'<text class="center-majority" x="{cx}" y="{cy - 21}" text-anchor="middle">escaños</text>',
         f'<text class="center-majority" x="{cx}" y="{cy - 5}" text-anchor="middle">176 para la mayoría</text>',
+        f'<text class="other-seats-note" x="380" y="{content_bottom + 16}" text-anchor="middle">{escape(EXAM_SEAT_NOTE)}</text>',
     ])
-    for index, line in enumerate(note_lines):
-        output.append(
-            f'<text class="footnote" x="744" y="{content_bottom + 16 * (index + 1)}" '
-            f'text-anchor="end">{escape(line)}</text>'
-        )
     output.append("</svg>")
-    return "\n".join(output) + "\n", segments, other_rows, other_votes, other_seats, total_seats, height
+    return (
+        "\n".join(output) + "\n", segments, other_rows, other_votes, other_seats,
+        total_seats, height, other_note, error_note
+    )
 
 
 def main():
     path = ROOT / "data/documentos.json"
     corpus = json.loads(path.read_text(encoding="utf-8"))
     record = next(item for item in corpus["documents"] if item["id"] == "elecciones-1977-diagrama")
-    svg, segments, other_rows, other_votes, other_seats, total_seats, image_height = build_svg(record)
+    (
+        svg, segments, other_rows, other_votes, other_seats, total_seats,
+        image_height, other_note, error_note
+    ) = build_svg(record)
     (ROOT / OUTPUT).write_text(svg, encoding="utf-8")
     record["sourceCaption"] = (
         "Material de 2007, Examen 4, Bloque II · Opción B. "
@@ -181,8 +206,9 @@ def main():
         "Los sectores son proporcionales a los 350 escaños. La agrupación electoral del material del examen "
         "presenta UCD con 166 escaños y Otros* con 11. La cifra consolidada de votos de UCD es 6 310 391, "
         "publicada por el Ministerio del Interior; las demás cifras de votos proceden del resumen de la JEC. "
-        "«Otros*» agrupa candidaturas electorales y no es un grupo parlamentario."
+        f"{other_note}"
     )
+    record["errorNote"] = error_note
     image = dict(record["image"])
     image.pop("reproductionNote", None)
     record["image"] = {
@@ -197,7 +223,7 @@ def main():
         ).hexdigest(),
         "alt": (
             "Resultado elecciones 1977 (15 de junio): diagrama semicircular de votos y escaños. "
-            "Otros* agrupa las candidaturas PSP-US, UDC-CD, EC-FED, EE y CIC."
+            f"{EXAM_SEAT_NOTE}"
         ),
     }
     rows = [
@@ -206,13 +232,15 @@ def main():
     ]
     notes = [
         "La cifra de votos de UCD se actualiza a 6 310 391 según el Ministerio del Interior; los demás votos se mantienen según el resumen de la JEC.",
-        "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. Otros* agrupa candidaturas electorales; no es un grupo parlamentario.",
+        "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. "
+        + other_note + " " + error_note,
         "PSOE incluye PSC-PSOE; PCE incluye PSUC. El resumen de resultados de la JEC enlazado permite consultar el desglose original por candidatura.",
         f"Fuente: Junta Electoral Central, resumen de resultados, página 5: {SOURCE}",
         f"Fuente del voto de UCD: Ministerio del Interior, Infoelectoral: {MINISTRY_SOURCE}",
     ]
     record["table"] = {
         "caption": "Resultado elecciones 1977 (15 de junio)",
+        "chart": {"heading": "Resultado elecciones 1977 (15 de junio)"},
         "headers": ["Partido o candidatura con escaño", "Votos", "Escaños", "Escaños (%)"],
         "rows": rows,
         "notes": notes,

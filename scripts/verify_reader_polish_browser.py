@@ -985,7 +985,7 @@ def check(browser, options):
         open_card(page, identifier)
         assert centered(page)
         assert box.locator(".document-zoom").count() == 0
-        assert dialog.locator(".document-reader-controls button").count() == 3
+        assert dialog.locator(".document-reader-controls button").count() == 4
         page.keyboard.press("Escape")
     open_card(page, "azana-homenaje-coruna-franco")
     page.locator(".document-person-toggle").click()

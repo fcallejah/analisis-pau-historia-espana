@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="documentos.css?v=72">
   <script src="mark-feedback.js?v=1" defer></script>
   <script src="site-header.js?v=2" defer></script>
-  <script src="documentos.js?v=96" defer></script>
+  <script src="documentos.js?v=99" defer></script>
 <link rel="stylesheet" href="site-footer.css?v=2">
 </head>
 <body>
@@ -168,12 +168,14 @@
     </section>
   </main>
   <dialog id="document-dialog" aria-labelledby="document-dialog-title">
-    <div class="document-reader-controls" role="group" aria-label="Navegar y cerrar documento">
+    <div class="document-reader-controls" role="group" aria-label="Navegar, compartir y cerrar documento">
       <button class="document-previous" type="button" aria-label="Documento anterior" title="Documento anterior" disabled><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 6-6 6 6 6"/></svg></button>
       <button class="document-next" type="button" aria-label="Documento siguiente" title="Documento siguiente" disabled><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg></button>
+      <button class="document-share" type="button" aria-label="Compartir documento" title="Compartir documento" disabled><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0 4 4m-4-4L8 7"/><path d="M5 12v8h14v-8"/></svg><span>Compartir</span></button>
       <button class="document-close" type="button" aria-label="Cerrar documento" autofocus>×</button>
       <span class="document-reader-status" role="status"></span>
     </div>
+    <p class="document-share-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
     <p id="document-dialog-storage-status" class="document-storage-status" role="status" hidden></p>
     <div id="document-dialog-content"></div>
     <div class="document-scroll-cue" aria-hidden="true"></div>

@@ -2,7 +2,7 @@
 <title id="title">Resultado elecciones andaluzas 1982 (23 de mayo)</title>
 <desc id="desc">Diagrama semicircular proporcional a los 109 escaños, con las candidaturas y sus porcentajes de representación a la derecha. La línea discontinua marca la mitad; la mayoría absoluta requiere 55 escaños.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/ANDALUCIA_1982_Resultados.pdf&quot;, &quot;year&quot;: 1982}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="545" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones andaluzas 1982 (23 de mayo)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por candidatura</text>
@@ -43,5 +43,4 @@
 <text class="share" x="744" y="428" text-anchor="end">2,8 %</text>
 <text class="party" x="454" y="446">Andalucía (PSA) · 3 escaños</text>
 <text class="metric" x="454" y="464">153.112 votos</text>
-<text class="footnote" x="380" y="515" text-anchor="middle">Colores editoriales; no indican grupos parlamentarios.</text>
 </svg>

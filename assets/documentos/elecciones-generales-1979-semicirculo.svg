@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="626" viewBox="0 0 760 626" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="680" viewBox="0 0 760 680" role="img" aria-labelledby="title desc">
 <title id="title">Resultado elecciones 1979 (1 de marzo)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños. *Otros escaños: Unión Nacional (UN): 1; Partido Socialista de Andalucía - Partido Andaluz (PSA-PA): 5; Herri Batasuna (HB): 3; Esquerra Republica de Catalunya (ERC) ***: 1; Euskadiko Ezkerra (EE): 1; Unión del Pueblo Canario (UPC): 1; Partido Aragonés Regionalista (PAR): 1; Unión del Pueblo Navarro (UPN): 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1979}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="626" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="680" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1979 (1 de marzo)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="Unión de Centro Democrático (UCD)" data-seats="168" data-seat-percent="48.000" fill="#315a29" d="M45.00,370.00 A185,185 0 0 1 218.38,185.37 L225.10,292.15 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Partido Socialista Obrero Español (PSOE)" data-seats="121" data-seat-percent="34.571" fill="#c6464f" d="M218.38,185.37 A185,185 0 0 1 387.95,273.69 L296.60,329.39 A78,78 0 0 0 225.10,292.15 Z"/>
 <path class="sector" data-party="Partido Comunista de España (PCE)" data-seats="23" data-seat-percent="6.571" fill="#8b1e3f" d="M387.95,273.69 A185,185 0 0 1 404.34,308.12 L303.51,343.91 A78,78 0 0 0 296.60,329.39 Z"/>
-<path class="sector" data-party="Otros*" data-seats="14" data-seat-percent="4.000" fill="#92979f" d="M404.34,308.12 A185,185 0 0 1 410.72,330.45 L306.20,353.33 A78,78 0 0 0 303.51,343.91 Z"/>
-<path class="sector" data-party="Coalición Democrática (CD)" data-seats="9" data-seat-percent="2.571" fill="#2d4d73" d="M410.72,330.45 A185,185 0 0 1 413.33,345.17 L307.29,359.53 A78,78 0 0 0 306.20,353.33 Z"/>
-<path class="sector" data-party="Convergencia i Unió (C i U)" data-seats="8" data-seat-percent="2.286" fill="#d1a243" d="M413.33,345.17 A185,185 0 0 1 414.63,358.38 L307.85,365.10 A78,78 0 0 0 307.29,359.53 Z"/>
-<path class="sector" data-party="Partido Nacionalista Vasco ( PNV)" data-seats="7" data-seat-percent="2.000" fill="#4f805a" d="M414.63,358.38 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.85,365.10 Z"/>
+<path class="sector" data-party="Coalición Democrática (CD)" data-seats="9" data-seat-percent="2.571" fill="#2d4d73" d="M404.34,308.12 A185,185 0 0 1 408.77,322.39 L305.37,349.92 A78,78 0 0 0 303.51,343.91 Z"/>
+<path class="sector" data-party="Convergencia i Unió (C i U)" data-seats="8" data-seat-percent="2.286" fill="#d1a243" d="M408.77,322.39 A185,185 0 0 1 411.72,335.33 L306.62,355.38 A78,78 0 0 0 305.37,349.92 Z"/>
+<path class="sector" data-party="Partido Nacionalista Vasco ( PNV)" data-seats="7" data-seat-percent="2.000" fill="#4f805a" d="M411.72,335.33 A185,185 0 0 1 413.54,346.81 L307.38,360.22 A78,78 0 0 0 306.62,355.38 Z"/>
+<path class="sector" data-party="Otros*" data-seats="14" data-seat-percent="4.000" fill="#92979f" d="M413.54,346.81 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.38,360.22 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
@@ -33,24 +33,27 @@
 <text class="share" x="744" y="252" text-anchor="end">6,6 %</text>
 <text class="party" x="454" y="270">(PCE) · 23 escaños</text>
 <text class="metric" x="454" y="288">1.939.733 votos</text>
-<rect x="430" y="310" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="322">Otros* · 14 escaños</text>
-<text class="share" x="744" y="322" text-anchor="end">4,0 %</text>
-<text class="metric" x="454" y="340">1.211.784 votos</text>
-<rect x="430" y="362" width="14" height="14" rx="2" fill="#2d4d73"/>
-<text class="party" x="454" y="374">Coalición Democrática (CD)</text>
-<text class="share" x="744" y="374" text-anchor="end">2,6 %</text>
-<text class="party" x="454" y="392">· 9 escaños</text>
-<text class="metric" x="454" y="410">1.070.637 votos</text>
-<rect x="430" y="432" width="14" height="14" rx="2" fill="#d1a243"/>
-<text class="party" x="454" y="444">Convergencia i Unió (C i U)</text>
-<text class="share" x="744" y="444" text-anchor="end">2,3 %</text>
-<text class="party" x="454" y="462">· 8 escaños</text>
-<text class="metric" x="454" y="480">483.353 votos</text>
-<rect x="430" y="502" width="14" height="14" rx="2" fill="#4f805a"/>
-<text class="party" x="454" y="514">Partido Nacionalista Vasco (</text>
-<text class="share" x="744" y="514" text-anchor="end">2,0 %</text>
-<text class="party" x="454" y="532">PNV) · 7 escaños</text>
-<text class="metric" x="454" y="550">275.292 votos</text>
-<text class="footnote" x="380" y="596" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="310" width="14" height="14" rx="2" fill="#2d4d73"/>
+<text class="party" x="454" y="322">Coalición Democrática (CD)</text>
+<text class="share" x="744" y="322" text-anchor="end">2,6 %</text>
+<text class="party" x="454" y="340">· 9 escaños</text>
+<text class="metric" x="454" y="358">1.070.637 votos</text>
+<rect x="430" y="380" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="392">Convergencia i Unió (C i U)</text>
+<text class="share" x="744" y="392" text-anchor="end">2,3 %</text>
+<text class="party" x="454" y="410">· 8 escaños</text>
+<text class="metric" x="454" y="428">483.353 votos</text>
+<rect x="430" y="450" width="14" height="14" rx="2" fill="#4f805a"/>
+<text class="party" x="454" y="462">Partido Nacionalista Vasco (</text>
+<text class="share" x="744" y="462" text-anchor="end">2,0 %</text>
+<text class="party" x="454" y="480">PNV) · 7 escaños</text>
+<text class="metric" x="454" y="498">275.292 votos</text>
+<rect x="430" y="520" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="532">Otros* · 14 escaños</text>
+<text class="share" x="744" y="532" text-anchor="end">4,0 %</text>
+<text class="metric" x="454" y="550">1.211.784 votos</text>
+<text class="other-seats-note" x="380" y="612" text-anchor="middle">*Otros escaños: Unión Nacional (UN): 1; Partido Socialista de Andalucía - Partido Andaluz</text>
+<text class="other-seats-note" x="380" y="628" text-anchor="middle">(PSA-PA): 5; Herri Batasuna (HB): 3; Esquerra Republica de Catalunya (ERC) ***: 1; Euskadiko</text>
+<text class="other-seats-note" x="380" y="644" text-anchor="middle">Ezkerra (EE): 1; Unión del Pueblo Canario (UPC): 1; Partido Aragonés Regionalista (PAR): 1;</text>
+<text class="other-seats-note" x="380" y="660" text-anchor="middle">Unión del Pueblo Navarro (UPN): 1.</text>
 </svg>

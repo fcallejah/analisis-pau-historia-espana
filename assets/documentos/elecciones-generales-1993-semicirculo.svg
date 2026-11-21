@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="610" viewBox="0 0 760 610" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="648" viewBox="0 0 760 648" role="img" aria-labelledby="title desc">
 <title id="title">Resultado elecciones 1993 (6 de junio)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños. *Otros escaños: Iniciativa per Catalunya (IC): 3; Coalición Canaria (CC): 4; Herri Batasuna (HB): 2; Esquerra Republicana de Catalunya (ERC): 1; Partido Aragonés Regionalista (PAR): 1; Coalición Eusko Alkartasuna - Euskal Ezkerra (EA-EUE): 1; Unió Valenciana (UV): 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1993}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="610" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="648" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1993 (6 de junio)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="PSOE + PSC" data-seats="159" data-seat-percent="45.429" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 203.52,186.90 L218.84,292.80 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Partido Popular (PP) y coaliciones" data-seats="141" data-seat-percent="40.286" fill="#2d4d73" d="M203.52,186.90 A185,185 0 0 1 396.68,289.73 L300.28,336.16 A78,78 0 0 0 218.84,292.80 Z"/>
 <path class="sector" data-party="Convergencia i Unió (CIU)" data-seats="17" data-seat-percent="4.857" fill="#d1a243" d="M396.68,289.73 A185,185 0 0 1 406.94,316.00 L304.60,347.23 A78,78 0 0 0 300.28,336.16 Z"/>
 <path class="sector" data-party="Izquierda Unida (IU)" data-seats="15" data-seat-percent="4.286" fill="#315a29" d="M406.94,316.00 A185,185 0 0 1 412.59,340.24 L306.98,357.45 A78,78 0 0 0 304.60,347.23 Z"/>
-<path class="sector" data-party="Otros*" data-seats="13" data-seat-percent="3.714" fill="#92979f" d="M412.59,340.24 A185,185 0 0 1 414.81,361.70 L307.92,366.50 A78,78 0 0 0 306.98,357.45 Z"/>
-<path class="sector" data-party="Eusko Alderdi Jetzalea - Partido Nacionalista Vasco (EAJ-PNV)" data-seats="5" data-seat-percent="1.429" fill="#8b1e3f" d="M414.81,361.70 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.92,366.50 Z"/>
+<path class="sector" data-party="Eusko Alderdi Jetzalea - Partido Nacionalista Vasco (EAJ-PNV)" data-seats="5" data-seat-percent="1.429" fill="#8b1e3f" d="M412.59,340.24 A185,185 0 0 1 413.74,348.46 L307.47,360.92 A78,78 0 0 0 306.98,357.45 Z"/>
+<path class="sector" data-party="Otros*" data-seats="13" data-seat-percent="3.714" fill="#92979f" d="M413.74,348.46 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.47,360.92 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
@@ -39,15 +39,17 @@
 <text class="share" x="744" y="358" text-anchor="end">4,3 %</text>
 <text class="party" x="454" y="376">· 15 escaños</text>
 <text class="metric" x="454" y="394">1.905.673 votos</text>
-<rect x="430" y="416" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="428">Otros* · 13 escaños</text>
-<text class="share" x="744" y="428" text-anchor="end">3,7 %</text>
-<text class="metric" x="454" y="446">1.263.207 votos</text>
-<rect x="430" y="468" width="14" height="14" rx="2" fill="#8b1e3f"/>
-<text class="party" x="454" y="480">Eusko Alderdi Jetzalea -</text>
-<text class="share" x="744" y="480" text-anchor="end">1,4 %</text>
-<text class="party" x="454" y="498">Partido Nacionalista Vasco</text>
-<text class="party" x="454" y="516">(EAJ-PNV) · 5 escaños</text>
-<text class="metric" x="454" y="534">291.448 votos</text>
-<text class="footnote" x="380" y="580" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="416" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="428">Eusko Alderdi Jetzalea -</text>
+<text class="share" x="744" y="428" text-anchor="end">1,4 %</text>
+<text class="party" x="454" y="446">Partido Nacionalista Vasco</text>
+<text class="party" x="454" y="464">(EAJ-PNV) · 5 escaños</text>
+<text class="metric" x="454" y="482">291.448 votos</text>
+<rect x="430" y="504" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="516">Otros* · 13 escaños</text>
+<text class="share" x="744" y="516" text-anchor="end">3,7 %</text>
+<text class="metric" x="454" y="534">1.263.207 votos</text>
+<text class="other-seats-note" x="380" y="596" text-anchor="middle">*Otros escaños: Iniciativa per Catalunya (IC): 3; Coalición Canaria (CC): 4; Herri Batasuna</text>
+<text class="other-seats-note" x="380" y="612" text-anchor="middle">(HB): 2; Esquerra Republicana de Catalunya (ERC): 1; Partido Aragonés Regionalista (PAR): 1;</text>
+<text class="other-seats-note" x="380" y="628" text-anchor="middle">Coalición Eusko Alkartasuna - Euskal Ezkerra (EA-EUE): 1; Unió Valenciana (UV): 1.</text>
 </svg>

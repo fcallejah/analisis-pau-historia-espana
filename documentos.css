@@ -189,8 +189,14 @@ html[data-document-restoring] #document-dialog::backdrop{background:transparent}
 .document-reader-controls button{display:grid;place-items:center;flex:none;width:40px;height:40px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink);cursor:pointer}
 .document-reader-controls button:disabled{opacity:.35;cursor:not-allowed}
 .document-reader-controls svg{width:20px;height:20px}
+.document-reader-controls .document-share{display:flex;align-items:center;gap:6px;width:auto;padding:0 12px;border-radius:20px;font:600 12px "DM Sans",Arial,sans-serif}
+.document-reader-controls .document-share svg{width:18px;height:18px}
+.document-reader-controls .document-share span{white-space:nowrap}
 .document-close{font-size:26px}
 .document-reader-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.document-share-status{position:fixed;top:max(12px,env(safe-area-inset-top));left:50%;z-index:10;transform:translateX(-50%);width:max-content;max-width:calc(100vw - 32px);margin:0;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--ink);box-shadow:0 6px 24px #0003;font-size:13px;line-height:1.5;text-align:center}
+.document-share-status[role=alert]{color:#b42318}
+:root[data-theme=dark] .document-share-status[role=alert]{color:#ffb4ac}
 #document-dialog h2{margin:0 0 12px;font:600 clamp(25px,4vw,35px)/1.2 "Playfair Display",Georgia,serif}
 .document-full-source{container-type:inline-size;container-name:document-source;margin:20px 0;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:auto;overscroll-behavior-x:contain}
 /* Chromium must pass touch gestures to the visual viewport while pinch-zoomed. */
@@ -267,11 +273,16 @@ html[data-theme="dark"] .document-exam-caption .document-exam-footnote{color:#ff
 .document-table th,.document-table td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right}
 .document-table th:first-child,.document-table td:first-child{text-align:left}
 .document-table caption{font-weight:600;text-align:left;margin-bottom:8px}
+.document-error-note{margin:8px 0;color:#b42318;font-size:13px;font-weight:600;line-height:1.5}
+:root[data-theme=dark] .document-error-note{color:#ffb4ac}
 .study-chart{margin:12px 0 24px;min-width:0}
 .study-chart-title{margin:18px 0 8px;font:700 17px/1.3 "PAU Caption","Arial Narrow",Arial,sans-serif}
-.study-chart-note{margin:6px 0 12px;color:var(--muted);font-size:12px;line-height:1.5}
-.study-chart-selector{display:block;margin-bottom:16px;font-size:14px;font-weight:600}
-.study-chart-selector select{max-width:100%;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+.study-chart-note{margin:6px 0 12px;color:var(--muted);font-size:12px;line-height:1.5;text-align:center}
+.study-chart-selector{display:flex;justify-content:center;align-items:center;gap:8px;margin-bottom:16px}
+.study-chart-selector select{flex:1;min-width:0;width:min(100%,440px);max-width:440px;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit}
+.study-chart-nav{flex:0 0 36px;width:36px;height:36px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.study-chart-nav:disabled{opacity:.45;cursor:default}
+.study-chart-nav:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .study-election-chart{display:block;width:100%;max-width:480px;height:auto;margin:0 auto 12px}
 .study-chart-row{display:grid;grid-template-columns:minmax(0,40%) minmax(60px,1fr) max-content;gap:8px;align-items:center;margin:8px 0;font:14px/1.3 "PAU Caption","Arial Narrow",Arial,sans-serif}
 .study-chart-label{min-width:0;overflow-wrap:anywhere}

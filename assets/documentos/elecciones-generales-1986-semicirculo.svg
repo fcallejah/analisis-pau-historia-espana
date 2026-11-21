@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="592" viewBox="0 0 760 592" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="646" viewBox="0 0 760 646" role="img" aria-labelledby="title desc">
 <title id="title">Resultado elecciones 1986 (22 de junio)</title>
-<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 350 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 176 escaños. *Otros escaños: Partido Nacionalista Vasco (PNV): 6; Herri Batasuna (HB)**: 5; Unió de L`Esquerra Catalana (UEC): 1; Euskadiko Ezquerra (EE): 2; Coalición Galega (CG): 1; Partido Aragonés Regionalista (PAR): 1; Agrupaciones Independientes de Canarias (AIC): 1; Unió Valenciana (UV): 1.</desc>
 <metadata>{&quot;source&quot;: &quot;https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_ResultadosCongreso-Senado_1977-2023.xls&quot;, &quot;year&quot;: 1986}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="592" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="646" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1986 (22 de junio)</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Candidaturas y alianzas</text>
 <path class="sector" data-party="PSOE + PSC" data-seats="184" data-seat-percent="52.571" fill="#c6464f" d="M45.00,370.00 A185,185 0 0 1 244.93,185.60 L236.29,292.25 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Coalición Popular (CP)" data-seats="105" data-seat-percent="30.000" fill="#315a29" d="M244.93,185.60 A185,185 0 0 1 387.95,273.69 L296.60,329.39 A78,78 0 0 0 236.29,292.25 Z"/>
 <path class="sector" data-party="Centro Democrático y Social (CDS)" data-seats="19" data-seat-percent="5.429" fill="#2d4d73" d="M387.95,273.69 A185,185 0 0 1 402.01,301.90 L302.52,341.29 A78,78 0 0 0 296.60,329.39 Z"/>
 <path class="sector" data-party="Convergencia i Unió (CiU)" data-seats="18" data-seat-percent="5.143" fill="#d1a243" d="M402.01,301.90 A185,185 0 0 1 410.72,330.45 L306.20,353.33 A78,78 0 0 0 302.52,341.29 Z"/>
-<path class="sector" data-party="Otros*" data-seats="18" data-seat-percent="5.143" fill="#92979f" d="M410.72,330.45 A185,185 0 0 1 414.73,360.04 L307.89,365.80 A78,78 0 0 0 306.20,353.33 Z"/>
-<path class="sector" data-party="Izquierda Unida (IU)" data-seats="6" data-seat-percent="1.714" fill="#8b1e3f" d="M414.73,360.04 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 307.89,365.80 Z"/>
+<path class="sector" data-party="Izquierda Unida (IU)" data-seats="6" data-seat-percent="1.714" fill="#8b1e3f" d="M410.72,330.45 A185,185 0 0 1 412.59,340.24 L306.98,357.45 A78,78 0 0 0 306.20,353.33 Z"/>
+<path class="sector" data-party="Otros*" data-seats="18" data-seat-percent="5.143" fill="#92979f" d="M412.59,340.24 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 306.98,357.45 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
 <text class="center-seat" x="230" y="333" text-anchor="middle">350</text>
@@ -39,14 +39,17 @@
 <text class="share" x="744" y="358" text-anchor="end">5,1 %</text>
 <text class="party" x="454" y="376">· 18 escaños</text>
 <text class="metric" x="454" y="394">1.014.258 votos</text>
-<rect x="430" y="416" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="428">Otros* · 18 escaños</text>
-<text class="share" x="744" y="428" text-anchor="end">5,1 %</text>
-<text class="metric" x="454" y="446">1.038.900 votos</text>
-<rect x="430" y="468" width="14" height="14" rx="2" fill="#8b1e3f"/>
-<text class="party" x="454" y="480">Izquierda Unida (IU)</text>
-<text class="share" x="744" y="480" text-anchor="end">1,7 %</text>
-<text class="party" x="454" y="498">· 6 escaños</text>
-<text class="metric" x="454" y="516">768.158 votos</text>
-<text class="footnote" x="380" y="562" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<rect x="430" y="416" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="428">Izquierda Unida (IU)</text>
+<text class="share" x="744" y="428" text-anchor="end">1,7 %</text>
+<text class="party" x="454" y="446">· 6 escaños</text>
+<text class="metric" x="454" y="464">768.158 votos</text>
+<rect x="430" y="486" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="498">Otros* · 18 escaños</text>
+<text class="share" x="744" y="498" text-anchor="end">5,1 %</text>
+<text class="metric" x="454" y="516">1.038.900 votos</text>
+<text class="other-seats-note" x="380" y="578" text-anchor="middle">*Otros escaños: Partido Nacionalista Vasco (PNV): 6; Herri Batasuna (HB)**: 5; Unió de</text>
+<text class="other-seats-note" x="380" y="594" text-anchor="middle">L`Esquerra Catalana (UEC): 1; Euskadiko Ezquerra (EE): 2; Coalición Galega (CG): 1; Partido</text>
+<text class="other-seats-note" x="380" y="610" text-anchor="middle">Aragonés Regionalista (PAR): 1; Agrupaciones Independientes de Canarias (AIC): 1; Unió</text>
+<text class="other-seats-note" x="380" y="626" text-anchor="middle">Valenciana (UV): 1.</text>
 </svg>

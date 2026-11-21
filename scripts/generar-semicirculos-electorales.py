@@ -86,6 +86,28 @@ def grouped_rows(table):
     return rows
 
 
+def is_others_or_mixed(row):
+    label = " ".join(row[0].casefold().split())
+    return label.startswith("otros") or label.startswith("grupo mixto")
+
+
+def other_seats_note(table):
+    rows_by_name = {row[0]: row for row in table["rows"]}
+    members = []
+    for group in table.get("chartGroups", []):
+        label = " ".join(group.get("label", "").casefold().split())
+        if not (label.startswith("otros") or label.startswith("grupo mixto")):
+            continue
+        for name in group["members"]:
+            row = rows_by_name.get(name)
+            if row is None or not row[3].isdigit() or int(row[3]) <= 0:
+                raise ValueError(f'{table["caption"]}: no se pueden leer los escaños de {name}')
+            members.append(f"{name}: {row[3]}")
+    if not members:
+        return ""
+    return "*Otros escaños: " + "; ".join(members) + "."
+
+
 def render(year, table, source):
     config = table.get("chart", {})
     seats = config.get("seats", 350)
@@ -95,7 +117,7 @@ def render(year, table, source):
     title = config.get("title", f"Elecciones generales de {year}: escaños en el Congreso")
     center = config.get("center", "350 escaños")
     rows = grouped_rows(table)
-    rows.sort(key=lambda row: -int(row[3]))
+    rows.sort(key=lambda row: (is_others_or_mixed(row), -int(row[3])))
     if sum(int(row[3]) for row in rows) != seats or len(rows) > len(COLORS):
         raise ValueError(f"{year}: candidaturas o suma de escaños no válidas")
     diagram_labels = {
@@ -113,6 +135,10 @@ def render(year, table, source):
             lines.append(suffix)
         labels.append(lines)
     colors = colors_for(rows)
+    other_note = other_seats_note(table)
+    note_lines = textwrap.wrap(
+        other_note, width=92, break_long_words=False, break_on_hyphens=False
+    ) if other_note else []
     width = 760
     cx, cy, outer, inner = 230, 370, 185, 78
     legend_height = sum(
@@ -120,16 +146,25 @@ def render(year, table, source):
         for lines in labels
     )
     footer_y = max(515, 112 + legend_height + 12)
-    height = footer_y + 30
+    height = footer_y + 16 * len(note_lines) + 20 if note_lines else footer_y + 30
+    description = (
+        f"Diagrama semicircular proporcional a los {seats} escaños, con las candidaturas "
+        "y sus porcentajes de representación a la derecha."
+    )
+    if table.get("chartGroups"):
+        description += " Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla."
+    if majority:
+        description += f" La línea discontinua marca la mitad; la mayoría absoluta requiere {majority} escaños."
+    else:
+        description += " Se representan únicamente los escaños asignados a España."
+    if other_note:
+        description += f" {other_note}"
     result = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(title)}</title>',
-        f'<desc id="desc">Diagrama semicircular proporcional a los {seats} escaños, con las candidaturas y sus porcentajes de representación a la derecha.'
-        + (' Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla.' if table.get("chartGroups") else '')
-        + (f' La línea discontinua marca la mitad; la mayoría absoluta requiere {majority} escaños.' if majority else ' Se representan únicamente los escaños asignados a España.')
-        + '</desc>',
+        f'<desc id="desc">{escape(description)}</desc>',
         f'<metadata>{escape(json.dumps({"source": source, "year": year}, ensure_ascii=False))}</metadata>',
-        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>',
+        '<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>',
         f'<rect width="{width}" height="{height}" fill="#fff"/>',
         f'<text class="title" x="380" y="32" text-anchor="middle">{escape(heading)}</text>',
         f'<text class="subtitle" x="380" y="51" text-anchor="middle">{escape(config.get("subtitle", "Escaños por candidatura"))}</text>',
@@ -164,12 +199,11 @@ def render(year, table, source):
             votes_y = y + len(lines) * 18
             result.append(f'<text class="metric" x="454" y="{votes_y}">{escape(row[1])} votos</text>')
         y += max(52 if show_votes else 36, len(lines) * 18 + (18 if show_votes else 0) + 16)
-    footnote = config.get(
-        "footnote",
-        "«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario."
-        if table.get("chartGroups") else "Colores editoriales; no indican grupos parlamentarios."
-    )
-    result.append(f'<text class="footnote" x="380" y="{footer_y}" text-anchor="middle">{escape(footnote)}</text>')
+    for index, line in enumerate(note_lines):
+        result.append(
+            f'<text class="other-seats-note" x="380" y="{footer_y + 16 * (index + 1)}" '
+            f'text-anchor="middle">{escape(line)}</text>'
+        )
     result.append("</svg>")
     return "\n".join(result) + "\n"
 

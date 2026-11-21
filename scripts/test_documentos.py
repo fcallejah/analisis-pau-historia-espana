@@ -94,8 +94,8 @@ class DocumentCorpusTests(unittest.TestCase):
             "elecciones-generales-2004-semicirculo.svg": "Resultado elecciones 2004 (14 de marzo)",
             "elecciones-generales-2008-semicirculo.svg": "Resultado elecciones 2008 (9 de marzo)",
             "elecciones-generales-2011-semicirculo.svg": "Resultado elecciones 2011 (20 de noviembre)",
-            "elecciones-europeas-2014-semicirculo.svg": "Resultado elecciones europeas 2014 (25 de mayo)",
-            "elecciones-generales-2015-semicirculo.svg": "Resultado elecciones 2015 (20 de diciembre)",
+            "elecciones-europeas-2014-semicirculo.svg": "Resultado elecciones europeas 2014 (25 de mayo)*",
+            "elecciones-generales-2015-semicirculo.svg": "Resultado elecciones 2015 (20 de diciembre)*",
         }
         years = set()
         for record in own:
@@ -152,6 +152,12 @@ class DocumentCorpusTests(unittest.TestCase):
                 self.assertEqual(len(sectors), len(expected))
                 self.assertEqual(len({sector.get("fill") for sector in sectors}), len(sectors))
                 self.assertTrue(all(float(sector.get("data-seat-percent")) > 0 for sector in sectors))
+                aggregate_labels = [
+                    label for label in expected
+                    if label.casefold().startswith(("otros", "grupo mixto"))
+                ]
+                if aggregate_labels:
+                    self.assertIn(sectors[-1].get("data-party"), aggregate_labels)
                 if "Otros*" in expected:
                     other = next(sector for sector in sectors if sector.get("data-party") == "Otros*")
                     self.assertEqual(other.get("fill"), "#92979f")
@@ -2211,6 +2217,10 @@ class DocumentCorpusTests(unittest.TestCase):
             (divider.get("x1"), divider.get("y1"), divider.get("x2"), divider.get("y2")),
             ("230", "185", "230", "292"),
         )
+        self.assertEqual(
+            svg_root.findall(".//{http://www.w3.org/2000/svg}path[@class='sector']")[-1].get("data-party"),
+            "Otros*",
+        )
         self.assertTrue(divider.get("stroke-dasharray"))
         center = [
             node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
@@ -2242,27 +2252,40 @@ class DocumentCorpusTests(unittest.TestCase):
         ):
             self.assertIn(label, visible_party_labels)
         self.assertIn("Otros*", visible_party_labels)
-        footnotes = [
-            node.text for node in svg_root.iter("{http://www.w3.org/2000/svg}text")
-            if node.get("class") == "footnote"
-        ]
-        footnote_nodes = svg_root.findall(".//{http://www.w3.org/2000/svg}text[@class='footnote']")
-        self.assertTrue(all(node.get("x") == "744" and node.get("text-anchor") == "end"
-                            for node in footnote_nodes))
+        self.assertFalse(svg_root.findall(
+            ".//{http://www.w3.org/2000/svg}text[@class='footnote']"
+        ))
         self.assertEqual(
-            " ".join(footnotes),
-            "«Otros*» agrupa los escaños de PSP-US (Partido Socialista Popular-Unidad Socialista), "
-            "UDC-CD (Unió del Centre i la Democràcia Cristiana de Catalunya), "
-            "EC-FED (Esquerra de Catalunya), EE (Euskadiko Ezkerra) y "
-            "CIC (candidaturas independientes de centro).",
+            svg_root.find(".//{http://www.w3.org/2000/svg}text[@class='other-seats-note']").text,
+            "*Otros escaños: EE: 1; PSP-US: 6; CC/DCC: 2; CRIC: 1; CIC: 1.",
         )
+        error_note = record["errorNote"]
+        self.assertIn("Posible error en el examen", error_note)
+        self.assertIn("UCD figura con 166 escaños (165 según la JEC)", error_note)
+        self.assertIn("omite a Esquerra de Catalunya (1 escaño)", error_note)
+        self.assertIn("desglose oficial suma 12 en «Otros*», no 11", error_note)
+        self.assertIn("El total impreso sí es 350", error_note)
+        self.assertFalse(svg_root.findall(
+            ".//{http://www.w3.org/2000/svg}text[@class='error-footnote']"
+        ))
+        self.assertNotIn("error-footnote", svg_root.find("{http://www.w3.org/2000/svg}style").text)
         description = svg_root.find("{http://www.w3.org/2000/svg}desc").text
+        self.assertIn(
+            "*Otros escaños: EE: 1; PSP-US: 6; CC/DCC: 2; CRIC: 1; CIC: 1.",
+            description,
+        )
         self.assertNotIn("Ministerio del Interior", description)
-        self.assertNotIn("JEC", description)
+        self.assertNotIn("omite a Esquerra de Catalunya", description)
         self.assertNotIn("Agrupación del examen", description)
+        self.assertEqual(record["errorNote"], error_note)
+        self.assertEqual(
+            record["table"]["chart"]["heading"],
+            "Resultado elecciones 1977 (15 de junio)",
+        )
         self.assertNotIn("Escaños (%) = escaños", svg)
         self.assertNotIn("Porcentajes de voto recalculados a una décima", svg)
         self.assertEqual(record["table"]["headers"][-2:], ["Escaños", "Escaños (%)"])
+
         self.assertEqual(record["table"]["rows"][0][1:], ["6 310 391", 166, "47,4"])
         self.assertEqual(record["table"]["caption"], "Resultado elecciones 1977 (15 de junio)")
         self.assertEqual(sum(row[2] for row in record["table"]["rows"]), 350)
@@ -2274,9 +2297,77 @@ class DocumentCorpusTests(unittest.TestCase):
         notes = " ".join(record["table"]["notes"])
         self.assertIn("Ministerio del Interior", notes)
         self.assertIn("6 310 391", notes)
-        self.assertIn("no es un grupo parlamentario", notes)
+        self.assertIn("Candidaturas independientes de centro (2 diputados)", notes)
         self.assertIn("1 261 933 votos", svg)
         self.assertNotIn("Votos (%)", record["table"]["headers"])
+
+    def test_election_chart_svgs_have_no_redundant_footnotes(self):
+        namespace = "{http://www.w3.org/2000/svg}"
+        for path in (ROOT / "assets/documentos").glob("elecciones-*.svg"):
+            svg = ET.parse(path).getroot()
+            footnotes = svg.findall(f".//{namespace}text[@class='footnote']")
+            with self.subTest(path=path.name):
+                self.assertFalse(footnotes)
+
+    def test_other_group_breakdowns_are_concisely_included_in_election_svgs(self):
+        own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
+        namespace = "{http://www.w3.org/2000/svg}"
+        for record in own:
+            for table in record.get("tables", []):
+                groups = [
+                    group for group in table.get("chartGroups", [])
+                    if group["label"].strip().casefold() in {"otros", "otros*"}
+                    or group["label"].strip().casefold().startswith("grupo mixto")
+                ]
+                if not groups:
+                    continue
+                filename = table["chart"]["svg"]
+                svg = ET.parse(ROOT / "assets/documentos" / filename).getroot()
+                svg_text = " ".join(svg.itertext())
+                self.assertNotIn("Agrupaciones del gráfico", svg_text)
+                self.assertNotIn("Consulta el desglose completo en la tabla", svg_text)
+                rows = {row[0]: row for row in table["rows"]}
+                expected_note = "*Otros escaños: " + "; ".join(
+                    f"{member}: {rows[member][3]}"
+                    for group in groups for member in group["members"]
+                ) + "."
+                notes = svg.findall(
+                    f".//{namespace}text[@class='other-seats-note']"
+                )
+                self.assertEqual(" ".join(note.text for note in notes), expected_note)
+                self.assertIn(expected_note, svg_text.replace("\n", " "))
+                for group in groups:
+                    for member in group["members"]:
+                        with self.subTest(year=table["caption"], member=member):
+                            self.assertIn(member, rows)
+
+    def test_post_2012_election_materials_are_marked_and_adapted(self):
+        own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
+        records = {record["id"]: record for record in own}
+        cases = {
+            "propio-elecciones-europeas-2014": (
+                "europeas de 2014", "Podemos y Ciudadanos", "fragmentación del voto"
+            ),
+            "propio-elecciones-generales-2015": (
+                "generales de 2015", "Podemos y Ciudadanos", "turnismo PP–PSOE"
+            ),
+        }
+        namespace = "{http://www.w3.org/2000/svg}"
+        for record_id, phrases in cases.items():
+            record = records[record_id]
+            table = record["tables"][0]
+            chart = table["chart"]
+            self.assertTrue(record["title"].endswith("*"))
+            self.assertTrue(chart["heading"].endswith("*"))
+            note = chart["postCutoffNote"]
+            self.assertTrue(note.startswith("* Ampliación posterior al corte de 2012"))
+            svg = ET.parse(ROOT / "assets/documentos" / chart["svg"]).getroot()
+            svg_text = " ".join(svg.itertext())
+            for phrase in phrases:
+                with self.subTest(record=record_id, phrase=phrase):
+                    self.assertIn(phrase, note)
+                    self.assertNotIn(phrase, svg_text)
+            self.assertFalse(svg.findall(f".//{namespace}text[@class='footnote']"))
 
     def test_1977_tables_use_the_declared_sources_and_exam_grouping(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())

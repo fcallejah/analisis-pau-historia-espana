@@ -1,17 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="545" viewBox="0 0 760 545" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="599" viewBox="0 0 760 599" role="img" aria-labelledby="title desc">
 <title id="title">Elecciones generales de 1933: escaños en las Cortes</title>
-<desc id="desc">Diagrama semicircular proporcional a los 473 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 237 escaños.</desc>
+<desc id="desc">Diagrama semicircular proporcional a los 473 escaños, con las candidaturas y sus porcentajes de representación a la derecha. Las candidaturas y coaliciones señaladas se agrupan; el desglose completo aparece en la tabla. La línea discontinua marca la mitad; la mayoría absoluta requiere 237 escaños. *Otros escaños: Partido Comunista de España: 1; Radical-socialistas y PRRSI: 4; Acción Republicana: 5; Republicanos federales: 4; Republicanos independientes: 5; Partido Republicano Conservador: 17; Partido Republicano Liberal Demócrata: 9; Independientes de derecha: 13; Comunión Tradicionalista: 20; Monárquicos y Falange: 20.</desc>
 <metadata>{&quot;source&quot;: &quot;https://historiaelectoral.com/e1931r.html&quot;, &quot;year&quot;: 1933}</metadata>
-<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.footnote{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
-<rect width="760" height="545" fill="#fff"/>
+<style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="599" fill="#fff"/>
 <text class="title" x="380" y="32" text-anchor="middle">Cortes · 1933</text>
 <text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por candidatura y grupo</text>
 <path class="sector" data-party="CEDA" data-seats="115" data-seat-percent="24.313" fill="#315a29" d="M45.00,370.00 A185,185 0 0 1 96.39,242.04 L173.67,316.05 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Partido Republicano Radical" data-seats="102" data-seat-percent="21.564" fill="#c6464f" d="M96.39,242.04 A185,185 0 0 1 206.11,186.55 L219.93,292.65 A78,78 0 0 0 173.67,316.05 Z"/>
-<path class="sector" data-party="Otros*" data-seats="98" data-seat-percent="20.719" fill="#92979f" d="M206.11,186.55 A185,185 0 0 1 322.15,209.58 L268.85,302.36 A78,78 0 0 0 219.93,292.65 Z"/>
-<path class="sector" data-party="PSOE" data-seats="59" data-seat-percent="12.474" fill="#2d4d73" d="M322.15,209.58 A185,185 0 0 1 376.43,256.93 L291.74,322.33 A78,78 0 0 0 268.85,302.36 Z"/>
-<path class="sector" data-party="Otros de centro-derecha" data-seats="42" data-seat-percent="8.879" fill="#d1a243" d="M376.43,256.93 A185,185 0 0 1 401.90,301.62 L302.48,341.17 A78,78 0 0 0 291.74,322.33 Z"/>
-<path class="sector" data-party="Agrarios" data-seats="30" data-seat-percent="6.342" fill="#8b1e3f" d="M401.90,301.62 A185,185 0 0 1 412.03,337.00 L306.75,356.09 A78,78 0 0 0 302.48,341.17 Z"/>
+<path class="sector" data-party="PSOE" data-seats="59" data-seat-percent="12.474" fill="#2d4d73" d="M206.11,186.55 A185,185 0 0 1 277.98,191.33 L250.23,294.67 A78,78 0 0 0 219.93,292.65 Z"/>
+<path class="sector" data-party="Agrarios" data-seats="30" data-seat-percent="6.342" fill="#d1a243" d="M277.98,191.33 A185,185 0 0 1 312.40,204.36 L264.74,300.16 A78,78 0 0 0 250.23,294.67 Z"/>
+<path class="sector" data-party="Otros*" data-seats="98" data-seat-percent="20.719" fill="#92979f" d="M312.40,204.36 A185,185 0 0 1 395.91,288.15 L299.95,335.49 A78,78 0 0 0 264.74,300.16 Z"/>
+<path class="sector" data-party="Otros de centro-derecha" data-seats="42" data-seat-percent="8.879" fill="#8b1e3f" d="M395.91,288.15 A185,185 0 0 1 412.03,337.00 L306.75,356.09 A78,78 0 0 0 299.95,335.49 Z"/>
 <path class="sector" data-party="Otros de izquierda" data-seats="27" data-seat-percent="5.708" fill="#4f805a" d="M412.03,337.00 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 306.75,356.09 Z"/>
 <line x1="230" y1="185" x2="230" y2="292" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
 <circle cx="230" cy="370" r="77" fill="#fff"/>
@@ -25,22 +25,25 @@
 <text class="party" x="454" y="148">Partido Republicano Radical</text>
 <text class="share" x="744" y="148" text-anchor="end">21,6 %</text>
 <text class="party" x="454" y="166">· 102 escaños</text>
-<rect x="430" y="188" width="14" height="14" rx="2" fill="#92979f"/>
-<text class="party" x="454" y="200">Otros* · 98 escaños</text>
-<text class="share" x="744" y="200" text-anchor="end">20,7 %</text>
-<rect x="430" y="224" width="14" height="14" rx="2" fill="#2d4d73"/>
-<text class="party" x="454" y="236">PSOE · 59 escaños</text>
-<text class="share" x="744" y="236" text-anchor="end">12,5 %</text>
-<rect x="430" y="260" width="14" height="14" rx="2" fill="#d1a243"/>
-<text class="party" x="454" y="272">Otros de centro-derecha</text>
-<text class="share" x="744" y="272" text-anchor="end">8,9 %</text>
-<text class="party" x="454" y="290">· 42 escaños</text>
-<rect x="430" y="312" width="14" height="14" rx="2" fill="#8b1e3f"/>
-<text class="party" x="454" y="324">Agrarios · 30 escaños</text>
-<text class="share" x="744" y="324" text-anchor="end">6,3 %</text>
+<rect x="430" y="188" width="14" height="14" rx="2" fill="#2d4d73"/>
+<text class="party" x="454" y="200">PSOE · 59 escaños</text>
+<text class="share" x="744" y="200" text-anchor="end">12,5 %</text>
+<rect x="430" y="224" width="14" height="14" rx="2" fill="#d1a243"/>
+<text class="party" x="454" y="236">Agrarios · 30 escaños</text>
+<text class="share" x="744" y="236" text-anchor="end">6,3 %</text>
+<rect x="430" y="260" width="14" height="14" rx="2" fill="#92979f"/>
+<text class="party" x="454" y="272">Otros* · 98 escaños</text>
+<text class="share" x="744" y="272" text-anchor="end">20,7 %</text>
+<rect x="430" y="296" width="14" height="14" rx="2" fill="#8b1e3f"/>
+<text class="party" x="454" y="308">Otros de centro-derecha</text>
+<text class="share" x="744" y="308" text-anchor="end">8,9 %</text>
+<text class="party" x="454" y="326">· 42 escaños</text>
 <rect x="430" y="348" width="14" height="14" rx="2" fill="#4f805a"/>
 <text class="party" x="454" y="360">Otros de izquierda</text>
 <text class="share" x="744" y="360" text-anchor="end">5,7 %</text>
 <text class="party" x="454" y="378">· 27 escaños</text>
-<text class="footnote" x="380" y="515" text-anchor="middle">«Otros*» agrupa candidaturas con escaño; no es un grupo parlamentario.</text>
+<text class="other-seats-note" x="380" y="531" text-anchor="middle">*Otros escaños: Partido Comunista de España: 1; Radical-socialistas y PRRSI: 4; Acción</text>
+<text class="other-seats-note" x="380" y="547" text-anchor="middle">Republicana: 5; Republicanos federales: 4; Republicanos independientes: 5; Partido</text>
+<text class="other-seats-note" x="380" y="563" text-anchor="middle">Republicano Conservador: 17; Partido Republicano Liberal Demócrata: 9; Independientes de</text>
+<text class="other-seats-note" x="380" y="579" text-anchor="middle">derecha: 13; Comunión Tradicionalista: 20; Monárquicos y Falange: 20.</text>
 </svg>

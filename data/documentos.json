@@ -20450,7 +20450,7 @@
       ],
       "date": "15 de junio de 1977",
       "sourceCaption": "Material de 2007, Examen 4, Bloque II · Opción B. Votos de UCD según el Ministerio del Interior; demás candidaturas contrastadas con la JEC.",
-      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños. La agrupación electoral del material del examen presenta UCD con 166 escaños y Otros* con 11. La cifra consolidada de votos de UCD es 6 310 391, publicada por el Ministerio del Interior; las demás cifras de votos proceden del resumen de la JEC. «Otros*» agrupa candidaturas electorales y no es un grupo parlamentario.",
+      "quality": "Diagrama semicircular redibujado a partir del material del examen. Los sectores son proporcionales a los 350 escaños. La agrupación electoral del material del examen presenta UCD con 166 escaños y Otros* con 11. La cifra consolidada de votos de UCD es 6 310 391, publicada por el Ministerio del Interior; las demás cifras de votos proceden del resumen de la JEC. «Otros*» agrupa: PSP-US — Partido Socialista Popular-Unidad Socialista (6 diputados); UDC-CD — Unió del Centre i la Democràcia Cristiana de Catalunya (2 diputados); EC-FED — Esquerra de Catalunya (1 diputado); EE — Euskadiko Ezkerra (1 diputado); CIC — Candidaturas independientes de centro (2 diputados). El desglose de esas candidaturas suma 12 diputados; el gráfico del examen asigna 11 a «Otros*».",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -20484,8 +20484,8 @@
       "image": {
         "src": "assets/documentos/elecciones-1977-diagrama-semicircular.svg",
         "width": 760,
-        "height": 740,
-        "alt": "Resultado elecciones 1977 (15 de junio): diagrama semicircular de votos y escaños. Otros* agrupa las candidaturas PSP-US, UDC-CD, EC-FED, EE y CIC.",
+        "height": 700,
+        "alt": "Resultado elecciones 1977 (15 de junio): diagrama semicircular de votos y escaños. *Otros escaños: EE: 1; PSP-US: 6; CC/DCC: 2; CRIC: 1; CIC: 1.",
         "sourceUrl": "https://drive.google.com/file/d/1pmWRafrxiqQ8zQcLkraSGoRxkCyvyFjC/view",
         "kind": "chart",
         "originalSrc": "assets/documentos/pdf-2007-4-4.png",
@@ -20493,6 +20493,9 @@
       },
       "table": {
         "caption": "Resultado elecciones 1977 (15 de junio)",
+        "chart": {
+          "heading": "Resultado elecciones 1977 (15 de junio)"
+        },
         "headers": [
           "Partido o candidatura con escaño",
           "Votos",
@@ -20545,13 +20548,14 @@
         ],
         "notes": [
           "La cifra de votos de UCD se actualiza a 6 310 391 según el Ministerio del Interior; los demás votos se mantienen según el resumen de la JEC.",
-          "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. Otros* agrupa candidaturas electorales; no es un grupo parlamentario.",
+          "El reparto visible sigue la agrupación del material del examen: UCD suma 166 escaños y Otros* 11. «Otros*» agrupa: PSP-US — Partido Socialista Popular-Unidad Socialista (6 diputados); UDC-CD — Unió del Centre i la Democràcia Cristiana de Catalunya (2 diputados); EC-FED — Esquerra de Catalunya (1 diputado); EE — Euskadiko Ezkerra (1 diputado); CIC — Candidaturas independientes de centro (2 diputados). El desglose de esas candidaturas suma 12 diputados; el gráfico del examen asigna 11 a «Otros*». * Posible error en el examen: UCD figura con 166 escaños (165 según la JEC) y la nota de «Otros*» omite a Esquerra de Catalunya (1 escaño); el desglose oficial suma 12 en «Otros*», no 11. El total impreso sí es 350: la discrepancia está en el reparto.",
           "PSOE incluye PSC-PSOE; PCE incluye PSUC. El resumen de resultados de la JEC enlazado permite consultar el desglose original por candidatura.",
           "Fuente: Junta Electoral Central, resumen de resultados, página 5: https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf",
           "Fuente del voto de UCD: Ministerio del Interior, Infoelectoral: https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/index.html"
         ]
       },
-      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf"
+      "dataSourceUrl": "https://www.juntaelectoralcentral.es/cs/jec/documentos/GENERALES_1977_Resultados.pdf",
+      "errorNote": "* Posible error en el examen: UCD figura con 166 escaños (165 según la JEC) y la nota de «Otros*» omite a Esquerra de Catalunya (1 escaño); el desglose oficial suma 12 en «Otros*», no 11. El total impreso sí es 350: la discrepancia está en el reparto."
     },
     {
       "title": "La Constitución de 1812: soberanía y derechos",
