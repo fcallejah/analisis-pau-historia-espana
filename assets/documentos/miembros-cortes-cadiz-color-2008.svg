@@ -143,54 +143,15 @@
 <path id="font_13_53" d="M.3156829 .60398867H.49033384V.72898867H.011473236V.60398867H.1926803V0H.3156829V.60398867Z" />
 <path id="font_13_171" d="M.41078557 .14698792 .4501463 0H.57641097L.36978583 .72898867H.2336747L.02130685 0H.14675828L.18694477 .14698792H.41078557M.37716753 .27198792H.22137605L.2992718 .5569916 .37716753 .27198792M.41816727 .9359894H.31484843L.2574588 .7859955H.31484843L.41816727 .9359894Z" />
 <path id="font_13_59" d="M.47393099 .72898867H.024598018V.60398867H.33044673L.024598018 .125V0H.47393099V.125H.16890806L.47393099 .60398867V.72898867Z" />
-<clipPath id="clip_16">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M258.66 303.2H254.46V290.6H258.66ZM254.46 303.2ZM471.72 303.2H468.42V290.6H471.72Z" clip-rule="evenodd" />
-</clipPath>
 <path id="font_13_26" d="M.031160862 .16499329C.033613687 .055999757 .10907553-.024002076 .20912819-.024002076 .28376407-.024002076 .3403542 .01399231 .37480635 .085998538 .40514127 .14898682 .42318706 .2559967 .42318706 .36999513 .42318706 .47399903 .41007195 .55400088 .3830033 .60798647 .3460983 .6839905 .28868223 .723999 .21897702 .723999 .102517988 .723999 .022963928 .621994 .022963928 .47399903 .022963928 .32798768 .0934951 .22799683 .19682652 .22799683 .226348 .22799683 .2542426 .23799134 .27227587 .2539978 .28293813 .2630005 .2895082 .27198792 .3083674 .2979889 .3083674 .16099549 .27720655 .09599304 .21240695 .09599304 .17140977 .09599304 .14434111 .12298584 .14187578 .16499329H.031160862M.21569824 .6100006C.2714624 .6100006 .30590207 .55799868 .30590207 .47399903 .30590207 .3959961 .27063648 .34399415 .21733763 .34399415 .16483972 .34399415 .13203946 .3939972 .13203946 .47599793 .13203946 .55799868 .16402628 .6100006 .21569824 .6100006Z" />
 <path id="font_13_17" d="M.22389518 .723999C.16156094 .723999 .10824958 .69200137 .072983998 .6329956 .039357798 .5779877 .023777364 .48799134 .023777364 .34999085 .023777364 .22399903 .036904973 .13598633 .06478706 .08198547 .0992267 .01399231 .15581683-.023010254 .22389518-.023010254 .28704287-.023010254 .3387148 .0079956059 .37480635 .066986087 .4076066 .12199402 .424013 .21299744 .424013 .34599305 .424013 .47599793 .41088537 .56399539 .3830033 .61898806 .34855113 .68699648 .291961 .723999 .22389518 .723999M.22389518 .61099246C.25341667 .61099246 .27720655 .59098818 .29114757 .55400088 .30262328 .5239868 .30919335 .44699098 .30919335 .34899903 .30919335 .2689972 .30344925 .19099427 .29442636 .1619873 .28129874 .11999512 .25669543 .09700012 .22389518 .09700012 .19354776 .09700012 .17058382 .115997318 .15664278 .1519928 .14515455 .18199158 .13859701 .2559967 .13859701 .35099793 .13859701 .43499757 .14434111 .5149994 .153364 .5439911 .16566566 .58699038 .19108242 .61099246 .22389518 .61099246Z" />
-<clipPath id="clip_17">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M322.44 290.6H318.3V278H322.44ZM318.3 290.6ZM471.72 290.6H468.48V278H471.72Z" clip-rule="evenodd" />
-</clipPath>
 <path id="font_13_22" d="M.40104906 .70899966H.090203817L.03854436 .31399537H.14187578C.15417744 .34899903 .18042015 .36799623 .21569824 .36799623 .27392776 .36799623 .30919335 .31698609 .30919335 .23098755 .30919335 .147995 .27392776 .09700012 .21569824 .09700012 .16566566 .09700012 .13778357 .12799073 .13531824 .18499756H.022137978C.023777364 .06098938 .10086609-.023010254 .21404635-.023010254 .3387148-.023010254 .424013 .08099365 .424013 .23399353 .424013 .37998963 .35019053 .47898866 .24275439 .47898866 .20421002 .47898866 .17550197 .46699525 .14187578 .43598939L.1607475 .58399966H.40104906V.70899966Z" />
 <path id="font_13_23" d="M.41580353 .5479889C.41007195 .59399417 .40268845 .61698916 .38792146 .6429901 .35757403 .69400027 .30426268 .723999 .24111499 .723999 .16894444 .723999 .10988897 .68499758 .07462338 .6139984 .040183747 .54499819 .026242702 .46598817 .026242702 .33699037 .026242702 .21499634 .03854436 .13899231 .06806584 .08198547 .101692039 .015991211 .16238688-.023010254 .23127868-.023010254 .34691177-.023010254 .42565239 .08198547 .42565239 .23699951 .42565239 .37298585 .3567606 .46699525 .25669543 .46699525 .20912819 .46699525 .17714137 .44999696 .14106235 .4039917L.14187578 .4189911C.14351517 .4850006 .1459805 .5059967 .15417744 .5329895 .16975788 .58499148 .19765248 .61099246 .23783621 .61099246 .2747412 .61099246 .29442636 .59298709 .30919335 .5479889H.41580353M.2279999 .35598756C.2821247 .35598756 .31656433 .30599977 .31656433 .22698975 .31656433 .1519928 .2788459 .09700012 .2279999 .09700012 .17550197 .09700012 .13942296 .14898682 .13942296 .22499085 .13942296 .3019867 .17550197 .35598756 .2279999 .35598756Z" />
 <path id="font_15_39" d="M.1500529 .33198548H.4353949V.4139862H.1500529V.6469879H.47475676V.72898867H.07379405V0H.1500529V.33198548Z" />
-<clipPath id="clip_18">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M336.66 278H332.46V265.34H336.66ZM332.46 278ZM471.72 278H468.42V265.34H471.72Z" clip-rule="evenodd" />
-</clipPath>
 <path id="font_13_21" d="M.4281052 .272995H.36742286V.70899966H.23209211L.019672642 .2749939V.15699768H.2526032V0H.36742286V.15699768H.4281052V.272995M.2526032 .272995H.10086609L.2526032 .57598879V.272995Z" />
-<clipPath id="clip_19">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M372.06 265.34H367.86V252.73999H372.06ZM367.86 265.34ZM471.72 265.34H468.42V252.73999H471.72Z" clip-rule="evenodd" />
-</clipPath>
 <path id="font_13_20" d="M.17796731 .31698609C.22225578 .31698609 .22470862 .31698609 .24521972 .30999757 .28376407 .29699708 .3083674 .2559967 .3083674 .20399475 .3083674 .14099121 .27227587 .09700012 .22225578 .09700012 .16811848 .09700012 .13859701 .1349945 .13531824 .20799256H.023777364C.024603315 .06599426 .10005265-.023010254 .21979045-.023010254 .34363298-.023010254 .42318706 .06599426 .42318706 .20399475 .42318706 .2869873 .39366556 .34098817 .32805256 .37998963 .3813639 .42099 .40432785 .46598817 .40432785 .5309906 .40432785 .6489868 .33215729 .723999 .21979045 .723999 .13531824 .723999 .070531178 .67900088 .045101908 .60198977 .034439636 .56799319 .031160862 .54499819 .031160862 .48599244H.13778357C.13859701 .5239868 .14106235 .54299929 .14679395 .5609894 .1574562 .59199526 .18371143 .61099246 .21733763 .61099246 .2632655 .61099246 .2895082 .57699587 .2895082 .5179901 .2895082 .44599916 .255882 .41099549 .18780364 .41099549H.17796731V.31698609Z" />
 <path id="font_15_52" d="M.4887679 .5149994C.4887679 .5649872 .48630274 .57899478 .4731885 .61299136 .4403779 .69699099 .37067724 .7409973 .26980529 .7409973 .13858789 .7409973 .057399788 .6589966 .057399788 .5269928 .057399788 .43798829 .09594161 .38198854 .17467706 .35699464L.32311315 .30899049C.3993834 .2849884 .4330074 .24798584 .4330074 .19099427 .4330074 .1519928 .4157762 .11199951 .3903611 .08999634 .3665728 .068984989 .32884435 .05899048 .28046686 .05899048 .21485816 .05899048 .17139849 .07798767 .14269234 .11999512 .12054331 .1519928 .11070763 .18699646 .11152102 .23199463H.039355209C.040181105 .16499329 .050842674 .12098694 .07461847 .08099365 .11562547 .011993408 .18451274-.023010254 .27554903-.023010254 .34688894-.023010254 .40511463-.0030059815 .44366897 .032989503 .48385007 .07199097 .5092651 .13699341 .5092651 .19999695 .5092651 .2899933 .4633403 .35598756 .3821522 .3829956L.23207684 .43199159C.15991104 .45599366 .13367006 .48399354 .13367006 .5399933 .13367006 .6139984 .18697791 .6629944 .26734013 .6629944 .36246834 .6629944 .4157762 .61099246 .41660209 .5149994H.4887679Z" />
-<clipPath id="clip_20">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M393.36 252.74H389.15998V240.08H393.36ZM389.16 252.74ZM471.72 252.74H468.42V240.08H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_21">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M407.46 240.08H403.31999V227.48H407.46ZM403.32 240.08ZM471.72 240.08H468.42V227.48H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_22">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M414.66 227.48H410.46V214.87999H414.66ZM410.46 227.48ZM471.72 227.48H468.48V214.87999H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_23">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M435.9 214.88H431.69999V202.22H435.9ZM431.7 214.88ZM471.72 214.88H468.48V202.22H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_24">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M442.92 202.22H438.78V189.62H442.92ZM438.78 202.22ZM471.72 202.22H468.42V189.62H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_25">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M457.14 189.62H452.94V177.01999H457.14ZM452.94 189.62ZM471.72 189.62H468.48V177.01999H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_26">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 177.02H459.12V164.36H463.32ZM459.12 177.02ZM471.72 177.02H468.42V164.36H471.72Z" clip-rule="evenodd" />
-</clipPath>
 <path id="font_15_35" d="M.0647828 0H.33458809C.3911745 0 .4330074 .018997193 .4649796 .06098938 .49451164 .09899902 .51091697 .15098572 .51091697 .20799256 .51091697 .29599 .47810633 .34899903 .40183608 .3849945 .45678319 .41600038 .48466347 .46899415 .48466347 .5439911 .48466347 .59799197 .46827067 .6439972 .43709935 .6779938 .40511463 .71299746 .36493353 .72898867 .30753375 .72898867H.0647828V0M.14105307 .4149933V.6469879H.28866325C.33130954 .6469879 .35509784 .6399994 .3755951 .62098696 .39691825 .6009979 .40839318 .57099917 .40839318 .5309906 .40839318 .4909973 .39691825 .46099855 .3755951 .44099427 .35509784 .42199708 .33130954 .4149933 .28866325 .4149933H.14105307M.14105307 .08198547V.33299256H.32720507C.39445306 .33299256 .43464668 .28599549 .43464668 .20698548 .43464668 .1289978 .39445306 .08198547 .32720507 .08198547H.14105307Z" />
-<clipPath id="clip_27">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 164.36H459.12V151.76H463.32ZM459.12 164.36ZM471.72 164.36H468.42V151.76H471.72Z" clip-rule="evenodd" />
-</clipPath>
-<clipPath id="clip_28">
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 151.76H459.12V139.09999H463.32ZM459.12 151.76ZM471.72 151.76H468.42V139.09999H471.72Z" clip-rule="evenodd" />
-</clipPath>
 </defs>
 <g clip-path="url(#clip_1)">
 <g clip-path="url(#clip_2)">
@@ -2204,10 +2165,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,48.140459,38.0596)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,53.114397,38.0596)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,57.616197,38.0596)" />
-<g clip-path="url(#clip_16)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M254.46 290.6H471.72V303.2H254.46Z" fill="#d4bd87" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M258.66 290.6H468.41999V303.2H258.66Z" fill="#d4bd87" />
 <use data-text="9" xlink:href="#font_13_26" transform="matrix(10.98,0,0,-10.98,97.66,38.0596)" />
 <use data-text="0" xlink:href="#font_13_17" transform="matrix(10.98,0,0,-10.98,102.639438,38.0596)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,107.618869,38.0596)" />
@@ -2222,10 +2182,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,36.611436,50.6597)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,41.590867,50.6597)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,46.10913,50.6597)" />
-<g clip-path="url(#clip_17)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M318.3 278H471.71998V290.6H318.3Z" fill="#8fb8c8" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M322.44 278H468.47999V290.6H322.44Z" fill="#8fb8c8" />
 <use data-text="5" xlink:href="#font_13_22" transform="matrix(10.98,0,0,-10.98,161.44,50.6597)" />
 <use data-text="6" xlink:href="#font_13_23" transform="matrix(10.98,0,0,-10.98,166.41944,50.6597)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,171.39887,50.6597)" />
@@ -2244,10 +2203,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,47.624406,63.259614)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,52.668626,63.259614)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,57.152864,63.259614)" />
-<g clip-path="url(#clip_18)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M332.46 265.34H471.71998V278H332.46Z" fill="#8fb8c8" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M336.66 265.34H468.41999V278H336.66Z" fill="#8fb8c8" />
 <use data-text="4" xlink:href="#font_13_21" transform="matrix(10.98,0,0,-10.98,175.66,63.259614)" />
 <use data-text="9" xlink:href="#font_13_26" transform="matrix(10.98,0,0,-10.98,180.63944,63.259614)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,185.61887,63.259614)" />
@@ -2263,10 +2221,9 @@
 <use data-text="e" xlink:href="#font_15_70" transform="matrix(10.98,0,0,-10.98,29.596329,75.91969)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,34.59552,75.91969)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,39.08963,75.91969)" />
-<g clip-path="url(#clip_19)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M367.86 252.74H471.71998V265.34H367.86Z" fill="#9aacc2" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M372.06 252.74H468.41999V265.34H372.06Z" fill="#9aacc2" />
 <use data-text="3" xlink:href="#font_13_20" transform="matrix(10.98,0,0,-10.98,211.06,75.91969)" />
 <use data-text="0" xlink:href="#font_13_17" transform="matrix(10.98,0,0,-10.98,216.03943,75.91969)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,221.01886,75.91969)" />
@@ -2298,10 +2255,9 @@
 <use data-text="d" xlink:href="#font_15_69" transform="matrix(10.98,0,0,-10.98,100.74783,88.5197)" />
 <use data-text="a" xlink:href="#font_15_66" transform="matrix(10.98,0,0,-10.98,105.79205,88.5197)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,110.78137,88.5197)" />
-<g clip-path="url(#clip_20)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M389.16 240.08H471.72V252.74H389.16Z" fill="#c6c2b9" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M393.36 240.08H468.41999V252.74H393.36Z" fill="#c6c2b9" />
 <use data-text="2" xlink:href="#font_13_19" transform="matrix(10.98,0,0,-10.98,232.35999,88.5197)" />
 <use data-text="0" xlink:href="#font_13_17" transform="matrix(10.98,0,0,-10.98,237.33942,88.5197)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,242.31885,88.5197)" />
@@ -2335,10 +2291,9 @@
 <use data-text="a" xlink:href="#font_15_66" transform="matrix(10.98,0,0,-10.98,107.287448,101.1797)" />
 <use data-text="d" xlink:href="#font_15_69" transform="matrix(10.98,0,0,-10.98,112.27896,101.1797)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,117.27048,101.1797)" />
-<g clip-path="url(#clip_21)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M403.32 240.08H471.72V227.48H403.32" fill="#ab9abb" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M407.46 227.48H468.41999V240.08H407.46Z" fill="#ab9abb" />
 <use data-text="1" xlink:href="#font_13_18" transform="matrix(10.98,0,0,-10.98,246.45999,101.1797)" />
 <use data-text="5" xlink:href="#font_13_22" transform="matrix(10.98,0,0,-10.98,251.43943,101.1797)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,256.41886,101.1797)" />
@@ -2351,10 +2306,9 @@
 <use data-text="e" xlink:href="#font_15_70" transform="matrix(10.98,0,0,-10.98,24.103028,113.77969)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,29.090149,113.77969)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,33.57219,113.77969)" />
-<g clip-path="url(#clip_22)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M410.46 214.88H471.72V227.48001H410.46Z" fill="#d2a28f" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M414.66 214.88H468.48V227.48001H414.66Z" fill="#d2a28f" />
 <use data-text="1" xlink:href="#font_13_18" transform="matrix(10.98,0,0,-10.98,253.66,113.77969)" />
 <use data-text="4" xlink:href="#font_13_21" transform="matrix(10.98,0,0,-10.98,258.63945,113.77969)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,263.61888,113.77969)" />
@@ -2368,10 +2322,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,28.079987,126.3797)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,33.089067,126.3797)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,37.593065,126.3797)" />
-<g clip-path="url(#clip_23)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M431.7 202.22H471.72V214.88H431.7Z" fill="#9aacc2" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M435.9 202.22H468.47999V214.88H435.9Z" fill="#9aacc2" />
 <use data-text="9" xlink:href="#font_13_26" transform="matrix(10.98,0,0,-10.98,274.9,126.3797)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,279.87944,126.3797)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 202.22H163.31999V214.88H162.84Z" />
@@ -2389,10 +2342,9 @@
 <use data-text="e" xlink:href="#font_15_70" transform="matrix(10.98,0,0,-10.98,51.63205,139.0397)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,56.626848,139.0397)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,61.11656,139.0397)" />
-<g clip-path="url(#clip_24)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M438.78 189.62H471.72V202.22H438.78Z" fill="#a4b67f" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M442.92 189.62H468.42V202.22H442.92Z" fill="#a4b67f" />
 <use data-text="8" xlink:href="#font_13_25" transform="matrix(10.98,0,0,-10.98,281.92,139.0397)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,286.89945,139.0397)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 189.62H163.31999V202.22H162.84Z" />
@@ -2408,10 +2360,9 @@
 <use data-text="e" xlink:href="#font_15_70" transform="matrix(10.98,0,0,-10.98,36.064638,151.6397)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,41.07042,151.6397)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,45.57112,151.6397)" />
-<g clip-path="url(#clip_25)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M452.94 177.02H471.72V189.62001H452.94Z" fill="#ab9abb" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M457.14 177.02H468.48V189.62001H457.14Z" fill="#ab9abb" />
 <use data-text="2" xlink:href="#font_13_19" transform="matrix(10.98,0,0,-10.98,296.14,151.6397)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,301.11946,151.6397)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 177.02H163.31999V189.62001H162.84Z" />
@@ -2428,10 +2379,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,41.147294,164.2397)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,46.13112,164.2397)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,50.642808,164.2397)" />
-<g clip-path="url(#clip_26)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M459.12 164.36H471.72V177.02H459.12Z" fill="#ab9abb" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 164.36H468.42V177.02H463.32Z" fill="#ab9abb" />
 <use data-text="1" xlink:href="#font_13_18" transform="matrix(10.98,0,0,-10.98,302.38,164.2397)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,307.35945,164.2397)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 164.36H163.31999V177.02H162.84Z" />
@@ -2446,10 +2396,9 @@
 <use data-text="e" xlink:href="#font_15_70" transform="matrix(10.98,0,0,-10.98,32.08658,176.8997)" />
 <use data-text="r" xlink:href="#font_15_83" transform="matrix(10.98,0,0,-10.98,37.079179,176.8997)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,40.06244,176.8997)" />
-<g clip-path="url(#clip_27)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M459.12 151.76H471.72V164.36H459.12Z" fill="#ab9abb" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 151.76H468.42V164.36H463.32Z" fill="#ab9abb" />
 <use data-text="1" xlink:href="#font_13_18" transform="matrix(10.98,0,0,-10.98,302.38,176.8997)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,307.35945,176.8997)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 151.76H163.31999V164.36H162.84Z" />
@@ -2462,10 +2411,9 @@
 <use data-text="o" xlink:href="#font_15_80" transform="matrix(10.98,0,0,-10.98,29.611695,189.4997)" />
 <use data-text="s" xlink:href="#font_15_84" transform="matrix(10.98,0,0,-10.98,34.593324,189.4997)" />
 <use data-text=" " xlink:href="#font_15_1" transform="matrix(10.98,0,0,-10.98,39.091829,189.4997)" />
-<g clip-path="url(#clip_28)">
+<g>
 <path transform="matrix(1,0,0,-1,-161,331)" d="M459.12 139.1H471.72V151.76001H459.12Z" fill="#ab9abb" />
 </g>
-<path transform="matrix(1,0,0,-1,-161,331)" d="M463.32 139.1H468.42V151.76001H463.32Z" fill="#ab9abb" />
 <use data-text="1" xlink:href="#font_13_18" transform="matrix(10.98,0,0,-10.98,302.38,189.4997)" />
 <use data-text=" " xlink:href="#font_13_1" transform="matrix(10.98,0,0,-10.98,307.35945,189.4997)" />
 <path transform="matrix(1,0,0,-1,-161,331)" d="M162.84 138.62H163.31999V151.76H162.84Z" />
@@ -2480,4 +2428,4 @@
 <use data-text=" " xlink:href="#font_11_1" transform="matrix(10.02,0,0,-10.02,-75.92,247.51941)" />
 </g>
 </g>
-<title id="title">Miembros de las Cortes de Cádiz</title><desc id="description">Extracción vectorial del PDF oficial de 2008, Examen 2, Opción A, documento 2. Se conservan las categorías y cifras originales; se añaden colores editoriales y líneas de puntos para relacionar cada ocupación con su cifra.</desc><metadata>Fuente: https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip; archivo: sel_2008_historia_espana.zip/Texto Histórico 2 - Examen y criterios de corrección.pdf; página: 1; recorte PDF: (161, 511, 474, 705); SHA-256 del PDF: 1b448c785df3a10302e25af4c4b0973040e743701523f0988d178d1318b9756d</metadata><g id="cadiz-chart-leaders" aria-hidden="true" fill="none" stroke="#46575e" stroke-width="0.7" stroke-dasharray="0.01 1.7" stroke-linecap="round" opacity="0.75"><path class="leader" d="M58.15,34.13H96.31" /><path class="leader" d="M46.62,47.85H160.08" /><path class="leader" d="M57.70,59.39H174.28" /><path class="leader" d="M39.63,72.04H209.72" /><path class="leader" d="M111.51,85.65H231.03" /><path class="leader" d="M117.64,97.24H245.47" /><path class="leader" d="M34.12,109.90H252.67" /><path class="leader" d="M38.12,122.51H273.55" /><path class="leader" d="M61.66,135.10H280.52" /><path class="leader" d="M46.10,147.76H294.81" /><path class="leader" d="M51.17,161.43H301.39" /><path class="leader" d="M40.87,173.02H301.39" /><path class="leader" d="M39.63,185.56H301.39" /></g></svg>
+<title id="title">Miembros de las Cortes de Cádiz</title><desc id="description">Miembros de las Cortes de Cádiz por ocupación. Gráfico extraído del PDF oficial de 2008, Examen 2, Opción A, documento 2.</desc><metadata>Fuente: https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip; archivo: sel_2008_historia_espana.zip/Texto Histórico 2 - Examen y criterios de corrección.pdf; página: 1; recorte PDF: (161, 511, 474, 705); SHA-256 del PDF: 1b448c785df3a10302e25af4c4b0973040e743701523f0988d178d1318b9756d</metadata><g id="cadiz-chart-leaders" aria-hidden="true" fill="none" stroke="#46575e" stroke-width="0.7" stroke-dasharray="0.01 1.7" stroke-linecap="round" opacity="0.75"><path class="leader" d="M58.15,34.13H96.31" /><path class="leader" d="M46.62,47.85H160.08" /><path class="leader" d="M57.70,59.39H174.28" /><path class="leader" d="M39.63,72.04H209.72" /><path class="leader" d="M111.51,85.65H231.03" /><path class="leader" d="M117.64,97.24H245.47" /><path class="leader" d="M34.12,109.90H252.67" /><path class="leader" d="M38.12,122.51H273.55" /><path class="leader" d="M61.66,135.10H280.52" /><path class="leader" d="M46.10,147.76H294.81" /><path class="leader" d="M51.17,161.43H301.39" /><path class="leader" d="M40.87,173.02H301.39" /><path class="leader" d="M39.63,185.56H301.39" /></g></svg>

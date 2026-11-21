@@ -1174,8 +1174,7 @@
         "height": 776,
         "caption": "SVG derivado del original oficial de 2008, Examen 2, opción A, documento 2; color editorial.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
-        "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
-        "reproductionNote": "Colores editoriales diferenciados y líneas de puntos que enlazan cada ocupación con su cifra; no se modifican categorías ni datos."
+        "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg"
       },
       "table": {
         "caption": "Transcripción de los datos del gráfico",
@@ -8072,6 +8071,8 @@
         12
       ],
       "title": "Primer decreto de las Cortes reunidas en la isla de León",
+      "titleMarker": "*",
+      "historicalNote": "La Isla de León corresponde a la actual ciudad de San Fernando, junto a Cádiz. Ambas plazas resistieron el asedio francés (1810–1812) con apoyo naval aliado, incluida la escuadra británica; Wellington dirigía el ejército, no la marina. España y Gran Bretaña se aliaron frente a Napoleón; el «equilibrio de poder» (balance of power) británico buscaba impedir la hegemonía de una sola potencia europea.",
       "type": "texto",
       "blocks": [
         5
@@ -19679,7 +19680,6 @@
           "textReviewedByUser": true
         }
       ],
-      "readingNote": "Texto de 2006 revisado y confirmado como correcto por el usuario. Se conserva la procedencia de la copia no original aportada.",
       "attributionParagraphs": 1
     },
     {

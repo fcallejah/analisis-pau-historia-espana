@@ -34,6 +34,8 @@ def grouped_records(data):
         replacements[identities[0]] = {
             **primary, "id": canonical["id"], "memberIds": identities, "textVersions": versions,
             **({"studyCompilation": canonical["studyCompilation"]} if "studyCompilation" in canonical else {}),
+            **({"titleMarker": canonical["titleMarker"]} if "titleMarker" in canonical else {}),
+            **({"historicalNote": canonical["historicalNote"]} if "historicalNote" in canonical else {}),
             "tags": list(dict.fromkeys(tag for version in versions for tag in version["tags"])),
             "blocks": list(dict.fromkeys(block for version in versions for block in version["blocks"])),
             "appearances": sorted((appearance for version in versions for appearance in version["appearances"]),
@@ -433,10 +435,21 @@ def check_document_attributions(browser):
                 "node => getComputedStyle(node).fontFamily") == font
             paragraphs = page.locator(".document-full-source > blockquote p")
             assert paragraphs.all_text_contents() == reading_paragraphs(record)
+            if record.get("studyCompilation") or record.get("textVersions"):
+                collection = page.locator(".document-group-heading")
+                assert collection.locator(".document-group-label").inner_text() == "Recopilación"
+                assert collection.evaluate(
+                    "node => getComputedStyle(node).borderInlineStartColor === 'rgb(167, 207, 50)'"
+                )
             if identifier == "napoleon-espanoles-bayona-1808":
                 assert paragraphs.last.get_attribute("class") == "document-attribution"
                 assert paragraphs.last.inner_text() == "Dado en nuestro palacio imperial y real de Bayona a 25 de mayo de 1808."
             if identifier == "decreto-cortes-soberania-isla-leon-1810":
+                assert page.locator("#document-dialog-title sup").inner_text() == "*"
+                note = page.locator(".document-full-source > .document-reading-note")
+                assert note.inner_text().startswith("* La Isla de León corresponde a la actual ciudad de San Fernando")
+                assert "escuadra británica" in note.inner_text()
+                assert "balance of power" in note.inner_text()
                 assert paragraphs.first.inner_text() == "PRIMER DECRETO DE LAS CORTES REUNIDAS EN LA ISLA DE LEÓN (CÁDIZ)"
                 assert paragraphs.first.evaluate("""node => {
                     const style = getComputedStyle(node);

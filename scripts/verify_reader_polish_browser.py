@@ -135,6 +135,13 @@ def check_local_pdf_import(browser, options):
     assert "2007" in " ".join(page.locator(".document-text-versions .document-variant-sources").all_text_contents())
     assert "copia no original" in copied.locator(".document-reading-note").inner_text()
     assert page.locator(".document-full-source > .document-reading-note").inner_text() == compilation["readingNote"]
+    page.locator(".document-close").click()
+    page.locator("#document-reset").click()
+    open_card(page, "bando-de-murat-tras-el-levantamiento-del-2-de-mayo")
+    text = page.locator(".document-full-source > blockquote").inner_text()
+    assert text.startswith("Proclama de Murat. Orden del día: Soldados:")
+    assert "religiosos.”" not in text
+    assert text.endswith("Belliard.")
     assert not errors, errors
     context.close()
 
@@ -544,6 +551,14 @@ def check_text_selection_presentation(browser, options):
     assert f"{total} apariciones incorporadas" in card.locator(".document-meta").inner_text()
     card.locator(".document-open").click()
     assert page.locator("#document-dialog-content > .document-meta strong").inner_text() == f"{total} apariciones en total"
+    group_note = page.locator(".document-group-heading")
+    assert group_note.locator(".document-group-label").inner_text() == "Recopilación"
+    assert "variaciones a lo largo de varios exámenes" in group_note.inner_text()
+    assert group_note.evaluate(
+        "node => getComputedStyle(node).borderInlineStartWidth === '3px' "
+        "&& getComputedStyle(node).borderInlineStartStyle === 'solid' "
+        "&& getComputedStyle(node).borderInlineStartColor === 'rgb(167, 207, 50)'"
+    )
     quote = page.locator(".document-full-source > blockquote")
     assert "En consecuencia, las Cortes aprueban" in quote.inner_text()
     main_text = quote.inner_text()
@@ -1136,9 +1151,10 @@ def check_cortazar_italics_and_cortes_people(browser, options):
     assert footer.inner_text() == "Manifiesto de los Persas. Madrid, 12 de abril de 1814"
     assert footer.locator("em").inner_text() == "Manifiesto de los Persas"
     assert footer.evaluate("node => getComputedStyle(node).textAlign") == "right"
-    assert "no original" in page.locator(".document-full-source > .document-reading-note").inner_text()
-    assert "confirmado como correcto por el usuario" in page.locator(
-        ".document-full-source > .document-reading-note").inner_text()
+    assert page.locator(".document-full-source > .document-reading-note").count() == 0
+    collection = page.locator(".document-full-source > .document-group-heading")
+    assert collection.locator(".document-group-label").inner_text() == "Recopilación"
+    assert "variaciones a lo largo de varios exámenes" in collection.inner_text()
     assert "pendiente de cotejo" not in page.locator("#document-dialog-content").inner_text()
     versions = page.locator(".document-text-versions")
     versions.locator(":scope > summary").click()

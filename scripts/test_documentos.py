@@ -232,7 +232,10 @@ class DocumentCorpusTests(unittest.TestCase):
                         and a.get("sourceReviewStatus") != "orientation-model"]
             if previous:
                 original.append({key: previous if key == "appearances" else value
-                                 for key, value in record.items() if key not in ("primaryTextId", "memberIds")
+                                 for key, value in record.items()
+                                 if key not in ("primaryTextId", "memberIds", "titleMarker", "historicalNote")
+                                 and not (record["id"] == "manifiesto-persas-1814-pdf-2006-5-1"
+                                          and key == "readingNote")
                                  and not (record["id"] == "casas-viejas-detenciones-1933"
                                           and key in ("image", "quality", "sourceCaption"))
                                  and not (record["id"] in ("mural-constitucion-1812-cadiz", "prim-busca-regimen-caricatura",
@@ -288,14 +291,19 @@ class DocumentCorpusTests(unittest.TestCase):
                 self.assertEqual(record["type"], "texto")
                 self.assertEqual(copied, record["appearances"])
                 self.assertTrue(all(a["sourceReviewStatus"] == "transcription-copy" for a in copied))
-                self.assertIn("no original", record["readingNote"])
+                if record["id"] == "manifiesto-persas-1814-pdf-2006-5-1":
+                    self.assertNotIn("readingNote", record)
+                    self.assertIn("copia de 2006", record["quality"])
+                else:
+                    self.assertIn("no original", record["readingNote"])
                 self.assertNotIn("image", record)
         for group in data["textGroups"]:
             if any(a["year"] == 2006 for identity in group for a in records[identity]["appearances"]):
                 primary = records[records[group[0]]["primaryTextId"]]
                 if group[0] == "manifiesto-persas-1814":
                     self.assertEqual(primary["id"], "manifiesto-persas-1814-pdf-2006-5-1")
-                    self.assertIn("no original", primary["readingNote"])
+                    self.assertNotIn("readingNote", primary)
+                    self.assertIn("copia de 2006 aportada", primary["quality"])
                 else:
                     self.assertTrue(all(a["year"] != 2006 for a in primary["appearances"]))
         songs = records["canciones-guerra-civil"]["text"]
@@ -1963,10 +1971,16 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertFalse(persas["centerHeadings"])
         self.assertEqual(persas["attributionEmphasis"], ["Manifiesto de los Persas"])
         self.assertTrue(persas["appearances"][0]["textReviewedByUser"])
-        self.assertIn("confirmado como correcto por el usuario", persas["readingNote"])
-        self.assertNotIn("pendiente", persas["readingNote"])
+        self.assertNotIn("readingNote", persas)
+        self.assertIn("confirmada como correcta por el usuario", persas["quality"])
+        self.assertIn("copia de 2006 aportada", persas["quality"])
         self.assertEqual([paragraph.split(".", 1)[0] for paragraph in persas["text"][1:-1]],
                          ["1", "7", "8", "134", "143"])
+        island = records["decreto-cortes-soberania-isla-leon-1810"]
+        self.assertEqual(island["titleMarker"], "*")
+        self.assertIn("actual ciudad de San Fernando", island["historicalNote"])
+        self.assertIn("escuadra británica", island["historicalNote"])
+        self.assertIn("balance of power", island["historicalNote"])
 
     def test_requested_art_and_coin_reproductions_do_not_add_occurrences(self):
         records = {d["id"]: d for d in json.loads((ROOT / "data/documentos.json").read_text())["documents"]}
@@ -2717,11 +2731,24 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertIsNotNone(leaders)
         self.assertEqual(len(leaders), 13)
         self.assertEqual(leaders.get("stroke-dasharray"), "0.01 1.7")
+        self.assertNotIn("reproductionNote", chart["image"])
+        description = root.find("{http://www.w3.org/2000/svg}desc").text
+        self.assertNotIn("líneas de puntos", description)
         bars = [node for node in root.iter() if node.get("fill") in {
             "#d4bd87", "#8fb8c8", "#9aacc2", "#c6c2b9", "#ab9abb", "#d2a28f", "#a4b67f",
         }]
-        self.assertEqual(len(bars), 26)
+        self.assertEqual(len(bars), 13)
         self.assertEqual(len({node.get("fill") for node in bars}), 7)
+        parents = {child: parent for parent in root.iter() for child in parent}
+        widths = []
+        for bar in bars:
+            self.assertIsNone(parents[bar].get("clip-path"))
+            match = re.search(r"M([\d.]+)\s+[\d.]+H([\d.]+)", bar.get("d", ""))
+            self.assertIsNotNone(match)
+            widths.append(float(match.group(2)) - float(match.group(1)))
+        self.assertGreater(min(widths), 10)
+        self.assertFalse(any(node.get("id") in {f"clip_{index}" for index in range(16, 29)}
+                             for node in root.iter()))
 
     def test_1936_congress_table_uses_alternating_editorial_row_colors(self):
         root = ET.parse(ROOT / "assets/documentos/tabla-congreso-1936.svg").getroot()

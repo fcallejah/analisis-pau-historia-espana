@@ -796,6 +796,8 @@
         ...primary,
         id: canonical.id,
         studyCompilation: canonical.studyCompilation,
+        titleMarker: canonical.titleMarker,
+        historicalNote: canonical.historicalNote,
         memberIds: ids,
         textVersions: [primary, ...ranked.filter((version) => version !== primary)],
         tags: [...new Set(versions.flatMap((record) => record.tags))],
@@ -844,6 +846,7 @@
     const images = [record.image, ...(record.image?.additionalImages || []), record.tableImage].filter(Boolean);
     return [
       record.title, record.date, record.sourceCaption, record.quality, record.readingNote, ...record.tags,
+      record.historicalNote,
       ...(record.origin === "propio" ? ["material propio", "resultados"] : []),
       ...(record.origin === "propio" && ["elections", "municipal-turnout"].includes(record.visualization)
         ? ["electorales"] : []),
@@ -869,6 +872,7 @@
   function textQuote(record, preview = false) {
     const quote = element("blockquote");
     if (record.textLayout === "verse-pair") quote.classList.add("document-verse-pair");
+    const outerQuotePairs = { "“": "”", "«": "»", "\"": "\"", "‘": "’", "'": "'" };
     const numbered = /^\s*[«“"']*\d+[ºª]?\)\s/u;
     const starts = [...new Set([
       ...(record.paragraphStarts || record.text.map((_, index) => index)),
@@ -880,6 +884,7 @@
       const paragraph = record.text.slice(start, end).join(" ");
       const parts = numbered.test(paragraph) ? paragraph.split(/\s+(?=\d+[ºª]?\)\s)/u) : [paragraph];
       return parts.map((text, part) => ({
+        start,
         text,
         emphasis: record.headingParagraphs?.includes(start) ? record.headingEmphasis?.[start]
           : start >= attributionStart
@@ -889,6 +894,30 @@
             ? `document-source-heading${record.centerHeadings !== false ? " is-centered" : ""}` : undefined,
       }));
     });
+    const firstSourceParagraph = paragraphs.find((paragraph) => paragraph.start < attributionStart);
+    if (firstSourceParagraph) {
+      const opener = firstSourceParagraph.text.match(/^\s*([“«"‘'])/u)?.[1];
+      if (opener) {
+        firstSourceParagraph.text = firstSourceParagraph.text.replace(
+            new RegExp(`^(\\s*)${opener.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`),
+            "$1",
+        );
+        const closer = outerQuotePairs[opener];
+        const terminalQuote = new RegExp(
+            `${closer.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=[\\s.!?,;:…)]*$)`,
+        );
+        const sourceParagraphs = paragraphs.filter((paragraph) => paragraph.start < attributionStart);
+        const lastSourceParagraph = sourceParagraphs[sourceParagraphs.length - 1];
+        if (lastSourceParagraph?.text.match(terminalQuote)) {
+            lastSourceParagraph.text = lastSourceParagraph.text.replace(terminalQuote, "");
+        } else {
+            const lastParagraph = paragraphs[paragraphs.length - 1];
+            if (lastParagraph && lastParagraph !== lastSourceParagraph) {
+              lastParagraph.text = lastParagraph.text.replace(terminalQuote, "");
+            }
+        }
+      }
+    }
     (preview ? paragraphs.slice(0, 3) : paragraphs).forEach((paragraph) => {
       quote.append(sourceParagraph(paragraph.text, paragraph.emphasis, paragraph.className));
     });
@@ -1259,15 +1288,26 @@
       const alternatives = document.studyCompilation ? selections : selections.slice(1);
       const titleIsSourceHeading = document.studyCompilation
         && primary.headingParagraphs?.includes(0) && primary.text[0] === primary.title;
-      if (!preview && document.studyCompilation) {
-        if (!titleIsSourceHeading) box.append(element("h3", primary.title));
-      } else if (!preview && document.textVersions) {
-        box.append(element("p", "La selección principal para estudiar; variantes y procedencia por examen en el desplegable. El total ya reúne todas sus apariciones.", "document-group-note"));
+      if (!preview && (document.studyCompilation || document.textVersions)) {
+        const heading = element("p", undefined, "document-group-note document-group-heading");
+        heading.append(element("span", "Recopilación", "document-group-label"));
+        if (document.textVersions) {
+          heading.append(element("span",
+            "Este texto ha aparecido con variaciones a lo largo de varios exámenes; se indican abajo.",
+            "document-group-description"));
+        } else {
+          heading.append(element("span", "Texto reunido para estudiar.", "document-group-description"));
+        }
+        box.append(heading);
+        if (document.studyCompilation && !titleIsSourceHeading) box.append(element("h3", primary.title));
       }
       if (!preview && primary.readingNote) {
         box.append(element("p", primary.readingNote, "document-reading-note"));
       }
       box.append(textQuote(primary, preview));
+      if (!preview && document.historicalNote) {
+        box.append(element("p", `* ${document.historicalNote}`, "document-reading-note"));
+      }
       if (!preview && document.studyCompilation) {
         box.append(sourceLink("Consultar el texto original de referencia", primary.sourceUrl));
       }
@@ -1313,6 +1353,7 @@
     content.replaceChildren();
     content.append(element("p", `${typeNames[document.type]} · Bloque ${document.blocks.join(" · ")}`, "document-kind"));
     const title = sourceText("h2", document.title, document.titleEmphasis);
+    if (document.titleMarker) title.append(element("sup", document.titleMarker));
     title.id = "document-dialog-title";
     content.append(title);
     attachMarks(content, document);
@@ -2057,6 +2098,14 @@
         || record.headingParagraphs.some((index) => !Number.isInteger(index) || index < 0
           || index >= record.text.length || record.paragraphStarts && !record.paragraphStarts.includes(index))))) {
         throw new Error("Los encabezados de un texto no son válidos");
+      }
+      if (data.documents.some((record) => record.titleMarker !== undefined
+        && (record.titleMarker !== "*" || typeof record.historicalNote !== "string"
+          || !record.historicalNote.trim())
+        || record.historicalNote !== undefined
+          && (record.type !== "texto" || typeof record.historicalNote !== "string"
+            || !record.historicalNote.trim() || record.titleMarker !== "*"))) {
+        throw new Error("La nota histórica de un texto no es válida");
       }
       if (data.documents.some((record) => record.studyCompilation !== undefined && (
         record.type !== "texto" || !record.studyCompilation

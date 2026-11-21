@@ -78,15 +78,32 @@ def colorize_cadiz_chart():
     expected_bars = len(CADIZ_BAR_COLORS) * 2
     if len(bars) != expected_bars:
         raise ValueError(f"Expected {expected_bars} original chart fills, found {len(bars)}")
-    for index, bar in enumerate(bars):
-        bar.set("fill", CADIZ_BAR_COLORS[index // 2])
+    parents = {child: parent for parent in root.iter() for child in parent}
+    for index, color in enumerate(CADIZ_BAR_COLORS):
+        bar, inset_overlay = bars[index * 2:index * 2 + 2]
+        bar.set("fill", color)
+        bar_group = parents.get(bar)
+        overlay_parent = parents.get(inset_overlay)
+        if bar_group is None or overlay_parent is None:
+            raise ValueError(f"Could not locate duplicate bar overlay {index}")
+        clip_reference = bar_group.attrib.pop("clip-path", None)
+        if not clip_reference or not clip_reference.startswith("url(#") or not clip_reference.endswith(")"):
+            raise ValueError(f"Could not locate the bar-edge clip {index}")
+        if sum(node.get("clip-path") == clip_reference for node in root.iter()) != 0:
+            raise ValueError(f"The bar-edge clip {index} is still referenced")
+        clip_id = clip_reference[5:-1]
+        clip = root.find(f".//{{{SVG}}}clipPath[@id='{clip_id}']")
+        clip_parent = parents.get(clip)
+        if clip is None or clip_parent is None:
+            raise ValueError(f"Could not locate clip definition {clip_id}")
+        clip_parent.remove(clip)
+        overlay_parent.remove(inset_overlay)
 
     description = root.find(f"{{{SVG}}}desc")
     if description is not None:
         description.text = (
-            "Extracción vectorial del PDF oficial de 2008, Examen 2, Opción A, documento 2. "
-            "Se conservan las categorías y cifras originales; se añaden colores editoriales y "
-            "líneas de puntos para relacionar cada ocupación con su cifra."
+            "Miembros de las Cortes de Cádiz por ocupación. Gráfico extraído del PDF oficial "
+            "de 2008, Examen 2, Opción A, documento 2."
         )
     leaders = ET.SubElement(root, f"{{{SVG}}}g", {
         "id": "cadiz-chart-leaders",
@@ -107,7 +124,10 @@ def colorize_cadiz_chart():
     ET.register_namespace("", SVG)
     ET.register_namespace("xlink", "http://www.w3.org/1999/xlink")
     target.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
-    print(f"{target.name}: recolored {len(bars)} fills and added {len(CADIZ_LEADERS)} dotted leaders")
+    print(
+        f"{target.name}: recolored {len(CADIZ_BAR_COLORS)} bars, removed "
+        f"{len(CADIZ_BAR_COLORS)} inset overlays, and added {len(CADIZ_LEADERS)} dotted leaders"
+    )
 
 
 def shade_1982_election_table():
