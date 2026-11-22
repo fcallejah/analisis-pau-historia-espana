@@ -239,6 +239,9 @@ html[data-page-zoomed] #document-dialog,html[data-page-zoomed] .document-full-so
 .document-image-pair{display:grid;width:100%;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px}
 .document-image-pair figure{width:100%;max-width:100%;margin:0}
 .document-full-source img{display:block;width:min(var(--document-image-width),100%,calc(52svh * var(--document-image-aspect)));margin:auto;max-width:100%;height:auto;touch-action:pan-x pan-y pinch-zoom}
+.document-image-pair.document-equal-height-pair{display:flex;justify-content:center}
+.document-equal-height-pair figure{flex:var(--pair-aspect) 1 0;min-width:0;max-width:calc(52svh * var(--pair-aspect))}
+.document-full-source .document-equal-height-pair img{width:100%}
 .document-full-source .document-selectable-map{display:block;width:min(100%,calc(52svh * var(--document-image-aspect)));margin:auto;height:auto;aspect-ratio:var(--document-image-ratio);max-width:100%;border:0;background:#fff;touch-action:pan-x pan-y pinch-zoom}
 .document-full-source:has(.document-selectable-map) figure{width:100%}
 .document-full-source figure:has(>.doc-image-crop){width:100%}
@@ -322,5 +325,6 @@ html[data-theme="dark"] .study-chart-fill.is-turnout{background:#a9b0b8}
 .document-task>p:not(.document-meta){font-weight:600;font-size:14px}
 .document-exams .exam-pill{box-sizing:border-box;max-width:100%;overflow-wrap:anywhere;font:400 11px/1.5 "DM Mono","Courier New",monospace}
 @media(max-width:620px){.documents-main{padding:26px 18px 50px}.documents-filters{padding:16px}.document-search{min-width:0;flex-basis:100%}.document-block-label{width:100%}.document-block-label select{width:100%}.document-results-bar{align-items:start}.document-card-grid{grid-template-columns:1fr}.document-block-heading{grid-template-columns:minmax(0,1fr) auto;gap:10px}.document-block-heading h2{grid-column:1;justify-self:center}.document-block-heading a{grid-column:2;justify-self:end}.document-image-pair{grid-template-columns:1fr}}
+@media(max-width:620px){.document-image-pair.document-equal-height-pair{flex-direction:column;align-items:center}.document-equal-height-pair figure{flex:none;width:calc(100% * var(--pair-width-share))}}
 @media(max-width:350px){.document-card-actions{flex-wrap:wrap}.document-card-actions .document-open{flex-basis:100%}}
 @media print{.site-header,.documents-filters,.documents-links,.document-open,.document-card-share,.document-reader-controls{display:none!important}.document-card{break-inside:avoid}#document-dialog[open]{position:static;width:100%;max-height:none;overflow:visible}.document-guide:not([open])>*:not(summary){display:block}}

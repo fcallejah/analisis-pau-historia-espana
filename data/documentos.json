@@ -22,7 +22,11 @@
           "mapa-guerra-independencia-1808-1814",
           "blanco-white-1808",
           "goya-carga-mamelucos",
-          "despliegue-frances-1807-1808"
+          "despliegue-frances-1807-1808",
+          "familia-carlos-iv-goya",
+          "carlos-iv-goya-rojo",
+          "manuel-godoy-bayeu",
+          "pepe-botella"
         ]
       },
       {
@@ -49,7 +53,12 @@
         "documentIds": [
           "manifiesto-persas-1814",
           "fernando-vii-jura-1820",
-          "decreto-valencia-1814"
+          "decreto-valencia-1814",
+          "fernando-vii-vicente-lopez",
+          "duelo-a-garrotazos-goya",
+          "rafael-riego",
+          "fusilamiento-torrijos-gisbert",
+          "fernando-vii-isabel-ii-montaje"
         ]
       },
       {
@@ -21229,12 +21238,13 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/cartel-ayuda-republica-pares.jpg",
-        "width": 815,
-        "height": 1094,
-        "filter": "saturate(0.7) contrast(0.9) brightness(1.04)",
+        "src": "assets/documentos/cartel-ayuda-republica-recortado.png",
+        "width": 785,
+        "height": 1056,
         "alt": "Cartel francés de solidaridad con el pueblo español: dos figuras femeninas se dan la mano y llaman a ayudar a la España republicana.",
         "sourceUrl": "https://conhdearte.wordpress.com/wp-content/uploads/2014/12/0167.jpg",
+        "corpusSrc": "assets/documentos/cartel-ayuda-republica-pares.jpg",
+        "corpusLabel": "Ver cartel completo · © MCU. Archivos Estatales",
         "originalSrc": "assets/documentos/pdf-2007-6-4.jpeg"
       }
     },
@@ -21669,7 +21679,7 @@
       ],
       "date": "Guerra Civil, 1936–1939",
       "sourceCaption": "Material de 2006, examen reconstruido a partir de la copia aportada.",
-      "quality": "Imagen conservada en la copia facilitada y en la reconstrucción de 2006; pendiente de cotejo con el examen original.",
+      "quality": "Reproducción de ARA de la misma fotografía, con un encuadre más recortado. Se conserva enlazada la imagen de la copia facilitada del examen, pendiente de cotejo con el original.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -21702,11 +21712,13 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/brigadas-internacionales-examen-2006.jpg",
-        "width": 1250,
-        "height": 792,
+        "src": "assets/documentos/brigadas-internacionales-ara-blanco-negro.png",
+        "width": 1600,
+        "height": 900,
         "alt": "Grupo de hombres armados en una carretera, identificados en el pie como miembros de las Brigadas Internacionales.",
-        "sourceUrl": "https://drive.google.com/file/d/1aFleBwuShGdFtB4v-uX_9FfPY3dK_wV6/view"
+        "sourceUrl": "https://static1.ara.cat/clip/c781449b-2099-4567-ad41-9f4505142c33_16-9-aspect-ratio_1600w_0.webp",
+        "corpusSrc": "assets/documentos/brigadas-internacionales-examen-2006.jpg",
+        "corpusLabel": "Ver imagen completa de la copia del examen"
       },
       "examCaption": {
         "text": "Miembros de las Brigadas Internacionales",
@@ -22434,7 +22446,7 @@
       ],
       "date": "1931",
       "sourceCaption": "2001 Examen 4, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
-      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
+      "quality": "Reconstrucción vectorial a partir de una imagen ampliada mediante IA, con lemas rehechos editorialmente. Se conserva el recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
       "commentary": [
         {
           "title": "a) Análisis del documento",
@@ -22463,17 +22475,18 @@
           "sourceSha256": "2fb2ef669ca36ee54f32cc8e22fccd292e8fa5afa05cdbf5cabe265f80d54971",
           "sourceImages": [
             187
-          ],
-          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+          ]
         }
       ],
       "image": {
-        "src": "assets/documentos/2000-2001-examen-4-b-cartoon.png",
-        "width": 700,
-        "height": 780,
+        "src": "assets/documentos/sufragio-femenino-2001-reconstruccion.svg",
+        "width": 2041,
+        "height": 1937,
         "alt": "Caricatura de una manifestación de mujeres que pide el sufragio femenino.",
-        "caption": "Recorte del escaneo aportado, 2001 Examen 4, Opción B, documento 2.",
+        "caption": "Reconstrucción vectorial de la caricatura del examen de 2001, con lemas rehechos.",
         "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf#page=2",
+        "originalSrc": "assets/documentos/2000-2001-examen-4-b-cartoon.png",
+        "openVector": true,
         "examCaption": {
           "text": "Caricatura de una manifestación en demanda del sufragio femenino (1931). La pancarta principal dice: «Somos mujeres que valemos por dos hombres»"
         }
@@ -23001,6 +23014,360 @@
         "caption": "Recorte del escaneo aportado, 2001 Examen 6, Opción B, documento 2.",
         "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf#page=2"
       }
+    },
+    {
+      "id": "familia-carlos-iv-goya",
+      "titleEmphasis": ["La familia de Carlos IV"],
+      "title": "La familia de Carlos IV, de Goya",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Carlos IV", "Fernando VII", "Goya", "Crisis de la monarquía"],
+      "date": "Obra: 1800–1801; contexto: reinado de Carlos IV.",
+      "sourceCaption": "La familia de Carlos IV, de Goya. Los apuntes señalan la distancia entre Carlos IV y el príncipe Fernando, y el autorretrato del pintor al fondo.",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. Archivo local sin modificaciones.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/familia-carlos-iv-goya.jpg",
+        "width": 1911,
+        "height": 1595,
+        "alt": "Retrato de la familia de Carlos IV; el príncipe Fernando aparece separado del rey y Goya se autorretrata al fondo.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:La_familia_de_Carlos_IV,_por_Francisco_de_Goya.jpg",
+        "examCaption": {
+          "text": "Francisco de Goya, La familia de Carlos IV (1800–1801).",
+          "emphasis": ["La familia de Carlos IV"]
+        },
+        "attribution": {
+          "text": "Francisco de Goya · Museo del Prado · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:La_familia_de_Carlos_IV,_por_Francisco_de_Goya.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe la composición y la representación de la familia real. La distancia entre los personajes y la presencia de Goya al fondo admiten una interpretación, pero no prueban por sí solas un conflicto político concreto."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Sitúa el retrato en la corte de Carlos IV, antes de la crisis dinástica de 1808. Relaciona el reinado con la oposición fernandina, el motín de Aranjuez y las abdicaciones de Bayona."
+        }
+      ]
+    },
+    {
+      "id": "carlos-iv-goya-rojo",
+      "titleEmphasis": ["Carlos IV de rojo"],
+      "title": "Carlos IV de rojo, de Goya",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Carlos IV", "Goya", "Monarquía borbónica"],
+      "date": "Retrato: 1789; reinado de Carlos IV: 1788–1808.",
+      "sourceCaption": "Retrato de Carlos IV, identificado en la fuente de Wikimedia Commons como Carlos IV de rojo.",
+      "quality": "La fecha de reinado que figura en los apuntes («1878–1808») es una errata; se corrige a 1788–1808. Reproducción de Wikimedia Commons, obra en dominio público.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/carlos-iv-goya-rojo.jpg",
+        "width": 2240,
+        "height": 3051,
+        "alt": "Retrato de Carlos IV con atuendo rojo, pintado por Francisco de Goya en 1789.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Carlos_IV_de_rojo.jpg",
+        "examCaption": {
+          "text": "Carlos IV de rojo, de Francisco de Goya (1789).",
+          "emphasis": ["Carlos IV de rojo"]
+        },
+        "attribution": {
+          "text": "Francisco de Goya · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Carlos_IV_de_rojo.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica el retrato de Carlos IV y describe los elementos de indumentaria y representación regia que aparecen en la imagen."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona el reinado de Carlos IV con la crisis de la monarquía, la política exterior dirigida por Godoy, el motín de Aranjuez y la invasión napoleónica."
+        }
+      ]
+    },
+    {
+      "id": "manuel-godoy-bayeu",
+      "titleEmphasis": ["Retrato de Manuel Godoy"],
+      "title": "Retrato de Manuel Godoy, de Francisco Bayeu",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Manuel Godoy", "Carlos IV", "Motín de Aranjuez", "Francisco Bayeu"],
+      "date": "Reinado de Carlos IV (1788–1808); fecha del retrato no identificada.",
+      "sourceCaption": "Manuel Godoy, primer ministro de Carlos IV, cuya caída precedió al motín de Aranjuez (1808).",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. Archivo local sin modificaciones.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/manuel-godoy-bayeu.jpg",
+        "width": 864,
+        "height": 1267,
+        "alt": "Retrato de Manuel Godoy, primer ministro de Carlos IV, obra de Francisco Bayeu.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manuel_de_Godoy,_por_Francisco_Bayeu_(Real_Academia_de_Bellas_Artes_de_San_Fernando).jpg",
+        "examCaption": {
+          "text": "Manuel Godoy, primer ministro de Carlos IV, retratado por Francisco Bayeu."
+        },
+        "attribution": {
+          "text": "Francisco Bayeu · Real Academia de Bellas Artes de San Fernando · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Manuel_de_Godoy,_por_Francisco_Bayeu_(Real_Academia_de_Bellas_Artes_de_San_Fernando).jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica a Manuel Godoy y describe su representación cortesana. El retrato no es, por sí mismo, una imagen del motín de Aranjuez."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Explica el papel de Godoy durante el reinado de Carlos IV. Relaciona la oposición fernandina, el Tratado de Fontainebleau y el motín de Aranjuez con la crisis de 1808."
+        }
+      ]
+    },
+    {
+      "id": "pepe-botella",
+      "title": "Caricatura de «Pepe Botella» (José I Bonaparte)",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["José I Bonaparte", "Guerra de la Independencia", "Caricatura política"],
+      "date": "Guerra de la Independencia (1808–1814); fecha de la caricatura no identificada.",
+      "sourceCaption": "Caricatura de «Pepe Botella», sobrenombre satírico aplicado a José I Bonaparte.",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. Archivo local sin modificaciones.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/pepe-botella.jpg",
+        "width": 600,
+        "height": 480,
+        "alt": "Caricatura satírica de José I Bonaparte, conocido como «Pepe Botella».",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pepe_botella.jpg",
+        "examCaption": {
+          "text": "Caricatura de «Pepe Botella» (José I Bonaparte)."
+        },
+        "attribution": {
+          "text": "Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Pepe_botella.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe los rasgos caricaturescos con los que se representa a José I. «Pepe Botella» es un sobrenombre satírico y no debe tomarse como un dato biográfico demostrado por la imagen."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona la caricatura política con el rechazo a José I y la Guerra de la Independencia. Explica cómo la propaganda contribuyó a representar el conflicto como una lucha contra el invasor."
+        }
+      ]
+    },
+    {
+      "id": "fernando-vii-vicente-lopez",
+      "title": "Fernando VII, «el Deseado»",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Fernando VII", "Restauración absolutista", "Vicente López"],
+      "date": "Reinado de Fernando VII: 1814–1833; fecha del retrato no identificada.",
+      "sourceCaption": "Retrato de Fernando VII, conocido como «el Deseado».",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. Archivo local sin modificaciones.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/fernando-vii-vicente-lopez.jpg",
+        "width": 1415,
+        "height": 1920,
+        "alt": "Retrato de Fernando VII, obra de Vicente López Portaña.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fernando_VII_-_Vicente_L%C3%B3pez.jpg",
+        "examCaption": {
+          "text": "Fernando VII, «el Deseado» (1814–1833)."
+        },
+        "attribution": {
+          "text": "Vicente López Portaña · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Fernando_VII_-_Vicente_L%C3%B3pez.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe los atributos de poder y la indumentaria con que se representa al monarca. La imagen no permite fechar por sí sola el momento político concreto."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona a Fernando VII con la restauración absolutista de 1814, el Trienio Liberal (1820–1823) y la nueva restauración absolutista posterior."
+        }
+      ]
+    },
+    {
+      "id": "duelo-a-garrotazos-goya",
+      "titleEmphasis": ["Duelo a garrotazos"],
+      "title": "Duelo a garrotazos, de Goya",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Francisco de Goya", "Pinturas negras", "Fernando VII", "Liberalismo y absolutismo"],
+      "date": "Obra: c. 1820–1823.",
+      "sourceCaption": "Duelo a garrotazos, de Goya, interpretado en los apuntes como imagen de las dos Españas enfrentadas.",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. La lectura como símbolo político es interpretativa.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/duelo-a-garrotazos-goya.jpg",
+        "width": 1873,
+        "height": 892,
+        "alt": "Dos hombres se enfrentan con garrotes en una escena de las Pinturas negras de Francisco de Goya.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Duelo_a_garrotazos,_por_Goya.jpg",
+        "examCaption": {
+          "text": "Duelo a garrotazos, de Goya (c. 1820–1823).",
+          "emphasis": ["Duelo a garrotazos"]
+        },
+        "attribution": {
+          "text": "Francisco de Goya · Museo del Prado · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Duelo_a_garrotazos,_por_Goya.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe la escena y la técnica de la obra. La interpretación como símbolo de las dos Españas es una lectura posible, no una identificación literal de los personajes."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Sitúa la obra en las Pinturas negras de Goya, realizadas hacia 1820–1823. Relaciónala con el enfrentamiento entre absolutismo y liberalismo durante el reinado de Fernando VII."
+        }
+      ]
+    },
+    {
+      "id": "rafael-riego",
+      "title": "Rafael de Riego",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Rafael de Riego", "Pronunciamiento de 1820", "Trienio Liberal"],
+      "date": "Pronunciamiento: 1820; fecha y autoría del retrato no identificadas.",
+      "sourceCaption": "Rafael de Riego, líder del pronunciamiento de 1820 que permitió restaurar la Constitución de 1812 durante el Trienio Liberal.",
+      "quality": "Reproducción digital de Wikimedia Commons; archivo señalado como de dominio público y autoría desconocida.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/rafael-riego.jpg",
+        "width": 700,
+        "height": 810,
+        "alt": "Retrato de Rafael de Riego; la autoría de la imagen no está identificada.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rafael_Riego.jpg",
+        "examCaption": {
+          "text": "Rafael de Riego, líder del pronunciamiento de 1820."
+        },
+        "attribution": {
+          "text": "Autor desconocido · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Rafael_Riego.jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica a Rafael de Riego y describe los elementos visibles del retrato. La imagen no representa por sí misma el pronunciamiento."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona el pronunciamiento de Riego en 1820 con la restauración de la Constitución de 1812 y el inicio del Trienio Liberal."
+        }
+      ]
+    },
+    {
+      "id": "fusilamiento-torrijos-gisbert",
+      "titleEmphasis": ["Fusilamiento de Torrijos y sus compañeros en las playas de Málaga"],
+      "title": "Fusilamiento de Torrijos y sus compañeros en las playas de Málaga",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Torrijos", "Década Ominosa", "Liberalismo", "Antonio Gisbert"],
+      "date": "Hecho representado: 1831; pintura: 1888.",
+      "sourceCaption": "Fusilamiento de Torrijos y sus compañeros en las playas de Málaga, tras el pronunciamiento fallido de 1831 contra el absolutismo.",
+      "quality": "Reproducción digital de Wikimedia Commons; obra en dominio público. Se distingue la fecha del hecho de la realización del cuadro.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/fusilamiento-torrijos-gisbert.jpg",
+        "width": 3051,
+        "height": 1988,
+        "alt": "Pintura de Antonio Gisbert que representa el fusilamiento de Torrijos y sus compañeros en Málaga.",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fusilamiento_de_Torrijos_(Gisbert).jpg",
+        "examCaption": {
+          "text": "Fusilamiento de Torrijos y sus compañeros en las playas de Málaga (1888).",
+          "emphasis": ["Fusilamiento de Torrijos y sus compañeros en las playas de Málaga"]
+        },
+        "attribution": {
+          "text": "Antonio Gisbert · Museo del Prado · Wikimedia Commons",
+          "url": "https://commons.wikimedia.org/wiki/File:Fusilamiento_de_Torrijos_(Gisbert).jpg",
+          "license": "Dominio público",
+          "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/"
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe la escena de ejecución y reconoce a Torrijos y sus compañeros. Distingue el acontecimiento de 1831 de la pintura realizada por Gisbert en 1888."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona el fusilamiento con los levantamientos liberales frente al absolutismo de Fernando VII durante la Década Ominosa y con la represión política."
+        }
+      ]
+    },
+    {
+      "id": "fernando-vii-isabel-ii-montaje",
+      "title": "Fernando VII y la infanta Isabel: montaje sobre la sucesión",
+      "type": "imagen",
+      "blocks": [5],
+      "tags": ["Fernando VII", "Isabel II", "Pragmática Sanción", "Sucesión dinástica"],
+      "date": "Contexto: Pragmática Sanción de 1830; fecha del montaje no identificada.",
+      "sourceCaption": "Fotomontaje entre Fernando VII y la infanta Isabel, en el contexto de la Pragmática Sanción de 1830.",
+      "quality": "Reproducción local del montaje enlazado desde los apuntes; licencia de reutilización confirmada por el usuario.",
+      "dataSourceUrl": "https://docs.google.com/document/d/1t0EUhAxR1nSi07E8uoPm_DrxW7EqnziCR4dNfcjpdJ8/edit?pli=1&tab=t.0",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/fernando-vii-isabel-ii-montaje.png",
+        "width": 1280,
+        "height": 853,
+        "alt": "Fotomontaje con retratos de Fernando VII y la infanta Isabel.",
+        "sourceUrl": "https://i0.wp.com/dariomadrid.com/wp-content/uploads/2026/04/Fernando-VII-y-Isabel-II.png?w=1280&ssl=1",
+        "examCaption": {
+          "text": "Fotomontaje de Fernando VII y la infanta Isabel."
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica las figuras representadas y describe la relación visual entre Fernando VII y la infanta Isabel. La imagen es un montaje, no una fuente contemporánea de 1830."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Relaciona el documento con la Pragmática Sanción, la sucesión de Isabel II y el conflicto sucesorio que desembocó en las guerras carlistas."
+        }
+      ]
     }
   ],
   "coverage": {

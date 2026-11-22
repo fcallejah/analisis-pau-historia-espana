@@ -1149,7 +1149,7 @@
       if (document.readingNote) box.append(element("p", document.readingNote, "document-reading-note"));
     }
     const series1977 = document.id === "elecciones-1977-diagrama";
-    if ((document.origin === "propio" && document.visualization !== "map") || series1977) {
+    if ((document.origin === "propio" && document.visualization && document.visualization !== "map") || series1977) {
       box.append(studyChart(document, preview));
     }
     const cardImage = document.image || document.tableImage;
@@ -1163,8 +1163,17 @@
       : fullImages;
     const imageGroup = visibleImages.length > 1
       ? element("div", undefined, preview ? "document-preview-pair" : "document-image-pair") : null;
+    const equalHeightPair = !preview && document.id === "carteles-guerra-civil-2016";
+    if (equalHeightPair) imageGroup.classList.add("document-equal-height-pair");
+    const widestAspect = equalHeightPair
+      ? Math.max(...visibleImages.map((image) => image.width / image.height)) : 0;
     visibleImages.forEach((imageData, imageIndex) => {
       const figure = element("figure", undefined, "document-image-figure");
+      if (equalHeightPair) {
+        const aspect = imageData.width / imageData.height;
+        figure.style.setProperty("--pair-aspect", aspect);
+        figure.style.setProperty("--pair-width-share", aspect / widestAspect);
+      }
       const mediaWidth = imageData.crop
         ? imageData.width * imageData.crop.width / imageData.crop.imageWidth : imageData.width;
       figure.style.setProperty("--document-media-width", `${mediaWidth}px`);

@@ -19,6 +19,10 @@ def check_exam_pills(browser):
         page.goto(BASE, wait_until="domcontentloaded")
         page.locator(".block").first.locator("summary").first.click()
         linked = page.locator(".question-list a.exam-pill")
+        assert linked.first.evaluate("node => getComputedStyle(node).textDecorationLine") == "none"
+        linked.first.hover()
+        assert linked.first.evaluate("node => getComputedStyle(node).textDecorationLine") == "underline"
+        page.mouse.move(0, 0)
         sources = dict(linked.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href])"))
         assert sources["2017 · Titular extraordinaria"].startswith("https://drive.google.com/file/d/")
         assert page.locator(".question-list span.exam-pill").count() == 0
@@ -39,6 +43,7 @@ def check_exam_pills(browser):
         page.locator('[data-gen="1"]').click()
         generated = page.locator('#gen-output a.exam-pill:not([title*="del modelo"])')
         assert generated.count() > 0
+        assert generated.first.evaluate("node => getComputedStyle(node).textDecorationLine") == "none"
         assert all(sources[label] == href and target == "_blank"
                    for label, href, target in
                    generated.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href, n.target])"))

@@ -1429,7 +1429,9 @@ class DocumentCorpusTests(unittest.TestCase):
                 self.assertTrue(all(isinstance(block, int) and 4 <= block <= 12 for block in document["blocks"]))
                 self.assertTrue(document["tags"])
                 self.assertTrue(document["quality"])
-                self.assertTrue(document["appearances"])
+                self.assertTrue(document["appearances"] or document.get("origin") == "propio")
+                if document.get("origin") == "propio":
+                    self.assertEqual(document["appearances"], [])
                 self.assertEqual(len(document["commentary"]), 2)
                 self.assertTrue(document["commentary"][0]["title"].startswith("a) "))
                 self.assertTrue(document["commentary"][1]["title"].startswith("b) "))
@@ -1486,6 +1488,50 @@ class DocumentCorpusTests(unittest.TestCase):
                 if "table" in document:
                     table = document["table"]
                     self.assertTrue(all(len(row) == len(table["headers"]) for row in table["rows"]))
+
+    def test_block5_notes_images_are_study_material_in_their_units(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        expected = {
+            "ii-1": [
+                "familia-carlos-iv-goya",
+                "carlos-iv-goya-rojo",
+                "manuel-godoy-bayeu",
+                "pepe-botella",
+            ],
+            "ii-3": [
+                "fernando-vii-vicente-lopez",
+                "duelo-a-garrotazos-goya",
+                "rafael-riego",
+                "fusilamiento-torrijos-gisbert",
+                "fernando-vii-isabel-ii-montaje",
+            ],
+        }
+        units = {unit["id"]: unit for unit in data["curriculum"]["units"]}
+        for unit_id, document_ids in expected.items():
+            with self.subTest(unit=unit_id):
+                self.assertTrue(set(document_ids).issubset(units[unit_id]["documentIds"]))
+                for document_id in document_ids:
+                    record = records[document_id]
+                    self.assertEqual(record["type"], "imagen")
+                    self.assertEqual(record["blocks"], [5])
+                    self.assertEqual(record["origin"], "propio")
+                    self.assertEqual(record["appearances"], [])
+                    image = record["image"]
+                    self.assertTrue((ROOT / image["src"]).is_file())
+                    self.assertEqual(
+                        image_dimensions(ROOT / image["src"]),
+                        (image["width"], image["height"]),
+                    )
+        for document_id in (
+            set(expected["ii-1"] + expected["ii-3"])
+            - {"fernando-vii-isabel-ii-montaje"}
+        ):
+            self.assertEqual(records[document_id]["image"]["attribution"]["license"], "Dominio público")
+        self.assertIn(
+            "licencia de reutilización confirmada por el usuario",
+            records["fernando-vii-isabel-ii-montaje"]["quality"],
+        )
 
     def test_image_crops_match_reviewed_source_viewports(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1773,8 +1819,8 @@ class DocumentCorpusTests(unittest.TestCase):
             ("camino-exilio-1939", "2007 Examen 5", "Bloque II · Opción B", (1175, 933),
              "d95f070b2cee32606a845b065bcbf51badcf49d3ac988c631e0e95ae35465ebe",
              "d6df1cd96ed9cd91c8147645c068fc3d1da3b14e96a3ec6abf63fd0450973849"),
-            ("cartel-ayuda-republica-francia", "2007 Examen 6", "Bloque II · Opción B", (815, 1094),
-             "0cb3234b32c2205b8ef4608315c158bf203815dfdf9144936cfd07554630a272",
+            ("cartel-ayuda-republica-francia", "2007 Examen 6", "Bloque II · Opción B", (785, 1056),
+             "118b0bbcea64a9064b3e83194acd614c06ce55ab2cf6db3e142e96110a9c0704",
              "1101f6e2750e6656511b27dc7cb77403d856b5aca6cfe4958f647a88fde436e9"),
         ):
             with self.subTest(document=identity):
@@ -1790,7 +1836,9 @@ class DocumentCorpusTests(unittest.TestCase):
         poster = records["cartel-ayuda-republica-francia"]["image"]
         self.assertNotIn("reproductionNote", poster)
         self.assertEqual(poster["sourceUrl"], "https://conhdearte.wordpress.com/wp-content/uploads/2014/12/0167.jpg")
-        self.assertEqual(poster["filter"], "saturate(0.7) contrast(0.9) brightness(1.04)")
+        self.assertNotIn("filter", poster)
+        self.assertEqual(hashlib.sha256((ROOT / "assets/documentos/cartel-ayuda-republica-pares.jpg").read_bytes()).hexdigest(),
+                         "0cb3234b32c2205b8ef4608315c158bf203815dfdf9144936cfd07554630a272")
 
     def test_pablo_iglesias_marker_points_to_the_indicated_hands_and_lowercase_date(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())

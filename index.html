@@ -22,20 +22,23 @@
     <meta name="twitter:card" content="summary_large_image">
     <title>PAU Andalucía · Historia de España</title>
     <script>try{if(localStorage.getItem("pau-he.theme")==="dark")document.documentElement.dataset.theme="dark"}catch(e){}</script>
-    <link rel="stylesheet" href="styles.css?v=130">
+    <link rel="stylesheet" href="styles.css?v=131">
     <link rel="stylesheet" href="site-header.css?v=5">
+    <link rel="stylesheet" href="examen.css?v=28">
     <script src="imagenes-apuntes.js?v=4" defer></script>
     <script src="mark-feedback.js?v=1" defer></script><script src="mis-preguntas.js?v=6" defer></script>
     <script src="site-header.js?v=2" defer></script>
     <script src="app.js?v=53" defer></script>
     <script     src="generador.js?v=29" defer></script>
+    <script src="examen.js?v=15" defer></script>
   <link rel="stylesheet" href="site-footer.css?v=2">
 </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
       <a class="brand" href="#inicio"><span class="brand-icon" aria-hidden="true">H</span><span class="brand-text">PAU Andalucía <span class="muted">/</span> Historia de España</span></a>
-      <nav class="header-tools" aria-label="Preguntas personales, diccionario y RAE">
+      <nav class="header-tools" aria-label="Generador, preguntas personales, diccionario y RAE">
+        <a href="#generador-examen" class="exam-generator-nav">Generar examen</a>
         <a href="mis-preguntas.html" class="saved-nav">Mis preguntas cortas</a>
         <a class="header-tool" aria-label="Diccionario de la lengua española" title="Diccionario de la lengua española" href="https://dle.rae.es" target="_blank" rel="noopener noreferrer">
           <img class="dle-logo" src="assets/dle-logo.jpg" alt="" width="592" height="592">
@@ -327,6 +330,55 @@
           </form>
         </dialog>
         <p class="caveat">Las píldoras «Modelo PAU» enlazan a las orientaciones del año. No se ha localizado el modelo de 2019. Las soluciones son orientativas, no criterios oficiales de corrección.</p>
+      </section>
+
+      <section class="exam-generator" id="generador-examen" aria-labelledby="exam-generator-title">
+        <div class="section-head">
+          <div><p class="eyebrow">PAU ANDALUCÍA · HISTORIA DE ESPAÑA / SIMULACRO</p><h2 id="exam-generator-title">Generador de exámenes completos</h2></div>
+          <p>Un examen de práctica con preguntas cortas, documentos y temas elegidos al azar de los materiales disponibles.</p>
+        </div>
+        <aside class="alert-warn" role="note"><svg aria-hidden="true" viewBox="0 0 16 16"><path fill="currentColor" d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-5.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0Z"/></svg><div><strong>Simulacro no oficial</strong><p>La selección es aleatoria y no predice el examen. La estructura sigue como referencia las orientaciones 2026–27.</p></div></aside>
+        <div class="exam-generator-controls">
+          <div class="exam-generator-action-row">
+            <button type="button" class="exam-generate" id="exam-generate" disabled>
+              <svg class="exam-generate-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M20 11a8 8 0 0 0-14.9-4L3 10m0-6v6h6m-5 3a8 8 0 0 0 14.9 4L21 14m0 6v-6h-6"/></svg>
+              <span class="exam-generate-label">Preparar simulacro</span>
+            </button>
+            <button type="button" class="exam-save-pdf" id="exam-save-top" aria-label="Guardar examen como PDF" hidden>Guardar PDF</button>
+          </div>
+          <p class="exam-generator-status" id="exam-generator-status" role="status" aria-live="polite">Cargando las preguntas y los documentos disponibles…</p>
+        </div>
+        <div class="exam-generator-error" id="exam-generator-error" role="alert" hidden></div>
+        <dialog class="gen-dialog exam-confirm-dialog" id="exam-confirm-dialog" aria-labelledby="exam-confirm-title">
+          <form method="dialog">
+            <h3 id="exam-confirm-title">¿Generar otro simulacro?</h3>
+            <p>El examen actual se sustituirá por uno nuevo.</p>
+            <div class="gen-dialog-actions">
+              <button type="submit" value="cancel" class="gen-cancel">Cancelar</button>
+              <button type="submit" value="regenerate" class="exam-confirm-regenerate">Sí, generar otro</button>
+            </div>
+          </form>
+        </dialog>
+        <template id="exam-paper-header-template">
+          <header class="exam-paper-header">
+            <table class="exam-masthead" role="presentation">
+              <tbody><tr>
+                <td class="exam-logo-cell"><img src="assets/pau-andalucia-u.png?v=2" width="468" height="519" alt="Universidades Públicas de Andalucía"></td>
+                <td>
+                  <p class="exam-paper-overline">PRUEBA DE ACCESO A LA UNIVERSIDAD Y PRUEBA DE ADMISIÓN</p>
+                  <p class="exam-paper-region">ANDALUCÍA, CEUTA, MELILLA y CENTROS en MARRUECOS</p>
+                  <p class="exam-paper-course">CURSO 2026-2027</p>
+                </td>
+                <td class="exam-subject-cell"><h3 class="exam-paper-title">HISTORIA DE<br> ESPAÑA</h3></td>
+              </tr></tbody>
+            </table>
+            <p class="exam-paper-status">SIMULACRO ALEATORIO · MATERIAL DE PRÁCTICA</p>
+          </header>
+        </template>
+        <div id="exam-preview" aria-live="off"></div>
+        <div class="exam-save-footer" id="exam-save-footer" hidden>
+          <button type="button" class="exam-save-pdf" id="exam-save-bottom">Guardar examen como PDF</button>
+        </div>
       </section>
 
       <section class="sources study-annex" id="fuentes">
