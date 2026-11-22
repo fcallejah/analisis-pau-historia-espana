@@ -1431,8 +1431,10 @@ def check_orientation_link_arrows(browser, options):
     page = context.new_page()
     page.goto(f"{BASE}/index.html#archivo-orientaciones")
     buttons = page.locator(".orientation-current, .orientation-courses button")
-    assert buttons.count() == 27
-    for button in buttons.all():
+    assert buttons.count() == 32
+    for year, button in zip(range(2027, 1995, -1), buttons.all()):
+        assert button.inner_text().splitlines()[-1] == str(year)
+        assert button.get_attribute("aria-label") == f"Abrir histórico de {year}"
         assert button.get_attribute("aria-haspopup") == "dialog"
         assert button.locator('svg[aria-hidden="true"]').count() == 1
         assert button.evaluate("node=>node.scrollWidth<=node.clientWidth+1")
@@ -1443,11 +1445,14 @@ def check_orientation_link_arrows(browser, options):
             "Math.round(node.getBoundingClientRect().height)])"
         )
         assert len(set(map(tuple, sizes))) == 1, (width, sizes)
-    page.get_by_role("button", name="Abrir histórico del curso 2018–19").click()
+    page.get_by_role("button", name="Abrir histórico de 2019").click()
     dialog = page.locator("#archive-dialog")
     assert dialog.get_by_text("Orientaciones no localizadas").is_visible()
     dialog.get_by_role("link", name="Titular ordinaria").wait_for()
     assert dialog.get_by_role("link", name="Titular ordinaria").get_attribute("target") == "_blank"
+    assert dialog.locator(".archive-dialog-content ul").nth(1).locator("a").all_text_contents()[:2] == [
+        "Titular ordinaria", "Titular extraordinaria"
+    ]
     assert dialog.locator(".archive-left").inner_text() == "← 2019–2020"
     assert dialog.locator(".archive-right").inner_text() == "2017–2018 →"
     dialog.locator(".archive-right").click()
@@ -1483,10 +1488,21 @@ def check_orientation_link_arrows(browser, options):
     assert dialog.locator("h3").inner_text() == "Curso 2018–19"
     page.mouse.click(1, 1)
     assert not dialog.is_visible()
+    for year, expected in (
+        (2021, ["Titular ordinaria", "Titular extraordinaria", "Reserva ordinaria"]),
+        (2013, ["Titular ordinaria", "Titular extraordinaria", "Reserva A ordinaria", "Reserva B ordinaria"]),
+        (2004, ["Examen 1", "Examen 2", "Examen 3", "Examen 4", "Examen 5", "Examen 6"]),
+    ):
+        page.get_by_role("button", name=f"Abrir histórico de {year}").click()
+        page.wait_for_function(
+            "() => !document.querySelector('#archive-dialog .archive-dialog-content').textContent.includes('Cargando exámenes')"
+        )
+        assert dialog.locator(".archive-dialog-content ul").nth(1).locator("a").all_text_contents()[:len(expected)] == expected
+        page.keyboard.press("Escape")
     dialog_size = None
     for year, count in ((2001, 6), (2006, 6), (2014, 5), (2018, 5), (2025, 6), (2026, 4), (2027, 0)):
         course = f"{year - 1}–{year % 100:02d}"
-        page.get_by_role("button", name=f"Abrir histórico del curso {course}").click()
+        page.get_by_role("button", name=f"Abrir histórico de {year}").click()
         page.wait_for_function(
             "() => !document.querySelector('#archive-dialog .archive-dialog-content').textContent.includes('Cargando exámenes')"
         )
@@ -1507,14 +1523,36 @@ def check_orientation_link_arrows(browser, options):
             assert all("reconstruido" in label for label in exam_links.all_text_contents())
         if year == 2001:
             assert exam_links.first.get_attribute("href") == "assets/documentos/2000-2001-examen-1.pdf"
-            assert dialog.locator(".archive-right").is_disabled()
+            assert dialog.locator(".archive-right").inner_text() == "1999–2000 →"
         if year == 2027:
             assert dialog.get_by_text("Los exámenes de esta convocatoria aún no están disponibles.").is_visible()
             assert dialog.locator(".archive-left").is_disabled()
         page.keyboard.press("Escape")
-    assert page.get_by_role("button", name="Abrir histórico del curso 2026–27").evaluate(
+    assert page.get_by_role("button", name="Abrir histórico de 2027").evaluate(
         "node => node.getAttribute('aria-haspopup') === 'dialog'"
     )
+    for year in range(1996, 2001):
+        course = f"{year - 1}–{year % 100:02d}"
+        button = page.get_by_role("button", name=f"Abrir histórico de {year}")
+        assert "archive-no-material" in button.get_attribute("class")
+        button.click()
+        assert dialog.locator("h3").inner_text() == f"Curso {course}"
+        assert dialog.get_by_text("Orientaciones no localizadas").is_visible()
+        page.wait_for_function(
+            "() => !document.querySelector('#archive-dialog .archive-dialog-content').textContent.includes('Cargando exámenes')"
+        )
+        assert dialog.get_by_text("Examen no localizado").count() == 6
+        assert dialog.locator(".archive-dialog-content ul a").count() == 0
+        if year == 1996:
+            assert dialog.get_by_text("En el curso 1995–96 se unificaron", exact=False).is_visible()
+            assert dialog.get_by_role("link", name="Las pruebas de Geología en la selectividad de Andalucía antes y después del distrito único").get_attribute("href") == "https://dialnet.unirioja.es/servlet/articulo?codigo=234674"
+            for width, height in ((1440, 900), (1024, 768), (390, 844), (320, 568)):
+                page.set_viewport_size({"width": width, "height": height})
+                assert dialog.evaluate("node => node.scrollHeight <= node.clientHeight + 1"), (width, height)
+            assert dialog.locator(".archive-right").is_disabled()
+            page.keyboard.press("ArrowRight")
+            assert dialog.locator("h3").inner_text() == f"Curso {course}"
+        page.keyboard.press("Escape")
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
     context.close()
 
@@ -1522,12 +1560,12 @@ def check_orientation_link_arrows(browser, options):
     context.route("**/data/documentos.json", lambda route: route.abort())
     page = context.new_page()
     page.goto(f"{BASE}/index.html#archivo-orientaciones")
-    page.get_by_role("button", name="Abrir histórico del curso 2000–01").click()
+    page.get_by_role("button", name="Abrir histórico de 2001").click()
     dialog = page.locator("#archive-dialog")
     dialog.get_by_text("No se pudieron cargar los exámenes", exact=False).wait_for()
     page.keyboard.press("Escape")
     context.unroute("**/data/documentos.json")
-    page.get_by_role("button", name="Abrir histórico del curso 2000–01").click()
+    page.get_by_role("button", name="Abrir histórico de 2001").click()
     dialog.get_by_role("link", name="Examen 1 · reconstruido").wait_for()
     context.close()
 

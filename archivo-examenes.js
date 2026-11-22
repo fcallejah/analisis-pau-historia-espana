@@ -57,6 +57,25 @@
     content.append(note);
   }
 
+  function addUnificationNote() {
+    const note = document.createElement("p");
+    const link = document.createElement("a");
+    note.append("En el curso 1995–96 se unificaron las pruebas de acceso a la universidad en Andalucía. Fuente: \"");
+    link.href = "https://dialnet.unirioja.es/servlet/articulo?codigo=234674";
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Las pruebas de Geología en la selectividad de Andalucía antes y después del distrito único";
+    note.append(link, "\"");
+    content.append(note);
+  }
+
+  function examOrder(label) {
+    if (/^titular ordinaria\b/i.test(label)) return 0;
+    if (/^titular extraordinaria\b/i.test(label)) return 1;
+    if (/^reserva\b.*\bordinaria\b/i.test(label)) return 2;
+    return 3;
+  }
+
   function getExams(documents, year) {
     const exams = new Map();
     if (year >= 2017 && year <= 2026) {
@@ -79,7 +98,7 @@
     return [...exams].map(([url, label]) => ({
       url,
       label: `${label}${year === 2001 || year === 2006 ? " · reconstruido" : ""}`,
-    })).sort((a, b) => a.label.localeCompare(b.label, "es", { numeric: true }));
+    })).sort((a, b) => examOrder(a.label) - examOrder(b.label) || a.label.localeCompare(b.label, "es", { numeric: true }));
   }
 
   async function openCourse(year) {
@@ -114,6 +133,7 @@
       if (!dialog.open || sequence !== openSequence) return;
       content.lastElementChild.textContent = `No se pudieron cargar los exámenes (${error.message}). Cierra y vuelve a abrir el curso para reintentar.`;
     }
+    if (year === 1996) addUnificationNote();
   }
 
   function navigate(offset) {
@@ -150,24 +170,26 @@
   dialog.addEventListener("touchcancel", () => { touchStart = null; });
 
   courses.forEach((element) => {
-    const match = element.textContent.match(/(20\d{2})[–-](\d{2})/);
+    const match = element.textContent.match(/((?:19|20)\d{2})[–-](\d{2})/);
     if (!match) return;
     const year = Number(match[1]) + 1;
     const orientationUrl = element.tagName === "A" ? element.getAttribute("href") : null;
     orientations.set(year, orientationUrl);
     const button = document.createElement("button");
     button.type = "button";
-    button.className = element.classList.contains("orientation-current") ? "orientation-current" : "";
+    const isCurrent = element.classList.contains("orientation-current");
+    if (isCurrent) button.classList.add("orientation-current");
+    if (element.hasAttribute("data-no-material")) button.classList.add("archive-no-material");
     button.setAttribute("aria-haspopup", "dialog");
-    button.setAttribute("aria-label", `Abrir histórico del curso ${match[0]}`);
-    if (button.className) {
+    button.setAttribute("aria-label", `Abrir histórico de ${year}`);
+    if (isCurrent) {
       const label = document.createElement("span");
       label.textContent = "CURSO VIGENTE";
       const course = document.createElement("strong");
-      course.textContent = match[0];
+      course.textContent = year;
       button.append(label, course);
     } else {
-      button.textContent = match[0];
+      button.textContent = year;
     }
     const icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     icon.setAttribute("class", "ext-icon");
@@ -179,7 +201,7 @@
     const arrow = document.createElementNS("http://www.w3.org/2000/svg", "path");
     arrow.setAttribute("d", "m6 9 6 6 6-6");
     icon.append(arrow);
-    if (button.className) button.querySelector("strong").append(icon);
+    if (isCurrent) button.querySelector("strong").append(icon);
     else button.append(icon);
     button.addEventListener("click", () => openCourse(year));
     element.replaceWith(button);
