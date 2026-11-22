@@ -10,6 +10,7 @@ import unicodedata
 import unittest
 from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
+from pypdf import PdfReader
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -38,7 +39,7 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
         records = {record["id"]: record for record in own}
-        self.assertEqual(len(records), 22)
+        self.assertEqual(len(records), 23)
         self.assertFalse(set(records) & {record["id"] for record in data["documents"]})
         self.assertTrue(all("appearances" not in record for record in own))
         general_years = {1931, 1933, 1936, 1979, 1982, 1986, 1989, 1993,
@@ -64,6 +65,18 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(municipal["tables"][0]["rows"][0][1:], ["1.104.159", "715.911", "64,84"])
         self.assertIn("no aporta aquí un resultado nacional", municipal["tables"][0]["notes"][0])
         self.assertEqual(municipal["dataSourceUrl"], "https://ine.es/inebaseweb/pdfDispacher.do?td=96303")
+        for year in (1931, 1933, 1936):
+            self.assertNotIn("quality", records[f"propio-elecciones-generales-{year}"])
+        comparison = records["propio-municipales-1931-capitales"]
+        self.assertEqual(comparison["visualization"], "municipal-votes")
+        self.assertEqual(municipal["comparisonDocumentId"], comparison["id"])
+        self.assertTrue(any(source["url"] == comparison["dataSourceUrl"] for source in municipal["additionalSources"]))
+        self.assertEqual(comparison["tables"][0]["rows"], [
+            ["Monárquicos", "195.147"], ["Republicanos y socialistas", "443.945"],
+        ])
+        self.assertIn("no un referéndum", comparison["quality"])
+        self.assertEqual(comparison["tables"][0]["notes"], [])
+        self.assertIn("se interpretaron como un plebiscito", municipal["quality"])
         self.assertNotIn("propio-elecciones-1979-1982", records)
         self.assertNotIn("propio-elecciones-segunda-republica", records)
         refs = records["propio-referendums-1976-2005"]["tables"][0]["rows"]
@@ -245,6 +258,27 @@ class DocumentCorpusTests(unittest.TestCase):
                 elif chart:
                     self.assertIn(f"{chart['majority']} para la mayoría absoluta", text)
         self.assertEqual(years, {1931, 1933, 1936, 1979, 1982, 1986, 1989, 1993, 1996, 2000, 2004, 2008, 2011, 2014, 2015})
+
+    def test_republic_elections_keep_party_colors_and_dates(self):
+        ns = "{http://www.w3.org/2000/svg}"
+        charts = {}
+        for year in (1931, 1933, 1936):
+            root = ET.parse(ROOT / f"assets/documentos/elecciones-republica-{year}-semicirculo.svg").getroot()
+            charts[year] = {node.get("data-party"): node.get("fill")
+                            for node in root.findall(f"{ns}path[@class='sector']")}
+            self.assertEqual(len(set(charts[year].values())), len(charts[year]))
+            text = " ".join(node.text or "" for node in root.findall(f"{ns}text"))
+            if year == 1931:
+                self.assertIn("28 de junio", text)
+            elif year == 1933:
+                self.assertIn("1.ª vuelta: 19 de noviembre · 2.ª vuelta: 3 de diciembre", text)
+            else:
+                self.assertIn("1.ª vuelta: 16 de febrero · 2.ª vuelta: 1 de marzo", text)
+        shared = charts[1931].keys() & charts[1933].keys()
+        self.assertIn("PSOE", shared)
+        self.assertIn("Partido Republicano Radical", shared)
+        for party in shared:
+            self.assertEqual(charts[1931][party], charts[1933][party], party)
         self.assertIn(".study-chart-fill.is-turnout{background:#59636d}", (ROOT / "documentos.css").read_text())
 
     def test_requested_2002_and_2003_source_captions(self):
@@ -313,15 +347,25 @@ class DocumentCorpusTests(unittest.TestCase):
                                           and key in ("date", "image", "quality", "table", "examCaption"))
                                  and not (record["id"] == "resultados-de-las-elecciones-generales-de-1982"
                                           and key in ("quality", "tableImage"))})
-            imported.extend(a for a in record["appearances"] if a["year"] <= 2007)
+                if record["id"] == "elecciones-generales-1982-congreso-senado":
+                    original[-1]["image"] = {
+                        key: value for key, value in original[-1]["image"].items()
+                        if key != "additionalImages"
+                    }
+                if record["id"] == "goya-tres-de-mayo":
+                    original[-1]["image"] = {
+                        key: value for key, value in original[-1]["image"].items()
+                        if key != "additionalImages"
+                    }
+            imported.extend(a for a in record["appearances"] if 2002 <= a["year"] <= 2007)
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "dc64a8192bea9698a2afb88aaa01dc3eb44a2c4c5ed77649cd8c22d7379c9669")
+        self.assertEqual(digest, "b617988aa13e21cb51bd924ceb25b6ee5f8486c04b785712d85d746f7ebe761b")
         self.assertEqual(len(imported), 144)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
-        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 428)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 452)
         pending = data["coverage"]["pdfImport"]["pendingMaterials"]
         keys = {a["sourceKey"] for a in imported}
         self.assertEqual(len(pending), 0)
@@ -1119,6 +1163,225 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(coverage["yearsWithDifferentShortQuestionAndTopicFormat"],
                          list(range(2017, 2025)))
 
+    def test_2001_exam_one_sample_has_four_sources_and_two_scan_images(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        appearances = {
+            appearance["sourceKey"]: (record, appearance)
+            for record in data["documents"]
+            for appearance in record["appearances"]
+            if appearance["exam"] == "2001 Examen 1"
+        }
+        expected = {
+            "pdf-2001-1:1": ("decreto-de-desamortizacion-de-mendizabal-pdf-2007-6-1",
+                             "Opción A", 1, 1, []),
+            "pdf-2001-1:2": ("mapa-ferrocarriles-siglo-xix", "Opción A", 2, 1, [180]),
+            "pdf-2001-1:3": ("primer-mensaje-juan-carlos-1975-pdf-2001-1-3",
+                             "Opción B", 1, 2, []),
+            "pdf-2001-1:4": ("elecciones-generales-1982-congreso-senado",
+                             "Opción B", 2, 2, [181]),
+        }
+        self.assertEqual(set(appearances), set(expected))
+        for key, (record_id, route, document, page, images) in expected.items():
+            record, appearance = appearances[key]
+            with self.subTest(source=key):
+                self.assertEqual(record["id"], record_id)
+                self.assertEqual((appearance["route"], appearance["document"],
+                                  appearance["officialPage"], appearance["sourceImages"]),
+                                 (route, document, page, images))
+                self.assertEqual(appearance["exam"], "2001 Examen 1")
+                self.assertEqual(appearance["pdfUrl"], "assets/documentos/2000-2001-examen-1.pdf")
+                self.assertEqual(appearance["sourceUrl"], "assets/documentos/2000-2001-examen-1-fuentes.pdf")
+        manifest = {item["key"]: item for item in data["coverage"]["sourceManifest"]}
+        for key, (record_id, _, _, _, images) in expected.items():
+            self.assertEqual(manifest[key]["assignedTo"], record_id)
+            self.assertEqual(manifest[key]["images"], images)
+
+        pdf_path = ROOT / "assets/documentos/2000-2001-examen-1.pdf"
+        pdf_reader = PdfReader(pdf_path)
+        self.assertEqual(len(pdf_reader.pages), 3)
+        self.assertIn("OPCIÓN A", pdf_reader.pages[0].extract_text())
+        self.assertIn("Atendiendo a la necesidad", pdf_reader.pages[0].extract_text())
+        self.assertIn("OPCIÓN B", pdf_reader.pages[1].extract_text())
+        for page in pdf_reader.pages[:2]:
+            page_text = page.extract_text()
+            self.assertIn("UNIVERSIDADES DE ANDALUCÍA", page_text)
+            self.assertIn("PRUEBA DE ACCESO A LA UNIVERSIDAD", page_text)
+            self.assertIn("BACHILLERATO", page_text)
+            self.assertIn("COMPOSICIÓN DE", page_text)
+            self.assertIn("TEXTO HISTÓRICO", page_text)
+            self.assertIn("Instrucciones:", page_text)
+            self.assertIn("Duración: 1 hora y 30 minutos.", page_text)
+            self.assertIn("UNA de las dos opciones propuestas.", page_text)
+            self.assertIn("La prueba se valorará de 0 a 10 puntos", page_text)
+        self.assertIn("PCE-PSUC", pdf_reader.pages[1].extract_text())
+        self.assertIn("208", pdf_reader.pages[1].extract_text())
+        self.assertIn("CRITERIOS ESPECÍFICOS DE CORRECCIÓN", pdf_reader.pages[2].extract_text())
+        source_pdf_path = ROOT / "assets/documentos/2000-2001-examen-1-fuentes.pdf"
+        self.assertTrue(source_pdf_path.is_file())
+        sample_hash = hashlib.sha256(source_pdf_path.read_bytes()).hexdigest()
+        self.assertTrue(all(appearance["sourceSha256"] == sample_hash
+                            for _, appearance in appearances.values()))
+        self.assertIn(2001, data["coverage"]["sourceYearsWithDocumentComment"])
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 452)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 191)
+
+        speech = records["primer-mensaje-juan-carlos-1975-pdf-2001-1-3"]
+        speech_text = " ".join(speech["text"])
+        self.assertIn("La Patria es una empresa colectiva", speech_text)
+        self.assertEqual(sum(paragraph.count("[...]") for paragraph in speech["text"]), 5)
+        self.assertNotIn("(…)", speech_text)
+        self.assertEqual(records["elecciones-generales-1982-congreso-senado"]["table"]["rows"][0][1], 202)
+        image = "assets/documentos/2000-2001-examen-1-mapa.png"
+        sample_image = next(image_data for image_data in records["mapa-ferrocarriles-siglo-xix"]["image"]["additionalImages"]
+                            if image_data["src"] == image)
+        self.assertEqual(image_dimensions(ROOT / image), (sample_image["width"], sample_image["height"]))
+        election = records["elecciones-generales-1982-congreso-senado"]
+        self.assertNotIn("additionalImages", election["image"])
+        self.assertEqual(election["image"]["originalSrc"], "assets/documentos/elecciones-generales-1982-congreso-senado-oficial-2026.png")
+        self.assertTrue(any(a["sourceKey"] == "pdf-2001-1:4" for a in election["appearances"]))
+
+    def test_2001_vector_redraws_preserve_sources_and_election_shares(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        ns = "{http://www.w3.org/2000/svg}"
+        cases = (
+            ("material-2001-2-2", "2000-2001-examen-2-a-chart.png"),
+            ("material-2001-4-2", "2000-2001-examen-4-a-map.png"),
+            ("material-2001-6-2", "2000-2001-examen-6-a-chart.png"),
+        )
+        roots = {}
+        for record_id, original in cases:
+            with self.subTest(record=record_id):
+                image = records[record_id]["image"]
+                self.assertEqual(image["originalSrc"], f"assets/documentos/{original}")
+                self.assertTrue((ROOT / image["originalSrc"]).is_file())
+                self.assertTrue(image["selectable"])
+                self.assertTrue(image["openVector"])
+                self.assertTrue(image["examCaption"]["text"])
+                if record_id != "material-2001-6-2":
+                    self.assertIn("Redibujo", image["reproductionNote"])
+                root = ET.parse(ROOT / image["src"]).getroot()
+                roots[record_id] = root
+                self.assertIsNotNone(root.find(f"{ns}title"))
+                self.assertIsNotNone(root.find(f"{ns}desc"))
+                self.assertIsNotNone(root.find(f"{ns}text"))
+                self.assertFalse(root.findall(f".//{ns}image"))
+                ids = {node.get("id") for node in root.iter() if node.get("id")}
+                for node in root.iter():
+                    for attr, value in node.attrib.items():
+                        if attr.endswith("href"):
+                            self.assertTrue(value.startswith("#"))
+                            self.assertIn(value[1:], ids)
+                        for ref in re.findall(r"url\(#([^)]+)\)", value):
+                            self.assertIn(ref, ids)
+
+        map_image = records["material-2001-4-2"]["image"]
+        self.assertEqual(map_image["attribution"]["license"], "CC BY-SA 3.0")
+        self.assertIn("no permiten atribuir cifras exactas", records["material-2001-4-2"]["quality"])
+        map_root = roots["material-2001-4-2"]
+        self.assertIn("Javitomad", map_root.find(f"{ns}metadata").text)
+        self.assertEqual([int(r.get("data-reference")) for r in map_root.findall(f".//*[@id='legend']/{ns}rect")],
+                         [400, 300, 200, 100, 50, 10, 5, 1])
+
+        chart = roots["material-2001-6-2"]
+        assembly = records["material-2001-6-2"]
+        self.assertEqual(assembly["title"], "Composición de la Asamblea Constituyente de 1869")
+        self.assertEqual(assembly["image"]["examCaption"]["text"],
+                         "Composición de la Asamblea Constituyente en 1869 (número de diputados)")
+        self.assertTrue(assembly["image"]["hideExamCaption"])
+        self.assertNotIn("reproductionNote", assembly["image"])
+        self.assertNotIn("imageReviewNote", assembly["appearances"][0])
+        self.assertEqual(chart.find(f"{ns}text[@class='title']").text,
+                         "Resultado elecciones 1869 (15-18 de enero)")
+        self.assertEqual(chart.find(f"{ns}text[@class='center']").text, "351*")
+        note = assembly["image"]["editorialNote"]
+        self.assertTrue(note.startswith("* Aunque la convocatoria oficial"))
+        self.assertIn("381 escaños", note)
+        self.assertIn("29 diputados", note)
+        self.assertIn("1 acta peninsular", note)
+        sectors = chart.findall(f"{ns}path[@class='sector']")
+        expected = [159, 20, 69, 69, 2, 18, 14]
+        self.assertEqual([int(p.get("data-seats")) for p in sectors], expected)
+        for sector, seats in zip(sectors, expected):
+            coords = re.match(r"M([\d.]+),([\d.]+) A175,175 0 0 1 ([\d.]+),([\d.]+)", sector.get("d"))
+            self.assertIsNotNone(coords)
+            x1, y1, x2, y2 = map(float, coords.groups())
+            start = math.degrees(math.atan2(345 - y1, x1 - 220))
+            end = math.degrees(math.atan2(345 - y2, x2 - 220))
+            self.assertAlmostEqual(start - end, 180 * seats / 351, delta=0.01)
+
+    def test_2001_all_exams_are_assigned_with_sources_and_visuals(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        appearances = [(record, appearance) for record in records.values()
+                       for appearance in record["appearances"] if appearance["year"] == 2001]
+        self.assertEqual(len(appearances), 24)
+        manifest = {entry["key"]: entry for entry in data["coverage"]["sourceManifest"]}
+        for number in range(1, 7):
+            selected = [(r, a) for r, a in appearances if a["exam"] == f"2001 Examen {number}"]
+            self.assertEqual({a["sourceOrdinal"] for _, a in selected}, {1, 2, 3, 4})
+            for record, appearance in selected:
+                ordinal = appearance["sourceOrdinal"]
+                self.assertEqual((appearance["route"], appearance["document"], appearance["officialPage"]),
+                                 ("Opción A" if ordinal <= 2 else "Opción B",
+                                  1 if ordinal % 2 else 2, 1 if ordinal <= 2 else 2))
+                self.assertEqual(manifest[appearance["sourceKey"]]["assignedTo"], record["id"])
+                self.assertEqual(manifest[appearance["sourceKey"]]["images"], appearance["sourceImages"])
+                self.assertEqual(bool(appearance["sourceImages"]), ordinal % 2 == 0)
+                self.assertEqual(appearance["sourceSha256"],
+                                 hashlib.sha256((ROOT / appearance["sourceUrl"]).read_bytes()).hexdigest())
+                if number > 1 and ordinal % 2 == 0:
+                    images = [record.get("image"), record.get("tableImage"),
+                              *record.get("image", {}).get("additionalImages", [])]
+                    image = next(image for image in images if image
+                                 and image.get("sourceUrl") == appearance["sourceUrl"] + f"#page={appearance['officialPage']}")
+                    self.assertEqual(image_dimensions(ROOT / image["src"]), (image["width"], image["height"]))
+                    self.assertIn(f'"./{image["src"]}"', (ROOT / "sw.js").read_text())
+        for new_id, primary in (
+            ("nueva-planta-1707-pdf-2001", "decretos-nueva-planta-1707"),
+            ("constitucion-1812-pdf-2001", "constitucion-1812-articulos-2008"),
+            ("junta-sevilla-declaracion-guerra-pdf-2001", "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia"),
+            ("constitucion-1869-pdf-2001", "constitucion-1869"),
+            ("canciones-guerra-civil-pdf-2001", "canciones-guerra-civil"),
+        ):
+            self.assertTrue(any(group[0] == primary and new_id in group for group in data["textGroups"]))
+        self.assertIn("Todos los españoles tiene libertad", " ".join(records["constitucion-1812-pdf-2001"]["text"]))
+        self.assertIn("qué habrá sucedido", records["canciones-guerra-civil-pdf-2001"]["text"][0])
+        self.assertIn("así te quería yo", records["canciones-guerra-civil-pdf-2001"]["text"][1])
+        self.assertEqual(records["material-2001-3-4"]["table"]["rows"][2], ["1962", "30.9", "-", "-"])
+        self.assertEqual(records["material-2001-6-4"]["table"]["rows"][3],
+                         ["Total (guerra)", "312.900", "146.000", "458.900"])
+        self.assertIn("no coinciden", records["material-2001-6-4"]["quality"])
+
+    def test_reconstructed_2001_exams_have_selectable_headers_and_criteria(self):
+        examples = {
+            2: ("He juzgado por conveniente", "Villanueva del Arzobispo"),
+            3: ("Art. 371.", "519.38"),
+            4: ("Entre las varias razones", "Lamento vivamente"),
+            5: ("Don Fernando VII", "FEDER"),
+            6: ("Cortes Constituyentes", "657.900"),
+        }
+        criteria = PdfReader(ROOT / "assets/documentos/2000-2001-examen-1-fuentes.pdf")
+        for number, body_texts in examples.items():
+            with self.subTest(exam=number):
+                pdf = PdfReader(ROOT / f"assets/documentos/2000-2001-examen-{number}.pdf")
+                source = PdfReader(ROOT / f"assets/documentos/2000-2001-examen-{number}-fuentes.pdf")
+                self.assertEqual(len(pdf.pages), 3)
+                self.assertEqual(len(source.pages), 3)
+                for index, (option, body) in enumerate(zip(("A", "B"), body_texts)):
+                    text = pdf.pages[index].extract_text()
+                    self.assertIn(f"OPCIÓN {option}", text)
+                    self.assertIn("UNIVERSIDADES DE ANDALUCÍA", text)
+                    self.assertIn("PRUEBA DE ACCESO A LA UNIVERSIDAD", text)
+                    self.assertIn("BACHILLERATO", text)
+                    self.assertIn("COMPOSICIÓN DE", text)
+                    self.assertIn("TEXTO HISTÓRICO", text)
+                    self.assertIn("Duración: 1 hora y 30 minutos.", text)
+                    self.assertIn(body, text)
+                self.assertEqual(pdf.pages[2].extract_text(), criteria.pages[2].extract_text())
+                self.assertEqual(source.pages[2].extract_text(), criteria.pages[2].extract_text())
+
     def test_assembly_continuation_is_recovered_from_its_own_corpus(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         document = next(item for item in data["documents"]
@@ -1174,17 +1437,34 @@ class DocumentCorpusTests(unittest.TestCase):
                     self.assertNotIn(appearance["id"], appearances)
                     appearances.add(appearance["id"])
                     parsed = urlparse(appearance["sourceUrl"])
-                    self.assertEqual(parsed.scheme, "https")
-                    if appearance.get("sourceType") == "pdf":
+                    if appearance.get("sourceReviewStatus") == "user-scan":
+                        self.assertEqual(parsed.scheme, "")
+                        self.assertTrue((ROOT / parsed.path).is_file())
+                        pdf_url = urlparse(appearance["pdfUrl"])
+                        self.assertEqual(pdf_url.scheme, "")
+                        self.assertTrue((ROOT / pdf_url.path).is_file())
+                        self.assertRegex(appearance["pdfUrl"], r"^assets/documentos/[a-z0-9._-]+\.pdf$")
+                        if appearance["sourceUrl"] != appearance["pdfUrl"]:
+                            self.assertEqual(
+                                (appearance["sourceUrl"], appearance["pdfUrl"]),
+                                (
+                                    f"assets/documentos/2000-2001-examen-{appearance['exam'].split()[-1]}-fuentes.pdf",
+                                    f"assets/documentos/2000-2001-examen-{appearance['exam'].split()[-1]}.pdf",
+                                ),
+                            )
+                    elif appearance.get("sourceType") == "pdf":
+                        self.assertEqual(parsed.scheme, "https")
                         self.assertEqual(parsed.hostname, "drive.google.com")
                         self.assertEqual(appearance["sourceUrl"], appearance["pdfUrl"])
                     else:
+                        self.assertEqual(parsed.scheme, "https")
                         self.assertEqual(parsed.hostname, "docs.google.com")
                         self.assertTrue(parsed.fragment.startswith("heading="))
-                    self.assertRegex(
-                        appearance["pdfUrl"],
-                        r"^https://drive\.google\.com/file/d/[A-Za-z0-9_-]+/view$",
-                    )
+                    if appearance.get("sourceReviewStatus") != "user-scan":
+                        self.assertRegex(
+                            appearance["pdfUrl"],
+                            r"^https://drive\.google\.com/file/d/[A-Za-z0-9_-]+/view$",
+                        )
                 if "image" in document:
                     image = document["image"]
                     path = ROOT / image["src"]
@@ -1291,7 +1571,7 @@ class DocumentCorpusTests(unittest.TestCase):
         group = next(group for group in data["textGroups"] if group[0] == record["id"])
         appearances = [a for identity in group for a in records[identity]["appearances"]]
         self.assertEqual(sorted(a["year"] for a in appearances),
-                         [2003, 2004, 2006, 2007, 2008, 2010, 2012, 2012, 2015, 2016])
+                         [2001, 2003, 2004, 2006, 2007, 2008, 2010, 2012, 2012, 2015, 2016])
         model = records["constitucion-1812-articulos-1-4-modelo"]
         self.assertEqual({a["year"] for a in model["appearances"]}, {2010, 2012})
         self.assertEqual([p.split(". ")[1] for p in model["text"][1:]], ["1", "2", "3", "4"])
@@ -1493,8 +1773,8 @@ class DocumentCorpusTests(unittest.TestCase):
             ("camino-exilio-1939", "2007 Examen 5", "Bloque II · Opción B", (1175, 933),
              "d95f070b2cee32606a845b065bcbf51badcf49d3ac988c631e0e95ae35465ebe",
              "d6df1cd96ed9cd91c8147645c068fc3d1da3b14e96a3ec6abf63fd0450973849"),
-            ("cartel-ayuda-republica-francia", "2007 Examen 6", "Bloque II · Opción B", (912, 1004),
-             "58ef6323d93d728a4be09c16f21a2c3a6e0faa8e491c84b44162ae18c2265681",
+            ("cartel-ayuda-republica-francia", "2007 Examen 6", "Bloque II · Opción B", (815, 1094),
+             "0cb3234b32c2205b8ef4608315c158bf203815dfdf9144936cfd07554630a272",
              "1101f6e2750e6656511b27dc7cb77403d856b5aca6cfe4958f647a88fde436e9"),
         ):
             with self.subTest(document=identity):
@@ -1508,7 +1788,9 @@ class DocumentCorpusTests(unittest.TestCase):
         cavalry = records["huelga-1917-caballeria"]["image"]
         self.assertLessEqual(cavalry["crop"]["height"] - cavalry["crop"]["top"], 775)
         poster = records["cartel-ayuda-republica-francia"]["image"]
-        self.assertIn("no incluye la franja inferior", poster["reproductionNote"])
+        self.assertNotIn("reproductionNote", poster)
+        self.assertEqual(poster["sourceUrl"], "https://conhdearte.wordpress.com/wp-content/uploads/2014/12/0167.jpg")
+        self.assertEqual(poster["filter"], "saturate(0.7) contrast(0.9) brightness(1.04)")
 
     def test_pablo_iglesias_marker_points_to_the_indicated_hands_and_lowercase_date(self):
         data = json.loads((ROOT / "data/documentos.json").read_text())
@@ -1644,9 +1926,12 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual([stripe.get("data-stripe-row") for stripe in stripes],
                          ["0", "2", "4", "6", "8", "10", "12", "14"])
         self.assertTrue(all(
-            stripe.get("fill") == "#dce8e2" and stripe.get("x") == "0"
-            and stripe.get("width") == "436" for stripe in stripes
+            stripe.get("fill") == "#dce8e2" and stripe.get("x") == "1.70"
+            and stripe.get("width") == "432.10" and stripe.get("height") == "11.97"
+            and abs(float(stripe.get("y")) - (24.87 + int(stripe.get("data-stripe-row")) * 11.97)) < 0.01
+            for stripe in stripes
         ))
+        self.assertNotIn("reproductionNote", election_table)
         self.assertNotIn('id="election-table-row-stripes"',
                          (ROOT / documents["resultados-de-las-elecciones-generales-de-1982"]
                           ["tableImage"]["originalSrc"]).read_text())
@@ -1918,6 +2203,8 @@ class DocumentCorpusTests(unittest.TestCase):
         namespace = "{http://www.w3.org/2000/svg}"
         for document in data["documents"]:
             if document["type"] != "grafico":
+                continue
+            if all(a.get("sourceReviewStatus") == "user-scan" for a in document["appearances"]):
                 continue
             if not document.get("table") and all(a.get("sourceType") == "pdf" for a in document["appearances"]):
                 continue
@@ -2590,7 +2877,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(len({item["heading"] for item in years}), 18)
         self.assertEqual(sum(len(item["images"]) for item in years), 20)
         self.assertEqual(len([item for item in manifest if item["year"] >= 2008]), 260)
-        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 179)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 191)
         image_ids = [image_id for item in manifest if item["year"] >= 2008 for image_id in item["images"]]
         self.assertEqual(sorted(image_ids), list(range(1, 103)))
         self.assertEqual(len(image_ids), len(set(image_ids)))
@@ -2728,6 +3015,12 @@ class DocumentCorpusTests(unittest.TestCase):
             self.assertEqual(image_dimensions(ROOT / image["src"]), (image["width"], image["height"]))
             self.assertTrue((ROOT / image["originalSrc"]).is_file())
             self.assertEqual(image["sourceUrl"], records["espartero-narvaez-retratos-2016"]["appearances"][0]["sourceUrl"])
+        posters = records["carteles-guerra-civil-2016"]
+        self.assertTrue(posters["sharedImageCaption"])
+        for image, size in zip([posters["image"], *posters["image"]["additionalImages"]],
+                               [(1294, 1999), (650, 926)]):
+            self.assertEqual(image_dimensions(ROOT / image["src"]), size)
+        self.assertEqual(posters["image"]["originalSrc"], "assets/documentos/carteles-guerra-civil-2016.png")
         self.assertEqual(image_dimensions(ROOT / portraits["src"]), (1609, 2048))
         narvaez = portraits["additionalImages"][0]
         self.assertEqual(narvaez["src"], records["retrato-ramon-maria-narvaez"]["image"]["src"])

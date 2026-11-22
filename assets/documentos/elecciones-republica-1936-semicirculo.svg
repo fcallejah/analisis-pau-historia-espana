@@ -4,8 +4,8 @@
 <metadata>{&quot;source&quot;: &quot;https://historiaelectoral.com/e1931r.html&quot;, &quot;year&quot;: 1936}</metadata>
 <style>text{font-family:"Arial Narrow",Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:15px;font-weight:700}.share{font-size:13px;font-weight:600}.metric{font-size:12px;fill:#53666e}.center-seat{font-size:18px;font-weight:700;fill:#53666e}.center-note{font-size:12px;fill:#53666e}.other-seats-note{font-size:12px;fill:#53666e}.sector{stroke:#fff;stroke-width:2}</style>
 <rect width="760" height="545" fill="#fff"/>
-<text class="title" x="380" y="32" text-anchor="middle">Cortes · 1936</text>
-<text class="subtitle" x="380" y="51" text-anchor="middle">Escaños por bloques</text>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1936</text>
+<text class="subtitle" x="380" y="51" text-anchor="middle">1.ª vuelta: 16 de febrero · 2.ª vuelta: 1 de marzo</text>
 <path class="sector" data-party="Frente Popular" data-seats="286" data-seat-percent="60.465" fill="#ff0000" d="M45.00,370.00 A185,185 0 0 1 289.73,194.91 L255.18,296.18 A78,78 0 0 0 152.00,370.00 Z"/>
 <path class="sector" data-party="Frente Nacional Contrarrevolucionario" data-seats="141" data-seat-percent="29.810" fill="#0000ff" d="M289.73,194.91 A185,185 0 0 1 406.43,314.35 L304.39,346.54 A78,78 0 0 0 255.18,296.18 Z"/>
 <path class="sector" data-party="Centro y nacionalistas" data-seats="46" data-seat-percent="9.725" fill="#3cb371" d="M406.43,314.35 A185,185 0 0 1 415.00,370.00 L308.00,370.00 A78,78 0 0 0 304.39,346.54 Z"/>

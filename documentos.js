@@ -134,7 +134,7 @@
       && ["all", "favorite", "review"].includes(value.savedFilter)
       && ["", "4", "5", "6", "7", "8", "9", "10", "11", "12"].includes(value.block)
       && (value.year === "" || typeof value.year === "string" && /^\d{4}$/.test(value.year)
-        && Number(value.year) >= 2002 && Number(value.year) <= 2027)
+        && Number(value.year) >= 2001 && Number(value.year) <= 2027)
       && typeof value.exam === "string" && (value.year !== "" || value.exam === "")
       && typeof value.search === "string" && typeof value.topic === "string"
       && typeof value.topicSearch === "string" && typeof value.expanded === "boolean"
@@ -353,11 +353,15 @@
     appearances.forEach((appearance) => {
       const item = element("li");
       const pill = appearancePill(appearance, true);
-      const anchor = link("", appearance.pdfUrl);
+      const localPdf = appearance.sourceReviewStatus === "user-scan";
+      const pdfUrl = localPdf && appearance.officialPage
+        ? `${appearance.pdfUrl}#page=${appearance.officialPage}` : appearance.pdfUrl;
+      const anchor = link("", pdfUrl);
       anchor.target = "_blank";
       anchor.rel = "noopener noreferrer";
-      anchor.setAttribute("aria-label", `Abrir PDF del examen en Drive (otra pestaña): ${pill.title}`);
-      anchor.title = "Abrir el PDF de este examen en Drive (otra pestaña)";
+      const location = localPdf ? "el archivo local" : "Drive";
+      anchor.setAttribute("aria-label", `Abrir PDF del examen en ${location} (otra pestaña): ${pill.title}`);
+      anchor.title = `Abrir el PDF de este examen en ${location} (otra pestaña)`;
       anchor.append(pill);
       item.append(anchor);
       list.append(item);
@@ -856,7 +860,7 @@
       record.title, record.date, record.sourceCaption, record.quality, record.readingNote, ...record.tags,
       record.historicalNote,
       ...(record.origin === "propio" ? ["material propio", "resultados"] : []),
-      ...(record.origin === "propio" && ["elections", "municipal-turnout"].includes(record.visualization)
+      ...(record.origin === "propio" && ["elections", "municipal-turnout", "municipal-votes"].includes(record.visualization)
         ? ["electorales"] : []),
       ...(record.text || []),
       ...(record.studyCompilation?.text || []),
@@ -865,7 +869,7 @@
         appearance.year, appearance.exam, appearance.route, displayExamName(examLabel(appearance), appearance.year),
       ]),
       ...images.flatMap((image) => [
-        image.alt, image.reproductionNote, image.examCaption?.text, image.examCaption?.note, image.attribution?.text,
+        image.alt, image.reproductionNote, image.editorialNote, image.examCaption?.text, image.examCaption?.note, image.attribution?.text,
         image.annotations?.note,
         ...(image.annotations?.people || []).flatMap((person) => [person.name, person.role, person.position]),
         ...(image.annotations?.symbols || []).flatMap((symbol) => [symbol.name, symbol.role, symbol.position]),
@@ -973,6 +977,9 @@
   function isNationalElectionRecord(record) {
     return nationalElectionYear(record) !== null;
   }
+  function isRepublicElectionRecord(record) {
+    return /^propio-elecciones-generales-193[136]$/.test(record.id);
+  }
   function nationalElectionCharts() {
     return documents.flatMap((record) => {
       const year = nationalElectionYear(record);
@@ -995,7 +1002,7 @@
           record,
           table,
           year,
-          label: table.chart.heading || table.caption,
+          label: table.chart.selectorLabel || table.chart.heading || table.caption,
           src: `assets/documentos/${table.chart.svg}`,
         };
       });
@@ -1010,9 +1017,24 @@
       record,
       table,
       year,
-      label: table.chart.heading || table.caption,
+      label: table.chart.selectorLabel || table.chart.heading || table.caption,
       src: `assets/documentos/${table.chart.svg}`,
     };
+  }
+  function municipalVotesChart(table) {
+    const votes = table.rows.map((row) => Number(row[1].replaceAll(".", "")));
+    const total = votes.reduce((sum, value) => sum + value, 0);
+    const group = element("section", undefined, "study-chart-referendum");
+    group.append(element("h3", table.caption, "study-chart-title"));
+    group.append(element("p", "Porcentaje entre estas dos candidaturas", "study-chart-note"));
+    table.rows.forEach((row, index) => {
+      const percentage = votes[index] / total * 100;
+      const bar = studyBar(row[0], percentage, 100, index === 0 ? "is-monarchist" : "is-republican");
+      bar.querySelector(".study-chart-value").textContent = `${percentage.toFixed(2).replace(".", ",")} %`;
+      group.append(bar);
+    });
+    group.append(element("p", table.rows.map((row) => `${row[0]}: ${row[1]} votos`).join(" · "), "study-chart-note"));
+    return group;
   }
   function studyChart(record, preview) {
     const section = element("section", undefined, "study-chart");
@@ -1020,8 +1042,13 @@
     if (record.visualization === "elections" || record.id === "elecciones-1977-diagrama") {
       if (!preview) chart.setAttribute("aria-live", "polite");
       const nationalSeries = isNationalElectionRecord(record);
+      const republicSeries = isRepublicElectionRecord(record);
       const options = nationalSeries
         ? nationalElectionCharts()
+        : republicSeries
+          ? documents.filter(isRepublicElectionRecord)
+            .flatMap((entry) => entry.tables.map((table) => electionChartEntry(entry, table)))
+            .sort((a, b) => a.year - b.year)
         : (record.tables || []).map((table) => electionChartEntry(record, table));
       const selectedIndex = options.findIndex((option) => option.record.id === record.id);
       if (selectedIndex < 0) throw new Error(`No hay gráfico electoral para ${record.id}`);
@@ -1040,7 +1067,7 @@
         }
         if (!preview) chart.append(sourceLink("Abrir gráfico SVG", image.src));
       };
-      if (!preview && nationalSeries) {
+      if (!preview && (nationalSeries || republicSeries)) {
         const selector = element("div", undefined, "study-chart-selector");
         const select = element("select");
         select.setAttribute("aria-label", "Desplegable electoral");
@@ -1063,7 +1090,7 @@
         const openElection = (index) => {
           const selected = options[index];
           if (!selected) throw new Error("La elección seleccionada no está disponible");
-          open(selected.record, select);
+          open(selected.record, opener, "replace");
           updateReaderNavigation();
           dialog.querySelector(".study-chart-selector select")?.focus({ preventScroll: true });
         };
@@ -1075,15 +1102,17 @@
       }
       renderElection(options[selectedIndex]);
     } else if (record.visualization === "municipal-turnout") {
-      const table = record.tables[0];
-      const row = table.rows[0];
-      const group = element("section", undefined, "study-chart-referendum");
-      group.append(element("h3", row[0], "study-chart-title"));
-      const number = Number(row[3].replace(",", "."));
-      const bar = studyBar("Participación · sobre electores", number, 100, "is-turnout");
-      bar.querySelector(".study-chart-value").textContent = `${row[3]} %`;
-      group.append(bar);
-      chart.append(group);
+      const comparison = documents.find((item) => item.id === record.comparisonDocumentId);
+      if (!comparison || comparison.visualization !== "municipal-votes") {
+        throw new Error("Falta la comparación de votos de las elecciones municipales");
+      }
+      chart.append(municipalVotesChart(comparison.tables[0]));
+      if (!preview) {
+        chart.append(element("p", comparison.quality, "document-reading-note"));
+        comparison.tables[0].notes.forEach((note) => chart.append(element("p", note, "document-reading-note")));
+      }
+    } else if (record.visualization === "municipal-votes") {
+      chart.append(municipalVotesChart(record.tables[0]));
     } else {
       const table = record.tables[0];
       (preview ? table.rows.slice(0, 1) : table.rows).forEach((row) => {
@@ -1182,7 +1211,10 @@
       if (!preview && imageData.reproductionNote) {
         figure.append(element("p", imageData.reproductionNote, "document-reproduction-note"));
       }
-      if (!preview) {
+      if (!preview && imageData.editorialNote) {
+        figure.append(element("p", imageData.editorialNote, "document-reading-note"));
+      }
+      if (!preview && !document.sharedImageCaption && !imageData.hideExamCaption) {
         const caption = imageData.examCaption || document.examCaption;
         const foot = element("figcaption", undefined, "document-exam-caption");
         foot.append(sourceParagraph(caption?.text || "(Sin descripción)", caption?.emphasis));
@@ -1203,17 +1235,22 @@
         details.append(credit);
         figure.append(details);
       }
-      if (!preview && imageData.sourceUrl) {
+      if (!preview && !document.sharedImageCaption && imageData.sourceUrl) {
         const attribution = sourceLink("Fuente de esta reproducción", imageData.sourceUrl);
         attribution.className = "document-image-caption";
         figure.append(attribution);
+      }
+      if (!preview && imageData.openVector) {
+        const enlarged = sourceLink("Abrir redibujo ampliable", imageData.src);
+        enlarged.className = "document-image-caption document-vector-link";
+        figure.append(enlarged);
       }
       if (!preview && imageIndex === 0 && document.dataSourceUrl) {
         const dataSource = sourceLink("Fuente de los datos", document.dataSourceUrl);
         dataSource.className = "document-image-caption";
         figure.append(dataSource);
       }
-      if (!preview && imageData.originalSrc) {
+      if (!preview && !document.sharedImageCaption && imageData.originalSrc) {
         const original = sourceLink("Ver recorte del PDF original", imageData.originalSrc);
         original.className = "document-image-caption document-original-link";
         figure.append(original);
@@ -1226,6 +1263,21 @@
       (imageGroup || box).append(figure);
     });
     if (imageGroup) box.append(imageGroup);
+    if (!preview && document.sharedImageCaption && imageGroup) {
+      const caption = element("div", undefined, "document-exam-caption");
+      caption.append(sourceParagraph(document.examCaption.text, document.examCaption.emphasis));
+      box.append(caption);
+      if (document.image.sourceUrl) {
+        const attribution = sourceLink("Fuente de esta reproducción", document.image.sourceUrl);
+        attribution.className = "document-image-caption";
+        box.append(attribution);
+      }
+      if (document.image.originalSrc) {
+        const original = sourceLink("Ver recorte del PDF original", document.image.originalSrc);
+        original.className = "document-image-caption document-original-link";
+        box.append(original);
+      }
+    }
     if (!preview && document.origin === "propio" && document.visualization === "map") {
       document.additionalSources?.forEach((item) => {
         const source = element("p", undefined, "document-image-caption");
@@ -2114,8 +2166,10 @@
       if (data.documents.some((record) => !Array.isArray(record.appearances)
         || record.appearances.some((appearance) =>
           typeof appearance.pdfUrl !== "string"
-          || !/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(appearance.pdfUrl)))) {
-        throw new Error("Falta un enlace válido al PDF de un examen en Drive");
+          || !(/^https:\/\/drive\.google\.com\/file\/d\/[A-Za-z0-9_-]+\/view$/.test(appearance.pdfUrl)
+            || appearance.sourceReviewStatus === "user-scan"
+              && /^assets\/documentos\/[a-z0-9._-]+\.pdf$/.test(appearance.pdfUrl))))) {
+        throw new Error("Falta un enlace válido al PDF de un examen");
       }
       if (data.documents.some((document) => !Array.isArray(document.blocks) || !document.blocks.length
         || document.blocks.some((number) => !Number.isInteger(number) || number < 4 || number > 12))) {
@@ -2185,7 +2239,7 @@
         || !Array.isArray(record.tags) || !Array.isArray(record.commentary)
         || !Array.isArray(record.unitIds) || !record.unitIds.length
         || record.unitIds.some((id) => !thematicUnits.some((unit) => unit.id === id && record.blocks.includes(unit.block)))
-        || !["elections", "referendums", "municipal-turnout", "map"].includes(record.visualization)
+        || !["elections", "referendums", "municipal-turnout", "municipal-votes", "map"].includes(record.visualization)
         || (record.visualization === "map"
           ? !record.image?.src || !record.image.alt || !(record.image.width > 0) || !(record.image.height > 0)
           : !Array.isArray(record.tables) || !record.tables.length
@@ -2199,18 +2253,30 @@
           || (record.visualization === "municipal-turnout" && (table.headers.length !== 4
             || table.rows.some((row) => row.length !== 4 || !/^\d+(?:,\d+)?$/.test(row[3])
               || Number(row[3].replace(",", ".")) > 100)))
+          || (record.visualization === "municipal-votes" && (table.headers.length !== 2
+            || table.rows.length !== 2 || table.rows.some((row) => !Array.isArray(row)
+              || row.length !== 2 || typeof row[1] !== "string"
+              || !/^(?:\d{1,3}(?:\.\d{3})+|\d+)$/.test(row[1]))
+            || table.rows.every((row) => Number(row[1].replaceAll(".", "")) === 0)))
           || table.rows.some((row) => !Array.isArray(row) || row.length !== table.headers.length
             || (record.visualization === "elections"
               ? table.headers.length !== 4 || !(row[3] === "—" || /^\d+$/.test(row[3]) && Number(row[3]) <= 600)
               : record.visualization === "municipal-turnout"
                 ? table.headers.length !== 4 || row.slice(1).some((value) =>
                   typeof value !== "string" || !/^(?:\d{1,3}(?:\.\d{3})+|\d+)(?:,\d+)?$/.test(value))
+              : record.visualization === "municipal-votes"
+                ? false
                 : ![5, 6].includes(table.headers.length) || row.slice(1).some((value) =>
                 typeof value !== "string" || !/^\d+(?:,\d+)?$/.test(value) || Number(value.replace(",", ".")) > 100))))))) {
         throw new Error("Los materiales propios no son válidos");
       }
       if (new Set(ownData.documents.map((record) => record.id)).size !== ownData.documents.length) {
         throw new Error("Hay materiales propios duplicados");
+      }
+      if (ownData.documents.some((record) => record.visualization === "municipal-turnout"
+        && !ownData.documents.some((item) => item.id === record.comparisonDocumentId
+          && item.visualization === "municipal-votes"))) {
+        throw new Error("Falta la comparación de votos de las elecciones municipales");
       }
       for (const record of ownData.documents) {
         documents.push({ ...record, origin: "propio", type: "grafico", appearances: [] });
@@ -2221,7 +2287,7 @@
       documents.forEach((record) => searchIndex.set(record.id, indexText(searchableText(record))));
       examYear.replaceChildren(element("option", "Todos los años"));
       examYear.firstElementChild.value = "";
-      for (let year = 2002; year <= 2027; year++) {
+      for (let year = 2001; year <= 2027; year++) {
         const option = element("option", String(year));
         option.value = String(year);
         examYear.append(option);
@@ -2233,7 +2299,7 @@
           record.appearances.map((appearance) => appearance.pdfUrl))).size;
         scope.textContent =
           `${total} ${total === 1 ? "documento recopilado" : "documentos recopilados"} · `
-          + `${exams} ${exams === 1 ? "examen" : "exámenes"} · Desde 2001-02 hasta 2026-27, ambos inclusive.`;
+          + `${exams} ${exams === 1 ? "examen" : "exámenes"} · Desde 2000-01 hasta 2026-27, ambos inclusive.`;
       }
       const requestedBlock = new URLSearchParams(location.search).get("bloque");
       if (restoredView) {

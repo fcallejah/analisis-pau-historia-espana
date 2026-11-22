@@ -253,7 +253,7 @@ html[data-theme="dark"] .document-exam-caption .document-exam-footnote{color:#ff
 .document-reproduction-note{margin:10px 0;color:var(--muted);text-align:center;font-size:12px}
 .document-collection-link{display:inline-flex;align-items:center;gap:5px;font-size:13px}
 .document-collection-link svg{width:1.1em;height:1.1em;flex:none}
-.document-original-link{display:block}
+.document-original-link,.document-vector-link{display:block}
 .document-full-source .doc-image-crop{width:min(var(--doc-frame-width),100%,calc(52svh * var(--document-crop-aspect)));margin:0 auto;border-radius:0;box-shadow:none}
 .document-full-source .document-person-stage>.doc-image-crop{display:block;width:100%}
 .document-full-source blockquote{margin:0;font:18px/1.7 "PAU Caption","Arial Narrow",Arial,sans-serif}
@@ -301,6 +301,8 @@ html[data-theme="dark"] .document-exam-caption .document-exam-footnote{color:#ff
 html[data-theme="dark"] .study-chart-fill.is-turnout{background:#a9b0b8}
 .study-chart-fill.is-yes{background:#318258}
 .study-chart-fill.is-no{background:#b55950}
+.study-chart-fill.is-monarchist{background:#527aa4}
+.study-chart-fill.is-republican{background:#79549b}
 .study-chart-value{min-width:3ch;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
 .study-chart-referendum+.study-chart-referendum{margin-top:24px;padding-top:4px;border-top:1px solid var(--line)}
 .document-full-source .study-chart{box-sizing:border-box;width:clamp(min(100%,420px),72%,640px);margin-inline:auto}

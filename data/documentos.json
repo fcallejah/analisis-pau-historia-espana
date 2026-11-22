@@ -94,7 +94,8 @@
           "junta-revolucionaria-sevilla-septiembre-1868",
           "prim-busca-regimen-caricatura",
           "primera-peseta-1869",
-          "constitucion-1869"
+          "constitucion-1869",
+          "material-2001-6-2"
         ]
       },
       {
@@ -170,7 +171,9 @@
           "grafico-desamortizaciones-siglo-xix",
           "mapa-desamortizacion-madoz",
           "desamortizacion-eclesiastica-civil-1834-1856",
-          "ley-desamortizacion-madoz-1855"
+          "ley-desamortizacion-madoz-1855",
+          "borrego-desamortizacion-colonos-1836",
+          "material-2001-4-2"
         ]
       },
       {
@@ -214,7 +217,9 @@
           "manifiesto-del-comite-de-huelga",
           "afiliacion-obrera-1917",
           "huelga-1917-caballeria",
-          "comite-huelga-1917-encarcelado"
+          "comite-huelga-1917-encarcelado",
+          "fraude-electoral-cazorla-cangas-1920",
+          "material-2001-2-4"
         ]
       },
       {
@@ -251,7 +256,9 @@
           "escanos-constituyentes-1931-porcentajes",
           "alegoria-republica-1931",
           "tunon-lara-republica-1931",
-          "proclamacion-republica-fotografia"
+          "proclamacion-republica-fotografia",
+          "clara-campoamor-sufragio-femenino-1931",
+          "material-2001-4-4"
         ]
       },
       {
@@ -284,7 +291,8 @@
           "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
           "mapa-espana-julio-1936",
           "hemingway-guerra-civil",
-          "camino-exilio-1939"
+          "camino-exilio-1939",
+          "material-2001-6-4"
         ]
       },
       {
@@ -347,7 +355,9 @@
           "temime-migraciones-urbanas",
           "divisas-emigrantes-1961-1975",
           "asamblea-estudiantes-barcelona-1966",
-          "protesta-barreiros"
+          "protesta-barreiros",
+          "plan-estabilizacion-1959-pdf-2001",
+          "material-2001-3-4"
         ]
       },
       {
@@ -366,7 +376,8 @@
           "suarez-ley-reforma-politica-1976",
           "elecciones-1977-votos-escanos",
           "maximo-febrero-1976",
-          "elecciones-1977-diagrama"
+          "elecciones-1977-diagrama",
+          "primer-mensaje-juan-carlos-1975-pdf-2001-1-3"
         ]
       },
       {
@@ -392,7 +403,9 @@
         "documentIds": [
           "elecciones-generales-1982-congreso-senado",
           "investidura-de-felipe-gonzalez-y-politica-exterior",
-          "resultados-de-las-elecciones-generales-de-1982"
+          "resultados-de-las-elecciones-generales-de-1982",
+          "fernando-moran-adhesion-cee-1995",
+          "material-2001-5-4"
         ]
       },
       {
@@ -419,7 +432,8 @@
       "constitucion-1812-articulos-2008-pdf-2004-5-1",
       "constitucion-1812-articulos-2008-pdf-2006-3-1",
       "constitucion-1812-articulos-2008-pdf-2007-5-1",
-      "constitucion-1812-articulos-1-4-modelo"
+      "constitucion-1812-articulos-1-4-modelo",
+      "constitucion-1812-pdf-2001"
     ],
     [
       "castelar-y-la-proclamacion-de-la-primera-republica",
@@ -536,7 +550,8 @@
     [
       "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia",
       "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia-2014-vnjmetc7hix8-1",
-      "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia-pdf-2005-2-1"
+      "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia-pdf-2005-2-1",
+      "junta-sevilla-declaracion-guerra-pdf-2001"
     ],
     [
       "manifiesto-manzanares-1854",
@@ -599,7 +614,8 @@
     ],
     [
       "decretos-nueva-planta-1707",
-      "decretos-nueva-planta-1707-2016-gfongbd06jp6-1"
+      "decretos-nueva-planta-1707-2016-gfongbd06jp6-1",
+      "nueva-planta-1707-pdf-2001"
     ],
     [
       "la-asamblea-de-parlamentarios-de-barcelona",
@@ -672,6 +688,14 @@
     [
       "castelar-libertades-restauracion-1881",
       "castelar-libertades-restauracion-1881-pdf-2007-6-2"
+    ],
+    [
+      "constitucion-1869",
+      "constitucion-1869-pdf-2001"
+    ],
+    [
+      "canciones-guerra-civil",
+      "canciones-guerra-civil-pdf-2001"
     ]
   ],
   "documents": [
@@ -1106,7 +1130,23 @@
         "src": "assets/documentos/goya-tres-de-mayo.png",
         "alt": "Pintura de Goya: civiles ante un pelotón de fusilamiento nocturno; un hombre con camisa blanca levanta los brazos, iluminado por un farol, mientras los soldados apuntan de espaldas.",
         "width": 1280,
-        "height": 987
+        "height": 987,
+        "additionalImages": [
+          {
+            "src": "assets/documentos/2000-2001-examen-5-a-goya.png",
+            "width": 975,
+            "height": 740,
+            "alt": "Reproducción de la pintura de Goya de los fusilamientos del 3 de mayo.",
+            "caption": "Recorte del escaneo aportado, 2001 Examen 5, Opción A, documento 2.",
+            "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf#page=1",
+            "examCaption": {
+              "text": "Goya: Fusilamientos del 3 de mayo",
+              "emphasis": [
+                "Fusilamientos del 3 de mayo"
+              ]
+            }
+          }
+        ]
       },
       "commentary": [
         {
@@ -1151,6 +1191,26 @@
             83
           ],
           "pdfUrl": "https://drive.google.com/file/d/1tsP1aplRnCreCsOdnvDyZy7ETJbKQQM9/view"
+        },
+        {
+          "id": "fuente-pdf-2001-5-2",
+          "sourceKey": "pdf-2001-5:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 5",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-5.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 9–10) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "203771d1270c0a3f0e32e6c187c364c8158c537c240e101e368fc73ee066d863",
+          "sourceImages": [
+            188
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
         }
       ]
     },
@@ -1176,7 +1236,17 @@
         "height": 776,
         "caption": "SVG derivado del original oficial de 2008, Examen 2, opción A, documento 2; color editorial.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip",
-        "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg"
+        "originalSrc": "assets/documentos/miembros-cortes-cadiz-oficial-2008.svg",
+        "additionalImages": [
+          {
+            "src": "assets/documentos/2000-2001-examen-3-a-chart.png",
+            "width": 1060,
+            "height": 720,
+            "alt": "Gráfico de los miembros de las Cortes de Cádiz por ocupación.",
+            "caption": "Recorte del escaneo aportado, 2001 Examen 3, Opción A, documento 2.",
+            "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf#page=1"
+          }
+        ]
       },
       "table": {
         "caption": "Transcripción de los datos del gráfico",
@@ -1349,6 +1419,26 @@
           "sourceSha256": "666c1f7f28c39a89b85f7d51b70e986ada071433afe251c3967d0cfd3d96afff",
           "sourceImages": [],
           "sourceReviewStatus": "transcription-copy"
+        },
+        {
+          "id": "fuente-pdf-2001-3-2",
+          "sourceKey": "pdf-2001-3:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 3",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-3.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 5–6) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "427c6798db81cb6117af9e27a5811ecad426fb25a4bb612c88da947f445d3d21",
+          "sourceImages": [
+            184
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
         }
       ]
     },
@@ -5426,6 +5516,26 @@
           "sourceImages": [
             156
           ]
+        },
+        {
+          "id": "fuente-pdf-2001-1-4",
+          "sourceKey": "pdf-2001-1:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 1",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-1-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-1.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 1–2) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "d10df800ad116b9b30f5e1de2f18f7b446b9d6a9f3da9c8431a5ea0593b5ef43",
+          "sourceImages": [
+            181
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido con texto vectorial y la maqueta de 2001–02 a partir de las páginas 1–2 del escaneo. El recuadro superior de instrucciones también es texto vectorial seleccionable, maquetado según «2002. Examen 4.pdf». La página 3 reproduce los criterios específicos comunes de 2001–02; «Ver PDF de origen» abre el compuesto de fuentes."
         }
       ],
       "image": {
@@ -6157,7 +6267,6 @@
         "height": 1056,
         "caption": "SVG extraído del PDF oficial de 2008; copia de presentación con bandas horizontales alternas.",
         "originalSrc": "assets/documentos/resultados-elecciones-generales-1982-oficial-2008.svg",
-        "reproductionNote": "Las bandas alternas son editoriales; el SVG extraído original se conserva sin alterar.",
         "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
       },
       "text": [
@@ -11209,7 +11318,7 @@
       ],
       "date": "1936–1939",
       "sourceCaption": "Dos carteles de propaganda de la Guerra Civil",
-      "quality": "Recorte renderizado a partir del PDF oficial de 2016, sin reconstrucción ni ampliación generativa. Se preserva la composición del documento.",
+      "quality": "Reproducciones en color de los mismos dos carteles, extraídas del Google Docs aportado. El recorte del examen de 2016 se conserva enlazado.",
       "commentary": [
         {
           "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -11241,12 +11350,22 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/carteles-guerra-civil-2016.png",
-        "width": 1252,
-        "height": 777,
-        "alt": "Carteles de propaganda durante la Guerra Civil",
-        "sourceUrl": "https://www.juntadeandalucia.es/economiaconocimientoempresasyuniversidad/sguit/examanes_anios_anteriores/selectividad/sel_historia_espana.zip"
+        "src": "assets/documentos/cartel-cnt-19-julio-1936-docs.png",
+        "width": 1294,
+        "height": 1999,
+        "alt": "Cartel de la CNT del 19 de julio de 1936: un miliciano sostiene un fusil.",
+        "sourceUrl": "https://docs.google.com/document/d/1tLvTDk_3AdV7w-eoBB3InnzbTVsWmPbK_VL1z8dkyOk/edit#heading=h.5at5uad3k5k4",
+        "originalSrc": "assets/documentos/carteles-guerra-civil-2016.png",
+        "additionalImages": [
+          {
+            "src": "assets/documentos/cartel-cruzada-espana-docs.png",
+            "width": 650,
+            "height": 926,
+            "alt": "Cartel «1 cruzada: España orientadora espiritual del mundo», con una cruz y un globo terráqueo."
+          }
+        ]
       },
+      "sharedImageCaption": true,
       "examCaption": {
         "text": "Carteles de propaganda durante la Guerra Civil",
         "appearanceId": "fuente-h-5at5uad3k5k4-4"
@@ -18546,7 +18665,9 @@
         "alt": "El despliegue francés en la península (1807–1808). Reproducción del material del examen.",
         "examCaption": {
           "text": "Mapa: El despliegue francés en la península, 1807-1808.\nArtola, Miguel: Enciclopedia de Historia de España. Alianza Ed. 1993",
-          "emphasis": ["Enciclopedia de Historia de España"]
+          "emphasis": [
+            "Enciclopedia de Historia de España"
+          ]
         },
         "sourceUrl": "https://drive.google.com/file/d/1fdSKE9oR6Ol-bfZQuv4pE7Li89yst35Y/view"
       }
@@ -20283,6 +20404,26 @@
           "sourceImages": [
             153
           ]
+        },
+        {
+          "id": "fuente-pdf-2001-1-2",
+          "sourceKey": "pdf-2001-1:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 1",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-1-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-1.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 1–2) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "d10df800ad116b9b30f5e1de2f18f7b446b9d6a9f3da9c8431a5ea0593b5ef43",
+          "sourceImages": [
+            180
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido con texto vectorial y la maqueta de 2001–02 a partir de las páginas 1–2 del escaneo. El recuadro superior de instrucciones también es texto vectorial seleccionable, maquetado según «2002. Examen 4.pdf». La página 3 reproduce los criterios específicos comunes de 2001–02; «Ver PDF de origen» abre el compuesto de fuentes."
         }
       ],
       "image": {
@@ -20290,7 +20431,19 @@
         "width": 711,
         "height": 510,
         "alt": "Construcción de los ferrocarriles en el siglo XIX. Reproducción del material del examen.",
-        "sourceUrl": "https://drive.google.com/file/d/1AB2mINqhAsMRg7G58XDM_yIMiuIh7qpV/view"
+        "sourceUrl": "https://drive.google.com/file/d/1AB2mINqhAsMRg7G58XDM_yIMiuIh7qpV/view",
+        "additionalImages": [
+          {
+            "src": "assets/documentos/2000-2001-examen-1-mapa.png",
+            "width": 722,
+            "height": 520,
+            "alt": "Mapa de las líneas ferroviarias construidas entre 1848 y 1868, agrupadas por periodos en la leyenda.",
+            "sourceUrl": "assets/documentos/2000-2001-examen-1-fuentes.pdf#page=1",
+            "examCaption": {
+              "text": "Ferrocarriles construidos entre 1848 y 1868"
+            }
+          }
+        ]
       }
     },
     {
@@ -20957,6 +21110,24 @@
           "officialFile": "sel_2007_historia_espana/2007. Examen 6.pdf",
           "officialPage": 1,
           "sourceSha256": "481f22fca894f3d9e3b3bec6053f5f5b44fb23b4efc3fe5e569734ebd24b406b"
+        },
+        {
+          "id": "fuente-pdf-2001-1-1",
+          "sourceKey": "pdf-2001-1:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 1",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-1-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-1.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 1–2) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "d10df800ad116b9b30f5e1de2f18f7b446b9d6a9f3da9c8431a5ea0593b5ef43",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido con texto vectorial y la maqueta de 2001–02 a partir de las páginas 1–2 del escaneo. El recuadro superior de instrucciones también es texto vectorial seleccionable, maquetado según «2002. Examen 4.pdf». La página 3 reproduce los criterios específicos comunes de 2001–02; «Ver PDF de origen» abre el compuesto de fuentes."
         }
       ],
       "attributionParagraphs": 1
@@ -21026,7 +21197,7 @@
       ],
       "date": "Guerra Civil, 1936–1939",
       "sourceCaption": "Material de 2007. Examen 6.pdf, Bloque II · Opción B.",
-      "quality": "JPEG de 912 × 1004 píxeles extraído sin reescalado del PDF de Sanidad aportado: objeto de imagen 65 de su única página. Se aísla el cartel histórico de la maquetación de la conferencia de 2019, sin reconstrucción ni ajustes de color. Esta reproducción no incluye la franja inferior de la colecta visible en el examen; la versión completa del PDF de 2007 permanece enlazada.",
+      "quality": "Reproducción completa del cartel, aportada por el usuario, con marca de Archivos Estatales. Brillo, contraste y saturación ajustados en pantalla; el archivo se conserva sin alterar y el recorte del examen de 2007 sigue enlazado.",
       "commentary": [
         {
           "title": "a) Lectura del material",
@@ -21058,13 +21229,13 @@
         }
       ],
       "image": {
-        "src": "assets/documentos/cartel-ayuda-republica-sanidad.jpg",
-        "width": 912,
-        "height": 1004,
+        "src": "assets/documentos/cartel-ayuda-republica-pares.jpg",
+        "width": 815,
+        "height": 1094,
+        "filter": "saturate(0.7) contrast(0.9) brightness(1.04)",
         "alt": "Cartel francés de solidaridad con el pueblo español: dos figuras femeninas se dan la mano y llaman a ayudar a la España republicana.",
-        "sourceUrl": "https://www.sanidad.gob.es/gabinetePrensa/sanidadExilio/docs/cartelSanidadYExilio.pdf",
-        "originalSrc": "assets/documentos/pdf-2007-6-4.jpeg",
-        "reproductionNote": "La reproducción de Sanidad no incluye la franja inferior de la colecta que aparece en el examen. El recorte original completo sigue enlazado."
+        "sourceUrl": "https://conhdearte.wordpress.com/wp-content/uploads/2014/12/0167.jpg",
+        "originalSrc": "assets/documentos/pdf-2007-6-4.jpeg"
       }
     },
     {
@@ -21541,15 +21712,1305 @@
         "text": "Miembros de las Brigadas Internacionales",
         "appearanceId": "fuente-pdf-2006-3-4"
       }
+    },
+    {
+      "id": "primer-mensaje-juan-carlos-1975-pdf-2001-1-3",
+      "title": "Juan Carlos I ante las Cortes al inicio de su reinado",
+      "type": "texto",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "Juan Carlos I",
+        "Transición",
+        "Monarquía",
+        "Cortes"
+      ],
+      "date": "22 de noviembre de 1975",
+      "sourceCaption": "2001 Examen 1, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada visualmente con el escaneo aportado. Se normalizan las marcas de omisión como [...] sin completar los pasajes ausentes; el PDF de lectura se reconstruye y el compuesto de fuentes se conserva aparte.",
+      "commentary": [
+        {
+          "title": "a) Analice el hecho histórico a que hace referencia el documento elegido.",
+          "text": "Identifica la naturaleza y el tema de la fuente; localiza autoría, fecha y destinatario solo cuando constan. Resume sus ideas principales con expresiones concretas y separa las propuestas del discurso de su aplicación posterior."
+        },
+        {
+          "title": "b) Explique el contexto histórico y las consecuencias de este acontecimiento.",
+          "text": "Sitúa el discurso en el comienzo del reinado de Juan Carlos I y de la Transición. Relaciona sus referencias a participación, derechos y diversidad territorial con la continuidad de la Corona y distingue las intenciones expresadas de los cambios que se desarrollaron después."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-1-3",
+          "sourceKey": "pdf-2001-1:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 1",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-1-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-1.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 1–2) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "d10df800ad116b9b30f5e1de2f18f7b446b9d6a9f3da9c8431a5ea0593b5ef43",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido con texto vectorial y la maqueta de 2001–02 a partir de las páginas 1–2 del escaneo. El recuadro superior de instrucciones también es texto vectorial seleccionable, maquetado según «2002. Examen 4.pdf». La página 3 reproduce los criterios específicos comunes de 2001–02; «Ver PDF de origen» abre el compuesto de fuentes."
+        }
+      ],
+      "text": [
+        "“Hoy comienza una nueva etapa de la Historia de España. Esta etapa, que hemos de recorrer juntos, se inicia en la paz, el trabajo y la prosperidad fruto del esfuerzo común y de la decidida voluntad colectiva.",
+        "La institución que personifico integra a todos los españoles y hoy, en esta hora tan trascendental, os convoco porque a todos nos incumbe por igual el deber de servir a España.[...]",
+        "La Patria es una empresa colectiva que a todos nos compete. Su fortaleza y su grandeza deben de apoyarse por ello en la voluntad manifiesta de cuantos la integramos.[...]",
+        "Insistamos en la construcción de un orden justo. Un orden justo, igual para todos, permite reconocer dentro de la unidad del Reino y del Estado las peculiaridades regionales, como expresión de la diversidad de pueblos que constituyen la sagrada realidad de España. El Rey quiere serlo de todos a un tiempo y de cada uno en su cultura, en su historia y en su tradición.[...]",
+        "La Corona entiende, también, como deber fundamental el reconocimiento de los derechos sociales y económicos, cuyo fin es asegurar a todos los españoles las condiciones de carácter material que les permitan el efectivo ejercicio de todas sus libertades.[...]",
+        "Una sociedad libre y moderna requiere la participación de todos en los foros de decisión, en los medios de información, en los diversos niveles educativos y en el control de la riqueza nacional. Hacer cada día más cierta y eficaz esa participación debe ser una empresa comunitaria y una tarea de Gobierno.[...]",
+        "Europa deberá contar con España y los españoles somos europeos. Que ambas partes así lo entiendan y que todos extraigamos las consecuencias que se derivan es una necesidad del momento.”",
+        "Primer mensaje del rey Juan Carlos en las Cortes; 22 de noviembre de 1975."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "nueva-planta-1707-pdf-2001",
+      "title": "Decreto de Nueva Planta para Aragón y Valencia",
+      "type": "texto",
+      "blocks": [
+        4
+      ],
+      "tags": [
+        "Felipe V",
+        "Nueva Planta",
+        "Absolutismo"
+      ],
+      "date": "1707",
+      "sourceCaption": "2001 Examen 2, Opción A, documento 1. Escaneo aportado por el usuario, página 1.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa el decreto en la guerra de sucesión española y relaciona la abolición foral con la política de uniformización borbónica."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-2-1",
+          "sourceKey": "pdf-2001-2:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 2",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-2.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 3–4) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "94c578656b1709f171c14966b00a5f6087b36defd6d4f505d35a7e96aa2c6143",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "He juzgado por conveniente abolir y derogar enteramente, como desde luego doy por abolidos y derogados, todos los referidos fueros, privilegios, prácticas y costumbres hasta aquí observados en los referidos reinos de Aragón y Valencia; siendo mi voluntad que éstos se reduzcan a las leyes de Castilla y al uso, práctica y forma de gobierno que se tiene y se ha tenido en ella y en sus Tribunales sin diferencia alguna en nada; pudiendo obtener por esta razón mis fidelísimos vasallos, los castellanos, oficios y empleos en Aragón y Valencia, de la misma manera que los aragoneses y valencianos han de poder en adelante gozarlos en Castilla sin ninguna distinción.",
+        "Decreto de Nueva Planta para Aragón y Valencia. Felipe V, junio de 1707."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "material-2001-2-2",
+      "title": "Funcionamiento de la monarquía absoluta",
+      "type": "grafico",
+      "blocks": [
+        4
+      ],
+      "tags": [
+        "Absolutismo",
+        "Monarquía",
+        "Instituciones"
+      ],
+      "date": "siglo XVIII",
+      "sourceCaption": "2001 Examen 2, Opción A, documento 2. Escaneo aportado por el usuario, página 1.",
+      "quality": "Esquema redibujado a partir del escaneo, no un facsímil. Se conserva el recorte original para cotejarlo; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Distingue las instituciones y relaciona el esquema con la monarquía borbónica del Antiguo Régimen."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-2-2",
+          "sourceKey": "pdf-2001-2:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 2",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-2.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 3–4) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "94c578656b1709f171c14966b00a5f6087b36defd6d4f505d35a7e96aa2c6143",
+          "sourceImages": [
+            182
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/2001-monarquia-absoluta-vector.svg",
+        "width": 1000,
+        "height": 760,
+        "selectable": true,
+        "openVector": true,
+        "alt": "Esquema de la monarquía absoluta, con rey, consejos, Cortes, secretarios y administración provincial.",
+        "examCaption": {
+          "text": "Funcionamiento de la monarquía absoluta"
+        },
+        "caption": "Redibujo del escaneo aportado, 2001 Examen 2, Opción A, documento 2.",
+        "reproductionNote": "Redibujo vectorial · No es un facsímil.",
+        "originalSrc": "assets/documentos/2000-2001-examen-2-a-chart.png",
+        "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf#page=1"
+      }
+    },
+    {
+      "id": "fraude-electoral-cazorla-cangas-1920",
+      "title": "Fraude electoral en Cazorla y Cangas",
+      "type": "texto",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Restauración",
+        "Caciquismo",
+        "Fraude electoral"
+      ],
+      "date": "1920",
+      "sourceCaption": "2001 Examen 2, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona las prácticas denunciadas con el caciquismo y la crisis del sistema político de la Restauración."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-2-3",
+          "sourceKey": "pdf-2001-2:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 2",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-2.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 3–4) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "94c578656b1709f171c14966b00a5f6087b36defd6d4f505d35a7e96aa2c6143",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Acta del distrito de Cazorla (Jaén)",
+        "Que en Villanueva del Arzobispo no se habían constituido las mesas a las siete y media de la mañana y que poco después observó el notario, al recorrer por segunda vez los colegios, que en varias urnas había un crecido número de papeletas y que el reloj de la plaza del pueblo estuvo parado, poniéndolo después en hora para falsear la elección.",
+        "Acta de distrito de Cangas (Oviedo)",
+        "Protesta de carácter general por la multitud de coacciones ejercidas por las autoridades administrativas; por la compra de votos y porque los Ayuntamientos retrasaron la formación de los repartos de consumos y las operaciones de quintas como amenaza a los electores.",
+        "Jurisprudencia electoral del Tribunal Supremo, 1920"
+      ],
+      "attributionParagraphs": 1,
+      "headingParagraphs": [
+        0,
+        2
+      ]
+    },
+    {
+      "id": "material-2001-2-4",
+      "title": "Actas de diputado a precio fijo",
+      "type": "imagen",
+      "blocks": [
+        9
+      ],
+      "tags": [
+        "Caciquismo",
+        "Fraude electoral",
+        "Restauración",
+        "Caricatura"
+      ],
+      "date": "1919",
+      "sourceCaption": "2001 Examen 2, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
+      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la sátira con el fraude electoral, el caciquismo y la crisis de la Restauración."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-2-4",
+          "sourceKey": "pdf-2001-2:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 2",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-2.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 3–4) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "94c578656b1709f171c14966b00a5f6087b36defd6d4f505d35a7e96aa2c6143",
+          "sourceImages": [
+            183
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/2000-2001-examen-2-b-cartoon.png",
+        "width": 1000,
+        "height": 610,
+        "alt": "Caricatura de un vendedor de actas de diputado bajo un cartel de precio fijo.",
+        "caption": "Recorte del escaneo aportado, 2001 Examen 2, Opción B, documento 2.",
+        "sourceUrl": "assets/documentos/2000-2001-examen-2-fuentes.pdf#page=2",
+        "examCaption": {
+          "text": "Actas de diputado a precio fijo. Sátira publicada en la revista Blanco y Negro en 1919",
+          "emphasis": [
+            "Blanco y Negro"
+          ]
+        }
+      }
+    },
+    {
+      "id": "constitucion-1812-pdf-2001",
+      "title": "Constitución de 1812: soberanía y libertades",
+      "type": "texto",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Constitución de 1812",
+        "Cortes de Cádiz",
+        "Liberalismo"
+      ],
+      "date": "1812",
+      "sourceCaption": "2001 Examen 3, Opción A, documento 1. Escaneo aportado por el usuario, página 1.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa los artículos en las Cortes de Cádiz, la guerra de la Independencia y el primer liberalismo español."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-3-1",
+          "sourceKey": "pdf-2001-3:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 3",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-3.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 5–6) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "427c6798db81cb6117af9e27a5811ecad426fb25a4bb612c88da947f445d3d21",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Art. 3. La soberanía reside esencialmente en la Nación y por lo mismo pertenece a ésta exclusivamente el derecho de establecer sus leyes fundamentales.",
+        "Art. 4. La Nación está obligada a conservar y proteger por leyes sabias y justas la libertad civil, la propiedad y los demás derechos legítimos de todos los individuos que la componen.",
+        "Art. 14. El gobierno de la nación española es una monarquía moderada hereditaria.",
+        "Art. 15. La potestad de hacer las leyes reside en las Cortes con el Rey.",
+        "Art. 287. Ningún español podrá ser preso, sin que preceda información sumaria del hecho, por el que merezca según la ley ser castigado con pena corporal, y asimismo un mandamiento del juez por escrito, que se le notificará en el acto mismo de la prisión.",
+        "Art. 371. Todos los españoles tiene libertad de escribir, imprimir y publicar sus ideas políticas, sin necesidad de licencia, revisión o aprobación alguna anterior a la publicación, bajo las restricciones y responsabilidad que establezcan las leyes.",
+        "Constitución Española de 1812"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "plan-estabilizacion-1959-pdf-2001",
+      "title": "El Plan de Estabilización de 1959",
+      "type": "texto",
+      "blocks": [
+        11
+      ],
+      "tags": [
+        "Franquismo",
+        "Plan de Estabilización",
+        "Economía",
+        "Desarrollismo"
+      ],
+      "date": "1959",
+      "sourceCaption": "2001 Examen 3, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Explica el cambio desde la autarquía hacia la estabilización y la apertura exterior, sus costes iniciales y el desarrollismo posterior."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-3-3",
+          "sourceKey": "pdf-2001-3:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 3",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-3.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 5–6) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "427c6798db81cb6117af9e27a5811ecad426fb25a4bb612c88da947f445d3d21",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Al final de la guerra de liberación, la economía española tuvo que enfrentarse con el problema de su reconstrucción, que se veía retardada en aquellos momentos por la insuficiencia de los recursos y por bajos niveles de renta y ahorro, agravados por el desequilibrio de la capacidad productiva como consecuencia de la contienda.",
+        "La guerra mundial y las repercusiones que trajo consigo aumentaron estas dificultades y cerraron gran parte de los mercados y fuentes de aprovisionamiento normales, lo que motivó una serie de intervenciones económicas al servicio de las tareas del abastecimiento y de la reconstrucción nacional.[...] Resueltos un sinfín de problemas, hay que enfrentarse ahora con otros derivados tanto del nivel de vida ya alcanzado cuanto de la evolución de la economía mundial, especialmente la de los países de Occidente, en cuyas organizaciones económicas está integrada España.",
+        "Para ello son imprescindibles unas medidas de adaptación que, sin romper la continuidad de nuestro proceso económico, aseguren un crecimiento de la producción respaldada por una política de ahorro y de ordenación del gasto. [...] En este aspecto, el Decreto-Ley que a continuación se articula establece la liberalización progresiva de la importación de mercancías y, paralelamente, la de su comercio interior; autoriza la convertibilidad de la peseta y una regulación del mercado de divisas: faculta al Gobierno para modificar las tarifas de determinados impuestos y al Ministerio de Hacienda para dictar normas acerca del volumen de créditos. [...] La mayor flexibilidad económica que se establecerá gradualmente no supone en ningún caso que abdique del derecho y de la obligación de vigilar y fomentar el desarrollo económico del país. Por el contrario, esta función se podrá ejercer con mayor agilidad suprimiendo intervenciones hoy innecesarias.",
+        "De este modo, se espera obtener la estabilidad interna y externa de nuestra economía, el equilibrio de la balanza de pagos, el robustecimiento de la confianza en nuestro signo monetario y, en suma, la normalización de nuestra vida económica.",
+        "Plan de Estabilización, 20 de julio de 1959. Decreto-Ley"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "material-2001-3-4",
+      "title": "Población, renta y balanza de pagos (1960–1969)",
+      "type": "grafico",
+      "blocks": [
+        11
+      ],
+      "tags": [
+        "Franquismo",
+        "Desarrollismo",
+        "Economía",
+        "Balanza de pagos"
+      ],
+      "date": "1960–1969",
+      "sourceCaption": "2001 Examen 3, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
+      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la evolución de la renta y los saldos con el desarrollismo y la apertura económica; no confundas renta nominal con bienestar."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-3-4",
+          "sourceKey": "pdf-2001-3:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 3",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-3.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 5–6) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "427c6798db81cb6117af9e27a5811ecad426fb25a4bb612c88da947f445d3d21",
+          "sourceImages": [
+            185
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "table": {
+        "caption": "Población, renta y balanza de pagos (1960–1969)",
+        "headers": [
+          "Años",
+          "Nº habitantes (millones)",
+          "Renta per capita (miles de pesetas)",
+          "Saldos de la balanza de pagos (millones dólares)"
+        ],
+        "rows": [
+          [
+            "1960",
+            "30.3",
+            "30.8",
+            "519.38"
+          ],
+          [
+            "1961",
+            "30.6",
+            "33.8",
+            "433.45"
+          ],
+          [
+            "1962",
+            "30.9",
+            "-",
+            "-"
+          ],
+          [
+            "1963",
+            "31.2",
+            "41.7",
+            "32.93"
+          ],
+          [
+            "1964",
+            "31.5",
+            "45.1",
+            "287.71"
+          ],
+          [
+            "1965",
+            "31.9",
+            "48.0",
+            "-177.46"
+          ],
+          [
+            "1966",
+            "32.2",
+            "52.9",
+            "-220.41"
+          ],
+          [
+            "1967",
+            "32.5",
+            "57.2",
+            "78.86"
+          ],
+          [
+            "1968",
+            "32.9",
+            "61.3",
+            "339.43"
+          ],
+          [
+            "1969",
+            "33.2",
+            "66.6",
+            "112.21"
+          ]
+        ]
+      },
+      "tableImage": {
+        "src": "assets/documentos/2000-2001-examen-3-tabla.png",
+        "width": 1040,
+        "height": 580,
+        "alt": "Tabla de habitantes, renta por habitante y saldos de la balanza de pagos entre 1960 y 1969.",
+        "caption": "Recorte del escaneo aportado, 2001 Examen 3, Opción B, documento 2.",
+        "sourceUrl": "assets/documentos/2000-2001-examen-3-fuentes.pdf#page=2"
+      }
+    },
+    {
+      "id": "borrego-desamortizacion-colonos-1836",
+      "title": "Andrés Borrego critica los efectos de la desamortización",
+      "type": "texto",
+      "blocks": [
+        8
+      ],
+      "tags": [
+        "Desamortización",
+        "Mendizábal",
+        "Colonos",
+        "Prensa"
+      ],
+      "date": "1836",
+      "sourceCaption": "2001 Examen 4, Opción A, documento 1. Escaneo aportado por el usuario, página 1.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la crítica con la desamortización de Mendizábal y sus efectos sociales sobre colonos y propietarios."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-4-1",
+          "sourceKey": "pdf-2001-4:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 4",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-4.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 7–8) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "2fb2ef669ca36ee54f32cc8e22fccd292e8fa5afa05cdbf5cabe265f80d54971",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Entre las varias razones que hemos alegado contra la enajenación de los bienes nacionales en la forma que establece el real decreto de 19 de febrero de este año, recordarán nuestros lectores que señalamos el grave daño que se iba a causar a los actuales colonos y arrendatarios de las tierras de los conventos, a quienes los nuevos dueños de las heredades les subirían los arriendos o, acaso, los lanzarían para colocar a otros en su lugar. Aún no han pasado veinte días después de hacer esta triste predicción cuando, a medida que se van leyendo y entendiendo nuestras doctrinas por las provincias, nos llueven reclamaciones contra los compradores de bienes nacionales del tiempo de la Constitución, los que, apenas han recuperado la posesión de las fincas (cuyo pago en gran parte no han realizado), cuando han comenzado a desahuciar a los labradores y a difundir la alarma, el desconsuelo y la desolación por ese sinnúmero de pobres colonos, cuyos ascendientes vienen labrando de inmemorial las fincas de las comunidades religiosas [...]",
+        "¿Es éste por ventura el medio de hacer prosélitos para la causa de la reina?. ¿Será éste el camino de que la reforma de los regulares encuentre un apoyo en la opinión pública o producirá, por el contrario, un dolorido recuerdo de las consideraciones y miramientos que las comunidades religiosas han tenido constantemente a sus antiguos arrendatarios?",
+        "Andrés Borrego, El Español, 22 de marzo de 1836."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "material-2001-4-2",
+      "title": "Mapa de la desamortización de Mendizábal",
+      "type": "grafico",
+      "blocks": [
+        8
+      ],
+      "tags": [
+        "Desamortización",
+        "Mendizábal",
+        "Mapa"
+      ],
+      "date": "siglo XIX",
+      "sourceCaption": "2001 Examen 4, Opción A, documento 2. Escaneo aportado por el usuario, página 1.",
+      "quality": "Redibujo aproximado del mapa escaneado sobre una base provincial moderna; la posición y el tamaño de los símbolos se han reconstruido visualmente y no permiten atribuir cifras exactas por provincia. Se conserva el recorte para cotejarlo; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Describe la distribución representada y sitúala en la desamortización eclesiástica y sus consecuencias sociales."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-4-2",
+          "sourceKey": "pdf-2001-4:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 4",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-4.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 7–8) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "2fb2ef669ca36ee54f32cc8e22fccd292e8fa5afa05cdbf5cabe265f80d54971",
+          "sourceImages": [
+            186
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/2001-mendizabal-mapa-vector.svg",
+        "width": 1200,
+        "height": 790,
+        "selectable": true,
+        "openVector": true,
+        "alt": "Redibujo aproximado del mapa de la desamortización de Mendizábal, con cuadrados de colores y tamaños y leyenda en millones de reales.",
+        "examCaption": {
+          "text": "Desamortización de Mendizábal"
+        },
+        "caption": "Redibujo aproximado del escaneo aportado, 2001 Examen 4, Opción A, documento 2.",
+        "reproductionNote": "Redibujo aproximado · Consulta el original para cotejar los símbolos.",
+        "originalSrc": "assets/documentos/2000-2001-examen-4-a-map.png",
+        "attribution": {
+          "text": "Base cartográfica: Javitomad, Wikimedia Commons; recoloreada y adaptada con símbolos, rótulos y leyenda",
+          "url": "https://commons.wikimedia.org/wiki/File:Blank_Spain_Map_(Provinces).svg",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        },
+        "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf#page=1"
+      }
+    },
+    {
+      "id": "clara-campoamor-sufragio-femenino-1931",
+      "title": "Clara Campoamor defiende el sufragio femenino",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Segunda República",
+        "Clara Campoamor",
+        "Sufragio femenino",
+        "Constitución de 1931"
+      ],
+      "date": "1931",
+      "sourceCaption": "2001 Examen 4, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial. El examen atribuye el discurso a agosto de 1931; esa fecha está pendiente de cotejo.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa el debate sobre el sufragio femenino en las Cortes constituyentes de la Segunda República y la Constitución de 1931."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-4-3",
+          "sourceKey": "pdf-2001-4:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 4",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-4.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 7–8) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "2fb2ef669ca36ee54f32cc8e22fccd292e8fa5afa05cdbf5cabe265f80d54971",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Lamento vivamente tener que levantarme en estos momentos a pronunciar unas brevísimas palabras. Se está haciendo una Constitución de tipo democrático, por un pueblo que tiene escrito como lema principal el respeto profundo a los principios democráticos [...] En otras palabras, digo yo, a título radical está el peligro del cura y de la reacción; no en la mujer [...] Yo no creo, no puedo creer que la mujer sea un peligro para la República, porque yo he visto a la mujer reaccionar frente a la Dictadura y con la República.",
+        "Resolved lo que queráis, pero afrontando la responsabilidad de dar entrada a esa mitad del género humano en la política, para que la política sea cosa de dos, porque solo hay una cosa que hace un sexo solo: alumbrar. Las demás las hacemos todos en común y no podéis aquí vosotros venir a legislar, a votar impuestos, a decir deberes, a legislar sobre la raza humana, sobre la mujer y sobre el hijo, aislados, fuera de nosotras.",
+        "Discurso de Clara Campoamor, diputada radical, agosto de 1931."
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "material-2001-4-4",
+      "title": "Caricatura de una manifestación por el sufragio femenino",
+      "type": "imagen",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Segunda República",
+        "Sufragio femenino",
+        "Caricatura"
+      ],
+      "date": "1931",
+      "sourceCaption": "2001 Examen 4, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
+      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Analiza la representación satírica y relaciónala con el debate del voto femenino en la Segunda República."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-4-4",
+          "sourceKey": "pdf-2001-4:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 4",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-4.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 7–8) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "2fb2ef669ca36ee54f32cc8e22fccd292e8fa5afa05cdbf5cabe265f80d54971",
+          "sourceImages": [
+            187
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/2000-2001-examen-4-b-cartoon.png",
+        "width": 700,
+        "height": 780,
+        "alt": "Caricatura de una manifestación de mujeres que pide el sufragio femenino.",
+        "caption": "Recorte del escaneo aportado, 2001 Examen 4, Opción B, documento 2.",
+        "sourceUrl": "assets/documentos/2000-2001-examen-4-fuentes.pdf#page=2",
+        "examCaption": {
+          "text": "Caricatura de una manifestación en demanda del sufragio femenino (1931). La pancarta principal dice: «Somos mujeres que valemos por dos hombres»"
+        }
+      }
+    },
+    {
+      "id": "junta-sevilla-declaracion-guerra-pdf-2001",
+      "title": "La Junta Suprema de Sevilla declara la guerra a Francia",
+      "type": "texto",
+      "blocks": [
+        5
+      ],
+      "tags": [
+        "Guerra de la Independencia",
+        "Junta Suprema de Sevilla",
+        "Napoleón",
+        "Fernando VII"
+      ],
+      "date": "1808",
+      "sourceCaption": "2001 Examen 5, Opción A, documento 1. Escaneo aportado por el usuario, página 1.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona la declaración con la crisis de 1808, las abdicaciones de Bayona y el inicio de la guerra de la Independencia."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-5-1",
+          "sourceKey": "pdf-2001-5:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 5",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-5.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 9–10) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "203771d1270c0a3f0e32e6c187c364c8158c537c240e101e368fc73ee066d863",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "Don Fernando VII, Rey de España y de las Indias y en su nombre la Suprema Junta.",
+        "La Francia, o más bien su emperador Napoleón I, ha violado con España los pactos más sagrados; le ha arrebatado sus monarcas y ha obligado a éstos a abdicaciones y renuncias violentas y nulas manifiestamente; se ha hecho con la misma violencia dar el señorío de España para lo que nadie tiene poder, ha declarado que ha elegido rey de España, atentado el más horrible de que habla la historia; ha hecho entrar sus ejércitos en España apoderándose de sus fortalezas y capital y ha cometido con los españoles todo género de asesinatos, robos y crueldades inauditas; y para todo estos se ha valido no de la fuerza de las armas sino del pretexto de nuestra felicidad, ingratitud la más enorme a los servicios que la Nación Española le ha hecho; de la amistad en que estábamos, del engaño, de la traición, de la perfidia más horrible [...] Ha declarado últimamente que va a trastornar la Monarquía y sus leyes fundamentales y amenaza la ruina de nuestra Religión Católica, que desde el gran Recaredo conservamos los españoles y nos ha forzado a que para el remedio único de tan graves males, los manifestemos a toda la Europa y le declaremos la guerra.",
+        "Dado en el Real Palacio del Alcázar de Sevilla, 6 de junio de 1808"
+      ]
+    },
+    {
+      "id": "fernando-moran-adhesion-cee-1995",
+      "title": "Fernando Morán sobre la adhesión a la CEE",
+      "type": "texto",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "CEE",
+        "Integración europea",
+        "Fernando Morán",
+        "Democracia"
+      ],
+      "date": "1995",
+      "sourceCaption": "2001 Examen 5, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa la negociación y adhesión española a la CEE en la etapa socialista y distingue la interpretación posterior del autor de los hechos."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-5-3",
+          "sourceKey": "pdf-2001-5:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 5",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-5.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 9–10) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "203771d1270c0a3f0e32e6c187c364c8158c537c240e101e368fc73ee066d863",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "De 1982 a 1985 se mantuvo el consenso entre las fuerzas parlamentarias españolas en cuanto a la necesidad de adherirse a la CEE. Las críticas de la oposición se dirigen a supuestas prisas del Gobierno para apuntarse el tanto de la adhesión durante aquella legislatura y a acusaciones de no negociar mejor. Pero eran críticas menores y casi rituales. Había mucho apoyo parlamentario incluida la oposición al Gobierno en su tarea negociadora, incluso muy explícitas a la tarea del ministro de Exteriores en este período.",
+        "Cuando el Gobierno solicita en el Congreso autorización para firmar el Acta de Adhesión y los Tratados se obtiene una unanimidad que no tiene precedentes en los otros países miembros; lo mismo ocurrió en el Senado.",
+        "La impresión general, y así lo recogieron los medios de información, fue que con la integración en Europa la democracia española estaba consolidada.",
+        "(Artículo de Fernando Morán, ministro de Asuntos Exteriores en el gobierno socialista; en Historia de la democracia. Madrid, 1995)"
+      ],
+      "attributionParagraphs": 1,
+      "attributionEmphasis": [
+        "Historia de la democracia"
+      ]
+    },
+    {
+      "id": "material-2001-5-4",
+      "title": "Principales fondos estructurales europeos",
+      "type": "grafico",
+      "blocks": [
+        12
+      ],
+      "tags": [
+        "CEE",
+        "Unión Europea",
+        "Fondos estructurales",
+        "Integración europea"
+      ],
+      "date": "siglo XX",
+      "sourceCaption": "2001 Examen 5, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
+      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona los fondos con la integración europea y la política de cohesión; la tabla describe el marco de su época."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-5-4",
+          "sourceKey": "pdf-2001-5:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 5",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-5.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 9–10) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "203771d1270c0a3f0e32e6c187c364c8158c537c240e101e368fc73ee066d863",
+          "sourceImages": [
+            189
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "table": {
+        "caption": "Principales fondos estructurales europeos",
+        "headers": [
+          "NOMBRE",
+          "DESTINATARIOS",
+          "FINALIDAD"
+        ],
+        "rows": [
+          [
+            "FEDER (Fondo Europeo de Desarrollo Regional)",
+            "Regiones cuyo PIB sea inferior al 75% de la media comunitaria",
+            "-Mejora de las infraestructuras -Mejora de las zonas rurales -Reconversión industrial"
+          ],
+          [
+            "FSE (Fondo Social Europeo)",
+            "Regiones en declive industrial",
+            "-Mejorar las posibilidades de empleo -Formación y reconversión industrial"
+          ],
+          [
+            "FEOGA (Fondo Europeo de Orientación y Garantía Agrícolas)",
+            "Zonas agrícolas con problemas de desarrollo incluidas en el FEDER",
+            "-Desarrollo y fortalecimiento de las estructuras agrarias -Conservación del medio ambiente -Fomento de inversiones turísticas y artesanales"
+          ],
+          [
+            "IFOP (Instrumento Financiero de Orientación de la Pesca)",
+            "Zonas marítimas en declive pesquero",
+            "-Desarrollo equilibrado de las regiones pesqueras"
+          ]
+        ]
+      },
+      "tableImage": {
+        "src": "assets/documentos/2000-2001-examen-5-tabla.png",
+        "width": 1510,
+        "height": 720,
+        "alt": "Tabla de fondos estructurales europeos FEDER, FSE, FEOGA e IFOP, con destinatarios y finalidades.",
+        "caption": "Recorte del escaneo aportado, 2001 Examen 5, Opción B, documento 2.",
+        "sourceUrl": "assets/documentos/2000-2001-examen-5-fuentes.pdf#page=2"
+      }
+    },
+    {
+      "id": "constitucion-1869-pdf-2001",
+      "title": "Constitución de 1869: derechos y soberanía",
+      "type": "texto",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Constitución de 1869",
+        "Sexenio Democrático",
+        "Derechos"
+      ],
+      "date": "1869",
+      "sourceCaption": "2001 Examen 6, Opción A, documento 1. Escaneo aportado por el usuario, página 1.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Sitúa la Constitución en el Sexenio Democrático y relaciona sus derechos, soberanía nacional y monarquía con la revolución de 1868."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-6-1",
+          "sourceKey": "pdf-2001-6:1",
+          "sourceOrdinal": 1,
+          "year": 2001,
+          "exam": "2001 Examen 6",
+          "route": "Opción A",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-6.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 11–12) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "fac956c11b41c59986b7ef5c80e92c1d81fb0f61fa0e647ceea6cdca97bb481d",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "La Nación Española y en su nombre las Cortes Constituyentes, elegidas por sufragio universal, deseando afianzar la justicia, la libertad y la seguridad y proveer al bien de cuantos vivan en España, decretan y sancionan la siguiente Constitución.",
+        "Art. 2. Ningún español o extranjero podrá ser detenido ni preso sino por causa de delito.",
+        "Art. 3. Todo detenido será puesto en libertad o entregado a la autoridad judicial dentro de las 24 horas siguientes al acto de detención.",
+        "Art. 14. Nadie podrá ser expropiado de sus bienes sino por causa de utilidad común y en virtud de mandamiento judicial, que se no ejecutará sin previa indemnización.",
+        "Art. 16. Ningún español que se halle en el pleno goce de sus derechos civiles podrá ser privado del derecho de votar en las elecciones.",
+        "Art. 17. Tampoco podrá ser privado ningún español: del derecho de emitir libremente sus ideas y opiniones, ya de palabra, ya por escrito, valiéndose de la imprenta o de otro procedimiento; del derecho de reunirse pacíficamente; del derecho de asociarse para todos los fines de la vida humana que no sean contrarios a la moral pública; del derecho de dirigir peticiones individual o colectivamente a las Cortes, al rey, a las autoridades.",
+        "Art. 21. La nación se obliga a mantener el culto y los ministros de la religión católica.",
+        "Art. 32. La soberanía reside esencialmente en la Nación, de la cual emanan todos los poderes.",
+        "Art. 33. La forma de gobierno de la Nación española es la monarquía.",
+        "Constitución de 1869"
+      ],
+      "attributionParagraphs": 1
+    },
+    {
+      "id": "material-2001-6-2",
+      "title": "Composición de la Asamblea Constituyente de 1869",
+      "type": "grafico",
+      "blocks": [
+        6
+      ],
+      "tags": [
+        "Sexenio Democrático",
+        "Cortes Constituyentes",
+        "Elecciones"
+      ],
+      "date": "1869",
+      "sourceCaption": "2001 Examen 6, Opción A, documento 2. Escaneo aportado por el usuario, página 1.",
+      "quality": "Semicírculo redibujado proporcionalmente a los 351 diputados indicados en el escaneo; no es un facsímil. Se conserva el recorte original para cotejarlo; el PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Identifica los grupos representados y relaciónalos con la revolución de 1868 y la Constitución de 1869."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-6-2",
+          "sourceKey": "pdf-2001-6:2",
+          "sourceOrdinal": 2,
+          "year": 2001,
+          "exam": "2001 Examen 6",
+          "route": "Opción A",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-6.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 11–12) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 1,
+          "sourceSha256": "fac956c11b41c59986b7ef5c80e92c1d81fb0f61fa0e647ceea6cdca97bb481d",
+          "sourceImages": [
+            190
+          ]
+        }
+      ],
+      "image": {
+        "src": "assets/documentos/2001-asamblea-1869-semicirculo.svg",
+        "width": 760,
+        "height": 520,
+        "selectable": true,
+        "openVector": true,
+        "alt": "Semicírculo de 351 diputados de la Asamblea Constituyente de 1869, distribuido por grupos políticos.",
+        "editorialNote": "* Aunque la convocatoria oficial de las elecciones de enero de 1869 establecía un total de 381 escaños, el desglose político de 351 diputados corresponde únicamente a los diputados de la península, Baleares y Canarias. Los 30 escaños restantes se explican porque 29 diputados eran de los territorios de ultramar (18 por Cuba —donde la Guerra de los Diez Años impidió celebrar los comicios con normalidad— y 11 por Puerto Rico), además de 1 acta peninsular que quedó sin cubrir por anulación. Por ello, es aceptado hablar sobre 351 escaños efectivos en 1869.",
+        "examCaption": {
+          "text": "Composición de la Asamblea Constituyente en 1869 (número de diputados)"
+        },
+        "hideExamCaption": true,
+        "caption": "Redibujo del escaneo aportado, 2001 Examen 6, Opción A, documento 2.",
+        "originalSrc": "assets/documentos/2000-2001-examen-6-a-chart.png",
+        "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf#page=1"
+      },
+      "table": {
+        "caption": "Composición de la Asamblea Constituyente en 1869",
+        "headers": [
+          "Grupo político",
+          "Diputados"
+        ],
+        "rows": [
+          [
+            "Progresistas",
+            159
+          ],
+          [
+            "Demócratas",
+            20
+          ],
+          [
+            "Unionistas",
+            69
+          ],
+          [
+            "Republicanos federales",
+            69
+          ],
+          [
+            "Republicanos unitarios",
+            2
+          ],
+          [
+            "Carlistas",
+            18
+          ],
+          [
+            "Isabelinos",
+            14
+          ]
+        ]
+      }
+    },
+    {
+      "id": "canciones-guerra-civil-pdf-2001",
+      "title": "Una canción republicana y una canción falangista",
+      "type": "texto",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Propaganda",
+        "República",
+        "Falange"
+      ],
+      "date": "1936–1939",
+      "sourceCaption": "2001 Examen 6, Opción B, documento 1. Escaneo aportado por el usuario, página 2.",
+      "quality": "Transcripción cotejada con el escaneo aportado; se normalizan las omisiones como [...]. El PDF de lectura es una reconstrucción no oficial.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la naturaleza de la fuente, su autoría y fecha cuando constan; resume sus ideas principales sin confundirlas con hechos posteriores."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Compara el lenguaje y los referentes de ambos bandos y sitúa las canciones en la propaganda y el contexto internacional de la Guerra Civil."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-6-3",
+          "sourceKey": "pdf-2001-6:3",
+          "sourceOrdinal": 3,
+          "year": 2001,
+          "exam": "2001 Examen 6",
+          "route": "Opción B",
+          "document": 1,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-6.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 11–12) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "fac956c11b41c59986b7ef5c80e92c1d81fb0f61fa0e647ceea6cdca97bb481d",
+          "sourceImages": [],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "text": [
+        "¿Para qué tantos humos,\ntantos faroles,\nsi nuestros marineros\nson españoles?.\n¿Qué será, ay, qué pasará,\nqué está pasando?\nLa marina española\nque está luchando.\n¿Qué será, ay, qué pasará,\nqué habrá sucedido?\nLa marina española\nque ya ha vencido.\nTanto alemán que tienen, tanto italiano\ny a un español le basta con una mano.\nYa verán, ya lo habrán de ver\nya lo habrán visto\nqué hacen los milicianos\ncon el fascismo.\n\nCanción republicana",
+        "Cuando se enteró mi madre\nde que yo era de las JONS\nme dio un abrazo y me dijo:\n-Hijo mío de mi alma\nasí te quería yo,\nfalangista valeroso\ny con este patrimonio:\nla justicia, el pan, la Patria\ny la España grande y libre\nque soñaba José Antonio.\nAhora estoy en las trincheras\ndando cara a la muerte [...]\nPero sé que si me matan\nde la sangre en que yo muera\nse alzará como una espiga\nroja y negra de la pólvora\ny la sangre, mi bandera.\n\nCanción falangista"
+      ],
+      "textLayout": "verse-pair"
+    },
+    {
+      "id": "material-2001-6-4",
+      "title": "Víctimas de la guerra civil y la posguerra",
+      "type": "grafico",
+      "blocks": [
+        10
+      ],
+      "tags": [
+        "Guerra Civil",
+        "Víctimas",
+        "Represión",
+        "Exilio"
+      ],
+      "date": "1936–posguerra",
+      "sourceCaption": "2001 Examen 6, Opción B, documento 2. Escaneo aportado por el usuario, página 2.",
+      "quality": "Recorte del escaneo aportado; el PDF de lectura es una reconstrucción no oficial. Se conservan las cifras impresas: algunos totales no coinciden con la suma de sus componentes; no se han corregido sin otra fuente.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Identifica la fuente y describe los elementos, categorías o cifras que muestra antes de interpretarlos."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Distingue combate, represión, penalidades y exilio; examina críticamente las cifras y las limitaciones de la fuente."
+        }
+      ],
+      "appearances": [
+        {
+          "id": "fuente-pdf-2001-6-4",
+          "sourceKey": "pdf-2001-6:4",
+          "sourceOrdinal": 4,
+          "year": 2001,
+          "exam": "2001 Examen 6",
+          "route": "Opción B",
+          "document": 2,
+          "sourceType": "pdf",
+          "sourceReviewStatus": "user-scan",
+          "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf",
+          "pdfUrl": "assets/documentos/2000-2001-examen-6.pdf",
+          "officialFile": "2000-2001 Exámenes.pdf (págs. 11–12) + 2002. Examen 2.pdf (p. 3, criterios comunes de 2001–02)",
+          "officialPage": 2,
+          "sourceSha256": "fac956c11b41c59986b7ef5c80e92c1d81fb0f61fa0e647ceea6cdca97bb481d",
+          "sourceImages": [
+            191
+          ],
+          "imageReviewNote": "PDF de lectura reconstruido a partir del escaneo; la tercera página añade como referencia los criterios comunes de 2001–02. El PDF de origen conserva las páginas escaneadas."
+        }
+      ],
+      "table": {
+        "caption": "Víctimas de la guerra civil y la posguerra",
+        "headers": [
+          "",
+          "Republicanas",
+          "Sublevadas",
+          "Total"
+        ],
+        "rows": [
+          [
+            "Combate",
+            "85.000",
+            "75.000",
+            "160.000"
+          ],
+          [
+            "Represión en la guerra",
+            "78.000",
+            "51.000",
+            "129.000"
+          ],
+          [
+            "Muertos por penalidades",
+            "149.000",
+            "20.000",
+            "169.000"
+          ],
+          [
+            "Total (guerra)",
+            "312.900",
+            "146.000",
+            "458.900"
+          ],
+          [
+            "Represión de posguerra",
+            "40.000",
+            "-",
+            "40.000"
+          ],
+          [
+            "Penalidades en posguerra",
+            "84.000",
+            "75.000",
+            "159.000"
+          ],
+          [
+            "Total (guerra y posguerra)",
+            "436.900",
+            "221.000",
+            "657.900"
+          ],
+          [
+            "Exilio",
+            "430.000",
+            "-",
+            "430.000"
+          ]
+        ]
+      },
+      "tableImage": {
+        "src": "assets/documentos/2000-2001-examen-6-tabla.png",
+        "width": 1170,
+        "height": 600,
+        "alt": "Tabla de cifras aproximadas de víctimas y exiliados durante la guerra civil y la posguerra.",
+        "caption": "Recorte del escaneo aportado, 2001 Examen 6, Opción B, documento 2.",
+        "sourceUrl": "assets/documentos/2000-2001-examen-6-fuentes.pdf#page=2"
+      }
     }
   ],
   "coverage": {
     "sourceSha256": "40abdd0f45253c3fd364bad6d351c02c3271c0bfaf6c1e1102d6b0c4f6abe300",
-    "supplementNote": "La huella sourceSha256 corresponde a la importación base. Se añaden puntualmente Esquilache (2013 Reserva B extraordinaria, reproducción de Commons aportada por el usuario), el abrazo de Vergara (2014 Reserva B, imagen extraída del PDF oficial) y dos apariciones de «¡No pasarán!» (2014, examen sin numerar identificado como reserva C en el corpus, y 2015 Examen 6, cotejadas con sus PDF oficiales). El resto de la ampliación del corpus 2008–2026 aún no está íntegramente importado. textGroups agrupa selecciones afines en la vista sin eliminar sus registros ni sus apariciones; paragraphStarts recompone renglones sin cambiar las palabras. Ampliación revisada de 2013–2016: se completan los seis exámenes de 2013, los cinco PDF de examen disponibles de 2014, los seis de 2015 y los cinco PDF disponibles de 2016. Las apariciones nuevas enlazan a su encabezado del corpus y conservan el archivo, PDF y página oficiales. En 2025 se distinguen Suplente 1 A, 1 B, 2 A y 2 B sin duplicar sus documentos. Se han abierto también los PDF de la carpeta aportada: los de 2013–2016 y 2025 son idénticos a los de los ZIP oficiales, incluidos sus criterios; la carpeta de 2026 contiene cuatro exámenes. Se incorporan los cuatro documentos de cada Modelo orientaciones PAU de 2025, 2026 y 2027, con sus PDF de Drive y sus itinerarios. Sus doce apariciones y seis imágenes cuentan en las frecuencias igual que las de titulares, reservas y suplentes. El modelo etiquetado como 2025 sigue el año de la carpeta y del encabezado aportados; su PDF conserva un pie que dice 2023-24. Se incorporan 144 materiales de 36 PDF individuales de 2002–2007, incluidos los 24 materiales de los seis PDF reconstruidos de 2006. Estas copias no originales siguen pendientes de cotejo: las dos imágenes del examen 5 proceden del banco y su toma original es desconocida. Las tablas de Cortes de Cádiz y divisas se agrupan con las fichas existentes por coincidir sus cifras. La compilación de 2005 no se duplica. sourceHeadingCount sigue refiriéndose exclusivamente a los encabezados de Google Docs.",
-    "sourceDocumentOccurrences": 428,
-    "sourceImageOccurrences": 179,
+    "supplementNote": "La huella sourceSha256 corresponde a la importación base. Se añaden puntualmente Esquilache (2013 Reserva B extraordinaria, reproducción de Commons aportada por el usuario), el abrazo de Vergara (2014 Reserva B, imagen extraída del PDF oficial) y dos apariciones de «¡No pasarán!» (2014, examen sin numerar identificado como reserva C en el corpus, y 2015 Examen 6, cotejadas con sus PDF oficiales). El resto de la ampliación del corpus 2008–2026 aún no está íntegramente importado. textGroups agrupa selecciones afines en la vista sin eliminar sus registros ni sus apariciones; paragraphStarts recompone renglones sin cambiar las palabras. Ampliación revisada de 2013–2016: se completan los seis exámenes de 2013, los cinco PDF de examen disponibles de 2014, los seis de 2015 y los cinco PDF disponibles de 2016. Las apariciones nuevas enlazan a su encabezado del corpus y conservan el archivo, PDF y página oficiales. En 2025 se distinguen Suplente 1 A, 1 B, 2 A y 2 B sin duplicar sus documentos. Se han abierto también los PDF de la carpeta aportada: los de 2013–2016 y 2025 son idénticos a los de los ZIP oficiales, incluidos sus criterios; la carpeta de 2026 contiene cuatro exámenes. Se incorporan los cuatro documentos de cada Modelo orientaciones PAU de 2025, 2026 y 2027, con sus PDF de Drive y sus itinerarios. Sus doce apariciones y seis imágenes cuentan en las frecuencias igual que las de titulares, reservas y suplentes. El modelo etiquetado como 2025 sigue el año de la carpeta y del encabezado aportados; su PDF conserva un pie que dice 2023-24. Se incorporan 144 materiales de 36 PDF individuales de 2002–2007, incluidos los 24 materiales de los seis PDF reconstruidos de 2006. Estas copias no originales siguen pendientes de cotejo: las dos imágenes del examen 5 proceden del banco y su toma original es desconocida. Las tablas de Cortes de Cádiz y divisas se agrupan con las fichas existentes por coincidir sus cifras. La compilación de 2005 no se duplica. sourceHeadingCount sigue refiriéndose exclusivamente a los encabezados de Google Docs.  Se incorporan los seis exámenes escaneados de 2000–01: 24 materiales con sus reconstrucciones y fuentes, incluidas las variantes de textos e imágenes. Las cifras de las tablas se conservan como aparecen en el escaneo.",
+    "sourceDocumentOccurrences": 452,
+    "sourceImageOccurrences": 191,
     "sourceHeadingCount": 101,
     "sourceYearsWithDocumentComment": [
+      2001,
       2002,
       2003,
       2004,
@@ -25526,6 +26987,246 @@
         "document": null,
         "assignedTo": "miembros-cortes-cadiz",
         "images": []
+      },
+      {
+        "key": "pdf-2001-1:1",
+        "sourceId": "pdf-2001-1",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "decreto-de-desamortizacion-de-mendizabal-pdf-2007-6-1",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-1:2",
+        "sourceId": "pdf-2001-1",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "mapa-ferrocarriles-siglo-xix",
+        "images": [
+          180
+        ]
+      },
+      {
+        "key": "pdf-2001-1:3",
+        "sourceId": "pdf-2001-1",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "primer-mensaje-juan-carlos-1975-pdf-2001-1-3",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-1:4",
+        "sourceId": "pdf-2001-1",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "elecciones-generales-1982-congreso-senado",
+        "images": [
+          181
+        ]
+      },
+      {
+        "key": "pdf-2001-2:1",
+        "sourceId": "pdf-2001-2",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "nueva-planta-1707-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-2:2",
+        "sourceId": "pdf-2001-2",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-2-2",
+        "images": [
+          182
+        ]
+      },
+      {
+        "key": "pdf-2001-2:3",
+        "sourceId": "pdf-2001-2",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "fraude-electoral-cazorla-cangas-1920",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-2:4",
+        "sourceId": "pdf-2001-2",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-2-4",
+        "images": [
+          183
+        ]
+      },
+      {
+        "key": "pdf-2001-3:1",
+        "sourceId": "pdf-2001-3",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "constitucion-1812-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-3:2",
+        "sourceId": "pdf-2001-3",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "miembros-cortes-cadiz",
+        "images": [
+          184
+        ]
+      },
+      {
+        "key": "pdf-2001-3:3",
+        "sourceId": "pdf-2001-3",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "plan-estabilizacion-1959-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-3:4",
+        "sourceId": "pdf-2001-3",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-3-4",
+        "images": [
+          185
+        ]
+      },
+      {
+        "key": "pdf-2001-4:1",
+        "sourceId": "pdf-2001-4",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "borrego-desamortizacion-colonos-1836",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-4:2",
+        "sourceId": "pdf-2001-4",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-4-2",
+        "images": [
+          186
+        ]
+      },
+      {
+        "key": "pdf-2001-4:3",
+        "sourceId": "pdf-2001-4",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "clara-campoamor-sufragio-femenino-1931",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-4:4",
+        "sourceId": "pdf-2001-4",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-4-4",
+        "images": [
+          187
+        ]
+      },
+      {
+        "key": "pdf-2001-5:1",
+        "sourceId": "pdf-2001-5",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "junta-sevilla-declaracion-guerra-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-5:2",
+        "sourceId": "pdf-2001-5",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "goya-tres-de-mayo",
+        "images": [
+          188
+        ]
+      },
+      {
+        "key": "pdf-2001-5:3",
+        "sourceId": "pdf-2001-5",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "fernando-moran-adhesion-cee-1995",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-5:4",
+        "sourceId": "pdf-2001-5",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-5-4",
+        "images": [
+          189
+        ]
+      },
+      {
+        "key": "pdf-2001-6:1",
+        "sourceId": "pdf-2001-6",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "constitucion-1869-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-6:2",
+        "sourceId": "pdf-2001-6",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-6-2",
+        "images": [
+          190
+        ]
+      },
+      {
+        "key": "pdf-2001-6:3",
+        "sourceId": "pdf-2001-6",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 1,
+        "assignedTo": "canciones-guerra-civil-pdf-2001",
+        "images": []
+      },
+      {
+        "key": "pdf-2001-6:4",
+        "sourceId": "pdf-2001-6",
+        "sourceType": "pdf",
+        "year": 2001,
+        "document": 2,
+        "assignedTo": "material-2001-6-4",
+        "images": [
+          191
+        ]
       }
     ],
     "officialExamAvailability": [

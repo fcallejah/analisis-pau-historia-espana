@@ -356,8 +356,8 @@ def check_grouped_texts_and_exam_filters(browser):
         return " ".join(normalize(re.sub(r"\s*\([^)]*\)\s*$", "", label)).split())
 
     years = page.locator("#document-year option").evaluate_all("(options)=>options.map(option=>option.value)")
-    assert years == [""] + [str(year) for year in range(2002, 2028)]
-    for year in range(2002, 2028):
+    assert years == [""] + [str(year) for year in range(2001, 2028)]
+    for year in range(2001, 2028):
         page.select_option("#document-year", str(year))
         options = page.locator("#document-exam option:not(:disabled)").evaluate_all("(options)=>options.map(option=>option.value)")
         expected_exams = {exam_key(appearance) for record in DATA["documents"] for appearance in record["appearances"]
@@ -382,6 +382,15 @@ def check_grouped_texts_and_exam_filters(browser):
                 card.dataset.id,[...card.querySelectorAll('.exam-pill')].map(pill=>pill.textContent)]))""")
             assert actual == {identity: [appearance_label(appearance) for appearance in appearances]
                               for identity, appearances in expected.items()}, (year, selected)
+            if year == 2001 and selected == options[1]:
+                assert len(actual) == 4
+                hrefs = page.locator(".document-exams a").evaluate_all(
+                    "(nodes)=>nodes.map(node=>node.href).filter(url=>url.includes('/assets/documentos/2000-2001-examen-1.pdf'))"
+                )
+                assert len(hrefs) == 4
+                assert {url.rsplit('#', 1)[-1] for url in hrefs} == {"page=1", "page=2"}
+                assert all(url.split('#', 1)[0].endswith("/assets/documentos/2000-2001-examen-1.pdf")
+                           for url in hrefs)
             metadata = page.locator(".document-card").evaluate_all("""cards=>Object.fromEntries(cards.map(card=>[
                 card.dataset.id,card.querySelector('.document-meta').textContent]))""")
             for identity, appearances in expected.items():
@@ -716,8 +725,9 @@ def check_image_credits(browser):
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
         page.locator('.document-card[data-id="cartel-ayuda-republica-francia"] .document-open').click()
-        assert page.locator(".document-reproduction-note").is_visible()
-        assert "no incluye la franja inferior" in page.locator(".document-reproduction-note").inner_text()
+        assert page.locator("#document-dialog .document-full-source img").get_attribute("src") == "assets/documentos/cartel-ayuda-republica-pares.jpg"
+        assert page.locator("#document-dialog .document-full-source img").evaluate("node => node.style.filter") == "saturate(0.7) contrast(0.9) brightness(1.04)"
+        assert page.locator("#document-dialog .document-reproduction-note").count() == 0
         page.keyboard.press("Escape")
         cover = page.locator('.document-card[data-id="portada-constitucion-1812"]')
         assert cover.locator(".document-preview img").evaluate("node => getComputedStyle(node).filter") == "none"
@@ -1588,7 +1598,7 @@ def run():
         exams = len({appearance["pdfUrl"] for record in DATA["documents"] for appearance in record["appearances"]})
         assert scope_text == (
             f"{DATA['coverage']['sourceDocumentOccurrences']} documentos recopilados · "
-            f"{exams} exámenes · Desde 2001-02 hasta 2026-27, ambos inclusive.")
+            f"{exams} exámenes · Desde 2000-01 hasta 2026-27, ambos inclusive.")
         assert "2017–2024" in page.locator("#cobertura").inner_text()
         assert page.locator("#document-block option").evaluate_all("(options) => options.map(option => option.value)") == ["", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         page.select_option("#document-block", "4")

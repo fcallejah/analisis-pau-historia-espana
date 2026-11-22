@@ -20,15 +20,15 @@ def run():
             page.goto(f"{BASE}/documentos.html")
             search = page.locator("#document-search")
             for query, expected in (
-                ("material propio", 22),
+                ("material propio", 23),
                 ("resultados electorales 2015", 1),
                 ("resultados referéndum 1980", 1),
                 ("referéndum 2005", 2),
                 ("elecciones europeas 2014", 1),
                 ("elecciones andaluzas 1982", 1),
                 ("elecciones generales 1982", 1),
-                ("elecciones segunda república", 4),
-                ("elecciones municipales 1931", 1),
+                ("elecciones segunda república", 5),
+                ("elecciones municipales 1931", 2),
                 ("elecciones generales 1931", 1),
             ):
                 search.fill(query)
@@ -37,8 +37,8 @@ def run():
             page.locator('[data-type="grafico"]').click()
             own_cards = page.locator('.document-card[data-id^="propio-"]')
             assert page.locator('[data-type="propio"]').count() == 0
-            assert own_cards.count() == 22
-            assert "22 materiales propios" in page.locator("#document-count").inner_text()
+            assert own_cards.count() == 23
+            assert "23 materiales propios" in page.locator("#document-count").inner_text()
             for card in own_cards.all():
                 assert card.locator(".document-kind").inner_text() == "MAPAS Y GRÁFICOS"
                 assert card.locator(".exam-pill").inner_text() == "Elaboración propia · puede caer"
@@ -185,6 +185,24 @@ def run():
             assert "1931" in image.get_attribute("alt")
             svg = page.request.get(image.evaluate("node => node.src")).text()
             assert "Otros*" in svg
+            select = dialog.locator(".study-chart-selector select")
+            assert select.locator("option").all_text_contents() == [
+                "1931 · 28 de junio",
+                "1933 · 19 de noviembre y 3 de diciembre",
+                "1936 · 16 de febrero y 1 de marzo",
+            ]
+            assert dialog.get_by_role("button", name="Anterior elección").is_disabled()
+            dialog.get_by_role("button", name="Próxima elección").click()
+            assert dialog.locator("h2").inner_text() == "Elecciones generales de 1933: Segunda República"
+            assert dialog.locator(".study-election-chart").get_attribute("src").endswith(
+                "elecciones-republica-1933-semicirculo.svg"
+            )
+            dialog.get_by_role("button", name="Próxima elección").click()
+            assert dialog.locator("h2").inner_text() == "Elecciones generales de 1936: Segunda República"
+            assert dialog.get_by_role("button", name="Próxima elección").is_disabled()
+            dialog.locator(".study-chart-selector select").select_option("0")
+            assert dialog.locator("h2").inner_text() == "Elecciones generales de 1931: Cortes Constituyentes"
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1933"] .document-open').click()
             image = dialog.locator(".study-election-chart")
@@ -197,8 +215,7 @@ def run():
                 const image = document.querySelector('#document-dialog .study-election-chart');
                 return image?.complete && image.naturalWidth > 0;
             }""")
-            assert "escaños, no votos" in dialog.inner_text()
-            assert "Fuente secundaria, no oficial" in dialog.inner_text()
+            assert "El diagrama representa escaños, no votos." not in dialog.inner_text()
             assert dialog.get_by_role(
                 "link", name="Elecciones generales de 1936 · distribución por bloques"
             ).get_attribute("href").endswith("Elecciones_generales_de_Espa%C3%B1a_de_1936")
@@ -206,15 +223,25 @@ def run():
             page.keyboard.press("Escape")
             municipal = page.locator('[data-id="propio-elecciones-municipales-1931"]')
             municipal.locator(".document-open").click()
-            assert dialog.locator(".study-chart-row").count() == 1
-            assert dialog.locator(".study-chart-row").inner_text() == (
-                "Participación · sobre electores\n64,84 %"
-            )
-            assert "capitales de provincia" in dialog.inner_text()
-            assert "no es un resultado nacional" in dialog.inner_text().lower()
-            assert dialog.locator(".study-chart-fill.is-turnout").evaluate(
-                "node => getComputedStyle(node).backgroundColor"
-            ) == "rgb(89, 99, 109)"
+            assert [row.inner_text() for row in dialog.locator(".study-chart-row").all()] == [
+                "Monárquicos\n30,54 %", "Republicanos y socialistas\n69,46 %"
+            ]
+            assert "capitales de provincia" in dialog.inner_text().lower()
+            assert "se interpretaron como un plebiscito" in dialog.inner_text()
+            assert "195.147 votos" in dialog.inner_text() and "443.945 votos" in dialog.inner_text()
+            assert "no coinciden" not in dialog.inner_text() and "falta Ávila" not in dialog.inner_text()
+            dialog.get_by_text("Ver tablas y notas de los datos").click()
+            assert "1.104.159" in dialog.inner_text() and "715.911" in dialog.inner_text()
+            assert dialog.get_by_role("link", name="Fuente de los votos en las capitales").count() == 1
+            assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+            page.keyboard.press("Escape")
+            page.locator('[data-id="propio-municipales-1931-capitales"] .document-open').click()
+            assert [row.inner_text() for row in dialog.locator(".study-chart-row").all()] == [
+                "Monárquicos\n30,54 %", "Republicanos y socialistas\n69,46 %"
+            ]
+            assert "Porcentaje entre estas dos candidaturas" in dialog.inner_text()
+            assert "no un referéndum" in dialog.inner_text()
+            assert "no coinciden" not in dialog.inner_text()
             assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             page.keyboard.press("Escape")
             page.locator('[data-id="propio-elecciones-generales-1982"] .document-open').click()
@@ -266,7 +293,7 @@ def run():
         page.add_init_script("sessionStorage.setItem('pau-he.document-type', 'propio')")
         page.goto(f"{BASE}/documentos.html")
         assert page.locator('[data-type="grafico"]').get_attribute("aria-pressed") == "true"
-        assert page.locator('.document-card[data-id^="propio-"]').count() == 22
+        assert page.locator('.document-card[data-id^="propio-"]').count() == 23
         page.locator('[data-id="propio-referendum-andalucia-1980"] [data-document-mark="favorite"]').click()
         page.goto(f"{BASE}/mis-documentos.html")
         page.locator('[data-type="grafico"]').click()

@@ -1,6 +1,39 @@
 {
   "documents": [
     {
+      "id": "propio-municipales-1931-capitales",
+      "visualization": "municipal-votes",
+      "title": "Municipales de 1931: monárquicos y republicano-socialistas en las capitales",
+      "date": "12 de abril de 1931",
+      "blocks": [10],
+      "unitIds": ["iii-4"],
+      "tags": ["Elecciones municipales", "Municipales de 1931", "12 de abril de 1931", "Segunda República", "Monarquía", "votos", "capitales"],
+      "sourceCaption": "Comparación de elaboración propia a partir de los totales para capitales recogidos en Wikipedia, que cita a Carmelo Romero Salvador (2023).",
+      "dataSourceUrl": "https://es.wikipedia.org/wiki/Elecciones_municipales_de_Espa%C3%B1a_de_1931",
+      "quality": "Eran elecciones municipales, no un referéndum. Los porcentajes comparan solo estas dos candidaturas en las capitales, no todos los votos ni un resultado nacional.",
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Compara los votos de las candidaturas monárquicas y republicano-socialistas en las capitales. Los porcentajes se calculan sobre la suma de esas dos cifras."
+        },
+        {
+          "title": "b) Contexto y consecuencias",
+          "text": "Relaciona el carácter plebiscitario de las elecciones municipales con la proclamación de la Segunda República, sin confundir los datos de las capitales con el resultado nacional."
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Capitales de provincia · votos de dos candidaturas",
+          "headers": ["Candidatura", "Votos"],
+          "rows": [
+            ["Monárquicos", "195.147"],
+            ["Republicanos y socialistas", "443.945"]
+          ],
+          "notes": []
+        }
+      ]
+    },
+    {
       "id": "propio-mapa-ocupacion-francesa-1808-1814",
       "visualization": "map",
       "title": "La ocupación francesa y las plazas resistentes (1808–1814)",
@@ -40,6 +73,7 @@
         {
       "id": "propio-elecciones-municipales-1931",
       "visualization": "municipal-turnout",
+      "comparisonDocumentId": "propio-municipales-1931-capitales",
       "title": "Elecciones municipales del 12 de abril de 1931",
       "date": "12 de abril de 1931",
       "blocks": [
@@ -56,13 +90,16 @@
         "Andalucía",
         "participación"
       ],
-      "sourceCaption": "Material de estudio de elaboración propia a partir de las cifras publicadas por el Instituto Nacional de Estadística.",
+      "sourceCaption": "Material de estudio de elaboración propia a partir del INE y una recopilación secundaria de votos en capitales.",
       "dataSourceUrl": "https://ine.es/inebaseweb/pdfDispacher.do?td=96303",
-      "quality": "La fuente del INE ofrece este resumen para capitales de provincia y plazas del norte de África: 1.104.159 electores y 715.911 votantes. El 64,84 % se calcula a partir de esas cifras. No es un resultado nacional agregado por candidaturas ni permite representar escaños.",
+      "additionalSources": [
+        {"label": "Fuente de los votos en las capitales", "url": "https://es.wikipedia.org/wiki/Elecciones_municipales_de_Espa%C3%B1a_de_1931"}
+      ],
+      "quality": "Aunque fueron elecciones municipales, se interpretaron como un plebiscito (referéndum) entre monarquía y república, lo que obligó a Alfonso XIII a partir al exilio al descubrir que no tenía apoyos en el ejército ni en la población para mantenerse. Dos días después de las elecciones, se proclamó la Segunda República española el 14 de abril.",
       "commentary": [
         {
           "title": "a) Análisis del documento",
-          "text": "Calcula la participación a partir del censo y los votantes. La cifra se refiere únicamente al ámbito que recoge la tabla del INE."
+          "text": "Compara los votos de monárquicos y republicano-socialistas en las capitales. La tabla del INE permite calcular además la participación en un ámbito distinto, que incluye plazas del norte de África."
         },
         {
           "title": "b) Contexto y consecuencias",
@@ -112,7 +149,6 @@
       ],
       "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
       "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
-      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
       "additionalSources": [],
       "commentary": [
         {
@@ -131,7 +167,8 @@
             "svg": "elecciones-republica-1931-semicirculo.svg",
             "seats": 470,
             "majority": 236,
-            "heading": "Cortes Constituyentes · 1931",
+            "heading": "Resultado elecciones 1931 (28 de junio)",
+            "selectorLabel": "1931 · 28 de junio",
             "title": "Elecciones generales de 1931: escaños en las Cortes",
             "center": "470 escaños",
             "showVotes": false,
@@ -291,7 +328,6 @@
       ],
       "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
       "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
-      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
       "additionalSources": [],
       "commentary": [
         {
@@ -310,11 +346,12 @@
             "svg": "elecciones-republica-1933-semicirculo.svg",
             "seats": 473,
             "majority": 237,
-            "heading": "Cortes · 1933",
+            "heading": "Resultado elecciones 1933",
+            "selectorLabel": "1933 · 19 de noviembre y 3 de diciembre",
             "title": "Elecciones generales de 1933: escaños en las Cortes",
             "center": "473 escaños",
             "showVotes": false,
-            "subtitle": "Escaños por candidatura y grupo"
+            "subtitle": "1.ª vuelta: 19 de noviembre · 2.ª vuelta: 3 de diciembre"
           },
           "headers": [
             "Candidatura o grupo",
@@ -470,7 +507,6 @@
       ],
       "sourceCaption": "Material de estudio de elaboración propia a partir de una recopilación secundaria de resultados electorales.",
       "dataSourceUrl": "https://historiaelectoral.com/e1931r.html",
-      "quality": "El diagrama representa escaños, no votos. Fuente secundaria, no oficial; las categorías reproducen la clasificación indicada en la tabla.",
       "additionalSources": [
         {
           "label": "Elecciones generales de 1936 · distribución por bloques",
@@ -494,11 +530,12 @@
             "svg": "elecciones-republica-1936-semicirculo.svg",
             "seats": 473,
             "majority": 237,
-            "heading": "Cortes · 1936",
+            "heading": "Resultado elecciones 1936",
+            "selectorLabel": "1936 · 16 de febrero y 1 de marzo",
             "title": "Elecciones generales de 1936: escaños por bloques",
             "center": "473 escaños",
             "showVotes": false,
-            "subtitle": "Escaños por bloques",
+            "subtitle": "1.ª vuelta: 16 de febrero · 2.ª vuelta: 1 de marzo",
             "centerNote": "Escaños asignados por bloques"
           },
           "headers": [

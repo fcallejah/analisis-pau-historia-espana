@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="520" viewBox="0 0 760 520" role="img" aria-labelledby="title desc">
+<title id="title">Resultado elecciones 1869 (15-18 de enero)</title>
+<desc id="desc">Semicírculo proporcional a 351 diputados, con los siete grupos y colores adaptados del gráfico del examen 6 de 2001.</desc>
+<metadata>Redibujo vectorial a partir del escaneo de 2001, examen 6, opción A, documento 2; 351 diputados según los valores impresos y colores intensificados. No es un facsímil.</metadata>
+<style>text{font-family:Arial,sans-serif;fill:#25343b}.title{font-size:22px;font-weight:700;fill:#223e4b}.subtitle{font-size:13px}.party{font-size:14px;font-weight:700}.share{font-size:13px;font-weight:600}.center{font-size:18px;font-weight:700}.note{font-size:12px}.sector{stroke:#fff;stroke-width:2}</style>
+<rect width="760" height="520" fill="#fff"/>
+<text class="title" x="380" y="32" text-anchor="middle">Resultado elecciones 1869 (15-18 de enero)</text>
+<text class="subtitle" x="380" y="54" text-anchor="middle">Número de diputados</text>
+<path class="sector" data-party="Partido Progresista" data-seats="159" data-seat-percent="45.299" fill="#e9b625" d="M45.00,345.00 A175,175 0 0 1 194.25,171.90 L209.11,271.81 A74,74 0 0 0 146.00,345.00 Z"/>
+<path class="sector" data-party="Partido Demócrata" data-seats="20" data-seat-percent="5.698" fill="#e887b8" d="M194.25,171.90 A175,175 0 0 1 225.48,170.09 L222.32,271.04 A74,74 0 0 0 209.11,271.81 Z"/>
+<path class="sector" data-party="Unión Liberal (unionistas)" data-seats="69" data-seat-percent="19.658" fill="#4fa6d5" d="M225.48,170.09 A175,175 0 0 1 325.75,205.57 L264.72,286.04 A74,74 0 0 0 222.32,271.04 Z"/>
+<path class="sector" data-party="Partido Republicano Federal" data-seats="69" data-seat-percent="19.658" fill="#9acd32" d="M325.75,205.57 A175,175 0 0 1 386.96,292.56 L290.60,322.83 A74,74 0 0 0 264.72,286.04 Z"/>
+<path class="sector" data-party="Republicanos unitarios" data-seats="2" data-seat-percent="0.570" fill="#d84b36" d="M386.96,292.56 A175,175 0 0 1 387.87,295.56 L290.99,324.09 A74,74 0 0 0 290.60,322.83 Z"/>
+<path class="sector" data-party="Carlistas" data-seats="18" data-seat-percent="5.128" fill="#697fae" d="M387.87,295.56 A175,175 0 0 1 393.63,323.13 L293.42,335.75 A74,74 0 0 0 290.99,324.09 Z"/>
+<path class="sector" data-party="Isabelinos (liberales moderados)" data-seats="14" data-seat-percent="3.989" fill="#527a2a" d="M393.63,323.13 A175,175 0 0 1 395.00,345.00 L294.00,345.00 A74,74 0 0 0 293.42,335.75 Z"/>
+<line x1="220" y1="170" x2="220" y2="271" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/>
+<text class="center" x="220" y="310" text-anchor="middle">351*</text>
+<text class="note" x="220" y="329" text-anchor="middle">diputados</text>
+<text class="note" x="220" y="345" text-anchor="middle">176 para la mayoría</text>
+<rect x="420" y="99" width="14" height="14" rx="2" fill="#e9b625"/>
+<text class="party" x="445" y="112">Partido Progresista · 159</text>
+<text class="share" x="745" y="112" text-anchor="end">45,3 %</text>
+<rect x="420" y="147" width="14" height="14" rx="2" fill="#e887b8"/>
+<text class="party" x="445" y="160">Partido Demócrata · 20</text>
+<text class="share" x="745" y="160" text-anchor="end">5,7 %</text>
+<rect x="420" y="195" width="14" height="14" rx="2" fill="#4fa6d5"/>
+<text class="party" x="445" y="208">Unión Liberal (unionistas) · 69</text>
+<text class="share" x="745" y="208" text-anchor="end">19,7 %</text>
+<rect x="420" y="243" width="14" height="14" rx="2" fill="#9acd32"/>
+<text class="party" x="445" y="256">Partido Republicano Federal · 69</text>
+<text class="share" x="745" y="256" text-anchor="end">19,7 %</text>
+<rect x="420" y="291" width="14" height="14" rx="2" fill="#d84b36"/>
+<text class="party" x="445" y="304">Republicanos unitarios · 2</text>
+<text class="share" x="745" y="304" text-anchor="end">0,6 %</text>
+<rect x="420" y="339" width="14" height="14" rx="2" fill="#697fae"/>
+<text class="party" x="445" y="352">Carlistas · 18</text>
+<text class="share" x="745" y="352" text-anchor="end">5,1 %</text>
+<rect x="420" y="387" width="14" height="14" rx="2" fill="#527a2a"/>
+<text class="party" x="445" y="400">Isabelinos (liberales moderados) · 14</text>
+<text class="share" x="745" y="400" text-anchor="end">4,0 %</text>
+</svg>

@@ -16,6 +16,18 @@ COLORS = (
     "#b1a13d", "#8c5252", "#42735f", "#6c7889",
 )
 OTHER_COLOR = "#92979f"
+REPUBLIC_COLORS = {
+    "PSOE": "#c6464f",
+    "Partido Republicano Radical": "#d1a243",
+    "Radical-socialistas": "#b34978",
+    "Acción Republicana": "#7d5da5",
+    "Derecha Liberal Republicana": "#527ca1",
+    "CEDA": "#2d4d73",
+    "Agrarios": "#315a29",
+    "Otros de centro-derecha": "#6c7889",
+    "Otros de izquierda": "#c7703a",
+    "Otros*": OTHER_COLOR,
+}
 
 
 def point(cx, cy, radius, angle):
@@ -134,7 +146,8 @@ def render(year, table, source):
         else:
             lines.append(suffix)
         labels.append(lines)
-    colors = colors_for(rows)
+    colors = ([REPUBLIC_COLORS[row[0]] for row in rows]
+              if year in (1931, 1933) else colors_for(rows))
     other_note = other_seats_note(table)
     note_lines = textwrap.wrap(
         other_note, width=92, break_long_words=False, break_on_hyphens=False

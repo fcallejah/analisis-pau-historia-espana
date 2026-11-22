@@ -140,8 +140,8 @@ def shade_1982_election_table():
     if 'id="election-table-row-stripes"' in content:
         raise ValueError("The official SVG unexpectedly contains editorial row stripes")
     stripes = "".join(
-        f'<rect class="row-stripe" data-stripe-row="{row}" x="0" y="{28.48 + row * 12:.2f}" '
-        'width="436" height="12" fill="#dce8e2" />'
+        f'<rect class="row-stripe" data-stripe-row="{row}" x="1.70" y="{24.87 + row * 11.97:.2f}" '
+        'width="432.10" height="11.97" fill="#dce8e2" />'
         for row in range(0, 15, 2)
     )
     overlays = f'<g id="election-table-row-stripes" aria-hidden="true">{stripes}</g>'
