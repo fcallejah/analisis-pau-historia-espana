@@ -1,4 +1,4 @@
-const CACHE = "pau-he-v480";
+const CACHE = "pau-he-v495";
 const CORE = [
   "./", "./index.html", "./styles.css", "./site-header.css", "./site-header.js", "./practice.css", "./app.js", "./generador.js",
   "./site-footer.css",
@@ -22,6 +22,9 @@ const CORE = [
   "./assets/documentos/goya-tres-de-mayo.png", "./assets/documentos/portada-constitucion-1812.png",
   "./assets/documentos/miembros-cortes-cadiz.png",
   "./assets/documentos/alfonso-xiii-directorio-militar-spaarnestad.jpg",
+  "./assets/documentos/comite-huelga-1917-examen-2006.jpg",
+  "./assets/documentos/comite-huelga-1917-fundacion.jpg",
+  "./assets/documentos/brigadas-internacionales-examen-2006.jpg",
   "./assets/documentos/franco-arzobispo-pont-i-gol-1958.png",
   "./assets/documentos/franco-pont-i-gol-ampliada.jpg",
   "./assets/documentos/comision-redactora-constitucion-1978.png",
@@ -122,6 +125,7 @@ const CORE = [
   "./assets/documentos/mapa-desamortizacion-madoz.png",
   "./assets/documentos/mapa-desamortizacion-madoz-oficial-2009.png",
   "./assets/documentos/mapa-desamortizacion-madoz-vector-2009.svg",
+  "./assets/documentos/mapa-ocupacion-francesa-1808-1814.svg",
   "./assets/documentos/azana-homenaje-coruna-franco.png",
   "./assets/documentos/pdf-2002-1-2.jpeg",
   "./assets/documentos/pdf-2002-1-4.jpeg",

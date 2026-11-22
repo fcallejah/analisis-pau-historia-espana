@@ -149,14 +149,15 @@ TABLES = {
                  "drawTableGrid": False, "firstColumnLeft": True,
                  "columnFills": ["#fff", "#e7f0ec"],
                  "alternatingRowFills": [
-                     ["#f5f7f5", "#dce8e2"],
-                     ["#fff", "#e7f0ec"],
+                     ["#f5f7f5", None],
+                     ["#fff", None],
                  ],
-                 "columnTextColors": ["#29312e", "#38685e"],
+                 "valueGradientColumn": 1,
+                 "columnTextColors": ["#29312e", "#234b3d"],
                  "titleColor": "#38685e", "textColor": "#29312e",
                  "noteEmphasis": ("La emigración española",),
                  "editorialNote": (
-                     "Tipografía condensada, sombreado verde editorial en la columna de divisas "
+                     "Tipografía condensada, sombreado verde editorial más oscuro para las cifras mayores "
                      "y filas alternas; cifras y fuente transcritas sin cambios."
                  ),
              },
@@ -402,6 +403,21 @@ def render_exam_table(table, provenance):
                         f'x="{x}" y="{y}" width="{column_width}" height="{row_height}" fill="{fill}"/>'
                     )
                 x += column_width
+            y += row_height
+    if "valueGradientColumn" in layout:
+        column = layout["valueGradientColumn"]
+        values = [float(row[column]) for row in table["rows"]]
+        low, high = min(values), max(values)
+        light, dark = (241, 248, 242), (176, 209, 191)
+        y = y0 + row_heights[0]
+        x = x0 + sum(table["widths"][:column])
+        for data_row, (value, row_height) in enumerate(zip(values, row_heights[1:])):
+            fraction = (value - low) / (high - low) if high != low else 0
+            color = "#" + "".join(f"{round(a + (b - a) * fraction):02x}" for a, b in zip(light, dark))
+            parts.append(
+                f'<rect class="value-shade" data-shade-row="{data_row}" '
+                f'x="{x}" y="{y}" width="{table["widths"][column]}" height="{row_height}" fill="{color}"/>'
+            )
             y += row_height
     title_row_height = layout.get("titleRowHeight", 0)
     stroke = layout.get("strokeColor", "#333")

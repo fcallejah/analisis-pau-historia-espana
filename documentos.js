@@ -33,6 +33,13 @@
   const nextDocument = dialog.querySelector(".document-next");
   const shareDocumentButton = dialog.querySelector(".document-share");
   const shareStatus = dialog.querySelector(".document-share-status");
+  const cardShareStatus = document.createElement("p");
+  cardShareStatus.className = "document-share-status";
+  cardShareStatus.setAttribute("role", "status");
+  cardShareStatus.setAttribute("aria-live", "polite");
+  cardShareStatus.setAttribute("aria-atomic", "true");
+  cardShareStatus.hidden = true;
+  document.body.append(cardShareStatus);
   const readerStatus = dialog.querySelector(".document-reader-status");
   const typeButtons = [...document.querySelectorAll("[data-type]")];
   const savedButtons = [...document.querySelectorAll("[data-document-saved]")];
@@ -65,6 +72,7 @@
   let routePushedForDialog = false;
   let routeChangeFromHistory = false;
   let shareStatusTimer = 0;
+  let activeShareStatus = shareStatus;
   let restoredView = null;
   const notices = new Map();
   function reportStorage(area, message, failed = false) {
@@ -602,7 +610,7 @@
     if (context) {
       context.id = `${overlay.id}-context`;
       context.hidden = true;
-      context.append(element("h3", "Qué muestra la fotografía"),
+      context.append(element("h3", data.contextTitle || "Qué muestra la fotografía"),
         element("p", data.context, "document-person-context"));
       if (data.sources?.length) {
         const sources = element("ul");
@@ -894,7 +902,9 @@
             ? `document-source-heading${record.centerHeadings !== false ? " is-centered" : ""}` : undefined,
       }));
     });
-    const firstSourceParagraph = paragraphs.find((paragraph) => paragraph.start < attributionStart);
+    const sourceParagraphs = paragraphs.filter((paragraph) => paragraph.start < attributionStart);
+    const firstSourceParagraph = sourceParagraphs.find((paragraph) =>
+      !record.headingParagraphs?.includes(paragraph.start) || /^\s*[“«"‘']/u.test(paragraph.text));
     if (firstSourceParagraph) {
       const opener = firstSourceParagraph.text.match(/^\s*([“«"‘'])/u)?.[1];
       if (opener) {
@@ -906,7 +916,6 @@
         const terminalQuote = new RegExp(
             `${closer.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?=[\\s.!?,;:…)]*$)`,
         );
-        const sourceParagraphs = paragraphs.filter((paragraph) => paragraph.start < attributionStart);
         const lastSourceParagraph = sourceParagraphs[sourceParagraphs.length - 1];
         if (lastSourceParagraph?.text.match(terminalQuote)) {
             lastSourceParagraph.text = lastSourceParagraph.text.replace(terminalQuote, "");
@@ -1099,14 +1108,21 @@
   }
   function source(document, preview = false) {
     const box = element("div", undefined, preview ? "document-preview" : "document-full-source");
+    if (!preview) {
+      for (const note of new Set(matchingAppearances(document).map((appearance) => appearance.imageReviewNote).filter(Boolean))) {
+        box.append(element("p", note, "document-reading-note"));
+      }
+    }
     if (!preview && document.origin === "propio") {
-      if (!isNationalElectionRecord(document)) {
+      if (document.quality && !isNationalElectionRecord(document)) {
         box.append(element("p", document.quality, "document-reading-note"));
       }
       if (document.readingNote) box.append(element("p", document.readingNote, "document-reading-note"));
     }
     const series1977 = document.id === "elecciones-1977-diagrama";
-    if (document.origin === "propio" || series1977) box.append(studyChart(document, preview));
+    if ((document.origin === "propio" && document.visualization !== "map") || series1977) {
+      box.append(studyChart(document, preview));
+    }
     const cardImage = document.image || document.tableImage;
     if (preview && (document.tableImage || cardImage?.kind === "table")) {
       box.classList.add("document-preview-table");
@@ -1144,7 +1160,9 @@
       image.height = imageData.height;
       image.addEventListener("error", () => {
         image.hidden = true;
-        box.append(element("p", "No se pudo cargar la imagen. Consulta el PDF enlazado en las apariciones.", "document-quality"));
+        box.append(element("p", document.origin === "propio"
+          ? "No se pudo cargar la imagen."
+          : "No se pudo cargar la imagen. Consulta el PDF enlazado en las apariciones.", "document-quality"));
       }, { once: true });
       if (imageData.crop) {
         const crop = imageData.crop;
@@ -1208,6 +1226,13 @@
       (imageGroup || box).append(figure);
     });
     if (imageGroup) box.append(imageGroup);
+    if (!preview && document.origin === "propio" && document.visualization === "map") {
+      document.additionalSources?.forEach((item) => {
+        const source = element("p", undefined, "document-image-caption");
+        source.append(sourceLink(item.label, item.url));
+        box.append(source);
+      });
+    }
     if (preview && cardImage) {
       const zoom = element("button", undefined, "document-preview-zoom");
       zoom.type = "button";
@@ -1369,7 +1394,7 @@
     if (document.textVersions && matchingAppearances(document).some((appearance) =>
       appearance.sourceReviewStatus === "transcription-copy" && !appearance.textReviewedByUser)) {
       content.append(element("p",
-        "La selección de 2006 procede de una copia no original y está pendiente de cotejo. Sus imágenes y gráficos no están incorporados.",
+        "La selección de 2006 procede de una copia no original y está pendiente de cotejo con el examen original.",
         "document-reading-note"));
     }
     const guide = element("details", undefined, "document-guide");
@@ -1558,23 +1583,24 @@
     field.remove();
     if (!copied) throw clipboardFailure || new Error("El navegador no permitió copiar el enlace.");
   }
-  function setShareStatus(message, failed = false) {
+  function setShareStatus(message, failed = false, target = shareStatus) {
     window.clearTimeout(shareStatusTimer);
     shareStatusTimer = 0;
-    shareStatus.textContent = message;
-    shareStatus.hidden = !message;
-    shareStatus.setAttribute("role", failed ? "alert" : "status");
+    activeShareStatus.hidden = true;
+    activeShareStatus = target;
+    target.textContent = message;
+    target.hidden = !message;
+    target.setAttribute("role", failed ? "alert" : "status");
     if (message) {
       shareStatusTimer = window.setTimeout(() => {
-        shareStatus.hidden = true;
+        target.hidden = true;
         shareStatusTimer = 0;
       }, 5000);
     }
   }
-  async function shareSelectedDocument() {
-    const record = documents.find((item) => item.id === selectedId);
+  async function shareDocument(record, target = shareStatus) {
     if (!record) {
-      setShareStatus("No se pudo identificar el documento para compartir.", true);
+      setShareStatus("No se pudo identificar el documento para compartir.", true, target);
       console.error("No se pudo compartir: falta el documento seleccionado.");
       return;
     }
@@ -1582,23 +1608,23 @@
     try {
       if (navigator.share) {
         await navigator.share({ title: record.title, url });
-        setShareStatus("Enlace compartido.");
+        setShareStatus("Enlace compartido.", false, target);
       } else {
         await copyDocumentLink(url);
-        setShareStatus("Enlace copiado al portapapeles.");
+        setShareStatus("Enlace copiado al portapapeles.", false, target);
       }
     } catch (failure) {
       if (failure?.name === "AbortError") return;
       try {
         await copyDocumentLink(url);
-        setShareStatus("No se pudo abrir la opción de compartir; enlace copiado al portapapeles.");
+        setShareStatus("No se pudo abrir la opción de compartir; enlace copiado al portapapeles.", false, target);
       } catch (copyFailure) {
         console.error("No se pudo compartir ni copiar el enlace del documento.", failure, copyFailure);
-        setShareStatus("No se pudo copiar el enlace. Puedes copiarlo desde la barra de direcciones.", true);
+        setShareStatus("No se pudo compartir ni copiar el enlace del documento.", true, target);
       }
     }
   }
-  shareDocumentButton.addEventListener("click", shareSelectedDocument);
+  shareDocumentButton.addEventListener("click", () => shareDocument(documents.find((item) => item.id === selectedId)));
   let cachedSearch = [null, []];
   const currentTerms = () => {
     if (cachedSearch[0] !== search.value) cachedSearch = [search.value, searchTerms(search.value)];
@@ -1916,7 +1942,14 @@
         button.type = "button";
         button.setAttribute("aria-label", `Ver documento: ${document.title}`);
         button.addEventListener("click", () => open(document, button));
-        body.append(button);
+        const actions = element("div", undefined, "document-card-actions");
+        const share = element("button", undefined, "document-card-share");
+        share.type = "button";
+        share.setAttribute("aria-label", `Compartir documento: ${document.title}`);
+        share.innerHTML = '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3m0 0 4 4m-4-4L8 7"/><path d="M5 12v8h14v-8"/></svg><span>Compartir</span>';
+        share.addEventListener("click", () => shareDocument(document, cardShareStatus));
+        actions.append(button, share);
+        body.append(actions);
         attachMarks(body, document);
         card.append(body);
         cards.append(card);
@@ -2152,8 +2185,10 @@
         || !Array.isArray(record.tags) || !Array.isArray(record.commentary)
         || !Array.isArray(record.unitIds) || !record.unitIds.length
         || record.unitIds.some((id) => !thematicUnits.some((unit) => unit.id === id && record.blocks.includes(unit.block)))
-        || !["elections", "referendums", "municipal-turnout"].includes(record.visualization)
-        || !Array.isArray(record.tables) || !record.tables.length
+        || !["elections", "referendums", "municipal-turnout", "map"].includes(record.visualization)
+        || (record.visualization === "map"
+          ? !record.image?.src || !record.image.alt || !(record.image.width > 0) || !(record.image.height > 0)
+          : !Array.isArray(record.tables) || !record.tables.length
         || record.tables.some((table) => !table.caption || !Array.isArray(table.headers)
           || !table.headers.length || !Array.isArray(table.rows) || !table.rows.length
           || (record.visualization === "elections" && (
@@ -2171,7 +2206,7 @@
                 ? table.headers.length !== 4 || row.slice(1).some((value) =>
                   typeof value !== "string" || !/^(?:\d{1,3}(?:\.\d{3})+|\d+)(?:,\d+)?$/.test(value))
                 : ![5, 6].includes(table.headers.length) || row.slice(1).some((value) =>
-                typeof value !== "string" || !/^\d+(?:,\d+)?$/.test(value) || Number(value.replace(",", ".")) > 100)))))) {
+                typeof value !== "string" || !/^\d+(?:,\d+)?$/.test(value) || Number(value.replace(",", ".")) > 100))))))) {
         throw new Error("Los materiales propios no son válidos");
       }
       if (new Set(ownData.documents.map((record) => record.id)).size !== ownData.documents.length) {

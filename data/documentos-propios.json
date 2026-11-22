@@ -1,5 +1,42 @@
 {
   "documents": [
+    {
+      "id": "propio-mapa-ocupacion-francesa-1808-1814",
+      "visualization": "map",
+      "title": "La ocupación francesa y las plazas resistentes (1808–1814)",
+      "date": "1808–1814",
+      "blocks": [5],
+      "unitIds": ["ii-1"],
+      "tags": ["Guerra de la Independencia", "Napoleón", "Ocupación francesa", "José I Bonaparte", "Estatuto de Bayona", "Wellington", "Flota británica", "Cádiz", "Isla de León", "Alicante", "Cartagena", "Tarifa", "Galicia", "Asturias", "Baleares", "Canarias"],
+      "sourceCaption": "Mapa esquemático de elaboración propia a partir de cartografía moderna y fuentes históricas.",
+      "dataSourceUrl": "https://centrodedescargas.cnig.es/CentroDescargas/busquedaRedirigida.do?ruta=PUBLICACION_CNIG_DATOS_VARIOS/aneTematico/Espana_Guerra-de-la-Independencia.-Ocupacion-francesa_1808-1814_mapa_16797_spa.pdf",
+      "additionalSources": [
+        {"label": "Universidade de Vigo: la ocupación francesa de Galicia", "url": "https://portalcientifico.uvigo.gal/documentos/5f0b9a66299952638043304d"},
+        {"label": "Universidad de Murcia: Alicante durante la guerra", "url": "https://publicaciones.um.es/publicaciones/public/obras/ficha.seam?numero=2998&edicion=1"},
+        {"label": "La defensa de Cartagena", "url": "https://dcct.es/la-defensa-de-cartagena-durante-la-invasion-napoleonica-1808-1814/"},
+        {"label": "El sitio de Tarifa", "url": "https://www.historyofwar.org/articles/siege_tarifa.html"},
+        {"label": "National Army Museum: Wellington y la guerra peninsular", "url": "https://www.nam.ac.uk/explore/peninsular-war"},
+        {"label": "Congreso de los Diputados: Estatuto de Bayona", "url": "https://app.congreso.es/est_sesiones/resource?id=1808/Constitucion.pdf"},
+        {"label": "Las revoluciones hispanoamericanas", "url": "https://www.educ.ar/recursos/92941/la-crisis-de-la-monarquia-espanola-y-las-revoluciones-hispan"}
+      ],
+      "image": {
+        "src": "assets/documentos/mapa-ocupacion-francesa-1808-1814.svg",
+        "alt": "Mapa esquemático: campañas francesas en azul, con José I Bonaparte y el Estatuto de Bayona, y plazas e islas no ocupadas en rojo; barcos simbólicos representan la flota británica y un recuadro recuerda al duque de Wellington. Incluye notas sobre los territorios de ultramar.",
+        "width": 1080,
+        "height": 875,
+        "examCaption": {"text": "Únicos lugares no conquistados y resistencia ante Napoleón"},
+        "attribution": {
+          "text": "Canarias: adaptación de España-loc.svg, de Miguillen; península y Baleares: INE y geoBoundaries; Portugal y Francia: Natural Earth",
+          "url": "https://commons.wikimedia.org/wiki/File:Espa%C3%B1a-loc.svg",
+          "license": "CC BY-SA 3.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+        }
+      },
+      "commentary": [
+        {"title": "a) Análisis del documento", "text": "Identifica el mapa como un esquema de elaboración propia y distingue la extensión de las campañas francesas de las plazas señaladas que resistieron. El color no representa el control simultáneo de todo el territorio."},
+        {"title": "b) Contexto y consecuencias", "text": "Relaciona la invasión napoleónica con la guerra de la Independencia y la resistencia hispano-británica. Explica la importancia estratégica de Cádiz y las Cortes, y sitúa las juntas y los procesos de independencia americanos en la crisis de la monarquía."}
+      ]
+    },
         {
       "id": "propio-elecciones-municipales-1931",
       "visualization": "municipal-turnout",

@@ -20,7 +20,7 @@ def run():
             page.goto(f"{BASE}/documentos.html")
             search = page.locator("#document-search")
             for query, expected in (
-                ("material propio", 21),
+                ("material propio", 22),
                 ("resultados electorales 2015", 1),
                 ("resultados referéndum 1980", 1),
                 ("referéndum 2005", 2),
@@ -37,8 +37,8 @@ def run():
             page.locator('[data-type="grafico"]').click()
             own_cards = page.locator('.document-card[data-id^="propio-"]')
             assert page.locator('[data-type="propio"]').count() == 0
-            assert own_cards.count() == 21
-            assert "21 materiales propios" in page.locator("#document-count").inner_text()
+            assert own_cards.count() == 22
+            assert "22 materiales propios" in page.locator("#document-count").inner_text()
             for card in own_cards.all():
                 assert card.locator(".document-kind").inner_text() == "MAPAS Y GRÁFICOS"
                 assert card.locator(".exam-pill").inner_text() == "Elaboración propia · puede caer"
@@ -266,7 +266,7 @@ def run():
         page.add_init_script("sessionStorage.setItem('pau-he.document-type', 'propio')")
         page.goto(f"{BASE}/documentos.html")
         assert page.locator('[data-type="grafico"]').get_attribute("aria-pressed") == "true"
-        assert page.locator('.document-card[data-id^="propio-"]').count() == 21
+        assert page.locator('.document-card[data-id^="propio-"]').count() == 22
         page.locator('[data-id="propio-referendum-andalucia-1980"] [data-document-mark="favorite"]').click()
         page.goto(f"{BASE}/mis-documentos.html")
         page.locator('[data-type="grafico"]').click()

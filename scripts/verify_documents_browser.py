@@ -8,6 +8,7 @@ from playwright.sync_api import sync_playwright
 
 BASE = "http://localhost:8765"
 RAW_DATA = json.loads((Path(__file__).resolve().parent.parent / "data/documentos.json").read_text())
+OWN_DATA = json.loads((Path(__file__).resolve().parent.parent / "data/documentos-propios.json").read_text())
 
 
 def text_content_size(record):
@@ -55,9 +56,25 @@ def reading_paragraphs(record, *, use_compilation=True):
     starts = sorted(set(record.get("paragraphStarts", range(len(record["text"])))) |
                     {index for index, line in enumerate(record["text"]) if numbered.match(line)})
     paragraphs = []
+    indices = []
     for start, end in zip(starts, starts[1:] + [len(record["text"])]):
         paragraph = " ".join(record["text"][start:end])
-        paragraphs.extend(re.split(r"\s+(?=\d+[ºª]?\)\s)", paragraph) if numbered.match(paragraph) else [paragraph])
+        parts = re.split(r"\s+(?=\d+[ºª]?\)\s)", paragraph) if numbered.match(paragraph) else [paragraph]
+        paragraphs.extend(parts)
+        indices.extend([start] * len(parts))
+    attribution_start = len(record["text"]) - record.get("attributionParagraphs", 0)
+    source = [i for i, index in enumerate(indices) if index < attribution_start]
+    first = next((i for i in source if indices[i] not in record.get("headingParagraphs", [])
+                  or re.match(r"""^\s*[“«"‘']""", paragraphs[i])), None)
+    if first is not None:
+        opener = re.match(r"""^(\s*)([“«"‘'])""", paragraphs[first])
+        if opener:
+            paragraphs[first] = opener.group(1) + paragraphs[first][opener.end():]
+            closer = {"“": "”", "«": "»", '"': '"', "‘": "’", "'": "'"}[opener.group(2)]
+            terminal = re.compile(re.escape(closer) + r"(?=[\s.!?,;:…)]*$)")
+            last_source = source[-1]
+            target = last_source if terminal.search(paragraphs[last_source]) else len(paragraphs) - 1
+            paragraphs[target] = terminal.sub("", paragraphs[target], count=1)
     return paragraphs
 
 TEXT_DOCUMENT = next(document for document in DATA["documents"]
@@ -92,6 +109,7 @@ def check_numbered_paragraphs(browser):
     page.route("**/data/documentos.json", lambda route: route.fulfill(json=fixture))
     page.goto(f"{BASE}/documentos.html")
     card = page.locator(f'.document-card[data-id="{record["id"]}"]')
+    card.wait_for()
     assert card.locator("blockquote p").all_text_contents() == [
         "Introducción: véase el apartado 2) del texto.", "2) Segundo apartado con su continuación.",
         "3º) Tercer apartado.",
@@ -104,6 +122,32 @@ def check_numbered_paragraphs(browser):
     ]
     assert paragraphs.last.get_attribute("class") == "document-attribution"
     assert " ".join(paragraphs.all_text_contents()) == " ".join(record["text"])
+    context.close()
+
+
+def check_outer_quotes_with_heading(browser):
+    fixture = json.loads(json.dumps(RAW_DATA))
+    record = next(item for item in fixture["documents"]
+                  if item["id"] == "bando-de-murat-tras-el-levantamiento-del-2-de-mayo")
+    record.update({
+        "text": ["Encabezado original", "“Primera frase con «cita interior».",
+                 "Última frase”.", "Autor"],
+        "headingParagraphs": [0], "attributionParagraphs": 1,
+        "primaryTextId": record["id"],
+    })
+    context = browser.new_context(service_workers="block")
+    page = context.new_page()
+    page.route("**/data/documentos.json", lambda route: route.fulfill(json=fixture))
+    page.goto(f"{BASE}/documentos.html")
+    card = page.locator(f'.document-card[data-id="{record["id"]}"]')
+    card.wait_for()
+    assert card.locator("blockquote p").all_text_contents() == [
+        "Encabezado original", "Primera frase con «cita interior».", "Última frase.",
+    ]
+    card.locator(".document-open").click()
+    assert page.locator(".document-full-source > blockquote p").all_text_contents() == [
+        "Encabezado original", "Primera frase con «cita interior».", "Última frase.", "Autor",
+    ]
     context.close()
 
 
@@ -250,7 +294,10 @@ def check_grouped_texts_and_exam_filters(browser):
     page.goto(f"{BASE}/documentos.html")
     page.wait_for_selector("#document-grid[aria-busy=false]", state="attached")
     reveal_historical(page)
-    assert page.locator(".document-card").count() == len(DATA["documents"])
+    expected_ids = {record["id"] for record in DATA["documents"] + OWN_DATA["documents"]}
+    assert set(page.locator(".document-card").evaluate_all(
+        "cards => cards.map(card => card.dataset.id)")) == expected_ids
+    assert page.locator(".document-card").count() == len(expected_ids)
     for identities in RAW_DATA["textGroups"]:
         canonical = raw_records[identities[0]]
         versions = ordered_versions(raw_records, identities)
@@ -316,8 +363,10 @@ def check_grouped_texts_and_exam_filters(browser):
         expected_exams = {exam_key(appearance) for record in DATA["documents"] for appearance in record["appearances"]
                           if appearance["year"] == year}
         assert set(options[1:]) == expected_exams, (year, options, expected_exams)
-        priority = [key for key in ("titular ordinaria", "titular extraordinaria", "modelo orientaciones pau")
-                    if key in expected_exams]
+        numbered_model = ("examen 1", "examen 2", "modelo orientaciones pau")
+        priority = (list(numbered_model) if set(numbered_model) <= expected_exams else
+                    [key for key in ("titular ordinaria", "titular extraordinaria", "modelo orientaciones pau")
+                     if key in expected_exams])
         assert options[1:1 + len(priority)] == priority, (year, options)
         assert page.locator("#document-exam").is_disabled() == (not expected_exams)
         missing = next((entry.get("unavailableExams", []) for entry in RAW_DATA["coverage"]["officialExamAvailability"]
@@ -373,7 +422,9 @@ def check_grouped_texts_and_exam_filters(browser):
     page.locator("#document-reset").click()
     assert page.locator("#document-year").input_value() == ""
     assert page.locator("#document-exam").is_disabled()
-    assert page.locator(".document-card").count() == len(DATA["documents"])
+    assert set(page.locator(".document-card").evaluate_all(
+        "cards => cards.map(card => card.dataset.id)")) == expected_ids
+    assert page.locator(".document-card").count() == len(expected_ids)
 
     canonical, alias = RAW_DATA["textGroups"][5][:2]
     page.evaluate("""({canonical,alias})=>localStorage.setItem('pau-he.documents.marks.v1',JSON.stringify({
@@ -492,7 +543,8 @@ def check_document_attributions(browser):
                     }""")
                 else:
                     heading = starts[index] in content.get("headingParagraphs", [])
-                    align = ("center" if content.get("centerHeadings") is not False else "left") if heading else "justify"
+                    align = ("center" if content.get("textLayout") == "verse-pair" else
+                             ("center" if content.get("centerHeadings") is not False else "left") if heading else "justify")
                     assert style == {"align": align, "last": "center" if align == "center" else "left",
                                      "style": "normal"}, (identifier, style)
                     emphasis = content.get("headingEmphasis", {}).get(str(starts[index]), []) if heading else []
@@ -635,8 +687,8 @@ def check_badges_without_repeated_exam_fields(browser):
         assert pill.get_attribute("title") == expected, (exam, route)
         card.locator(".document-open").click()
         assert page.locator("#document-dialog .exam-pill").inner_text() == expected
-        assert page.locator('script[src="documentos.js?v=92"]').count() == 1
-        assert page.locator('link[href="documentos.css?v=69"]').count() == 1
+        assert page.locator('script[src="documentos.js?v=105"]').count() == 1
+        assert page.locator('link[href="documentos.css?v=74"]').count() == 1
         context.close()
 
 def check_image_credits(browser):
@@ -940,7 +992,7 @@ def topic_statistics():
 def check_text_card(page):
     card = page.locator(f'.document-card[data-id="{TEXT_DOCUMENT["id"]}"]')
     opener = card.locator(".document-open")
-    assert card.locator("button, [tabindex]").count() == 3
+    assert card.locator("button, [tabindex]").count() == 4
     assert card.locator(".document-exams a").count() == len(TEXT_DOCUMENT["appearances"])
     assert card.locator(".document-open").count() == 1
     assert card.locator('button.question-mark-favorite[aria-pressed]').count() == 1
@@ -2025,6 +2077,7 @@ def run():
         check_extended_annotation_palette(browser)
         check_document_attributions(browser)
         check_numbered_paragraphs(browser)
+        check_outer_quotes_with_heading(browser)
         check_grouped_texts_and_exam_filters(browser)
         check_text_content_ranking(browser)
         check_full_content_search(browser)

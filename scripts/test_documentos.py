@@ -38,7 +38,7 @@ class DocumentCorpusTests(unittest.TestCase):
         data = json.loads((ROOT / "data/documentos.json").read_text())
         own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
         records = {record["id"]: record for record in own}
-        self.assertEqual(len(records), 21)
+        self.assertEqual(len(records), 22)
         self.assertFalse(set(records) & {record["id"] for record in data["documents"]})
         self.assertTrue(all("appearances" not in record for record in own))
         general_years = {1931, 1933, 1936, 1979, 1982, 1986, 1989, 1993,
@@ -78,6 +78,66 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(europe["tables"][0]["rows"][0][1:], ["41,77", "76,30", "16,93", "5,91", "0,86"])
         self.assertIn("81,84 %", europe["tables"][0]["notes"][0])
         self.assertIn("Fraga", " ".join(section["text"] for section in records["propio-referendums-1976-2005"]["commentary"]))
+
+    def test_own_occupation_map_and_exam_caption(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
+        record = next(record for record in own if record["id"] == "propio-mapa-ocupacion-francesa-1808-1814")
+        self.assertEqual((record["visualization"], record["blocks"], record["unitIds"]), ("map", [5], ["ii-1"]))
+        self.assertNotIn("appearances", record)
+        self.assertNotIn("tables", record)
+        self.assertNotIn("quality", record)
+        self.assertEqual(image_dimensions(ROOT / record["image"]["src"]), (1080, 875))
+        svg = ET.parse(ROOT / record["image"]["src"]).getroot()
+        self.assertIn("no representa", " ".join(svg.itertext()))
+        geography = svg.find(".//*[@id='geography']")
+        mainland = [path for path in geography if path.get("fill") == "#8bb4d3"]
+        self.assertEqual(len(mainland), 1)
+        self.assertEqual(mainland[0].get("stroke"), mainland[0].get("fill"))
+        labels = [node.text for node in svg.iter("{http://www.w3.org/2000/svg}text")]
+        self.assertNotIn("La ocupación francesa y las plazas resistentes", labels)
+        self.assertNotIn("Guerra de la Independencia · 1808–1814 · esquema de estudio", labels)
+        first = labels.index("José I Bonaparte (1808-1813)")
+        self.assertEqual(labels[first:first + 3], [
+            "José I Bonaparte (1808-1813)", "Estatuto de Bayona (carta otorgada)", "España napoleónica"
+        ])
+        self.assertIn("Wellington", " ".join(svg.itertext()))
+        self.assertNotIn("Barcos simbólicos,", " ".join(svg.itertext()))
+        self.assertNotIn("Cómo leerlo", " ".join(svg.itertext()))
+        self.assertNotIn("El color no representa", " ".join(svg.itertext()))
+        self.assertNotIn("Las marcas indican", " ".join(svg.itertext()))
+        self.assertIn("ocupación francesa", " ".join(svg.itertext()))
+        self.assertIn("Flota británica", " ".join(svg.itertext()))
+        self.assertIn("desembarcos franceses", " ".join(svg.itertext()))
+        self.assertIn("(Cádiz y San Fernando)", " ".join(svg.itertext()))
+        self.assertIn("Gibraltar (británico)", " ".join(svg.itertext()))
+        self.assertEqual(len(svg.findall(".//{http://www.w3.org/2000/svg}use[@href='#british-ship']")), 11)
+        self.assertIn(record["image"]["src"], (ROOT / "sw.js").read_text())
+        self.assertTrue(record["additionalSources"])
+        exam = next(record for record in data["documents"] if record["id"] == "despliegue-frances-1807-1808")
+        caption = exam["image"]["examCaption"]
+        self.assertIn("Artola, Miguel: Enciclopedia de Historia de España. Alianza Ed. 1993", caption["text"])
+        self.assertEqual(caption["emphasis"], ["Enciclopedia de Historia de España"])
+
+    def test_fernando_vii_reveal_context(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(record for record in data["documents"] if record["id"] == "fernando-vii-jura-1820")
+        annotations = record["image"]["annotations"]
+        self.assertEqual([person["name"] for person in annotations["people"]], ["Fernando VII"])
+        for phrase in ("1814", "Riego", "1820–1823", "1823", "1833"):
+            self.assertIn(phrase, annotations["context"])
+        self.assertIn("anuló la Constitución de 1812", annotations["context"])
+
+    def test_decreto_valencia_signature_and_date_are_separate(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(record for record in data["documents"] if record["id"] == "decreto-valencia-1814")
+        self.assertEqual(record["text"][-2:], ["Yo el Rey Fernando VII", "Valencia, 4 de mayo de 1814"])
+        self.assertEqual(record["attributionParagraphs"], 2)
+
+    def test_editable_documents_have_no_extra_ellipsis_points(self):
+        for path in (ROOT / "data").glob("*.json"):
+            with self.subTest(path=path.name):
+                self.assertNotRegex(path.read_text(), r"\.{4,}|…[.…]|[.…]…")
 
     def test_electoral_semicircles_match_all_jec_study_tables(self):
         own = json.loads((ROOT / "data/documentos-propios.json").read_text())["documents"]
@@ -257,18 +317,18 @@ class DocumentCorpusTests(unittest.TestCase):
         digest = hashlib.sha256(json.dumps(
             original, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
         self.assertEqual(len(original), 178)
-        self.assertEqual(digest, "ecc1ebb3f230949be089602824bd75d6d96ae8be2f323633a87fdf604940433f")
-        self.assertEqual(len(imported), 135)
+        self.assertEqual(digest, "dc64a8192bea9698a2afb88aaa01dc3eb44a2c4c5ed77649cd8c22d7379c9669")
+        self.assertEqual(len(imported), 144)
         self.assertEqual(len({a["pdfUrl"] for a in imported}), 36)
         self.assertEqual(data["coverage"]["sourceHeadingCount"], 101)
-        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 419)
+        self.assertEqual(data["coverage"]["sourceDocumentOccurrences"], 428)
         pending = data["coverage"]["pdfImport"]["pendingMaterials"]
         keys = {a["sourceKey"] for a in imported}
-        self.assertEqual(len(pending), 9)
+        self.assertEqual(len(pending), 0)
         self.assertFalse(keys.intersection(a["key"] for a in pending))
         for year in range(2002, 2008):
             selected = [a for a in imported if a["year"] == year]
-            self.assertEqual(len(selected), 15 if year == 2006 else 24)
+            self.assertEqual(len(selected), 24)
             self.assertEqual(len({a["pdfUrl"] for a in selected}), 6)
             for appearance in selected:
                 self.assertEqual(appearance["sourceType"], "pdf")
@@ -327,6 +387,43 @@ class DocumentCorpusTests(unittest.TestCase):
                          "assets/documentos/tabla-divisas-emigrantes-1961-1975.svg")
         self.assertTrue((ROOT / record["image"]["originalSrc"]).is_file())
         self.assertEqual(record["table"]["rows"][-1], ["1975", "599"])
+
+    def test_2006_reconstructions_cover_all_options_without_duplicate_tables(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        records = {record["id"]: record for record in data["documents"]}
+        appearances = [(record, appearance) for record in records.values()
+                       for appearance in record["appearances"] if appearance["year"] == 2006]
+        for number in range(1, 7):
+            selected = [appearance for _, appearance in appearances
+                        if appearance["exam"] == f"2006 Examen {number}"]
+            self.assertEqual(sorted(a["sourceOrdinal"] for a in selected), [1, 2, 3, 4])
+            self.assertEqual(len({a["pdfUrl"] for a in selected}), 1)
+            self.assertTrue(all(a["officialPage"] == (1 if a["sourceOrdinal"] <= 2 else 2)
+                                for a in selected))
+        for identity, key in (("miembros-cortes-cadiz", "pdf-2006-6:1"),
+                              ("divisas-emigrantes-1961-1975", "pdf-2006-6:4")):
+            matches = [(record, a) for record, a in appearances if a["sourceKey"] == key]
+            self.assertEqual(len(matches), 1)
+            self.assertEqual(matches[0][0]["id"], identity)
+        for key in ("pdf-2006-5:2", "pdf-2006-5:3"):
+            appearance = next(a for _, a in appearances if a["sourceKey"] == key)
+            self.assertIn("no se ha cotejado", appearance["imageReviewNote"])
+        for identity in ("comite-huelga-1917-encarcelado", "brigadas-internacionales-fotografia-2006"):
+            self.assertTrue((ROOT / records[identity]["image"]["src"]).is_file())
+            self.assertIn(f'"./{records[identity]["image"]["src"]}"', (ROOT / "sw.js").read_text())
+        image = records["comite-huelga-1917-encarcelado"]["image"]
+        self.assertEqual(image_dimensions(ROOT / image["src"]), (892, 858))
+        self.assertEqual(hashlib.sha256((ROOT / image["corpusSrc"]).read_bytes()).hexdigest(),
+                         "77702c570b434a6e21ef6519b2dcc3cc65669be844765739e52d23f60381857b")
+        self.assertAlmostEqual(image["crop"]["width"] / image["crop"]["height"], 534 / 481, places=3)
+        self.assertIn("reconstrucción", image["corpusLabel"])
+
+    def test_junta_sevilla_2005_selection_has_no_enclosing_quotes(self):
+        data = json.loads((ROOT / "data/documentos.json").read_text())
+        record = next(record for record in data["documents"]
+                      if record["id"] == "la-junta-suprema-de-sevilla-declara-la-guerra-a-francia-pdf-2005-2-1")
+        self.assertTrue(record["text"][1].startswith("Don Fernando VII"))
+        self.assertTrue(record["text"][1].endswith("a la Francia [...]."))
 
     def test_document_omissions_use_square_brackets_and_three_dots(self):
         data = (ROOT / "data/documentos.json").read_text()
@@ -1134,6 +1231,7 @@ class DocumentCorpusTests(unittest.TestCase):
             "prim-busca-regimen-caricatura": (1270, 975, 1300, 1094, -15, -9),
             "directorio-civil-alfonso-xiii-1925": (411.15, 392.41, 705.16, 436.92, -85.51, -44.51),
             "huelga-1917-caballeria": (792, 608, 1300, 865, -368, 0),
+            "comite-huelga-1917-encarcelado": (680, 612.51, 892, 858, -116, -193),
             "camino-exilio-1939": (761, 401, 1175, 933, -114, -311),
         }
         self.assertEqual(set(crops), set(source_geometry))
@@ -1969,8 +2067,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(persas["attributionParagraphs"], 1)
         self.assertEqual(persas["text"][-1], "Manifiesto de los Persas. Madrid, 12 de abril de 1814")
         self.assertEqual(persas["text"][0], "“SEÑOR")
-        self.assertEqual(persas["headingParagraphs"], [0])
-        self.assertFalse(persas["centerHeadings"])
+        self.assertNotIn(0, persas.get("headingParagraphs", []))
         self.assertEqual(persas["attributionEmphasis"], ["Manifiesto de los Persas"])
         self.assertTrue(persas["appearances"][0]["textReviewedByUser"])
         self.assertNotIn("readingNote", persas)
@@ -2062,8 +2159,9 @@ class DocumentCorpusTests(unittest.TestCase):
                          "99def11809b3680822e9a9c9781e8c6f53ca21ebe17431b30acd735557d8c9a6")
         self.assertEqual(record["examCaption"]["text"],
                          'Caricatura publicada en la revista "L\'Esquella de la Torratxa".')
-        self.assertEqual(len(record["appearances"]), 1)
+        self.assertEqual(len(record["appearances"]), 2)
         self.assertEqual(record["appearances"][0]["id"], "fuente-pdf-2003-4-2")
+        self.assertEqual(record["appearances"][1]["id"], "fuente-pdf-2006-2-2")
         self.assertEqual(record["examCaption"]["appearanceId"], record["appearances"][0]["id"])
 
     def test_mapa_guerra_independencia_reproduction_preserves_exam_source(self):
@@ -2197,11 +2295,16 @@ class DocumentCorpusTests(unittest.TestCase):
         svg = ET.parse(ROOT / record["image"]["src"]).getroot()
         namespace = {"svg": "http://www.w3.org/2000/svg"}
         stripes = svg.findall(".//svg:rect[@class='row-stripe']", namespace)
-        self.assertEqual(len(stripes), 30)
-        self.assertEqual([stripe.get("fill") for stripe in stripes[:4]],
-                         ["#f5f7f5", "#dce8e2", "#fff", "#e7f0ec"])
-        self.assertEqual([(stripe.get("data-stripe-row"), stripe.get("data-stripe-column"))
-                          for stripe in stripes[:2]], [("0", "0"), ("0", "1")])
+        self.assertEqual(len(stripes), 15)
+        self.assertEqual([stripe.get("fill") for stripe in stripes[:2]], ["#f5f7f5", "#fff"])
+        shades = svg.findall(".//svg:rect[@class='value-shade']", namespace)
+        self.assertEqual(len(shades), 15)
+        colors = [tuple(bytes.fromhex(rect.get("fill")[1:])) for rect in shades]
+        amounts = [int(row[1]) for row in record["table"]["rows"]]
+        for i in range(len(amounts)):
+            for j in range(len(amounts)):
+                if amounts[i] > amounts[j]:
+                    self.assertTrue(all(a <= b for a, b in zip(colors[i], colors[j])))
         title_line = svg.find(".//svg:text[@class='title']", namespace)
         self.assertIsNotNone(title_line)
         self.assertEqual((title_line.get("x"), title_line.get("text-anchor")), ("235", "middle"))
@@ -2487,7 +2590,7 @@ class DocumentCorpusTests(unittest.TestCase):
         self.assertEqual(len({item["heading"] for item in years}), 18)
         self.assertEqual(sum(len(item["images"]) for item in years), 20)
         self.assertEqual(len([item for item in manifest if item["year"] >= 2008]), 260)
-        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 171)
+        self.assertEqual(data["coverage"]["sourceImageOccurrences"], 179)
         image_ids = [image_id for item in manifest if item["year"] >= 2008 for image_id in item["images"]]
         self.assertEqual(sorted(image_ids), list(range(1, 103)))
         self.assertEqual(len(image_ids), len(set(image_ids)))
