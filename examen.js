@@ -4,11 +4,10 @@
   const status = document.getElementById("exam-generator-status");
   const error = document.getElementById("exam-generator-error");
   const preview = document.getElementById("exam-preview");
+  const generateButtons = [...document.querySelectorAll(".exam-generate")];
   const saveButtons = [...document.querySelectorAll(".exam-save-pdf")];
   const saveFooter = document.getElementById("exam-save-footer");
   const headerTemplate = document.getElementById("exam-paper-header-template");
-  const buttonLabel = button.querySelector(".exam-generate-label");
-  const refreshIcon = button.querySelector(".exam-generate-icon");
   const confirmDialog = document.getElementById("exam-confirm-dialog");
   const storageKey = "pau-he-generated-exam-v1";
   const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -33,9 +32,11 @@
   let activeExam = null;
 
   function setButtonState(label, canRegenerate, disabled) {
-    buttonLabel.textContent = label;
-    refreshIcon.toggleAttribute("hidden", !canRegenerate);
-    button.disabled = disabled;
+    generateButtons.forEach((generateButton) => {
+      generateButton.querySelector(".exam-generate-label").textContent = label;
+      generateButton.querySelector(".exam-generate-icon").toggleAttribute("hidden", !canRegenerate);
+      generateButton.disabled = disabled;
+    });
     const hasExam = Boolean(activeExam);
     saveButtons.forEach((saveButton) => { saveButton.hidden = !hasExam; });
     saveFooter.hidden = !hasExam;
@@ -65,7 +66,7 @@
   async function load() {
     error.hidden = true;
     status.textContent = "Cargando las preguntas y los documentos disponibles…";
-    button.disabled = true;
+    generateButtons.forEach((generateButton) => { generateButton.disabled = true; });
     try {
       if (!Array.isArray(window.pauPracticeBank) || window.pauPracticeBank.length === 0) {
         throw new Error("No está disponible el banco de preguntas cortas.");
@@ -191,7 +192,7 @@
       imageContainer.append(cropFrame || image);
       card.append(imageContainer);
       const caption = record.image.examCaption?.text || record.examCaption?.text;
-      if (caption) card.append(make("p", "exam-image-caption", caption));
+      if (caption) card.append(make("p", "exam-image-caption", caption.replace(/\*/g, "")));
     }
     return card;
   }
@@ -468,10 +469,10 @@
     }
   }
 
-  button.addEventListener("click", () => {
+  generateButtons.forEach((generateButton) => generateButton.addEventListener("click", () => {
     if (activeExam) confirmDialog.showModal();
     else generate();
-  });
+  }));
   saveButtons.forEach((saveButton) => saveButton.addEventListener("click", saveExamAsPdf));
   confirmDialog.addEventListener("submit", (event) => {
     if (event.submitter?.value !== "regenerate") return;

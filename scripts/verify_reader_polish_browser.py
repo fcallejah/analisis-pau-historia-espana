@@ -1430,13 +1430,12 @@ def check_orientation_link_arrows(browser, options):
     context = browser.new_context(service_workers="block", reduced_motion="reduce", **options)
     page = context.new_page()
     page.goto(f"{BASE}/index.html#archivo-orientaciones")
-    links = page.locator(".orientation-current, .orientation-courses a")
-    assert links.count() == 16
-    for link in links.all():
-        assert link.locator('svg.ext-icon[aria-hidden="true"]').count() == 1
-        assert "↗" not in link.text_content()
-        assert link.get_attribute("target") == "_blank"
-        assert link.evaluate("node=>node.scrollWidth<=node.clientWidth+1")
+    buttons = page.locator(".orientation-current, .orientation-courses button")
+    assert buttons.count() == 27
+    for button in buttons.all():
+        assert button.get_attribute("aria-haspopup") == "dialog"
+        assert button.locator('svg[aria-hidden="true"]').count() == 1
+        assert button.evaluate("node=>node.scrollWidth<=node.clientWidth+1")
     for width in (320, 375, 520, 768, 1024, 1440):
         page.set_viewport_size({"width": width, "height": 900})
         sizes = page.locator(".orientation-courses > li > *").evaluate_all(
@@ -1444,7 +1443,92 @@ def check_orientation_link_arrows(browser, options):
             "Math.round(node.getBoundingClientRect().height)])"
         )
         assert len(set(map(tuple, sizes))) == 1, (width, sizes)
+    page.get_by_role("button", name="Abrir histórico del curso 2018–19").click()
+    dialog = page.locator("#archive-dialog")
+    assert dialog.get_by_text("Orientaciones no localizadas").is_visible()
+    dialog.get_by_role("link", name="Titular ordinaria").wait_for()
+    assert dialog.get_by_role("link", name="Titular ordinaria").get_attribute("target") == "_blank"
+    assert dialog.locator(".archive-left").inner_text() == "← 2019–2020"
+    assert dialog.locator(".archive-right").inner_text() == "2017–2018 →"
+    dialog.locator(".archive-right").click()
+    assert dialog.locator("h3").inner_text() == "Curso 2017–18"
+    assert dialog.locator(".archive-left").inner_text() == "← 2018–2019"
+    dialog.locator(".archive-left").click()
+    assert dialog.locator("h3").inner_text() == "Curso 2018–19"
+    page.keyboard.press("ArrowRight")
+    assert dialog.locator("h3").inner_text() == "Curso 2017–18"
+    page.keyboard.press("ArrowLeft")
+    assert dialog.locator("h3").inner_text() == "Curso 2018–19"
+    page.keyboard.press("ArrowRight")
+    assert dialog.locator("h3").inner_text() == "Curso 2017–18"
+    page.keyboard.press("ArrowLeft")
+    assert dialog.locator("h3").inner_text() == "Curso 2018–19"
+    dialog.evaluate("""node => {
+      const start = new Event('touchstart', {bubbles: true});
+      Object.defineProperty(start, 'touches', {value: [{clientX: 200, clientY: 100}]});
+      node.dispatchEvent(start);
+      const end = new Event('touchend', {bubbles: true});
+      Object.defineProperty(end, 'changedTouches', {value: [{clientX: 100, clientY: 105}]});
+      node.dispatchEvent(end);
+    }""")
+    assert dialog.locator("h3").inner_text() == "Curso 2019–20"
+    dialog.evaluate("""node => {
+      const start = new Event('touchstart', {bubbles: true});
+      Object.defineProperty(start, 'touches', {value: [{clientX: 100, clientY: 100}]});
+      node.dispatchEvent(start);
+      const end = new Event('touchend', {bubbles: true});
+      Object.defineProperty(end, 'changedTouches', {value: [{clientX: 200, clientY: 105}]});
+      node.dispatchEvent(end);
+    }""")
+    assert dialog.locator("h3").inner_text() == "Curso 2018–19"
+    page.mouse.click(1, 1)
+    assert not dialog.is_visible()
+    dialog_size = None
+    for year, count in ((2001, 6), (2006, 6), (2014, 5), (2018, 5), (2025, 6), (2026, 4), (2027, 0)):
+        course = f"{year - 1}–{year % 100:02d}"
+        page.get_by_role("button", name=f"Abrir histórico del curso {course}").click()
+        page.wait_for_function(
+            "() => !document.querySelector('#archive-dialog .archive-dialog-content').textContent.includes('Cargando exámenes')"
+        )
+        exam_links = dialog.locator(".archive-dialog-content ul").nth(1).locator("a")
+        assert exam_links.count() == count, (year, exam_links.all_text_contents())
+        slots = dialog.locator(".archive-dialog-content ul").nth(1).locator("li")
+        assert slots.count() == 6
+        assert slots.locator("span").all_text_contents() == [
+            "Examen pendiente" if year == 2027 else "Examen no localizado"
+        ] * (6 - count)
+        size = dialog.bounding_box()
+        if dialog_size is None:
+            dialog_size = (size["width"], size["height"])
+        assert (size["width"], size["height"]) == dialog_size
+        assert all(link.get_attribute("target") == "_blank" for link in exam_links.all())
+        assert not dialog.get_by_text("Modelo de examen", exact=True).count()
+        if year in (2001, 2006):
+            assert all("reconstruido" in label for label in exam_links.all_text_contents())
+        if year == 2001:
+            assert exam_links.first.get_attribute("href") == "assets/documentos/2000-2001-examen-1.pdf"
+            assert dialog.locator(".archive-right").is_disabled()
+        if year == 2027:
+            assert dialog.get_by_text("Los exámenes de esta convocatoria aún no están disponibles.").is_visible()
+            assert dialog.locator(".archive-left").is_disabled()
+        page.keyboard.press("Escape")
+    assert page.get_by_role("button", name="Abrir histórico del curso 2026–27").evaluate(
+        "node => node.getAttribute('aria-haspopup') === 'dialog'"
+    )
     assert page.evaluate("document.documentElement.scrollWidth <= innerWidth + 1")
+    context.close()
+
+    context = browser.new_context(service_workers="block", **options)
+    context.route("**/data/documentos.json", lambda route: route.abort())
+    page = context.new_page()
+    page.goto(f"{BASE}/index.html#archivo-orientaciones")
+    page.get_by_role("button", name="Abrir histórico del curso 2000–01").click()
+    dialog = page.locator("#archive-dialog")
+    dialog.get_by_text("No se pudieron cargar los exámenes", exact=False).wait_for()
+    page.keyboard.press("Escape")
+    context.unroute("**/data/documentos.json")
+    page.get_by_role("button", name="Abrir histórico del curso 2000–01").click()
+    dialog.get_by_role("link", name="Examen 1 · reconstruido").wait_for()
     context.close()
 
 

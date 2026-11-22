@@ -49,6 +49,27 @@ def check_exam_pills(browser):
                    generated.evaluate_all("nodes => nodes.map(n => [n.textContent, n.href, n.target])"))
         shortcut = page.locator("#generador").get_by_role("link", name="Mis preguntas cortas", exact=True)
         assert shortcut.get_attribute("href") == "mis-preguntas.html"
+        assert shortcut.evaluate("node => node.nextElementSibling.matches('[data-gen=\"1\"]')")
+        for width in (1280, 390, 320):
+            page.set_viewport_size({"width": width, "height": 900})
+            assert shortcut.evaluate("""node => {
+                const link = node.getBoundingClientRect();
+                const block = node.nextElementSibling.getBoundingClientRect();
+                return Math.abs(link.top - block.top) < 1
+                    && block.left >= link.right && block.left - link.right <= 10
+                    && block.right <= document.documentElement.clientWidth;
+            }""")
+        for removed in (
+            "Las píldoras «Modelo PAU» enlazan",
+            "Abre un bloque y pulsa un tema",
+            "Las marcas de color señalan",
+            "Abrir el documento con las preguntas marcadas en azul",
+            "Selección de preguntas marcadas en azul de 2017–2026",
+        ):
+            assert page.get_by_text(removed, exact=False).count() == 0
+        assert page.locator("#generador .caveat").inner_text() == (
+            "Las soluciones son orientativas, no criterios oficiales de corrección."
+        )
         page.goto(f"{BASE}/mis-preguntas.html")
         back = page.get_by_role("link", name="Volver al generador", exact=True)
         assert back.get_attribute("href") == "index.html#generador"

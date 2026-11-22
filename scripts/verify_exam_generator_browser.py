@@ -36,6 +36,9 @@ def verify_exam(page, document_captions):
     assert masthead.locator("td").evaluate_all(
         "cells => cells.map(cell => [getComputedStyle(cell).borderLeftColor, getComputedStyle(cell).borderRightColor])"
     ) == [["rgb(34, 34, 34)", "rgba(0, 0, 0, 0)"], ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0)"], ["rgba(0, 0, 0, 0)", "rgb(34, 34, 34)"]]
+    assert masthead.locator("td").nth(1).evaluate(
+        "node => { const cell = node.getBoundingClientRect(); const text = node.querySelector('.exam-paper-course').getBoundingClientRect(); return Math.abs((cell.left + cell.right) / 2 - (text.left + text.right) / 2 - 4) < 1; }"
+    )
     subject = masthead.get_by_role("heading", name="HISTORIA DE ESPAÑA").bounding_box()
     assert logo.bounding_box()["x"] + logo.bounding_box()["width"] <= center["x"]
     assert center["x"] + center["width"] <= subject["x"]
@@ -56,13 +59,16 @@ def verify_exam(page, document_captions):
     assert common_title.evaluate(
         "node => getComputedStyle(node).fontSize === '18px' && getComputedStyle(node).letterSpacing === 'normal' && getComputedStyle(node).marginTop === '20px' && getComputedStyle(node).textAlign === 'center'"
     )
-    status_box = paper.locator(".exam-paper-status").bounding_box()
-    instruction_box = instructions.bounding_box()
-    block_intro_box = block_intro.bounding_box()
-    common_title_box = common_title.bounding_box()
-    assert abs(instruction_box["y"] - status_box["y"] - status_box["height"] - 24) < 1
-    assert abs(block_intro_box["y"] - instruction_box["y"] - instruction_box["height"] - 24) < 1
-    assert abs(common_title_box["y"] - block_intro_box["y"] - block_intro_box["height"] - 20) < 1
+    assert paper.evaluate("""node => {
+      const rect = selector => node.querySelector(selector).getBoundingClientRect();
+      const status = rect('.exam-paper-status');
+      const instructions = rect('.exam-paper-instructions');
+      const intro = rect('.exam-block-intro');
+      const title = rect('.exam-common-title');
+      return Math.abs(instructions.top - status.bottom - 24) < 1
+        && Math.abs(intro.top - instructions.bottom - 24) < 1
+        && Math.abs(title.top - intro.bottom - 20) < 1;
+    }""")
     questions = paper.locator(".exam-short-question")
     assert questions.count() == 4
     assert questions.evaluate_all("nodes => nodes.map(node => Number(node.dataset.block))") == [1, 2, 3, 4]
@@ -106,12 +112,16 @@ def verify_exam(page, document_captions):
     question_list = paper.locator(".exam-short-questions")
     assert question_list.evaluate("node => getComputedStyle(node).marginBottom === '0px'")
     assert question_list.evaluate(
-        "node => getComputedStyle(node).marginLeft === '-4px' && getComputedStyle(node).paddingLeft === '12px' && [...node.children].every(item => getComputedStyle(item).paddingLeft === '0px' && getComputedStyle(item).paddingRight === '0px')"
+        "node => getComputedStyle(node).marginLeft === '0px' && getComputedStyle(node).paddingLeft === '12px' && [...node.children].every(item => getComputedStyle(item).paddingLeft === '0px' && getComputedStyle(item).paddingRight === '0px')"
     )
     assert paper.locator(".exam-common").evaluate(
-        "node => Math.abs(node.querySelector('.exam-short-questions p').getBoundingClientRect().left - node.getBoundingClientRect().left - 21) < 1 && getComputedStyle(node.querySelector('.exam-short-questions p')).textAlign === 'left'"
+        "node => Math.abs(node.querySelector('.exam-short-questions p').getBoundingClientRect().left - node.getBoundingClientRect().left - 25) < 1 && getComputedStyle(node.querySelector('.exam-short-questions p')).textAlign === 'left'"
     )
-    assert route_choice.bounding_box()["y"] - question_list.bounding_box()["y"] - question_list.bounding_box()["height"] >= 29
+    assert paper.evaluate("""node => {
+      const questions = node.querySelector('.exam-short-questions').getBoundingClientRect();
+      const choice = node.querySelector('.exam-route-choice').getBoundingClientRect();
+      return choice.top - questions.bottom >= 29;
+    }""")
     assert paper.locator(".exam-question-block, .exam-theme-unit, .exam-route-period, .exam-document-source, .exam-document-title").count() == 0
     assert paper.locator(".exam-document-prompts").count() == 0
     question_text = questions.locator("p").all_text_contents()
@@ -170,7 +180,7 @@ def verify_exam(page, document_captions):
         docs = route.locator(".exam-document")
         assert docs.count() == 2
         assert docs.evaluate_all(
-            "nodes => nodes.every(node => { const style = getComputedStyle(node); return style.paddingLeft === '0px' && style.paddingRight === '0px' && style.marginLeft === '-12px' && style.marginRight === '-12px'; })"
+            "nodes => nodes.every(node => { const style = getComputedStyle(node); const cell = node.closest('td'); return style.paddingLeft === '0px' && style.paddingRight === '0px' && style.marginLeft === '-6px' && style.marginRight === '-6px' && style.marginTop === '0px' && getComputedStyle(cell).paddingTop === '0px' && Math.abs(node.getBoundingClientRect().top - cell.getBoundingClientRect().top) < 1; })"
         )
         assert tables.nth(0).locator("tbody tr").count() == 5
         assert tables.nth(0).evaluate(
@@ -216,7 +226,7 @@ def verify_exam(page, document_captions):
                     "nodes => nodes.every(node => getComputedStyle(node).margin === '0px')"
                 )
                 assert doc.evaluate(
-                    "node => { const style = getComputedStyle(node); const card = node.getBoundingClientRect(); const cell = node.closest('td').getBoundingClientRect(); return node.classList.contains('exam-document-text') && style.marginLeft === '-12px' && style.marginRight === '-12px' && style.paddingLeft === '0px' && style.paddingRight === '0px' && node.querySelector('.exam-source-text').getBoundingClientRect().width === card.width && Math.abs(card.left - cell.left) < 1 && Math.abs(cell.right - card.right) < 1; }"
+                    "node => { const style = getComputedStyle(node); const card = node.getBoundingClientRect(); const cell = node.closest('td').getBoundingClientRect(); return node.classList.contains('exam-document-text') && style.marginLeft === '-6px' && style.marginRight === '-6px' && style.paddingLeft === '0px' && style.paddingRight === '0px' && node.querySelector('.exam-source-text').getBoundingClientRect().width === card.width && Math.abs(card.left - cell.left - 6) < 1 && Math.abs(cell.right - card.right - 6) < 1; }"
                 )
                 assert doc.locator(".exam-source-text").evaluate(
                     "node => { const style = getComputedStyle(node); return style.fontSize === '16px' && style.margin === '0px' && style.padding === '0px' && style.borderWidth === '0px' && style.backgroundColor === 'rgba(0, 0, 0, 0)'; }"
@@ -252,13 +262,17 @@ def verify_exam(page, document_captions):
                     )
                 else:
                     assert doc.locator(".exam-image-crop").count() == 0
+                    assert image.evaluate(
+                        "node => { const rect = node.getBoundingClientRect(); return Math.abs(rect.width / rect.height - node.naturalWidth / node.naturalHeight) < 0.01; }"
+                    )
                 assert image.evaluate(
-                    "node => { const container = node.closest('.exam-image-container'); const media = node.parentElement.classList.contains('exam-image-crop') ? node.parentElement : node; const imageRect = media.getBoundingClientRect(); const containerRect = container.getBoundingClientRect(); const cellRect = container.closest('td').getBoundingClientRect(); return Math.abs(imageRect.left + imageRect.width / 2 - (containerRect.left + containerRect.width / 2)) < 1 && Math.abs(containerRect.left + containerRect.width / 2 - (cellRect.left + cellRect.width / 2)) < 1 && Math.abs(containerRect.left - cellRect.left) < 1 && Math.abs(cellRect.right - containerRect.right) < 1; }"
+                    "node => { const container = node.closest('.exam-image-container'); const media = node.parentElement.classList.contains('exam-image-crop') ? node.parentElement : node; const imageRect = media.getBoundingClientRect(); const containerRect = container.getBoundingClientRect(); const headingRect = container.previousElementSibling.getBoundingClientRect(); const cellRect = container.closest('td').getBoundingClientRect(); return Math.abs(imageRect.top - containerRect.top) < 1 && Math.abs(containerRect.top - headingRect.bottom - 10) < 1 && Math.abs(imageRect.left + imageRect.width / 2 - (containerRect.left + containerRect.width / 2)) < 1 && Math.abs(containerRect.left + containerRect.width / 2 - (cellRect.left + cellRect.width / 2)) < 1 && Math.abs(containerRect.left - cellRect.left - 6) < 1 && Math.abs(cellRect.right - containerRect.right - 6) < 1; }"
                 )
                 captions = doc.locator(".exam-image-caption")
                 if record["examCaption"]:
                     assert captions.count() == 1
-                    assert captions.inner_text() == record["examCaption"]
+                    assert captions.inner_text() == record["examCaption"].replace("*", "")
+                    assert "*" not in captions.inner_text()
                     assert captions.evaluate(
                         "node => getComputedStyle(node).textAlign === 'center' && getComputedStyle(node).fontSize === '16px'"
                     )
@@ -290,25 +304,36 @@ def verify_exam(page, document_captions):
         )
         assert all(text.strip().endswith(".") for text in themes.locator("p").all_text_contents())
     assert len(set(document_ids)) == 4
-    button = page.get_by_role("button", name="Generar otro simulacro")
+    button = page.locator("#exam-generate")
+    bottom_button = page.locator("#exam-generate-bottom")
     assert button.is_enabled()
+    assert bottom_button.is_visible() and bottom_button.is_enabled()
+    assert bottom_button.inner_text() == button.inner_text() == "Generar otro simulacro"
+    assert bottom_button.locator(".exam-generate-icon").is_visible()
     assert page.locator("#exam-generate .exam-generate-icon").is_visible()
     save_top = page.locator("#exam-save-top")
     save_bottom = page.locator("#exam-save-bottom")
     assert save_top.is_visible() and save_top.is_enabled()
     assert save_bottom.is_visible() and save_bottom.is_enabled()
+    assert save_top.inner_text() == save_bottom.inner_text() == "Guardar como PDF"
+    assert save_top.locator(".exam-save-icon").is_visible() and save_bottom.locator(".exam-save-icon").is_visible()
+    assert save_top.evaluate("node => getComputedStyle(node).backgroundColor") == "rgb(75, 46, 131)"
+    assert save_bottom.evaluate("node => getComputedStyle(node).backgroundColor") == "rgb(75, 46, 131)"
     assert save_top.evaluate(
         "node => node.parentElement.classList.contains('exam-generator-action-row') && node.previousElementSibling.id === 'exam-generate'"
     )
     generate_box = button.bounding_box()
     save_top_box = save_top.bounding_box()
-    action_row_box = page.locator(".exam-generator-action-row").bounding_box()
     assert abs(generate_box["y"] - save_top_box["y"]) < 1
     assert save_top_box["x"] > generate_box["x"] + generate_box["width"]
-    assert abs(action_row_box["x"] + action_row_box["width"] - save_top_box["x"] - save_top_box["width"]) < 1
+    assert 0 < save_top_box["x"] - generate_box["x"] - generate_box["width"] <= 12
     assert save_bottom.evaluate(
-        "node => node.parentElement.id === 'exam-save-footer' && node.parentElement.previousElementSibling.id === 'exam-preview'"
+        "node => node.previousElementSibling.id === 'exam-generate-bottom' && node.parentElement.id === 'exam-save-footer' && node.parentElement.previousElementSibling.id === 'exam-preview'"
     )
+    bottom_generate_box = bottom_button.bounding_box()
+    bottom_save_box = save_bottom.bounding_box()
+    assert abs(bottom_generate_box["y"] - bottom_save_box["y"]) < 1
+    assert 0 < bottom_save_box["x"] - bottom_generate_box["x"] - bottom_generate_box["width"] <= 12
     paper_box = paper.bounding_box()
     save_bottom_box = save_bottom.bounding_box()
     assert save_bottom_box["y"] > paper_box["y"] + paper_box["height"]
@@ -323,14 +348,36 @@ def exam_snapshot(page):
     })""")
 
 
+def verify_text_image_alignment(page):
+    assert page.locator(".exam-route").first.evaluate("""route => {
+      const paragraph = route.querySelector('.exam-source-text p');
+      const image = route.querySelector('.exam-image-container');
+      const marker = document.createElement('span');
+      marker.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+      paragraph.prepend(marker);
+      const baseline = marker.getBoundingClientRect().top;
+      marker.remove();
+      const style = getComputedStyle(paragraph);
+      const canvas = document.createElement('canvas').getContext('2d');
+      canvas.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const ascent = canvas.measureText(paragraph.textContent.slice(0, 12)).actualBoundingBoxAscent;
+      return Math.abs(image.getBoundingClientRect().top - (baseline - ascent)) < 2;
+    }""")
+
+
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch()
-    page = browser.new_page(viewport={"width": 1365, "height": 900}, service_workers="block")
+    page = browser.new_page(viewport={"width": 1365, "height": 900}, service_workers="block", reduced_motion="reduce")
     errors = []
     page.on("pageerror", lambda error: errors.append(str(error)))
     page.goto(URL, wait_until="domcontentloaded")
     page.get_by_role("button", name="Preparar simulacro").wait_for(state="visible")
     page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    generator = page.locator("#generador-examen")
+    assert "rgb(232, 242, 208)" in generator.evaluate("node => getComputedStyle(node).backgroundImage")
+    page.evaluate("document.documentElement.dataset.theme = 'dark'")
+    assert "rgb(40, 50, 34)" in generator.evaluate("node => getComputedStyle(node).backgroundImage")
+    page.evaluate("delete document.documentElement.dataset.theme")
     assert page.locator("#exam-save-top").is_hidden()
     assert page.locator("#exam-save-footer").is_hidden()
     warning = page.locator(".exam-generator .alert-warn p").inner_text()
@@ -353,6 +400,12 @@ with sync_playwright() as playwright:
     assert page.locator(".saved-nav-stack a").all_text_contents() == ["Mis preguntas cortas", "Mis documentos"]
     page.locator("#exam-generate").click()
     verify_exam(page, document_captions)
+    page.evaluate("document.documentElement.dataset.theme = 'dark'")
+    assert page.locator(".exam-paper").evaluate("""node =>
+      [node, ...node.querySelectorAll('.exam-masthead, .exam-common, .exam-part-table')]
+        .every(element => getComputedStyle(element).backgroundColor === 'rgb(255, 255, 255)')
+    """)
+    page.evaluate("delete document.documentElement.dataset.theme")
     desktop_overline_lines = page.locator(".exam-paper-overline").evaluate(
         "node => { const range = document.createRange(); range.selectNodeContents(node); return range.getClientRects().length; }"
     )
@@ -364,19 +417,21 @@ with sync_playwright() as playwright:
     verify_exam(page, document_captions)
     assert exam_snapshot(page) == original_exam
 
-    page.get_by_role("button", name="Generar otro simulacro").click()
+    page.locator("#exam-generate-bottom").click()
     dialog = page.locator("#exam-confirm-dialog")
     dialog.wait_for(state="visible")
     dialog.get_by_role("button", name="Cancelar").click()
     dialog.wait_for(state="hidden")
     assert exam_snapshot(page) == original_exam
 
-    for _ in range(5):
-        page.get_by_role("button", name="Generar otro simulacro").click()
+    for index in range(5):
+        page.locator("#exam-generate-bottom" if index == 0 else "#exam-generate").click()
         dialog.wait_for(state="visible")
         dialog.get_by_role("button", name="Sí, generar otro").click()
         dialog.wait_for(state="hidden")
         verify_exam(page, document_captions)
+        if index == 0:
+            assert exam_snapshot(page) != original_exam
     assert not errors, errors
 
     saved_exam = page.evaluate("() => JSON.parse(localStorage.getItem('pau-he-generated-exam-v1'))")
@@ -390,7 +445,27 @@ with sync_playwright() as playwright:
     verify_exam(page, document_captions)
     assert page.locator('[data-document-id="general-valeriano-weyler"] .exam-image-crop').count() == 1
 
-    mobile = browser.new_page(viewport={"width": 390, "height": 844}, service_workers="block")
+    saved_exam["routes"][0]["documentIds"] = ["goya-tres-de-mayo", "portada-constitucion-1812"]
+    page.evaluate(
+        "saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))",
+        saved_exam,
+    )
+    page.reload(wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    verify_exam(page, document_captions)
+    assert page.locator('[data-document-id="portada-constitucion-1812"] .exam-source-image').count() == 1
+
+    saved_exam["routes"][0]["documentIds"] = ["bando-de-murat-tras-el-levantamiento-del-2-de-mayo", "goya-tres-de-mayo"]
+    page.evaluate(
+        "saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))",
+        saved_exam,
+    )
+    page.reload(wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    verify_exam(page, document_captions)
+    verify_text_image_alignment(page)
+
+    mobile = browser.new_page(viewport={"width": 390, "height": 844}, service_workers="block", reduced_motion="reduce")
     mobile.goto(URL, wait_until="domcontentloaded")
     mobile.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
     mobile.locator("#exam-generate").click()
@@ -400,16 +475,47 @@ with sync_playwright() as playwright:
     )
     assert mobile_overline_lines > desktop_overline_lines
     assert mobile.evaluate("document.documentElement.scrollWidth <= document.documentElement.clientWidth")
+    mobile.evaluate(
+        "saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))",
+        saved_exam,
+    )
+    mobile.reload(wait_until="domcontentloaded")
+    mobile.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    verify_exam(mobile, document_captions)
+    verify_text_image_alignment(mobile)
+    saved_exam["routes"][1]["documentIds"] = ["maximo-febrero-1976", "franco-hitler-hendaya-1940"]
+    page.evaluate(
+        "saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))",
+        saved_exam,
+    )
+    page.reload(wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    verify_exam(page, document_captions)
+    assert page.locator('[data-document-id="maximo-febrero-1976"] .exam-image-caption').inner_text() == (
+        "Chiste de Máximo aparecido en El País, febrero de 1976"
+    )
     page.evaluate("() => { window.__printCalls = 0; window.print = () => { window.__printCalls += 1; }; }")
     page.locator("#exam-save-top").click()
     page.locator("#exam-save-bottom").click()
     assert page.evaluate("window.__printCalls === 2")
+    page.locator(".exam-paper").evaluate(
+        "node => { window.__examScreenFonts = [...node.querySelectorAll('*')].map(child => getComputedStyle(child).fontSize); }"
+    )
     page.emulate_media(media="print")
     assert page.locator(".exam-paper").evaluate(
         "node => getComputedStyle(node).boxShadow === 'none' && getComputedStyle(node).maxWidth === 'none'"
     )
+    assert page.locator(".exam-paper").evaluate("""node =>
+      [...node.querySelectorAll('*')].every((child, index) => {
+        const screenSize = parseFloat(window.__examScreenFonts[index]);
+        const expected = screenSize === 10 ? 12 : screenSize * 0.75;
+        return Math.abs(parseFloat(getComputedStyle(child).fontSize) - expected) < 0.01;
+      })
+    """)
     assert page.locator("#exam-save-footer").evaluate("node => getComputedStyle(node).display === 'none'")
     assert page.locator(".site-header").evaluate("node => getComputedStyle(node).display === 'none'")
+    assert generator.evaluate("node => getComputedStyle(node).backgroundImage === 'none'")
+    assert page.pdf(prefer_css_page_size=True).startswith(b"%PDF-")
     page.emulate_media(media="screen")
     browser.close()
 
