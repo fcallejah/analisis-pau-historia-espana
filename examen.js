@@ -10,6 +10,7 @@
   const headerTemplate = document.getElementById("exam-paper-header-template");
   const confirmDialog = document.getElementById("exam-confirm-dialog");
   const storageKey = "pau-he-generated-exam-v1";
+  const mobileDocuments = window.matchMedia("(max-width: 620px)");
   const normalize = (text) => text.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     .toLocaleLowerCase("es").replace(/[^\p{L}\p{N}]+/gu, "");
   const shuffle = (items) => {
@@ -30,6 +31,15 @@
   let records;
   let questions;
   let activeExam = null;
+
+  function centerDocumentRows() {
+    if (!mobileDocuments.matches) return;
+    preview.querySelectorAll(".exam-document-row").forEach((row) => {
+      row.scrollLeft = (row.scrollWidth - row.clientWidth) / 2;
+    });
+  }
+
+  mobileDocuments.addEventListener("change", centerDocumentRows);
 
   function setButtonState(label, canRegenerate, disabled) {
     generateButtons.forEach((generateButton) => {
@@ -139,6 +149,46 @@
       typeof text === "string" && text.trim() ? [{ text, index }] : []);
   }
 
+  function examImageAspect(image) {
+    const crop = image.crop;
+    return image.width / image.height * (crop
+      ? crop.width / crop.imageWidth * crop.imageHeight / crop.height
+      : 1);
+  }
+
+  function appendExamImage(parent, imageData, title, caption) {
+    const image = make("img", "exam-source-image");
+    image.src = imageData.src;
+    image.alt = imageData.alt || title;
+    image.loading = "eager";
+    image.width = imageData.width;
+    image.height = imageData.height;
+    if (imageData.filter) image.style.filter = imageData.filter;
+    const imageContainer = make("div", "exam-image-container");
+    let cropFrame = null;
+    const crop = imageData.crop;
+    if (crop) {
+      const cropAspect = examImageAspect(imageData);
+      cropFrame = make("span", "exam-image-crop");
+      cropFrame.style.setProperty("--exam-image-crop-aspect", cropAspect);
+      cropFrame.style.setProperty("--exam-image-crop-max-width", `${480 * cropAspect}px`);
+      cropFrame.style.setProperty("--exam-image-crop-mobile-max-width", `${360 * cropAspect}px`);
+      image.style.setProperty("--exam-crop-image-width", `${100 * crop.imageWidth / crop.width}%`);
+      image.style.setProperty("--exam-crop-image-height", `${100 * crop.imageHeight / crop.height}%`);
+      image.style.setProperty("--exam-crop-image-left", `${100 * crop.left / crop.width}%`);
+      image.style.setProperty("--exam-crop-image-top", `${100 * crop.top / crop.height}%`);
+      cropFrame.append(image);
+    }
+    image.addEventListener("error", () => {
+      image.hidden = true;
+      imageContainer.hidden = true;
+      parent.append(make("p", "exam-image-error", "No se pudo cargar esta imagen del banco de documentos."));
+    }, { once: true });
+    imageContainer.append(cropFrame || image);
+    parent.append(imageContainer);
+    if (caption) parent.append(make("p", "exam-image-caption", caption.replace(/\*/g, "")));
+  }
+
   function makeDocumentCard(record, group, index) {
     const card = make("article", record.type === "texto" ? "exam-document exam-document-text" : "exam-document");
     card.dataset.documentId = record.id;
@@ -147,6 +197,7 @@
     card.append(heading);
     if (record.type === "texto") {
       const text = make("div", "exam-source-text");
+      if (record.textLayout === "verse-pair") text.classList.add("exam-verse-pair");
       const attributionStart = record.text.length - (record.attributionParagraphs || 0);
       examSourceParagraphs(record).forEach(({ text: paragraph, index: paragraphIndex }) => {
         const attribution = paragraphIndex >= attributionStart;
@@ -160,39 +211,21 @@
       });
       card.append(text);
     } else {
-      const image = make("img", "exam-source-image");
-      const imageData = record.image;
-      image.src = imageData.src;
-      image.alt = imageData.alt || record.title;
-      image.loading = "eager";
-      image.width = imageData.width;
-      image.height = imageData.height;
-      if (imageData.filter) image.style.filter = imageData.filter;
-      const imageContainer = make("div", "exam-image-container");
-      let cropFrame = null;
-      const crop = imageData.crop;
-      if (crop) {
-        const cropAspect = imageData.width / imageData.height
-          * crop.width / crop.imageWidth * crop.imageHeight / crop.height;
-        cropFrame = make("span", "exam-image-crop");
-        cropFrame.style.setProperty("--exam-image-crop-aspect", cropAspect);
-        cropFrame.style.setProperty("--exam-image-crop-max-width", `${480 * cropAspect}px`);
-        cropFrame.style.setProperty("--exam-image-crop-mobile-max-width", `${360 * cropAspect}px`);
-        image.style.setProperty("--exam-crop-image-width", `${100 * crop.imageWidth / crop.width}%`);
-        image.style.setProperty("--exam-crop-image-height", `${100 * crop.imageHeight / crop.height}%`);
-        image.style.setProperty("--exam-crop-image-left", `${100 * crop.left / crop.width}%`);
-        image.style.setProperty("--exam-crop-image-top", `${100 * crop.top / crop.height}%`);
-        cropFrame.append(image);
+      const images = [record.image, ...(record.image.additionalImages || [])];
+      if (record.imageLayout === "pair") {
+        const pair = make("div", "exam-image-pair");
+        images.forEach((image) => {
+          const item = make("div", "exam-image-item");
+          appendExamImage(item, image, record.title, image.examCaption?.text);
+          pair.append(item);
+        });
+        card.append(pair);
+        if (!images.some((image) => image.examCaption?.text) && record.examCaption?.text) {
+          card.append(make("p", "exam-image-caption", record.examCaption.text.replace(/\*/g, "")));
+        }
+      } else {
+        appendExamImage(card, record.image, record.title, record.image.examCaption?.text || record.examCaption?.text);
       }
-      image.addEventListener("error", () => {
-        image.hidden = true;
-        imageContainer.hidden = true;
-        card.append(make("p", "exam-image-error", "No se pudo cargar esta imagen del banco de documentos."));
-      }, { once: true });
-      imageContainer.append(cropFrame || image);
-      card.append(imageContainer);
-      const caption = record.image.examCaption?.text || record.examCaption?.text;
-      if (caption) card.append(make("p", "exam-image-caption", caption.replace(/\*/g, "")));
     }
     return card;
   }
@@ -271,6 +304,17 @@
     section.append(make("h3", "exam-route-title", `ITINERARIO ${route}`));
     const documentColumns = routeDocuments.map((record, index) =>
       makeDocumentCard(record, documentGroup, index));
+    if (routeDocuments.every((record) => record.type === "imagen" && record.imageLayout !== "pair")) {
+      documentColumns.forEach((card, index) => {
+        const image = routeDocuments[index].image;
+        const other = routeDocuments[1 - index].image;
+        card.classList.add("exam-print-matched-image");
+        card.style.setProperty("--exam-own-height-ratio", 1 / examImageAspect(image));
+        card.style.setProperty("--exam-peer-height-ratio", 1 / examImageAspect(other));
+        card.style.setProperty("--exam-own-natural-height", `${image.crop ? 99999 : image.height}px`);
+        card.style.setProperty("--exam-peer-natural-height", `${other.crop ? 99999 : other.height}px`);
+      });
+    }
     const documentCriteria = make("p", "exam-document-final-instruction");
     documentCriteria.append(
       "a) Analice el hecho histórico a que hace referencia el documento elegido.",
@@ -292,6 +336,9 @@
     const routeTable = make("table", "exam-part-table exam-document-part exam-theme-part");
     const routeBody = make("tbody");
     const documentRows = [...documentTable.querySelectorAll("tbody > tr")];
+    documentRows[1].classList.add("exam-document-row");
+    documentRows[1].tabIndex = 0;
+    documentRows[1].setAttribute("aria-label", "Documentos: desplaza horizontalmente para ver ambos");
     documentRows.at(-1).classList.add("exam-document-criteria-row");
     const themeRows = [...themeTable.querySelectorAll("tbody > tr")];
     themeRows[0].classList.add("exam-theme-heading-row");
@@ -448,6 +495,7 @@
     exam.routes.forEach(({ route, documents: routeDocuments, documentGroup, themes }) =>
       paper.append(makeRoute(route, routeDocuments, documentGroup, themes)));
     preview.replaceChildren(paper);
+    centerDocumentRows();
   }
 
   function generate() {

@@ -1,4 +1,6 @@
 .site-header{--header-button:32px;display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;grid-template-areas:"brand tools toggle contact";align-items:center;column-gap:6px;min-height:74px;padding:12px 7.2%;border-bottom:0;background:transparent}
+.site-header-with-exam{grid-template-columns:minmax(0,1fr) auto auto auto auto;grid-template-areas:"brand exam tools toggle contact"}
+.site-header-with-exam .exam-generator-nav{grid-area:exam}
 .site-header .brand{grid-area:brand;display:inline-flex;align-items:center;gap:9px;min-width:0;color:var(--ink);font-size:13px;font-weight:700;line-height:1.35;text-decoration:none}
 .site-header .brand-icon{flex:none;width:28px;height:28px;display:grid;place-items:center;background:#4b2e83;color:#fff;font:italic 18px Georgia,serif}
 .site-header .brand-text{min-width:0;overflow-wrap:anywhere}
@@ -6,8 +8,10 @@
 .site-header .header-tools{grid-area:tools;display:flex;flex-wrap:nowrap;align-items:center;gap:6px;width:auto;min-width:0;margin:0}
 .site-header .saved-nav-stack{display:grid;gap:2px;flex:none}
 .site-header .saved-nav-stack .saved-nav{text-align:center;padding-top:3px;padding-bottom:3px}
-.site-header .saved-nav{flex:none;font:600 12px/1.3 Arial,sans-serif;color:#26320c;background:#d6ee7a;text-decoration:none;padding:7px 9px;border:1px solid #789326;border-radius:8px;white-space:nowrap}
-.site-header .saved-nav:hover{background:#c6e45e}
+.site-header .saved-nav{flex:none;font:600 12px/1.3 Arial,sans-serif;color:#373a35;background:#f9f8f4;text-decoration:none;padding:7px 9px;border:1px solid #c8c9c1;border-radius:8px;white-space:nowrap}
+.site-header .saved-nav:hover{background:#eaeae4}
+:root[data-theme=dark] .site-header .saved-nav{color:#e6e7e1;background:#292d2f;border-color:#626764}
+:root[data-theme=dark] .site-header .saved-nav:hover{background:#383d3e}
 .site-header .header-tool,.site-header .theme-toggle,.site-header .contact-tool{box-sizing:border-box;display:grid;place-items:center;width:var(--header-button);height:var(--header-button);min-width:var(--header-button);padding:0;margin:0;border:1px solid var(--line);border-radius:10px;text-decoration:none}
 .site-header .header-tool{position:relative;overflow:hidden;isolation:isolate;background:#d9ad39;color:#292719;transition:background-color .15s ease,transform .15s ease}
 .site-header .header-tool span,.site-header .contact-label{display:none}
@@ -48,13 +52,23 @@
 }
 @media(max-width:620px){
   .site-header{min-height:63px;padding-top:10px;padding-bottom:10px}
+  .site-header-with-exam{grid-template-columns:minmax(0,1fr) auto auto auto;grid-template-areas:"brand tools toggle contact" "brand exam exam exam";row-gap:6px}
+  .site-header-with-exam .exam-generator-nav{text-align:center}
+  .site-header-with-exam .header-tools .header-tool{width:30px;height:30px;min-width:30px}
   .site-header .brand{gap:6px;font-size:11px}
   .site-header .brand-icon{width:24px;height:24px;font-size:16px}
   .site-header .header-tools{gap:5px}
   .site-header .saved-nav{padding:5px 6px;font-size:10px}
   .site-header .header-tool,.site-header .theme-toggle,.site-header .contact-tool{width:30px;height:30px;min-width:30px}
   .site-header .header-tool .dle-logo,.site-header .header-tool .x-logo{width:18px;height:18px}
+  .site-header .header-tool .x-logo{width:16px;height:16px}
   .site-header .header-tool.contact-tool .contact-symbol{width:18px;height:18px}
+}
+@media(max-width:430px){
+  .site-header-with-exam{grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"brand tools toggle" "brand tools contact" "brand exam exam";row-gap:5px}
+  .site-header-with-exam .header-tools{display:grid;grid-template-columns:auto 30px;grid-template-rows:30px 30px;gap:5px}
+  .site-header-with-exam .saved-nav-stack{grid-row:1 / 3;grid-template-rows:30px 30px;gap:5px}
+  .site-header-with-exam .saved-nav-stack .saved-nav{display:flex;align-items:center;justify-content:center}
 }
 @media(max-width:360px){
   .site-header{column-gap:4px}

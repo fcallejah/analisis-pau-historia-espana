@@ -1476,7 +1476,7 @@ def check_orientation_link_arrows(browser, options):
       Object.defineProperty(end, 'changedTouches', {value: [{clientX: 100, clientY: 105}]});
       node.dispatchEvent(end);
     }""")
-    assert dialog.locator("h3").inner_text() == "Curso 2019–20"
+    assert dialog.locator("h3").inner_text() == "Curso 2017–18"
     dialog.evaluate("""node => {
       const start = new Event('touchstart', {bubbles: true});
       Object.defineProperty(start, 'touches', {value: [{clientX: 100, clientY: 100}]});
@@ -1489,8 +1489,10 @@ def check_orientation_link_arrows(browser, options):
     page.mouse.click(1, 1)
     assert not dialog.is_visible()
     for year, expected in (
-        (2021, ["Titular ordinaria", "Titular extraordinaria", "Reserva ordinaria"]),
-        (2013, ["Titular ordinaria", "Titular extraordinaria", "Reserva A ordinaria", "Reserva B ordinaria"]),
+        (2026, ["Titular ordinaria", "Titular extraordinaria", "Suplente ordinaria", "Suplente extraordinaria"]),
+        (2021, ["Titular ordinaria", "Titular extraordinaria", "Reserva ordinaria", "Reserva extraordinaria", "Suplente ordinaria", "Suplente extraordinaria"]),
+        (2013, ["Titular ordinaria", "Titular extraordinaria", "Reserva A ordinaria", "Reserva B ordinaria", "Reserva A extraordinaria", "Reserva B extraordinaria"]),
+        (2011, ["Ordinaria examen 1", "Ordinaria examen 2", "Ordinaria examen 3", "Extraordinaria examen 1", "Extraordinaria examen 2", "Extraordinaria examen 3"]),
         (2004, ["Examen 1", "Examen 2", "Examen 3", "Examen 4", "Examen 5", "Examen 6"]),
     ):
         page.get_by_role("button", name=f"Abrir histórico de {year}").click()
@@ -1521,6 +1523,8 @@ def check_orientation_link_arrows(browser, options):
         assert not dialog.get_by_text("Modelo de examen", exact=True).count()
         if year in (2001, 2006):
             assert all("reconstruido" in label for label in exam_links.all_text_contents())
+        if year == 2006:
+            assert dialog.get_by_text("Reconstrucciones para lectura, no oficiales y pendientes de cotejo con los originales.").is_visible()
         if year == 2001:
             assert exam_links.first.get_attribute("href") == "assets/documentos/2000-2001-examen-1.pdf"
             assert dialog.locator(".archive-right").inner_text() == "1999–2000 →"

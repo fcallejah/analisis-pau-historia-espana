@@ -8377,6 +8377,7 @@
     },
     {
       "id": "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936",
+      "imageLayout": "pair",
       "title": "Dos fotografías de la Guerra Civil: entrega de fusiles y mandos sublevados en Burgos",
       "type": "imagen",
       "blocks": [
@@ -11232,6 +11233,7 @@
     },
     {
       "id": "espartero-narvaez-retratos-2016",
+      "imageLayout": "pair",
       "title": "Espartero y Narváez: dos generales del liberalismo",
       "type": "imagen",
       "blocks": [
@@ -11314,6 +11316,7 @@
     },
     {
       "id": "carteles-guerra-civil-2016",
+      "imageLayout": "pair",
       "title": "Dos carteles de propaganda de la Guerra Civil",
       "type": "imagen",
       "blocks": [

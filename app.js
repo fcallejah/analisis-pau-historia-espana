@@ -572,14 +572,16 @@ if (toTop) {
 const phaseNav = document.querySelector(".phase-nav");
 if (phaseNav) {
   const phases = [
-    { id: "apuntes", number: 0, name: "Apuntes completos" },
-    { id: "bloques-cuestiones", number: 1, name: "Preguntas cortas" },
-    { id: "generador", number: 3, name: "Generador preguntas cortas" },
-    { id: "fuentes", number: 4, name: "Formato examen" },
+    { id: "apuntes", name: "Apuntes completos" },
+    { id: "bloques-cuestiones", name: "Preguntas cortas" },
+    { id: "generador", name: "Generador" },
+    { id: "generador-examen", name: "Simulacro de exámenes" },
+    { id: "fuentes", name: "Formato de examen" },
+    { id: "datos-adicionales", name: "Datos adicionales (fuentes y recursos oficiales)" },
+    { id: "archivo-orientaciones", name: "Almacén de exámenes" },
   ];
   const nextBtn = phaseNav.querySelector(".next-phase");
   const prevBtn = phaseNav.querySelector(".prev-phase");
-  const stepEl = nextBtn.querySelector(".np-step");
   const nameEl = nextBtn.querySelector(".np-name");
   new ResizeObserver(() => {
     document.documentElement.style.setProperty("--phase-nav-width", `${phaseNav.getBoundingClientRect().width}px`);
@@ -589,8 +591,7 @@ if (phaseNav) {
   const anchorOf = (id) => {
     const el = document.getElementById(id);
     if (id === "apuntes") return el.querySelector(".apuntes-title") || el;
-    const sec = el.closest("section") || el;
-    return sec.querySelector(".eyebrow") || el;
+    return el.matches("section") ? el.querySelector(".eyebrow") || el : el;
   };
   const topOf = (id) => anchorOf(id).getBoundingClientRect().top + window.scrollY - MARGIN;
   const go = (i) => {
@@ -606,7 +607,6 @@ if (phaseNav) {
     phases.forEach((p, i) => { const t = topOf(p.id); if (t <= y + 1 && t > best) { best = t; current = i; } });
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) current = phases.length - 1;
     const next = (current + 1) % phases.length;
-    stepEl.textContent = `Fase ${phases[next].number}`;
     nameEl.textContent = phases[next].name;
     prevBtn.disabled = current <= 0;
   };

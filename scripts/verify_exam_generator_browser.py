@@ -1,5 +1,8 @@
 """Verify the complete-exam generator against the local PAU banks."""
+from io import BytesIO
+
 from playwright.sync_api import sync_playwright
+from pypdf import PdfReader
 
 
 URL = "http://localhost:8765/index.html"
@@ -213,7 +216,7 @@ def verify_exam(page, document_captions):
         document_ids.extend(docs.evaluate_all("nodes => nodes.map(node => node.dataset.documentId)"))
         for doc in docs.all():
             assert doc.evaluate(
-                "node => { const children = [...node.children]; return children[0]?.matches('h4') && ['.exam-source-text', '.exam-image-container'].some(selector => children[1]?.matches(selector)) && getComputedStyle(children[0]).textAlign === 'left' && getComputedStyle(node.closest('td')).verticalAlign === 'top'; }"
+                "node => { const children = [...node.children]; return children[0]?.matches('h4') && ['.exam-source-text', '.exam-image-container', '.exam-image-pair'].some(selector => children[1]?.matches(selector)) && getComputedStyle(children[0]).textAlign === 'left' && getComputedStyle(node.closest('td')).verticalAlign === 'top'; }"
             )
             record = document_captions[doc.get_attribute("data-document-id")]
             if doc.locator(".exam-source-text").count():
@@ -232,7 +235,7 @@ def verify_exam(page, document_captions):
                     "node => { const style = getComputedStyle(node); return style.fontSize === '16px' && style.margin === '0px' && style.padding === '0px' && style.borderWidth === '0px' && style.backgroundColor === 'rgba(0, 0, 0, 0)'; }"
                 )
                 assert doc.locator(".exam-text-body").evaluate_all(
-                    "nodes => nodes.every(node => getComputedStyle(node).textAlign === 'justify' && getComputedStyle(node).fontSize === '16px')"
+                    "nodes => nodes.every(node => getComputedStyle(node).textAlign === (node.parentElement.classList.contains('exam-verse-pair') ? 'center' : 'justify') && getComputedStyle(node).fontSize === '16px')"
                 )
                 assert doc.locator(".exam-text-attribution").evaluate_all(
                     "nodes => nodes.every(node => getComputedStyle(node).textAlign === 'right')"
@@ -241,6 +244,12 @@ def verify_exam(page, document_captions):
                     "nodes => nodes.every(node => ['left', 'center'].includes(getComputedStyle(node).textAlign))"
                 )
             else:
+                if record["imageLayout"] == "pair":
+                    assert doc.locator(".exam-image-pair .exam-source-image").count() == len(record["images"])
+                    assert doc.locator(".exam-image-pair .exam-source-image").evaluate_all(
+                        "nodes => nodes.every(node => node.complete && node.naturalWidth > 0)"
+                    )
+                    continue
                 image = doc.locator(".exam-source-image")
                 assert image.count() == 1
                 assert image.evaluate("node => node.complete && node.naturalWidth > 0")
@@ -365,6 +374,298 @@ def verify_text_image_alignment(page):
     }""")
 
 
+def verify_print_image_sizing(browser, pdf=False):
+    page = browser.new_page(viewport={"width": 1365, "height": 900}, service_workers="block")
+    page.goto(URL, wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    page.locator("#exam-generate").click()
+    saved = page.evaluate("() => JSON.parse(localStorage.getItem('pau-he-generated-exam-v1'))")
+    saved["questions"] = page.evaluate("""() => [1, 2, 3, 4].map(block => ({
+      block,
+      prompt: window.pauPracticeBank.filter(entry => entry[2] === block && entry[0].trim())
+        .map(entry => entry[0]).sort((a, b) => a.length - b.length)[0]
+    }))""")
+    saved["routes"][0]["documentIds"] = ["caricatura-se-colocan-reyes-1869", "fernando-vii-vicente-lopez"]
+    saved["routes"][1]["documentIds"] = ["maximo-febrero-1976", "constitucion-1931-articulos-suplente-a"]
+
+    def restore():
+        page.evaluate("saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))", saved)
+        page.reload(wait_until="domcontentloaded")
+        page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+        page.evaluate("""async () => {
+          await document.fonts.ready;
+          await Promise.all([...document.querySelectorAll('.exam-paper img')].map(image => image.decode()));
+        }""")
+
+    def image_sizes():
+        return page.locator(".exam-route").first.locator(".exam-document").evaluate_all("""cards =>
+          cards.map(card => {
+            const rect = card.querySelector('.exam-image-crop, .exam-source-image').getBoundingClientRect();
+            return [rect.width, rect.height];
+          })
+        """)
+
+    restore()
+    assert page.locator(".exam-route").nth(1).locator(".exam-print-matched-image").count() == 0
+    screen_sizes = image_sizes()
+    assert screen_sizes[1][1] > screen_sizes[0][1] * 1.5
+    page.emulate_media(media="print")
+    matched = image_sizes()
+    assert abs(matched[0][1] - matched[1][1]) < 1
+    assert abs(matched[1][0] / matched[1][1] - 1415 / 1920) < .01
+    if pdf:
+        reader = PdfReader(BytesIO(page.pdf(prefer_css_page_size=True)))
+        pages = [p for p in reader.pages if "Subasta de reyes" in p.extract_text()
+                 and "Fernando VII, «el Deseado»" in p.extract_text()]
+        assert len(pages) == 1
+        image_calls = []
+        pages[0].extract_text(visitor_operand_before=lambda op, args, cm, tm: image_calls.append(args[0]) if op == b"Do" else None)
+        assert len(image_calls) >= 2
+    page.emulate_media(media="screen")
+    assert image_sizes() == screen_sizes
+    page.set_viewport_size({"width": 390, "height": 844})
+    mobile_sizes = image_sizes()
+    page.locator(".exam-route").first.locator(".exam-document-row").evaluate("node => node.scrollLeft = node.scrollWidth")
+    page.emulate_media(media="print")
+    mobile_print = image_sizes()
+    assert abs(mobile_print[0][1] - mobile_print[1][1]) < 1
+    page.emulate_media(media="screen")
+    assert image_sizes() == mobile_sizes
+    page.set_viewport_size({"width": 1365, "height": 900})
+
+    saved["routes"][0]["documentIds"] = ["duelo-a-garrotazos-goya", "portada-constitucion-1812"]
+    page.set_viewport_size({"width": 794, "height": 900})
+    restore()
+    page.emulate_media(media="print")
+    cards = page.locator(".exam-route").first.locator(".exam-document")
+    matched = image_sizes()
+    cards.evaluate_all("nodes => nodes.forEach(node => node.classList.remove('exam-print-matched-image'))")
+    original = image_sizes()
+    assert matched[1][1] >= 120 - 1 and matched[1][1] >= original[1][1] * .45 - 1
+    assert abs(matched[1][1] - original[1][1] * .45) < 1
+    assert matched[1][1] < original[1][1] and matched[0][1] <= original[0][1] + 1
+    page.emulate_media(media="screen")
+
+    saved["routes"][0]["documentIds"] = ["mural-constitucion-1812-cadiz", "portada-constitucion-1812"]
+    restore()
+    page.emulate_media(media="print")
+    sizes = image_sizes()
+    assert abs(sizes[0][1] - sizes[1][1]) < 2 or sizes[1][1] >= 120 - 1
+    assert page.locator('[data-document-id="mural-constitucion-1812-cadiz"] .exam-image-crop').count() == 1
+    page.close()
+
+
+def verify_paired_sources(browser, pdf=False):
+    page = browser.new_page(viewport={"width": 1365, "height": 900}, service_workers="block")
+    page.goto(URL, wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    page.locator("#exam-generate").click()
+    saved = page.evaluate("() => JSON.parse(localStorage.getItem('pau-he-generated-exam-v1'))")
+    saved["routes"][0]["documentIds"] = ["espartero-narvaez-retratos-2016", "goya-tres-de-mayo"]
+    saved["routes"][1]["documentIds"] = ["canciones-guerra-civil", "fotografias-guerra-civil-entrega-fusiles-y-burgos-1936"]
+
+    def restore():
+        page.evaluate("saved => localStorage.setItem('pau-he-generated-exam-v1', JSON.stringify(saved))", saved)
+        page.reload(wait_until="domcontentloaded")
+        page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+        page.evaluate("""async () => {
+          await document.fonts.ready;
+          await Promise.all([...document.querySelectorAll('.exam-paper img')].map(image => image.decode()));
+        }""")
+
+    def check_pair(document_id):
+        pair = page.locator(f'[data-document-id="{document_id}"] .exam-image-pair')
+        assert pair.locator(".exam-image-item").count() == 2
+        assert pair.locator("img").evaluate_all("images => images.every(image => image.complete && image.naturalWidth > 0)")
+        assert pair.locator(".exam-image-item").evaluate_all("""items => {
+          const a = items[0].getBoundingClientRect(), b = items[1].getBoundingClientRect();
+          return Math.abs(a.top - b.top) < 1 && a.right <= b.left + 1;
+        }""")
+        return pair
+
+    restore()
+    songs = page.locator('[data-document-id="canciones-guerra-civil"] .exam-verse-pair')
+    assert songs.locator("p").count() == 2
+    assert songs.locator("p").evaluate_all("""nodes => {
+      const a = nodes[0].getBoundingClientRect(), b = nodes[1].getBoundingClientRect();
+      return Math.abs(a.top - b.top) < 1 && a.right <= b.left;
+    }""")
+    check_pair("espartero-narvaez-retratos-2016")
+    photos = check_pair("fotografias-guerra-civil-entrega-fusiles-y-burgos-1936")
+    assert photos.locator(".exam-image-caption").count() == 2
+    assert page.locator('[data-document-id="goya-tres-de-mayo"] .exam-source-image').count() == 1
+
+    page.set_viewport_size({"width": 390, "height": 844})
+    assert songs.locator("p").evaluate_all("""nodes => {
+      const a = nodes[0].getBoundingClientRect(), b = nodes[1].getBoundingClientRect();
+      return b.top - a.bottom >= 24 && Math.abs(a.left - b.left) < 1;
+    }""")
+    check_pair("espartero-narvaez-retratos-2016")
+    check_pair("fotografias-guerra-civil-entrega-fusiles-y-burgos-1936")
+    page.locator(".exam-document-row").evaluate_all("rows => rows.forEach(row => row.scrollLeft = row.scrollWidth)")
+    page.emulate_media(media="print")
+    assert songs.locator("p").evaluate_all("""nodes => {
+      const a = nodes[0].getBoundingClientRect(), b = nodes[1].getBoundingClientRect();
+      return Math.abs(a.top - b.top) < 1 && a.right <= b.left;
+    }""")
+    check_pair("fotografias-guerra-civil-entrega-fusiles-y-burgos-1936")
+    if pdf:
+        assert page.pdf(prefer_css_page_size=True).startswith(b"%PDF-")
+    page.emulate_media(media="screen")
+
+    saved["routes"][1]["documentIds"][0] = "carteles-guerra-civil-2016"
+    restore()
+    check_pair("carteles-guerra-civil-2016")
+    assert page.locator('[data-document-id="carteles-guerra-civil-2016"] > .exam-image-caption').count() == 1
+    page.close()
+
+
+def verify_mobile_document_scroll(browser, touch_protocol=False):
+    page = browser.new_page(viewport={"width": 390, "height": 844}, has_touch=True,
+                            service_workers="block", reduced_motion="reduce")
+    page.goto(URL, wait_until="domcontentloaded")
+    page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    page.locator("#exam-generate").click()
+    rows = page.locator(".exam-document-row")
+    assert rows.count() == 2
+    centered = """nodes => nodes.every(node => {
+      const divider = node.cells[1].getBoundingClientRect().left;
+      const viewport = node.getBoundingClientRect();
+      return Math.abs(divider - (viewport.left + viewport.width / 2)) < 2;
+    })"""
+    assert rows.evaluate_all(centered)
+    for width in (320, 390, 620):
+        page.set_viewport_size({"width": width, "height": 844})
+        page.reload(wait_until="domcontentloaded")
+        page.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+        assert rows.count() == 2 and rows.evaluate_all(centered)
+    page.set_viewport_size({"width": 621, "height": 844})
+    page.set_viewport_size({"width": 390, "height": 844})
+    page.wait_for_function("""() => [...document.querySelectorAll('.exam-document-row')].every(node =>
+      Math.abs(node.cells[1].getBoundingClientRect().left -
+        (node.getBoundingClientRect().left + node.getBoundingClientRect().width / 2)) < 2)
+    """)
+    page.locator("#exam-generate").click()
+    page.locator("#exam-confirm-dialog").get_by_role("button", name="Sí, generar otro").click()
+    assert rows.evaluate_all(centered)
+    page.evaluate("""async () => {
+      await document.fonts.ready;
+      await Promise.all([...document.querySelectorAll('.exam-paper img')].map(image => image.decode()));
+    }""")
+    page.emulate_media(media="print")
+    print_geometry = rows.evaluate_all("""nodes => nodes.map(node =>
+      [...node.cells].map(cell => {
+        const rect = cell.getBoundingClientRect();
+        return [rect.x, rect.y, rect.width, rect.height, cell.innerText];
+      })
+    )""")
+    page.emulate_media(media="screen")
+    for width in (320, 390, 620):
+        page.set_viewport_size({"width": width, "height": 844})
+        for row in rows.all():
+            assert row.evaluate("""node => {
+              const cells = [...node.cells];
+              return getComputedStyle(node).overflowX === 'auto' &&
+                cells.length === 2 && cells.every(cell => cell.clientWidth >= node.clientWidth * 0.84) &&
+                node.scrollWidth > node.clientWidth * 1.6 &&
+                getComputedStyle(cells[0].querySelector('h4')).fontSize === '16px';
+            }""")
+        assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    page.set_viewport_size({"width": 621, "height": 844})
+    assert rows.evaluate_all("nodes => nodes.every(node => getComputedStyle(node).display === 'table-row' && node.scrollWidth === node.clientWidth)")
+    page.set_viewport_size({"width": 390, "height": 844})
+
+    for row in rows.all():
+        row.evaluate("node => window.scrollTo(0, node.getBoundingClientRect().top + scrollY - 120)")
+        page.wait_for_timeout(500)
+        box = row.bounding_box()
+        if touch_protocol:
+            session = page.context.new_cdp_session(page)
+            for direction in (1, -1):
+                row.evaluate("node => node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2")
+                page.wait_for_timeout(200)
+                start = row.evaluate("node => node.scrollLeft")
+                x, y = box["x"] + box["width"] * (0.25 if direction == 1 else 0.75), box["y"] + 50
+                assert row.evaluate("(node, point) => node.contains(document.elementFromPoint(point.x, point.y))", {"x": x, "y": y})
+                session.send("Input.synthesizeScrollGesture", {
+                    "x": x, "y": y, "xDistance": direction * 150, "yDistance": 0,
+                    "speed": 400, "gestureSourceType": "touch",
+                })
+                page.wait_for_timeout(500)
+                end = row.evaluate("node => node.scrollLeft")
+                assert direction * (start - end) > 10, (direction, start, end, box, row.get_attribute("aria-label"))
+            session.detach()
+            row.evaluate("node => node.scrollLeft = (node.scrollWidth - node.clientWidth) / 2")
+            page.wait_for_timeout(200)
+        page.mouse.move(box["x"] + box["width"] / 2, box["y"] + 50)
+        page.mouse.wheel(300, 0)
+        page.wait_for_function("(node) => node.scrollLeft >= node.scrollWidth - node.clientWidth - 1", arg=row.element_handle())
+        assert row.evaluate("""node => {
+          const last = node.cells[1].getBoundingClientRect();
+          const viewport = node.getBoundingClientRect();
+          return last.left >= viewport.left - 1 && last.right <= viewport.right + 1;
+        }""")
+        row.focus()
+        for _ in range(8):
+            page.keyboard.press("ArrowLeft")
+            page.wait_for_timeout(80)
+        page.wait_for_function("(node) => node.scrollLeft <= 1", arg=row.element_handle())
+
+        if touch_protocol:
+            session = page.context.new_cdp_session(page)
+            x, y = box["x"] + box["width"] * 0.8, box["y"] + 50
+            session.send("Input.dispatchTouchEvent", {"type": "touchStart", "touchPoints": [{"x": x, "y": y}]})
+            for distance in (20, 50, 100, 150, 200):
+                session.send("Input.dispatchTouchEvent", {"type": "touchMove", "touchPoints": [{"x": x - distance, "y": y}]})
+                page.wait_for_timeout(30)
+            session.send("Input.dispatchTouchEvent", {"type": "touchEnd", "touchPoints": []})
+            page.wait_for_function("(node) => node.scrollLeft > 10", arg=row.element_handle())
+            session.detach()
+        else:
+            row.evaluate("node => node.scrollLeft = node.scrollWidth")
+
+    if touch_protocol:
+        page.wait_for_timeout(800)
+        row = rows.first
+        row.evaluate("node => window.scrollTo(0, node.getBoundingClientRect().top + scrollY + 10)")
+        box = row.bounding_box()
+        x, y = box["x"] + box["width"] / 2, min(300, box["y"] + box["height"] - 20)
+        assert row.evaluate("(node, point) => node.contains(document.elementFromPoint(point.x, point.y))", {"x": x, "y": y})
+        before = page.evaluate("scrollY")
+        left = row.evaluate("node => node.scrollLeft")
+        session = page.context.new_cdp_session(page)
+        session.send("Input.dispatchTouchEvent", {"type": "touchStart", "touchPoints": [{"x": x, "y": y}]})
+        for distance in (20, 50, 100):
+            session.send("Input.dispatchTouchEvent", {"type": "touchMove", "touchPoints": [{"x": x, "y": y - distance}]})
+            page.wait_for_timeout(30)
+        session.send("Input.dispatchTouchEvent", {"type": "touchEnd", "touchPoints": []})
+        page.wait_for_function("before => scrollY > before + 10", arg=before)
+        assert abs(row.evaluate("node => node.scrollLeft") - left) < 2
+        session.detach()
+
+    page.emulate_media(media="print")
+    assert rows.evaluate_all("""nodes => nodes.map(node =>
+      [...node.cells].map(cell => {
+        const rect = cell.getBoundingClientRect();
+        return [rect.x, rect.y, rect.width, rect.height, cell.innerText];
+      })
+    )""") == print_geometry
+    assert rows.evaluate_all("""nodes => nodes.every(node => {
+      const cells = [...node.cells];
+      const table = node.closest('table');
+      const left = cells[0].getBoundingClientRect(), right = cells[1].getBoundingClientRect();
+      return getComputedStyle(table).display === 'table' &&
+        getComputedStyle(node).display === 'table-row' &&
+        getComputedStyle(node).overflowX === 'visible' &&
+        Math.abs(left.right - right.left) < 1 &&
+        Math.abs(left.width - right.width) < 1 &&
+        Math.abs(left.width + right.width - table.getBoundingClientRect().width) < 2;
+    })""")
+    if touch_protocol:
+        assert page.pdf(prefer_css_page_size=True).startswith(b"%PDF-")
+    page.close()
+
+
 with sync_playwright() as playwright:
     browser = playwright.chromium.launch()
     page = browser.new_page(viewport={"width": 1365, "height": 900}, service_workers="block", reduced_motion="reduce")
@@ -389,6 +690,8 @@ with sync_playwright() as playwright:
       const data = await fetch("data/documentos.json").then(response => response.json());
       return Object.fromEntries(data.documents.map(record => [record.id, {
         type: record.type,
+        imageLayout: record.imageLayout || "",
+        images: [record.image, ...(record.image?.additionalImages || [])].filter(Boolean).map(image => image.src),
         examCaption: record.image?.examCaption?.text || record.examCaption?.text || "",
         crop: record.image?.crop || null,
         width: record.image?.width || 0,
@@ -398,6 +701,14 @@ with sync_playwright() as playwright:
     }""")
     assert page.locator(".exam-generator-nav").get_attribute("href") == "#generador-examen"
     assert page.locator(".saved-nav-stack a").all_text_contents() == ["Mis preguntas cortas", "Mis documentos"]
+    assert page.locator(".exam-generator-nav").bounding_box()["x"] < page.locator(".saved-nav-stack").bounding_box()["x"]
+    for theme in ("light", "dark"):
+        page.evaluate("theme => theme === 'dark' ? document.documentElement.dataset.theme = 'dark' : delete document.documentElement.dataset.theme", theme)
+        primary = page.locator(".exam-generator-nav").evaluate("node => getComputedStyle(node).backgroundColor")
+        secondary = page.locator(".saved-nav-stack a").first.evaluate("node => getComputedStyle(node).backgroundColor")
+        assert primary == "rgb(214, 238, 122)"
+        assert secondary == ("rgb(249, 248, 244)" if theme == "light" else "rgb(41, 45, 47)")
+    page.evaluate("delete document.documentElement.dataset.theme")
     page.locator("#exam-generate").click()
     verify_exam(page, document_captions)
     page.evaluate("document.documentElement.dataset.theme = 'dark'")
@@ -468,6 +779,35 @@ with sync_playwright() as playwright:
     mobile = browser.new_page(viewport={"width": 390, "height": 844}, service_workers="block", reduced_motion="reduce")
     mobile.goto(URL, wait_until="domcontentloaded")
     mobile.wait_for_function("() => !document.querySelector('#exam-generate').disabled")
+    for width in (320, 375, 401, 430, 620):
+        mobile.set_viewport_size({"width": width, "height": 844})
+        brand = mobile.locator(".site-header > .brand").bounding_box()
+        saved = mobile.locator(".saved-nav-stack").bounding_box()
+        contact = mobile.locator(".site-header .contact-tool").bounding_box()
+        exam = mobile.locator(".exam-generator-nav").bounding_box()
+        assert brand["x"] + brand["width"] <= saved["x"]
+        assert mobile.locator(".site-header .brand-text").evaluate(
+            "node => node.getBoundingClientRect().height <= parseFloat(getComputedStyle(node).lineHeight) * 3 + 1"
+        )
+        assert exam["y"] >= saved["y"] + saved["height"]
+        assert abs(exam["x"] - saved["x"]) < 1
+        assert abs(exam["x"] + exam["width"] - contact["x"] - contact["width"]) < 1
+        top = min(saved["y"], contact["y"])
+        bottom = exam["y"] + exam["height"]
+        assert abs(brand["y"] + brand["height"] / 2 - (top + bottom) / 2) < 1
+        if width <= 430:
+            for item, icon in zip(
+                mobile.locator(".saved-nav-stack a").all(),
+                (mobile.locator('.header-tool[href="https://dle.rae.es"]'), mobile.locator('.header-tool[href="https://x.com/RAEinforma"]')),
+            ):
+                saved_box, icon_box = item.bounding_box(), icon.bounding_box()
+                assert abs(saved_box["y"] - icon_box["y"]) < 1
+                assert abs(saved_box["height"] - icon_box["height"]) < 1
+        assert mobile.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        x_icon = mobile.locator(".site-header .x-logo").bounding_box()
+        moon = mobile.locator(".site-header .icon-moon").bounding_box()
+        assert (x_icon["width"], x_icon["height"]) == (moon["width"], moon["height"])
+    mobile.set_viewport_size({"width": 390, "height": 844})
     mobile.locator("#exam-generate").click()
     verify_exam(mobile, document_captions)
     mobile_overline_lines = mobile.locator(".exam-paper-overline").evaluate(
@@ -517,6 +857,14 @@ with sync_playwright() as playwright:
     assert generator.evaluate("node => getComputedStyle(node).backgroundImage === 'none'")
     assert page.pdf(prefer_css_page_size=True).startswith(b"%PDF-")
     page.emulate_media(media="screen")
+    verify_print_image_sizing(browser, pdf=True)
+    verify_paired_sources(browser, pdf=True)
+    verify_mobile_document_scroll(browser, touch_protocol=True)
+    browser.close()
+    browser = playwright.webkit.launch()
+    verify_print_image_sizing(browser)
+    verify_paired_sources(browser)
+    verify_mobile_document_scroll(browser)
     browser.close()
 
 print("OK: cuatro cuestiones, dos itinerarios cruzados y vista adaptable.")

@@ -5,6 +5,30 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 
+def check_section_navigation(browser, width):
+    page = browser.new_page(viewport={"width": width, "height": 900}, service_workers="block", reduced_motion="reduce")
+    page.goto("http://localhost:8765/", wait_until="load")
+    labels = [
+        "Apuntes completos", "Preguntas cortas", "Generador", "Simulacro de exámenes",
+        "Formato de examen", "Datos adicionales (fuentes y recursos oficiales)", "Almacén de exámenes",
+    ]
+    next_button = page.locator(".next-phase")
+    assert not page.locator(".np-step").count()
+    for index, label in enumerate(labels):
+        assert next_button.locator(".np-name").inner_text() == label
+        next_button.click()
+        page.wait_for_function(
+            "(expected) => document.querySelector('.np-name').textContent === expected",
+            arg=labels[(index + 1) % len(labels)],
+        )
+    page.locator(".prev-phase").click()
+    page.wait_for_function("() => document.querySelector('.np-name').textContent === 'Almacén de exámenes'")
+    assert page.locator("#archivo-orientaciones-title").inner_text() == "Almacén de exámenes · Historia de España"
+    assert page.locator(".archive-coverage").inner_text() == "27 de 32 cursos con material"
+    assert page.evaluate("document.documentElement.scrollWidth <= innerWidth")
+    page.close()
+
+
 def check_notes_availability(browser):
     source = (Path(__file__).resolve().parent.parent / "app.js").read_text(encoding="utf-8")
     cases = (
@@ -112,6 +136,8 @@ def check_footer(page, width):
 
 with sync_playwright() as p:
     browser = p.chromium.launch()
+    for width in (375, 1440):
+        check_section_navigation(browser, width)
     check_notes_availability(browser)
     for width in (320, 375, 445, 768, 1024, 1440, 2560):
         page = browser.new_page(viewport={"width": width, "height": 900}, service_workers="block")

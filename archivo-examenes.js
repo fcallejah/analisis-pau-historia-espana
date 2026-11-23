@@ -70,10 +70,16 @@
   }
 
   function examOrder(label) {
-    if (/^titular ordinaria\b/i.test(label)) return 0;
-    if (/^titular extraordinaria\b/i.test(label)) return 1;
-    if (/^reserva\b.*\bordinaria\b/i.test(label)) return 2;
+    if (/\breserva\b/i.test(label)) return 1;
+    if (/^titular\b/i.test(label)) return 0;
+    if (/^suplente\b/i.test(label)) return 2;
     return 3;
+  }
+
+  function sessionOrder(label) {
+    if (/\bordinaria\b/i.test(label)) return 0;
+    if (/\bextraordinaria\b/i.test(label)) return 1;
+    return 2;
   }
 
   function getExams(documents, year) {
@@ -98,7 +104,9 @@
     return [...exams].map(([url, label]) => ({
       url,
       label: `${label}${year === 2001 || year === 2006 ? " · reconstruido" : ""}`,
-    })).sort((a, b) => examOrder(a.label) - examOrder(b.label) || a.label.localeCompare(b.label, "es", { numeric: true }));
+    })).sort((a, b) => examOrder(a.label) - examOrder(b.label)
+      || sessionOrder(a.label) - sessionOrder(b.label)
+      || a.label.localeCompare(b.label, "es", { numeric: true }));
   }
 
   async function openCourse(year) {
@@ -127,7 +135,7 @@
       addList([...exams, ...placeholders]);
       if (year === 2027) addNote("Los exámenes de esta convocatoria aún no están disponibles.");
       if (year === 2001) addNote("Reconstrucciones para lectura a partir del escaneo; incluyen criterios de 2001–02 como referencia.");
-      if (year === 2006) addNote("Reconstrucciones no oficiales, pendientes de cotejo con los originales.");
+      if (year === 2006) addNote("Reconstrucciones para lectura, no oficiales y pendientes de cotejo con los originales.");
       if ([2014, 2016, 2018, 2026].includes(year)) addNote("La colección de exámenes disponibles para este curso está incompleta.");
     } catch (error) {
       if (!dialog.open || sequence !== openSequence) return;
@@ -165,7 +173,7 @@
     const dx = event.changedTouches[0].clientX - touchStart.x;
     const dy = event.changedTouches[0].clientY - touchStart.y;
     touchStart = null;
-    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) navigate(dx < 0 ? 1 : -1);
+    if (Math.abs(dx) >= 60 && Math.abs(dx) > Math.abs(dy) * 1.5) navigate(dx < 0 ? -1 : 1);
   }, { passive: true });
   dialog.addEventListener("touchcancel", () => { touchStart = null; });
 

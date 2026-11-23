@@ -327,7 +327,7 @@ class DocumentCorpusTests(unittest.TestCase):
             if previous:
                 original.append({key: previous if key == "appearances" else value
                                  for key, value in record.items()
-                                 if key not in ("primaryTextId", "memberIds", "titleMarker", "historicalNote")
+                                 if key not in ("primaryTextId", "memberIds", "titleMarker", "historicalNote", "imageLayout")
                                  and not (record["id"] == "manifiesto-persas-1814-pdf-2006-5-1"
                                           and key == "readingNote")
                                  and not (record["id"] == "casas-viejas-detenciones-1933"
