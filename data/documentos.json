@@ -301,6 +301,7 @@
           "mapa-espana-julio-1936",
           "hemingway-guerra-civil",
           "camino-exilio-1939",
+          "muerte-miliciano-capa-1936",
           "material-2001-6-4"
         ]
       },
@@ -23336,6 +23337,59 @@
         {
           "title": "b) Contexto histórico y consecuencias",
           "text": "Relaciona el fusilamiento con los levantamientos liberales frente al absolutismo de Fernando VII durante la Década Ominosa y con la represión política."
+        }
+      ]
+    },
+    {
+      "id": "muerte-miliciano-capa-1936",
+      "title": "Muerte de un miliciano, de Robert Capa",
+      "titleEmphasis": ["Muerte de un miliciano"],
+      "type": "imagen",
+      "blocks": [10],
+      "tags": ["Guerra Civil", "Robert Capa", "Fotoperiodismo", "Milicianos", "CNT-FAI", "Antibelicismo"],
+      "date": "1936",
+      "sourceCaption": "Muerte de un miliciano, del fotógrafo Robert Capa, 1936.",
+      "quality": "Fotografía aportada por el usuario a partir de Historia/Arte. La identidad del miliciano y las circunstancias de la toma han sido objeto de debate; no se presenta una identificación como definitiva.",
+      "dataSourceUrl": "https://historia-arte.com/obras/muerte-de-un-miliciano",
+      "origin": "propio",
+      "appearances": [],
+      "image": {
+        "src": "assets/documentos/muerte-miliciano-capa-1936.png",
+        "width": 1400,
+        "height": 1000,
+        "alt": "Fotografía en blanco y negro de un miliciano que cae hacia atrás mientras sostiene un fusil.",
+        "sourceUrl": "https://historia-arte.com/obras/muerte-de-un-miliciano",
+        "examCaption": {
+          "text": "Muerte de un miliciano, del fotógrafo Robert Capa, 1936.",
+          "emphasis": ["Muerte de un miliciano"]
+        },
+        "annotations": {
+          "layout": "margins",
+          "note": "La marca señala al miliciano sin atribuirle una identidad confirmada.",
+          "sources": [
+            {"title": "Historia/Arte: Muerte de un miliciano", "url": "https://historia-arte.com/obras/muerte-de-un-miliciano"},
+            {"title": "PBS: la hipótesis de identificación de Richard Whelan", "url": "https://www.pbs.org/wnet/americanmasters/robert-capa-in-love-and-war/47/"}
+          ],
+          "people": [
+            {
+              "name": "???",
+              "role": "Se ha intentado identificar al miliciano: una de las hipótesis lo relaciona con un anarquista de la CNT-FAI en el frente de Córdoba, pero su identidad no está confirmada. La fotografía y las circunstancias de la toma han generado un intenso debate. Su difusión internacional la convirtió en un icono de la tragedia de la guerra civil española (1936–1939) y en un símbolo antibelicista contra la violencia.",
+              "position": "Miliciano en primer plano.",
+              "x": 0.386,
+              "y": 0.385,
+              "side": "right"
+            }
+          ]
+        }
+      },
+      "commentary": [
+        {
+          "title": "a) Análisis del documento",
+          "text": "Describe el encuadre, el gesto y el fusil. Distingue lo visible de las hipótesis sobre la identidad del miliciano y las circunstancias de la toma, que han sido debatidas."
+        },
+        {
+          "title": "b) Contexto histórico y consecuencias",
+          "text": "Sitúa la fotografía en la guerra civil española (1936–1939) y explica el papel del fotoperiodismo en la difusión internacional del conflicto y de sus consecuencias humanas."
         }
       ]
     },

@@ -16,6 +16,8 @@ Al imprimir, si ambos documentos son imágenes individuales, se limita la altura
 
 ### Banco de documentos PAU
 
+La guía «¿Cómo hacer un comentario histórico de 10?» está enlazada desde el banco, «Mis documentos», las claves de cada ficha y «Datos adicionales». La fotografía de Capa «Muerte de un miliciano» se incorpora como material de práctica sin apariciones de examen; al revelar personajes, «???» explica la incertidumbre de su identificación.
+
 Los cuatro textos de Mendizábal, el gráfico de desamortizaciones y el mapa de Madoz se clasifican en el bloque 8, dedicado a las transformaciones económicas del siglo XIX, no en el bloque 6.
 
 “Mis preguntas cortas” comparte con “Mis documentos” la cabecera, el panel de filtros, la búsqueda y las tarjetas. Ambos títulos llevan letras negras: “preguntas cortas” con marcado verde lima y “documentos” con marcado naranja–morado, usando los colores del carrusel. El margen conserva los extremos de la cursiva. Los tres filtros del banco y de la colección de documentos incorporan iconos de texto justificado, fotografía y gráfico ascendente. Se mantiene la separación de las dos colecciones y de sus marcas.

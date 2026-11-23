@@ -1461,6 +1461,13 @@
     const guide = element("details", undefined, "document-guide");
     guide.append(element("summary", "Claves para responder a) y b)"));
     guide.append(element("p", "Orientación didáctica propia; no es una solución oficial.", "document-meta"));
+    const commentaryGuide = element("p");
+    const commentaryGuideLink = sourceLink("¿Cómo hacer un comentario histórico de 10?",
+      "https://docs.google.com/document/d/14RSU5bDSW92hiC7dcSY3bzjNSya7K6D1Dke3hWOkqJs/edit?tab=t.0");
+    commentaryGuideLink.target = "_blank";
+    commentaryGuideLink.rel = "noopener noreferrer";
+    commentaryGuide.append(commentaryGuideLink);
+    guide.append(commentaryGuide);
     document.commentary.forEach((section) => guide.append(element("h3", section.title), element("p", section.text)));
     const selectedAppearances = matchingAppearances(document);
     const historicalModel = exam.value === "modelo orientaciones pau"
